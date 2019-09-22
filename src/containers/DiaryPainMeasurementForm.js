@@ -65,31 +65,31 @@ class DiaryPainMeasurementForm extends Component {
         onPress={navigation.getParam('onBackPress')}
       />
     ),
-    headerRight: (
-      <View style={{flexDirection: 'row'}}>
-        <TouchableOpacity
-          hitSlop={{top: 10, bottom: 10, left: 15, right: 5}}
-          style={{marginRight: 30}}
-          onPress={() =>
-            navigation.navigate('PainMeasurementInfo', {
-              animalType: navigation.getParam('animalType'),
-            })
-          }>
-          <Icon name={iconMap.info} size={20} color={colors.nero} />
-        </TouchableOpacity>
-        {/* <TouchableOpacity
-          hitSlop={{ top: 10, bottom: 10, left: 15, right: 30 }}
-          onPress={navigation.getParam("onSubmitButtonPress")}
-        >
-          <MaterialIcons
-            style={{ marginRight: 10 }}
-            name={iconMap.send}
-            size={24}
-            color={colors.mediumPurple}
-          />
-        </TouchableOpacity> */}
-      </View>
-    ),
+    // headerRight: (
+    //   <View style={{flexDirection: 'row'}}>
+    //     <TouchableOpacity
+    //       hitSlop={{top: 10, bottom: 10, left: 15, right: 5}}
+    //       style={{marginRight: 30}}
+    //       onPress={() =>
+    //         navigation.navigate('PainMeasurementInfo', {
+    //           animalType: navigation.getParam('animalType'),
+    //         })
+    //       }>
+    //       <Icon name={iconMap.info} size={20} color={colors.nero} />
+    //     </TouchableOpacity>
+    //     {/* <TouchableOpacity
+    //       hitSlop={{ top: 10, bottom: 10, left: 15, right: 30 }}
+    //       onPress={navigation.getParam("onSubmitButtonPress")}
+    //     >
+    //       <MaterialIcons
+    //         style={{ marginRight: 10 }}
+    //         name={iconMap.send}
+    //         size={24}
+    //         color={colors.mediumPurple}
+    //       />
+    //     </TouchableOpacity> */}
+    //   </View>
+    // ),
   });
 
   constructor(props) {

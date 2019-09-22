@@ -167,11 +167,11 @@ class RecurringForm extends Component {
     }
     const firstType = Object.keys(values)[0];
     if (isNil(values[firstType][0].recurringUntill)) {
-      Reactotron.log('untill', values[firstType][0]);
+      // Reactotron.log('untill', values[firstType][0]);
       return null;
     }
     const recurUntill = values[firstType][0].recurringUntill;
-    Reactotron.log('untill', recurUntill);
+    // Reactotron.log('untill', recurUntill);
     return recurUntill;
   };
 

@@ -629,7 +629,7 @@ class Diary extends Component {
     }
 
     const events = this.props.data.events || [];
-    Reactotron.log('all events', events);
+    // Reactotron.log('all events', events);
     const currentAnimal = animals[this.state.currentIndex];
     const {currentDate, tabIndex} = this.state;
     const allPainMeasurements = compose(

@@ -109,11 +109,11 @@ const AppStack = createDrawerNavigator(
           DiaryFeedingFormInfo: DiaryFeedingFormInfoScreen,
           DiaryMedicationForm: DiaryMedicationFormScreen,
           DiaryMedicationFormInfo: DiaryMedicationFormInfoScreen,
+          DiaryPainMeasurementForm: DiaryPainMeasurementFormScreen,
+          PainMeasurementInfo: DiaryPainMeasurementInfoScreen,
           painMeasurement: PainMeasurementScreen,
           PainMeasurementOverview: PainMeasurementOverviewScreen,
           PainMeasurementDetails: PainMeasurementDetailsScreen,
-          DiaryPainMeasurementForm: DiaryPainMeasurementFormScreen,
-          PainMeasurementInfo: DiaryPainMeasurementInfoScreen,
         },
         {
           initialRouteName: 'Diary',
