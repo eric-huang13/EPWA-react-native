@@ -281,7 +281,7 @@ function PainMeasureContent({
       <TouchableOpacity
         key={id}
         onPress={() =>
-          navigateTo('DiaryPainMeasureForm', {
+          navigateTo('DiaryPainMeasurementForm', {
             initialValue: findEventById(id),
           })
         }>

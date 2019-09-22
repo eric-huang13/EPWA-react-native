@@ -24,13 +24,14 @@ import s from './styles/PainMeasurementGraphStyles';
 import {colors, fonts} from '../themes';
 import Icon from './Icon';
 import iconMap from '../constants/iconMap';
+import {isNil} from 'ramda'
 
 class PainMeasurementGraph extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      pages: props.items,
+      pages: props.items.filter(item => isNil(item.finalScore) === false),
       compositeLine: [],
       facialExpressionLine: [],
       showComposite: true,

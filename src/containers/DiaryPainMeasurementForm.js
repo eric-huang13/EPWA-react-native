@@ -36,6 +36,7 @@ import {eventCategories} from '../constants';
 import {
   dateEventProps,
   dateEventValidation,
+  painEventRegistration,
 } from '../constants/validationTypes';
 
 import {colors} from '../themes';
@@ -51,7 +52,7 @@ import iconMap from '../constants/iconMap';
 import Reactotron from 'reactotron-react-native';
 
 const validationSchema = yup.object().shape({
-  payload: yup.array().of(dateEventValidation),
+  payload: yup.array().of(painEventRegistration),
 });
 
 class DiaryPainMeasurementForm extends Component {
@@ -175,20 +176,12 @@ class DiaryPainMeasurementForm extends Component {
   };
 
   renderRow = props => {
-    const {errors, submitCount} = this.props;
+    const {errors, submitCount, values, t} = this.props;
 
     const startDatePath = `payload[${props.index}].startDate`;
     const typePath = `payload[${props.index}].type`;
-    const notePath = `payload[${props.index}].data.note`;
     const hasErrors = submitCount > 0 && get(errors, typePath);
     const typeStyle = hasErrors ? {backgroundColor: colors.tomato} : {};
-    const typeOfMeasurementOptions = compose(
-      ramdaValues,
-      mapObjIndexed((painForm, key) => ({
-        label: painForm,
-        value: key,
-      })),
-    )(this.props.t('painMeasurements', {returnObjects: true}));
     Reactotron.log('props', this.props);
     return (
       <View
@@ -202,7 +195,7 @@ class DiaryPainMeasurementForm extends Component {
           <View style={{flex: 1, flexDirection: 'row'}}>
             {this.renderField({
               fieldName: 'startDate',
-              label: this.props.t('startTime'),
+              label: t('startTime'),
               date: new Date(),
               ...props,
             })}
@@ -214,7 +207,7 @@ class DiaryPainMeasurementForm extends Component {
               <Select
                 showBorder
                 placeholder={{label: '', value: null}}
-                items={(eventTypes.composite, eventTypes.facialExpression)}
+                items={[{label: t("painMeasurements:composite"), value: eventTypes.composite}, {label: t("painMeasurements:facialExpression") , value: eventTypes.facialExpression}]}
                 onValueChange={value =>
                   this.props.setFieldValue(typePath, value)
                 }
@@ -320,7 +313,7 @@ DiaryPainMeasurementForm.propTypes = {
     language: T.string,
   }),
   t: T.func,
-  type: T.oneOf(['composite', 'facialExpression']),
+  type: T.oneOf([eventTypes.composite, eventTypes.facialExpression]),
 };
 
 const showSuccess = (alertDropdown, title, msg) => {

@@ -692,8 +692,8 @@
         {
           "label": "Vele individuele paardenliefhebbers in Nederland en wereldwijd"
         },
-        {"label": "Pavo paardenvoer", "url": "http://www.pavo.nl"},
-        {"label": "Stichting Nijdier", "url": "http://www.nijdier.nl"},
+        { "label": "Pavo paardenvoer", "url": "http://www.pavo.nl" },
+        { "label": "Stichting Nijdier", "url": "http://www.nijdier.nl" },
         {
           "label": "The Donkey Sanctuary",
           "url": "http://www.thedonkeysanctuary.org.uk"
@@ -706,8 +706,8 @@
           "label": "Stichting Moyra-Stava Morena",
           "url": "http://www.moyrastavamorena.nl"
         },
-        {"label": "Nikki de Kerf fotografie", "url": "http://fotogenikki.nl"},
-        {"label": "Wirelab Digital Agency", "url": "http://www.wirelab.nl"}
+        { "label": "Nikki de Kerf fotografie", "url": "http://fotogenikki.nl" },
+        { "label": "Wirelab Digital Agency", "url": "http://www.wirelab.nl" }
       ],
       "privacy": {
         "title": "Bescherming van gegevens",
@@ -1094,7 +1094,7 @@
     },
     "painMeasurements": {
       "composite": "Samengestelde pijnmeting",
-      "facial": "Gezichtspijnmeting"
+      "facialExpression": "Gezichtspijnmeting"
     },
     "typePainMeasurement": "Type pijnmeting"
   },
