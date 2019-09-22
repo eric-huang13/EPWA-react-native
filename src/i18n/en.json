@@ -1,0 +1,1103 @@
+{
+  "root": {
+    "loading": "Please wait...",
+    "appName": "Equine Pain and Welfare App",
+    "language": {
+      "nl": "Dutch",
+      "en": "English"
+    },
+    "dateFormat": "DD-MM-YYYY",
+    "errors": {
+      "facebookLoginGeneric": "Connecting to Facebook failed",
+      "googleLoginGeneric": "Connecting to Google failed",
+      "emailLoginGeneric": "Connecting to the server failed",
+      "emailLoginNoAccount": "There's no account using following email address",
+      "emailLoginInvalidCredentials": "Invalid credentials",
+      "emailRegisterGeneric": "Connecting to the server failed",
+      "emailRegisterEmailAlreadyTaken": "This email address has already been taken.",
+      "emailRegisterEmailInvalid": "The email must be a valid email address.",
+      "emailRegisterPasswordTooShort": "The password must be at least 6 characters.",
+      "mixedAccounts": "This email address is already linked to an account. Please try a different login method.\n\nIf you know your account has a password, make sure you log in with your email address and password. Otherwise use your Google or Facebook account to sign in.",
+      "forgotEmailGeneric": "Connecting to the server failed",
+      "alertTitleGeneric": "Error",
+      "alertTitleWarning": "Warning",
+      "alertButtonLabelGeneric": "OK",
+      "imagePickerFailed": "An error occurred while selecting the image.",
+      "imageOverSizeThreshold": "You're about to upload an exceptionally big image. Make sure you're on a fast, reliable internet connection.",
+      "generic": "Something went wrong",
+      "fetchUserDataError": "The user data retrieved from the server is malformed. Please report this issue to our support team."
+    },
+    "auth": {
+      "login": "Log in",
+      "loginGoogle": "Log in with Google",
+      "loginFB": "Log in with Facebook",
+      "loginEmail": "Log in with email",
+      "or": "OR",
+      "noAccountRegister": "No account? Register here >",
+      "register": "Register",
+      "registerFormSubmit": "Register",
+      "sendingRequest": "Sending...",
+      "logout": "Log out",
+      "email": "Email",
+      "password": "Password",
+      "forgottenPassword": "Forgot your password?",
+      "alreadyHaveAccount": "I already have an account >",
+      "registerSubmitBtn": "Register",
+      "forgotPasswordSubmitBtn": "Submit",
+      "forgotEmailSuccededAlertTitle": "Success",
+      "forgotEmailSuccededAlertMessage": "An email with instructions to set up a new password has been sent to your email address",
+      "forgotEmailSuccededAlertButtonLabel": "OK"
+    },
+    "headerBar": {
+      "back": "Back",
+      "login": "Log in",
+      "register": "Register",
+      "forgottenPassword": "Forgotten password",
+      "settings": "Settings",
+      "settingsNavigator": "Settings",
+      "stable": "My stable",
+      "stableNavigator": "My stable",
+      "diary": "Diary",
+      "diaryNavigator": "Diary",
+      "animalForm": "Animal",
+      "syndromes": "PPID check",
+      "syndromesNavigator": "PPID check",
+      "about": "About",
+      "aboutNavigator": "About",
+      "logout": "Logout",
+      "logoutNavigator": "Logout",
+      "diaryExercise": "Exercise",
+      "diaryFeeding": "Feeding",
+      "diaryHousing": "Turnout",
+      "diaryMedication": "My vet",
+      "diaryPainMeasurement": "Pain measurement",
+      "changePassword": "Password",
+      "painMeasurementNavigator": "Pain measurement",
+      "welfareInfo": "Guidelines",
+      "welfareNavigator": "Guidelines for horse welfare",
+      "copyEvents": "Copy"
+    },
+    "turnout": {
+      "sharedAreaWithOtherAnimals": "Shared area with other animals",
+      "alone": "Alone",
+      "sharedWithHorses": "With other horses",
+      "sharedWithDonkeys": "With other donkeys",
+      "sharedWithOtherAnimals": "With other animals"
+    },
+    "exportEvents": {
+      "alertTitle": "Export your daily report",
+      "alertMsg": "Your daily report is ready to be downloaded",
+      "alertCancelBtn": "Cancel",
+      "alertDownloadBtn": "Download"
+    },
+    "painMeasurement": {
+      "full": {
+        "timer": {
+          "fullCountdown": "How does the pain measurement work?",
+          "headCountdown": "How does the pain measurement work?",
+          "layingDownRolling": "Laying down, rolling",
+          "tailFlicking": "Tail\nflicking",
+          "kickingAtAbdomen": "Kicking\nat abdomen",
+          "pawing": "Pawing at\nthe floor",
+          "headMovements": "Head movements",
+          "painSounds": "Pain sounds",
+          "pointingTowardsTheFloor": "Pointing toward the floor",
+          "lookingAtAbdomen": "Looking\nat abdomen"
+        },
+        "observation": {
+          "donkey": {
+            "layingDownRolling": "Laying down, rolling",
+            "layingDownRollingOptions": [
+              "Donkey is standing quietly or is lying down and resting",
+              "<50% of the time lying down or rolling",
+              ">50% of the time lying down or rolling",
+              "lies continuously in unnatural position"
+            ],
+            "overallAppearance": "Overall appearance",
+            "overallAppearanceOptions": [
+              "Alert/interacting with mate or group",
+              "Mildly depressed and/or restless and/or decreased interaction with mate or group",
+              "Moderately depressed and/or agressive and/or no reaction to mate or group",
+              "Severely depressed"
+            ],
+            "earPosition": "Ear position",
+            "earPositionOptions": [
+              "Normal position >75% of time",
+              "Abnormal position (backwards/sideways/flat)"
+            ],
+            "posture": "Posture",
+            "postureOptions": [
+              "Quietly standing and/or one hind leg resting",
+              "Slightly tucked up abdomen and/or mild weight shifting",
+              "Extremely tucked up abdomen, hunched back and/or stretching of body/limbs and/or mild muscle tremors",
+              "Sits on hindquarters and/or extreme muscle tremors"
+            ],
+            "weightDistribution": "Weight distribution",
+            "weightDistributionOptions": [
+              "Normal weight distribution",
+              "Abnormal weight distribution"
+            ],
+            "headCarriage": "Head carriage",
+            "headCarriageOptions": [
+              "Ear base above whithers or eats/drinks from ground",
+              "Ear base at the level of the whithers",
+              "Ear base below the whithers"
+            ],
+            "sweating": "Sweating",
+            "sweatingOptions": [
+              "No signs of sweating",
+              "Damp to touch, no sweat visible",
+              "Wet spots visible, no droplets or stream",
+              "Excessive sweating, may include streams or droplets"
+            ],
+            "eating": "Eating",
+            "eatingOptions": [
+              "Eats normally or needs to be fasted",
+              "Eats less and/or slowly",
+              "Not interested in food"
+            ],
+            "changesInBehaviour": "Changes in behaviour to mate or group",
+            "changesInBehaviourOptions": [
+              "Donkey is within group or with mate",
+              "Donkey is left by group or mate"
+            ],
+            "reactionToObserver": "Reaction to observer",
+            "reactionToObserverOptions": [
+              "Approaches/turns to observer",
+              "Mild reaction to observer",
+              "No reaction to observer"
+            ]
+          },
+          "behaviour": "Behaviour / Posture",
+          "behaviourOptions": [
+            "Quietly standing and/or one hind leg resting, explores environment",
+            "Slightly tucked up abdomen, still explores environment",
+            "Extremely tucked up abdomen, hunched back and/or stretching of body/limbs",
+            "Does not stand or only for short periods, sits on hindquarters"
+          ],
+          "overallAppearance": "Overall appearance, reaction to observer",
+          "overallAppearanceOptions": [
+            "Quiet but alert, approaches/turns to observer",
+            "Alert, no reluctance to move, obvious reaction to sounds/movements",
+            "Restless, constantly moving, exaggerated reaction to sounds/movements",
+            "Stupor: not moving, lowered head, reluctance to move"
+          ],
+          "sweating": "Sweating",
+          "sweatingOptions": [
+            "No signs of sweating",
+            "Damp to touch, no sweat visible",
+            "Wet spots visible, no droplets or stream",
+            "Excessive sweating, might include streams or droplets"
+          ]
+        },
+        "vet": {
+          "donkey": {
+            "respiratoryRate": "Respiratory rate",
+            "respiratoryRateOptions": [
+              "12-28 breaths/min",
+              "29-32 breaths/min",
+              "33-36 breaths/min",
+              ">36 breaths/min"
+            ],
+            "heartRate": "Heart rate",
+            "heartRateOptions": [
+              "32-52 beats/min",
+              "53-60 beats/min",
+              "61-68 beats/min",
+              ">68 beats/min"
+            ],
+            "digestiveSounds": "Digestive sounds",
+            "digestiveSoundsOptions": [
+              "normal motility",
+              "decreased motility",
+              "no motility",
+              "hypermotility or tympanic sounds"
+            ],
+            "rectalTemperature": "Rectal temperature",
+            "rectalTemperatureOptions": [
+              "35.7-38.0 degrees C",
+              "35.3-35.6 or 38.1-38.5 degrees C",
+              "34.7-35.2 or 38.6-39.0 degrees C",
+              "<34 or > 39.1 degrees C"
+            ]
+          },
+          "respiratoryRate": "Respiratory rate",
+          "respiratoryRateOptions": [
+            "8-13 breaths/min",
+            "14-16 breaths/min",
+            "17-18 breaths/min",
+            ">18 breaths/min"
+          ],
+          "heartRate": "Heart rate",
+          "heartRateOptions": [
+            "24-44 beats/min",
+            "45-52 beats/min",
+            "53-60 beats/min",
+            ">60 beats/min"
+          ],
+          "digestiveSounds": "Digestive sounds",
+          "digestiveSoundsOptions": [
+            "normal motility",
+            "decreased motility",
+            "no motility",
+            "hypermotility or steelband"
+          ],
+          "rectalTemperature": "Rectal temperature",
+          "rectalTemperatureOptions": [
+            "36.9-38.5 degrees C",
+            "36.4-36.9 or 38.5-39 degrees C",
+            "35.9-36.4 or 39-39.5 degrees C",
+            "35.4-35.9 or 39.5-40 degrees C"
+          ]
+        },
+        "interaction": {
+          "donkey": {
+            "reactionToPalpation": "Reaction to palpation of painful area",
+            "reactionToPalpationOptions": [
+              "No reaction to palpation",
+              "Mild reaction to palpation",
+              "Severe reaction to palpation"
+            ],
+            "movement": "Movement",
+            "movementOptions": [
+              "No reluctance to move and normal gait",
+              "Mildly abnormal gait (1 or 2 out of 5) and/or stiff walk",
+              "Reluctance to move when motivated and/or severely abnormal gait (3-5 out of 5)",
+              "No movement or donkey is lying down"
+            ]
+          },
+          "reactionToPalpation": "Reaction to palpation",
+          "reactionToPalpationOptions": [
+            "No reaction to palpation",
+            "Mild reaction to palpation",
+            "Moderate reaction to palpation",
+            "Violent reaction to (attempt to) palpation"
+          ]
+        }
+      },
+      "head": {
+        "timer": {
+          "fullCountdown": "How does the pain measurement work?",
+          "headCountdown": "How does the pain measurement work?",
+          "flehming": "Flehming",
+          "yawning": "Yawning",
+          "teethGrinding": "Teeth grinding",
+          "moaning": "Moaning",
+          "smacking": "Smacking",
+          "headShaking": "Head shaking"
+        },
+        "observation": {
+          "donkey": {
+            "head": "Head",
+            "headOptions": [
+              "Normal movement/interested in environment",
+              "Less/no movement",
+              "More/exaggerated movement"
+            ],
+            "eyelids": "Eyelids",
+            "eyelidsOptions": [
+              "Opened",
+              "More opened eyes (rim above eye visible) or tightened eyelids",
+              "Obviously more opened eyes (rim above eye visible) or obvious tightening of eyelids"
+            ],
+            "focus": "Focus",
+            "focusOptions": [
+              "Focussed on environment",
+              "Less focussed on environment",
+              "Not focussed on envrionment"
+            ],
+            "nostrils": "Nostrils",
+            "nostrilsOptions": [
+              "Relaxed",
+              "Mildly opened, nostrils lifted, wrinkles seen",
+              "Obviously more opened , nostril flaring and possibly audible breathing"
+            ],
+            "mouthCorners": "Corners of mouth",
+            "mouthCornersOptions": ["Relaxed", "Lifted"],
+            "muscleToneHead": "Muscle tone head",
+            "muscleToneHeadOptions": [
+              "No fasciculations or increased tension",
+              "Mild fasciculations or increased tension",
+              "Obvious fasciculations or increased tension"
+            ],
+            "sweatingBehindTheEars": "Sweating behind the ears",
+            "sweatingBehindTheEarsOptions": [
+              "No signs of sweating",
+              "Signs of sweating"
+            ],
+            "earPosition": "Ear position",
+            "earPositionOptions": [
+              "Normal position",
+              "Abnormal position: hanging down",
+              "Abnormal position: backwards"
+            ],
+            "responseToAuditoryStimulus": "Ears, response to auditory stimulus",
+            "responseToAuditoryStimulusOptions": [
+              "Clear response with both ears or ear closest to source",
+              "Delayed/reduced response to sounds",
+              "No response to sounds"
+            ]
+          },
+          "head": "Head",
+          "headOptions": [
+            "Normal movement/interested in environment",
+            "Less movement",
+            "No movement"
+          ],
+          "eyelids": "Eyelids",
+          "eyelidsOptions": [
+            "Opened, sclera can be seen in case of eye/head movement",
+            "Eyes opened further (rim above eye visible) or tightened eyelids. An edge of sclera can be seen most of the time",
+            "Eyes obviously opened further (rim above eye visible) or obvious tightening of eyelids. Sclera visible most of the time"
+          ],
+          "focus": "Focus",
+          "focusOptions": [
+            "Focussed on environment",
+            "Less focussed on environment",
+            "Not focussed on envrionment"
+          ],
+          "nostrils": "Nostrils",
+          "nostrilsOptions": [
+            "Relaxed",
+            "Mildly opened",
+            "Obviously more opened , nostril flaring and possibly audible breathing"
+          ],
+          "mouthCorners": "Corners of mouth",
+          "mouthCornersOptions": [
+            "Relaxed",
+            "Lifted slightly",
+            "Obviously lifted"
+          ],
+          "muscleToneHead": "Muscle tone head",
+          "muscleToneHeadOptions": [
+            "No fasciculations or increased tension",
+            "Mild fasciculations or increased tension",
+            "Obvious fasciculations or increased tension"
+          ],
+          "ears": "Ears (response to auditory stimulus)",
+          "earsOptions": [
+            "Orientation towards sound/clear response with both ears or ear closest to source",
+            "Delayed/reduced response to sounds",
+            "Backwards position, no response to sounds"
+          ]
+        }
+      },
+      "explanationTexts": {
+        "fullCountdown": [
+          "Press the button “start the pain measurement” to begin. The first set of observations will last 5 minutes. The clock in the middle will count down the time.",
+          "Is your {{animalType}} kicking at his abdomen? Click on the corresponding icon, and you’ll see a superscript appear above the icon. This is how to keep  track of the number of times your {{animalType}} shows a particular behaviour.",
+          "Lies continuously in abnormal position?",
+          "The {{animalType}} is considered to lie in an abnormal position, if it is lying stretched out, often with the front legs stretched forward, and the hind legs backward. The {{animalType}} might also lie on its back its legs in the air.",
+          "If your {{animalType}} is lying down for long time and in an abnormal position please tick this button at the end of the 5 minutes.",
+          "Did you make a mistake and counted too many movements? Use the undo-button at the bottom left to delete your last entry."
+        ],
+        "headCountdown": [
+          "Press the button “start the pain measurement” to begin. The first set of observations will last 2 minutes. The clock in the middle will count down the time.",
+          "Is your {{animalType}} yawning? Click on the corresponding icon, and you’ll see a superscript appear above the icon. This is how to keep  track of the number of times your horse shows a particular behaviour.",
+          "Did you make a mistake and counted too many movements? Use the undo-button at the bottom left to delete your last entry."
+        ],
+        "layingDownRolling": [
+          "Lying and rolling is a natural behavior for a {{animalType}}. However, it can also be an indication of pain.",
+          "Click on the icon during the pain measurement every time your {{animalType}} starts to lie down or roll."
+        ],
+        "tailFlicking": [
+          "A {{animalType}} might swish with its tail to get rid of flies. However, it can also be an indication of pain.",
+          "Click on the icon during the pain measurement every time your {{animalType}} swishes its tail."
+        ],
+        "kickingAtAbdomen": [
+          "A {{animalType}} might kick at its belly in order to get rid of flies. However, kicking at the belly can also be an indication of pain.",
+          "Click on the icon during the pain measurement every time your {{animalType}} kicks at its stomach."
+        ],
+        "pawing": [
+          "Scraping the ground with a foreleg might express simpatience. However, it can also be an indication of pain.",
+          "Click on the icon during the pain measurement every time your {{animalType}} scrapes the ground with its foreleg."
+        ],
+        "headMovements": [
+          "A {{animalType}} might move its head to get rid of a fly. However, abrupt head movements, such as moving the head from side to side, up and down, or turning to look at the flank, can be indications of pain.",
+          "Click on the icon during the pain measurement every time your {{animalType}} moves its head abruptly."
+        ],
+        "painSounds": [
+          "Examples of pain sounds are teeth grinding and groaning. While they might can also be an indication of pain.",
+          "Click on the icon during the pain measurement every time your {{animalType}} groans or grinds its teeth."
+        ],
+        "flehming": [
+          "Flehming is a natural behavior. However, it can also be an indication of pain.",
+          "Click on the icon during the pain test every time your {{animalType}} is flehming."
+        ],
+        "yawning": [
+          "Yawning can be an indication of pain.",
+          "Click on the icon during the pain measurement every time your {{animalType}} yawns."
+        ],
+        "teethGrinding": [
+          "Teeth grinding can be an indication of pain.",
+          "Click on the icon during the pain measurement every time your {{animalType}} grinds its teeth."
+        ],
+        "moaning": [
+          "Groaning can be an indication of pain.",
+          "Click on the icon during the pain measurement every time your {{animalType}} groans."
+        ],
+        "headShaking": [
+          "Head shaking can be an indication of pain.",
+          "Click on the icon during the pain measurement every time your {{animalType}} is shaking its head."
+        ],
+        "smacking": [
+          "Smacking can be an indication of pain.",
+          "Click on the icon during the pain measurement every time your {{animalType}} smacks."
+        ],
+        "pointingTowardsTheFloor": [
+          "Pointing with a foreleg might indicate pain, since the pointing limb is being unloaded.",
+          "Click on the icon during the pain measurement every time your {{animalType}} points its forelimb."
+        ],
+        "lookingAtAbdomen": [
+          "A donkey might look at its belly when it has (colic) pain.",
+          "Click on the icon during the pain measurement every time your {{animalType}} looks at its belly."
+        ]
+      },
+      "misc": {
+        "headerTitle": "Pain measurement",
+        "recentMeasurementTitle": "Latest pain measurement",
+        "horse": "Horse",
+        "horse_plural": "Horses",
+        "donkey": "Donkey",
+        "donkey_plural": "Donkeys",
+        "compositePainScale": "Composite pain scale",
+        "facialExpressions": "Facial expressions",
+        "adviceTitle": "Advice",
+        "adviceText": "Do the pain measurement at a time when you know there’s nothing wrong with your {{animalType}}. That way, you’ll know what to expect, should you ever need to use the app in an emergency.\n\nWhen observing your {{animalType}} during the first part of the measurement, stand quietly at a short distance from your {{animalType}}, preferably outside of the box.\n\nThis app is based on research into different types of acute pain and can be used by veterinarians as well as {{animalType}} owners. The results for both groups are scientifically reliable. However, considering the subject-specific background of veterinarians, they will be shown slightly different parameters.\n\nThere are 2 different scoring options:",
+        "compositePainScaleTitle": "Composite pain scale",
+        "compositePainScaleExplanation": "The Composite Pain Scale is based on scientific research and has been shown to provide reliable information in horses with acute colic and in donkeys with acute orthopedic pain, postoperative pain and pain from colic. The scale assesses the body language of the animal using behavioural, interaction and physiological parameters. A total score higher than {{compositeMeasurementScoreThreshold}} can be an indication for acute pain. The higher the score, the more likely it is that the animal is experiencing acute pain.",
+        "facialExpressionsTitle": "Facial expressions",
+        "facialExpressionExplanation": "The facial expression scale is based on scientific research and has been shown to provide reliable information in horses with acute colic, facial pain and acute orthopedic pain and in donkeys with acute orthopedic pain, postoperative pain and acute colic. The scale has also been shown to provide reliable information in donkeys with acute pain from colic and facial pain. The scale assesses the animal’s mimicry that may be shown when the animal is in pain. A total score higher than {{facialMeasurementThresholdScore}} can indicate acute pain. The higher the score, the more likely the {{animalType}} is experiencing acute pain.",
+        "adviceCompositeMeasurementPain": "It looks like your {{animalType}} is experiencing acute pain. Please consider contacting your vet.",
+        "adviceCompositeMeasurementNoPain": "It looks like your {{animalType}} isn’t experiencing acute pain at this point in time.",
+        "adviceFacialExpressionMeasurementPain": "It looks like your {{animalType}} is experiencing acute pain. Please consider contacting your vet.",
+        "adviceFacialExpressionMeasurementNoPain": "It looks like your {{animalType}} isn’t experiencing acute pain at this point in time.",
+        "areYouVet": "Are you a vet?",
+        "animalTypeQuestion": "Which animal do you want to score?",
+        "measurementTypeQuestion": "Which pain measurement scale do you want to use?",
+        "countMovementsCommand": "Score the movements for {{minutes}} min",
+        "prepareCommand": "How does the pain measurement work?",
+        "clickTheIconToKnowMore": "Click on the icons for more info.",
+        "baseline": "Baseline",
+        "pain": "Pain",
+        "frequency": "Frequency",
+        "observation": "Observation",
+        "reaction": "Reaction",
+        "liesInUnnaturalPosition": "Lies continuously in unnatural position",
+        "loginToSave": "Only registered users can save pain measurement in a diary",
+        "resetForm": "Retry",
+        "nextStep": "Next step",
+        "seeResult": "See results",
+        "goToSignUp": "Sign up",
+        "goToDiary": "Save to diary",
+        "safetyInfo": [
+          "Please note that this pain measurement does not replace a veterinary diagnosis.",
+          "If in doubt, please consult your vet. Your safety and that of your animal should always come first."
+        ],
+        "selectAnswer": "Choose the best option",
+        "score": "Score",
+        "ourAdvice": "Our advice",
+        "startMeasurement": "Start the measurement",
+        "showOverview": "See all measurements"
+      }
+    },
+    "ppidCheck": {
+      "introductionTitle": "Testing for PPID/Diagnosing PPID",
+      "introductionContent": "PPID can be treated with certain types of medication that can help to diminish symptoms. By taking extra care of your horse, you can also decrease or even prevent possible complications.\n\nIf the results from the PPID check point towards your horse having PPID, you can ask your vet to carry out a PPID test. Having taken a simple blood test, your vet will be able to diagnose whether your horse suffers from PPID within a few days.",
+      "startTitle": "Perform the PPID check",
+      "startContent": "Pituitary Pars Intermedia Dysfunction (PPID), formerly know as Cushing’s Disease, is a common condition among horses and ponies aged 15 years and older.\n\nAt Stichting De Paardenkamp, the Dutch national retirement home and knowledge centre for elderly horses, PPID is a well-known phenomenon. The competent staff and committed veterinarians at De Paardenkamp are always happy to share their knowledge and expertise. That’s why they’ve developed this PPID check.\n\nWould  you like to know if your horse is at risk?\nDo the PPID check!",
+      "startButton": "Start PPID check",
+      "resultTitleNegative": "PPID result – Probably not",
+      "resultTitlePositive": "PPID result - Probably",
+      "resultContentNegative": "The results of the check seem to indicate that right now, your horse does not show the most important signs of PPID.\n\nAre you not entirely sure? Ask your vet to perform a PPID test.",
+      "resultContentPositive": "The results of the check seem to indicate that your horse might have PPID. You can ask your vet to perform a PPID test.\n\nHaving taken a simple blood test, your vet will be able to diagnose whether your horse suffers from PPID within a few days.\n\nPPID can be treated with certain types of medication that can help to diminish symptoms. By taking extra care of your horse, you can also decrease or even prevent possible complications.",
+      "resultExitButton": "Close result",
+      "title": {
+        "a": "Hollows above the eyes",
+        "b": "Changes in hair coat",
+        "c": "Drinking and urinating",
+        "d": "Laminitis",
+        "others": [
+          "Age",
+          "Appetite",
+          "Lethargy",
+          "Winter coat",
+          "Sweating",
+          "Low Resistance",
+          "Back muscles",
+          "Abdominal muscles",
+          "Sudden blindness or epilectic seizure",
+          "Fertility"
+        ]
+      },
+      "content": {
+        "a": "Are the hollows above your horse’s eyes bulging with fat?\n\nFat deposits in unusual places, for example above the eyes, are considered a symptom of PPID.",
+        "b": "Has your horse developed a longer coat with curly hair (possibly even in a different colour)? Or is your horse suddenly sprouting longer strands of curly on different parts of its body?\n\nA change in hair coat, such as developing full, long and/or curly hair, is a common symptom of PPID.",
+        "c": "Does your horse drink and urinate a lot more than usual?\n\nDrinking more and urinating more frequently are signs that could point towards PPID.",
+        "d": "Does your horse currently suffer from laminitis, or did he do so in the past?\n\nLaminitis might be a symptom of PPID.",
+        "others": [
+          "Is your horse older than 15?\n\nPPID is more common among horses older than 15 years.",
+          "Did your horse’s appetite increase all of a sudden?\n\nHorses with PPID tend to eat more, yet lose weight at the same time.",
+          "Is your horse lethargic or less willing to work?\n\nOften, the first signs of PPID are lethargy and reduced performance.",
+          "Does it take longer for your horse to shed its winter coat?\n\nA change in hair coat, such as developing full, long and/or curly hair, is a common symptom of PPID.",
+          "Does your horse sweat more, and in unusual places such as the neck and shoulders?\n\nUnusual sweating, often around the neck and shoulders, might be a sign of PPID.",
+          "Does your horse show signs of a weak immune system, such as recurring sinus infections or small wounds that won’t heal properly?\n\nAn immune deficiency is often characterised through the horse repeatedly suffering from infections or poor wound healing, and can be a sign the horse is suffering from PPID.",
+          "Are muscles on your horse’s back decreasing in size?\n\nThe loss of muscle mass, also know as ‘muscle atrophy’, for example on a horse’s back, can be a visible sign of PPID.",
+          "Are your horse’s abdominal muscles weakening and is he developing a belly pooch?\n\nMuscle atrophy, for example in the muscles surrounding a horse’s belly, can be a visible sign of PPID.",
+          "Does your horse suffer from sudden blindness or an epileptic seizure?\n\nIn some cases, epilepsy and blindness are symptoms of PPID.",
+          "Is your mare less fertile, does she have difficulty in conceiving or won’t she get pregnant at all?\n\nDifficulties in conception and spontaneously producing milk can point towards PPID."
+        ]
+      }
+    },
+    "animalBreeds": {
+      "horse": {
+        "andalusian": "Andalusian",
+        "appaloosa": "Appaloosa",
+        "arabianHorse": "Arabian horse",
+        "connemara ": "Connemara",
+        "dartmoorPony": "Dartmoor pony",
+        "trotter": "Trotter",
+        "falabella": "Falabella ",
+        "fjordHorse": "Fjord horse ",
+        "friesianHorse": "Friesian horse",
+        "gelderlandHorse": "Gelderland horse",
+        "groningenHorse": "Groningen horse",
+        "hackney": "Hackney ",
+        "haflinger": "Haflinger ",
+        "hanoverian": "Hanoverian",
+        "holsteiner": "Holsteiner",
+        "icelandicHorse": "Icelandic horse",
+        "dutchWarmblood": "Dutch warmblood",
+        "lipizzan": "Lipizzan",
+        "merens": "Merens",
+        "newForest": "New Forest",
+        "miniatureHorse": "Miniature horse",
+        "dutchRidingPony": "Dutch riding pony",
+        "oldenburgHorse": "Oldenburg horse",
+        "quarterHorse": "Quarter horse",
+        "shetlandPony": "Shetland pony",
+        "shire": "Shire",
+        "tinker ": "Tinker",
+        "trakehner ": "Trakehner",
+        "draftTrotter": "Draft trotter",
+        "welshPony": "Welsh pony",
+        "other": "Other breeds"
+      },
+      "donkey": {
+        "grandNoir": "Grand Noir",
+        "poitou": "Poitou",
+        "dutch": "Dutch donkey",
+        "pyrenean": "Pyrenean donkey",
+        "mini": "Mini",
+        "micro": "Micro",
+        "mule": "Mule"
+      }
+    },
+    "animalCompetitionLevels": {
+      "horse": {
+        "amateur": "Amateur",
+        "professional": "Professional",
+        "elite": "Elite",
+        "n_a": "Does not apply"
+      }
+    },
+    "animalDisciplines": {
+      "horse": {
+        "dressage": "Dressage",
+        "showJumping": "Show jumping",
+        "crossTraining": "Cross country",
+        "outsideRide": "Hacking",
+        "endurance": "Endurance",
+        "harness": "Harness",
+        "lunging": "Lunging",
+        "groundWork": "Ground work",
+        "hiking": "Walking in hand",
+        "stepMill": "Horse walker",
+        "manualWork": "Work in Hand",
+        "other": "Other"
+      }
+    },
+    "animalGenders": {
+      "horse": {
+        "mare": "Mare",
+        "gelding": "Gelding",
+        "stallion": "Stallion"
+      },
+      "donkey": {
+        "jenny": "Jenny",
+        "gelding": "Gelding",
+        "jack": "Jack"
+      }
+    },
+    "animalRoles": {
+      "horse": {
+        "leisure": "Leisure",
+        "sport": "Sport",
+        "instruction": "Riding school",
+        "breeding": "Breeding",
+        "company / pensionado": "Companion / retired",
+        "other": "Other"
+      },
+      "donkey": {
+        "leisure": "Leisure",
+        "company / pensionado": "Companion / retired",
+        "milk / farmwork": "Milk / farmwork",
+        "trekking / riding": "Trekking / riding",
+        "other": "Other"
+      }
+    },
+    "aboutScreen": {
+      "title": "This app was developed by researchers and veterinarians of the Utrecht University Faculty of Veterinary Medicine, Stichting De Paardenkamp and Fund Vrienden Diergeneeskunde.",
+      "university": {
+        "title": "Utrecht University - Faculty of Veterinary Medicine",
+        "description": "We are the Faculty of Veterinary Medicine, the veterinary knowledge center in the Netherlands. We build bridges between science and society and provide specialist care in the largest academic animal hospital in Europe. We believe in multidisciplinary cooperation with our partners, both nationally and internationally.",
+        "link": {
+          "label": "www.uu.nl/organisatie/faculteit-diergeneeskunde",
+          "url": "https://www.uu.nl/organisatie/faculteit-diergeneeskunde"
+        }
+      },
+      "paardenkamp": {
+        "title": "Stichting De Paardenkamp in Soest",
+        "description": "The national shelter and knowledge center for older horses. Letting horses and ponies enjoy a well-deserved old age after their twentieth year of life, is what the people of De Paardenkamp Foundation do on a daily basis. Thanks to donors, sponsors and volunteers, 120 horses and ponies find a well-kept home on our three farms with plenty of grazing and stable areas.",
+        "link": {
+          "label": "www.paardenkamp.nl",
+          "url": "https://www.paardenkamp.nl"
+        }
+      },
+      "friends": {
+        "title": "Fund Friends Veterinary Medicine",
+        "description": "Friends Veterinary Medicine is the fund of the Faculty of Veterinary Medicine Utrecht University. We raise money for research and innovative top-quality care that promote and protect the health and well-being of animals.",
+        "link": {
+          "label": "www.vriendendiergeneeskunde.nl",
+          "url": "https://www.vriendendiergeneeskunde.nl"
+        }
+      },
+      "more": {
+        "links": [
+          {
+            "label": "More information about EPWA",
+            "url": "https://www.epwa.nl/en"
+          },
+          {
+            "label": "Sponsors of EPWA",
+            "url": "https://www.epwa.nl/en/over-de-app/sponsoren"
+          }
+        ]
+      },
+      "listIntro": "This app was made possible by:",
+      "list": [
+        {
+          "label": "Many individual horse lovers in the Netherlands and worldwide"
+        },
+        {"label": "Pavo paardenvoer", "url": "http://www.pavo.nl"},
+        {"label": "Stichting Nijdier", "url": "http://www.nijdier.nl"},
+        {
+          "label": "The Donkey Sanctuary",
+          "url": "http://www.thedonkeysanctuary.org.uk"
+        },
+        {
+          "label": "Stichting Capelse Manegefonds",
+          "url": "http://www.capelsemanege.nl"
+        },
+        {
+          "label": "Stichting Moyra-Stava Morena",
+          "url": "http://www.moyrastavamorena.nl"
+        },
+        {"label": "Nikki de Kerf fotografie", "url": "http://fotogenikki.nl"},
+        {"label": "Wirelab Digital Agency", "url": "http://www.wirelab.nl"}
+      ],
+      "privacy": {
+        "title": "Data protection",
+        "description": "For more information regarding the protection of your data, use the link below.",
+        "link": {
+          "label": "Privacy Policy",
+          "url": "https://www.epwa.nl/contact/privacy-policy"
+        }
+      }
+    },
+    "datePicker": {
+      "titleDate": "Pick a date",
+      "titleTime": "Pick a time",
+      "confirm": "Confirm",
+      "cancel": "Cancel"
+    },
+    "tips": {
+      "title": "Guidelines for Horse Welfare",
+      "preface": "No doubt you want to take the best possible care of your horse. That’s why you should pay attention to several different elements of equine welfare, such as feeding, housing and turnout, health and behavior. Are you following these guidelines?",
+      "sections": [
+        {
+          "title": "Good nutrition - No hunger and no thirst",
+          "list": [
+            "A horse needs roughage at least every 6 hours.",
+            "Always feed roughage first, followed by (if at all necessary) concentrates. This is especially important in the morning, otherwise he might get stomach ache.",
+            "Allow your horse unlimited access to water. Clean and fresh drinking water is as important to horses as it is to people! So make sure you check every day that his water bucket or automatic drinker is clean and freely accessible."
+          ]
+        },
+        {
+          "title": "Good housing - Sleep, pleasant temperature and room to move",
+          "list": [
+            "Free movement is incredibly important for your horse. The smaller the stable, the more time he’ll need to move freely outside. Allow your horse at least 2 hours a day of free movement in a paddock or field sufficiently large for a quick gallop, a buck and a kick.",
+            "Horses need sufficient rest. Even though they often take a nap while standing up, they also need access to a resting place with a dry, clean and soft surface to lie down on.",
+            "Horses are herd animals, so social contact with other horses is an absolute must. Not just in the field or paddock, but also in the stable. You might want to use bars as stable dividers or allow horses to see each other by leaving top half of the stable door open.",
+            "Being able to see outside is also really important to your horse. That’s because observing what’s happening around him is part of his natural behavior.",
+            "An accident can happen before you know it. So try and prevent your horse from losing his footing on a slippery surface, or injuring himself on sharp or protruding objects.  In short: think about the safety of your horse!"
+          ]
+        },
+        {
+          "title": "Good health - Young fit, healthy old!",
+          "list": [
+            "Have your horse checked regularly by the farrier, dentist, veterinarian and other qualified equestrian experts. By making sure that your horse has his teeth checked regularly from a young age for example, you’ll be able to keep him healthy for much longer."
+          ]
+        },
+        {
+          "title": "Appropriate behavior - Mentally healthy",
+          "list": [
+            "Make sure your horse does not experience unnecessary stress. For example, by dealing with him in a predictable way. If your horse can exhibit essential basic behavior in a safe environment, you create a good base for a horse that is both physically and mentally in balance. That is good for your horse and for you!"
+          ]
+        }
+      ]
+    },
+    "info": {
+      "animalForm": {
+        "title": "Adding a horse or donkey",
+        "preface": "",
+        "sections": [
+          {
+            "title": "Add a {{animalType}}",
+            "content": "In this part of the app you’ll be able to add a {{animalType}} to your stable quickly and easily by filling in and saving relevant details about him.\n\nIs your {{animalType}} a cross between two different breeds? Fill in one breed first, then use the purple + button to add the second breed."
+          },
+          {
+            "title": "Breed",
+            "content": "Select the breed of your {{animalType}} from the dropdown menu of breeds.\nIs the breed of your {{animalType}} not listed? Select ‘Other’ and enter his breed manually."
+          },
+          {
+            "title": "Multiple uses and disciplines",
+            "content": "Do you compete with your {{animalType}}, but also breed with him or her? You can include multiple uses by first adding one, then using the purple + button to add another. The same applies to the section on disciplines. ",
+            "hideForDonkey": true
+          },
+          {
+            "title": "Made a mistake?",
+            "content": "Use the red X button to undo a selection."
+          },
+          {
+            "title": "Add a photo",
+            "content": "Click on the icon of the camera at the top of the screen. You’ll now be able to take a photo or select one in landscape format from the photo gallery in your phone. "
+          },
+          {
+            "title": "Save",
+            "content": "Filled in all the relevant details of your {{animalType}}? Use the > icon in the top right-hand corner to save it all and add the {{animalType}} to your stable."
+          },
+          {
+            "title": "Need to edit?",
+            "content": "Already added your {{animalType}} to the stable, but need to change or add anything? Click on the pencil icon in the top right-hand corner to edit."
+          }
+        ]
+      },
+      "diaryExercise": {
+        "title": "Exercise",
+        "preface": "You can easily add your horse’s daily training or any other exercise to your diary.\nEnter both the start- and end time of your training or exercise session. You’ll be able to review your total training time in your daily overview.\nWhat type of exercise did you do? Select the relevant option from the dropdown menu.\nDid you exercise your horse more than once? You can log several exercise sessions per day simply by using the purple + button to add another one.",
+        "sections": [
+          {
+            "title": "Made a mistake?",
+            "content": "Use the red X button to undo a selection."
+          },
+          {
+            "title": "Save",
+            "content": "Entered your training session? Use the > icon in the top right-hand corner to save. Your training time will automatically appear in the diary. If you’ve trained more than once, your diary will show your total training time for that day. "
+          }
+        ]
+      },
+      "diaryFeeding": {
+        "title": "Feeding",
+        "preface": "Keep track of your {{animalType}}’s feeding regime, and add roughage, concentrate or supplements.\nDoes your {{animalType}} get unlimited roughage? Make sure you tick the 24-hour option.",
+        "sections": [
+          {
+            "title": "Made a mistake?",
+            "content": "Use the red X button to undo the selection."
+          },
+          {
+            "title": "Save",
+            "content": "Filled in your {{animalType}}’s feeding regime? Use the > icon in the top right-hand corner to save. The data will automatically appear in the diary."
+          }
+        ]
+      },
+      "diaryHousing": {
+        "title": "Turnout",
+        "preface": "Where does your {{animalType}} spend his day? How long is he kept in his stable (if at all), and how long does he get turned out in the field or paddock? Click the 24-hour option, if he’s being kept in his stable or turned out all day. You can add whether he’s on his own or with other {{animalType}}s.",
+        "sections": [
+          {
+            "title": "Made a mistake?",
+            "content": "Use the red X button to undo the selection."
+          },
+          {
+            "title": "Save",
+            "content": "Filled in the time your {{animalType}} spends in his stable or is being turned out?  Use the > icon in the top right-hand corner to save. The data will automatically appear in the diary."
+          }
+        ]
+      },
+      "diaryMedication": {
+        "title": "My vet",
+        "preface": "Is your {{animalType}} on medication? Or is he currently being treated by a physiotherapist or another equine professional? Easily add all your {{animalType}}’s medical information to your diary.",
+        "sections": [
+          {
+            "title": "Medication",
+            "content": "Keep track of when you’ve given your {{animalType}} his medication and how much you’ve given him. Does he get several types of medication? Add them all, by simply using the purple + button to add another."
+          },
+          {
+            "title": "Treatment",
+            "content": "Keep track of which qualified equine professional has treated your {{animalType}} by selecting the type of professional from the dropdown menu. Make a note of what the treatment involves or any advice you might have been given by using the comments field below."
+          },
+          {
+            "title": "Rehabilitation",
+            "content": "Has your {{animalType}} been injured and now needs to rehabilitate? Make a note of what this involves, for example whether your {{animalType}} needs to go on box rest. "
+          },
+          {
+            "title": "Temperature and Weight",
+            "content": "Do you regularly take your {{animalType}}’s temperature? Fill it in, and it’ll automatically appear in your diary. The same applies to the (estimated) weight of your {{animalType}}."
+          },
+          {
+            "title": "Made a mistake?",
+            "content": "Use the red X button to undo the selection."
+          },
+          {
+            "title": "Save",
+            "content": "Filled in all of your {{animalType}}’s medical data? Use the > icon in the top right-hand corner to save. Your {{animalType}}’s medical data will automatically appear in the diary. "
+          }
+        ]
+      },
+      "welfare": {
+        "sections": [
+          {
+            "title": "Guidelines for Horse Welfare",
+            "content": "No doubt you want to take the best possible care of your horse. That’s why you should pay attention to several different elements of equine welfare, such as feeding, housing and turnout, health and behavior. Are you following these guidelines?"
+          },
+          {
+            "title": "Good nutrition - No hunger and no thirst",
+            "content": "- A horse needs roughage at least every 6 hours.\n\n- Always feed roughage first, followed by (if at all necessary) concentrates. This is especially important in the morning, otherwise he might get stomach ache.\n\n- Allow your horse unlimited access to water. Clean and fresh drinking water is as important to horses as it is to people! So make sure you check every day that his water bucket or automatic drinker is clean and freely accessible.",
+            "imageTitle": "feeding"
+          },
+          {
+            "title": "Good housing - Sleep, pleasant temperature and room to move",
+            "content": "- Free movement is incredibly important for your horse. The smaller the stable, the more time he’ll need to move freely outside. Allow your horse at least 2 hours a day of free movement in a paddock or field sufficiently large for a quick gallop, a buck and a kick.\n\n- Horses need sufficient rest. Even though they often take a nap while standing up, they also need access to a resting place with a dry, clean and soft surface to lie down on.\n\n- Horses are herd animals, so social contact with other horses is an absolute must. Not just in the field or paddock, but also in the stable. You might want to use bars as stable dividers or allow horses to see each other by leaving top half of the stable door open.\n\n- Being able to see outside is also really important to your horse. That’s because observing what’s happening around him is part of his natural behavior.\n\n- An accident can happen before you know it. So try and prevent your horse from losing his footing on a slippery surface, or injuring himself on sharp or protruding objects.  In short: think about the safety of your horse!",
+            "imageTitle": "housing"
+          },
+          {
+            "title": "Good health - Young fit, healthy old!",
+            "content": "- Have your horse checked regularly by the farrier, dentist, veterinarian and other qualified equestrian experts. By making sure that your horse has his teeth checked regularly from a young age for example, you’ll be able to keep him healthy for much longer.",
+            "imageTitle": "wellness"
+          },
+          {
+            "title": "Natural behavior - Emotionally healthy",
+            "content": "- Make sure your horse isn’t exposed to unnecessary stress. For example, try and make sure you manage him in a predictable way. If you allow your horse to exhibit natural behaviour in a safe environment, you’ll create a solid foundation for a horse that is both physically and mentally well balanced.\nThat’s good for your horse and for you!",
+            "imageTitle": "behaviour"
+          }
+        ]
+      }
+    },
+    "profileUpdateSuccess": "Profile updated!",
+    "name": "Name",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email address",
+    "requiredField": "Required",
+    "fillInName": "Fill in a name",
+    "breed": "Breed",
+    "selectbreed": "Select a breed",
+    "roles": "Role",
+    "selectroles": "What I do with my horse",
+    "disciplines": "Discipline",
+    "selectdisciplines": "Select a discipline",
+    "sex": "Gender",
+    "selectSex": "Select a gender",
+    "animalHeight": "Height (in cm)",
+    "animalWeight": "Weight (in kg)",
+    "selectAnimalHeight": "Select height",
+    "fillInAnimalHeight": "Fill in animal's height (centimeters)",
+    "fillInAnimalWeight": "Fill in animal's weight (kilograms)",
+    "horseCompetitionLevel": "Competition level",
+    "selectHorseCompetitionLevel": "Select competition level",
+    "particularities": "Additional information",
+    "fillInParticularities": "Note any additional information here",
+    "ok": "OK",
+    "submit": "Submit",
+    "save": "Save",
+    "cancel": "Cancel",
+    "remove": "Remove",
+    "copy": "Copy",
+    "cameraOrGalleryPopupTitle": "Select photo",
+    "chooseFromLibrary": "Gallery",
+    "takeAPhoto": "Camera",
+    "birthdate": "Date of birth",
+    "selectDate": "Select a date",
+    "openDiary": "Open diary",
+    "noData": "n/a",
+    "diary": "Diary",
+    "addHorse": "Add a horse",
+    "editHorse": "Edit a horse",
+    "addDonkey": "Add a donkey",
+    "editDonkey": "Edit a donkey",
+    "deleteAnimal": "Remove profile",
+    "deleteAnimalMessage": "You are about to remove your animals profile and all its data.\n\nThis action cannot be undone!\nAre you sure?",
+    "startPainMeasurement": "Pain measurement",
+    "menagerie": "Menagerie",
+    "settings": "Settings",
+    "syndromes": "PPID check",
+    "about": "About",
+    "share": "Share",
+    "shareApp": "Share this app",
+    "noAnimalsToShow": "The barn is empty!",
+    "addMedication": "My vet",
+    "registerHousing": "Turnout",
+    "registerFeeding": "Feeding",
+    "registerExercises": "Exercise",
+    "riding": "Riding",
+    "groundWork": "Groundwork",
+    "dressage": "Dressage",
+    "showJumping": "Show jumping",
+    "crossTraining": "Cross country",
+    "outsideRide": "Hacking",
+    "endurance": "Endurance",
+    "harness": "Harness",
+    "hiking": "Walking in hand",
+    "stepMill": "Horse walker",
+    "manualWork": "Work in Hand",
+    "other": "Other",
+    "startTime": "Start time",
+    "endTime": "End time",
+    "leavingFormTitle": "Are you sure?",
+    "leavingFormSubtitle": "You will loose all unsaved work",
+    "leavingFormLeaveBtn": "Leave",
+    "leavingFormStayBtn": "Stay",
+    "paddock": "Paddock",
+    "pasture": "Field",
+    "stable": "Stable",
+    "exercise": "Exercise",
+    "exerciseType": "Type of exercise",
+    "housing": "Turnout",
+    "feeding": "Feeding",
+    "medication": "Medication",
+    "timeOfDay": "Day and time",
+    "timeAndDay": "Time and day",
+    "quantity": "Quantity",
+    "unit": "Unit",
+    "unlimited": "Unrestricted",
+    "roughage": "Roughage",
+    "concentrate": "Concentrate",
+    "supplement": "Supplement",
+    "pill": "Medication",
+    "treatment": "Treatment",
+    "temperature": "Temperature",
+    "recovery": "Rehabilitation",
+    "item": "items",
+    "gram": "g",
+    "kilogram": "kg",
+    "byWeight": "For ... kilo",
+    "milligram": "mg",
+    "cubicCentimetre": "cc / ml",
+    "sachet": "Sachet",
+    "tablet": "Tablet",
+    "scoop": "Scoop / pump",
+    "drop": "Drops",
+    "celsius": "Celsius",
+    "fahrenheit": "Fahrenheit",
+    "vet": "Vet",
+    "physiotherapist": "Physiotherapist",
+    "osteopath": "Osteopath",
+    "dentist": "Dentist",
+    "farrier": "Farrier",
+    "otherDoctor": "Other",
+    "alertSuccess": "Success",
+    "offlineWarning": "You're offline. Please check your connection",
+    "animalFetchErrorMsg": "There has been an error while fetching animals!",
+    "animalAddErrorMsg": "There has been an error while adding an animal!",
+    "animalEditErrorMsg": "There has been an error while updating an animal!",
+    "animalDeleteErrorMsg": "There has been an error while deleting an animal!",
+    "eventAddSuccessMsg": "Entry has been added!",
+    "eventEditSuccessMsg": "Entry has been updated!",
+    "eventDeleteSuccessMsg": "Entry has been deleted!",
+    "changePasswordSuccessMsg": "Password has been changed!",
+    "changePasswordErrorMsg": "There has been an error while changing a password!",
+    "changePasswordCurrentPasswordWrongErrorMsg": "The password you have entered does not match your current one",
+    "changePasswordPasswordConfirmDoesNotMatchErrorMsg": "The password confirmation does not match",
+    "refreshTokenFailedLoggingOutMsg": "You have been logged out because your session has expired.\n\nThis might be caused by signing in to this account on a different device\nPlease log in again.",
+    "roughageNameLabel": "Type of roughage",
+    "concentrateNameLabel": "Type of concentrate",
+    "supplementNameLabel": "Type of supplement",
+    "pillNameLabel": "Type of medication",
+    "injectionNameLabel": "Type of treatment",
+    "temperatureNameLabel": "Temperature",
+    "recoveryNameLabel": "Rehabilitation note",
+    "yes": "Yes",
+    "no": "No",
+    "updateProfileSubmitBtn": "Submit",
+    "driving": "Driving",
+    "lunging": "Lunging",
+    "workInHand": "Work in hand",
+    "welcomeInDiary": "Welcome",
+    "noEventsOnThisDate": "There are no entries on this day. Click the plus icon to add a new entry, or copy entries over from an older date",
+    "noAnimalsInDiary": "It seems like you haven't added horses or donkeys to your stable. Add an animal first in order to use the diary.",
+    "selectDone": "Done",
+    "horse": "Horse",
+    "donkey": "Donkey",
+    "clickToAddPhoto": "Click to add a photo",
+    "clickToChangePhoto": "Click to change the photo",
+    "updatePasswordLink": "Change password",
+    "notApplicable": "N/A",
+    "currentPassword": "Current password",
+    "newPassword": "New password",
+    "newPasswordConfirmation": "New password (confirm)",
+    "noOrNa": "No - N/A",
+    "counting": "Counting",
+    "answers": "Answers",
+    "noAnimalsInStableWarning": "In order to start a pain measurement, please add an animal first.",
+    "shareAppTitleDrawerMenu": "EPWA",
+    "shareAppContentDrawerMenu": "I’m using EPWA, the Equine Pain and Welfare App, to monitor the health and welfare of my animal. Check www.epwa.nl/en for information.",
+    "shareAppTitleAnimalProfile": "EPWA",
+    "shareAppContentAnimalProfile": "I’m using EPWA, the Equine Pain and Welfare App, to monitor the health and welfare of {{animalName}}. Check www.epwa.nl/en for information.",
+    "shareAppUrl": "https://www.epwa.nl/en",
+    "painMeasurementLoginWarning": "To save the pain measurement, log in first. You could also continue without saving your result.",
+    "quit": "Exit",
+    "painMeasurementQuitTitle": "Exit the measurement",
+    "painMeasurementQuitMessage": "Are you sure you want to exit the pain measurement?",
+    "ppidQuitTitle": "Exit the test",
+    "ppidQuitMessage": "Are you sure you want to exit the PPID test?",
+    "finish": "Finish",
+    "notes": "Notes",
+    "animalHasUnlimitedAmountOf": "The animal has unrestricted access to {{feedType}}",
+    "copyFromDate": "Copy from date",
+    "copyChoice": "Choose the categories to copy over from the selected date",
+    "copyNoEventsAvailable": "The selected date has no entries to copy",
+    "customBreedPlaceholder": "Fill in name of the breed",
+    "lookBack": "Look back",
+    "today": "Today",
+    "lookAhead": "Look ahead",
+    "graphTitle": "Recent measurements",
+    "addPainMeasurement": "Add painmeasurement",
+    "recurring": "Recurring",
+    "recurringTill": "Recurring till",
+    "notification": "Notification",
+    "daily": "Daily",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "facialMeasure": "Facial pain measurement",
+    "compositeMeasure": "Composite pain measurement",
+    "emptyPainMeasurementList": "No painmesurements to display",
+    "diaryFeeding": "Feeding",
+    "movement": "Exercise",
+    "eventHousing": "Housing",
+    "eventMedication": "Medication"
+  },
+  "painMeasurements": {
+    "composite": "Composite",
+    "facial": "Facial painmeasure"
+  },
+  "categories": {
+    "painMeasurement": "Painmeasurement",
+    "feeding": "Feeding",
+    "medication": "Medication",
+    "housing": "Housing",
+    "exercise": "Excercise"
+  },
+  "typePainMeasurement": "Type of painmeasurement"
+}

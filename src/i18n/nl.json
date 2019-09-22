@@ -1,0 +1,1142 @@
+{
+  "root": {
+    "loading": "Even geduld aub...",
+    "appName": "Equine Pijn- en WelzijnsApp",
+    "language": {
+      "nl": "Nederlands",
+      "en": "Engels"
+    },
+    "dateFormat": "DD-MM-YYYY",
+    "errors": {
+      "facebookLoginGeneric": "Verbinden met Facebook is mislukt.",
+      "googleLoginGeneric": "Verbinden met Google is mislukt.",
+      "emailLoginGeneric": "Verbinden met de server is mislukt.",
+      "emailLoginNoAccount": "Er is geen account met dit e-mailadres.",
+      "emailLoginInvalidCredentials": "Foutief wachtwoord",
+      "emailRegisterGeneric": "Verbinden met de server is mislukt.",
+      "emailRegisterEmailAlreadyTaken": "Dit e-mailadres is al in gebruik.",
+      "emailRegisterEmailInvalid": "Voer een geldig e-mailadres in.",
+      "emailRegisterPasswordTooShort": "Het wachtwoord moet minimaal 6 karakters bevatten.",
+      "mixedAccounts": "Dit e-mailadres is al gekoppeld aan een account. Kies een andere wijze van aanmelden.\n\nAls je account een wachtwoord heeft, meld je dan aan met je e-mailadres en wachtwoord. Gebruik anders je Google of Facebook account om je aan te melden.",
+      "forgotEmailGeneric": "Verbinden met de server is mislukt.",
+      "alertTitleGeneric": "Foutmelding",
+      "alertTitleWarning": "Warning",
+      "alertButtonLabelGeneric": "OK",
+      "imagePickerFailed": "Er is een fout opgetreden bij het selecteren van een afbeelding.",
+      "imageOverSizeThreshold": "Je staat op het punt om een grote afbeelding te uploaden. Wees er zeker van dat je een snelle en betrouwbare internetverbinding hebt.",
+      "generic": "Er is iets niet goed gegaan.",
+      "fetchUserDataError": "De gebruikersdata, opgehaald van de server, is incorrect opgesteld.\n\nRapporteer dit a.u.b. aan ons support team."
+    },
+    "auth": {
+      "login": "Inloggen",
+      "loginGoogle": "Log in met Google",
+      "loginFB": "Log in met Facebook",
+      "loginEmail": "Log in met email",
+      "or": "OF",
+      "noAccountRegister": "Geen account? Registreer hier >",
+      "register": "Registreer",
+      "registerFormSubmit": "Registeren",
+      "sendingRequest": "Versturen...",
+      "logout": "Uitloggen",
+      "email": "Email",
+      "password": "Wachtwoord",
+      "forgottenPassword": "Wachtwoord vergeten?",
+      "alreadyHaveAccount": "Ik heb al een account >",
+      "registerSubmitBtn": "Aanmaken",
+      "forgotPasswordSubmitBtn": "Aanvragen",
+      "forgotEmailSuccededAlertTitle": "Gelukt",
+      "forgotEmailSuccededAlertMessage": "Een e-mail met instructies om een nieuw wachtwoord aan te maken is zojuist verzonden naar je e-mailadres",
+      "forgotEmailSuccededAlertButtonLabel": "OK"
+    },
+    "headerBar": {
+      "back": "Terug",
+      "login": "Inloggen",
+      "register": "Account aanmaken",
+      "forgottenPassword": "Wachtwoord vergeten",
+      "settings": "Instellingen",
+      "settingsNavigator": "Instellingen",
+      "stable": "Mijn stal",
+      "stableNavigator": "Mijn stal",
+      "diary": "Dagboek",
+      "diaryNavigator": "Dagboek",
+      "animalForm": "Dier",
+      "syndromes": "PPID check",
+      "syndromesNavigator": "PPID check",
+      "about": "Over deze app",
+      "aboutNavigator": "Over deze app",
+      "logout": "Uitloggen",
+      "logoutNavigator": "Uitloggen",
+      "diaryExercise": "Training",
+      "diaryFeeding": "Voeding",
+      "diaryHousing": "Huisvesting",
+      "diaryMedication": "Medisch",
+      "diaryPainMeasurement": "Pijnmeting",
+      "changePassword": "Wachtwoord",
+      "painMeasurementNavigator": "Pijnmeting",
+      "welfareInfo": "Welzijnstips",
+      "welfareNavigator": "Welzijnstips",
+      "copyEvents": "Kopiëren"
+    },
+    "turnout": {
+      "sharedAreaWithOtherAnimals": "Gedeeld gebied met andere dieren",
+      "alone": "Alleen",
+      "sharedWithHorses": "Met ander(e) paard(en)",
+      "sharedWithDonkeys": "Met andere ezel(s)",
+      "sharedWithOtherAnimals": "Met andere dieren"
+    },
+    "exportEvents": {
+      "alertTitle": "Exporteer uw dagelijks overzicht",
+      "alertMsg": "Uw overzicht is klaar om te worden gedownload.",
+      "alertCancelBtn": "Annuleren",
+      "alertDownloadBtn": "Downloaden"
+    },
+    "painMeasurement": {
+      "full": {
+        "timer": {
+          "fullCountdown": "Hoe werkt de pijnmeting?",
+          "headCountdown": "Hoe werkt de pijnmeting?",
+          "layingDownRolling": "Gaan liggen, rollen",
+          "tailFlicking": "Staart\nzwiepen",
+          "kickingAtAbdomen": "Trappen naar\nde buik",
+          "pawing": "Schrapen",
+          "headMovements": "Hoofdbewegingen",
+          "painSounds": "Pijngeluiden",
+          "pointingTowardsTheFloor": "Wijzen",
+          "lookingAtAbdomen": "Kijken\nnaar de buik"
+        },
+        "observation": {
+          "donkey": {
+            "layingDownRolling": "Liggen, rollen",
+            "layingDownRollingOptions": [
+              "Als ezel rustig staat of ligt te rusten",
+              "<50% van tijd gaan liggen of rollen",
+              ">50% van tijd gaan liggen of rollen",
+              "Ligt constant in afwijkende positie"
+            ],
+            "overallAppearance": "Algemene indruk",
+            "overallAppearanceOptions": [
+              "Alert/interactie met groepsgenoot of groep",
+              "Minder attent en/of rusteloos en/of minder interactie met groepsgenoot of groep",
+              "Duidelijk verminderd attent en/of agressief naar andere dieren, duidelijk minder interactie met groepsgenoten of groep",
+              "Ernstig verminderd attent"
+            ],
+            "earPosition": "Oor positie",
+            "earPositionOptions": [
+              "Normale positie >75% van de tijd",
+              "Afwijkende positie (naar achteren/naar zijkanten/plat)"
+            ],
+            "posture": "Houding",
+            "postureOptions": [
+              "Dier staat rustig, evt. met een been op rust",
+              "Mild opgetrokken buik, evt. met mild trippelen (heen en weer wiegen)",
+              "Fors opgetrokken buik, achterover hangen en strekken van het lichaam en de benen, met of zonder milde spiertrillingen",
+              "Dier zit op achterhand, met of zonder duidelijke spiertrillingen"
+            ],
+            "weightDistribution": "Gewichtsverdeling",
+            "weightDistributionOptions": [
+              "Normale gewichtsverdeling",
+              "Afwijkende gewichtsverdeling"
+            ],
+            "headCarriage": "Hoofd positie",
+            "headCarriageOptions": [
+              "Oorbasis boven schoft of dier eet/drinkt van de grond",
+              "Oorbasis op het niveau van de schoft",
+              "Oorbasis lager dan de schoft"
+            ],
+            "sweating": "Zweten",
+            "sweatingOptions": [
+              "Geen tekenen van zweten",
+              "Vochtig bij aanraking, geen zweet zichtbaar",
+              "Natte plekken zichtbaar, geen zweetdruppels of stromend zweet",
+              "Excessief zweten, eventueel met zweetdruppels of stromend zweet"
+            ],
+            "eating": "Eten",
+            "eatingOptions": [
+              "Eet normaal of moet vasten",
+              "Eet minder en/of langzamer",
+              "Niet geinteresseerd in eten"
+            ],
+            "changesInBehaviour": "Gedragsverandering naar partner en/of groepsgenoot",
+            "changesInBehaviourOptions": [
+              "Ezel is in de groep of met groepsgenoot/partner",
+              "Ezel is verlaten door groep of door groepsgenoot"
+            ],
+            "reactionToObserver": "Reactie op observerend persoon",
+            "reactionToObserverOptions": [
+              "Komt naar of kijkt naar persoon",
+              "Verminderde  reactie op persoon",
+              "Geen reactie op persoon"
+            ]
+          },
+          "behaviour": "Gedrag / Postuur",
+          "behaviourOptions": [
+            "Rustig staan, evt. met een been op rust, onderzoekt omgeving",
+            "Staat met mild opgetrokken buik, maar onderzoekt de omgeving wel",
+            "Fors opgetrokken buik, achterover hangen en strekken van het lichaam en de benen",
+            "Het paard staat niet of heel kort, zit op achterhand"
+          ],
+          "overallAppearance": "Algemene indruk en reactie",
+          "overallAppearanceOptions": [
+            "Rustig maar alert, komt naar of kijkt naar persoon",
+            "Alert, kan bewegen, duidelijke reactie op geluid/beweging",
+            "Rusteloos, constant bewegen, overdreven reactie op geluid/beweging",
+            "Verminderd bewustzijnsniveau: wil of kan niet bewegen, verlaagde hoofdhouding"
+          ],
+          "sweating": "Zweten",
+          "sweatingOptions": [
+            "Geen tekenen van zweten",
+            "Vochtig bij aanraking, geen zweet zichtbaar",
+            "Natte plekken zichtbaar, geen zweetdruppels of stromend zweet",
+            "Excessief zweten, eventueel met zweetdruppels of stromend zweet"
+          ]
+        },
+        "vet": {
+          "donkey": {
+            "respiratoryRate": "Ademhaling",
+            "respiratoryRateOptions": [
+              "12-28 ademhalingen/min",
+              "29-32 ademhalingen/min",
+              "33-36 ademhalingen/min",
+              ">36 ademhalingen/min"
+            ],
+            "heartRate": "Hartfrequentie",
+            "heartRateOptions": [
+              "32-52 slagen/min",
+              "53-60 slagen/min",
+              "61-68 slagen/min",
+              ">68 slagen/min"
+            ],
+            "digestiveSounds": "Darmgeluiden",
+            "digestiveSoundsOptions": [
+              "normale motiliteit",
+              "verminderde motiliteit",
+              "geen motiliteit",
+              "hypermotiliteit of hoogtoning geluid"
+            ],
+            "rectalTemperature": "Rectale temperatuur",
+            "rectalTemperatureOptions": [
+              "35.7-38.0 graden C",
+              "35.3-35.6 of 38.1-38.5 graden C",
+              "34.7-35.2 of 38.6-39.0 graden C",
+              "<34 of > 39.1 graden C"
+            ]
+          },
+          "respiratoryRate": "Ademhalingsfrequentie",
+          "respiratoryRateOptions": [
+            "8-13 ademhalingen/min",
+            "14-16 ademhalingen/min",
+            "17-18 ademhalingen/min",
+            ">18 ademhalingen/min"
+          ],
+          "heartRate": "Hartfrequentie",
+          "heartRateOptions": [
+            "24-44 slagen/min",
+            "45-52 slagen/min",
+            "53-60 slagen/min",
+            ">60 slagen/min"
+          ],
+          "digestiveSounds": "Darmgeluiden",
+          "digestiveSoundsOptions": [
+            "Normale motiliteit",
+            "Verminderde motiliteit",
+            "Geen motiliteit",
+            "Hypermotiliteit of steelband"
+          ],
+          "rectalTemperature": "Rectale temperatuur",
+          "rectalTemperatureOptions": [
+            "36.9-38.5 graden C",
+            "36.4-36.9 of 38.5-39 graden C",
+            "35.9-36.4 of 39-39.5 graden C",
+            "35.4-35.9 of 39.5-40 graden C"
+          ]
+        },
+        "interaction": {
+          "donkey": {
+            "reactionToPalpation": "Reactie op palpatie van pijnlijk gebied",
+            "reactionToPalpationOptions": [
+              "Geen reactie op palpatie",
+              "Milde reactie op palpatie",
+              "Sterke reactie op palpatie"
+            ],
+            "movement": "Beweging",
+            "movementOptions": [
+              "Dier wil bewegen en heeft normale gang",
+              "Licht afwijkende gang (1 of 2 uit 5 kreupel) en/of stijve stap",
+              "Wil niet graag bewegen bij aanzet daartoe en of duidelijk afwijkende gang (3-5 uit 5 kreupel of erg stijf)",
+              "Geen beweging of het dier ligt"
+            ]
+          },
+          "reactionToPalpation": "Reactie op aanraking",
+          "reactionToPalpationOptions": [
+            "Geen reactie op aanraking",
+            "Milde reactie op aanraking",
+            "Matige reactie op aanraking",
+            "Duidelijke reactie op (poging tot) aanraking"
+          ]
+        }
+      },
+      "head": {
+        "timer": {
+          "fullCountdown": "Hoe werkt de pijnmeting?",
+          "headCountdown": "Hoe werkt de pijnmeting?",
+          "flehming": "Flehmen",
+          "yawning": "Geeuwen",
+          "teethGrinding": "Tandenknarsen",
+          "moaning": "Kreunen",
+          "smacking": "Smakken",
+          "headShaking": "Hoofdschudden"
+        },
+        "observation": {
+          "donkey": {
+            "head": "Hoofd",
+            "headOptions": [
+              "Normale beweging",
+              "Minder/geen beweging",
+              "Meer/overdreven beweging"
+            ],
+            "eyelids": "Oogleden",
+            "eyelidsOptions": [
+              "Geopend",
+              "Oog mild verder geopend (frons boven ooglid zichtbaar) of mild geknepen oogleden",
+              "Duidelijk meer geopende oogleden (frons boven ooglid zichtbaar) of duidelijk gekenepen oogleden"
+            ],
+            "focus": "Focus",
+            "focusOptions": [
+              "Gefocust op omgeving",
+              "Minder gefocust op omgeving",
+              "Niet gefocust op omgeving"
+            ],
+            "nostrils": "Neusgaten",
+            "nostrilsOptions": [
+              "Ontspannen",
+              "Mild geopend, neusgaten iets opgetrokken, plooi tussen neusgaten zichtbaar",
+              "Duidelijk meer geopend, neusgaten trillen eventueel, mogelijk hoorbare ademhaling"
+            ],
+            "mouthCorners": "Mondhoeken/lippen",
+            "mouthCornersOptions": [
+              "Ontspannen",
+              "Mondhoeken verstrakt en opgetrokken"
+            ],
+            "muscleToneHead": "Spiertonus hoofd",
+            "muscleToneHeadOptions": [
+              "Geen spiertrillingen of toegenomen spiertonus",
+              "Milde spiertrillingen of mild toegenomen spiertonus",
+              "Duidelijke spiertrillingen of duidelijk toegenomen spiertonus"
+            ],
+            "sweatingBehindTheEars": "Zweten achter het oor",
+            "sweatingBehindTheEarsOptions": [
+              "Geen tekenen van zweten",
+              "Wel tekenen van zweten"
+            ],
+            "earPosition": "Oor positie",
+            "earPositionOptions": [
+              "Normale positie",
+              "Hangende oren",
+              "Oren naar achteren"
+            ],
+            "responseToAuditoryStimulus": "Oren, reactie op geluidsstimulus",
+            "responseToAuditoryStimulusOptions": [
+              "Duidelijke reactie met beide oren of met het oor dichtst bij de geluidsbron",
+              "Vertraagde/verminderde reactie op geluid",
+              "Geen reactie op geluid"
+            ]
+          },
+          "head": "Hoofdbeweging",
+          "headOptions": [
+            "Normale beweging/geïnteresseerd in omgeving",
+            "Verminderde beweging",
+            "Geen beweging"
+          ],
+          "eyelids": "Oogleden",
+          "eyelidsOptions": [
+            "Geopend, oogwit is zichtbaar bij oog- of hoofdbewegingen",
+            "Ogen verder geopend (bovenooglid gefronst) of gedeeltelijk gesloten oogleden. Een randje oogwit kan meestal gezien worden",
+            "Ogen duidelijk verder geopend (bovenooglid gefronst) of duidelijk gesloten oogleden. Oogwit kan meestal gezien worden"
+          ],
+          "focus": "Focus",
+          "focusOptions": [
+            "Gefocust op omgeving",
+            "Minder gefocust op omgeving",
+            "Niet gefocust op omgeving"
+          ],
+          "nostrils": "Neusgaten",
+          "nostrilsOptions": [
+            "Ontspannen",
+            "Mild geopend",
+            "Duidelijk meer geopend, neusgaten trillen eventueel, mogelijk hoorbare ademhaling"
+          ],
+          "mouthCorners": "Mondhoeken / lippen",
+          "mouthCornersOptions": [
+            "Ontspannen",
+            "Mondhoeken iets verstrakt/omhoog",
+            "Mondhoeken duidelijk verstrakt"
+          ],
+          "muscleToneHead": "Spierspanning hoofd",
+          "muscleToneHeadOptions": [
+            "Geen spierspanningen of verhoogde spanning",
+            "Milde spierspanningen of mild verhoogde spanning",
+            "Duidelijke spierspanningen of verhoogde spanning"
+          ],
+          "ears": "Oren (reactie op geluid)",
+          "earsOptions": [
+            "Oriëntatie naar geluid/duidelijke reactie op geluid met beide oren of het oor dat het dichtste bij de geluidsbron is",
+            "Vertraagde/verminderde reactie op geluid",
+            "Oren naar achteren geplaatst, geen reactie op geluid"
+          ]
+        }
+      },
+      "explanationTexts": {
+        "fullCountdown": [
+          "Druk op de knop “start de meting” om te beginnen. De eerste observatie periode  duurt 5 minuten. De klok in het midden telt af.",
+          "Gaat je {{animalType}} trappen naar de buik? Klik dan op het bijbehorende icoon, je zult zien dat er een 1 bij komt te staan. Zo houd je voor elke beweging bij hoeveel keer deze voorkomt.",
+          "Ligt je {{animalType}} continu in een afwijkende positie?",
+          "Je {{animalType}} ligt abnormaal als hij languit gestrekt op zijn zijkant ligt, vaak met de voorbenen naar voren en achterbenen naar achteren. Of je {{animalType}} ligt op zijn rug met de benen omhoog of is permanent aan het rollen.",
+          "Scoor dit door de button onderin aan te klikken gedurende de pijnmeting.",
+          "Heb je een foutje gemaakt en teveel geteld? Met de button links onderin verwijder je je laatste invoer."
+        ],
+        "headCountdown": [
+          "Druk op de knop “start de meting” om te beginnen. De eerste observatie periode  duurt 2 minuten. De klok in het midden telt af.",
+          "Geeuwt je {{animalType}} gedurende deze tijd? Klik dan op het bijbehorende icoon, je zult zien dat er een 1 bij ‘Geeuwen’ komt te staan. Zo houd je voor elke beweging bij hoeveel keer deze voorkomt.",
+          "Heb je een foutje gemaakt en teveel geteld? Met de button links onderin verwijder je je laatste invoer."
+        ],
+        "layingDownRolling": [
+          "Liggen en rollen is natuurlijk gedrag voor een {{animalType}}. Maar het kan ook een indicatie zijn van pijn.",
+          "Klik gedurende de pijnmeting op het icoon elke keer dat jouw {{animalType}} gaat liggen of rollen."
+        ],
+        "tailFlicking": [
+          "Een {{animalType}} kan met zijn staart zwiepen om bijvoorbeeld vliegen te verjagen. Maar het kan ook een indicatie zijn van pijn.",
+          "Klik gedurende de pijnmeting op het icoon elke keer dat jouw {{animalType}} met zijn {{animalType}} zwiept."
+        ],
+        "kickingAtAbdomen": [
+          "Een {{animalType}} kan naar de buik trappen om bijvoorbeeld vliegen te verjagen. Maar het kan ook een indicatie zijn van pijn.",
+          "Klik gedurende de pijnmeting op het icoon elke keer dat jouw {{animalType}} trapt naar de buik."
+        ],
+        "pawing": [
+          "Schrapen met het been is vaak een uiting van ongeduldig gedrag. Maar het kan ook een indicatie zijn van pijn.",
+          "Klik gedurende de pijnmeting op het icoon elke keer dat jouw {{animalType}} met zijn been schraapt."
+        ],
+        "headMovements": [
+          "Een {{animalType}} kan zijn hoofd bewegen om bijvoorbeeld een vlieg te verjagen. Abrupte hoofdbewegingen van links naar rechts of van boven naar beneden kunnen een indicatie zijn van pijn. Dit geldt ook voor het kijken naar de flank.",
+          "Klik gedurende de pijnmeting op het icoon elke keer dat jouw {{animalType}} een abrupte hoofdbeweging maakt."
+        ],
+        "painSounds": [
+          "Voorbeelden van pijngeluiden zijn tandenknarsen en kreunen. Dit soort geluiden kan ook een gewoonte zijn, maar het kan ook een indicatie zijn van pijn.",
+          "Klik gedurende de pijnmeting op het icoon elke keer dat jouw {{animalType}} kreunt of tandenknarst."
+        ],
+        "flehming": [
+          "Flehmen is natuurlijk gedrag, maar kan ook een teken zijn van pijn.",
+          "Klik gedurende de pijnmeting op het icoon elke keer dat jouw {{animalType}} flehmt."
+        ],
+        "yawning": [
+          "Geeuwen kan een indicatie zijn van pijn.",
+          "Klik gedurende de pijnmeting op het icoon elke keer dat jouw {{animalType}} geeuwt."
+        ],
+        "teethGrinding": [
+          "Tandenknarsen kan een indicatie zijn van pijn.",
+          "Klik gedurende de pijnmeting op het icoon elke keer dat jouw {{animalType}} tandenknarst."
+        ],
+        "moaning": [
+          "Kreunen kan een indicatie zijn van pijn.",
+          "Klik gedurende de pijnmeting op het icoon elke keer dat jouw {{animalType}} kreunt."
+        ],
+        "headShaking": [
+          "Hoofdschudden kan een indicatie zijn van pijn.",
+          "Klik gedurende de pijnmeting op het icoon elke keer dat jouw {{animalType}} met het hoofd schudt."
+        ],
+        "smacking": [
+          "Smakken kan een uiting zijn van pijn.",
+          "Klik gedurende de pijnmeting op het icoon elke keer dat jouw {{animalType}} smakt."
+        ],
+        "pointingTowardsTheFloor": [
+          "Wijzen met het been kan een indicatie zijn van pijn, omdat het been ontlast wordt. ",
+          "Klik gedurende de pijnmeting op het icoon elke keer dat jouw {{animalType}} wijst met het voorbeen."
+        ],
+        "lookingAtAbdomen": [
+          "Een {{animalType}} kan naar de buik kijken als hij (buik)pijn heeft.",
+          "Klik gedurende de pijnmeting op het icoon elke keer dat jouw {{animalType}} kijkt naar de buik."
+        ]
+      },
+      "misc": {
+        "headerTitle": "Pijnmeting",
+        "recentMeasurementTitle": "Laatste pijnmeting",
+        "horse": "Paard",
+        "horse_plural": "Paarden",
+        "donkey": "Ezel",
+        "donkey_plural": "Ezels",
+        "compositePainScale": "Samengestelde pijnschaal",
+        "facialExpressions": "Gezichts-\nuitdrukkingen",
+        "adviceTitle": "Advies",
+        "adviceText": "Voer de meting een aantal keer uit bij jouw {{animalType}} als er niets aan de hand is, zodat je een beetje weet wat te verwachten indien je de app een keer echt nodig hebt.\n\nGa tijdens het eerste deel van de observatie rustig op een afstandje van het {{animalType}} staan, het liefst buiten de box.\n\nDeze app is gebaseerd op onderzoek naar verschillende soorten acute pijn en kan gebruikt worden door dierenartsen én {{animalType}}eneigenaren. De resultaten voor beide groepen zijn wetenschappelijk betrouwbaar. Echter, gezien de specifieke opleiding van dierenartsen, krijgt deze groep net andere parameters te zien.\n\nEr zijn 2 verschillende scoringsmogelijkheden:",
+        "compositePainScaleTitle": "Samengestelde pijnschaal",
+        "compositePainScaleExplanation": "Wetenschappelijk onderzocht en geeft betrouwbare informatie bij acute koliek bij het paard en bij acute orthopedische pijn, postoperatieve en koliekpijn bij de ezel. Deze schaal beoordeelt de lichaamstaal van het dier en kijkt hierbij naar gedrags-, interactie en fysiologische variabelen.\nEen score hoger dan {{compositeMeasurementScoreThreshold}} kan duiden op acute pijn. Hoe hoger de score, hoe groter de kans dat het dier acute pijn ervaart.",
+        "facialExpressionsTitle": "Pijnschaal op basis van gezichtsuitdrukkingen",
+        "facialExpressionExplanation": "Wetenschappelijk onderzocht en geeft betrouwbare informatie bij paarden met acute koliek, pijn aan het hoofd en acute orthopedische pijn. Daarnaast is deze schaal ook onderzocht bij ezels met acute koliekpijn en ezels met pijn aan het hoofd. Deze schaal beoordeelt de gezichtsuitdrukkingen die kunnen voorkomen bij dieren met pijn.\n\nEen score hoger dan {{facialMeasurementThresholdScore}} kan duiden op acute pijn. Hoe hoger de score, hoe groter de kans dat het dier acute pijn ervaart.",
+        "adviceCompositeMeasurementPain": "Deze score kan betekenen dat jouw {{animalType}} (acute) pijn heeft. Overweeg contact op te nemen met jouw dierenarts.\n\nTer info: een score hoger dan {{thresholdScore}} kan duiden op (acute) pijn en hoe hoger de score, hoe groter de kans dat een {{animalType}} (acute) pijn ervaart.",
+        "adviceCompositeMeasurementNoPain": "Het lijkt erop dat jouw {{animalType}} op dit moment geen (acute) pijn heeft.",
+        "adviceFacialExpressionMeasurementPain": "Deze score kan betekenen dat jouw {{animalType}} (acute) pijn heeft. Overweeg contact op te nemen met jouw dierenarts.\n\nTer info: een score hoger dan {{thresholdScore}} kan duiden op (acute) pijn en hoe hoger de score, hoe groter de kans dat een {{animalType}} (acute) pijn ervaart.",
+        "adviceFacialExpressionMeasurementNoPain": "Het lijkt erop dat jouw {{animalType}} op dit moment geen (acute) pijn heeft.",
+        "areYouVet": "Ben je een dierenarts?",
+        "animalTypeQuestion": "Welk dier wil je meten?",
+        "measurementTypeQuestion": "Waar wil je naar kijken?",
+        "countMovementsCommand": "Tel de bewegingen in {{minutes}} minuten",
+        "prepareCommand": "Hoe werkt de pijnmeting?",
+        "clickTheIconToKnowMore": "Klik op de iconen voor uitleg.",
+        "baseline": "Baseline",
+        "pain": "Pijn",
+        "frequency": "Frequentie",
+        "observation": "Observatie",
+        "reaction": "Reactie",
+        "liesInUnnaturalPosition": "Ligt constant in afwijkende positie",
+        "loginToSave": "Alleen geregistreerde gebruikers kunnen pijnmetingen opslaan in een dagboek.",
+        "resetForm": "Opnieuw",
+        "nextStep": "Volgende stap",
+        "seeResult": "Bekijk score",
+        "goToSignUp": "Registreer / Login",
+        "goToDiary": "Opslaan in dagboek",
+        "safetyInfo": [
+          "Let op: Deze pijnmeting is geen vervanging voor een veterinaire diagnose.",
+          "Raadpleeg bij twijfel een dierenarts. Jouw veiligheid en die van jouw dier staan altijd centraal."
+        ],
+        "selectAnswer": "Selecteer de beste optie",
+        "score": "Score",
+        "ourAdvice": "Toelichting",
+        "startMeasurement": "Start de meting",
+        "showOverview": "Overzicht pijnmetingen"
+      }
+    },
+    "ppidCheck": {
+      "introductionTitle": "Testen op PPID",
+      "introductionContent": "Behandeling van PPID is een mogelijkheid, er zijn bepaalde medicijnen die de verschijnselen tegen kunnen gaan. Ook kun je door extra aandacht aan de verzorging te besteden complicaties verminderen of voorkomen.\n\nBlijkt uit de PPID check dat jouw paard mogelijk PPID heeft, dan kun je een PPID test laten uitvoeren. Jouw dierenarts kan met een eenvoudig bloedonderzoek en binnen een paar dagen vaststellen of jouw paard aan PPID lijdt.",
+      "startTitle": "Doe de PPID check",
+      "startContent": "Pituitary Pars Intermedia Dysfunction (PPID), vroeger ook wel de ziekte van Cushing genoemd, komt vaak voor bij paarden en pony’s vanaf 15 jaar.\nVoor Stichting De Paardenkamp, het nationale rusthuis en kenniscentrum voor oudere paarden, is deze aandoening geen onbekend fenomeen. Het vakbekwame team en de betrokken dierenartsen van De Paardenkamp delen graag hun kennis en ervaring. Bijvoorbeeld met deze checklist.\n\nWil je weten hoe het jouw paard gesteld is?\nDoe de PPID check!",
+      "startButton": "Start PPID check",
+      "resultTitleNegative": "PPID uitslag – Waarschijnlijk niet",
+      "resultTitlePositive": "PPID uitslag – Waarschijnlijk wel",
+      "resultContentNegative": "Uit de check blijkt dat jouw paard op dit moment niet de belangrijkste kenmerken van PPID vertoont.\n\nBen je er echter niet gerust op, raadpleeg dan de dierenarts.",
+      "resultContentPositive": "Uit de check blijkt dat jouw paard mogelijk PPID heeft. Je kunt een PPID test laten uitvoeren.\n\nDe dierenarts kan met eenvoudig bloedonderzoek en binnen een paar dagen vaststellen of jouw paard aan PPID lijdt.\n\nBehandeling van PPID is een mogelijkheid, er zijn bepaalde medicijnen die de verschijnselen tegen kunnen gaan. Ook kun je door extra aandacht aan de verzorging te besteden complicaties verminderen of voorkomen.",
+      "resultExitButton": "Sluit uitslag",
+      "title": {
+        "a": "Holtes boven de ogen",
+        "b": "Vachtverandering",
+        "c": "Drinken en plassen",
+        "d": "Hoefbevangen",
+        "others": [
+          "Leeftijd",
+          "Eetlust",
+          "Lusteloosheid",
+          "Wintervacht",
+          "Zweten",
+          "Mindere weerstand",
+          "Rugspieren",
+          "Buikspieren",
+          "Plotseling blind of epileptische aanval",
+          "Vruchtbaar"
+        ]
+      },
+      "content": {
+        "a": "Zijn de holtes boven de ogen van jouw paard opgevuld met vet?\n\nVetophoping op ongewone plekken, bijvoorbeeld bij de ogen, horen bij PPID.",
+        "b": "Heeft jouw paard een langere vacht met krullend haar gekregen (eventueel ook van een afwijkende kleur)? Of zijn er plaatselijk plukken lang krullerig haar ontstaan?\n\nVerandering van de vacht naar volle, lange en/of krullerige haren is een veelvoorkomend signaal van PPID.",
+        "c": "Drinkt en plast jouw paard veel meer dan anders?\n\nVeel drinken en veel plassen zijn verschijnselen die kunnen wijzen op PPID.",
+        "d": "Is jouw paard hoefbevangen of dit geweest?\n\nHoefbevangenheid kan een uiting van PPID zijn.",
+        "others": [
+          "Is jouw paard ouder dan 15 jaar?\n\nPPID komt vaak voor bij oudere paarden vanaf 15 jaar.",
+          "Heeft jouw paard plotseling meer eetlust?\n\nEen verschijnsel van PPID is dat paarden meer gaan eten en tegelijkertijd afvallen.",
+          "Heeft jouw paard minder werklust of is hij lustelozer?\n\nDe eerste verschijnselen van PPID zijn vaak lusteloosheid en verminderd presteren.",
+          "Komt jouw paard moeilijker door de wintervacht?\n\nVerandering van de vacht naar volle, lange en/of krullerige haren is een veelvoorkomend signaal van PPID.",
+          "Zweet jouw paard meer en op abnormale plekken zoals nek en schouders?\n\nAbnormaal zweten, vaak rond de nek en de schouders, kan een teken van PPID zijn.",
+          "Heeft jouw paard verschijnselen van een mindere weerstand: bijvoorbeeld terugkerende ontstekingen van de neus, bijholtes en luchtzakken of wondjes die moeilijk genezen?\n\nAfnemende weerstand, die zich bijvoorbeeld uit in steeds terugkerende infecties en trage wondgenezing, kan een signaal van PPID zijn.",
+          "Zijn bij jouw paard de rugspieren verminderd?\n\nSpierverlies, onder meer bij de rug, kan een zichtbaar teken van PPID zijn.",
+          "Zijn bij jouw paard de buikspieren verminderd waardoor een bolle hangbuik is ontstaan?\n\nSpierverlies, onder meer bij de buik, kan een zichtbaar teken van PPID zijn.",
+          "Is jouw paard plots blind geworden of heeft hij een epileptische aanval gehad?\n\nIn een aantal gevallen zijn epilepsie en blindheid symptomen van PPID.",
+          "Is jouw merrie verminderd vruchtbaar, dus wordt ze niet of moeilijk drachtig?\n\nMoeilijk drachtig worden en spontane melkafgifte kunnen wijzen op PPID."
+        ]
+      }
+    },
+    "animalBreeds": {
+      "horse": {
+        "andalusian": "Andalusiër",
+        "appaloosa": "Appaloosa",
+        "arabianHorse": "Arabier",
+        "connemara ": "Connemara",
+        "dartmoorPony": "Dartmoor",
+        "trotter": "Draver",
+        "falabella": "Falabella",
+        "fjordHorse": "Fjord",
+        "friesianHorse": "Fries paard",
+        "gelderlandHorse": "Gelders paard",
+        "groningenHorse": "Groninger",
+        "hackney": "Hackney",
+        "haflinger": "Haflinger ",
+        "hanoverian": "Hannoveraan",
+        "holsteiner": "Holsteiner",
+        "icelandicHorse": "IJslander",
+        "dutchWarmblood": "K.W.P.N.",
+        "lipizzan": "Lipizzaner",
+        "merens": "Merens",
+        "newForest": "New Forest",
+        "miniatureHorse": "N.M.P.R.S.",
+        "dutchRidingPony": "N.R.P.S.",
+        "oldenburgHorse": "Oldenburger",
+        "quarterHorse": "Quarter horse",
+        "shetlandPony": "Shetland pony",
+        "shire": "Shire",
+        "tinker ": "Tinker",
+        "trakehner ": "Trakehner",
+        "draftTrotter": "Trekpaard",
+        "welshPony": "Welsh pony",
+        "other": "Overige rassen"
+      },
+      "donkey": {
+        "grandNoir": "Grand Noir",
+        "poitou": "Poitou",
+        "dutch": "Nederlandse ezel",
+        "pyrenean": "Pyreneese ezel",
+        "mini": "Mini",
+        "micro": "Micro",
+        "mule": "Muilezel"
+      }
+    },
+    "animalCompetitionLevels": {
+      "horse": {
+        "amateur": "Amateur",
+        "professional": "Professioneel",
+        "elite": "Topsport",
+        "n_a": "Niet van toepassing"
+      }
+    },
+    "animalDisciplines": {
+      "horse": {
+        "dressage": "Dressuur",
+        "showJumping": "Springen",
+        "crossTraining": "Cross(training)",
+        "outsideRide": "Buitenrit",
+        "endurance": "Endurance",
+        "harness": "Aangespannen",
+        "lunging": "Longeren",
+        "groundWork": "Grondwerk",
+        "hiking": "Wandelen",
+        "stepMill": "Stapmolen",
+        "manualWork": "Werken aan de hand",
+        "other": "Overig"
+      }
+    },
+    "animalGenders": {
+      "horse": {
+        "mare": "Merrie",
+        "gelding": "Ruin",
+        "stallion": "Hengst"
+      },
+      "donkey": {
+        "jenny": "Merrie",
+        "gelding": "Ruin",
+        "jack": "Hengst"
+      }
+    },
+    "animalRoles": {
+      "horse": {
+        "leisure": "Recreatie",
+        "sport": "Sport",
+        "instruction": "Manege",
+        "breeding": "Fokkerij",
+        "company / pensionado": "Gezelschap / pensioen",
+        "other": "Anders"
+      },
+      "donkey": {
+        "leisure": "Recreatie",
+        "company / pensionado": "Gezelschap / pensioen",
+        "milk / farmwork": "Melk / werken op boerderij",
+        "trekking / riding": "Trekken / rijden",
+        "other": "Anders"
+      }
+    },
+    "aboutScreen": {
+      "title": "Deze app werd ontwikkeld door onderzoeker-dierenartsen van de faculteit Diergeneeskunde Universiteit Utrecht, Stichting De Paardenkamp en Vrienden Diergeneeskunde.",
+      "university": {
+        "title": "Faculteit Diergeneeskunde Universiteit Utrecht",
+        "description": "De faculteit Diergeneeskunde is hét veterinaire kenniscentrum in Nederland. Onze primaire taken zijn onderwijs, onderzoek en patiëntenzorg. Op deze manier bouwen wij bruggen tussen wetenschap en maatschappij en leveren specialistische zorg in het grootste academische dierenziekenhuis van Europa.",
+        "link": {
+          "label": "www.uu.nl/organisatie/faculteit-diergeneeskunde",
+          "url": "https://www.uu.nl/organisatie/faculteit-diergeneeskunde"
+        }
+      },
+      "paardenkamp": {
+        "title": "Stichting De Paardenkamp",
+        "description": "Paarden en pony's na hun twintigste levensjaar laten genieten van een welverdiende oude dag: dat is waar Stichting De Paardenkamp zich al sinds 1962 voor inzet. Sinds die tijd hebben ruim 600 oude paarden hier heerlijke laatste levensjaren doorgebracht, met verzorging en aandacht van deskundige medewerkers en toegewijde vrijwilligers.",
+        "link": {
+          "label": "www.paardenkamp.nl",
+          "url": "https://www.paardenkamp.nl"
+        }
+      },
+      "friends": {
+        "title": "Vrienden Diergeneeskunde",
+        "description": "Vrienden Diergeneeskunde is het goede doel van de faculteit Diergeneeskunde. Wij zetten ons in voor onderzoek en innovaties die de gezondheid en het welzijn van dieren bevorderen en beschermen. Nu en in de toekomst, met particulieren en organisaties die net zo denken als wij.",
+        "link": {
+          "label": "www.vriendendiergeneeskunde.nl",
+          "url": "https://www.vriendendiergeneeskunde.nl"
+        }
+      },
+      "more": {
+        "links": [
+          {
+            "label": "Meer informatie over EPWA",
+            "url": "https://www.epwa.nl"
+          },
+          {
+            "label": "Sponsoren van EPWA",
+            "url": "https://www.epwa.nl/over-de-app/sponsoren"
+          }
+        ]
+      },
+      "listIntro": "Deze app werd mede mogelijk gemaakt door:",
+      "list": [
+        {
+          "label": "Vele individuele paardenliefhebbers in Nederland en wereldwijd"
+        },
+        {"label": "Pavo paardenvoer", "url": "http://www.pavo.nl"},
+        {"label": "Stichting Nijdier", "url": "http://www.nijdier.nl"},
+        {
+          "label": "The Donkey Sanctuary",
+          "url": "http://www.thedonkeysanctuary.org.uk"
+        },
+        {
+          "label": "Stichting Capelse Manegefonds",
+          "url": "http://www.capelsemanege.nl"
+        },
+        {
+          "label": "Stichting Moyra-Stava Morena",
+          "url": "http://www.moyrastavamorena.nl"
+        },
+        {"label": "Nikki de Kerf fotografie", "url": "http://fotogenikki.nl"},
+        {"label": "Wirelab Digital Agency", "url": "http://www.wirelab.nl"}
+      ],
+      "privacy": {
+        "title": "Bescherming van gegevens",
+        "description": "Bekijk voor meer informatie over de bescherming van jouw gegevens de onderstaande link.",
+        "link": {
+          "label": "Privacy Policy",
+          "url": "https://www.epwa.nl/contact/privacy-policy"
+        }
+      }
+    },
+    "datePicker": {
+      "titleDate": "Kies een datum",
+      "titleTime": "Kies een tijd",
+      "confirm": "Bevestig",
+      "cancel": "Annuleren"
+    },
+    "tips": {
+      "title": "Welzijnstips",
+      "preface": "Natuurlijk wil je zo goed mogelijk voor jouw paard zorgen. Let daarom op de verschillende elementen van paardenwelzijn, zoals voeding, huisvesting, gezondheid en gedrag. Volg jij deze richtlijnen?",
+      "sections": [
+        {
+          "title": "Goede voeding – Geen honger en geen dorst",
+          "list": [
+            "Een paard heeft minimaal iedere 6 uur de beschikking over ruwvoer nodig.",
+            "Voer een paard eerst ruwvoer en daarna pas (eventueel) krachtvoer. Vooral in de ochtend is dit belangrijk, anders krijgt hij last van zijn maag.",
+            "Geef je paard onbeperkt water. Schoon en vers drinkwater is, net als voor mensen, ook voor je paard van groot belang! Controleer daarom dagelijks of de drinkbakken van je paard schoon en vrij toegankelijk zijn."
+          ]
+        },
+        {
+          "title": "Goede huisvesting – Slapen, aangename temperatuur en ruimte om te bewegen",
+          "list": [
+            "Vrije beweging is heel belangrijk voor je paard. Hoe kleiner de stal is waarin hij staat, hoe langer hij de behoefte heeft om daar buiten vrij te bewegen. Gun hem tenminste 2 uur per dag de mogelijkheid om in een paddock of wei te staan, die groot genoeg is om een sprintje te trekken.",
+            "Paarden hebben voldoende rust nodig. Vaak maken ze staand een dutje, maar een rustplek met een droge, schone en zachte ondergrond waarop ze kunnen liggen, moet altijd beschikbaar zijn. ",
+            "Als echt kuddedier is sociaal contact met andere paarden een must. Niet alleen in de wei en in de paddock, maar ook op stal. Gebruik bijvoorbeeld snuffelroosters, of zorg dat de paarden door de openstaande deuren van de stal naar elkaar kunnen kijken.",
+            "Ook het kunnen zien van de omgeving is belangrijk voor je paard. Dit is onderdeel van zijn natuurlijke gedrag, hij observeert graag wat er allemaal om hem heen gebeurt.",
+            "Een ongeluk zit in een klein hoekje. Voorkom daarom dat je paard uit kan glijden op een te gladde ondergrond of zich kan verwonden aan een uitstekend voorwerp. Kortom: denk om de veiligheid van je paard!"
+          ]
+        },
+        {
+          "title": "Goede gezondheid – Jong fit, gezond oud!",
+          "list": [
+            "Laat je paard regelmatig door de hoefsmid, tandarts, dierenarts en andere gekwalificeerde hippische experts checken. Door op jonge leeftijd te beginnen met gebitscontroles, houd je je paard veel langer gezond. "
+          ]
+        },
+        {
+          "title": "Gepast gedrag – Mentaal gezond",
+          "list": [
+            "Zorg ervoor dat jouw paard geen onnodige stress ervaart. Bijvoorbeeld door op een voorspelbare manier met hem om te gaan. Als je paard essentieel basisgedrag kan vertonen in een veilige omgeving, creëer je een goede basis voor een paard dat zowel fysiek als ook mentaal in balans is. Dat is prettig voor je paard én voor jou!"
+          ]
+        }
+      ]
+    },
+    "info": {
+      "animalForm": {
+        "title": "Paard of ezel toevoegen",
+        "preface": "",
+        "sections": [
+          {
+            "title": "Hoe voeg je een {{animalType}} toe?",
+            "content": "In dit onderdeel van de app voeg je snel en eenvoudig een {{animalType}} toe aan jouw stal door verschillende kenmerken van hem of haar in te vullen en op te slaan."
+          },
+          {
+            "title": "Ras",
+            "content": "Selecteer het ras van jouw {{animalType}} uit de rassenlijst. Staat jouw ras er niet bij? Selecteer dan Overig en vul het ras handmatig in. Heb je een kruising? Vul dan eerst het ene ras in en gebruik vervolgens de paarse + knop om het tweede ras toe te voegen."
+          },
+          {
+            "title": "Meerdere gebruiksdoelen en disciplines",
+            "content": "Rijd jij wedstrijden met je {{animalType}}, maar fok je ook met hem? Het is mogelijk om meerdere gebruiksdoelen toe te voegen. Vul eerst het ene gebruiksdoel in en gebruik de paarse + knop om het volgende toe te voegen. Hetzelfde geldt voor het onderdeel Discipline.",
+            "hideForDonkey": true
+          },
+          {
+            "title": "Foutje gemaakt?",
+            "content": "Gebruik de rode X knop van een onderdeel om de selectie ongedaan te maken."
+          },
+          {
+            "title": "Foto toevoegen",
+            "content": "Klik op het icoontje van een camera bovenaan in het scherm. Je kunt nu een foto maken of een liggende (!) foto selecteren uit de foto galerij in jouw telefoon."
+          },
+          {
+            "title": "Opslaan",
+            "content": "Heb je de nodige gegevens van jouw {{animalType}} ingevuld? Gebruik dan het > icoontje rechts bovenin om de gegevens op te slaan en jouw {{animalType}} toe te voegen aan je stal."
+          },
+          {
+            "title": "Wil je iets wijzigen?",
+            "content": "Staat jouw {{animalType}} al in de stal, maar wil je iets toevoegen of wijzigen? Klik op het potloodicoontje in de rechter bovenhoek om te wijzigen."
+          }
+        ]
+      },
+      "diaryExercise": {
+        "title": "Training",
+        "preface": "De training van je paard voeg je heel eenvoudig toe aan je dagboek.\nVul bij start- en eindtijd de tijden in waarop je hebt getraind. In je dag overzicht verschijnt dan hoe lang je bezig bent geweest.\nWat voor soort training heb je gedaan? Dit voeg je toe door op het veld Trainingsvorm te klikken en uit de verschillende opties in het dropdown menu te kiezen.\nHeb je op een dag vaker dan een keer getraind? Je kunt per dag meerdere trainingssessies opslaan, door de  paarse + knop te gebruiken en een nieuwe sessie toe te voegen.",
+        "sections": [
+          {
+            "title": "Foutje gemaakt?",
+            "content": "Gebruik de rode X knop van een onderdeel om de selectie ongedaan te maken."
+          },
+          {
+            "title": "Opslaan",
+            "content": "Heb je de training ingevuld? Gebruik dan het > icoontje rechts bovenin om op te slaan. De trainingstijd komt nu automatisch in het dagboek te staan. Heb je meerdere trainingssessies gehad, zie je je totale trainingstijd voor die dag terug in het dagboek."
+          }
+        ]
+      },
+      "diaryFeeding": {
+        "title": "Voeding",
+        "preface": "In dit onderdeel van de app registreer je de voeding van jouw {{animalType}}. Je hebt hierbij de keuze uit Ruwvoer, Krachtvoer en Supplementen.\nKrijgt jouw {{animalType}} onbeperkt ruwvoer? Vink dan die optie aan.",
+        "sections": [
+          {
+            "title": "Foutje gemaakt?",
+            "content": "Gebruik de rode X knop van een onderdeel om de selectie ongedaan te maken."
+          },
+          {
+            "title": "Opslaan",
+            "content": "Ben je klaar met het invullen van de voeding van je {{animalType}}? Gebruik dan het > icoontje rechts bovenin om op te slaan. De gegevens komen nu automatisch in het dagboek te staan."
+          }
+        ]
+      },
+      "diaryHousing": {
+        "title": "Huisvesting",
+        "preface": "Waar brengt jouw {{animalType}} zijn dag door? Kies tussen stal, weiland of paddock. Staat je {{animalType}} 24 uur in een van deze huisvestingsvormen? Vink dan die optie aan. Je kunt hierbij ook aangeven of hij alleen of met andere {{animalType}}en staat.",
+        "sections": [
+          {
+            "title": "Foutje gemaakt?",
+            "content": "Gebruik de rode X knop van een onderdeel om de selectie ongedaan te maken."
+          },
+          {
+            "title": "Opslaan",
+            "content": "Ben je klaar met het invullen van de huisvesting van je {{animalType}}? Gebruik dan het > icoontje rechts bovenin om op te slaan. De gegevens komen nu automatisch in het dagboek te staan."
+          }
+        ]
+      },
+      "diaryMedication": {
+        "title": "Medisch",
+        "preface": "Krijgt jouw {{animalType}} medicijnen? Of is hij onder behandeling van bijvoorbeeld een fysiotherapeut? Voeg de medische gegevens van jouw {{animalType}} makkelijk toe aan je dagboek.",
+        "sections": [
+          {
+            "title": "Medicatie",
+            "content": "Houd bij wanneer je je {{animalType}} een bepaald medicijn hebt gegeven en in welke hoeveelheid. Krijgt jouw {{animalType}} meerdere medicijnen? Voeg ze dan allemaal toe door de paarse + knop te gebruiken om de volgende toe te voegen."
+          },
+          {
+            "title": "Behandeling",
+            "content": "Houd bij welke geaccrediteerde hippische specialist jouw {{animalType}} heeft behandeld. Selecteer de specialist uit het menu. In het opmerkingenveld eronder kun je invullen wat het advies is of wat de behandeling inhoudt."
+          },
+          {
+            "title": "Revalidatie",
+            "content": "Heeft jouw {{animalType}} een blessure en moet hij revalideren? Gebruik hiervoor het kopje Revalidatie. Hierin kun je aangeven of jouw {{animalType}} bijvoorbeeld boxrust nodig heeft."
+          },
+          {
+            "title": "Temperatuur en Gewicht",
+            "content": "Houd jij regelmatig de lichaamstemperatuur van je {{animalType}} bij? Als je de temperatuur invult, komt dit automatisch in het dagboek te staan. Hetzelfde geldt voor het (geschatte) gewicht van jouw paard."
+          },
+          {
+            "title": "Foutje gemaakt?",
+            "content": "Gebruik de rode X knop van een onderdeel om de selectie ongedaan te maken."
+          },
+          {
+            "title": "Opslaan",
+            "content": "Ben je klaar met het invullen van de medische gegevens? Gebruik dan het > icoontje rechts bovenin om op te slaan. De medische gegevens komen nu automatisch in het dagboek te staan."
+          }
+        ]
+      },
+      "welfare": {
+        "sections": [
+          {
+            "title": "Welzijnstips",
+            "content": "Natuurlijk wil je zo goed mogelijk voor jouw paard zorgen. Let daarom op de verschillende elementen van paardenwelzijn, zoals voeding, huisvesting, gezondheid en gedrag. Volg jij deze richtlijnen?"
+          },
+          {
+            "title": "Goede voeding – Geen honger en geen dorst",
+            "content": "- Een paard heeft minimaal iedere 6 uur de beschikking over ruwvoer nodig.\n\n- Voer een paard eerst ruwvoer en daarna pas (eventueel) krachtvoer. Vooral in de ochtend is dit belangrijk, anders krijgt hij last van zijn maag.\n\n- Geef je paard onbeperkt water. Schoon en vers drinkwater is, net als voor mensen, ook voor je paard van groot belang! Controleer daarom dagelijks of de drinkbakken van je paard schoon en vrij toegankelijk zijn.",
+            "imageTitle": "feeding"
+          },
+          {
+            "title": "Goede huisvesting – Slapen, aangename temperatuur en ruimte om te bewegen",
+            "content": "- Vrije beweging is heel belangrijk voor je paard. Hoe kleiner de stal is waarin hij staat, hoe langer hij de behoefte heeft om daar buiten vrij te bewegen. Gun hem tenminste 2 uur per dag de mogelijkheid om in een paddock of wei te staan, die groot genoeg is om een sprintje te trekken.\n\n- Paarden hebben voldoende rust nodig. Vaak maken ze staand een dutje, maar een rustplek met een droge, schone en zachte ondergrond waarop ze kunnen liggen, moet altijd beschikbaar zijn.\n\n- Als echt kuddedier is sociaal contact met andere paarden een must. Niet alleen in de wei en in de paddock, maar ook op stal. Gebruik bijvoorbeeld snuffelroosters, of zorg dat de paarden door de openstaande deuren van de stal naar elkaar kunnen kijken.\n\n- Ook het kunnen zien van de omgeving is belangrijk voor je paard. Dit is onderdeel van zijn natuurlijke gedrag, hij observeert graag wat er allemaal om hem heen gebeurt.\n\n- Een ongeluk zit in een klein hoekje. Voorkom daarom dat je paard uit kan glijden op een te gladde ondergrond of zich kan verwonden aan een uitstekend voorwerp. Kortom: denk om de veiligheid van je paard!",
+            "imageTitle": "housing"
+          },
+          {
+            "title": "Goede gezondheid – Jong fit, gezond oud!",
+            "content": "- Laat je paard regelmatig door de hoefsmid, tandarts, dierenarts en andere gekwalificeerde hippische experts checken. Door op jonge leeftijd te beginnen met gebitscontroles, houd je je paard veel langer gezond.",
+            "imageTitle": "wellness"
+          },
+          {
+            "title": "Gepast gedrag – Mentaal gezond",
+            "content": "- Zorg ervoor dat jouw paard geen onnodige stress ervaart. Bijvoorbeeld door op een voorspelbare manier met hem om te gaan. Als je paard essentieel basisgedrag kan vertonen in een veilige omgeving, creëer je een goede basis voor een paard dat zowel fysiek als ook mentaal in balans is.\nDat is prettig voor je paard én voor jou!",
+            "imageTitle": "behaviour"
+          }
+        ]
+      }
+    },
+    "profileUpdateSuccess": "Je profiel is geupdate!",
+    "name": "Naam",
+    "firstName": "Voornaam",
+    "lastName": "Achternaam",
+    "email": "E-mailadres",
+    "requiredField": "Verplicht",
+    "fillInName": "Vul naam in",
+    "breed": "Ras",
+    "selectbreed": "Selecteer een ras",
+    "roles": "Gebruiksdoel",
+    "selectroles": "Welke activiteiten doe je met dit dier? ",
+    "disciplines": "Discipline",
+    "selectdisciplines": "Selecteer een discipline",
+    "sex": "Geslacht",
+    "selectSex": "Selecteer een geslacht",
+    "animalHeight": "Stokmaat (in cm)",
+    "animalWeight": "Gewicht (in kg)",
+
+    "selectAnimalHeight": "Selecteer een stokmaat",
+    "fillInAnimalHeight": "Vul stokmaat in (centimeters)",
+    "fillInAnimalWeight": "Vul gewicht in (kilo's)",
+    "horseCompetitionLevel": "Wedstrijdniveau",
+    "selectHorseCompetitionLevel": "Selecteer een wedstrijdniveau",
+    "particularities": "Bijzonderheden",
+    "fillInParticularities": "Vul hier bijzonderheden in",
+    "ok": "OK",
+    "submit": "Aanmaken",
+    "save": "Opslaan",
+    "cancel": "Annuleren",
+    "remove": "Verwijderen",
+    "copy": "Kopiëren",
+    "cameraOrGalleryPopupTitle": "Selecteer een foto",
+    "chooseFromLibrary": "Galerij",
+    "takeAPhoto": "Camera",
+    "birthdate": "Geboortedatum",
+    "selectDate": "Selecteer een datum",
+    "openDiary": "Open dagboek",
+    "noData": "n.v.t.",
+    "diary": "Dagboek",
+    "addHorse": "Paard toevoegen",
+    "editHorse": "Paard bewerken",
+    "addDonkey": "Ezel toevoegen",
+    "editDonkey": "Ezel bewerken",
+    "deleteAnimal": "Profiel verwijderen",
+    "deleteAnimalMessage": "Je staat op het punt om het profiel van je dier te verwijderen.\n\nDeze actie kan niet meer ongedaan worden gemaakt!\nWeet je het zeker?",
+    "startPainMeasurement": "Start pijnmeting",
+    "settings": "Instellingen",
+    "about": "Over",
+    "share": "Deel",
+    "shareApp": "Deel deze app",
+    "noAnimalsToShow": "Jouw stal is nog helemaal leeg!",
+    "addMedication": "Medisch",
+    "registerHousing": "Huisvesting registeren",
+    "registerFeeding": "Voeding registeren",
+    "registerExercises": "Training registeren",
+    "riding": "Rijden",
+    "groundWork": "Grondwerk",
+    "dressage": "Dressuur",
+    "showJumping": "Springen",
+    "crossTraining": "Cross(training)",
+    "outsideRide": "Buitenrit",
+    "endurance": "Endurance",
+    "harness": "Aangespannen",
+    "hiking": "Wandelen",
+    "stepMill": "Stapmolen",
+    "manualWork": "Werken aan de hand",
+    "other": "Overig",
+    "startTime": "Starttijd",
+    "endTime": "Eindtijd",
+    "leavingFormTitle": "Weet je het zeker?",
+    "leavingFormSubtitle": "Je wijzigingen worden niet opgeslagen.",
+    "leavingFormLeaveBtn": "Verlaten",
+    "leavingFormStayBtn": "Blijven",
+    "paddock": "Paddock",
+    "pasture": "Weiland",
+    "stable": "Stal",
+    "exercise": "Training",
+    "exerciseType": "Trainingsvorm",
+    "housing": "Huisvesting",
+    "feeding": "Voeding",
+    "medication": "Medicijnen",
+    "timeOfDay": "Tijdstip",
+    "timeAndDay": "Dag en tijd",
+    "unit": "Eenheid",
+    "unlimited": "Onbeperkt",
+    "roughage": "Ruwvoer",
+    "concentrate": "Krachtvoer",
+    "supplement": "Supplementen",
+    "pill": "Medicatie",
+    "injection": "Behandeling",
+    "treatment": "Behandeling",
+    "temperature": "Temperatuur",
+    "recovery": "Revalidatie",
+    "item": "stuks",
+    "gram": "g",
+    "kilogram": "kg",
+    "byWeight": "Voor ... kg",
+    "milligram": "mg",
+    "cubicCentimetre": "cc / ml",
+    "sachet": "Zakje",
+    "tablet": "Tablet",
+    "scoop": "Schepje / pompje",
+    "drop": "Druppels",
+    "celsius": "Celsius",
+    "fahrenheit": "Fahrenheit",
+    "vet": "Dierenarts",
+    "physiotherapist": "Fysiotherapeut",
+    "osteopath": "Osteopaat",
+    "dentist": "Tandarts",
+    "farrier": "Hoefsmid",
+    "otherDoctor": "Overig",
+    "alertSuccess": "Succes",
+    "offlineWarning": "Je bent offline. Controleer je verbinding",
+    "animalFetchErrorMsg": "Er is een fout opgetreden tijdens het ophalen van de dieren!",
+    "animalAddErrorMsg": "Er is een fout opgetreden tijdens het toevoegen van een dier!",
+    "animalEditErrorMsg": "Er is een fout opgetreden tijdens het updaten van een dier!",
+    "animalDeleteErrorMsg": "Er is een fout opgetreden tijdens het verwijderen van een dier!",
+    "eventAddSuccessMsg": "Het item is toegevoegd!",
+    "eventEditSuccessMsg": "Het item is geupdate!",
+    "eventDeleteSuccessMsg": "Het item is verwijderd!",
+    "changePasswordSuccessMsg": "Het wachtwoord is veranderd!",
+    "changePasswordErrorMsg": "Er is een fout opgetreden tijdens het aanpassen van het wachtwoord!",
+    "changePasswordCurrentPasswordWrongErrorMsg": "Het wachtwoord dat je hebt ingevoerd komt niet overeen met je huidige wachtwoord",
+    "changePasswordPasswordConfirmDoesNotMatchErrorMsg": "De wachtwoorden komen niet overeen",
+    "refreshTokenFailedLoggingOutMsg": "Je bent automatisch uitgelogd omdat de sessie is verlopen.\n\nDit is mogelijk veroorzaakt doordat je account is gebruikt om in te loggen op een ander apparaat.\nMeld je opnieuw aan.",
+    "roughageNameLabel": "Type ruwvoer",
+    "concentrateNameLabel": "Type krachtvoer",
+    "supplementNameLabel": "Type supplement",
+    "pillNameLabel": "Naam medicatie",
+    "injectionNameLabel": "Type behandeling",
+    "temperatureNameLabel": "Temperatuur",
+    "recoveryNameLabel": "Revalidatie notitie",
+    "yes": "Ja",
+    "no": "Nee",
+    "updateProfileSubmitBtn": "Opslaan",
+    "driving": "Rijden",
+    "lunging": "Longeren",
+    "workInHand": "Werken aan de hand",
+    "welcomeInDiary": "Welkom bij je dagboek",
+    "noEventsOnThisDate": "Er zijn vandaag nog geen activiteiten in het dagboek. Klik rechts onderin op het plusje om de eerste activiteit toe te voegen, of kopieer activiteiten van een oudere datum",
+    "noAnimalsInDiary": "Voeg een paard of ezel toe om gebruik te maken van het dagboek",
+    "selectDone": "Toepassen",
+    "horse": "Paard",
+    "donkey": "Ezel",
+    "clickToAddPhoto": "Klik om een foto toe te voegen",
+    "clickToChangePhoto": "Klik om de foto te veranderen",
+    "updatePasswordLink": "Wachtwoord aanpassen",
+    "notApplicable": "n.v.t.",
+    "currentPassword": "Huidig wachtwoord",
+    "newPassword": "Nieuw wachtwoord",
+    "newPasswordConfirmation": "Nieuw wachtwoord (nogmaals)",
+    "noOrNa": "Nee/n.v.t.",
+    "counting": "Tellen",
+    "answers": "Antwoorden",
+    "noAnimalsInStableWarning": "Je hebt nog geen dier in je stal. Voeg eerst een dier toe, voordat je een pijnmeting kan starten.",
+    "shareAppTitleDrawerMenu": "EPWA",
+    "shareAppContentDrawerMenu": "Ik gebruik EPWA, de Equine Pijn- en WelzijnsApp, om de gezondheid en het welzijn van mijn dier te monitoren. Kijk op www.epwa.nl voor meer informatie. ",
+    "shareAppTitleAnimalProfile": "EPWA",
+    "shareAppContentAnimalProfile": "Ik gebruik EPWA, de Equine Pijn- en WelzijnsApp, om de gezondheid en het welzijn van {{animalName}} te monitoren. Kijk op www.epwa.nl voor meer informatie. ",
+    "shareAppUrl": "https://www.epwa.nl",
+    "painMeasurementLoginWarning": "Wil je je pijnmeting opslaan? Log dan eerst in. Je kunt ook doorgaan zonder de pijnmeting op te slaan.",
+    "quit": "Afbreken",
+    "painMeasurementQuitTitle": "Meting afbreken",
+    "painMeasurementQuitMessage": "Weet je zeker dat je de pijnmeting wilt afbreken?",
+    "ppidQuitTitle": "Test afbreken",
+    "ppidQuitMessage": "Weet je zeker dat je de PPID test wilt afbreken?",
+    "finish": "Afronden",
+    "notes": "Bijzonderheden",
+    "animalHasUnlimitedAmountOf": "Het dier heeft onbeperkte toegang tot {{feedType}}",
+    "copyFromDate": "Kopieer van datum",
+    "copyChoice": "Kies de onderdelen om te kopiëren van de geselecteerde datum",
+    "copyNoEventsAvailable": "De geselecteerde datum heeft geen onderdelen om te kopiëren",
+    "customBreedPlaceholder": "Vul de naam in van het ras",
+    "lookBack": "Kijk terug",
+    "today": "Vandaag",
+    "lookAhead": "Kijk vooruit",
+    "graphTitle": "Recente pijnscores",
+    "compositeMeasure": "Samengestelde pijnmeting",
+    "facialMeasure": "Gezichtspijnmeting",
+    "addPainMeasurement": "Pijnmeting toevoegen",
+    "recurring": "Terugkerend",
+    "recurringTill": "Herhaal tot",
+    "notification": "Melding",
+    "emptyPainMeasurementList": "Nog geen pijnscores ingevoerd",
+    "diaryFeeding": "Voeding",
+    "movement": "Beweging",
+    "eventHousing": "Huisvesting",
+    "eventMedication": "Medicatie",
+    "categories": {
+      "painMeasurement": "Pijnmeting",
+      "feeding": "Voeding",
+      "medication": "Medicatie",
+      "housing": "Huisvesting",
+      "exercise": "Beweging"
+    },
+    "painMeasurements": {
+      "composite": "Samengestelde pijnmeting",
+      "facial": "Gezichtspijnmeting"
+    },
+    "typePainMeasurement": "Type pijnmeting"
+  },
+  "calendar": {
+    "monthNames": [
+      "Januari",
+      "Februari",
+      "Maart",
+      "April",
+      "Mei",
+      "Juni",
+      "Juli",
+      "Augustus",
+      "September",
+      "Oktober",
+      "November",
+      "December"
+    ],
+    "monthNamesShort": [
+      "Jan",
+      "Feb",
+      "Mrt",
+      "Apr",
+      "Mei",
+      "Jun",
+      "Juli",
+      "Aug",
+      "Sep",
+      "Okt",
+      "Nov",
+      "Dec"
+    ],
+    "dayNames": [
+      "Zondag",
+      "Maandag",
+      "Dinsdag",
+      "Woensdag",
+      "Donderdag",
+      "Vrijdag",
+      "Zaterdag"
+    ],
+    "dayNamesShort": ["Z", "M", "D", "W", "D", "V", "Z"],
+    "today": "Vandaag"
+  }
+}

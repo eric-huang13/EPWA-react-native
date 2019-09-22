@@ -1,0 +1,104 @@
+import React, { Component } from "react";
+import { HeaderBackButton } from "react-navigation-stack";
+import { ScrollView, View, Text } from "react-native";
+import { __, curry, path } from "ramda";
+
+import { colors, fonts } from "../themes";
+
+class PainMeasurementStartInfo extends Component {
+  static navigationOptions = ({ navigation, screenProps }) => ({
+    title: screenProps.t("painMeasurement.misc.headerTitle"),
+    headerTitleStyle: {
+      ...fonts.style.h4,
+      fontWeight: "400"
+    },
+    headerLeft: (
+      <HeaderBackButton
+        tintColor={colors.nero}
+        onPress={() => navigation.goBack()}
+      />
+    )
+  });
+
+  render() {
+    const { t } = this.props.screenProps;
+
+    const animalType = path(["screenProps", "form", "values", "animalType"])(
+      this.props
+    );
+    const animalTypeTranslatePath = animalType
+      ? t(`painMeasurement.misc.${animalType}`)
+      : t(`painMeasurement.misc.horse`);
+    const pluralAnimalTypeTranslatePath = animalType
+      ? t(`painMeasurement.misc.${animalType}_plural`)
+      : t(`painMeasurement.misc.horse_plural`);
+    const facialMeasurementThresholdScore = animalType === "donkey" ? 2 : 3;
+    const compositeMeasurementScoreThreshold = 5;
+
+    // Fallback to horse
+    const translatedAnimalType = t(animalTypeTranslatePath).toLowerCase();
+    const translatedPluralAnimalType = t(
+      pluralAnimalTypeTranslatePath
+    ).toLowerCase();
+
+    const tCurry = curry(t);
+    const tWithAnimalType = tCurry(__, {
+      animalType: translatedAnimalType,
+      pluralAnimalType: translatedPluralAnimalType,
+      facialMeasurementThresholdScore,
+      compositeMeasurementScoreThreshold
+    });
+
+    const textStyle = {
+      ...fonts.style.normal,
+      color: colors.nero,
+      lineHeight: 20,
+      marginBottom: 20
+    };
+
+    const titleStyle = {
+      ...fonts.style.cta,
+      color: colors.nero,
+      lineHeight: 20,
+      marginBottom: 10
+    };
+
+    return (
+      <View style={{ flex: 1, backgroundColor: colors.white }}>
+        <ScrollView
+          contentContainerStyle={{
+            flexGrow: 1,
+            backgroundColor: colors.white,
+            paddingTop: 20,
+            paddingHorizontal: 20
+          }}
+        >
+          <Text style={titleStyle}>
+            {tWithAnimalType("painMeasurement.misc.adviceTitle")}
+          </Text>
+          <Text style={textStyle}>
+            {tWithAnimalType("painMeasurement.misc.adviceText")}
+          </Text>
+          <Text style={titleStyle}>
+            {tWithAnimalType("painMeasurement.misc.compositePainScaleTitle")}
+          </Text>
+          <Text style={textStyle}>
+            {tWithAnimalType(
+              "painMeasurement.misc.compositePainScaleExplanation"
+            )}
+          </Text>
+          <Text style={titleStyle}>
+            {tWithAnimalType("painMeasurement.misc.facialExpressionsTitle")}
+          </Text>
+          <Text style={textStyle}>
+            {tWithAnimalType(
+              "painMeasurement.misc.facialExpressionExplanation"
+            )}
+          </Text>
+        </ScrollView>
+      </View>
+    );
+  }
+}
+
+export default PainMeasurementStartInfo;

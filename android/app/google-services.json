@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "342296454651",
+    "firebase_url": "https://epwa-40e58.firebaseio.com",
+    "project_id": "epwa-40e58",
+    "storage_bucket": "epwa-40e58.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:342296454651:android:9888f04daae8be0e",
+        "android_client_info": {
+          "package_name": "com.epwa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "342296454651-s380f7krc3dk9je661i2a0uo17mgmtga.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.epwa",
+            "certificate_hash": "57455b41ef1935753a01e04e7df1111894c700da"
+          }
+        },
+        {
+          "client_id": "342296454651-ku2beuthlu4l3suin1hv6su0iqsrutuk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfVHQNjdG2VJVFCbak5XHDP_WJgaXYMS0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "342296454651-ku2beuthlu4l3suin1hv6su0iqsrutuk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "342296454651-9j13anctvbbcjtrv5u1pjjhc94tds9ii.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.epwa"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
