@@ -48,7 +48,6 @@
 		A4E15536232B8DCD00AEE2AF /* libglog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E15535232B8DCD00AEE2AF /* libglog.a */; };
 		A4E15538232B8DCD00AEE2AF /* libGoogleToolboxForMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E15537232B8DCD00AEE2AF /* libGoogleToolboxForMac.a */; };
 		A4E1553A232B8DCD00AEE2AF /* libGTMSessionFetcher.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E15539232B8DCD00AEE2AF /* libGTMSessionFetcher.a */; };
-		A4E1553C232B8DCD00AEE2AF /* libPods-EPWATests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E1553B232B8DCD00AEE2AF /* libPods-EPWATests.a */; };
 		A4E1553E232B8DCD00AEE2AF /* libReact-Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E1553D232B8DCD00AEE2AF /* libReact-Core.a */; };
 		A4E15540232B8DCD00AEE2AF /* libReact-cxxreact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E1553F232B8DCD00AEE2AF /* libReact-cxxreact.a */; };
 		A4E15542232B8DCD00AEE2AF /* libReact-DevSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E15541232B8DCD00AEE2AF /* libReact-DevSupport.a */; };
@@ -147,7 +146,6 @@
 		A4E15535232B8DCD00AEE2AF /* libglog.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libglog.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E15537232B8DCD00AEE2AF /* libGoogleToolboxForMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libGoogleToolboxForMac.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E15539232B8DCD00AEE2AF /* libGTMSessionFetcher.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libGTMSessionFetcher.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		A4E1553B232B8DCD00AEE2AF /* libPods-EPWATests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-EPWATests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E1553D232B8DCD00AEE2AF /* libReact-Core.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-Core.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E1553F232B8DCD00AEE2AF /* libReact-cxxreact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-cxxreact.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E15541232B8DCD00AEE2AF /* libReact-DevSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-DevSupport.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -213,7 +211,6 @@
 				A4E15534232B8DCD00AEE2AF /* libFolly.a in Frameworks */,
 				A4E15536232B8DCD00AEE2AF /* libglog.a in Frameworks */,
 				A4E1553A232B8DCD00AEE2AF /* libGTMSessionFetcher.a in Frameworks */,
-				A4E1553C232B8DCD00AEE2AF /* libPods-EPWATests.a in Frameworks */,
 				A4E1553E232B8DCD00AEE2AF /* libReact-Core.a in Frameworks */,
 				A4E15540232B8DCD00AEE2AF /* libReact-cxxreact.a in Frameworks */,
 				A4E15542232B8DCD00AEE2AF /* libReact-DevSupport.a in Frameworks */,
@@ -311,7 +308,6 @@
 				A4E15535232B8DCD00AEE2AF /* libglog.a */,
 				A4E15537232B8DCD00AEE2AF /* libGoogleToolboxForMac.a */,
 				A4E15539232B8DCD00AEE2AF /* libGTMSessionFetcher.a */,
-				A4E1553B232B8DCD00AEE2AF /* libPods-EPWATests.a */,
 				A4E1553D232B8DCD00AEE2AF /* libReact-Core.a */,
 				A4E1553F232B8DCD00AEE2AF /* libReact-cxxreact.a */,
 				A4E15541232B8DCD00AEE2AF /* libReact-DevSupport.a */,

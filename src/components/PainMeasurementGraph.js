@@ -87,8 +87,8 @@ class PainMeasurementGraph extends React.Component {
       return {
         index,
         date: item.startDate,
-        score: item.data.finalScore,
-        type: item.data.measurementType,
+        score: (item.data && item.data.finalScore) ? item.data.finalScore : 0,
+        type: (item.data && item.data.measurementType) ? item.data.measurementType : '',
       };
     });
 
