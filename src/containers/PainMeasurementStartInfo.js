@@ -7,7 +7,7 @@ import { colors, fonts } from "../themes";
 
 class PainMeasurementStartInfo extends Component {
   static navigationOptions = ({ navigation, screenProps }) => ({
-    title: screenProps.t("painMeasurement.misc.headerTitle"),
+    title: screenProps.t("painMeasurement.misc.headerTitle") ,
     headerTitleStyle: {
       ...fonts.style.h4,
       fontWeight: "400"

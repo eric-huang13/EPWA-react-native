@@ -102,6 +102,7 @@ class Diary extends Component {
       housing: 'DiaryHousingForm',
       feeding: 'DiaryFeedingForm',
       medication: 'DiaryMedicationForm',
+      startPainMeasurement: 'painMeasurement',
     };
 
     this.actionButtons = [
@@ -717,7 +718,7 @@ class Diary extends Component {
           )}
           <ButtonFullWidth
             onPress={() =>
-              this.navigateTo(this.routes.painMeasurement, {
+              this.navigateTo(this.routes.startPainMeasurement, {
                 redirectPath: 'Diary',
                 animal: this.props.data.animals[this.state.currentIndex],
               })

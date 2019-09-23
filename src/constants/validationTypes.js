@@ -23,6 +23,12 @@ export const dateEventValidation = yup.object().shape({
     .notRequired(),
 });
 
+export const painEventRegistration = yup.object().shape({
+  category: yup.string().required('Required'),
+  type: yup.string().required('Required'),
+  startDate: yup.number().required('Required'), 
+})
+
 export const quantityEventProps = T.shape({
   category: T.string,
   id: T.number,

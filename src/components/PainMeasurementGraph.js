@@ -24,13 +24,14 @@ import s from './styles/PainMeasurementGraphStyles';
 import {colors, fonts} from '../themes';
 import Icon from './Icon';
 import iconMap from '../constants/iconMap';
+import {isNil} from 'ramda'
 
 class PainMeasurementGraph extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      pages: props.items,
+      data: props.items,
       compositeLine: [],
       facialExpressionLine: [],
       showComposite: true,
@@ -77,10 +78,12 @@ class PainMeasurementGraph extends React.Component {
     const ticks = [];
     const tickStrings = [];
 
-    const end = this.state.pages.length;
+    const end = this.state.data.length;
     const start = end > 15 ? end - 15 : 0;
 
-    const data = this.state.pages.slice(start, end).map((item, index) => {
+    const isPainScore = value => isNil(value.data) === false
+
+    const data = this.state.data.slice(start, end).filter(isPainScore).map((item, index) => {
       // maxScore = Math.max(maxScore, getMaximalScore(item));
       ticks.push(index);
       tickStrings.push(formatDate(item.startDate).replace('-', '\n'));
@@ -283,7 +286,7 @@ function Switches({
           value={valueFacial}
           trackColor={{true: colors.lightBlue}}
           onValueChange={toggleFacial}
-          ios_backgroundColor={colors.lightBlue}
+          // ios_backgroundColor={colors.lightBlue}
         />
       </View>
     </React.Fragment>
