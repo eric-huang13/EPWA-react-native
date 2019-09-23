@@ -1,16 +1,23 @@
-import * as R from "ramda";
+import R, { isNil } from 'ramda';
 import {
   differenceInMinutes,
   format,
   isSameDay,
   isBefore,
-  isAfter
-} from "date-fns";
-import { get } from "lodash";
-import i18n from "../config/i18n";
+  isAfter,
+  addDays,
+  subDays,
+  eachDay,
+  addMonths,
+  getYear,
+  setYear,
+  isWithinRange,
+} from 'date-fns';
+import { get } from 'lodash';
+import i18n from '../config/i18n';
 
-import { eventCategories, eventCategoryColors, eventTypes } from "../constants";
-import { capitalize } from "../transforms";
+import { eventCategories, eventCategoryColors, eventTypes } from '../constants';
+import { capitalize } from '../transforms';
 
 const round = (value, step = 1.0) => {
   const inv = 1.0 / step;
@@ -18,26 +25,26 @@ const round = (value, step = 1.0) => {
 };
 
 // Labels
-const getTimeLabels = (durationInMin) => {
-  const hourLabel = i18n.language === "nl" ? "u" : "h";
+const getTimeLabels = durationInMin => {
+  const hourLabel = i18n.language === 'nl' ? 'u' : 'h';
   const hours = Math.trunc(durationInMin / 60);
   const minutes = durationInMin % 60;
   if (durationInMin >= 60 && minutes === 0) {
     return [[`${hours}`, hourLabel]];
   } else if (durationInMin > 60) {
-    return [[`${hours}`, hourLabel], [`${minutes}`, "min"]];
+    return [[`${hours}`, hourLabel], [`${minutes}`, 'min']];
   }
-  return [[`${minutes}`, "min"]];
+  return [[`${minutes}`, 'min']];
 };
 
-const getWeightLabels = (weightInGrams) =>
+const getWeightLabels = weightInGrams =>
   weightInGrams < 500
-    ? [[`${weightInGrams}`, "g"]]
-    : [[`${round(weightInGrams / 1000, 0.1)}`, "kg"]];
+    ? [[`${weightInGrams}`, 'g']]
+    : [[`${round(weightInGrams / 1000, 0.1)}`, 'kg']];
 
 const getItemCountLabels = (itemCount, unit) => [[`${itemCount}`, `${unit}`]];
 
-const getSummedTimeLabels = (entries) => {
+const getSummedTimeLabels = entries => {
   const durationInMin = entries.reduce((acc, current) => {
     const diff = differenceInMinutes(current.endDate, current.startDate);
     return acc + diff;
@@ -46,17 +53,17 @@ const getSummedTimeLabels = (entries) => {
   return getTimeLabels(durationInMin);
 };
 
-const getSummedWeightLabels = (entries) => {
+const getSummedWeightLabels = entries => {
   const weightInGrams = entries.reduce((acc, current) => {
     const weight =
-      current.data.quantity * (current.data.unit === "kg" ? 1000 : 1);
+      current.data.quantity * (current.data.unit === 'kg' ? 1000 : 1);
     return acc + weight;
   }, 0);
 
   return getWeightLabels(weightInGrams);
 };
 
-const getSummedItemCountLabels = (entries) => {
+const getSummedItemCountLabels = entries => {
   const items = entries.reduce((acc, current) => {
     const count = current.data.quantity;
     return acc + count;
@@ -65,36 +72,35 @@ const getSummedItemCountLabels = (entries) => {
   return getItemCountLabels(items);
 };
 
-const addTimeLabels = (event) => ({
+const addTimeLabels = event => ({
   ...event,
-  labels: getTimeLabels(differenceInMinutes(event.endDate, event.startDate))
+  labels: getTimeLabels(differenceInMinutes(event.endDate, event.startDate)),
 });
 
-const addWeightLabels = (event) => {
-  if (event.data.unit === "unlimited") {
+const addWeightLabels = event => {
+  if (event.data.unit === 'unlimited') {
     return {
       ...event,
-      labels: [["unlimited"]]
+      labels: [['unlimited']],
     };
   }
 
   return {
     ...event,
     labels: getWeightLabels(
-      event.data.quantity * (event.data.unit === "kg" ? 1000 : 1)
-    )
+      event.data.quantity * (event.data.unit === 'kg' ? 1000 : 1)
+    ),
   };
 };
 
-const addItemCountLabels = (event) => ({
+const addItemCountLabels = event => ({
   ...event,
-  labels: getItemCountLabels(event.data.quantity, event.data.unit)
+  labels: getItemCountLabels(event.data.quantity, event.data.unit),
 });
 
-export const isPainMeasurement = (event) =>
-  event.category === "painMeasurement";
+export const isPainMeasurement = event => event.category === 'painMeasurement';
 
-export const isFeeding = (event) => event.category === "feeding";
+export const isFeeding = event => event.category === 'feeding';
 
 export const isRelatedToAnimal = R.curry(
   (animal, event) => event.animalId === animal.id
@@ -121,40 +127,42 @@ export const isSelectedTab = R.curry((date, tabIndex, event) => {
   return [];
 });
 
-const formatStartDate = (event) => ({
+const formatStartDate = event => ({
   ...event,
-  startDate: format(event.startDate, "HH:mm")
+  startDate: format(event.startDate, 'HH:mm'),
 });
 
-const formatEndDate = (event) => ({
+const formatEndDate = event => ({
   ...event,
-  endDate: format(event.endDate, "HH:mm")
+  endDate: format(event.endDate, 'HH:mm'),
 });
 
-const formatDates = (event) => ({
+const formatDates = event => ({
   ...event,
-  startDate: format(event.startDate, "HH:mm"),
-  endDate: format(event.endDate, "HH:mm")
+  startDate: format(event.startDate, 'HH:mm'),
+  endDate: format(event.endDate, 'HH:mm'),
 });
 
-const addTitleToWeightEvent = (event) => ({
+const addTitleToWeightEvent = event => ({
   ...event,
-  title: event.data.name
+  title: event.data.name,
 });
 
-const addTitleToItemCountEvent = (event) => ({
+const addTitleToItemCountEvent = event => ({
   ...event,
-  title: event.data.name
+  title: event.data.name,
 });
 
-const addTitleToTimeEvent = (event) => ({
+const addTitleToTimeEvent = event => ({
   ...event,
-  title: `${event.startDate} - ${event.endDate}`
+  title: `${event.startDate} - ${event.endDate}`,
 });
 
 // https://github.com/ramda/ramda/wiki/Cookbook#group-by-multiple
 const groupByMultiple = R.curry((fields, data) => {
-  if (fields.length === 1) return R.groupBy(fields[0], data);
+  if (fields.length === 1) {
+    return R.groupBy(fields[0], data);
+  }
   let groupBy = R.groupBy(R.last(fields));
   R.times(() => {
     groupBy = R.mapObjIndexed(groupBy);
@@ -163,33 +171,33 @@ const groupByMultiple = R.curry((fields, data) => {
   return groupBy(groupByMultiple(R.init(fields), data));
 });
 
-export const groupAndTransformEvents = (events) => {
+export const groupAndTransformEvents = events => {
   const groupedEvents = groupByMultiple(
-    [R.prop("category"), R.prop("type")],
+    [R.prop('category'), R.prop('type')],
     events
   );
 
-  const result = R.map((category) => {
+  const result = R.map(category => {
     // Category object
     const categoryName = get(
       category,
       `${R.head(R.keys(category))}[0].category`
     );
 
-    const types = R.map((type) => {
+    const types = R.map(type => {
       // Type array
-      const typeName = get(type, `[0].type`);
+      const typeName = get(type, '[0].type');
 
       let resultType = {
         name: typeName,
-        color: eventCategoryColors[categoryName]
+        color: eventCategoryColors[categoryName],
       };
 
       // Add generic properies
-      const transformedEvents = R.map((event) => ({
+      const transformedEvents = R.map(event => ({
         ...event,
         color: eventCategoryColors[categoryName],
-        title: ""
+        title: '',
       }))(type);
 
       switch (categoryName) {
@@ -202,7 +210,7 @@ export const groupAndTransformEvents = (events) => {
               R.map(addTitleToTimeEvent),
               R.map(formatDates),
               R.map(addTimeLabels)
-            )(transformedEvents)
+            )(transformedEvents),
           };
           break;
         case eventCategories.feeding:
@@ -213,7 +221,7 @@ export const groupAndTransformEvents = (events) => {
               R.map(addTitleToWeightEvent),
               R.map(addWeightLabels),
               R.map(formatStartDate)
-            )(transformedEvents)
+            )(transformedEvents),
           };
           break;
         case eventCategories.medication:
@@ -224,7 +232,7 @@ export const groupAndTransformEvents = (events) => {
               events: R.compose(
                 R.map(addTitleToItemCountEvent),
                 R.map(formatStartDate)
-              )(transformedEvents)
+              )(transformedEvents),
             };
           } else {
             resultType = {
@@ -234,7 +242,7 @@ export const groupAndTransformEvents = (events) => {
                 R.map(addTitleToItemCountEvent),
                 R.map(addItemCountLabels),
                 R.map(formatStartDate)
-              )(transformedEvents)
+              )(transformedEvents),
             };
           }
 
@@ -253,7 +261,7 @@ export const groupAndTransformEvents = (events) => {
 
     return {
       name: categoryName,
-      types: sortedTypes
+      types: sortedTypes,
     };
   }, groupedEvents);
 
@@ -267,33 +275,33 @@ export const groupAndTransformEvents = (events) => {
 };
 
 // Creation of dataset for new feature design
-export const transformCurrentDayEvents = (events) => {
+export const transformCurrentDayEvents = events => {
   const groupedEvents = groupByMultiple(
-    [R.prop("category"), R.prop("type")],
+    [R.prop('category'), R.prop('type')],
     events
   );
 
-  const result = R.map((category) => {
+  const result = R.map(category => {
     // Category object
     const categoryName = get(
       category,
       `${R.head(R.keys(category))}[0].category`
     );
 
-    const types = R.map((type) => {
+    const types = R.map(type => {
       // Type array
-      const typeName = get(type, `[0].type`);
+      const typeName = get(type, '[0].type');
 
       let resultType = {
         name: typeName,
-        color: eventCategoryColors[categoryName]
+        color: eventCategoryColors[categoryName],
       };
 
       // Add generic properies
-      const transformedEvents = R.map((event) => ({
+      const transformedEvents = R.map(event => ({
         ...event,
         color: eventCategoryColors[categoryName],
-        title: ""
+        title: '',
       }))(type);
 
       switch (categoryName) {
@@ -306,7 +314,7 @@ export const transformCurrentDayEvents = (events) => {
               R.map(addTitleToTimeEvent),
               R.map(formatDates),
               R.map(addTimeLabels)
-            )(transformedEvents)
+            )(transformedEvents),
           };
           break;
         case eventCategories.feeding:
@@ -317,7 +325,7 @@ export const transformCurrentDayEvents = (events) => {
               R.map(addTitleToWeightEvent),
               R.map(addWeightLabels),
               R.map(formatStartDate)
-            )(transformedEvents)
+            )(transformedEvents),
           };
           break;
         case eventCategories.medication:
@@ -328,7 +336,7 @@ export const transformCurrentDayEvents = (events) => {
               events: R.compose(
                 R.map(addTitleToItemCountEvent),
                 R.map(formatStartDate)
-              )(transformedEvents)
+              )(transformedEvents),
             };
           } else {
             resultType = {
@@ -338,7 +346,7 @@ export const transformCurrentDayEvents = (events) => {
                 R.map(addTitleToItemCountEvent),
                 R.map(addItemCountLabels),
                 R.map(formatStartDate)
-              )(transformedEvents)
+              )(transformedEvents),
             };
           }
 
@@ -357,7 +365,7 @@ export const transformCurrentDayEvents = (events) => {
 
     return {
       name: categoryName,
-      types: sortedTypes
+      types: sortedTypes,
     };
   }, events);
 
@@ -368,4 +376,88 @@ export const transformCurrentDayEvents = (events) => {
   )(result);
 
   return sortedCategories;
+};
+
+const recurringDays = (event, endDate, num) => {
+  if (isBefore(endDate, format(event.startDate))) {
+    return [];
+  }
+  const days = eachDay(format(event.startDate), endDate, num);
+  const daysEvents = days.map(day => {
+    return { ...event, startDate: day, id: 1234 };
+  });
+  return daysEvents;
+};
+
+const recurringMonths = event => {
+  const eventNextMonth = addMonths(format(event.startDate), 1);
+  const eventPrevMonth = addMonths(format(event.startDate), -1);
+
+  return [
+    { ...event, startDate: eventPrevMonth, id: 987 },
+    { ...event, startDate: eventNextMonth, id: 987 }
+  ];
+};
+
+const recurringYear = (event, currentDate) => {
+  const thisYear = getYear(currentDate);
+  const yearDate = setYear(format(event.startDate), thisYear);
+  return [{ ...event, startDate: yearDate }];
+};
+
+// console.log("vooruit", addMonths(new Date(), 1)); werkt
+// console.log("achterruit", addMonths(new Date(), -1)); werkt
+
+const reduceEvents = (event, endDay, currentDate) => {
+  switch (event.recurring) {
+    case "d":
+      return recurringDays(event, endDay, 1);
+    case "w":
+      return recurringDays(event, endDay, 7);
+    case "m":
+      return recurringMonths(event);
+    case "y":
+      return recurringYear(event, currentDate);
+    default:
+      return [event];
+  }
+};
+
+export const addRecurringEvents = (allEvents, currentDate = new Date()) => {
+  const beginDate = subDays(format(currentDate), 15);
+  const endDate = addDays(format(currentDate), 5);
+
+  const allReducedEvents = allEvents.reduce((a, event) => {
+    if (
+      isNil(event.recurring) &&
+      !isWithinRange(format(event.startDate), beginDate, endDate)
+    ) {
+      return [a];
+    }
+    if (
+      isNil(event.recurring) &&
+      isWithinRange(format(event.startDate), beginDate, endDate)
+    ) {
+      return [...a, event];
+    }
+
+    if (
+      !isNil(event.recurringUntill) &&
+      isBefore(format(beginDate), format(event.recurringUntill))
+    ) {
+      return a;
+    }
+    if (
+      !isNil(event.recurringUntill) &&
+      isBefore(format(event.recurringUntill), format(endDate))
+    ) {
+      return [
+        ...a,
+        ...reduceEvents(event, endDate, format(event.recurringUntill))
+      ];
+    }
+    return [...a, ...reduceEvents(event, endDate, currentDate)];
+  }, []);
+
+  return allReducedEvents;
 };
