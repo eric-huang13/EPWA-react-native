@@ -1,4 +1,4 @@
-import R, { __, isNil, compose } from 'ramda';
+import R, { __, isNil, compose } from "ramda";
 import {
   differenceInMinutes,
   format,
@@ -15,21 +15,21 @@ import {
   getTime,
   parse,
   getMinutes,
-  getHours
-} from 'date-fns';
-import { get } from 'lodash';
-import i18n from '../config/i18n';
+  getHours,
+} from "date-fns";
+import { get } from "lodash";
+import i18n from "../config/i18n";
 
 import {
   setHours,
   setMinutes,
   setSecondsToZero,
-  setMillisecondsToZero,
-} from '../services/date';
-import getId from "./idGenerator";
+  setMillisecondsToZero
+} from "../services/date";
+import getId from './idGenerator';
 
-import { eventCategories, eventCategoryColors, eventTypes } from '../constants';
-import { capitalize } from '../transforms';
+import { eventCategories, eventCategoryColors, eventTypes } from "../constants";
+import { capitalize } from "../transforms";
 
 const round = (value, step = 1.0) => {
   const inv = 1.0 / step;
@@ -38,21 +38,21 @@ const round = (value, step = 1.0) => {
 
 // Labels
 const getTimeLabels = durationInMin => {
-  const hourLabel = i18n.language === 'nl' ? 'u' : 'h';
+  const hourLabel = i18n.language === "nl" ? "u" : "h";
   const hours = Math.trunc(durationInMin / 60);
   const minutes = durationInMin % 60;
   if (durationInMin >= 60 && minutes === 0) {
     return [[`${hours}`, hourLabel]];
   } else if (durationInMin > 60) {
-    return [[`${hours}`, hourLabel], [`${minutes}`, 'min']];
+    return [[`${hours}`, hourLabel], [`${minutes}`, "min"]];
   }
-  return [[`${minutes}`, 'min']];
+  return [[`${minutes}`, "min"]];
 };
 
 const getWeightLabels = weightInGrams =>
   weightInGrams < 500
-    ? [[`${weightInGrams}`, 'g']]
-    : [[`${round(weightInGrams / 1000, 0.1)}`, 'kg']];
+    ? [[`${weightInGrams}`, "g"]]
+    : [[`${round(weightInGrams / 1000, 0.1)}`, "kg"]];
 
 const getItemCountLabels = (itemCount, unit) => [[`${itemCount}`, `${unit}`]];
 
@@ -68,7 +68,7 @@ const getSummedTimeLabels = entries => {
 const getSummedWeightLabels = entries => {
   const weightInGrams = entries.reduce((acc, current) => {
     const weight =
-      current.data.quantity * (current.data.unit === 'kg' ? 1000 : 1);
+      current.data.quantity * (current.data.unit === "kg" ? 1000 : 1);
     return acc + weight;
   }, 0);
 
@@ -86,33 +86,33 @@ const getSummedItemCountLabels = entries => {
 
 const addTimeLabels = event => ({
   ...event,
-  labels: getTimeLabels(differenceInMinutes(event.endDate, event.startDate)),
+  labels: getTimeLabels(differenceInMinutes(event.endDate, event.startDate))
 });
 
 const addWeightLabels = event => {
-  if (event.data.unit === 'unlimited') {
+  if (event.data.unit === "unlimited") {
     return {
       ...event,
-      labels: [['unlimited']],
+      labels: [["unlimited"]]
     };
   }
 
   return {
     ...event,
     labels: getWeightLabels(
-      event.data.quantity * (event.data.unit === 'kg' ? 1000 : 1)
-    ),
+      event.data.quantity * (event.data.unit === "kg" ? 1000 : 1)
+    )
   };
 };
 
 const addItemCountLabels = event => ({
   ...event,
-  labels: getItemCountLabels(event.data.quantity, event.data.unit),
+  labels: getItemCountLabels(event.data.quantity, event.data.unit)
 });
 
-export const isPainMeasurement = event => event.category === 'painMeasurement';
+export const isPainMeasurement = event => event.category === "painMeasurement";
 
-export const isFeeding = event => event.category === 'feeding';
+export const isFeeding = event => event.category === "feeding";
 
 export const isRelatedToAnimal = R.curry(
   (animal, event) => event.animalId === animal.id
@@ -141,33 +141,33 @@ export const isSelectedTab = R.curry((date, tabIndex, event) => {
 
 const formatStartDate = event => ({
   ...event,
-  startDate: format(event.startDate, 'HH:mm'),
+  startDate: format(event.startDate, "HH:mm")
 });
 
 const formatEndDate = event => ({
   ...event,
-  endDate: format(event.endDate, 'HH:mm'),
+  endDate: format(event.endDate, "HH:mm")
 });
 
 const formatDates = event => ({
   ...event,
-  startDate: format(event.startDate, 'HH:mm'),
-  endDate: format(event.endDate, 'HH:mm'),
+  startDate: format(event.startDate, "HH:mm"),
+  endDate: format(event.endDate, "HH:mm")
 });
 
 const addTitleToWeightEvent = event => ({
   ...event,
-  title: event.data.name,
+  title: event.data.name
 });
 
 const addTitleToItemCountEvent = event => ({
   ...event,
-  title: event.data.name,
+  title: event.data.name
 });
 
 const addTitleToTimeEvent = event => ({
   ...event,
-  title: `${event.startDate} - ${event.endDate}`,
+  title: `${event.startDate} - ${event.endDate}`
 });
 
 // https://github.com/ramda/ramda/wiki/Cookbook#group-by-multiple
@@ -185,7 +185,7 @@ const groupByMultiple = R.curry((fields, data) => {
 
 export const groupAndTransformEvents = events => {
   const groupedEvents = groupByMultiple(
-    [R.prop('category'), R.prop('type')],
+    [R.prop("category"), R.prop("type")],
     events
   );
 
@@ -198,18 +198,18 @@ export const groupAndTransformEvents = events => {
 
     const types = R.map(type => {
       // Type array
-      const typeName = get(type, '[0].type');
+      const typeName = get(type, "[0].type");
 
       let resultType = {
         name: typeName,
-        color: eventCategoryColors[categoryName],
+        color: eventCategoryColors[categoryName]
       };
 
       // Add generic properies
       const transformedEvents = R.map(event => ({
         ...event,
         color: eventCategoryColors[categoryName],
-        title: '',
+        title: ""
       }))(type);
 
       switch (categoryName) {
@@ -222,7 +222,7 @@ export const groupAndTransformEvents = events => {
               R.map(addTitleToTimeEvent),
               R.map(formatDates),
               R.map(addTimeLabels)
-            )(transformedEvents),
+            )(transformedEvents)
           };
           break;
         case eventCategories.feeding:
@@ -233,7 +233,7 @@ export const groupAndTransformEvents = events => {
               R.map(addTitleToWeightEvent),
               R.map(addWeightLabels),
               R.map(formatStartDate)
-            )(transformedEvents),
+            )(transformedEvents)
           };
           break;
         case eventCategories.medication:
@@ -244,7 +244,7 @@ export const groupAndTransformEvents = events => {
               events: R.compose(
                 R.map(addTitleToItemCountEvent),
                 R.map(formatStartDate)
-              )(transformedEvents),
+              )(transformedEvents)
             };
           } else {
             resultType = {
@@ -254,7 +254,7 @@ export const groupAndTransformEvents = events => {
                 R.map(addTitleToItemCountEvent),
                 R.map(addItemCountLabels),
                 R.map(formatStartDate)
-              )(transformedEvents),
+              )(transformedEvents)
             };
           }
 
@@ -273,7 +273,7 @@ export const groupAndTransformEvents = events => {
 
     return {
       name: categoryName,
-      types: sortedTypes,
+      types: sortedTypes
     };
   }, groupedEvents);
 
@@ -289,7 +289,7 @@ export const groupAndTransformEvents = events => {
 // Creation of dataset for new feature design
 export const transformCurrentDayEvents = events => {
   const groupedEvents = groupByMultiple(
-    [R.prop('category'), R.prop('type')],
+    [R.prop("category"), R.prop("type")],
     events
   );
 
@@ -302,18 +302,18 @@ export const transformCurrentDayEvents = events => {
 
     const types = R.map(type => {
       // Type array
-      const typeName = get(type, '[0].type');
+      const typeName = get(type, "[0].type");
 
       let resultType = {
         name: typeName,
-        color: eventCategoryColors[categoryName],
+        color: eventCategoryColors[categoryName]
       };
 
       // Add generic properies
       const transformedEvents = R.map(event => ({
         ...event,
         color: eventCategoryColors[categoryName],
-        title: '',
+        title: ""
       }))(type);
 
       switch (categoryName) {
@@ -326,7 +326,7 @@ export const transformCurrentDayEvents = events => {
               R.map(addTitleToTimeEvent),
               R.map(formatDates),
               R.map(addTimeLabels)
-            )(transformedEvents),
+            )(transformedEvents)
           };
           break;
         case eventCategories.feeding:
@@ -337,7 +337,7 @@ export const transformCurrentDayEvents = events => {
               R.map(addTitleToWeightEvent),
               R.map(addWeightLabels),
               R.map(formatStartDate)
-            )(transformedEvents),
+            )(transformedEvents)
           };
           break;
         case eventCategories.medication:
@@ -348,7 +348,7 @@ export const transformCurrentDayEvents = events => {
               events: R.compose(
                 R.map(addTitleToItemCountEvent),
                 R.map(formatStartDate)
-              )(transformedEvents),
+              )(transformedEvents)
             };
           } else {
             resultType = {
@@ -358,7 +358,7 @@ export const transformCurrentDayEvents = events => {
                 R.map(addTitleToItemCountEvent),
                 R.map(addItemCountLabels),
                 R.map(formatStartDate)
-              )(transformedEvents),
+              )(transformedEvents)
             };
           }
 
@@ -377,7 +377,7 @@ export const transformCurrentDayEvents = events => {
 
     return {
       name: categoryName,
-      types: sortedTypes,
+      types: sortedTypes
     };
   }, events);
 
@@ -396,7 +396,7 @@ const recurringDays = (event, endDate, num) => {
   }
   const days = eachDay(format(event.startDate), endDate, num);
   const daysEvents = days.map(day => {
-    return { ...event, startDate: parseDateField(day), id: getId() };
+    return { ...event, startDate: parseDateField(day, event), id: getId() };
   });
   return daysEvents;
 };
@@ -406,15 +406,15 @@ const recurringMonths = event => {
   const eventPrevMonth = addMonths(format(event.startDate), -1);
 
   return [
-    { ...event, startDate: parseDateField(eventPrevMonth), id: getId() },
-    { ...event, startDate: parseDateField(eventNextMonth), id: getId() }
+    { ...event, startDate: parseDateField(eventPrevMonth, event), id: getId() },
+    { ...event, startDate: parseDateField(eventNextMonth, event), id: getId() },
   ];
 };
 
 const recurringYear = (event, currentDate) => {
   const thisYear = getYear(currentDate);
   const yearDate = setYear(format(event.startDate), thisYear);
-  return [{ ...event, startDate: parseDateField(yearDate) }];
+  return [{ ...event, startDate: parseDateField(yearDate, event) }];
 };
 
 // console.log("vooruit", addMonths(new Date(), 1)); werkt
@@ -422,13 +422,13 @@ const recurringYear = (event, currentDate) => {
 
 const reduceEvents = (event, endDay, currentDate) => {
   switch (event.recurring) {
-    case "d":
+    case 'd':
       return recurringDays(event, endDay, 1);
-    case "w":
+    case 'w':
       return recurringDays(event, endDay, 7);
-    case "m":
+    case 'm':
       return recurringMonths(event);
-    case "y":
+    case 'y':
       return recurringYear(event, currentDate);
     default:
       return [event];
@@ -465,7 +465,7 @@ export const addRecurringEvents = (allEvents, currentDate = new Date()) => {
     ) {
       return [
         ...a,
-        ...reduceEvents(event, endDate, format(event.recurringUntill))
+        ...reduceEvents(event, endDate, format(event.recurringUntill)),
       ];
     }
     return [...a, ...reduceEvents(event, endDate, currentDate)];
@@ -474,12 +474,12 @@ export const addRecurringEvents = (allEvents, currentDate = new Date()) => {
   return allReducedEvents;
 };
 
-export const parseDateField = dateInstance => {
+export const parseDateField = (dateInstance, event) => {
   // We have to combine picked time with date picked in Diary Screen
   // const currentDate = this.props.navigation.getParam("currentDate");
   const pickedTime = {
-    hours: getHours(dateInstance),
-    minutes: getMinutes(dateInstance),
+    hours: getHours(event.startDate),
+    minutes: getMinutes(event.startDate)
   };
 
   return compose(
