@@ -1,4 +1,4 @@
-import R, { isNil } from 'ramda';
+import R, { __, isNil, compose } from 'ramda';
 import {
   differenceInMinutes,
   format,
@@ -12,9 +12,21 @@ import {
   getYear,
   setYear,
   isWithinRange,
+  getTime,
+  parse,
+  getMinutes,
+  getHours
 } from 'date-fns';
 import { get } from 'lodash';
 import i18n from '../config/i18n';
+
+import {
+  setHours,
+  setMinutes,
+  setSecondsToZero,
+  setMillisecondsToZero,
+} from '../services/date';
+import getId from "./idGenerator";
 
 import { eventCategories, eventCategoryColors, eventTypes } from '../constants';
 import { capitalize } from '../transforms';
@@ -384,7 +396,7 @@ const recurringDays = (event, endDate, num) => {
   }
   const days = eachDay(format(event.startDate), endDate, num);
   const daysEvents = days.map(day => {
-    return { ...event, startDate: day, id: 1234 };
+    return { ...event, startDate: parseDateField(day), id: getId() };
   });
   return daysEvents;
 };
@@ -394,15 +406,15 @@ const recurringMonths = event => {
   const eventPrevMonth = addMonths(format(event.startDate), -1);
 
   return [
-    { ...event, startDate: eventPrevMonth, id: 987 },
-    { ...event, startDate: eventNextMonth, id: 987 }
+    { ...event, startDate: parseDateField(eventPrevMonth), id: getId() },
+    { ...event, startDate: parseDateField(eventNextMonth), id: getId() }
   ];
 };
 
 const recurringYear = (event, currentDate) => {
   const thisYear = getYear(currentDate);
   const yearDate = setYear(format(event.startDate), thisYear);
-  return [{ ...event, startDate: yearDate }];
+  return [{ ...event, startDate: parseDateField(yearDate) }];
 };
 
 // console.log("vooruit", addMonths(new Date(), 1)); werkt
@@ -460,4 +472,22 @@ export const addRecurringEvents = (allEvents, currentDate = new Date()) => {
   }, []);
 
   return allReducedEvents;
+};
+
+export const parseDateField = dateInstance => {
+  // We have to combine picked time with date picked in Diary Screen
+  // const currentDate = this.props.navigation.getParam("currentDate");
+  const pickedTime = {
+    hours: getHours(dateInstance),
+    minutes: getMinutes(dateInstance),
+  };
+
+  return compose(
+    getTime,
+    setMillisecondsToZero,
+    setSecondsToZero,
+    setMinutes(__, pickedTime.minutes),
+    setHours(__, pickedTime.hours),
+    parse
+  )(dateInstance);
 };
