@@ -127,6 +127,7 @@ class DiaryFeedingForm extends Component {
     return {
       localId: getId(),
       category: eventCategories.feeding,
+      completed: false,
       type: eventType,
       animalId,
       data: {
@@ -557,7 +558,8 @@ const formikOptions = {
     const initialValue = props.navigation.getParam('initialValue');
 
     if (!initialValue) {
-      return {};
+      return {
+      };
     }
 
     const result = {};

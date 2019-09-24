@@ -73,6 +73,7 @@ class painMeasurement extends Component {
       result.animalType = animal.type;
     }
 
+    result.completed = true;
     result.startDate = getTime(new Date());
     result.category = 'painMeasurement';
     result.isVet = false;
@@ -140,7 +141,7 @@ class painMeasurement extends Component {
 const onSubmit = (values, formikBag) => {
   const {alertDropdown, dispatch, t} = formikBag.props;
 
-  const topLevelFields = ['animalId', 'startDate', 'category'];
+  const topLevelFields = ['animalId', 'startDate', 'category', 'completed'];
 
   /*
     We check if the user is logged in.
