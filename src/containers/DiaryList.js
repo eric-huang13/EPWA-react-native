@@ -1,29 +1,29 @@
-import React, {Component} from 'react';
-import {Text, View, StyleSheet, Switch, TouchableOpacity} from 'react-native';
-import T from 'prop-types';
-import {uniq} from 'ramda';
+import React, { Component } from "react";
+import { Text, View, StyleSheet, Switch, TouchableOpacity } from "react-native";
+import T from "prop-types";
+import { uniq } from "ramda";
 
-import {colors, fonts} from '../themes';
-import ButtonFullWidth from '../components/ButtonFullWidth';
-import Checkbox from '../images/svg/checkbox.svg';
-import {eventTypeIconNames, eventCategories, eventTypes} from '../constants';
-import CheckboxChecked from '../images/svg/checkbox-checked.svg';
-import IconMed from '../images/svg/icon-med.svg';
-import IconMap from '../constants/iconMap';
-import Icon from '../components/Icon';
-import {format, isThisMonth} from 'date-fns';
-import Collapsible from 'react-native-collapsible';
-import Accordion from 'react-native-collapsible/Accordion';
-import Arrow from '../images/svg/arrow-down-black.svg';
-import nl from 'date-fns/locale/nl';
-import en from 'date-fns/locale/en';
+import { colors, fonts } from "../themes";
+import ButtonFullWidth from "../components/ButtonFullWidth";
+import Checkbox from "../images/svg/checkbox.svg";
+import { eventTypeIconNames, eventCategories, eventTypes } from "../constants";
+import CheckboxChecked from "../images/svg/checkbox-checked.svg";
+import IconMed from "../images/svg/icon-med.svg";
+import IconMap from "../constants/iconMap";
+import Icon from "../components/Icon";
+import { format, isThisMonth } from "date-fns";
+import Collapsible from "react-native-collapsible";
+import Accordion from "react-native-collapsible/Accordion";
+import Arrow from "../images/svg/arrow-down-black.svg";
+import nl from "date-fns/locale/nl";
+import en from "date-fns/locale/en";
 
-import Reactotron from 'reactotron-react-native';
+import Reactotron from "reactotron-react-native";
 // import { t } from "i18next/dist/commonjs";
 
-export default function EventsList({events, t, navigateTo, findEventById}) {
+export default function EventsList({ events, t, navigateTo, findEventById }) {
   return (
-    <View style={{paddingHorizontal: 20}}>
+    <View style={{ paddingHorizontal: 20 }}>
       {events.map((event, index) => (
         <NewListItem
           {...event}
@@ -40,57 +40,62 @@ export class AccordionView extends Component {
   state = {
     activeSections: [],
     collapsed: true,
-    multipleSelect: false,
+    multipleSelect: false
   };
 
   _renderHeader = (section, _, isActive) => (
     <View
       style={{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
+        flexDirection: "row",
+        justifyContent: "space-between",
         flex: 1,
         paddingHorizontal: 20,
         paddingVertical: 25,
         borderTopColor: colors.whiteSmoke,
-        borderTopWidth: 2,
-      }}>
+        borderTopWidth: 2
+      }}
+    >
       <View>
-        <View style={{paddingBottom: 20}}>
+        <View style={{ paddingBottom: 20 }}>
           <Text style={fonts.style.altTitle}>{section.startDate}</Text>
         </View>
         <View
           style={{
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            width: 260,
-          }}>
+            flexDirection: "row",
+            flexWrap: "wrap",
+            width: 260
+          }}
+        >
           {!isActive &&
-            uniq(section.events.map(({category}) => category)).map(category => (
-              <View
-                key={category}
-                style={{paddingRight: 10, paddingBottom: 10}}>
-                <Text style={fonts.style.normal}>
-                  {this.props.t(`categories:${category}`)}
-                </Text>
-              </View>
-            ))}
+            uniq(section.events.map(({ category }) => category)).map(
+              category => (
+                <View
+                  key={category}
+                  style={{ paddingRight: 10, paddingBottom: 10 }}
+                >
+                  <Text style={fonts.style.normal}>
+                    {this.props.t(`categories:${category}`)}
+                  </Text>
+                </View>
+              )
+            )}
         </View>
       </View>
       <View
         style={{
           width: 50,
           paddingHorizontal: 20,
-          paddingTop: 20,
-        }}>
-        <Arrow style={isActive ? {transform: [{rotate: '180deg'}]} : ''} />
+          paddingTop: 20
+        }}
+      >
+        <Arrow style={isActive ? { transform: [{ rotate: "180deg" }] } : ""} />
       </View>
     </View>
   );
 
   _renderContent = section => (
-    <View style={{paddingHorizontal: 20, paddingBottom: 25}}>
+    <View style={{ paddingHorizontal: 20, paddingBottom: 25 }}>
       {section.events.map((event, index) => {
-        Reactotron.log('_renderCOntent', event);
         return (
           <NewListItem
             {...event}
@@ -105,7 +110,7 @@ export class AccordionView extends Component {
   );
 
   _updateSections = activeSections => {
-    this.setState({activeSections});
+    this.setState({ activeSections });
   };
 
   render() {
@@ -124,9 +129,9 @@ export class AccordionView extends Component {
   }
 }
 
-function CheckInput({completed, onPress}) {
+function CheckInput({ completed, onPress }) {
   return (
-    <View style={{width: 40}}>
+    <View style={{ width: 40 }}>
       <TouchableOpacity onPress={onPress} underlayColor="#fff">
         {completed ? <CheckboxChecked /> : <Checkbox />}
       </TouchableOpacity>
@@ -145,7 +150,7 @@ export function NewListItem({
   groupedEvents,
   t,
   navigateTo,
-  findEventById,
+  findEventById
 }) {
   const content = (
     <ItemContent
@@ -160,21 +165,22 @@ export function NewListItem({
       id={id}
     />
   );
-  const time = format(startDate, 'HH:mm');
+  const time = format(startDate, "HH:mm");
   return (
     <View style={styles.container} key={id}>
       <View style={styles.contentContainer}>
         <Text style={[styles.title, completed ? styles.completed : null]}>
           {t(`categories:${category}`)}
         </Text>
-        {category !== 'feeding' ? (
+        {category !== "feeding" ? (
           <View style={styles.itemContentContainer}>
             <CheckInput completed={completed} onPress={onPress} />
             <View
               style={[
                 styles.itemContentContainer,
-                completed ? styles.completed : null,
-              ]}>
+                completed ? styles.completed : null
+              ]}
+            >
               {content}
             </View>
           </View>
@@ -184,7 +190,7 @@ export function NewListItem({
       </View>
       <View>
         <View style={[styles.time, completed ? styles.completed : null]}>
-          <Text style={{fontSize: 14, fontWeight: '700'}}>{time}</Text>
+          <Text style={{ fontSize: 14, fontWeight: "700" }}>{time}</Text>
         </View>
       </View>
     </View>
@@ -199,7 +205,7 @@ function ItemContent({
   navigateTo,
   findEventById,
   id,
-  completed,
+  completed
 }) {
   switch (category) {
     case eventCategories.painMeasurement:
@@ -268,26 +274,27 @@ function PainMeasureContent({
   t,
   findEventById,
   id,
-  completed,
+  completed
 }) {
   const isFacialExpression = type === eventTypes.facialExpression;
   const painMeasurementType =
     type === eventTypes.facialExpression
-      ? t('facialMeasure')
-      : t('compositeMeasure');
+      ? t("facialMeasure")
+      : t("compositeMeasure");
   return (
     <React.Fragment>
       <PainMesIcon isFacialExpression={isFacialExpression} />
       <TouchableOpacity
         key={id}
         onPress={() =>
-          navigateTo('DiaryPainMeasurementForm', {
-            initialValue: findEventById(id),
+          navigateTo("DiaryPainMeasurementForm", {
+            initialValue: findEventById(id)
           })
-        }>
+        }
+      >
         <View style={[styles.itemContent, completed ? styles.completed : null]}>
           <Text style={fonts.style.normal}>
-            {'- '}
+            {"- "}
             {painMeasurementType}
           </Text>
         </View>
@@ -296,19 +303,20 @@ function PainMeasureContent({
   );
 }
 
-function MedicationContent({type, navigateTo, t, findEventById, id}) {
+function MedicationContent({ type, navigateTo, t, findEventById, id }) {
   return (
     <React.Fragment>
       <MedicalIcon type={type} />
       <TouchableOpacity
         key={id}
         onPress={() =>
-          navigateTo('DiaryMedicationForm', {
-            initialValue: findEventById(id),
+          navigateTo("DiaryMedicationForm", {
+            initialValue: findEventById(id)
           })
-        }>
+        }
+      >
         <View style={styles.itemContent}>
-          <Text style={fonts.style.normal}>{t('eventMedication')}</Text>
+          <Text style={fonts.style.normal}>{t("eventMedication")}</Text>
         </View>
       </TouchableOpacity>
     </React.Fragment>
@@ -321,24 +329,25 @@ function FeedingContent({
   t,
   navigateTo,
   findEventById,
-  onPress = () => {},
+  onPress = () => {}
 }) {
   return (
     <React.Fragment>
-      {groupedEvents.map(({type, data, id}, index) => (
+      {groupedEvents.map(({ type, data, id }, index) => (
         <View key={index} style={styles.subItemContentContainer}>
           <CheckInput completed={completed} onPress={onPress} />
           <FeedingIcon type={type} />
           <TouchableOpacity
             key={id}
             onPress={() =>
-              navigateTo('DiaryFeedingForm', {
-                initialValue: findEventById(id),
+              navigateTo("DiaryFeedingForm", {
+                initialValue: findEventById(id)
               })
-            }>
+            }
+          >
             <View style={[styles.itemContent, completed && styles.completed]}>
               <Text style={fonts.style.normal}>
-                {t('diaryFeeding')} {data.quantity} {data.unit}
+                {t("diaryFeeding")} {data.quantity} {data.unit}
               </Text>
             </View>
           </TouchableOpacity>
@@ -348,44 +357,46 @@ function FeedingContent({
   );
 }
 
-function HousingContent({type, t, navigateTo, findEventById, id}) {
+function HousingContent({ type, t, navigateTo, findEventById, id }) {
   return (
     <React.Fragment>
       <HousingIcon type={type} />
       <TouchableOpacity
         key={id}
         onPress={() =>
-          navigateTo('DiaryHousingForm', {
-            initialValue: findEventById(id),
+          navigateTo("DiaryHousingForm", {
+            initialValue: findEventById(id)
           })
-        }>
+        }
+      >
         <View style={styles.itemContent}>
-          <Text style={fonts.style.normal}>{t('eventHousing')}</Text>
+          <Text style={fonts.style.normal}>{t("eventHousing")}</Text>
         </View>
       </TouchableOpacity>
     </React.Fragment>
   );
 }
-function ExerciseContent({type, t, navigateTo, findEventById, id}) {
+function ExerciseContent({ type, t, navigateTo, findEventById, id }) {
   return (
     <React.Fragment>
       <HousingIcon type={type} />
       <TouchableOpacity
         key={id}
         onPress={() =>
-          navigateTo('DiaryExerciseForm', {
-            initialValue: findEventById(id),
+          navigateTo("DiaryExerciseForm", {
+            initialValue: findEventById(id)
           })
-        }>
+        }
+      >
         <View style={styles.itemContent}>
-          <Text style={fonts.style.normal}>{t('movement')}</Text>
+          <Text style={fonts.style.normal}>{t("movement")}</Text>
         </View>
       </TouchableOpacity>
     </React.Fragment>
   );
 }
 
-function PainMesIcon({isFacialExpression}) {
+function PainMesIcon({ isFacialExpression }) {
   const boxColor = isFacialExpression ? colors.lightBlue : colors.lima;
   return (
     <View
@@ -396,21 +407,21 @@ function PainMesIcon({isFacialExpression}) {
         backgroundColor: boxColor,
         marginRight: 7,
         shadowColor: colors.black,
-        shadowOffset: {width: 0, height: 3},
+        shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.2,
-        shadowRadius: 6,
+        shadowRadius: 6
       }}
     />
   );
 }
 
-function MedicalIcon({type}) {
+function MedicalIcon({ type }) {
   switch (type) {
     case eventTypes.supplement:
       return (
         <Icon
           name={IconMap.medication}
-          style={{marginRight: 10}}
+          style={{ marginRight: 10 }}
           size={20}
           color={colors.black}
         />
@@ -419,7 +430,7 @@ function MedicalIcon({type}) {
       return (
         <Icon
           name={IconMap.treatment}
-          style={{marginRight: 10}}
+          style={{ marginRight: 10 }}
           size={20}
           color={colors.black}
         />
@@ -428,7 +439,7 @@ function MedicalIcon({type}) {
       return (
         <Icon
           name={IconMap.temperature}
-          style={{marginRight: 10}}
+          style={{ marginRight: 10 }}
           size={20}
           color={colors.black}
         />
@@ -437,7 +448,7 @@ function MedicalIcon({type}) {
       return (
         <Icon
           name={IconMap.medication}
-          style={{marginRight: 10}}
+          style={{ marginRight: 10 }}
           size={20}
           color={colors.black}
         />
@@ -446,7 +457,7 @@ function MedicalIcon({type}) {
       return (
         <Icon
           name={IconMap.recovery}
-          style={{marginRight: 10}}
+          style={{ marginRight: 10 }}
           size={20}
           color={colors.black}
         />
@@ -456,13 +467,13 @@ function MedicalIcon({type}) {
   }
 }
 
-function FeedingIcon({type}) {
+function FeedingIcon({ type }) {
   switch (type) {
     case eventTypes.supplement:
       return (
         <Icon
           name={IconMap.supplements}
-          style={{marginRight: 10}}
+          style={{ marginRight: 10 }}
           size={20}
           color={colors.black}
         />
@@ -471,7 +482,7 @@ function FeedingIcon({type}) {
       return (
         <Icon
           name={IconMap.bowl}
-          style={{marginRight: 10}}
+          style={{ marginRight: 10 }}
           size={20}
           color={colors.black}
         />
@@ -480,7 +491,7 @@ function FeedingIcon({type}) {
       return (
         <Icon
           name={IconMap.grain}
-          style={{marginRight: 10}}
+          style={{ marginRight: 10 }}
           size={20}
           color={colors.black}
         />
@@ -490,13 +501,13 @@ function FeedingIcon({type}) {
   }
 }
 
-function HousingIcon({type}) {
+function HousingIcon({ type }) {
   switch (type) {
     case eventTypes.paddock:
       return (
         <Icon
           name={IconMap.riding}
-          style={{marginRight: 10}}
+          style={{ marginRight: 10 }}
           size={20}
           color={colors.black}
         />
@@ -505,7 +516,7 @@ function HousingIcon({type}) {
       return (
         <Icon
           name={IconMap.pasture}
-          style={{marginRight: 10}}
+          style={{ marginRight: 10 }}
           size={20}
           color={colors.black}
         />
@@ -514,7 +525,7 @@ function HousingIcon({type}) {
       return (
         <Icon
           name={IconMap.home}
-          style={{marginRight: 10}}
+          style={{ marginRight: 10 }}
           size={20}
           color={colors.black}
         />
@@ -526,10 +537,10 @@ function HousingIcon({type}) {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     flex: 1,
-    marginBottom: 25,
+    marginBottom: 25
   },
   time: {
     backgroundColor: colors.whiteSmoke,
@@ -538,37 +549,37 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     marginTop: 15,
     width: 55,
-    alignItems: 'center',
+    alignItems: "center"
   },
   title: {
     fontSize: 19,
     paddingLeft: 40,
-    marginBottom: 5,
+    marginBottom: 5
   },
   itemContentContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center"
   },
   subItemContentContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 7,
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: 7
   },
   calendarTitle: {
     fontSize: 20,
-    fontWeight: '400',
-    color: '#282828',
+    fontWeight: "400",
+    color: "#282828"
   },
   completed: {
-    opacity: 0.2,
-  },
+    opacity: 0.2
+  }
 });
 
 NewListItem.propTypes = {
   checked: T.bool,
-  onPress: T.func,
+  onPress: T.func
 };
 
 PainMesIcon.propTypes = {
-  pain: T.bool,
+  pain: T.bool
 };

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import T from 'prop-types';
 import SideSwipe from 'react-native-sideswipe';
 import ActionButton from 'react-native-action-button';
@@ -17,11 +17,11 @@ import {
   Platform,
 } from 'react-native';
 import FeatherIcons from 'react-native-vector-icons/Feather';
-import {compose} from 'redux';
-import {connect} from 'react-redux';
-import {translate} from 'react-i18next';
-import {hoistStatics} from 'recompose';
-import {addDays, subDays, isThisSecond, isSameDay, format} from 'date-fns';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
+import { hoistStatics } from 'recompose';
+import { addDays, subDays, isThisSecond, isSameDay, format } from 'date-fns';
 import nl from 'date-fns/locale/nl';
 import en from 'date-fns/locale/en';
 
@@ -38,10 +38,10 @@ import R, {
   descend,
 } from 'ramda';
 import Touchable from 'react-native-platform-touchable';
-import {get} from 'lodash';
+import { get } from 'lodash';
 
 import s from './styles/DiaryStyles';
-import {colors, fonts} from '../themes';
+import { colors, fonts } from '../themes';
 
 import horsePhoto from '../images/horses.jpg';
 
@@ -67,19 +67,20 @@ import {
   isPainMeasurement,
   isFeeding,
   isSelectedTab,
+  addRecurringEvents,
 } from '../services/eventService';
-import {eventTypeIconNames, eventCategories, eventTypes} from '../constants';
-import {getToken} from '../selectors/auth';
+import { eventTypeIconNames, eventCategories, eventTypes } from '../constants';
+import { getToken } from '../selectors/auth';
 
 import iconMap from '../constants/iconMap';
-import {exportEvents} from '../actions/events';
+import { exportEvents } from '../actions/events';
 import DiaryTimeTab from './DiaryTimeTab';
 
-import EventsList, {AccordionView} from './DiaryList';
+import EventsList, { AccordionView } from './DiaryList';
 import Reactotron from 'reactotron-react-native';
 
 class Diary extends Component {
-  static navigationOptions = ({navigation, screenProps}) => ({
+  static navigationOptions = ({ navigation, screenProps }) => ({
     title: screenProps.t.t('headerBar.diary'),
     headerLeft: <HamburgerButton onPress={navigation.openDrawer} />,
   });
@@ -144,7 +145,7 @@ class Diary extends Component {
   }
 
   onDatePicked = date => {
-    this.setState({currentDate: date});
+    this.setState({ currentDate: date });
   };
 
   getTypeIcon = name => (
@@ -152,7 +153,7 @@ class Diary extends Component {
   );
 
   getSelectedAnimalIndex = () => {
-    const {navigation, data} = this.props;
+    const { navigation, data } = this.props;
 
     const animalId = navigation.getParam('id');
     const index = data.animals.findIndex(animal => animal.id === animalId);
@@ -230,13 +231,13 @@ class Diary extends Component {
   };
 
   exportCSV = () => {
-    const {t} = this.props;
-    const {currentDate} = this.state;
+    const { t } = this.props;
+    const { currentDate } = this.state;
     const currentAnimal = this.props.data.animals[this.state.currentIndex];
 
     const currentEvents = compose(
       filter(isDuringCurrentDate(currentDate)),
-      filter(isRelatedToAnimal(currentAnimal)),
+      filter(isRelatedToAnimal(currentAnimal))
     )(this.props.data.events);
 
     const goToLink = url => {
@@ -253,7 +254,7 @@ class Diary extends Component {
 
     const showAlert = url => {
       Alert.alert(t('exportEvents.alertTitle'), t('exportEvents.alertMsg'), [
-        {text: t('exportEvents.alertCancelBtn'), style: 'cancel'},
+        { text: t('exportEvents.alertCancelBtn'), style: 'cancel' },
         {
           text: t('exportEvents.alertDownloadBtn'),
           onPress: () => goToLink(url),
@@ -271,7 +272,7 @@ class Diary extends Component {
         meta: {
           showAlert,
         },
-      }),
+      })
     );
   };
 
@@ -282,7 +283,7 @@ class Diary extends Component {
     const events = this.props.data.events || [];
     const eventsWithoutPainMeasurements = compose(
       filter(isRelatedToAnimal(currentAnimal)),
-      reject(isPainMeasurement),
+      reject(isPainMeasurement)
     )(events);
 
     this.props.navigation.navigate('DiaryCopy', {
@@ -292,7 +293,7 @@ class Diary extends Component {
   };
 
   renderEmptyState = () => {
-    const {i18n, t, navigation} = this.props;
+    const { i18n, t, navigation } = this.props;
 
     return (
       <View style={s.screenContainer}>
@@ -300,7 +301,7 @@ class Diary extends Component {
           <Image
             source={horsePhoto}
             resizeMode="cover"
-            style={{height: 180, width: '100%'}}
+            style={{ height: 180, width: '100%' }}
           />
         </View>
         <View style={s.dateRow}>
@@ -315,7 +316,8 @@ class Diary extends Component {
             onPress={() => {
               this.datePicker.show();
             }}
-            hitSlop={{left: 30, right: 30, top: 25, bottom: 25}}>
+            hitSlop={{ left: 30, right: 30, top: 25, bottom: 25 }}
+          >
             <Icon name={iconMap.calendar} size={24} color="black" />
           </TouchableOpacity>
           <DatePicker
@@ -334,7 +336,8 @@ class Diary extends Component {
                 borderBottomWidth: 0,
                 marginBottom: 20,
               }}
-              textStyles={{textAlign: 'center'}}>
+              textStyles={{ textAlign: 'center' }}
+            >
               {t('welcomeInDiary')}
             </CategoryHeader>
             <Text
@@ -342,25 +345,26 @@ class Diary extends Component {
                 paddingHorizontal: 20,
                 paddingBottom: 20,
                 ...fonts.style.normal,
-              }}>
+              }}
+            >
               {t('noAnimalsInDiary')}
             </Text>
-            <View style={{alignItems: 'center'}}>
+            <View style={{ alignItems: 'center' }}>
               <Button
-                style={{width: 240, marginBottom: 20}}
+                style={{ width: 240, marginBottom: 20 }}
                 backgroundColor={colors.mediumPurple}
                 label={t('addHorse')}
                 onPress={() =>
-                  navigation.navigate('AnimalForm', {type: 'horse'})
+                  navigation.navigate('AnimalForm', { type: 'horse' })
                 }
                 iconName={iconMap.arrowRight}
               />
               <Button
-                style={{width: 240, marginBottom: 20}}
+                style={{ width: 240, marginBottom: 20 }}
                 backgroundColor={colors.mediumPurple}
                 label={t('addDonkey')}
                 onPress={() =>
-                  navigation.navigate('AnimalForm', {type: 'donkey'})
+                  navigation.navigate('AnimalForm', { type: 'donkey' })
                 }
                 iconName={iconMap.arrowRight}
               />
@@ -415,7 +419,8 @@ class Diary extends Component {
           this.navigateTo(this.routes[category], {
             initialValue: this.findEventById(eventId),
           })
-        }>
+        }
+      >
         <EventHeader
           iconColor={color}
           title={type === 'treatment' ? this.props.t(title) : title}
@@ -427,9 +432,9 @@ class Diary extends Component {
     );
   };
 
-  renderType = ({name, color, events, labels}) => {
+  renderType = ({ name, color, events, labels }) => {
     const shouldShowLabels = events.some(
-      event => path('data.unit', event) === 'unlimited',
+      event => path('data.unit', event) === 'unlimited'
     );
 
     return (
@@ -451,29 +456,34 @@ class Diary extends Component {
     </View>
   );
 
-  renderEvents = ({currentAnimal, currentDate, tabIndex}) => {
-    const {t} = this.props;
+  renderEvents = ({ currentAnimal, currentDate, tabIndex }) => {
+    const { t } = this.props;
     const locale = this.props.i18n.language === 'nl' ? nl : en;
+
+    const propsDataEvents = addRecurringEvents(
+      this.props.data.events,
+      currentDate
+    );
 
     const nonFeedingevents = compose(
       filter(isSelectedTab(currentDate, tabIndex)),
       filter(isRelatedToAnimal(currentAnimal)),
-      reject(isFeeding),
-    )(this.props.data.events || []);
+      reject(isFeeding)
+    )(propsDataEvents || []);
 
     const feedingEvents = compose(
       filter(isSelectedTab(currentDate, tabIndex)),
       filter(isRelatedToAnimal(currentAnimal)),
-      filter(isFeeding),
-    )(this.props.data.events || []);
+      filter(isFeeding)
+    )(propsDataEvents || []);
 
     const feedingEventsTimes = uniq(
-      feedingEvents.map(event => event.startDate),
+      feedingEvents.map(event => event.startDate)
     );
 
     const groupedFeedingEvents = feedingEventsTimes.map(time => {
       const sameTime = feedingEvents.filter(item => time === item.startDate);
-      const groupedEvents = sameTime.map(({id, type, data, animalId}) => ({
+      const groupedEvents = sameTime.map(({ id, type, data, animalId }) => ({
         id,
         type,
         data,
@@ -487,10 +497,12 @@ class Diary extends Component {
     });
 
     const allEvents = [...groupedFeedingEvents, ...nonFeedingevents].sort(
-      (a, b) => a.startDate - b.startDate,
+      (a, b) => a.startDate - b.startDate
     );
 
     if (tabIndex === 1) {
+      Reactotron.log('new struct', allEvents);
+
       return (
         <EventsList
           events={allEvents}
@@ -506,12 +518,12 @@ class Diary extends Component {
       const allDaysArr = uniq(
         allEvents
           .reverse()
-          .map(({startDate}) => format(startDate, 'D MMM', {locale})),
+          .map(({ startDate }) => format(startDate, 'D MMM', { locale }))
       );
 
       const eventsGroupedByDay = allDaysArr.map(date => {
         const sameDate = allEvents.filter(
-          item => date === format(item.startDate, 'D MMM', {locale}),
+          item => date === format(item.startDate, 'D MMM', { locale })
         );
         if (sameDate.lenght === 0) {
           return null;
@@ -536,12 +548,14 @@ class Diary extends Component {
     if (tabIndex === 2) {
       // datastructure voor blik terug en kijk vooruit
       const allDaysArr = uniq(
-        allEvents.map(({startDate}) => format(startDate, 'D MMMM', {locale})),
+        allEvents.map(({ startDate }) =>
+          format(startDate, 'D MMMM', { locale })
+        )
       );
 
       const eventsGroupedByDay = allDaysArr.map(date => {
         const eventsOnSameDay = allEvents.filter(
-          item => date === format(item.startDate, 'D MMMM', {locale}),
+          item => date === format(item.startDate, 'D MMMM', { locale })
         );
         if (eventsOnSameDay.lenght === 0) {
           return null;
@@ -565,16 +579,17 @@ class Diary extends Component {
     }
   };
 
-  renderSliderItem = ({item}) => {
-    const {width} = Dimensions.get('window');
+  renderSliderItem = ({ item }) => {
+    const { width } = Dimensions.get('window');
 
     return (
-      <View style={{flex: 1, width, backgroundColor: colors.white}}>
+      <View style={{ flex: 1, width, backgroundColor: colors.white }}>
         <AnimalPhoto
           source={{
             uri: item.pictureUrl,
-            headers: {Authorization: `Bearer ${this.props.authToken}`},
-          }}>
+            headers: { Authorization: `Bearer ${this.props.authToken}` },
+          }}
+        >
           <View
             style={{
               position: 'absolute',
@@ -583,11 +598,13 @@ class Diary extends Component {
               right: 0,
               bottom: 0,
               alignItems: 'center',
-            }}>
+            }}
+          >
             <View style={s.editIconContainer}>
               <TouchableOpacity
                 onPress={this.onEditAnimal}
-                hitSlop={{left: 10, right: 30, top: 25, bottom: 25}}>
+                hitSlop={{ left: 10, right: 30, top: 25, bottom: 25 }}
+              >
                 <Icon name={iconMap.edit} size={26} color={colors.white} />
               </TouchableOpacity>
             </View>
@@ -603,11 +620,13 @@ class Diary extends Component {
               alignItems: 'flex-end',
               justifyContent: 'space-between',
               paddingHorizontal: 20,
-            }}>
-            <View style={{height: 46, width: 46}} />
+            }}
+          >
+            <View style={{ height: 46, width: 46 }} />
             <CircleButton
               onPress={this.share}
-              containerStyles={{shadowOpacity: 0, height: 46, width: 46}}>
+              containerStyles={{ shadowOpacity: 0, height: 46, width: 46 }}
+            >
               <Icon name={iconMap.share} size={20} color={colors.white} />
             </CircleButton>
           </View>
@@ -617,11 +636,11 @@ class Diary extends Component {
   };
 
   render() {
-    const {width} = Dimensions.get('window');
+    const { width } = Dimensions.get('window');
     const {
       i18n,
       t,
-      data: {animals},
+      data: { animals },
     } = this.props;
 
     if (!animals.length) {
@@ -631,13 +650,13 @@ class Diary extends Component {
     const events = this.props.data.events || [];
     Reactotron.log('all events', events);
     const currentAnimal = animals[this.state.currentIndex];
-    const {currentDate, tabIndex} = this.state;
+    const { currentDate, tabIndex } = this.state;
     const allPainMeasurements = compose(
       filter(isRelatedToAnimal(currentAnimal)),
-      filter(isPainMeasurement),
+      filter(isPainMeasurement)
     )(events);
     const painMeasurements = compose(filter(isDuringCurrentDate(currentDate)))(
-      allPainMeasurements,
+      allPainMeasurements
     );
 
     return (
@@ -647,14 +666,14 @@ class Diary extends Component {
             <SideSwipe
               index={this.state.currentIndex}
               itemWidth={width}
-              style={{width}}
+              style={{ width }}
               data={this.props.data.animals}
               threshold={90}
               useVelocityForIndex={false}
-              onIndexChange={index => this.setState({currentIndex: index})}
+              onIndexChange={index => this.setState({ currentIndex: index })}
               renderItem={this.renderSliderItem}
             />
-            <SafeAreaView style={{flex: 1}}>
+            <SafeAreaView style={{ flex: 1 }}>
               <StatusBar barStyle="light-content" backgroundColor="#6a51ae" />
             </SafeAreaView>
 
@@ -667,7 +686,8 @@ class Diary extends Component {
                 flexDirection: 'row',
                 justifyContent: 'center',
                 marginHorizontal: 65,
-              }}>
+              }}
+            >
               <SliderIndexIndicators
                 currentIndex={this.state.currentIndex}
                 itemIndex={this.state.currentIndex}
@@ -680,13 +700,8 @@ class Diary extends Component {
                 top: 45,
                 left: 20,
                 width: 20,
-              }}>
-              <TouchableOpacity
-                onPress={() => this.props.navigation.openDrawer()}
-                hitSlop={{left: 10, right: 30, top: 25, bottom: 25}}>
-                <Icon name={iconMap.arrowLeft} size={24} color={colors.white} />
-              </TouchableOpacity>
-            </View>
+              }}
+            />
           </View>
           <DiaryCalendar
             events={events}
@@ -712,7 +727,8 @@ class Diary extends Component {
                 height: 100,
                 justifyContent: 'center',
                 alignItems: 'center',
-              }}>
+              }}
+            >
               <Text>{t('emptyPainMeasurementList')}</Text>
             </View>
           )}
@@ -725,16 +741,17 @@ class Diary extends Component {
             }
             label={t('addPainMeasurement')}
           />
-          {this.renderEvents({currentAnimal, currentDate, tabIndex})}
-          <View style={{height: 80}} />
+          {this.renderEvents({ currentAnimal, currentDate, tabIndex })}
+          <View style={{ height: 80 }} />
         </ScrollView>
         <ActionButton
           buttonColor={colors.mediumPurple}
           bgColor="rgba(0,0,0,.5)"
           // Feedback on Android is square on round button.
           // Prevent this ugly issue with disabling native feedback on Android.
-          useNativeFeedback={Platform.select({ios: true, android: false})}>
-          {this.actionButtons.map(({color, icon, name, title, onPress}) => {
+          useNativeFeedback={Platform.select({ ios: true, android: false })}
+        >
+          {this.actionButtons.map(({ color, icon, name, title, onPress }) => {
             if (
               currentAnimal &&
               currentAnimal.type === 'donkey' &&
@@ -748,7 +765,8 @@ class Diary extends Component {
                 key={title}
                 buttonColor={color}
                 title={title}
-                onPress={onPress}>
+                onPress={onPress}
+              >
                 <Icon name={icon} color={colors.white} size={22} />
               </ActionButton.Item>
             );
@@ -772,7 +790,7 @@ Diary.propTypes = {
         id: T.number,
         name: T.string,
         pictureUrl: T.string,
-      }),
+      })
     ),
     events: T.arrayOf(
       T.shape({
@@ -781,7 +799,7 @@ Diary.propTypes = {
         category: T.string,
         startDate: T.number,
         endDate: T.number,
-      }),
+      })
     ),
   }),
 };
@@ -797,6 +815,6 @@ const mapStateToProps = state => ({
 export default hoistStatics(
   compose(
     connect(mapStateToProps),
-    translate('root'),
-  ),
+    translate('root')
+  )
 )(Diary);
