@@ -105,6 +105,7 @@ class DiaryPainMeasurementForm extends Component {
   static getInitialEventValue(animalId) {
     return {
       localId: getId(),
+      completed: false,
       category: eventCategories.painMeasurement,
       animalId,
     };

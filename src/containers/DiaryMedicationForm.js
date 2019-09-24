@@ -129,6 +129,7 @@ class DiaryMedicationForm extends Component {
 
     const event = {
       localId: getId(),
+      completed: false,
       category: eventCategories.medication,
       type: eventType,
       animalId,

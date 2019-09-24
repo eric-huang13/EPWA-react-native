@@ -106,6 +106,7 @@ class DiaryHousingForm extends Component {
   static getInitialValue(animalId, type) {
     return {
       localId: getId(),
+      completed: false,
       category: eventCategories.housing,
       type,
       animalId,

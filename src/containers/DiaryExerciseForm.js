@@ -102,6 +102,7 @@ class DiaryExerciseForm extends Component {
   static getInitialEventValue(animalId) {
     return {
       localId: getId(),
+      completed: false,
       category: eventCategories.exercise,
       animalId,
     };
