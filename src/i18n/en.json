@@ -1086,18 +1086,18 @@
     "diaryFeeding": "Feeding",
     "movement": "Exercise",
     "eventHousing": "Housing",
-    "eventMedication": "Medication"
-  },
-  "painMeasurements": {
-    "composite": "Composite",
-    "facialExpression": "Facial painmeasurement"
-  },
-  "categories": {
-    "painMeasurement": "Painmeasurement",
-    "feeding": "Feeding",
-    "medication": "Medication",
-    "housing": "Housing",
-    "exercise": "Excercise"
-  },
-  "typePainMeasurement": "Type of painmeasurement"
+    "eventMedication": "Medication",
+    "categories": {
+      "painMeasurement": "Painmeasurement",
+      "feeding": "Feeding",
+      "medication": "Medication",
+      "housing": "Housing",
+      "exercise": "Excercise"
+    },
+    "painMeasurements": {
+      "composite": "Composite",
+      "facialExpression": "Facial painmeasurement"
+    },
+    "typePainMeasurement": "Type of painmeasurement"
+  }
 }

@@ -170,7 +170,7 @@ export function NewListItem({
     <View style={styles.container} key={id}>
       <View style={styles.contentContainer}>
         <Text style={[styles.title, completed ? styles.completed : null]}>
-          {t(`categories:${category}`)}
+          {t(`categories.${category}`)}
         </Text>
         {category !== "feeding" ? (
           <View style={styles.itemContentContainer}>
