@@ -2,6 +2,7 @@ import * as yup from 'yup';
 import T from 'prop-types';
 
 export const dateEventProps = T.shape({
+  completed: yup.bool().required('Required'),
   category: T.string,
   endDate: T.number,
   id: T.number,
@@ -11,6 +12,7 @@ export const dateEventProps = T.shape({
 });
 
 export const dateEventValidation = yup.object().shape({
+  completed: yup.bool().required('Required'),
   category: yup.string().required('Required'),
   type: yup.string().required('Required'),
   startDate: yup.number().required('Required'),
@@ -24,12 +26,14 @@ export const dateEventValidation = yup.object().shape({
 });
 
 export const painEventRegistration = yup.object().shape({
+  completed: yup.bool().required('Required'),
   category: yup.string().required('Required'),
   type: yup.string().required('Required'),
   startDate: yup.number().required('Required'), 
 })
 
 export const quantityEventProps = T.shape({
+  completed: T.bool,
   category: T.string,
   id: T.number,
   localId: T.number,
@@ -43,6 +47,7 @@ export const quantityEventProps = T.shape({
 });
 
 export const quantityEventValidation = yup.object().shape({
+  completed: yup.bool().required('Required'),
   category: yup.string().required('Required'),
   type: yup.string().required('Required'),
   startDate: yup.number().required('Required'),
@@ -56,6 +61,7 @@ export const quantityEventValidation = yup.object().shape({
 });
 
 export const quantityWithoutNameEventValidation = yup.object().shape({
+  completed: yup.bool().required('Required'),
   category: yup.string().required('Required'),
   type: yup.string().required('Required'),
   startDate: yup.number().required('Required'),
@@ -66,6 +72,7 @@ export const quantityWithoutNameEventValidation = yup.object().shape({
 });
 
 export const nameEventValidation = yup.object().shape({
+  completed: yup.bool().required('Required'),
   category: yup.string().required('Required'),
   type: yup.string().required('Required'),
   startDate: yup.number().required('Required'),
