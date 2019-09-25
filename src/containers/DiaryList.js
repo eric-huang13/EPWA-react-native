@@ -102,7 +102,7 @@ export class AccordionView extends Component {
 
   _renderContent = section => (
     <View style={{ paddingHorizontal: 20, paddingBottom: 25 }}>
-      {section.events.map((event, index, id, completed) => {
+      {section.events.map((event, index) => {
         return (
           <NewListItem
             {...event}
@@ -110,9 +110,7 @@ export class AccordionView extends Component {
             t={this.props.t}
             navigateTo={this.props.navigateTo}
             findEventById={this.props.findEventById}
-            completed={completed}
             toggleComplete={this.props.toggleComplete}
-            id={id}
           />
         );
       })}
@@ -181,7 +179,7 @@ export function NewListItem({
   );
   const time = format(startDate, "HH:mm");
   return (
-    <View style={styles.container} key={id}>
+    <View style={styles.container}>
       <View style={styles.contentContainer}>
         <Text style={[styles.title, completed ? styles.completed : null]}>
           {t(`categories.${category}`)}
