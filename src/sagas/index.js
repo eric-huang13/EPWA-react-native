@@ -49,7 +49,9 @@ import {
   EDIT_EVENT_ROLLBACK_REQUESTED,
   DELETE_EVENT_REQUESTED,
   DELETE_EVENT_ROLLBACK_REQUESTED,
-  EXPORT_EVENTS
+  EXPORT_EVENTS,
+  COMPLETE_EVENT_REQUESTED,
+  COMPLETE_EVENT_ROLLBACK_REQUESTED
 } from "../actions/events";
 import { SET_LANGUAGE_REQUEST } from "../actions/language";
 import { setLanguage } from "./language";
@@ -62,7 +64,9 @@ import {
   editEventCommit,
   deleteEvent,
   deleteEventRollback,
-  exportEvents
+  exportEvents,
+  completeEvent,
+  completeEventRollback
 } from "./events";
 
 // The API we use is only used from Sagas, so we create it here and pass along
@@ -100,4 +104,6 @@ export default function* root(dispatch) {
   yield takeEvery(EDIT_EVENT_ROLLBACK_REQUESTED, editEventRollback);
   yield takeEvery(DELETE_EVENT_REQUESTED, deleteEvent, api, dispatch);
   yield takeEvery(DELETE_EVENT_ROLLBACK_REQUESTED, deleteEventRollback);
+  yield takeEvery(COMPLETE_EVENT_REQUESTED, completeEvent, api, dispatch);
+  // yield takeEvery(COMPLETE_EVENT_ROLLBACK_REQUESTED, completeEventRollback);
 }

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import T from 'prop-types';
-import SideSwipe from 'react-native-sideswipe';
-import ActionButton from 'react-native-action-button';
+import React, { Component } from "react";
+import T from "prop-types";
+import SideSwipe from "react-native-sideswipe";
+import ActionButton from "react-native-action-button";
 import {
   Alert,
   Dimensions,
@@ -14,16 +14,16 @@ import {
   StatusBar,
   TouchableOpacity,
   View,
-  Platform,
-} from 'react-native';
-import FeatherIcons from 'react-native-vector-icons/Feather';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
-import { hoistStatics } from 'recompose';
-import { addDays, subDays, isThisSecond, isSameDay, format } from 'date-fns';
-import nl from 'date-fns/locale/nl';
-import en from 'date-fns/locale/en';
+  Platform
+} from "react-native";
+import FeatherIcons from "react-native-vector-icons/Feather";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { translate } from "react-i18next";
+import { hoistStatics } from "recompose";
+import { addDays, subDays, isThisSecond, isSameDay, format } from "date-fns";
+import nl from "date-fns/locale/nl";
+import en from "date-fns/locale/en";
 
 import R, {
   curry,
@@ -35,30 +35,30 @@ import R, {
   uniq,
   sortBy,
   ascend,
-  descend,
-} from 'ramda';
-import Touchable from 'react-native-platform-touchable';
-import { get } from 'lodash';
+  descend
+} from "ramda";
+import Touchable from "react-native-platform-touchable";
+import { get } from "lodash";
 
-import s from './styles/DiaryStyles';
-import { colors, fonts } from '../themes';
+import s from "./styles/DiaryStyles";
+import { colors, fonts } from "../themes";
 
-import horsePhoto from '../images/horses.jpg';
+import horsePhoto from "../images/horses.jpg";
 
-import DiaryCalendar from './DiaryCalendar';
-import AnimalPhoto from '../components/AnimalPhoto';
-import DateSlider from '../components/DateSlider';
-import DatePicker from '../components/DatePicker';
-import HamburgerButton from '../components/HamburgerButton';
-import Icon from '../components/Icon';
-import SliderIndexIndicators from '../components/SliderIndexIndicators';
-import CategoryHeader from '../components/CategoryHeader';
-import EventHeader from '../components/EventHeader';
-import TypeHeader from '../components/TypeHeader';
-import Button from '../components/Button';
-import CircleButton from '../components/CircleButton';
-import ButtonFullWidth from '../components/ButtonFullWidth';
-import PainMeasurementGraph from '../components/PainMeasurementGraph';
+import DiaryCalendar from "./DiaryCalendar";
+import AnimalPhoto from "../components/AnimalPhoto";
+import DateSlider from "../components/DateSlider";
+import DatePicker from "../components/DatePicker";
+import HamburgerButton from "../components/HamburgerButton";
+import Icon from "../components/Icon";
+import SliderIndexIndicators from "../components/SliderIndexIndicators";
+import CategoryHeader from "../components/CategoryHeader";
+import EventHeader from "../components/EventHeader";
+import TypeHeader from "../components/TypeHeader";
+import Button from "../components/Button";
+import CircleButton from "../components/CircleButton";
+import ButtonFullWidth from "../components/ButtonFullWidth";
+import PainMeasurementGraph from "../components/PainMeasurementGraph";
 
 import {
   groupAndTransformEvents,
@@ -67,22 +67,22 @@ import {
   isPainMeasurement,
   isFeeding,
   isSelectedTab,
-  addRecurringEvents,
-} from '../services/eventService';
-import { eventTypeIconNames, eventCategories, eventTypes } from '../constants';
-import { getToken } from '../selectors/auth';
+  addRecurringEvents
+} from "../services/eventService";
+import { eventTypeIconNames, eventCategories, eventTypes } from "../constants";
+import { getToken } from "../selectors/auth";
 
-import iconMap from '../constants/iconMap';
-import { exportEvents } from '../actions/events';
-import DiaryTimeTab from './DiaryTimeTab';
+import iconMap from "../constants/iconMap";
+import { exportEvents, completeEvent } from "../actions/events";
+import DiaryTimeTab from "./DiaryTimeTab";
 
-import EventsList, { AccordionView } from './DiaryList';
-import Reactotron from 'reactotron-react-native';
+import EventsList, { AccordionView } from "./DiaryList";
+import Reactotron from "reactotron-react-native";
 
 class Diary extends Component {
   static navigationOptions = ({ navigation, screenProps }) => ({
-    title: screenProps.t.t('headerBar.diary'),
-    headerLeft: <HamburgerButton onPress={navigation.openDrawer} />,
+    title: screenProps.t.t("headerBar.diary"),
+    headerLeft: <HamburgerButton onPress={navigation.openDrawer} />
   });
 
   constructor(props) {
@@ -94,53 +94,53 @@ class Diary extends Component {
     this.state = {
       currentIndex: isInitialValuePassed ? selectedAnimalIndex : 0,
       currentDate: new Date(),
-      tabIndex: 1,
+      tabIndex: 1
     };
 
     this.routes = {
-      painMeasurement: 'DiaryPainMeasurementForm',
-      exercise: 'DiaryExerciseForm',
-      housing: 'DiaryHousingForm',
-      feeding: 'DiaryFeedingForm',
-      medication: 'DiaryMedicationForm',
-      startPainMeasurement: 'painMeasurement',
+      painMeasurement: "DiaryPainMeasurementForm",
+      exercise: "DiaryExerciseForm",
+      housing: "DiaryHousingForm",
+      feeding: "DiaryFeedingForm",
+      medication: "DiaryMedicationForm",
+      startPainMeasurement: "painMeasurement"
     };
 
     this.actionButtons = [
       {
         color: colors.egyptianBlue,
         icon: iconMap.measurement,
-        title: props.t('startPainMeasurement'),
-        onPress: () => this.navigateTo(this.routes.painMeasurement),
+        title: props.t("startPainMeasurement"),
+        onPress: () => this.navigateTo(this.routes.painMeasurement)
       },
       {
         color: colors.lima,
         icon: iconMap.horse1,
         name: eventCategories.exercise,
-        title: props.t('registerExercises'),
-        onPress: () => this.navigateTo(this.routes.exercise),
+        title: props.t("registerExercises"),
+        onPress: () => this.navigateTo(this.routes.exercise)
       },
       {
         color: colors.supernova,
         icon: iconMap.home,
         name: eventCategories.housing,
-        title: props.t('registerHousing'),
-        onPress: () => this.navigateTo(this.routes.housing),
+        title: props.t("registerHousing"),
+        onPress: () => this.navigateTo(this.routes.housing)
       },
       {
         color: colors.barleyCorn,
         icon: iconMap.carrot,
         name: eventCategories.feeding,
-        title: props.t('registerFeeding'),
-        onPress: () => this.navigateTo(this.routes.feeding),
+        title: props.t("registerFeeding"),
+        onPress: () => this.navigateTo(this.routes.feeding)
       },
       {
         color: colors.harleyDavidsonOrange,
         icon: iconMap.treatment,
         name: eventCategories.medication,
-        title: props.t('addMedication'),
-        onPress: () => this.navigateTo(this.routes.medication),
-      },
+        title: props.t("addMedication"),
+        onPress: () => this.navigateTo(this.routes.medication)
+      }
     ];
   }
 
@@ -155,7 +155,7 @@ class Diary extends Component {
   getSelectedAnimalIndex = () => {
     const { navigation, data } = this.props;
 
-    const animalId = navigation.getParam('id');
+    const animalId = navigation.getParam("id");
     const index = data.animals.findIndex(animal => animal.id === animalId);
 
     return index;
@@ -175,19 +175,19 @@ class Diary extends Component {
 
   moveCurrentDateBack = () => {
     this.setState(prevState => ({
-      currentDate: subDays(prevState.currentDate, 1),
+      currentDate: subDays(prevState.currentDate, 1)
     }));
   };
 
   moveCurrentDateForward = () => {
     this.setState(prevState => ({
-      currentDate: addDays(prevState.currentDate, 1),
+      currentDate: addDays(prevState.currentDate, 1)
     }));
   };
 
   handleIndexChange = index => {
     this.setState({
-      tabIndex: index,
+      tabIndex: index
     });
   };
 
@@ -196,12 +196,12 @@ class Diary extends Component {
       currentDate: this.state.currentDate,
       animalId: this.props.data.animals[this.state.currentIndex].id,
       animalType: this.props.data.animals[this.state.currentIndex].type,
-      ...params,
+      ...params
     });
   });
 
   findEventById = targetId => {
-    const events = get(this.props, 'data.events');
+    const events = get(this.props, "data.events");
 
     if (!events) {
       return undefined;
@@ -216,18 +216,25 @@ class Diary extends Component {
   share = () => {
     const animal = this.getSelectedAnimal();
     Share.share({
-      title: this.props.t('shareAppTitleAnimalProfile'),
-      message: this.props.t('shareAppContentAnimalProfile', {
-        animalName: animal.name,
+      title: this.props.t("shareAppTitleAnimalProfile"),
+      message: this.props.t("shareAppContentAnimalProfile", {
+        animalName: animal.name
       }),
-      url: this.props.t('shareAppUrl'),
+      url: this.props.t("shareAppUrl")
     });
   };
 
   onEditAnimal = () => {
-    this.props.navigation.navigate('AnimalForm', {
-      initialValue: this.getSelectedAnimal(),
+    this.props.navigation.navigate("AnimalForm", {
+      initialValue: this.getSelectedAnimal()
     });
+  };
+
+  onToggleComplete = (id, val) => {
+    this.props.dispatch(
+      completeEvent({ payload: { eventId: id, completed: !val } })
+    );
+    // Alert.alert("Toggle", "toggle complete: " + !val);
   };
 
   exportCSV = () => {
@@ -253,12 +260,12 @@ class Diary extends Component {
     };
 
     const showAlert = url => {
-      Alert.alert(t('exportEvents.alertTitle'), t('exportEvents.alertMsg'), [
-        { text: t('exportEvents.alertCancelBtn'), style: 'cancel' },
+      Alert.alert(t("exportEvents.alertTitle"), t("exportEvents.alertMsg"), [
+        { text: t("exportEvents.alertCancelBtn"), style: "cancel" },
         {
-          text: t('exportEvents.alertDownloadBtn'),
-          onPress: () => goToLink(url),
-        },
+          text: t("exportEvents.alertDownloadBtn"),
+          onPress: () => goToLink(url)
+        }
       ]);
     };
 
@@ -267,11 +274,11 @@ class Diary extends Component {
         payload: {
           currentAnimal,
           currentDate,
-          events: currentEvents,
+          events: currentEvents
         },
         meta: {
-          showAlert,
-        },
+          showAlert
+        }
       })
     );
   };
@@ -286,9 +293,9 @@ class Diary extends Component {
       reject(isPainMeasurement)
     )(events);
 
-    this.props.navigation.navigate('DiaryCopy', {
+    this.props.navigation.navigate("DiaryCopy", {
       events: eventsWithoutPainMeasurements,
-      copyToDate: this.state.currentDate,
+      copyToDate: this.state.currentDate
     });
   };
 
@@ -301,7 +308,7 @@ class Diary extends Component {
           <Image
             source={horsePhoto}
             resizeMode="cover"
-            style={{ height: 180, width: '100%' }}
+            style={{ height: 180, width: "100%" }}
           />
         </View>
         <View style={s.dateRow}>
@@ -334,37 +341,37 @@ class Diary extends Component {
                 paddingLeft: 0,
                 backgroundColor: colors.whiteSmoke,
                 borderBottomWidth: 0,
-                marginBottom: 20,
+                marginBottom: 20
               }}
-              textStyles={{ textAlign: 'center' }}
+              textStyles={{ textAlign: "center" }}
             >
-              {t('welcomeInDiary')}
+              {t("welcomeInDiary")}
             </CategoryHeader>
             <Text
               style={{
                 paddingHorizontal: 20,
                 paddingBottom: 20,
-                ...fonts.style.normal,
+                ...fonts.style.normal
               }}
             >
-              {t('noAnimalsInDiary')}
+              {t("noAnimalsInDiary")}
             </Text>
-            <View style={{ alignItems: 'center' }}>
+            <View style={{ alignItems: "center" }}>
               <Button
                 style={{ width: 240, marginBottom: 20 }}
                 backgroundColor={colors.mediumPurple}
-                label={t('addHorse')}
+                label={t("addHorse")}
                 onPress={() =>
-                  navigation.navigate('AnimalForm', { type: 'horse' })
+                  navigation.navigate("AnimalForm", { type: "horse" })
                 }
                 iconName={iconMap.arrowRight}
               />
               <Button
                 style={{ width: 240, marginBottom: 20 }}
                 backgroundColor={colors.mediumPurple}
-                label={t('addDonkey')}
+                label={t("addDonkey")}
                 onPress={() =>
-                  navigation.navigate('AnimalForm', { type: 'donkey' })
+                  navigation.navigate("AnimalForm", { type: "donkey" })
                 }
                 iconName={iconMap.arrowRight}
               />
@@ -385,7 +392,7 @@ class Diary extends Component {
       startDate,
       title,
       type,
-      data,
+      data
     } = event;
     const eventId = id || localId;
     const shouldShowStartDate =
@@ -394,22 +401,22 @@ class Diary extends Component {
     const shouldShowLabels =
       type !== eventTypes.recovery && type !== eventTypes.treatment;
 
-    const hasNote = Boolean(path(['data', 'note'], event));
+    const hasNote = Boolean(path(["data", "note"], event));
 
     const translatedLabels = [...labels];
-    if (type === 'pill') {
-      if (labels[0][1] === 'for_kg') {
+    if (type === "pill") {
+      if (labels[0][1] === "for_kg") {
         translatedLabels[0][1] = this.props
-          .t('byWeight')
-          .replace('...', labels[0][0]);
-        translatedLabels[0][0] = '';
+          .t("byWeight")
+          .replace("...", labels[0][0]);
+        translatedLabels[0][0] = "";
       } else {
         translatedLabels[0][1] = this.props.t(labels[0][1]);
       }
     }
 
-    if (type === eventTypes.roughage && data.unit === 'unlimited') {
-      translatedLabels[0][0] = this.props.t('unlimited');
+    if (type === eventTypes.roughage && data.unit === "unlimited") {
+      translatedLabels[0][0] = this.props.t("unlimited");
     }
 
     return (
@@ -417,13 +424,13 @@ class Diary extends Component {
         key={eventId}
         onPress={() =>
           this.navigateTo(this.routes[category], {
-            initialValue: this.findEventById(eventId),
+            initialValue: this.findEventById(eventId)
           })
         }
       >
         <EventHeader
           iconColor={color}
-          title={type === 'treatment' ? this.props.t(title) : title}
+          title={type === "treatment" ? this.props.t(title) : title}
           startDate={shouldShowStartDate ? startDate : null}
           labelsRight={shouldShowLabels ? translatedLabels : null}
           note={hasNote ? data.note : null}
@@ -434,7 +441,7 @@ class Diary extends Component {
 
   renderType = ({ name, color, events, labels }) => {
     const shouldShowLabels = events.some(
-      event => path('data.unit', event) === 'unlimited'
+      event => path("data.unit", event) === "unlimited"
     );
 
     return (
@@ -458,7 +465,7 @@ class Diary extends Component {
 
   renderEvents = ({ currentAnimal, currentDate, tabIndex }) => {
     const { t } = this.props;
-    const locale = this.props.i18n.language === 'nl' ? nl : en;
+    const locale = this.props.i18n.language === "nl" ? nl : en;
 
     const propsDataEvents = addRecurringEvents(
       this.props.data.events,
@@ -483,16 +490,19 @@ class Diary extends Component {
 
     const groupedFeedingEvents = feedingEventsTimes.map(time => {
       const sameTime = feedingEvents.filter(item => time === item.startDate);
-      const groupedEvents = sameTime.map(({ id, type, data, animalId }) => ({
-        id,
-        type,
-        data,
-        animalId,
-      }));
+      const groupedEvents = sameTime.map(
+        ({ id, type, data, completed, animalId }) => ({
+          id,
+          type,
+          data,
+          completed,
+          animalId
+        })
+      );
       return {
-        category: 'feeding',
+        category: "feeding",
         startDate: time,
-        groupedEvents,
+        groupedEvents
       };
     });
 
@@ -501,7 +511,7 @@ class Diary extends Component {
     );
 
     if (tabIndex === 1) {
-      Reactotron.log('new struct', allEvents);
+      Reactotron.log("new struct", allEvents);
 
       return (
         <EventsList
@@ -509,6 +519,7 @@ class Diary extends Component {
           navigateTo={this.navigateTo}
           t={t}
           findEventById={this.findEventById}
+          toggleComplete={this.onToggleComplete}
         />
       );
     }
@@ -518,19 +529,19 @@ class Diary extends Component {
       const allDaysArr = uniq(
         allEvents
           .reverse()
-          .map(({ startDate }) => format(startDate, 'D MMM', { locale }))
+          .map(({ startDate }) => format(startDate, "D MMM", { locale }))
       );
 
       const eventsGroupedByDay = allDaysArr.map(date => {
         const sameDate = allEvents.filter(
-          item => date === format(item.startDate, 'D MMM', { locale })
+          item => date === format(item.startDate, "D MMM", { locale })
         );
         if (sameDate.lenght === 0) {
           return null;
         }
         return {
           startDate: date,
-          events: sameDate,
+          events: sameDate
         };
       });
 
@@ -549,20 +560,20 @@ class Diary extends Component {
       // datastructure voor blik terug en kijk vooruit
       const allDaysArr = uniq(
         allEvents.map(({ startDate }) =>
-          format(startDate, 'D MMMM', { locale })
+          format(startDate, "D MMMM", { locale })
         )
       );
 
       const eventsGroupedByDay = allDaysArr.map(date => {
         const eventsOnSameDay = allEvents.filter(
-          item => date === format(item.startDate, 'D MMMM', { locale })
+          item => date === format(item.startDate, "D MMMM", { locale })
         );
         if (eventsOnSameDay.lenght === 0) {
           return null;
         }
         return {
           startDate: date,
-          events: eventsOnSameDay,
+          events: eventsOnSameDay
         };
       });
 
@@ -580,24 +591,24 @@ class Diary extends Component {
   };
 
   renderSliderItem = ({ item }) => {
-    const { width } = Dimensions.get('window');
+    const { width } = Dimensions.get("window");
 
     return (
       <View style={{ flex: 1, width, backgroundColor: colors.white }}>
         <AnimalPhoto
           source={{
             uri: item.pictureUrl,
-            headers: { Authorization: `Bearer ${this.props.authToken}` },
+            headers: { Authorization: `Bearer ${this.props.authToken}` }
           }}
         >
           <View
             style={{
-              position: 'absolute',
+              position: "absolute",
               top: 0,
               left: 0,
               right: 0,
               bottom: 0,
-              alignItems: 'center',
+              alignItems: "center"
             }}
           >
             <View style={s.editIconContainer}>
@@ -615,11 +626,11 @@ class Diary extends Component {
           {/* Use hidden element to align indicators to the center and share button to the right with space-between */}
           <View
             style={{
-              width: '100%',
-              flexDirection: 'row',
-              alignItems: 'flex-end',
-              justifyContent: 'space-between',
-              paddingHorizontal: 20,
+              width: "100%",
+              flexDirection: "row",
+              alignItems: "flex-end",
+              justifyContent: "space-between",
+              paddingHorizontal: 20
             }}
           >
             <View style={{ height: 46, width: 46 }} />
@@ -636,11 +647,11 @@ class Diary extends Component {
   };
 
   render() {
-    const { width } = Dimensions.get('window');
+    const { width } = Dimensions.get("window");
     const {
       i18n,
       t,
-      data: { animals },
+      data: { animals }
     } = this.props;
 
     if (!animals.length) {
@@ -648,7 +659,7 @@ class Diary extends Component {
     }
 
     const events = this.props.data.events || [];
-    Reactotron.log('all events', events);
+    Reactotron.log("all events", events);
     const currentAnimal = animals[this.state.currentIndex];
     const { currentDate, tabIndex } = this.state;
     const allPainMeasurements = compose(
@@ -679,13 +690,13 @@ class Diary extends Component {
 
             <View
               style={{
-                position: 'absolute',
+                position: "absolute",
                 left: 0,
                 right: 0,
                 bottom: 20,
-                flexDirection: 'row',
-                justifyContent: 'center',
-                marginHorizontal: 65,
+                flexDirection: "row",
+                justifyContent: "center",
+                marginHorizontal: 65
               }}
             >
               <SliderIndexIndicators
@@ -696,10 +707,10 @@ class Diary extends Component {
             </View>
             <View
               style={{
-                position: 'absolute',
+                position: "absolute",
                 top: 45,
                 left: 20,
-                width: 20,
+                width: 20
               }}
             />
           </View>
@@ -725,21 +736,21 @@ class Diary extends Component {
             <View
               style={{
                 height: 100,
-                justifyContent: 'center',
-                alignItems: 'center',
+                justifyContent: "center",
+                alignItems: "center"
               }}
             >
-              <Text>{t('emptyPainMeasurementList')}</Text>
+              <Text>{t("emptyPainMeasurementList")}</Text>
             </View>
           )}
           <ButtonFullWidth
             onPress={() =>
               this.navigateTo(this.routes.startPainMeasurement, {
-                redirectPath: 'Diary',
-                animal: this.props.data.animals[this.state.currentIndex],
+                redirectPath: "Diary",
+                animal: this.props.data.animals[this.state.currentIndex]
               })
             }
-            label={t('addPainMeasurement')}
+            label={t("addPainMeasurement")}
           />
           {this.renderEvents({ currentAnimal, currentDate, tabIndex })}
           <View style={{ height: 80 }} />
@@ -754,7 +765,7 @@ class Diary extends Component {
           {this.actionButtons.map(({ color, icon, name, title, onPress }) => {
             if (
               currentAnimal &&
-              currentAnimal.type === 'donkey' &&
+              currentAnimal.type === "donkey" &&
               name === eventCategories.exercise
             ) {
               return <View key={title} />;
@@ -782,14 +793,14 @@ Diary.propTypes = {
   t: T.func,
   i18n: T.shape({
     language: T.string,
-    calendar: T.object,
+    calendar: T.object
   }),
   data: T.shape({
     animals: T.arrayOf(
       T.shape({
         id: T.number,
         name: T.string,
-        pictureUrl: T.string,
+        pictureUrl: T.string
       })
     ),
     events: T.arrayOf(
@@ -798,23 +809,23 @@ Diary.propTypes = {
         type: T.string,
         category: T.string,
         startDate: T.number,
-        endDate: T.number,
+        endDate: T.number
       })
-    ),
-  }),
+    )
+  })
 };
 
 const mapStateToProps = state => ({
   authToken: getToken(state),
   data: {
     animals: state.animals,
-    events: state.events,
-  },
+    events: state.events
+  }
 });
 
 export default hoistStatics(
   compose(
     connect(mapStateToProps),
-    translate('root')
+    translate("root")
   )
 )(Diary);

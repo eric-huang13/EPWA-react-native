@@ -17,6 +17,10 @@ export const DELETE_EVENT_REQUESTED = "DELETE_EVENT_REQUESTED";
 export const DELETE_EVENT_ROLLBACK = "DELETE_EVENT_ROLLBACK";
 export const DELETE_EVENT_ROLLBACK_REQUESTED =
   "DELETE_EVENT_ROLLBACK_REQUESTED";
+export const COMPLETE_EVENT = "COMPLETE_EVENT";
+export const COMPLETE_EVENT_REQUESTED = "COMPLETE_EVENT_REQUESTED";
+export const COMPLETE_EVENT_ROLLBACK_REQUESTED =
+  "COMPLETE_EVENT_ROLLBACK_REQUESTED";
 
 export const EXPORT_EVENTS = "EXPORT_EVENTS";
 
@@ -43,4 +47,9 @@ export const exportEvents = ({ payload, meta }) => ({
   meta,
   payload,
   type: EXPORT_EVENTS
+});
+
+export const completeEvent = ({ payload }) => ({
+  payload,
+  type: COMPLETE_EVENT_REQUESTED
 });

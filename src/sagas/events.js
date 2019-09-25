@@ -18,7 +18,8 @@ import {
   EDIT_EVENT_ROLLBACK_REQUESTED,
   DELETE_EVENT,
   DELETE_EVENT_ROLLBACK,
-  DELETE_EVENT_ROLLBACK_REQUESTED
+  DELETE_EVENT_ROLLBACK_REQUESTED,
+  COMPLETE_EVENT
 } from "../actions/events";
 
 import NavigatorService from "../services/navigator";
@@ -45,10 +46,10 @@ export function* getEvents(api, accessToken) {
   }
 
   const parsedEventsResponse = compose(
-    map((event) => {
+    map(event => {
       const result = event;
 
-      if (event.data === "null" && event.data === `"null"`) {
+      if (event.data === "null" && event.data === '"null"') {
         result.data = null;
       }
 
@@ -67,7 +68,7 @@ export function* getEvents(api, accessToken) {
   )(eventResponse.data);
 
   yield all(
-    parsedEventsResponse.map((entry) =>
+    parsedEventsResponse.map(entry =>
       put({
         type: ADD_EVENT,
         data: {
@@ -113,7 +114,7 @@ export function* addEvent(api, dispatch, action) {
   });
 
   yield all(
-    payload.map((entry) =>
+    payload.map(entry =>
       put({
         type: ADD_EVENT,
         data: {
@@ -134,9 +135,9 @@ export function* addEvent(api, dispatch, action) {
 
 export function* addEventCommit(action) {
   const events = action.payload
-    .map((event) => camelcaseKeys(event))
-    .map((event) => {
-      if (event.data === "null" || event.data === `"null"`) {
+    .map(event => camelcaseKeys(event))
+    .map(event => {
+      if (event.data === "null" || event.data === '"null"') {
         event.data = null;
       }
 
@@ -164,7 +165,7 @@ export function* addEventRollback(action) {
   const events = action.meta.formPayload;
 
   yield all(
-    events.map((event) =>
+    events.map(event =>
       put({
         type: ADD_EVENT_ROLLBACK,
         payload: event
@@ -301,7 +302,50 @@ export function* exportEvents(api, action) {
 
   const response = yield call(api.exportEvents, formData, accessToken);
 
-  if (!response.ok) return;
+  if (!response.ok) {
+    return;
+  }
 
   showAlert(response.data.url);
 }
+
+export function* completeEvent(api, dispatch, action) {
+  const { eventId, completed } = action.payload;
+  const accessToken = yield select(getToken);
+
+  yield put({
+    type: "COMPLETE_EVENT_REQUEST_SENT",
+    meta: {
+      offline: {
+        effect: {
+          accessToken,
+          api,
+          eventId,
+          completed,
+          dispatch,
+          method: api.completeEvent
+        }
+        // commit: {
+        //   type: EDIT_EVENT_COMMIT_REQUESTED,
+        //   meta: { formPayload: payload }
+        // },
+        // rollback: {
+        //   type: EDIT_EVENT_ROLLBACK_REQUESTED,
+        //   meta: { formPayload: payload, initialValue }
+        // }
+      }
+    }
+  });
+
+  yield put({
+    type: COMPLETE_EVENT,
+    payload: { eventId, completed }
+  });
+}
+
+// export function* completeEventRollback(action) {
+//   yield put({
+//     type: COMPLETE_EVENT,
+//     payload: action.meta.formPayload //TODO VERANDEREN
+//   });
+// }

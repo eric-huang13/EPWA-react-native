@@ -8,7 +8,7 @@ const createFacebookApi = (baseURL = "https://graph.facebook.com/") => {
     timeout: 10000
   });
 
-  const getProfile = (token) =>
+  const getProfile = token =>
     api.get(
       `me?fields=id,first_name,last_name,email,picture&access_token=${token}`
     );
@@ -24,7 +24,7 @@ const createGoogleApi = (baseURL = "https://www.googleapis.com/") => {
     timeout: 10000
   });
 
-  const getProfile = (token) =>
+  const getProfile = token =>
     api.get(
       "/userinfo/v2/me",
       {},
@@ -43,7 +43,7 @@ const createCSVUploadApi = (baseURL = csvUploadPath) => {
   });
 
   const exportEvents = (body, accessToken) =>
-    api.post(`/upload`, body, {
+    api.post("/upload", body, {
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${accessToken}`
@@ -83,9 +83,9 @@ const createApi = (baseURL = basePath) => {
       password_confirmation: password
     });
 
-  const refreshToken = (accessToken) =>
+  const refreshToken = accessToken =>
     api.post(
-      `/api/auth/refresh`,
+      "/api/auth/refresh",
       {},
       {
         headers: {
@@ -95,8 +95,8 @@ const createApi = (baseURL = basePath) => {
       }
     );
 
-  const headProfile = (accessToken) =>
-    api.head(`/api/me`, null, {
+  const headProfile = accessToken =>
+    api.head("/api/me", null, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`
@@ -104,22 +104,22 @@ const createApi = (baseURL = basePath) => {
     });
 
   const changePassword = (body, accessToken) =>
-    api.post(`/api/password/update`, body, {
+    api.post("/api/password/update", body, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`
       }
     });
 
-  const resetPassword = (body) =>
-    api.post(`/api/password/email`, body, {
+  const resetPassword = body =>
+    api.post("/api/password/email", body, {
       headers: {
         "Content-Type": "application/json"
       }
     });
 
   const updateProfile = (updatedFields, accessToken) =>
-    api.post(`/api/me`, updatedFields, {
+    api.post("/api/me", updatedFields, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`
@@ -127,15 +127,15 @@ const createApi = (baseURL = basePath) => {
     });
 
   const uploadProfileImage = (body, accessToken) =>
-    api.post(`/api/me/avatar`, body, {
+    api.post("/api/me/avatar", body, {
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${accessToken}`
       }
     });
 
-  const getAnimals = (accessToken) =>
-    api.get(`/api/animals`, null, {
+  const getAnimals = accessToken =>
+    api.get("/api/animals", null, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`
@@ -143,7 +143,7 @@ const createApi = (baseURL = basePath) => {
     });
 
   const addAnimal = (body, accessToken) =>
-    api.post(`/api/animals`, body, {
+    api.post("/api/animals", body, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`
@@ -174,8 +174,8 @@ const createApi = (baseURL = basePath) => {
       }
     });
 
-  const getEvents = (accessToken) =>
-    api.get(`/api/events`, null, {
+  const getEvents = accessToken =>
+    api.get("/api/events", null, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`
@@ -183,7 +183,7 @@ const createApi = (baseURL = basePath) => {
     });
 
   const addEvent = ({ accessToken, body }) =>
-    api.post(`/api/events`, body, {
+    api.post("/api/events", body, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`
@@ -206,6 +206,18 @@ const createApi = (baseURL = basePath) => {
       }
     });
 
+  const completeEvent = ({ accessToken, eventId, completed }) =>
+    api.patch(
+      `/api/events/${eventId}`,
+      { id: eventId, completed: completed },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`
+        }
+      }
+    );
+
   return {
     getRoot,
     login,
@@ -225,7 +237,8 @@ const createApi = (baseURL = basePath) => {
     getEvents,
     addEvent,
     editEvent,
-    deleteEvent
+    deleteEvent,
+    completeEvent
   };
 };
 

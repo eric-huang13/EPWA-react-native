@@ -1,4 +1,4 @@
-import {reject} from 'ramda';
+import { reject } from "ramda";
 
 import {
   ADD_EVENT,
@@ -9,7 +9,8 @@ import {
   EDIT_EVENT_ROLLBACK,
   DELETE_EVENT,
   DELETE_EVENT_ROLLBACK,
-} from '../actions/events';
+  COMPLETE_EVENT
+} from "../actions/events";
 
 const initialState = [];
 
@@ -19,8 +20,8 @@ function reducer(state = initialState, action) {
       return [
         ...state,
         {
-          ...action.data,
-        },
+          ...action.data
+        }
       ];
     case ADD_EVENT_COMMIT:
       return state.map(event => {
@@ -35,20 +36,29 @@ function reducer(state = initialState, action) {
       return reject(event => event.localId === action.payload.localId)(state);
     case EDIT_EVENT:
       return state.map(event =>
-        event.id === action.payload.id ? action.payload : event,
+        event.id === action.payload.id ? action.payload : event
       );
     case EDIT_EVENT_COMMIT:
       return state.map(event =>
-        event.id === action.payload.id ? action.payload : event,
+        event.id === action.payload.id ? action.payload : event
       );
     case EDIT_EVENT_ROLLBACK:
       return state.map(event =>
-        event.id === action.payload.id ? action.payload : event,
+        event.id === action.payload.id ? action.payload : event
       );
     case DELETE_EVENT:
       return state.filter(event => event.id !== action.payload.id);
     case DELETE_EVENT_ROLLBACK:
       return [...state, action.payload];
+    case COMPLETE_EVENT:
+      return state.map(event =>
+        event.id === action.payload.eventId
+          ? (event.completed = {
+              ...event,
+              completed: action.payload.completed
+            })
+          : event
+      );
     default:
       return state;
   }

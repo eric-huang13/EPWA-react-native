@@ -21,7 +21,13 @@ import en from "date-fns/locale/en";
 import Reactotron from "reactotron-react-native";
 // import { t } from "i18next/dist/commonjs";
 
-export default function EventsList({ events, t, navigateTo, findEventById }) {
+export default function EventsList({
+  events,
+  t,
+  navigateTo,
+  findEventById,
+  toggleComplete
+}) {
   return (
     <View style={{ paddingHorizontal: 20 }}>
       {events.map((event, index) => (
@@ -31,6 +37,7 @@ export default function EventsList({ events, t, navigateTo, findEventById }) {
           key={index}
           navigateTo={navigateTo}
           findEventById={findEventById}
+          toggleComplete={toggleComplete}
         />
       ))}
     </View>
@@ -129,10 +136,13 @@ export class AccordionView extends Component {
   }
 }
 
-function CheckInput({ completed, onPress }) {
+function CheckInput({ id, completed, toggleComplete }) {
   return (
     <View style={{ width: 40 }}>
-      <TouchableOpacity onPress={onPress} underlayColor="#fff">
+      <TouchableOpacity
+        onPress={() => toggleComplete(id, completed)}
+        underlayColor="#fff"
+      >
         {completed ? <CheckboxChecked /> : <Checkbox />}
       </TouchableOpacity>
     </View>
@@ -141,9 +151,9 @@ function CheckInput({ completed, onPress }) {
 
 export function NewListItem({
   id,
-  completed = false,
+  completed,
   startDate,
-  onPress,
+  toggleComplete,
   category,
   type,
   data,
@@ -163,6 +173,7 @@ export function NewListItem({
       navigateTo={navigateTo}
       findEventById={findEventById}
       id={id}
+      toggleComplete={toggleComplete}
     />
   );
   const time = format(startDate, "HH:mm");
@@ -174,7 +185,11 @@ export function NewListItem({
         </Text>
         {category !== "feeding" ? (
           <View style={styles.itemContentContainer}>
-            <CheckInput completed={completed} onPress={onPress} />
+            <CheckInput
+              id={id}
+              completed={completed}
+              toggleComplete={toggleComplete}
+            />
             <View
               style={[
                 styles.itemContentContainer,
@@ -205,7 +220,8 @@ function ItemContent({
   navigateTo,
   findEventById,
   id,
-  completed
+  completed,
+  toggleComplete
 }) {
   switch (category) {
     case eventCategories.painMeasurement:
@@ -250,6 +266,7 @@ function ItemContent({
           findEventById={findEventById}
           id={id}
           completed={completed}
+          toggleComplete={toggleComplete}
         />
       );
     case eventCategories.medication:
@@ -325,18 +342,20 @@ function MedicationContent({ type, navigateTo, t, findEventById, id }) {
 
 function FeedingContent({
   groupedEvents,
-  completed = false,
   t,
   navigateTo,
   findEventById,
-  onPress = () => {}
+  toggleComplete
 }) {
   return (
     <React.Fragment>
-      {groupedEvents.map(({ type, data, id }, index) => (
+      {groupedEvents.map(({ type, data, id, completed }, index) => (
         <View key={index} style={styles.subItemContentContainer}>
-          <CheckInput completed={completed} onPress={onPress} />
-          <FeedingIcon type={type} />
+          <CheckInput
+            id={id}
+            completed={completed}
+            toggleComplete={toggleComplete}
+          />
           <TouchableOpacity
             key={id}
             onPress={() =>
@@ -345,7 +364,13 @@ function FeedingContent({
               })
             }
           >
-            <View style={[styles.itemContent, completed && styles.completed]}>
+            <View
+              style={[
+                styles.itemContentContainer,
+                completed && styles.completed
+              ]}
+            >
+              <FeedingIcon type={type} />
               <Text style={fonts.style.normal}>
                 {t("diaryFeeding")} {data.quantity} {data.unit}
               </Text>
