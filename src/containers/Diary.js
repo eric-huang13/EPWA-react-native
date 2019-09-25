@@ -545,7 +545,7 @@ class Diary extends Component {
         };
       });
 
-      const maxEvents = eventsGroupedByDay.slice(0, 15);
+      const maxEvents = eventsGroupedByDay.slice(1, 15);
       return (
         <AccordionView
           data={maxEvents}
