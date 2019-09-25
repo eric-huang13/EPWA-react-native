@@ -81,7 +81,7 @@ export class AccordionView extends Component {
                   style={{ paddingRight: 10, paddingBottom: 10 }}
                 >
                   <Text style={fonts.style.normal}>
-                    {this.props.t(`categories:${category}`)}
+                    {this.props.t(`categories.${category}`)}
                   </Text>
                 </View>
               )
@@ -102,7 +102,7 @@ export class AccordionView extends Component {
 
   _renderContent = section => (
     <View style={{ paddingHorizontal: 20, paddingBottom: 25 }}>
-      {section.events.map((event, index) => {
+      {section.events.map((event, index, id, completed) => {
         return (
           <NewListItem
             {...event}
@@ -110,6 +110,9 @@ export class AccordionView extends Component {
             t={this.props.t}
             navigateTo={this.props.navigateTo}
             findEventById={this.props.findEventById}
+            completed={completed}
+            toggleComplete={this.props.toggleComplete}
+            id={id}
           />
         );
       })}
@@ -121,7 +124,7 @@ export class AccordionView extends Component {
   };
 
   render() {
-    Reactotron.log(this.props.data);
+    Reactotron.log("accordeon", this.props.data);
     return (
       <Accordion
         sections={this.props.data}

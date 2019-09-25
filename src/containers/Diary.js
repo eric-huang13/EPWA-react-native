@@ -552,6 +552,7 @@ class Diary extends Component {
           t={t}
           navigateTo={this.navigateTo}
           findEventById={this.findEventById}
+          toggleComplete={this.onToggleComplete}
         />
       );
     }
