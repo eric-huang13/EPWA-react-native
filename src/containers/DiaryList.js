@@ -372,7 +372,7 @@ function FeedingContent({
             >
               <FeedingIcon type={type} />
               <Text style={fonts.style.normal}>
-                {t("diaryFeeding")} {data.quantity} {data.unit}
+                {t(type)} {data.quantity} {data.unit}
               </Text>
             </View>
           </TouchableOpacity>
