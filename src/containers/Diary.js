@@ -578,7 +578,7 @@ class Diary extends Component {
         };
       });
 
-      const maxEvents = eventsGroupedByDay.slice(0, 5);
+      const maxEvents = eventsGroupedByDay.slice(1, 5);
 
       return (
         <AccordionView
@@ -586,6 +586,7 @@ class Diary extends Component {
           t={t}
           navigateTo={this.navigateTo}
           findEventById={this.findEventById}
+          toggleComplete={this.onToggleComplete}
         />
       );
     }
