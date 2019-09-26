@@ -158,7 +158,7 @@ export function NewListItem({
   category,
   type,
   data,
-  groupedEvents,
+  groupedEvents = [],
   t,
   navigateTo,
   findEventById
@@ -178,12 +178,26 @@ export function NewListItem({
     />
   );
   const time = format(startDate, "HH:mm");
+  const feedingCompleted =
+    groupedEvents.filter(event => event.completed === false).length !== 0
+      ? false
+      : true;
+
   return (
     <View style={styles.container}>
       <View style={styles.contentContainer}>
-        <Text style={[styles.title, completed ? styles.completed : null]}>
-          {t(`categories.${category}`)}
-        </Text>
+        {category !== "feeding" ? (
+          <Text style={[styles.title, completed ? styles.completed : null]}>
+            {t(`categories.${category}`)}
+          </Text>
+        ) : (
+          <Text
+            style={[styles.title, feedingCompleted ? styles.completed : null]}
+          >
+            {t(`categories.${category}`)}
+          </Text>
+        )}
+
         {category !== "feeding" ? (
           <View style={styles.itemContentContainer}>
             <CheckInput
@@ -205,9 +219,17 @@ export function NewListItem({
         )}
       </View>
       <View>
-        <View style={[styles.time, completed ? styles.completed : null]}>
-          <Text style={{ fontSize: 14, fontWeight: "700" }}>{time}</Text>
-        </View>
+        {category !== "feeding" ? (
+          <View style={[styles.time, completed ? styles.completed : null]}>
+            <Text style={{ fontSize: 14, fontWeight: "700" }}>{time}</Text>
+          </View>
+        ) : (
+          <View
+            style={[styles.time, feedingCompleted ? styles.completed : null]}
+          >
+            <Text style={{ fontSize: 14, fontWeight: "700" }}>{time}</Text>
+          </View>
+        )}
       </View>
     </View>
   );
