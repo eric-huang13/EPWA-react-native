@@ -131,8 +131,8 @@ android {
         applicationId "com.epwa"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 40
+        versionName "1.6.1"
     }
     splits {
         abi {
