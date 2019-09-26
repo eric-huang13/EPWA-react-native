@@ -1,53 +1,54 @@
-import {createAppContainer, createSwitchNavigator} from 'react-navigation';
-import {createStackNavigator} from 'react-navigation-stack';
-import {createDrawerNavigator} from 'react-navigation-drawer';
+import { createAppContainer, createSwitchNavigator } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
+import { createDrawerNavigator } from "react-navigation-drawer";
 
-import HomeScreen from '../containers/Home';
-import AboutScreen from '../containers/About';
-import AnimalFormScreen from '../containers/AnimalForm';
-import AnimalFormInfoScreen from '../containers/AnimalFormInfo';
-import AnimalProfileScreen from '../containers/AnimalProfile';
-import SignInScreen from '../containers/SignIn';
-import SignUpScreen from '../containers/SignUp';
-import LogoutScreen from '../containers/Logout';
-import SettingsScreen from '../containers/Settings';
-import SettingsUpdatePasswordScreen from '../containers/SettingsUpdatePassword';
-import StartUpScreen from '../containers/StartUp';
-import ForgotPasswordScreen from '../containers/ForgotPassword';
-import AuthLoadingScreen from '../containers/AuthLoading';
-import DiaryScreen from '../containers/Diary';
-import DiaryCopyScreen from '../containers/DiaryCopy';
-import DiaryExerciseFormScreen from '../containers/DiaryExerciseForm';
-import DiaryExerciseFormInfoScreen from '../containers/DiaryExerciseFormInfo';
-import DiaryHousingFormScreen from '../containers/DiaryHousingForm';
-import DiaryHousingFormInfoScreen from '../containers/DiaryHousingFormInfo';
-import DiaryFeedingFormScreen from '../containers/DiaryFeedingForm';
-import DiaryFeedingFormInfoScreen from '../containers/DiaryFeedingFormInfo';
-import DiaryMedicationFormScreen from '../containers/DiaryMedicationForm';
-import DiaryPainMeasurementFormScreen from '../containers/DiaryPainMeasurementForm';
-import DiaryPainMeasurementInfoScreen from '../containers/PainMeasurementStartInfo';
-import DiaryMedicationFormInfoScreen from '../containers/DiaryMedicationFormInfo';
-import RedirectToPainMeasurementScreen from '../containers/RedirectToPainMeasurement';
-import WelfareScreen from '../containers/WelfareInfo';
+import HomeScreen from "../containers/Home";
+import AboutScreen from "../containers/About";
+import AnimalFormScreen from "../containers/AnimalForm";
+import AnimalFormInfoScreen from "../containers/AnimalFormInfo";
+import AnimalProfileScreen from "../containers/AnimalProfile";
+import SignInScreen from "../containers/SignIn";
+import SignUpScreen from "../containers/SignUp";
+import LogoutScreen from "../containers/Logout";
+import SettingsScreen from "../containers/Settings";
+import SettingsUpdatePasswordScreen from "../containers/SettingsUpdatePassword";
+import SettingsDeleteAccountScreen from "../containers/SettingsDeleteAccount";
+import StartUpScreen from "../containers/StartUp";
+import ForgotPasswordScreen from "../containers/ForgotPassword";
+import AuthLoadingScreen from "../containers/AuthLoading";
+import DiaryScreen from "../containers/Diary";
+import DiaryCopyScreen from "../containers/DiaryCopy";
+import DiaryExerciseFormScreen from "../containers/DiaryExerciseForm";
+import DiaryExerciseFormInfoScreen from "../containers/DiaryExerciseFormInfo";
+import DiaryHousingFormScreen from "../containers/DiaryHousingForm";
+import DiaryHousingFormInfoScreen from "../containers/DiaryHousingFormInfo";
+import DiaryFeedingFormScreen from "../containers/DiaryFeedingForm";
+import DiaryFeedingFormInfoScreen from "../containers/DiaryFeedingFormInfo";
+import DiaryMedicationFormScreen from "../containers/DiaryMedicationForm";
+import DiaryPainMeasurementFormScreen from "../containers/DiaryPainMeasurementForm";
+import DiaryPainMeasurementInfoScreen from "../containers/PainMeasurementStartInfo";
+import DiaryMedicationFormInfoScreen from "../containers/DiaryMedicationFormInfo";
+import RedirectToPainMeasurementScreen from "../containers/RedirectToPainMeasurement";
+import WelfareScreen from "../containers/WelfareInfo";
 
-import PainMeasurementScreen from '../containers/PainMeasurement';
-import PainMeasurementOverviewScreen from '../containers/PainMeasurementOverview';
-import PainMeasurementDetailsScreen from '../containers/PainMeasurementDetails';
-import PPIDScreen from '../containers/PPID';
+import PainMeasurementScreen from "../containers/PainMeasurement";
+import PainMeasurementOverviewScreen from "../containers/PainMeasurementOverview";
+import PainMeasurementDetailsScreen from "../containers/PainMeasurementDetails";
+import PPIDScreen from "../containers/PPID";
 
-import CustomDrawerContent from '../components/CustomDrawerContent';
+import CustomDrawerContent from "../components/CustomDrawerContent";
 
-import {colors, fonts} from '../themes';
+import { colors, fonts } from "../themes";
 
 export const defaultHeaderStyling = {
   headerTintColor: colors.black,
   headerStyle: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.white
   },
   headerTitleStyle: {
     ...fonts.style.h4,
-    fontWeight: '400',
-  },
+    fontWeight: "400"
+  }
 };
 
 /*
@@ -66,14 +67,14 @@ const AuthStack = createStackNavigator(
     SignIn: SignInScreen,
     SignUp: SignUpScreen,
     ForgotPassword: ForgotPasswordScreen,
-    painMeasurement: PainMeasurementScreen,
+    painMeasurement: PainMeasurementScreen
   },
   {
-    initialRouteName: 'StartUp',
+    initialRouteName: "StartUp",
     defaultNavigationOptions: {
-      ...defaultHeaderStyling,
-    },
-  },
+      ...defaultHeaderStyling
+    }
+  }
 );
 
 // TODO: Make all screens have white background color so that if iOS user scrolls the screen the grey background doesn't show
@@ -86,15 +87,15 @@ const AppStack = createDrawerNavigator(
           Stable: HomeScreen,
           AnimalForm: AnimalFormScreen,
           AnimalFormInfo: AnimalFormInfoScreen,
-          AnimalProfile: AnimalProfileScreen,
+          AnimalProfile: AnimalProfileScreen
         },
         {
-          initialRouteName: 'Stable',
+          initialRouteName: "Stable",
           defaultNavigationOptions: {
-            ...defaultHeaderStyling,
-          },
-        },
-      ),
+            ...defaultHeaderStyling
+          }
+        }
+      )
     },
     DiaryNavigator: {
       screen: createStackNavigator(
@@ -113,82 +114,83 @@ const AppStack = createDrawerNavigator(
           PainMeasurementInfo: DiaryPainMeasurementInfoScreen,
           painMeasurement: PainMeasurementScreen,
           PainMeasurementOverview: PainMeasurementOverviewScreen,
-          PainMeasurementDetails: PainMeasurementDetailsScreen,
+          PainMeasurementDetails: PainMeasurementDetailsScreen
         },
         {
-          initialRouteName: 'Diary',
+          initialRouteName: "Diary",
           defaultNavigationOptions: {
-            ...defaultHeaderStyling,
-          },
-        },
-      ),
+            ...defaultHeaderStyling
+          }
+        }
+      )
     },
     PainMeasurementNavigator: {
-      screen: RedirectToPainMeasurementScreen,
+      screen: RedirectToPainMeasurementScreen
     },
     WelfareNavigator: {
       screen: createStackNavigator(
         {
-          Syndromes: WelfareScreen,
+          Syndromes: WelfareScreen
         },
         {
           defaultNavigationOptions: {
-            ...defaultHeaderStyling,
-          },
-        },
-      ),
+            ...defaultHeaderStyling
+          }
+        }
+      )
     },
     SyndromesNavigator: {
       screen: createStackNavigator(
         {
-          Syndromes: PPIDScreen,
+          Syndromes: PPIDScreen
         },
         {
           defaultNavigationOptions: {
-            ...defaultHeaderStyling,
-          },
-        },
-      ),
+            ...defaultHeaderStyling
+          }
+        }
+      )
     },
     SettingsNavigator: {
       screen: createStackNavigator(
         {
           Settings: SettingsScreen,
           SettingsUpdatePassword: SettingsUpdatePasswordScreen,
+          SettingsDeleteAccount: SettingsDeleteAccountScreen
         },
         {
           defaultNavigationOptions: {
-            ...defaultHeaderStyling,
-          },
-        },
-      ),
+            ...defaultHeaderStyling
+          }
+        }
+      )
     },
     AboutNavigator: {
       screen: createStackNavigator(
         {
-          About: AboutScreen,
+          About: AboutScreen
         },
         {
           defaultNavigationOptions: {
-            ...defaultHeaderStyling,
-          },
-        },
-      ),
+            ...defaultHeaderStyling
+          }
+        }
+      )
     },
     LogoutNavigator: {
       screen: createStackNavigator(
         {
-          Logout: LogoutScreen,
+          Logout: LogoutScreen
         },
         {
           defaultNavigationOptions: {
-            ...defaultHeaderStyling,
-          },
-        },
-      ),
-    },
+            ...defaultHeaderStyling
+          }
+        }
+      )
+    }
   },
-  {contentComponent: CustomDrawerContent},
+  { contentComponent: CustomDrawerContent }
 );
 
 const RootStack = createAppContainer(
@@ -196,12 +198,12 @@ const RootStack = createAppContainer(
     {
       AuthLoading: AuthLoadingScreen,
       App: AppStack,
-      Auth: AuthStack,
+      Auth: AuthStack
     },
     {
-      initialRouteName: 'AuthLoading',
-    },
-  ),
+      initialRouteName: "AuthLoading"
+    }
+  )
 );
 
 export default RootStack;

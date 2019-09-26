@@ -106,4 +106,5 @@ export default function* root(dispatch) {
   yield takeEvery(DELETE_EVENT_ROLLBACK_REQUESTED, deleteEventRollback);
   yield takeEvery(COMPLETE_EVENT_REQUESTED, completeEvent, api, dispatch);
   // yield takeEvery(COMPLETE_EVENT_ROLLBACK_REQUESTED, completeEventRollback);
+  // yield takeEvery(DELETE_ACCOUNT, deleteAccount, api, dispatch);
 }

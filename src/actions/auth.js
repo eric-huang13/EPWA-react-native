@@ -12,6 +12,7 @@ export const FORGOT_PASSWORD_REQUEST = "FORGOT_PASSWORD_REQUEST";
 export const CHANGE_PASSWORD_REQUEST = "CHANGE_PASSWORD_REQUEST";
 export const LOGOUT = "LOGOUT";
 export const RESET_STATE = "RESET_STATE";
+export const DELETE_ACCOUNT = "DELETE_ACCOUNT";
 
 export const authCheckRequest = () => ({
   type: AUTH_CHECK_REQUESTED
@@ -56,3 +57,7 @@ export function changePasswordRequest(data) {
 export function logout() {
   return { type: LOGOUT };
 }
+
+// export function deleteAccountRequest(data) {
+//   return { type: DELETE_ACCOUNT, ...data };
+// }

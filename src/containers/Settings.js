@@ -214,44 +214,7 @@ class SettingsScreen extends React.Component {
                 </View>
               )}
             </TouchableHighlight>
-            {!this.props.isSocialUser && (
-              <Touchable
-                onPress={() => {
-                  this.props.navigation.navigate("SettingsUpdatePassword");
-                }}
-              >
-                <View
-                  style={{
-                    flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    minHeight: 70,
-                    paddingLeft: 20,
-                    paddingRight: 30,
-                    borderBottomColor: colors.darkFilter,
-                    borderBottomWidth: 1
-                  }}
-                >
-                  <Text style={{ ...fonts.style.h4 }}>
-                    {this.props.t("updatePasswordLink")}
-                  </Text>
-                  <Icon
-                    name={iconMap.arrowRight}
-                    size={20}
-                    color={colors.nero}
-                  />
-                </View>
-              </Touchable>
-            )}
-            <View style={s.langContainer}>
-              <Select
-                showBorder
-                placeholder={{}}
-                items={getLanguageSelectItems(i18n.language, t)}
-                onValueChange={this.handleLanguangeChangeRequest}
-                value={i18n.language}
-              />
-            </View>
+
             <View style={s.field}>
               <Text>{t("firstName")}</Text>
               <TextInput
@@ -283,6 +246,73 @@ class SettingsScreen extends React.Component {
                 onChangeText={this.changeEmail}
               />
             </View>
+            <View style={s.langContainer}>
+              <Select
+                showBorder
+                placeholder={{}}
+                items={getLanguageSelectItems(i18n.language, t)}
+                onValueChange={this.handleLanguangeChangeRequest}
+                value={i18n.language}
+              />
+            </View>
+            {!this.props.isSocialUser && (
+              <Touchable
+                onPress={() => {
+                  this.props.navigation.navigate("SettingsUpdatePassword");
+                }}
+              >
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    minHeight: 70,
+                    paddingLeft: 20,
+                    paddingRight: 30,
+                    borderBottomColor: colors.darkFilter,
+                    borderBottomWidth: 1
+                  }}
+                >
+                  <Text style={{ ...fonts.style.h4 }}>
+                    {this.props.t("updatePasswordLink")}
+                  </Text>
+                  <Icon
+                    name={iconMap.arrowRight}
+                    size={20}
+                    color={colors.nero}
+                  />
+                </View>
+              </Touchable>
+            )}
+            {!this.props.isSocialUser && (
+              <Touchable
+                onPress={() => {
+                  this.props.navigation.navigate("SettingsDeleteAccount");
+                }}
+              >
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    minHeight: 70,
+                    paddingLeft: 20,
+                    paddingRight: 30,
+                    borderBottomColor: colors.darkFilter,
+                    borderBottomWidth: 1
+                  }}
+                >
+                  <Text style={{ ...fonts.style.h4 }}>
+                    {this.props.t("deleteAccount")}
+                  </Text>
+                  <Icon
+                    name={iconMap.arrowRight}
+                    size={20}
+                    color={colors.nero}
+                  />
+                </View>
+              </Touchable>
+            )}
             {/* TODO: Make the button disabled when there were no changes in form */}
             <View style={s.buttonContainer}>
               <Button

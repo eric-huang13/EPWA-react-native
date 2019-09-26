@@ -21,7 +21,8 @@ const colors = {
   tomato: "#FA6849",
   transparent: "rgba(0,0,0,0)",
   facebookBlue: "#3966B8",
-  twitterBlue: "#00A1FA"
+  twitterBlue: "#00A1FA",
+  deleteRed: "#C34B4B"
 };
 
 export default colors;
