@@ -77,7 +77,7 @@ class SettingsScreen extends React.Component {
     if (data.error === "profileUpdateSuccess") {
       showAlert({
         title: t("auth.forgotEmailSuccededAlertTitle"),
-        message: t(`profileUpdateSuccess`),
+        message: t("profileUpdateSuccess"),
         buttonLabel: t("auth.forgotEmailSuccededAlertButtonLabel"),
         onDismiss: () => {
           this.props.dispatch(clearProfileFormError());
@@ -117,19 +117,19 @@ class SettingsScreen extends React.Component {
     this.props.dispatch(updateProfileRequest(payload));
   };
 
-  changeFirstName = (firstName) => {
+  changeFirstName = firstName => {
     this.props.dispatch(changeProfileForm({ firstName }));
   };
 
-  changeLastName = (lastName) => {
+  changeLastName = lastName => {
     this.props.dispatch(changeProfileForm({ lastName }));
   };
 
-  changeEmail = (email) => {
+  changeEmail = email => {
     this.props.dispatch(changeProfileForm({ email }));
   };
 
-  handleLanguangeChangeRequest = (langCode) => {
+  handleLanguangeChangeRequest = langCode => {
     this.props.dispatch(setLanguage(langCode));
 
     // Force header to be rerendered when lang changes
@@ -159,10 +159,11 @@ class SettingsScreen extends React.Component {
           >
             <TouchableHighlight
               onPress={() =>
-                this.props.showImagePicker((url) => {
+                this.props.showImagePicker(url => {
                   // If user cancels picker, url will be undefined
-                  if (url)
+                  if (url) {
                     this.props.dispatch(changeProfileForm({ pictureUrl: url }));
+                  }
                 })
               }
             >
@@ -321,7 +322,7 @@ SettingsScreen.propTypes = {
   t: T.func
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   authToken: getToken(state),
   data: state.profileForm,
   initialValue: state.profile,
