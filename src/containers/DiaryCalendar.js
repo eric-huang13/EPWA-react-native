@@ -165,7 +165,7 @@ export default class DiaryCalendar extends Component {
   componentDidMount() {
     const allEvents = compose(
       filter(isRelatedToAnimal(this.props.currentAnimal))
-    )(this.props.events);
+    )(this.props.events || []);
     this.setMarketDates(allEvents);
   }
 

@@ -61,7 +61,6 @@ import ButtonFullWidth from "../components/ButtonFullWidth";
 import PainMeasurementGraph from "../components/PainMeasurementGraph";
 
 import {
-  groupAndTransformEvents,
   isDuringCurrentDate,
   isRelatedToAnimal,
   isPainMeasurement,
@@ -234,7 +233,6 @@ class Diary extends Component {
     this.props.dispatch(
       completeEvent({ payload: { eventId: id, completed: !val } })
     );
-    // Alert.alert("Toggle", "toggle complete: " + !val);
   };
 
   exportCSV = () => {
@@ -382,86 +380,86 @@ class Diary extends Component {
     );
   };
 
-  renderEvent = event => {
-    const {
-      id,
-      category,
-      color,
-      labels,
-      localId,
-      startDate,
-      title,
-      type,
-      data
-    } = event;
-    const eventId = id || localId;
-    const shouldShowStartDate =
-      category !== eventCategories.exercise &&
-      category !== eventCategories.housing;
-    const shouldShowLabels =
-      type !== eventTypes.recovery && type !== eventTypes.treatment;
+  // renderEvent = event => {
+  //   const {
+  //     id,
+  //     category,
+  //     color,
+  //     labels,
+  //     localId,
+  //     startDate,
+  //     title,
+  //     type,
+  //     data
+  //   } = event;
+  //   const eventId = id || localId;
+  //   const shouldShowStartDate =
+  //     category !== eventCategories.exercise &&
+  //     category !== eventCategories.housing;
+  //   const shouldShowLabels =
+  //     type !== eventTypes.recovery && type !== eventTypes.treatment;
 
-    const hasNote = Boolean(path(["data", "note"], event));
+  //   const hasNote = Boolean(path(["data", "note"], event));
 
-    const translatedLabels = [...labels];
-    if (type === "pill") {
-      if (labels[0][1] === "for_kg") {
-        translatedLabels[0][1] = this.props
-          .t("byWeight")
-          .replace("...", labels[0][0]);
-        translatedLabels[0][0] = "";
-      } else {
-        translatedLabels[0][1] = this.props.t(labels[0][1]);
-      }
-    }
+  //   const translatedLabels = [...labels];
+  //   if (type === "pill") {
+  //     if (labels[0][1] === "for_kg") {
+  //       translatedLabels[0][1] = this.props
+  //         .t("byWeight")
+  //         .replace("...", labels[0][0]);
+  //       translatedLabels[0][0] = "";
+  //     } else {
+  //       translatedLabels[0][1] = this.props.t(labels[0][1]);
+  //     }
+  //   }
 
-    if (type === eventTypes.roughage && data.unit === "unlimited") {
-      translatedLabels[0][0] = this.props.t("unlimited");
-    }
+  //   if (type === eventTypes.roughage && data.unit === "unlimited") {
+  //     translatedLabels[0][0] = this.props.t("unlimited");
+  //   }
 
-    return (
-      <Touchable
-        key={eventId}
-        onPress={() =>
-          this.navigateTo(this.routes[category], {
-            initialValue: this.findEventById(eventId)
-          })
-        }
-      >
-        <EventHeader
-          iconColor={color}
-          title={type === "treatment" ? this.props.t(title) : title}
-          startDate={shouldShowStartDate ? startDate : null}
-          labelsRight={shouldShowLabels ? translatedLabels : null}
-          note={hasNote ? data.note : null}
-        />
-      </Touchable>
-    );
-  };
+  //   return (
+  //     <Touchable
+  //       key={eventId}
+  //       onPress={() =>
+  //         this.navigateTo(this.routes[category], {
+  //           initialValue: this.findEventById(eventId)
+  //         })
+  //       }
+  //     >
+  //       <EventHeader
+  //         iconColor={color}
+  //         title={type === "treatment" ? this.props.t(title) : title}
+  //         startDate={shouldShowStartDate ? startDate : null}
+  //         labelsRight={shouldShowLabels ? translatedLabels : null}
+  //         note={hasNote ? data.note : null}
+  //       />
+  //     </Touchable>
+  //   );
+  // };
 
-  renderType = ({ name, color, events, labels }) => {
-    const shouldShowLabels = events.some(
-      event => path("data.unit", event) === "unlimited"
-    );
+  // renderType = ({ name, color, events, labels }) => {
+  //   const shouldShowLabels = events.some(
+  //     event => path("data.unit", event) === "unlimited"
+  //   );
 
-    return (
-      <View key={name}>
-        <TypeHeader
-          highlightColor={color}
-          icon={this.getTypeIcon(name)}
-          labelsRight={shouldShowLabels ? labels : []}
-          title={this.props.t(name)}
-        />
-        {events.map(this.renderEvent)}
-      </View>
-    );
-  };
+  //   return (
+  //     <View key={name}>
+  //       <TypeHeader
+  //         highlightColor={color}
+  //         icon={this.getTypeIcon(name)}
+  //         labelsRight={shouldShowLabels ? labels : []}
+  //         title={this.props.t(name)}
+  //       />
+  //       {events.map(this.renderEvent)}
+  //     </View>
+  //   );
+  // };
 
-  emptyEvents = () => (
-    <View>
-      <Text>{this.props.t("noEvents")}</Text>
-    </View>
-  );
+  // emptyEvents = () => (
+  //   <View>
+  //     <Text>{this.props.t("noEvents")}</Text>
+  //   </View>
+  // );
 
   renderEvents = ({ currentAnimal, currentDate, tabIndex }) => {
     const { t } = this.props;
@@ -511,7 +509,7 @@ class Diary extends Component {
     );
 
     if (tabIndex === 1) {
-      Reactotron.log("new struct", allEvents);
+      Reactotron.log("tab 1", allEvents);
 
       return (
         <EventsList
@@ -545,7 +543,7 @@ class Diary extends Component {
         };
       });
 
-      const maxEvents = eventsGroupedByDay.slice(1, 15);
+      const maxEvents = eventsGroupedByDay.slice(0, 15);
       return (
         <AccordionView
           data={maxEvents}
@@ -578,7 +576,7 @@ class Diary extends Component {
         };
       });
 
-      const maxEvents = eventsGroupedByDay.slice(1, 5);
+      const maxEvents = eventsGroupedByDay.slice(0, 5);
 
       return (
         <AccordionView
