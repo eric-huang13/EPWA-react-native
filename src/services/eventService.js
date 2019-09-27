@@ -15,7 +15,7 @@ import {
   getTime,
   parse,
   getMinutes,
-  getHours,
+  getHours
 } from "date-fns";
 import { get } from "lodash";
 import i18n from "../config/i18n";
@@ -26,7 +26,7 @@ import {
   setSecondsToZero,
   setMillisecondsToZero
 } from "../services/date";
-import getId from './idGenerator';
+import getId from "./idGenerator";
 
 import { eventCategories, eventCategoryColors, eventTypes } from "../constants";
 import { capitalize } from "../transforms";
@@ -121,6 +121,8 @@ export const isRelatedToAnimal = R.curry(
 export const isDuringCurrentDate = R.curry((date, event) =>
   isSameDay(event.startDate, date)
 );
+
+export const isDuringCurrentMonth = {};
 
 export const isBeforeCurrentDate = R.curry((date, event) =>
   isBefore(date, event.StartDate)
@@ -407,7 +409,7 @@ const recurringMonths = event => {
 
   return [
     { ...event, startDate: parseDateField(eventPrevMonth, event), id: getId() },
-    { ...event, startDate: parseDateField(eventNextMonth, event), id: getId() },
+    { ...event, startDate: parseDateField(eventNextMonth, event), id: getId() }
   ];
 };
 
@@ -422,13 +424,13 @@ const recurringYear = (event, currentDate) => {
 
 const reduceEvents = (event, endDay, currentDate) => {
   switch (event.recurring) {
-    case 'd':
+    case "d":
       return recurringDays(event, endDay, 1);
-    case 'w':
+    case "w":
       return recurringDays(event, endDay, 7);
-    case 'm':
+    case "m":
       return recurringMonths(event);
-    case 'y':
+    case "y":
       return recurringYear(event, currentDate);
     default:
       return [event];
@@ -465,7 +467,7 @@ export const addRecurringEvents = (allEvents, currentDate = new Date()) => {
     ) {
       return [
         ...a,
-        ...reduceEvents(event, endDate, format(event.recurringUntill)),
+        ...reduceEvents(event, endDate, format(event.recurringUntill))
       ];
     }
     return [...a, ...reduceEvents(event, endDate, currentDate)];

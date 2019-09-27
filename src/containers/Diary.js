@@ -459,7 +459,7 @@ class Diary extends Component {
 
   emptyEvents = () => (
     <View>
-      <Text>Geen events</Text>
+      <Text>{this.props.t("noEvents")}</Text>
     </View>
   );
 

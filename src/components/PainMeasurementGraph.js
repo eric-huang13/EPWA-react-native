@@ -24,7 +24,7 @@ import s from "./styles/PainMeasurementGraphStyles";
 import { colors, fonts } from "../themes";
 import Icon from "./Icon";
 import iconMap from "../constants/iconMap";
-import { isNil } from "ramda";;
+import { isNil } from "ramda";
 
 class PainMeasurementGraph extends React.Component {
   constructor(props) {
@@ -72,7 +72,7 @@ class PainMeasurementGraph extends React.Component {
 
   render() {
     const formatDate = timestamp =>
-      format(timestamp, "D MMM-HH:mm", {locale: this.props.locale});
+      format(timestamp, "D MMM-HH:mm", { locale: this.props.locale });
     const { t } = this.props;
     const maxScore = 55;
     const ticks = [];
@@ -81,7 +81,7 @@ class PainMeasurementGraph extends React.Component {
     const end = this.state.data.length;
     const start = end > 15 ? end - 15 : 0;
 
-    const isPainScore = value => isNil(value.data) === false;;
+    const isPainScore = value => isNil(value.data) === false;
 
     const data = this.state.data
       .slice(start, end)
@@ -102,7 +102,7 @@ class PainMeasurementGraph extends React.Component {
       });
 
     const facialExpressionLenght = data.filter(
-      a => a.type === "facialExpression",
+      a => a.type === "facialExpression"
     ).length;
 
     const compositeLenght = data.filter(a => a.type === "composite").length;
@@ -132,7 +132,10 @@ class PainMeasurementGraph extends React.Component {
           <ScrollView
             horizontal
             persistentScrollbar
-            style={{ width: "100%", paddingBottom: 35 }}
+            style={{
+              width: "100%",
+              paddingBottom: 35
+            }}
             ref={ref => (this.scrollView = ref)}
             onContentSizeChange={(contentWidth, contentHeight) => {
               this.scrollView.scrollToEnd({ animated: true });
@@ -141,7 +144,7 @@ class PainMeasurementGraph extends React.Component {
             <VictoryChart
               domain={{ y: [0, 30 || maxScore] }}
               domainPadding={{ x: 20 }}
-              padding={{ top: 0, right: 10, bottom: 40, left: 10 }}
+              padding={{ top: 0, right: 15, bottom: 40, left: 15 }}
               width={ticks.length * 44}
               height={120}
             >
