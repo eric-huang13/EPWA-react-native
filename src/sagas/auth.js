@@ -568,5 +568,8 @@ export function* watchPollProfileHead(api) {
 }
 
 export function* deleteAccount(api) {
-  yield call();
+  const accessToken = yield select(getToken);
+  yield call(api.deleteAccount, { accessToken });
+  // laat sherm zien succes delete
+  //ga naar beginscherm
 }

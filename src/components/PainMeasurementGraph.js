@@ -16,7 +16,7 @@ import {
   VictoryChart,
   VictoryLabel
 } from "victory-native";
-import { format, isTuesday } from "date-fns";
+import { format, isTuesday, isWithinRange, addDays } from "date-fns";
 import { dropRight } from "lodash";
 
 import { getMaximalScore } from "../services/painMeasurement";
@@ -25,13 +25,14 @@ import { colors, fonts } from "../themes";
 import Icon from "./Icon";
 import iconMap from "../constants/iconMap";
 import { isNil } from "ramda";
+import Reactotron from "reactotron-react-native";
 
 class PainMeasurementGraph extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      data: props.items,
+      data: this.props.items,
       compositeLine: [],
       facialExpressionLine: [],
       showComposite: true,
@@ -86,6 +87,13 @@ class PainMeasurementGraph extends React.Component {
     const data = this.state.data
       .slice(start, end)
       .filter(isPainScore)
+      .filter(item => {
+        return isWithinRange(
+          format(this.props.currentDate),
+          addDays(format(item.startDate), -15),
+          addDays(format(item.startDate), 5)
+        );
+      })
       .map((item, index) => {
         // maxScore = Math.max(maxScore, getMaximalScore(item));
         ticks.push(index);

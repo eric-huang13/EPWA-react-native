@@ -1,4 +1,5 @@
 import apisauce from "apisauce";
+import { Alert } from "react-native";
 
 import { basePath, csvUploadPath } from "../constants";
 
@@ -218,6 +219,14 @@ const createApi = (baseURL = basePath) => {
       }
     );
 
+  const deleteAccount = ({ accessToken }) =>
+    api.post("api/me/delete", null, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`
+      }
+    });
+
   return {
     getRoot,
     login,
@@ -238,7 +247,8 @@ const createApi = (baseURL = basePath) => {
     addEvent,
     editEvent,
     deleteEvent,
-    completeEvent
+    completeEvent,
+    deleteAccount
   };
 };
 

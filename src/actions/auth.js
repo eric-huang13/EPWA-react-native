@@ -58,6 +58,6 @@ export function logout() {
   return { type: LOGOUT };
 }
 
-// export function deleteAccountRequest(data) {
-//   return { type: DELETE_ACCOUNT, ...data };
-// }
+export function deleteAccount(payload) {
+  return { type: DELETE_ACCOUNT, payload };
+}

@@ -16,7 +16,8 @@ import {
   GOOGLE_LOGIN_REQUEST,
   FORGOT_PASSWORD_REQUEST,
   REFRESH_TOKEN_DENIED,
-  CHANGE_PASSWORD_REQUEST
+  CHANGE_PASSWORD_REQUEST,
+  DELETE_ACCOUNT
 } from "../actions/auth";
 import { UPDATE_PROFILE_REQUEST } from "../actions/profile";
 import {
@@ -30,7 +31,8 @@ import {
   refreshToken,
   refreshTokenDenied,
   watchPollProfileHead,
-  changePassword
+  changePassword,
+  deleteAccount
 } from "./auth";
 import { updateProfile } from "./profile";
 import { addAnimal, editAnimal, deleteAnimal, getAnimals } from "./animals";
@@ -105,6 +107,5 @@ export default function* root(dispatch) {
   yield takeEvery(DELETE_EVENT_REQUESTED, deleteEvent, api, dispatch);
   yield takeEvery(DELETE_EVENT_ROLLBACK_REQUESTED, deleteEventRollback);
   yield takeEvery(COMPLETE_EVENT_REQUESTED, completeEvent, api, dispatch);
-  // yield takeEvery(COMPLETE_EVENT_ROLLBACK_REQUESTED, completeEventRollback);
-  // yield takeEvery(DELETE_ACCOUNT, deleteAccount, api, dispatch);
+  yield takeEvery(DELETE_ACCOUNT, deleteAccount, api, dispatch);
 }

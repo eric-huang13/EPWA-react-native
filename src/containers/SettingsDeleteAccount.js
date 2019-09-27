@@ -16,6 +16,7 @@ import { hoistStatics } from "recompose";
 import { HeaderBackButton } from "react-navigation-stack";
 import { connect } from "react-redux";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import { DELETE_ACCOUNT } from "../actions/auth";
 
 import Button from "../components/Button";
 import Field from "../components/Field";
@@ -58,6 +59,10 @@ class SettingsDeleteAccount extends React.Component {
     this.props.submitForm();
   };
 
+  onDeleteAccount = (id, val) => {
+    this.props.dispatch(deleteAccountRequest({ payload: { userId: id } }));
+  };
+
   render() {
     const { setFieldValue, t } = this.props;
     // When you reset the form values are not passed through props and you get undefined is not an object error
@@ -70,29 +75,14 @@ class SettingsDeleteAccount extends React.Component {
           style={{
             height: 200,
             backgroundColor: colors.deleteRed,
-            color: "white"
+            color: "white",
+            justifyContent: "center",
+            alignItems: "center"
           }}
         >
-          <Text>Let OP:</Text>
+          <Text styl={{ color: "white" }}>Te bepalen content</Text>
         </View>
-        <View style={styles.row}>
-          <Text style={fonts.style.normal}>{t("deleteUserInfo")}</Text>
-          <Switch
-            style={{ marginLeft: 20 }}
-            trackColor={{ true: colors.deleteRed }}
-            value={true}
-            onValueChange={() => {}}
-          />
-        </View>
-        <View style={styles.row}>
-          <Text style={fonts.style.normal}>{t("deleteAllInfo")}</Text>
-          <Switch
-            style={{ marginLeft: 20 }}
-            trackColor={{ true: colors.deleteRed }}
-            value={false}
-            onValueChange={() => {}}
-          />
-        </View>
+
         <View style={{ padding: 20 }}>
           <Button
             style={{
@@ -110,9 +100,9 @@ class SettingsDeleteAccount extends React.Component {
 
 SettingsDeleteAccount.propTypes = {
   values: T.shape({
-    currentPassword: T.string,
-    password: T.string,
-    passwordConfirmation: T.string
+    // currentPassword: T.string,
+    // password: T.string,
+    // passwordConfirmation: T.string
   }),
   setFieldValue: T.func,
   submitForm: T.func,
@@ -127,14 +117,7 @@ const validationSchema = yup.object().shape({
 const onSubmit = (values, formikBag) => {
   const { alertDropdown, dispatch, t } = formikBag.props;
 
-  dispatch(
-    deleteAccountRequest({
-      payload: values,
-      formHelpers: formikBag,
-      showNotification: alertDropdown,
-      translate: t
-    })
-  );
+  dispatch({ type: DELETE_ACCOUNT });
 };
 
 const formikOptions = {

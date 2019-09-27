@@ -157,9 +157,16 @@ export default class DiaryCalendar extends Component {
     super(props);
     this.state = {
       revealCalendar: false,
-      markedDates: this.setMarketDates(this.props.events),
+      markedDates: [],
       selected_date: new Date().toDateString
     };
+  }
+
+  componentDidMount() {
+    const allEvents = compose(
+      filter(isRelatedToAnimal(this.props.currentAnimal))
+    )(this.props.events);
+    this.setMarketDates(allEvents);
   }
 
   toggleRevealCalendar = () => {
@@ -184,7 +191,7 @@ export default class DiaryCalendar extends Component {
 
   setMarketDates = events => {
     const a = events.map(event =>
-      format(event.startDate, "YYYY-MM-DD", {locale: nl}),
+      format(event.startDate, "YYYY-MM-DD", { locale: nl })
     );
     const b = uniq(a);
     const c = b.map(item => ({
@@ -197,7 +204,7 @@ export default class DiaryCalendar extends Component {
       }
     }));
     const d = c.length > 0 ? c.reduce((x, y) => ({ ...y, ...x })) : [];
-    return d;
+    this.setState({ markedDates: d });
   };
 
   render() {

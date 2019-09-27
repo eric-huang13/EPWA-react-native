@@ -668,9 +668,6 @@ class Diary extends Component {
       filter(isRelatedToAnimal(currentAnimal)),
       filter(isPainMeasurement)
     )(events);
-    const painMeasurements = compose(filter(isDuringCurrentDate(currentDate)))(
-      allPainMeasurements
-    );
 
     return (
       <View style={s.screenContainer}>
@@ -717,6 +714,7 @@ class Diary extends Component {
             />
           </View>
           <DiaryCalendar
+            currentAnimal={currentAnimal}
             events={events}
             onPress={this.onDatePicked}
             lang={i18n.language}
@@ -730,6 +728,7 @@ class Diary extends Component {
           />
           {allPainMeasurements.length ? (
             <PainMeasurementGraph
+              currentDate={currentDate}
               items={allPainMeasurements}
               locale={i18n.language}
               t={t}
