@@ -15,7 +15,9 @@ import {
   getTime,
   parse,
   getMinutes,
-  getHours
+  getHours,
+  endOfMonth,
+  startOfMonth
 } from "date-fns";
 import { get } from "lodash";
 import i18n from "../config/i18n";
@@ -437,9 +439,17 @@ const reduceEvents = (event, endDay, currentDate) => {
   }
 };
 
-export const addRecurringEvents = (allEvents, currentDate = new Date()) => {
-  const beginDate = subDays(format(currentDate), 15);
-  const endDate = addDays(format(currentDate), 5);
+export const addRecurringEvents = (
+  allEvents,
+  currentDate = new Date(),
+  calendar = false
+) => {
+  const beginDate = calendar
+    ? startOfMonth(format(currentDate))
+    : subDays(format(currentDate), 15);
+  const endDate = calendar
+    ? endOfMonth(format(currentDate))
+    : addDays(format(currentDate), 5);
 
   const allReducedEvents = allEvents.reduce((a, event) => {
     if (

@@ -35,7 +35,8 @@ import R, {
   uniq,
   sortBy,
   ascend,
-  descend
+  descend,
+  isNil
 } from "ramda";
 import Touchable from "react-native-platform-touchable";
 import { get } from "lodash";
@@ -297,169 +298,88 @@ class Diary extends Component {
     });
   };
 
-  renderEmptyState = () => {
-    const { i18n, t, navigation } = this.props;
-
-    return (
-      <View style={s.screenContainer}>
-        <View>
-          <Image
-            source={horsePhoto}
-            resizeMode="cover"
-            style={{ height: 180, width: "100%" }}
-          />
-        </View>
-        <View style={s.dateRow}>
-          <DateSlider
-            date={this.state.currentDate}
-            lang={this.props.i18n.language}
-            onLeftIconPress={this.moveCurrentDateBack}
-            onTextPress={() => this.datePicker.show()}
-            onRightIconPress={this.moveCurrentDateForward}
-          />
-          <TouchableOpacity
-            onPress={() => {
-              this.datePicker.show();
-            }}
-            hitSlop={{ left: 30, right: 30, top: 25, bottom: 25 }}
-          >
-            <Icon name={iconMap.calendar} size={24} color="black" />
-          </TouchableOpacity>
-          <DatePicker
-            locale={i18n.language}
-            t={t}
-            ref={this.setDatePickerRef}
-            onPick={this.onDatePicked}
-          />
-        </View>
-        <ScrollView contentContainerStyle={s.scrollContainer}>
-          <View>
-            <CategoryHeader
-              boxStyles={{
-                paddingLeft: 0,
-                backgroundColor: colors.whiteSmoke,
-                borderBottomWidth: 0,
-                marginBottom: 20
-              }}
-              textStyles={{ textAlign: "center" }}
-            >
-              {t("welcomeInDiary")}
-            </CategoryHeader>
-            <Text
-              style={{
-                paddingHorizontal: 20,
-                paddingBottom: 20,
-                ...fonts.style.normal
-              }}
-            >
-              {t("noAnimalsInDiary")}
-            </Text>
-            <View style={{ alignItems: "center" }}>
-              <Button
-                style={{ width: 240, marginBottom: 20 }}
-                backgroundColor={colors.mediumPurple}
-                label={t("addHorse")}
-                onPress={() =>
-                  navigation.navigate("AnimalForm", { type: "horse" })
-                }
-                iconName={iconMap.arrowRight}
-              />
-              <Button
-                style={{ width: 240, marginBottom: 20 }}
-                backgroundColor={colors.mediumPurple}
-                label={t("addDonkey")}
-                onPress={() =>
-                  navigation.navigate("AnimalForm", { type: "donkey" })
-                }
-                iconName={iconMap.arrowRight}
-              />
-            </View>
-          </View>
-        </ScrollView>
-      </View>
-    );
-  };
-
-  // renderEvent = event => {
-  //   const {
-  //     id,
-  //     category,
-  //     color,
-  //     labels,
-  //     localId,
-  //     startDate,
-  //     title,
-  //     type,
-  //     data
-  //   } = event;
-  //   const eventId = id || localId;
-  //   const shouldShowStartDate =
-  //     category !== eventCategories.exercise &&
-  //     category !== eventCategories.housing;
-  //   const shouldShowLabels =
-  //     type !== eventTypes.recovery && type !== eventTypes.treatment;
-
-  //   const hasNote = Boolean(path(["data", "note"], event));
-
-  //   const translatedLabels = [...labels];
-  //   if (type === "pill") {
-  //     if (labels[0][1] === "for_kg") {
-  //       translatedLabels[0][1] = this.props
-  //         .t("byWeight")
-  //         .replace("...", labels[0][0]);
-  //       translatedLabels[0][0] = "";
-  //     } else {
-  //       translatedLabels[0][1] = this.props.t(labels[0][1]);
-  //     }
-  //   }
-
-  //   if (type === eventTypes.roughage && data.unit === "unlimited") {
-  //     translatedLabels[0][0] = this.props.t("unlimited");
-  //   }
+  // renderEmptyState = () => {
+  //   const { i18n, t, navigation } = this.props;
 
   //   return (
-  //     <Touchable
-  //       key={eventId}
-  //       onPress={() =>
-  //         this.navigateTo(this.routes[category], {
-  //           initialValue: this.findEventById(eventId)
-  //         })
-  //       }
-  //     >
-  //       <EventHeader
-  //         iconColor={color}
-  //         title={type === "treatment" ? this.props.t(title) : title}
-  //         startDate={shouldShowStartDate ? startDate : null}
-  //         labelsRight={shouldShowLabels ? translatedLabels : null}
-  //         note={hasNote ? data.note : null}
-  //       />
-  //     </Touchable>
-  //   );
-  // };
-
-  // renderType = ({ name, color, events, labels }) => {
-  //   const shouldShowLabels = events.some(
-  //     event => path("data.unit", event) === "unlimited"
-  //   );
-
-  //   return (
-  //     <View key={name}>
-  //       <TypeHeader
-  //         highlightColor={color}
-  //         icon={this.getTypeIcon(name)}
-  //         labelsRight={shouldShowLabels ? labels : []}
-  //         title={this.props.t(name)}
-  //       />
-  //       {events.map(this.renderEvent)}
+  //     <View style={s.screenContainer}>
+  //       <View>
+  //         <Image
+  //           source={horsePhoto}
+  //           resizeMode="cover"
+  //           style={{ height: 180, width: "100%" }}
+  //         />
+  //       </View>
+  //       <View style={s.dateRow}>
+  //         <DateSlider
+  //           date={this.state.currentDate}
+  //           lang={this.props.i18n.language}
+  //           onLeftIconPress={this.moveCurrentDateBack}
+  //           onTextPress={() => this.datePicker.show()}
+  //           onRightIconPress={this.moveCurrentDateForward}
+  //         />
+  //         <TouchableOpacity
+  //           onPress={() => {
+  //             this.datePicker.show();
+  //           }}
+  //           hitSlop={{ left: 30, right: 30, top: 25, bottom: 25 }}
+  //         >
+  //           <Icon name={iconMap.calendar} size={24} color="black" />
+  //         </TouchableOpacity>
+  //         <DatePicker
+  //           locale={i18n.language}
+  //           t={t}
+  //           ref={this.setDatePickerRef}
+  //           onPick={this.onDatePicked}
+  //         />
+  //       </View>
+  //       <ScrollView contentContainerStyle={s.scrollContainer}>
+  //         <View>
+  //           <CategoryHeader
+  //             boxStyles={{
+  //               paddingLeft: 0,
+  //               backgroundColor: colors.whiteSmoke,
+  //               borderBottomWidth: 0,
+  //               marginBottom: 20
+  //             }}
+  //             textStyles={{ textAlign: "center" }}
+  //           >
+  //             {t("welcomeInDiary")}
+  //           </CategoryHeader>
+  //           <Text
+  //             style={{
+  //               paddingHorizontal: 20,
+  //               paddingBottom: 20,
+  //               ...fonts.style.normal
+  //             }}
+  //           >
+  //             {t("noAnimalsInDiary")}
+  //           </Text>
+  //           <View style={{ alignItems: "center" }}>
+  //             <Button
+  //               style={{ width: 240, marginBottom: 20 }}
+  //               backgroundColor={colors.mediumPurple}
+  //               label={t("addHorse")}
+  //               onPress={() =>
+  //                 navigation.navigate("AnimalForm", { type: "horse" })
+  //               }
+  //               iconName={iconMap.arrowRight}
+  //             />
+  //             <Button
+  //               style={{ width: 240, marginBottom: 20 }}
+  //               backgroundColor={colors.mediumPurple}
+  //               label={t("addDonkey")}
+  //               onPress={() =>
+  //                 navigation.navigate("AnimalForm", { type: "donkey" })
+  //               }
+  //               iconName={iconMap.arrowRight}
+  //             />
+  //           </View>
+  //         </View>
+  //       </ScrollView>
   //     </View>
   //   );
   // };
-
-  // emptyEvents = () => (
-  //   <View>
-  //     <Text>{this.props.t("noEvents")}</Text>
-  //   </View>
-  // );
 
   renderEvents = ({ currentAnimal, currentDate, tabIndex }) => {
     const { t } = this.props;
@@ -590,6 +510,37 @@ class Diary extends Component {
     }
   };
 
+  renderGraph = ({ currentAnimal, currentDate }) => {
+    const { t } = this.props;
+    const allPainMeasurements = compose(
+      filter(isRelatedToAnimal(currentAnimal)),
+      filter(isPainMeasurement)
+    )(this.props.data.events);
+
+    if (isNil(allPainMeasurements.length)) {
+      return (
+        <View
+          style={{
+            height: 100,
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Text>{t("emptyPainMeasurementList")}</Text>
+        </View>
+      );
+    }
+
+    return (
+      <PainMeasurementGraph
+        currentDate={currentDate}
+        items={allPainMeasurements}
+        locale={this.props.i18n.language}
+        t={t}
+      />
+    );
+  };
+
   renderSliderItem = ({ item }) => {
     const { width } = Dimensions.get("window");
 
@@ -662,10 +613,10 @@ class Diary extends Component {
     Reactotron.log("all events", events);
     const currentAnimal = animals[this.state.currentIndex];
     const { currentDate, tabIndex } = this.state;
-    const allPainMeasurements = compose(
-      filter(isRelatedToAnimal(currentAnimal)),
-      filter(isPainMeasurement)
-    )(events);
+    // const allPainMeasurements = compose(
+    //   filter(isRelatedToAnimal(currentAnimal)),
+    //   filter(isPainMeasurement)
+    // )(events);
 
     return (
       <View style={s.screenContainer}>
@@ -724,24 +675,8 @@ class Diary extends Component {
             loc={this.props.i18n.language}
             currentDate={this.state.currentDate}
           />
-          {allPainMeasurements.length ? (
-            <PainMeasurementGraph
-              currentDate={currentDate}
-              items={allPainMeasurements}
-              locale={i18n.language}
-              t={t}
-            />
-          ) : (
-            <View
-              style={{
-                height: 100,
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-            >
-              <Text>{t("emptyPainMeasurementList")}</Text>
-            </View>
-          )}
+          {this.renderGraph({ currentDate, currentAnimal })}
+
           <ButtonFullWidth
             onPress={() =>
               this.navigateTo(this.routes.startPainMeasurement, {

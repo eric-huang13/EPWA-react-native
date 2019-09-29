@@ -19,7 +19,10 @@ import { colors, fonts } from "../themes";
 import CalendarRevealButton from "../components/CalendarRevealButton";
 import { format } from "date-fns";
 import nl from "date-fns/locale/nl";
-import { isRelatedToAnimal } from "../services/eventService";
+import {
+  isRelatedToAnimal,
+  addRecurringEvents
+} from "../services/eventService";
 
 import Reactotron from "reactotron-react-native";
 import { compose } from "redux";
@@ -156,7 +159,7 @@ export default class DiaryCalendar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      revealCalendar: false,
+      revealCalendar: true,
       markedDates: [],
       selected_date: new Date().toDateString
     };
@@ -166,7 +169,10 @@ export default class DiaryCalendar extends Component {
     const allEvents = compose(
       filter(isRelatedToAnimal(this.props.currentAnimal))
     )(this.props.events || []);
-    this.setMarketDates(allEvents);
+
+    const calenderEvents = addRecurringEvents(allEvents, new Date(), true);
+    Reactotron.log("calEvents", calenderEvents);
+    this.setMarketDates(calenderEvents);
   }
 
   toggleRevealCalendar = () => {

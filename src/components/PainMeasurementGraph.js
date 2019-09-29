@@ -2,8 +2,8 @@ import React from "react";
 import T from "prop-types";
 import {
   View,
-  TouchableOpacity,
-  Dimensions,
+  // TouchableOpacity,
+  // Dimensions,
   ScrollView,
   Text,
   Switch,
@@ -16,14 +16,14 @@ import {
   VictoryChart,
   VictoryLabel
 } from "victory-native";
-import { format, isTuesday, isWithinRange, addDays } from "date-fns";
-import { dropRight } from "lodash";
+import { format, isWithinRange, addDays } from "date-fns";
+// import { dropRight } from "lodash";
 
-import { getMaximalScore } from "../services/painMeasurement";
-import s from "./styles/PainMeasurementGraphStyles";
+// import { getMaximalScore } from "../services/painMeasurement";
+// import s from "./styles/PainMeasurementGraphStyles";
 import { colors, fonts } from "../themes";
-import Icon from "./Icon";
-import iconMap from "../constants/iconMap";
+// import Icon from "./Icon";
+// import iconMap from "../constants/iconMap";
 import { isNil } from "ramda";
 import Reactotron from "reactotron-react-native";
 
@@ -32,7 +32,6 @@ class PainMeasurementGraph extends React.Component {
     super(props);
 
     this.state = {
-      data: this.props.items,
       compositeLine: [],
       facialExpressionLine: [],
       showComposite: true,
@@ -72,6 +71,7 @@ class PainMeasurementGraph extends React.Component {
   };
 
   render() {
+    Reactotron.log(this.state);
     const formatDate = timestamp =>
       format(timestamp, "D MMM-HH:mm", { locale: this.props.locale });
     const { t } = this.props;
@@ -79,12 +79,12 @@ class PainMeasurementGraph extends React.Component {
     const ticks = [];
     const tickStrings = [];
 
-    const end = this.state.data.length;
+    const end = this.props.items.length;
     const start = end > 15 ? end - 15 : 0;
 
     const isPainScore = value => isNil(value.data) === false;
 
-    const data = this.state.data
+    const data = this.props.items
       .slice(start, end)
       .filter(isPainScore)
       .filter(item => {
@@ -180,6 +180,8 @@ class PainMeasurementGraph extends React.Component {
                         stroke={colors.lima}
                       />
                     );
+                  } else {
+                    return;
                   }
                 })}
 
@@ -199,6 +201,8 @@ class PainMeasurementGraph extends React.Component {
                         stroke={colors.lightBlue}
                       />
                     );
+                  } else {
+                    return;
                   }
                 })}
 
@@ -212,8 +216,8 @@ class PainMeasurementGraph extends React.Component {
                     showExpression={this.state.showFacial}
                     showComposite={this.state.showComposite}
                     lineXY={this.setLineXY}
-                    lenght1={compositeLenght}
-                    lenght2={facialExpressionLenght}
+                    length1={compositeLenght}
+                    length2={facialExpressionLenght}
                   />
                 }
                 y="score"
@@ -240,12 +244,14 @@ function Box({
   color,
   data,
   lineXY,
-  lenght1,
-  lenght2,
+  length1,
+  length2,
   showComposite,
   showExpression
 }) {
-  lineXY(x, y, datum.type, lenght1, lenght2);
+  lineXY(x, y, datum.type, length1, length2);
+
+  Reactotron.log(x, y, datum.type, length1, length2);
 
   if (datum.type === "facialExpression" && showExpression === false) {
     return null;
