@@ -570,6 +570,11 @@ export function* watchPollProfileHead(api) {
 export function* deleteAccount(api) {
   const accessToken = yield select(getToken);
   yield call(api.deleteAccount, { accessToken });
-  // laat sherm zien succes delete
-  //ga naar beginscherm
+  // Trigger cleanup in reducers/index.js - clean state and persisted state in local storage
+  yield put({ type: RESET_STATE });
+  // Trigger cleanup in Redux Offline
+  // you don't want to keep retrying network requests when you might be logged in as a different user
+  yield put({ type: REDUX_OFFLINE_RESET_STATE });
+  // FIXME: It doesn't navigate back to Auth, stays in App stack
+  yield call(NavigatorService.navigate, "Auth");
 }

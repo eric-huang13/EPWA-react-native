@@ -1091,6 +1091,8 @@
     "eventMedication": "Medication",
     "deleteUserInfo": "Delete my user information",
     "deleteAllInfo": "Delete all information",
+    "confirmDeleteAccount": "Are you sure you want to delete you'r user account?",
+    "confirmDeleteAccountInfo": "This will remove all your data and can't be restored",
     "categories": {
       "painMeasurement": "Painmeasurement",
       "feeding": "Feeding",

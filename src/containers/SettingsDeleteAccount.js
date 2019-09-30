@@ -1,14 +1,7 @@
 import React from "react";
 import T from "prop-types";
 import * as yup from "yup";
-import {
-  View,
-  TextInput,
-  Text,
-  Switch,
-  StyleSheet,
-  Platform
-} from "react-native";
+import { View, Text, StyleSheet, Platform, Alert } from "react-native";
 import { compose } from "ramda";
 import { withFormik } from "formik";
 import { translate } from "react-i18next";
@@ -99,11 +92,11 @@ class SettingsDeleteAccount extends React.Component {
 }
 
 SettingsDeleteAccount.propTypes = {
-  values: T.shape({
-    // currentPassword: T.string,
-    // password: T.string,
-    // passwordConfirmation: T.string
-  }),
+  // values: T.shape({
+  // currentPassword: T.string,
+  // password: T.string,
+  // passwordConfirmation: T.string
+  // }),
   setFieldValue: T.func,
   submitForm: T.func,
   t: T.func
@@ -114,10 +107,24 @@ const validationSchema = yup.object().shape({
   delAllInfo: yup.bool().notRequired()
 });
 
+const showSuccess = (alertDropdown, title, msg) => {
+  alertDropdown("success", title, msg);
+};
+
 const onSubmit = (values, formikBag) => {
   const { alertDropdown, dispatch, t } = formikBag.props;
 
-  dispatch({ type: DELETE_ACCOUNT });
+  Alert.alert(t("confirmDeleteAccount"), t("confirmDeleteAccountInfo"), [
+    {
+      text: t("deleteAccount"),
+      onPress: () => dispatch({ type: DELETE_ACCOUNT })
+    },
+    {
+      text: t("cancel"),
+      onPress: () => console.log("Cancel Pressed"),
+      style: "cancel"
+    }
+  ]);
 };
 
 const formikOptions = {

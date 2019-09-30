@@ -159,7 +159,7 @@ export default class DiaryCalendar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      revealCalendar: true,
+      revealCalendar: false,
       markedDates: [],
       selected_date: new Date()
     };
