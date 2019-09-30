@@ -167,6 +167,7 @@ class PainMeasurementGraph extends React.Component {
                 tickLabelComponent={<VictoryLabel dx={0} />}
               />
               {this.state.showComposite &&
+                this.state.compositeLine.length > 0 &&
                 this.state.compositeLine.map((line, index) => {
                   if (this.state.compositeLine[index + 1]) {
                     return (
@@ -186,6 +187,7 @@ class PainMeasurementGraph extends React.Component {
                 })}
 
               {this.state.showFacial &&
+                this.state.facialExpressionLine.length > 0 &&
                 this.state.facialExpressionLine.map((line, index) => {
                   if (this.state.facialExpressionLine[index + 1]) {
                     return (
@@ -250,8 +252,6 @@ function Box({
   showExpression
 }) {
   lineXY(x, y, datum.type, length1, length2);
-
-  Reactotron.log(x, y, datum.type, length1, length2);
 
   if (datum.type === "facialExpression" && showExpression === false) {
     return null;

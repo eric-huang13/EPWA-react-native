@@ -17,7 +17,7 @@ import R, {
 } from "ramda";
 import { colors, fonts } from "../themes";
 import CalendarRevealButton from "../components/CalendarRevealButton";
-import { format } from "date-fns";
+import { format, isSameDay } from "date-fns";
 import nl from "date-fns/locale/nl";
 import {
   isRelatedToAnimal,
@@ -161,7 +161,7 @@ export default class DiaryCalendar extends Component {
     this.state = {
       revealCalendar: true,
       markedDates: [],
-      selected_date: new Date().toDateString
+      selected_date: new Date()
     };
   }
 
@@ -186,13 +186,13 @@ export default class DiaryCalendar extends Component {
   };
 
   setSelectedDate = day => {
-    this.setState({ selected_date: day.dateString });
+    this.setState({ selected_date: day });
     this.props.onPress(new Date(day.timestamp));
   };
 
   resetToday = () => {
     this.props.onPress(new Date());
-    this.setState({ selected_date: new Date().toDateString });
+    this.setState({ selected_date: new Date() });
   };
 
   setMarketDates = events => {
@@ -226,11 +226,32 @@ export default class DiaryCalendar extends Component {
           }}
         >
           <TouchableOpacity onPress={this.resetToday}>
-            <View>
-              <Text style={{ ...fonts.style.dateFont }}>
-                {formatDate(new Date(), this.props.lang)}
-              </Text>
-            </View>
+            {isSameDay(format(this.state.selected_date), format(new Date())) ? (
+              <View>
+                <Text style={{ ...fonts.style.dateFont }}>
+                  {formatDate(new Date(), this.props.lang)}
+                </Text>
+              </View>
+            ) : (
+              <View
+                style={{
+                  borderWidth: 1,
+                  borderColor: colors.mediumPurple,
+                  paddingHorizontal: 10,
+                  paddingVertical: 5,
+                  borderRadius: 3
+                }}
+              >
+                <Text
+                  style={[
+                    { ...fonts.style.dateFont },
+                    { fontSize: 16, color: colors.mediumPurple }
+                  ]}
+                >
+                  {this.props.t("today")}
+                </Text>
+              </View>
+            )}
           </TouchableOpacity>
           <CalendarRevealButton
             onPress={this.toggleRevealCalendar}

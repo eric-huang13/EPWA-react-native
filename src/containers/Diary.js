@@ -298,88 +298,88 @@ class Diary extends Component {
     });
   };
 
-  // renderEmptyState = () => {
-  //   const { i18n, t, navigation } = this.props;
+  renderEmptyState = () => {
+    const { i18n, t, navigation } = this.props;
 
-  //   return (
-  //     <View style={s.screenContainer}>
-  //       <View>
-  //         <Image
-  //           source={horsePhoto}
-  //           resizeMode="cover"
-  //           style={{ height: 180, width: "100%" }}
-  //         />
-  //       </View>
-  //       <View style={s.dateRow}>
-  //         <DateSlider
-  //           date={this.state.currentDate}
-  //           lang={this.props.i18n.language}
-  //           onLeftIconPress={this.moveCurrentDateBack}
-  //           onTextPress={() => this.datePicker.show()}
-  //           onRightIconPress={this.moveCurrentDateForward}
-  //         />
-  //         <TouchableOpacity
-  //           onPress={() => {
-  //             this.datePicker.show();
-  //           }}
-  //           hitSlop={{ left: 30, right: 30, top: 25, bottom: 25 }}
-  //         >
-  //           <Icon name={iconMap.calendar} size={24} color="black" />
-  //         </TouchableOpacity>
-  //         <DatePicker
-  //           locale={i18n.language}
-  //           t={t}
-  //           ref={this.setDatePickerRef}
-  //           onPick={this.onDatePicked}
-  //         />
-  //       </View>
-  //       <ScrollView contentContainerStyle={s.scrollContainer}>
-  //         <View>
-  //           <CategoryHeader
-  //             boxStyles={{
-  //               paddingLeft: 0,
-  //               backgroundColor: colors.whiteSmoke,
-  //               borderBottomWidth: 0,
-  //               marginBottom: 20
-  //             }}
-  //             textStyles={{ textAlign: "center" }}
-  //           >
-  //             {t("welcomeInDiary")}
-  //           </CategoryHeader>
-  //           <Text
-  //             style={{
-  //               paddingHorizontal: 20,
-  //               paddingBottom: 20,
-  //               ...fonts.style.normal
-  //             }}
-  //           >
-  //             {t("noAnimalsInDiary")}
-  //           </Text>
-  //           <View style={{ alignItems: "center" }}>
-  //             <Button
-  //               style={{ width: 240, marginBottom: 20 }}
-  //               backgroundColor={colors.mediumPurple}
-  //               label={t("addHorse")}
-  //               onPress={() =>
-  //                 navigation.navigate("AnimalForm", { type: "horse" })
-  //               }
-  //               iconName={iconMap.arrowRight}
-  //             />
-  //             <Button
-  //               style={{ width: 240, marginBottom: 20 }}
-  //               backgroundColor={colors.mediumPurple}
-  //               label={t("addDonkey")}
-  //               onPress={() =>
-  //                 navigation.navigate("AnimalForm", { type: "donkey" })
-  //               }
-  //               iconName={iconMap.arrowRight}
-  //             />
-  //           </View>
-  //         </View>
-  //       </ScrollView>
-  //     </View>
-  //   );
-  // };
+    return (
+      <View style={s.screenContainer}>
+        <View>
+          <Image
+            source={horsePhoto}
+            resizeMode="cover"
+            style={{ height: 180, width: "100%" }}
+          />
+        </View>
+        <View style={s.dateRow}>
+          <DateSlider
+            date={this.state.currentDate}
+            lang={this.props.i18n.language}
+            onLeftIconPress={this.moveCurrentDateBack}
+            onTextPress={() => this.datePicker.show()}
+            onRightIconPress={this.moveCurrentDateForward}
+          />
+          <TouchableOpacity
+            onPress={() => {
+              this.datePicker.show();
+            }}
+            hitSlop={{ left: 30, right: 30, top: 25, bottom: 25 }}
+          >
+            <Icon name={iconMap.calendar} size={24} color="black" />
+          </TouchableOpacity>
+          <DatePicker
+            locale={i18n.language}
+            t={t}
+            ref={this.setDatePickerRef}
+            onPick={this.onDatePicked}
+          />
+        </View>
+        <ScrollView contentContainerStyle={s.scrollContainer}>
+          <View>
+            <CategoryHeader
+              boxStyles={{
+                paddingLeft: 0,
+                backgroundColor: colors.whiteSmoke,
+                borderBottomWidth: 0,
+                marginBottom: 20
+              }}
+              textStyles={{ textAlign: "center" }}
+            >
+              {t("welcomeInDiary")}
+            </CategoryHeader>
+            <Text
+              style={{
+                paddingHorizontal: 20,
+                paddingBottom: 20,
+                ...fonts.style.normal
+              }}
+            >
+              {t("noAnimalsInDiary")}
+            </Text>
+            <View style={{ alignItems: "center" }}>
+              <Button
+                style={{ width: 240, marginBottom: 20 }}
+                backgroundColor={colors.mediumPurple}
+                label={t("addHorse")}
+                onPress={() =>
+                  navigation.navigate("AnimalForm", { type: "horse" })
+                }
+                iconName={iconMap.arrowRight}
+              />
+              <Button
+                style={{ width: 240, marginBottom: 20 }}
+                backgroundColor={colors.mediumPurple}
+                label={t("addDonkey")}
+                onPress={() =>
+                  navigation.navigate("AnimalForm", { type: "donkey" })
+                }
+                iconName={iconMap.arrowRight}
+              />
+            </View>
+          </View>
+        </ScrollView>
+      </View>
+    );
+  };
 
   renderEvents = ({ currentAnimal, currentDate, tabIndex }) => {
     const { t } = this.props;
@@ -667,6 +667,7 @@ class Diary extends Component {
             events={events}
             onPress={this.onDatePicked}
             lang={i18n.language}
+            t={t}
           />
           <DiaryTimeTab
             handleIndexChange={this.handleIndexChange}
