@@ -71,7 +71,7 @@ class PainMeasurementGraph extends React.Component {
   };
 
   render() {
-    Reactotron.log(this.state);
+    // Reactotron.log(this.state);
     const formatDate = timestamp =>
       format(timestamp, "D MMM-HH:mm", { locale: this.props.locale });
     const { t } = this.props;

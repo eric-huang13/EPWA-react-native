@@ -21,7 +21,7 @@ import { format, isSameDay } from "date-fns";
 import nl from "date-fns/locale/nl";
 import {
   isRelatedToAnimal,
-  addRecurringEvents
+  addRecurringCalendarEvents
 } from "../services/eventService";
 
 import Reactotron from "reactotron-react-native";
@@ -159,20 +159,10 @@ export default class DiaryCalendar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      revealCalendar: false,
-      markedDates: [],
-      selected_date: new Date()
+      revealCalendar: true,
+      selected_date: format(new Date()),
+      selected_month: format(new Date())
     };
-  }
-
-  componentDidMount() {
-    const allEvents = compose(
-      filter(isRelatedToAnimal(this.props.currentAnimal))
-    )(this.props.events || []);
-
-    const calenderEvents = addRecurringEvents(allEvents, new Date(), true);
-    Reactotron.log("calEvents", calenderEvents);
-    this.setMarketDates(calenderEvents);
   }
 
   toggleRevealCalendar = () => {
@@ -195,26 +185,47 @@ export default class DiaryCalendar extends Component {
     this.setState({ selected_date: new Date() });
   };
 
-  setMarketDates = events => {
-    const a = events.map(event =>
+  setMarkedDates = events => {
+    const eventsDates = events.map(event =>
       format(event.startDate, "YYYY-MM-DD", { locale: nl })
     );
-    const b = uniq(a);
-    const c = b.map(item => ({
-      [item]: {
+    const uniqEventsDates = uniq(eventsDates);
+    const alEventsInCalendar = uniqEventsDates.map(eventDate => ({
+      [eventDate]: {
         dots: Array(5).fill(
-          activity,
+          {
+            color: colors.mediumPurple,
+            selectedDotColor: colors.mediumPurple
+          },
           0,
-          a.filter(event => event === item).length
+          eventsDates.filter(date => date === eventDate).length
         )
       }
     }));
-    const d = c.length > 0 ? c.reduce((x, y) => ({ ...y, ...x })) : [];
-    this.setState({ markedDates: d });
+    const marks =
+      alEventsInCalendar.length > 0
+        ? alEventsInCalendar.reduce((x, y) => ({ ...y, ...x }))
+        : {};
+
+    return marks;
   };
 
   render() {
     LocaleConfig.defaultLocale = this.props.lang;
+
+    const allEvents = compose(
+      filter(isRelatedToAnimal(this.props.currentAnimal))
+    )(this.props.events || []);
+
+    const calendarEvents = addRecurringCalendarEvents(
+      allEvents,
+      this.state.selected_month
+    );
+    Reactotron.log("calendarEvents", calendarEvents);
+
+    const marks = this.setMarkedDates(calendarEvents);
+    Reactotron.log("marks", marks);
+    Reactotron.log("state", this.state);
     return (
       <React.Fragment>
         <View
@@ -264,17 +275,24 @@ export default class DiaryCalendar extends Component {
             <Calendar
               current={this.state.selected_date}
               markedDates={{
-                ...this.state.markedDates,
+                ...marks,
                 [this.state.selected_date]: {
-                  ...this.state.markedDates[this.state.selected_date],
+                  ...marks[this.state.selected_date],
                   selected: true,
                   disableTouchEvent: true
                 }
               }}
               onDayPress={day => {
                 this.setSelectedDate(day);
-                this.closeCalendar();
+                // this.closeCalendar();
               }}
+              onMonthChange={month => {
+                Reactotron.log("month changed", month);
+                // this.setState({
+                //   selected_month: month.dateString
+                // });
+              }}
+              // onPressArrowRight={addMonth => addMonth()}
               theme={{
                 textSectionTitleColor: colors.black,
                 monthTextColor: colors.black,

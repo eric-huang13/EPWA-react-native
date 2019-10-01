@@ -122,7 +122,7 @@ export class AccordionView extends Component {
   };
 
   render() {
-    Reactotron.log("accordeon", this.props.data);
+    // Reactotron.log("accordeon", this.props.data);
     return (
       <Accordion
         sections={this.props.data}

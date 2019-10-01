@@ -421,9 +421,6 @@ const recurringYear = (event, currentDate) => {
   return [{ ...event, startDate: parseDateField(yearDate, event) }];
 };
 
-// console.log("vooruit", addMonths(new Date(), 1)); werkt
-// console.log("achterruit", addMonths(new Date(), -1)); werkt
-
 const reduceEvents = (event, endDay, currentDate) => {
   switch (event.recurring) {
     case "d":
@@ -481,6 +478,45 @@ export const addRecurringEvents = (
       ];
     }
     return [...a, ...reduceEvents(event, endDate, currentDate)];
+  }, []);
+
+  return allReducedEvents;
+};
+
+export const addRecurringCalendarEvents = (allEvents, month = new Date()) => {
+  const beginDate = subDays(startOfMonth(format(month)), 6);
+  const endDate = addDays(endOfMonth(format(month)), 6);
+
+  const allReducedEvents = allEvents.reduce((a, event) => {
+    if (
+      isNil(event.recurring) &&
+      !isWithinRange(format(event.startDate), beginDate, endDate)
+    ) {
+      return [a];
+    }
+    if (
+      isNil(event.recurring) &&
+      isWithinRange(format(event.startDate), beginDate, endDate)
+    ) {
+      return [...a, event];
+    }
+
+    if (
+      !isNil(event.recurringUntill) &&
+      isBefore(format(beginDate), format(event.recurringUntill))
+    ) {
+      return a;
+    }
+    if (
+      !isNil(event.recurringUntill) &&
+      isBefore(format(event.recurringUntill), format(endDate))
+    ) {
+      return [
+        ...a,
+        ...reduceEvents(event, endDate, format(event.recurringUntill))
+      ];
+    }
+    return [...a, ...reduceEvents(event, endDate, month)];
   }, []);
 
   return allReducedEvents;
