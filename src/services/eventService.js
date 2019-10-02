@@ -398,7 +398,7 @@ export const transformCurrentDayEvents = events => {
 
 const recurringDays = (event, endDate, num) => {
   if (isBefore(endDate, format(event.startDate))) {
-    return [];
+    return;
   }
   const days = eachDay(format(event.startDate), endDate, num);
   const daysEvents = days.map(day => {
