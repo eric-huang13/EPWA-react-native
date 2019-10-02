@@ -17,7 +17,7 @@ import R, {
 } from "ramda";
 import { colors, fonts } from "../themes";
 import CalendarRevealButton from "../components/CalendarRevealButton";
-import { format, isSameDay } from "date-fns";
+import { format, isSameDay, isSameMonth } from "date-fns";
 import nl from "date-fns/locale/nl";
 import {
   isRelatedToAnimal,
@@ -160,7 +160,7 @@ export default class DiaryCalendar extends Component {
     super(props);
     this.state = {
       revealCalendar: true,
-      selected_date: format(new Date()),
+      selected_date: new Date(),
       selected_month: format(new Date())
     };
   }
@@ -176,13 +176,14 @@ export default class DiaryCalendar extends Component {
   };
 
   setSelectedDate = day => {
-    this.setState({ selected_date: day });
+    this.setState({ selected_date: day.dateString });
     this.props.onPress(new Date(day.timestamp));
+    Reactotron.log("day", day);
   };
 
   resetToday = () => {
     this.props.onPress(new Date());
-    this.setState({ selected_date: new Date() });
+    this.setState({ selected_month: new Date() });
   };
 
   setMarkedDates = events => {
@@ -221,11 +222,11 @@ export default class DiaryCalendar extends Component {
       allEvents,
       this.state.selected_month
     );
-    Reactotron.log("calendarEvents", calendarEvents);
+    // Reactotron.log("calendarEvents", calendarEvents);
 
     const marks = this.setMarkedDates(calendarEvents);
-    Reactotron.log("marks", marks);
-    Reactotron.log("state", this.state);
+    // Reactotron.log("marks", marks);
+    // Reactotron.log("state", this.state);
     return (
       <React.Fragment>
         <View
@@ -236,14 +237,15 @@ export default class DiaryCalendar extends Component {
             paddingHorizontal: 20
           }}
         >
-          <TouchableOpacity onPress={this.resetToday}>
-            {isSameDay(format(this.state.selected_date), format(new Date())) ? (
-              <View>
-                <Text style={{ ...fonts.style.dateFont }}>
-                  {formatDate(new Date(), this.props.lang)}
-                </Text>
-              </View>
-            ) : (
+          {isSameDay(format(this.state.selected_date), format(new Date())) &&
+          isSameMonth(this.state.selected_month, format(new Date())) ? (
+            <View>
+              <Text style={{ ...fonts.style.dateFont }}>
+                {formatDate(new Date(), this.props.lang)}
+              </Text>
+            </View>
+          ) : (
+            <TouchableOpacity onPress={this.resetToday}>
               <View
                 style={{
                   borderWidth: 1,
@@ -262,8 +264,9 @@ export default class DiaryCalendar extends Component {
                   {this.props.t("today")}
                 </Text>
               </View>
-            )}
-          </TouchableOpacity>
+            </TouchableOpacity>
+          )}
+
           <CalendarRevealButton
             onPress={this.toggleRevealCalendar}
             open={this.state.revealCalendar}
@@ -273,7 +276,7 @@ export default class DiaryCalendar extends Component {
         <Collapsible collapsed={!this.state.revealCalendar}>
           <View style={{ paddingHorizontal: 20, paddingBottom: 30 }}>
             <Calendar
-              current={this.state.selected_date}
+              current={this.state.selected_month}
               markedDates={{
                 ...marks,
                 [this.state.selected_date]: {
@@ -284,15 +287,14 @@ export default class DiaryCalendar extends Component {
               }}
               onDayPress={day => {
                 this.setSelectedDate(day);
-                // this.closeCalendar();
+                this.closeCalendar();
               }}
               onMonthChange={month => {
-                Reactotron.log("month changed", month);
-                // this.setState({
-                //   selected_month: month.dateString
-                // });
+                // Reactotron.log("month changed", month);
+                this.setState({
+                  selected_month: month.timestamp
+                });
               }}
-              // onPressArrowRight={addMonth => addMonth()}
               theme={{
                 textSectionTitleColor: colors.black,
                 monthTextColor: colors.black,
