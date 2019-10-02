@@ -1,4 +1,4 @@
-import R, { __, isNil, compose } from "ramda";
+import R, { __, isNil, compose, contains } from "ramda";
 import {
   differenceInMinutes,
   format,
@@ -31,6 +31,7 @@ import {
   setMillisecondsToZero
 } from "../services/date";
 import getId from "./idGenerator";
+import Reactotron from "reactotron-react-native";
 
 import { eventCategories, eventCategoryColors, eventTypes } from "../constants";
 import { capitalize } from "../transforms";
@@ -438,6 +439,70 @@ const getRecurringEvents = (event, endDay, currentDate) => {
   }
 };
 
+// export const addRecurringEvents2 = (allEvents, currentDate = new Date()) => {
+//   const beginDate = subDays(format(currentDate), 15);
+//   const endDate = addDays(format(currentDate), 5);
+
+//   const eventsInRange = allEvents.filter(event =>
+//     isWithinRange(format(event.startDate), beginDate, endDate)
+//   );
+
+//   const allRecurringEvents = eventsInRange.filter(
+//     event => !isNil(event.recurring)
+//   );
+
+//   const allNonRecurringEvents = eventsInRange.filter(event =>
+//     isNil(event.recurring)
+//   );
+
+//   const removedDoubleEvents = allRecurringEvents.filter(event => {
+//     return !contains(
+//       { startDate: event.startDate, type: event.type },
+//       allNonRecurringEvents
+//     );
+//   });
+//   return [...removedDoubleEvents, ...allNonRecurringEvents];
+// };
+
+// export const addRecurringEvents = (allEvents, currentDate = new Date()) => {
+//   const beginDate = subDays(format(currentDate), 15);
+//   const endDate = addDays(format(currentDate), 5);
+
+//   const allReducedEvents = allEvents.reduce((a, event) => {
+//     if (
+//       isNil(event.recurring) &&
+//       !isWithinRange(format(event.startDate), beginDate, endDate)
+//     ) {
+//       return a;
+//     }
+//     if (
+//       isNil(event.recurring) &&
+//       isWithinRange(format(event.startDate), beginDate, endDate)
+//     ) {
+//       return [...a, event];
+//     }
+
+//     if (
+//       !isNil(event.recurringUntill) &&
+//       isBefore(format(beginDate), format(event.recurringUntill))
+//     ) {
+//       return a;
+//     }
+//     if (
+//       !isNil(event.recurringUntill) &&
+//       isBefore(format(event.recurringUntill), format(endDate))
+//     ) {
+//       return [
+//         ...a,
+//         ...getRecurringEvents(event, endDate, format(event.recurringUntill))
+//       ];
+//     }
+//     return [...a, ...getRecurringEvents(event, endDate, currentDate)];
+//   }, []);
+
+//   return allReducedEvents;
+// };
+
 export const addRecurringEvents = (allEvents, currentDate = new Date()) => {
   const beginDate = subDays(format(currentDate), 15);
   const endDate = addDays(format(currentDate), 5);
@@ -474,7 +539,34 @@ export const addRecurringEvents = (allEvents, currentDate = new Date()) => {
     return [...a, ...getRecurringEvents(event, endDate, currentDate)];
   }, []);
 
-  return allReducedEvents;
+  const allRecurringEvents = allReducedEvents.filter(
+    event => !isNil(event.recurring)
+  );
+
+  const allNonRecurringEvents = allReducedEvents.filter(event =>
+    isNil(event.recurring)
+  );
+
+  const removedDoubleEvents = allRecurringEvents.filter(event => {
+    // Reactotron.log(
+    //   "dates-eq",
+    //   event.startDate + "  " + allNonRecurringEvents[0].startDate
+    // );
+    const toCompareArr = allNonRecurringEvents.map(item => {
+      return {
+        startDate: item.startDate,
+        type: item.type
+      };
+    });
+    Reactotron.log("compare", toCompareArr);
+
+    return !contains(
+      { startDate: event.startDate, type: event.type },
+      toCompareArr
+    );
+  });
+
+  return [...removedDoubleEvents, ...allNonRecurringEvents];
 };
 
 export const addRecurringCalendarEvents = (allEvents, month = new Date()) => {
