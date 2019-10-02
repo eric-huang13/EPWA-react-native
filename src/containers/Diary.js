@@ -671,10 +671,10 @@ class Diary extends Component {
           />
           <DiaryTimeTab
             handleIndexChange={this.handleIndexChange}
-            tabIndex={this.state.tabIndex}
+            tabIndex={tabIndex}
             t={t}
             loc={this.props.i18n.language}
-            currentDate={this.state.currentDate}
+            currentDate={currentDate}
           />
           {this.renderGraph({ currentDate, currentAnimal })}
 

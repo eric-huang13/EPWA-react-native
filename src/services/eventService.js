@@ -423,7 +423,7 @@ const recurringYear = (event, currentDate) => {
   return [{ ...event, startDate: parseDateField(yearDate, event) }];
 };
 
-const reduceEvents = (event, endDay, currentDate) => {
+const getRecurringEvents = (event, endDay, currentDate) => {
   switch (event.recurring) {
     case "d":
       return recurringDays(event, endDay, 1);
@@ -438,24 +438,16 @@ const reduceEvents = (event, endDay, currentDate) => {
   }
 };
 
-export const addRecurringEvents = (
-  allEvents,
-  currentDate = new Date(),
-  calendar = false
-) => {
-  const beginDate = calendar
-    ? startOfMonth(format(currentDate))
-    : subDays(format(currentDate), 15);
-  const endDate = calendar
-    ? endOfMonth(format(currentDate))
-    : addDays(format(currentDate), 5);
+export const addRecurringEvents = (allEvents, currentDate = new Date()) => {
+  const beginDate = subDays(format(currentDate), 15);
+  const endDate = addDays(format(currentDate), 5);
 
   const allReducedEvents = allEvents.reduce((a, event) => {
     if (
       isNil(event.recurring) &&
       !isWithinRange(format(event.startDate), beginDate, endDate)
     ) {
-      return [a];
+      return a;
     }
     if (
       isNil(event.recurring) &&
@@ -476,10 +468,10 @@ export const addRecurringEvents = (
     ) {
       return [
         ...a,
-        ...reduceEvents(event, endDate, format(event.recurringUntill))
+        ...getRecurringEvents(event, endDate, format(event.recurringUntill))
       ];
     }
-    return [...a, ...reduceEvents(event, endDate, currentDate)];
+    return [...a, ...getRecurringEvents(event, endDate, currentDate)];
   }, []);
 
   return allReducedEvents;
@@ -494,7 +486,7 @@ export const addRecurringCalendarEvents = (allEvents, month = new Date()) => {
       isNil(event.recurring) &&
       !isWithinRange(format(event.startDate), beginDate, endDate)
     ) {
-      return [a];
+      return a;
     }
     if (
       isNil(event.recurring) &&
@@ -515,10 +507,10 @@ export const addRecurringCalendarEvents = (allEvents, month = new Date()) => {
     ) {
       return [
         ...a,
-        ...reduceEvents(event, endDate, format(event.recurringUntill))
+        ...getRecurringEvents(event, endDate, format(event.recurringUntill))
       ];
     }
-    return [...a, ...reduceEvents(event, endDate, month)];
+    return [...a, ...getRecurringEvents(event, endDate, month)];
   }, []);
 
   return allReducedEvents;

@@ -179,9 +179,10 @@ export function NewListItem({
   );
   const time = format(startDate, "HH:mm");
   const feedingCompleted =
-    groupedEvents.filter(event => event.completed === false).length !== 0
-      ? false
-      : true;
+    groupedEvents.filter(event => event.completed === true).length ===
+    groupedEvents.length
+      ? true
+      : false;
 
   return (
     <View style={styles.container}>

@@ -178,7 +178,7 @@ export default class DiaryCalendar extends Component {
   setSelectedDate = day => {
     this.setState({ selected_date: day.dateString });
     this.props.onPress(new Date(day.timestamp));
-    Reactotron.log("day", day);
+    // Reactotron.log("day", day);
   };
 
   resetToday = () => {
