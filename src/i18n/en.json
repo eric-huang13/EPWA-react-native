@@ -1104,6 +1104,10 @@
       "composite": "Composite",
       "facialExpression": "Facial painmeasurement"
     },
-    "typePainMeasurement": "Type of painmeasurement"
+    "typePainMeasurement": "Type of painmeasurement",
+    "editRecurringEventWarning": "Do you want to change the current recurring event or make a new one?",
+    "editRecurring": "Edit",
+    "newRecurring": "New",
+    "selectAnOption": "Edited recurring events will only apply to future events"
   }
 }

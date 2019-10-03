@@ -1102,8 +1102,13 @@
       "composite": "Samengestelde pijnmeting",
       "facialExpression": "Gezichtspijnmeting"
     },
-    "typePainMeasurement": "Type pijnmeting"
+    "typePainMeasurement": "Type pijnmeting",
+    "editRecurringEventWarning": "Wil je de huidige herhalende afspraak wijzigen, of een nieuwe herhalende afspraak maken?",
+    "editRecurring": "Wijzig",
+    "newRecurring": "Nieuw",
+    "selectAnOption": "Bij gewijzigde herhaalde afspaken worden alleen de toekomstige afspraken gewijzigd"
   },
+
   "calendar": {
     "monthNames": [
       "Januari",

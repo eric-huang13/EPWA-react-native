@@ -7,7 +7,8 @@ import {
   KeyboardAvoidingView,
   Platform,
   Switch,
-  Text
+  Text,
+  Alert
 } from "react-native";
 import { HeaderBackButton } from "react-navigation-stack";
 import { FieldArray, withFormik } from "formik";
@@ -24,7 +25,7 @@ import {
   isValid
 } from "date-fns";
 import { get, toNumber } from "lodash";
-import { __, compose, flatten } from "ramda";
+import { __, compose, flatten, isNil } from "ramda";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 import s from "./styles/DiaryFeedingFormStyles";
@@ -113,12 +114,13 @@ class DiaryFeedingForm extends Component {
     super(props);
 
     const isEditing = Boolean(props.navigation.getParam("initialValue"));
-    const localDate = props.navigation.getParam("localDate");
+    const localDate = +props.navigation.getParam("localDate") || null;
 
-    Reactotron.log("localDateForm", localDate);
+    Reactotron.log("localDate in Form", format(localDate));
 
     this.state = {
-      isEditing
+      isEditing,
+      localDate
     };
 
     this.isAndroid = Platform.OS === "android";
@@ -186,6 +188,8 @@ class DiaryFeedingForm extends Component {
     const fieldPath = `${namespace}[${index}].${fieldName}`;
     const hasErrors = get(errors, fieldPath);
     const currentDate = this.props.navigation.getParam("currentDate");
+    Reactotron.log("currentDate in Form", currentDate);
+
     let ref;
 
     return (
@@ -206,7 +210,9 @@ class DiaryFeedingForm extends Component {
           ]}
           onPress={() => ref.show()}
         >
-          {this.formatDateField(entry[fieldName])}
+          {isNil(this.state.localDate)
+            ? this.formatDateField(entry[fieldName])
+            : this.formatDateField(this.state.localDate)}
         </SelectButton>
       </View>
     );
@@ -538,13 +544,25 @@ const triggerSubmitType = (
 };
 
 const onSubmit = (values, formikBag) => {
+  Reactotron.log("Wat text", values, formikBag);
+
+  const t = formikBag.props.t;
+
   const flattenValues = compose(
     flatten,
     Object.values
   )(values);
 
   const initialValue = formikBag.props.navigation.getParam("initialValue");
-  const isEditing = Boolean(initialValue);
+  let isEditing = Boolean(initialValue);
+
+  const localDate = formikBag.props.navigation.getParam("localDate");
+  if (!isNil(localDate) && !isNil(flattenValues[0].recurring)) {
+    Alert.alert(t("editRecurringEventWarning"), t("selectAnOption"), [
+      { text: t("editRecurring"), onPress: () => (isEditing = true) },
+      { text: t("newRecurring"), onPress: () => (isEditing = false) }
+    ]);
+  }
 
   if (!isEditing) {
     return triggerSubmitType(flattenValues, {
