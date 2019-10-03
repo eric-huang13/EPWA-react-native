@@ -414,6 +414,11 @@ function FeedingContent({
 }
 
 function HousingContent({ type, t, navigateTo, findEventById, id }) {
+  const localId =
+    typeof id === "string" && id.includes("_") ? id.split("_")[0] : id;
+  const localDate =
+    typeof id === "string" && id.includes("_") ? id.split("_")[1] : null;
+
   return (
     <React.Fragment>
       <HousingIcon type={type} />
@@ -421,7 +426,7 @@ function HousingContent({ type, t, navigateTo, findEventById, id }) {
         key={id}
         onPress={() =>
           navigateTo("DiaryHousingForm", {
-            initialValue: findEventById(id)
+            initialValue: findEventById(+localId)
           })
         }
       >

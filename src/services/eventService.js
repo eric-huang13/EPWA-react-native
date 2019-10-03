@@ -553,7 +553,29 @@ export const addRecurringCalendarEvents = (allEvents, month = new Date()) => {
     return [...a, ...getRecurringEvents(event, endDate, month)];
   }, []);
 
-  return allReducedEvents;
+  const allRecurringEvents = allReducedEvents.filter(
+    event => !isNil(event.recurring)
+  );
+
+  const allNonRecurringEvents = allReducedEvents.filter(event =>
+    isNil(event.recurring)
+  );
+
+  const removedDoubleEvents = allRecurringEvents.filter(event => {
+    const toCompareArr = allNonRecurringEvents.map(item => {
+      return {
+        startDate: item.startDate,
+        type: item.type
+      };
+    });
+
+    return !contains(
+      { startDate: event.startDate, type: event.type },
+      toCompareArr
+    );
+  });
+
+  return [...removedDoubleEvents, ...allNonRecurringEvents];
 };
 
 export const parseDateField = (dateInstance, event) => {
