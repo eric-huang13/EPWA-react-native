@@ -429,7 +429,7 @@ class Diary extends Component {
     );
 
     if (tabIndex === 1) {
-      // Reactotron.log("tab 1", allEvents);
+      Reactotron.log("tab 1", allEvents);
 
       return (
         <EventsList

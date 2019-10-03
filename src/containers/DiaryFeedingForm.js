@@ -113,6 +113,9 @@ class DiaryFeedingForm extends Component {
     super(props);
 
     const isEditing = Boolean(props.navigation.getParam("initialValue"));
+    const localDate = props.navigation.getParam("localDate");
+
+    Reactotron.log("localDateForm", localDate);
 
     this.state = {
       isEditing

@@ -373,35 +373,42 @@ function FeedingContent({
 }) {
   return (
     <React.Fragment>
-      {groupedEvents.map(({ type, data, id, completed }, index) => (
-        <View key={index} style={styles.subItemContentContainer}>
-          <CheckInput
-            id={id}
-            completed={completed}
-            toggleComplete={toggleComplete}
-          />
-          <TouchableOpacity
-            key={id}
-            onPress={() =>
-              navigateTo("DiaryFeedingForm", {
-                initialValue: findEventById(id)
-              })
-            }
-          >
-            <View
-              style={[
-                styles.itemContentContainer,
-                completed && styles.completed
-              ]}
+      {groupedEvents.map(({ type, data, id, completed }, index) => {
+        const localId =
+          typeof id === "string" && id.includes("_") ? id.split("_")[0] : id;
+        const localDate =
+          typeof id === "string" && id.includes("_") ? id.split("_")[1] : null;
+
+        return (
+          <View key={index} style={styles.subItemContentContainer}>
+            <CheckInput
+              id={id}
+              completed={completed}
+              toggleComplete={toggleComplete}
+            />
+            <TouchableOpacity
+              onPress={() =>
+                navigateTo("DiaryFeedingForm", {
+                  initialValue: findEventById(+localId),
+                  localDate: localDate
+                })
+              }
             >
-              <FeedingIcon type={type} />
-              <Text style={fonts.style.normal}>
-                {t(type)} {data.quantity} {data.unit}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-      ))}
+              <View
+                style={[
+                  styles.itemContentContainer,
+                  completed && styles.completed
+                ]}
+              >
+                <FeedingIcon type={type} />
+                <Text style={fonts.style.normal}>
+                  {t(type)} {data.quantity} {data.unit}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        );
+      })}
     </React.Fragment>
   );
 }
