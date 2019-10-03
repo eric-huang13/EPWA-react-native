@@ -345,6 +345,11 @@ function PainMeasureContent({
 }
 
 function MedicationContent({ type, navigateTo, t, findEventById, id }) {
+  const localId =
+    typeof id === "string" && id.includes("_") ? id.split("_")[0] : id;
+  const localDate =
+    typeof id === "string" && id.includes("_") ? id.split("_")[1] : null;
+
   return (
     <React.Fragment>
       <MedicalIcon type={type} />
@@ -352,7 +357,7 @@ function MedicationContent({ type, navigateTo, t, findEventById, id }) {
         key={id}
         onPress={() =>
           navigateTo("DiaryMedicationForm", {
-            initialValue: findEventById(id)
+            initialValue: findEventById(+localId)
           })
         }
       >
@@ -426,7 +431,8 @@ function HousingContent({ type, t, navigateTo, findEventById, id }) {
         key={id}
         onPress={() =>
           navigateTo("DiaryHousingForm", {
-            initialValue: findEventById(+localId)
+            initialValue: findEventById(+localId),
+            localDate: localDate
           })
         }
       >
@@ -438,6 +444,11 @@ function HousingContent({ type, t, navigateTo, findEventById, id }) {
   );
 }
 function ExerciseContent({ type, t, navigateTo, findEventById, id }) {
+  const localId =
+    typeof id === "string" && id.includes("_") ? id.split("_")[0] : id;
+  const localDate =
+    typeof id === "string" && id.includes("_") ? id.split("_")[1] : null;
+
   return (
     <React.Fragment>
       <HousingIcon type={type} />
@@ -445,7 +456,8 @@ function ExerciseContent({ type, t, navigateTo, findEventById, id }) {
         key={id}
         onPress={() =>
           navigateTo("DiaryExerciseForm", {
-            initialValue: findEventById(id)
+            initialValue: findEventById(+localId),
+            localDate: localDate
           })
         }
       >

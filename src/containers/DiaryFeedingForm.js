@@ -64,7 +64,7 @@ import {
 import iconMap from "../constants/iconMap";
 import RecurringForm from "../components/RecurringForm";
 
-import Reactotron from "reactotron-react-native";
+// import Reactotron from "reactotron-react-native";
 
 const validationSchema = yup.object().shape({
   roughage: yup.array().of(quantityEventValidation),
@@ -116,7 +116,7 @@ class DiaryFeedingForm extends Component {
     const isEditing = Boolean(props.navigation.getParam("initialValue"));
     const localDate = +props.navigation.getParam("localDate") || null;
 
-    Reactotron.log("localDate in Form", format(localDate));
+    // Reactotron.log("localDate in Form", format(localDate));
 
     this.state = {
       isEditing,
@@ -188,7 +188,7 @@ class DiaryFeedingForm extends Component {
     const fieldPath = `${namespace}[${index}].${fieldName}`;
     const hasErrors = get(errors, fieldPath);
     const currentDate = this.props.navigation.getParam("currentDate");
-    Reactotron.log("currentDate in Form", currentDate);
+    // Reactotron.log("currentDate in Form", currentDate);
 
     let ref;
 
@@ -473,7 +473,7 @@ class DiaryFeedingForm extends Component {
 
   render() {
     const { setFieldValue, values } = this.props;
-    Reactotron.log("values", values);
+    // Reactotron.log("values", values);
     return (
       <View style={s.screenContainer}>
         <KeyboardAvoidingView
@@ -544,7 +544,7 @@ const triggerSubmitType = (
 };
 
 const onSubmit = (values, formikBag) => {
-  Reactotron.log("Wat text", values, formikBag);
+  // Reactotron.log("Wat text", values, formikBag);
 
   const t = formikBag.props.t;
 
