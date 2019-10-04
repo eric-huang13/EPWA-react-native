@@ -11,67 +11,67 @@ import ProgressBar from "../components/ProgressBar";
 import TitleBar from "../components/TitleBar";
 import RadioSection from "../components/RadioSection";
 
-import horseEarPhoto0 from "../images/facialExpression/horse/earScore0.jpeg";
-import horseEarPhoto1 from "../images/facialExpression/horse/earScore1.jpeg";
-import horseEarPhoto2 from "../images/facialExpression/horse/earScore2.jpeg";
+const horseEarPhoto0 = "earScore0";
+const horseEarPhoto1 = "earScore1";
+const horseEarPhoto2 = "PAARD-gezichtsuitdrukking-oren-reactie-geluid-2";
 
-import horseNostrilPhoto0 from "../images/facialExpression/horse/nostrilScore0.jpeg";
-import horseNostrilPhoto1 from "../images/facialExpression/horse/nostrilScore1.jpeg";
-import horseNostrilPhoto2 from "../images/facialExpression/horse/nostrilScore2.jpeg";
+const horseNostrilPhoto0 = "nostrilScore0";
+const horseNostrilPhoto1 = "nostrilScore1";
+const horseNostrilPhoto2 = "nostrilScore2";
 
-import horseCornerMouthPhoto0 from "../images/facialExpression/horse/cornerMouthScore0.jpeg";
-import horseCornerMouthPhoto1 from "../images/facialExpression/horse/cornerMouthScore1.jpeg";
-import horseCornerMouthPhoto2 from "../images/facialExpression/horse/cornerMouthScore2.jpeg";
+const horseCornerMouthPhoto0 = "cornerMouthScore0";
+const horseCornerMouthPhoto1 = "cornerMouthScore1";
+const horseCornerMouthPhoto2 = "cornerMouthScore2";
 
-import horseEyelidPhoto0 from "../images/facialExpression/horse/eyelidScore0.jpeg";
-import horseEyelidPhoto1 from "../images/facialExpression/horse/eyelidScore1.jpeg";
-import horseEyelidPhoto2 from "../images/facialExpression/horse/eyelidScore2.jpeg";
+const horseEyelidPhoto0 = "eyelidScore0";
+const horseEyelidPhoto1 = "eyelidScore1";
+const horseEyelidPhoto2 = "eyelidScore2";
 
-import horseFocusPhoto0 from "../images/facialExpression/horse/focusScore0.jpeg";
-import horseFocusPhoto1 from "../images/facialExpression/horse/focusScore1.jpeg";
-import horseFocusPhoto2 from "../images/facialExpression/horse/focusScore2.jpeg";
+const horseFocusPhoto0 = "focusScore0";
+const horseFocusPhoto1 = "focusScore1";
+const horseFocusPhoto2 = "focusScore2";
 
-import horseHeadPhoto0 from "../images/facialExpression/horse/headScore0.jpeg";
-import horseHeadPhoto1 from "../images/facialExpression/horse/headScore1.jpeg";
-import horseHeadPhoto2 from "../images/facialExpression/horse/headScore2.jpeg";
+const horseHeadPhoto0 = "PAARD-gezichtsuitdrukking-beweging-hoofd-0";
+const horseHeadPhoto1 = "PAARD-gezichtsuitdrukking-beweging-hoofd-1";
+const horseHeadPhoto2 = "PAARD-gezichtsuitdrukking-beweging-hoofd-2";
 
-import horseMuscleToneHeadPhoto0 from "../images/facialExpression/horse/muscleToneHeadScore0.jpeg";
-import horseMuscleToneHeadPhoto1 from "../images/facialExpression/horse/muscleToneHeadScore1.jpeg";
-import horseMuscleToneHeadPhoto2 from "../images/facialExpression/horse/muscleToneHeadScore2.jpeg";
+const horseMuscleToneHeadPhoto0 = "muscleToneHeadScore0";
+const horseMuscleToneHeadPhoto1 = "muscleToneHeadScore1";
+const horseMuscleToneHeadPhoto2 = "muscleToneHeadScore2";
 
-import donkeyEarPositionPhoto0 from "../images/facialExpression/donkey/earPosition0.png";
-import donkeyEarPositionPhoto1 from "../images/facialExpression/donkey/earPosition2a.png";
-import donkeyEarPositionPhoto2 from "../images/facialExpression/donkey/earPosition2b.png";
+const donkeyEarPositionPhoto0 = "earPosition0";
+const donkeyEarPositionPhoto1 = "earPosition2a";
+const donkeyEarPositionPhoto2 = "earPosition2b";
 
-import donkeyEyelidsPhoto0 from "../images/facialExpression/donkey/eyelids0.png";
-import donkeyEyelidsPhoto1 from "../images/facialExpression/donkey/eyelids1.png";
-import donkeyEyelidsPhoto2 from "../images/facialExpression/donkey/eyelids2.png";
+const donkeyEyelidsPhoto0 = "eyelids0";
+const donkeyEyelidsPhoto1 = "eyelids1";
+const donkeyEyelidsPhoto2 = "eyelids2";
 
-import donkeyFocusPhoto0 from "../images/facialExpression/donkey/focus0.png";
-import donkeyFocusPhoto1 from "../images/facialExpression/donkey/focus1.png";
-import donkeyFocusPhoto2 from "../images/facialExpression/donkey/focus2.png";
+const donkeyFocusPhoto0 = "focus0";
+const donkeyFocusPhoto1 = "focus1";
+const donkeyFocusPhoto2 = "focus2";
 
-import donkeyHeadPhoto0 from "../images/facialExpression/donkey/head0.png";
-import donkeyHeadPhoto1 from "../images/facialExpression/donkey/head2a.png";
-import donkeyHeadPhoto2 from "../images/facialExpression/donkey/head2b.png";
+const donkeyHeadPhoto0 = "head0";
+const donkeyHeadPhoto1 = "head2a";
+const donkeyHeadPhoto2 = "head2b";
 
-import donkeyMouthCornersPhoto0 from "../images/facialExpression/donkey/mouthCorners0.png";
-import donkeyMouthCornersPhoto1 from "../images/facialExpression/donkey/mouthCorners2.png";
+const donkeyMouthCornersPhoto0 = "mouthCorners0";
+const donkeyMouthCornersPhoto1 = "mouthCorners2";
 
-import donkeyMuscleToneHeadPhoto0 from "../images/facialExpression/donkey/muscleToneHead0.png";
-import donkeyMuscleToneHeadPhoto1 from "../images/facialExpression/donkey/muscleToneHead1.png";
-import donkeyMuscleToneHeadPhoto2 from "../images/facialExpression/donkey/muscleToneHead2.png";
+const donkeyMuscleToneHeadPhoto0 = "muscleToneHead0";
+const donkeyMuscleToneHeadPhoto1 = "muscleToneHead1";
+const donkeyMuscleToneHeadPhoto2 = "muscleToneHead2";
 
-import donkeyNostrilsPhoto0 from "../images/facialExpression/donkey/nostrils0.png";
-import donkeyNostrilsPhoto1 from "../images/facialExpression/donkey/nostrils1.png";
-import donkeyNostrilsPhoto2 from "../images/facialExpression/donkey/nostrils2.png";
+const donkeyNostrilsPhoto0 = "nostrils0";
+const donkeyNostrilsPhoto1 = "nostrils1";
+const donkeyNostrilsPhoto2 = "nostrils2";
 
-import donkeySoundResponsePhoto0 from "../images/facialExpression/donkey/responseToAuditoryStimulus0.png";
-import donkeySoundResponsePhoto1 from "../images/facialExpression/donkey/responseToAuditoryStimulus1.png";
-import donkeySoundResponsePhoto2 from "../images/facialExpression/donkey/responseToAuditoryStimulus2.png";
+const donkeySoundResponsePhoto0 = "responseToAuditoryStimulus0";
+const donkeySoundResponsePhoto1 = "responseToAuditoryStimulus1";
+const donkeySoundResponsePhoto2 = "responseToAuditoryStimulus2";
 
-import donkeySweatingPhoto0 from "../images/facialExpression/donkey/sweatingBehindTheEars0.png";
-import donkeySweatingPhoto1 from "../images/facialExpression/donkey/sweatingBehindTheEars2.png";
+const donkeySweatingPhoto0 = "sweatingBehindTheEars0";
+const donkeySweatingPhoto1 = "sweatingBehindTheEars2";
 
 import { colors, fonts } from "../themes";
 

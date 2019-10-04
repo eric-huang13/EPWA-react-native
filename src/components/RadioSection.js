@@ -59,17 +59,19 @@ const RadioSection = ({ active, onPress, label, imageSource }) => (
       ) : Array.isArray(imageSource) ? (
         <View style={{ flexDirection: "row" }}>
           {imageSource.map((src, index) => (
-            <Image
+            <Icon
+              name={src}
               key={index}
-              source={src}
-              style={{ height: 50, width: 50, marginRight: 20 }}
+              size={60}
+              style={{ width: 60, marginRight: 15 }}
             />
           ))}
         </View>
       ) : (
-        <Image
-          source={imageSource}
-          style={{ height: 50, width: 50, marginRight: 20 }}
+        <Icon
+          name={imageSource}
+          size={60}
+          style={{ width: 60, marginRight: 15 }}
         />
       )}
 
