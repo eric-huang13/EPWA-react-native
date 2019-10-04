@@ -28,7 +28,6 @@ class PainMeasurementStartInfo extends Component {
   };
 
   render() {
-    // const { t } = this.props.screenProps.t;
     const t = isNil(this.props.screenProps.t.t)
       ? this.props.screenProps.t
       : this.props.screenProps.t.t;
