@@ -172,7 +172,7 @@ class DiaryHousingForm extends Component {
           locale={i18n.language}
           t={t}
           mode="datetime"
-          date={currentDate || new Date()}
+          date={new Date()}
           ref={el => (ref = el)} // eslint-disable-line no-return-assign
           onPick={date => setFieldValue(fieldPath, this.parseDateField(date))}
         />
