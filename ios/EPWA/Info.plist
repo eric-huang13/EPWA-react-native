@@ -86,7 +86,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>To select photo's to use in this app</string>
 	<key>UIAppFonts</key>

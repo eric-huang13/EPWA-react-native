@@ -37,6 +37,8 @@ target 'EPWA' do
 
   pod 'RNGoogleSignin', :path => '../node_modules/react-native-google-signin'
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'EPWATests' do
     inherit! :search_paths
     # Pods for testing
