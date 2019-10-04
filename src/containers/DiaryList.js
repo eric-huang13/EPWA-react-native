@@ -205,6 +205,7 @@ export function NewListItem({
               id={id}
               completed={completed}
               toggleComplete={toggleComplete}
+              type={type}
             />
             <View
               style={[
@@ -357,7 +358,8 @@ function MedicationContent({ type, navigateTo, t, findEventById, id }) {
         key={id}
         onPress={() =>
           navigateTo("DiaryMedicationForm", {
-            initialValue: findEventById(+localId)
+            initialValue: findEventById(+localId),
+            localDate
           })
         }
       >
@@ -395,7 +397,7 @@ function FeedingContent({
               onPress={() =>
                 navigateTo("DiaryFeedingForm", {
                   initialValue: findEventById(+localId),
-                  localDate: localDate
+                  localDate
                 })
               }
             >
@@ -432,7 +434,7 @@ function HousingContent({ type, t, navigateTo, findEventById, id }) {
         onPress={() =>
           navigateTo("DiaryHousingForm", {
             initialValue: findEventById(+localId),
-            localDate: localDate
+            localDate
           })
         }
       >
@@ -457,7 +459,7 @@ function ExerciseContent({ type, t, navigateTo, findEventById, id }) {
         onPress={() =>
           navigateTo("DiaryExerciseForm", {
             initialValue: findEventById(+localId),
-            localDate: localDate
+            localDate
           })
         }
       >

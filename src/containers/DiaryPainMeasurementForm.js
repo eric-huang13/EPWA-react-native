@@ -210,7 +210,7 @@ class DiaryPainMeasurementForm extends Component {
           <View style={{ flex: 1, flexDirection: "row" }}>
             {this.renderField({
               fieldName: "startDate",
-              label: t("startTime"),
+              label: t("timeAndDay"),
               date: new Date(),
               ...props
             })}
