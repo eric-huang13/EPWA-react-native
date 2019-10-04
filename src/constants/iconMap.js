@@ -27,6 +27,7 @@ const iconMap = {
   horse3: "horse-3",
   horseHead: "horse-head",
   info: "info",
+  info2: "info2",
   kicking: "kicking",
   logo: "logo",
   logoText: "logo-text",

@@ -1,37 +1,47 @@
 import React, { Component } from "react";
 import { HeaderBackButton } from "react-navigation-stack";
 import { ScrollView, View, Text } from "react-native";
-import { __, curry, path } from "ramda";
+import { __, curry, path, isNil } from "ramda";
 
 import { colors, fonts } from "../themes";
 
+import Reactotron from "reactotron-react-native";
+
 class PainMeasurementStartInfo extends Component {
-  static navigationOptions = ({ navigation, screenProps }) => ({
-    title: screenProps.t("painMeasurement.misc.headerTitle") ,
-    headerTitleStyle: {
-      ...fonts.style.h4,
-      fontWeight: "400"
-    },
-    headerLeft: (
-      <HeaderBackButton
-        tintColor={colors.nero}
-        onPress={() => navigation.goBack()}
-      />
-    )
-  });
+  static navigationOptions = ({ navigation, screenProps }) => {
+    Reactotron.log("screenProps", screenProps);
+    const t = isNil(screenProps.t.t) ? screenProps.t : screenProps.t.t;
+
+    return {
+      title: t("painMeasurement.misc.headerTitle"),
+      headerTitleStyle: {
+        ...fonts.style.h4,
+        fontWeight: "400"
+      },
+      headerLeft: (
+        <HeaderBackButton
+          tintColor={colors.nero}
+          onPress={() => navigation.goBack()}
+        />
+      )
+    };
+  };
 
   render() {
-    const { t } = this.props.screenProps;
+    // const { t } = this.props.screenProps.t;
+    const t = isNil(this.props.screenProps.t.t)
+      ? this.props.screenProps.t
+      : this.props.screenProps.t.t;
 
     const animalType = path(["screenProps", "form", "values", "animalType"])(
       this.props
     );
     const animalTypeTranslatePath = animalType
       ? t(`painMeasurement.misc.${animalType}`)
-      : t(`painMeasurement.misc.horse`);
+      : t("painMeasurement.misc.horse");
     const pluralAnimalTypeTranslatePath = animalType
       ? t(`painMeasurement.misc.${animalType}_plural`)
-      : t(`painMeasurement.misc.horse_plural`);
+      : t("painMeasurement.misc.horse_plural");
     const facialMeasurementThresholdScore = animalType === "donkey" ? 2 : 3;
     const compositeMeasurementScoreThreshold = 5;
 

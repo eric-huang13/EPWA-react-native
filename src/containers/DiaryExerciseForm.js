@@ -94,7 +94,11 @@ class DiaryExerciseForm extends Component {
             })
           }
         >
-          <Icon name={iconMap.info} size={20} color={colors.nero} />
+          <Icon
+            name={iconMap.info2}
+            size={30}
+            color={colors.egyptianBlueDark}
+          />
         </TouchableOpacity>
         {/* <TouchableOpacity
           hitSlop={{ top: 10, bottom: 10, left: 15, right: 30 }}
