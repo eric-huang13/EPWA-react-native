@@ -28,7 +28,11 @@ const IconButton = ({
       <View
         style={[
           s.iconWrapper,
-          { backgroundColor: active ? colors.lima : colors.white }
+          {
+            backgroundColor: active ? colors.lima : colors.white,
+            justifyContent: "center",
+            alignItem: "center"
+          }
         ]}
       >
         {imagePath && (
@@ -38,11 +42,11 @@ const IconButton = ({
             style={{ width: 35, height: 35 }}
           />
         )}
-        {iconName && <Icon name={iconName} size={30} color={colors.black} />}
+        {/* iconName && <Icon name={iconName} size={30} color={colors.black} /> */}
         <Icon
           name={iconName}
-          size={30}
-          color={active ? colors.white : colors.egyptianBlue}
+          size={34}
+          color={active ? colors.black : colors.egyptianBlue}
         />
       </View>
       <Text

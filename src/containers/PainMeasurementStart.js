@@ -21,7 +21,14 @@ import IconButton from "../components/IconButton";
 import AnimalSelect from "../components/AnimalSelect";
 
 import iconMap from "../constants/iconMap";
-import imageMap from "../constants/imageMap";
+// import imageMap from "../constants/imageMap";
+
+const iconFacial = "starticoontje-pijnschalen-gezichtsuitdrukkingen";
+const iconComposite = "compositeScale";
+const iconCompositeHorse = "icoontje-samenegstelde-pijnschaal-paard-schrapen";
+const iconCompositeDonkey = "starticoontje-pijnschale-EZEL";
+const iconFacialHorse = "PAARD-gezichtsuitdrukking-pijn-alles";
+const iconFacialDonkey = "EZEL-gezichtsuitdrukking-pijn-alles";
 
 class PainMeasurementStart extends PureComponent {
   areRequiredFieldsFilled = values => {
@@ -37,6 +44,22 @@ class PainMeasurementStart extends PureComponent {
     return true;
   };
 
+  getFacialIcon = values => {
+    if (isNil(values.animalType)) {
+      return iconFacial;
+    }
+    return values.animalType === "horse" ? iconFacialHorse : iconFacialDonkey;
+  };
+
+  getCompositeIcon = values => {
+    if (isNil(values.animalType)) {
+      return iconComposite;
+    }
+    return values.animalType === "horse"
+      ? iconCompositeHorse
+      : iconCompositeDonkey;
+  };
+
   renderAnimalTypeSelection = (setFieldValue, t, values) => (
     <View>
       <TitleBar>{t("painMeasurement.misc.animalTypeQuestion")}</TitleBar>
@@ -49,15 +72,17 @@ class PainMeasurementStart extends PureComponent {
       >
         <IconButton
           active={values.animalType === "horse"}
-          imagePath={imageMap.misc.horse}
+          // imagePath={imageMap.misc.horse}
           onPress={() => setFieldValue("animalType", "horse")}
           label={t("painMeasurement.misc.horse")}
+          iconName={iconCompositeHorse}
         />
         <IconButton
           active={values.animalType === "donkey"}
-          imagePath={imageMap.misc.donkey}
+          // imagePath={imageMap.misc.donkey}
           onPress={() => setFieldValue("animalType", "donkey")}
           label={t("painMeasurement.misc.donkey")}
+          iconName={iconCompositeDonkey}
         />
       </View>
     </View>
@@ -107,13 +132,15 @@ class PainMeasurementStart extends PureComponent {
           >
             <IconButton
               active={values.measurementType === "composite"}
-              imagePath={imageMap.misc.compositeScale}
+              // imagePath={imageMap.misc.compositeScale}
+              iconName={this.getCompositeIcon(values)}
               onPress={() => setFieldValue("measurementType", "composite")}
               label={t("painMeasurement.misc.compositePainScale")}
             />
             <IconButton
               active={values.measurementType === "facialExpression"}
-              imagePath={imageMap.misc.facialExpressionScale}
+              // imagePath={imageMap.misc.facialExpressionScale}
+              iconName={this.getFacialIcon(values)}
               onPress={() =>
                 setFieldValue("measurementType", "facialExpression")
               }

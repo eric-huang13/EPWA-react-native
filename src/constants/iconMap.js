@@ -60,7 +60,21 @@ const iconMap = {
   download: "download",
   temperature: "temperature",
   recovery: "aid-kit",
-  treatment: "stethoscope"
+  treatment: "stethoscope",
+  horseCount: {
+    tailFlicking: "tailFlicking",
+    pawCount: "icoontje samenegstelde pijnschaal paard schrapen",
+    kickAtAbdomen: "kickingAtAbdomen",
+    rolling: "rolling",
+    headMovement: "teethGrinding"
+  },
+  donkeyCount: {
+    tailFlicking: "icoontje-samenegstelde-pijnschaal-ezel-staart-zwiepen",
+    pawCount: "icoontje-samenegstelde-pijnschaal-paard-schrapen",
+    lookingAtAbdomen: "icoontje-samenegstelde-pijnschaal-ezel-kijken-buik",
+    rolling: "icoontje-samengestelde-pijnschaal-ezel-afwijkend-liggen",
+    pointingTowardsTheFloor: "icoontje-samenegstelde-pijnschaal-ezel-wijzen"
+  }
 };
 
 export default iconMap;
