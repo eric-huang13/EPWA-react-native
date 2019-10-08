@@ -73,7 +73,11 @@ import { eventTypeIconNames, eventCategories, eventTypes } from "../constants";
 import { getToken } from "../selectors/auth";
 
 import iconMap from "../constants/iconMap";
-import { exportEvents, completeEvent } from "../actions/events";
+import {
+  exportEvents,
+  completeEvent,
+  completeRecurringEvent
+} from "../actions/events";
 import DiaryTimeTab from "./DiaryTimeTab";
 
 import EventsList, { AccordionView } from "./DiaryList";
@@ -237,7 +241,18 @@ class Diary extends Component {
     });
   };
 
-  onToggleComplete = (id, val) => {
+  onToggleComplete = (id, val, type, startDate) => {
+    Reactotron.log(id, val, type, startDate);
+    if (typeof id === "string" && id.includes("_")) {
+      const [localId, timeStamp] = id.split("_");
+      Reactotron.log("recurring", +localId, +timeStamp);
+      this.props.dispatch(
+        completeRecurringEvent({
+          payload: { eventId: +localId, startDate: +timeStamp }
+        })
+      );;
+    }
+    return;
     this.props.dispatch(
       completeEvent({ payload: { eventId: id, completed: !val } })
     );

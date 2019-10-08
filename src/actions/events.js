@@ -22,6 +22,9 @@ export const COMPLETE_EVENT_REQUESTED = "COMPLETE_EVENT_REQUESTED";
 export const COMPLETE_EVENT_ROLLBACK_REQUESTED =
   "COMPLETE_EVENT_ROLLBACK_REQUESTED";
 
+export const COMPLETE_RECURRING_EVENT_REQUESTED =
+  "COMPLETE_RECURRING_EVENT_REQUESTED";
+
 export const EXPORT_EVENTS = "EXPORT_EVENTS";
 
 export const addEvent = ({ payload, formHelpers }) => ({
@@ -52,4 +55,9 @@ export const exportEvents = ({ payload, meta }) => ({
 export const completeEvent = ({ payload }) => ({
   payload,
   type: COMPLETE_EVENT_REQUESTED
+});
+
+export const completeRecurringEvent = ({ payload }) => ({
+  payload,
+  type: COMPLETE_RECURRING_EVENT_REQUESTED
 });

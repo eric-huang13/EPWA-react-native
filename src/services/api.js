@@ -219,6 +219,23 @@ const createApi = (baseURL = basePath) => {
       }
     );
 
+  const completeRecurringEvent = ({
+    accessToken,
+    eventId,
+    startDate,
+    endDate
+  }) =>
+    api.post(
+      "/api/events/duplicate",
+      { event_id: eventId, start_date: startDate, end_date: endDate },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`
+        }
+      }
+    );
+
   const deleteAccount = ({ accessToken }) =>
     api.post("api/me/delete", null, {
       headers: {
@@ -248,7 +265,8 @@ const createApi = (baseURL = basePath) => {
     editEvent,
     deleteEvent,
     completeEvent,
-    deleteAccount
+    deleteAccount,
+    completeRecurringEvent
   };
 };
 

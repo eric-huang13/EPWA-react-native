@@ -5,6 +5,8 @@ import { get } from "lodash";
 import { compose, evolve, isNil, map, reject, omit, not } from "ramda";
 import { format } from "date-fns";
 
+import Reactotron from "reactotron-react-native";
+
 import {
   ADD_EVENT,
   ADD_EVENT_COMMIT,
@@ -328,7 +330,7 @@ export function* completeEvent(api, dispatch, action) {
         // commit: {
         //   type: EDIT_EVENT_COMMIT_REQUESTED,
         //   meta: { formPayload: payload }
-        // },
+        // }
         // rollback: {
         //   type: EDIT_EVENT_ROLLBACK_REQUESTED,
         //   meta: { formPayload: payload, initialValue }
@@ -349,3 +351,49 @@ export function* completeEvent(api, dispatch, action) {
 //     payload: action.meta.formPayload //TODO VERANDEREN
 //   });
 // }
+
+export function* completeRecurringEvent(api, dispatch, action) {
+  const { eventId, startDate, endDate } = action.payload;
+  const accessToken = yield select(getToken);
+
+  let eventResponse = yield call(api.completeRecurringEvent, {
+    accessToken,
+    eventId,
+    startDate,
+    endDate
+  });
+
+  if (!eventResponse.ok) {
+    if (eventResponse.status !== 401) {
+      throw new Error("Network error");
+    }
+  }
+  const parsedEventsResponse = compose(
+    event => {
+      const result = event;
+
+      if (event.data === "null" && event.data === '"null"') {
+        result.data = null;
+      }
+
+      if (not(isNil(result.data))) {
+        result.data = JSON.parse(result.data);
+        result.data = camelcaseKeys(result.data);
+      }
+
+      if (isNil(result.endDate)) {
+        return omit(["endDate"])(result);
+      }
+
+      return result;
+    },
+    camelcaseKeys
+  )(eventResponse.data);
+
+  yield put({
+    type: ADD_EVENT,
+    data: parsedEventsResponse
+  });
+
+  return true;
+}

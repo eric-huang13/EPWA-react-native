@@ -137,11 +137,11 @@ export class AccordionView extends Component {
   }
 }
 
-function CheckInput({ id, completed, toggleComplete }) {
+function CheckInput({ id, completed, toggleComplete, type }) {
   return (
     <View style={{ width: 40 }}>
       <TouchableOpacity
-        onPress={() => toggleComplete(id, completed)}
+        onPress={() => toggleComplete(id, completed, type)}
         underlayColor="#fff"
       >
         {completed ? <CheckboxChecked /> : <Checkbox />}
@@ -206,6 +206,7 @@ export function NewListItem({
               completed={completed}
               toggleComplete={toggleComplete}
               type={type}
+              startDate={startDate}
             />
             <View
               style={[
