@@ -25,7 +25,7 @@ import { colors, fonts } from "../themes";
 // import Icon from "./Icon";
 // import iconMap from "../constants/iconMap";
 import { isNil } from "ramda";
-import Reactotron from "reactotron-react-native";
+// import Reactotron from "reactotron-react-native";
 
 class PainMeasurementGraph extends React.Component {
   constructor(props) {
@@ -149,6 +149,22 @@ class PainMeasurementGraph extends React.Component {
               this.scrollView.scrollToEnd({ animated: true });
             }}
           >
+            {/* TODO line before graph fill gap
+
+              this.state.compositeLine.length > 0 ||
+              (this.state.facialExpressionLine.length > 0 && (
+                <View
+                  style={{
+                    height: 120,
+                    width: 20,
+                    position: "relative",
+                    left: 15,
+                    bottom: 39,
+                    borderBottomWidth: 2,
+                    borderColor: "#EDE8E8"
+                  }}
+                />
+                )) */}
             <VictoryChart
               domain={{ y: [0, 30 || maxScore] }}
               domainPadding={{ x: 20 }}
