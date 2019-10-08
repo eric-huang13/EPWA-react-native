@@ -12,7 +12,8 @@ export const eventCategories = {
   housing: "housing",
   feeding: "feeding",
   medication: "medication",
-  painMeasurement: "painMeasurement"
+  painMeasurement: "painMeasurement",
+  appointment: "appointment"
 };
 
 export const eventTypes = {
@@ -34,6 +35,7 @@ export const eventTypes = {
   recovery: "recovery",
   facialExpression: "facialExpression",
   composite: "composite"
+  // appointmentType: "appointmentType"
 };
 
 export const eventTypeIconNames = {

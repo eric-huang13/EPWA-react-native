@@ -68,6 +68,7 @@
       "logoutNavigator": "Uitloggen",
       "diaryExercise": "Training",
       "diaryFeeding": "Voeding",
+      "diaryAppointment": "Agenda",
       "diaryHousing": "Huisvesting",
       "diaryMedication": "Medisch",
       "diaryPainMeasurement": "Pijnmeting",
@@ -76,7 +77,8 @@
       "painMeasurementNavigator": "Pijnmeting",
       "welfareInfo": "Welzijnstips",
       "welfareNavigator": "Welzijnstips",
-      "copyEvents": "Kopiëren"
+      "copyEvents": "Kopiëren",
+      "agenda": "Agenda"
     },
     "turnout": {
       "sharedAreaWithOtherAnimals": "Gedeeld gebied met andere dieren",
@@ -811,6 +813,9 @@
           }
         ]
       },
+      "diaryAppointment": {
+        "title": "Afspraak"
+      },
       "diaryFeeding": {
         "title": "Voeding",
         "preface": "In dit onderdeel van de app registreer je de voeding van jouw {{animalType}}. Je hebt hierbij de keuze uit Ruwvoer, Krachtvoer en Supplementen.\nKrijgt jouw {{animalType}} onbeperkt ruwvoer? Vink dan die optie aan.",
@@ -953,6 +958,7 @@
     "registerHousing": "Huisvesting registeren",
     "registerFeeding": "Voeding registeren",
     "registerExercises": "Training registeren",
+    "registerAppointment": "Afspraak registreren",
     "riding": "Rijden",
     "groundWork": "Grondwerk",
     "dressage": "Dressuur",
@@ -981,6 +987,7 @@
     "medication": "Medicijnen",
     "timeOfDay": "Tijdstip",
     "timeAndDay": "Dag en tijd",
+    "kindOfAppointment": "Titel van afpraak",
     "unit": "Eenheid",
     "unlimited": "Onbeperkt",
     "roughage": "Ruwvoer",

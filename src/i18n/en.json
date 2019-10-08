@@ -67,6 +67,7 @@
       "logout": "Logout",
       "logoutNavigator": "Logout",
       "diaryExercise": "Exercise",
+      "diaryAppointment": "Agenda",
       "diaryFeeding": "Feeding",
       "diaryHousing": "Turnout",
       "diaryMedication": "My vet",
@@ -76,7 +77,8 @@
       "painMeasurementNavigator": "Pain measurement",
       "welfareInfo": "Guidelines",
       "welfareNavigator": "Guidelines for horse welfare",
-      "copyEvents": "Copy"
+      "copyEvents": "Copy",
+      "agenda": "Agenda"
     },
     "turnout": {
       "sharedAreaWithOtherAnimals": "Shared area with other animals",
@@ -808,6 +810,9 @@
           }
         ]
       },
+      "diaryAppointment": {
+        "title": "Appointment"
+      },
       "diaryFeeding": {
         "title": "Feeding",
         "preface": "Keep track of your {{animalType}}’s feeding regime, and add roughage, concentrate or supplements.\nDoes your {{animalType}} get unlimited roughage? Make sure you tick the 24-hour option.",
@@ -951,6 +956,7 @@
     "registerHousing": "Turnout",
     "registerFeeding": "Feeding",
     "registerExercises": "Exercise",
+    "registerAppointment": "Appointment",
     "riding": "Riding",
     "groundWork": "Groundwork",
     "dressage": "Dressage",
@@ -979,6 +985,7 @@
     "medication": "Medication",
     "timeOfDay": "Day and time",
     "timeAndDay": "Day and time",
+    "kindOfAppointment": "Appointment title",
     "quantity": "Quantity",
     "unit": "Unit",
     "unlimited": "Unrestricted",

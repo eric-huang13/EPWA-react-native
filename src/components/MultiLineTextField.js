@@ -14,7 +14,7 @@ const MultiLineTextField = ({
   label,
   maxLength
 }) => (
-  <View>
+  <View style={{ marginVertical: 5 }}>
     <FieldLabel style={{ marginBottom: 5 }}>{label}</FieldLabel>
     <View style={[s.fieldContainer, hasError && s.fieldContainerHasError]}>
       <TextInput

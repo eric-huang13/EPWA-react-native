@@ -98,6 +98,7 @@ class Diary extends Component {
     };
 
     this.routes = {
+      registerAppointment: "DiaryAppointmentForm",
       painMeasurement: "DiaryPainMeasurementForm",
       exercise: "DiaryExerciseForm",
       housing: "DiaryHousingForm",
@@ -107,6 +108,12 @@ class Diary extends Component {
     };
 
     this.actionButtons = [
+      {
+        color: colors.whiteSmoke,
+        icon: "note",
+        title: props.t("registerAppointment"),
+        onPress: () => this.navigateTo(this.routes.registerAppointment)
+      },
       {
         color: colors.egyptianBlue,
         icon: iconMap.measurement,
@@ -610,7 +617,7 @@ class Diary extends Component {
     }
 
     const events = this.props.data.events || [];
-    // Reactotron.log("all events", events);
+    Reactotron.log("all events", events);
     const currentAnimal = animals[this.state.currentIndex];
     const { currentDate, tabIndex } = this.state;
     // const allPainMeasurements = compose(
