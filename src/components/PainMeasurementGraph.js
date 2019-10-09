@@ -288,6 +288,7 @@ function Box({
         }
         height={15}
         width={17}
+        shadow
       />
       <SVGText
         x={x - 1}

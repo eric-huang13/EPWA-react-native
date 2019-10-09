@@ -440,7 +440,7 @@ function HousingContent({ type, t, navigateTo, findEventById, id }) {
         }
       >
         <View style={styles.itemContent}>
-          <Text style={fonts.style.normal}>{t("eventHousing")}</Text>
+          <Text style={fonts.style.normal}>{t(type)}</Text>
         </View>
       </TouchableOpacity>
     </React.Fragment>
