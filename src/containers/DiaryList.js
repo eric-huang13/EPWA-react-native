@@ -137,11 +137,11 @@ export class AccordionView extends Component {
   }
 }
 
-function CheckInput({ id, completed, toggleComplete, type }) {
+function CheckInput({ id, completed, toggleComplete, type, endDate }) {
   return (
     <View style={{ width: 40 }}>
       <TouchableOpacity
-        onPress={() => toggleComplete(id, completed, type)}
+        onPress={() => toggleComplete(id, completed, type, endDate)}
         underlayColor="#fff"
       >
         {completed ? <CheckboxChecked /> : <Checkbox />}
@@ -154,6 +154,7 @@ export function NewListItem({
   id,
   completed,
   startDate,
+  endDate,
   toggleComplete,
   category,
   type,
@@ -175,6 +176,8 @@ export function NewListItem({
       findEventById={findEventById}
       id={id}
       toggleComplete={toggleComplete}
+      startDate={startDate}
+      endDate={endDate}
     />
   );
   const time = format(startDate, "HH:mm");
@@ -207,6 +210,7 @@ export function NewListItem({
               toggleComplete={toggleComplete}
               type={type}
               startDate={startDate}
+              endDate={endDate}
             />
             <View
               style={[
@@ -247,7 +251,9 @@ function ItemContent({
   findEventById,
   id,
   completed,
-  toggleComplete
+  toggleComplete,
+  startDate,
+  endDate
 }) {
   switch (category) {
     case eventCategories.painMeasurement:
@@ -281,6 +287,8 @@ function ItemContent({
           findEventById={findEventById}
           id={id}
           completed={completed}
+          startDate={startDate}
+          endDate={endDate}
         />
       );
     case eventCategories.feeding:
@@ -421,11 +429,22 @@ function FeedingContent({
   );
 }
 
-function HousingContent({ type, t, navigateTo, findEventById, id }) {
+function HousingContent({
+  type,
+  t,
+  navigateTo,
+  findEventById,
+  id,
+  startDate,
+  endDate
+}) {
   const localId =
     typeof id === "string" && id.includes("_") ? id.split("_")[0] : id;
   const localDate =
     typeof id === "string" && id.includes("_") ? id.split("_")[1] : null;
+
+  const startTime = format(startDate, "HH:mm");
+  const endTime = format(endDate, "HH:mm");
 
   return (
     <React.Fragment>
@@ -440,7 +459,9 @@ function HousingContent({ type, t, navigateTo, findEventById, id }) {
         }
       >
         <View style={styles.itemContent}>
-          <Text style={fonts.style.normal}>{t(type)}</Text>
+          <Text style={fonts.style.normal}>
+            {`${t(type)} ${startTime} - ${endTime}`}
+          </Text>
         </View>
       </TouchableOpacity>
     </React.Fragment>

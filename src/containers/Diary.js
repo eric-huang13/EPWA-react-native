@@ -241,14 +241,19 @@ class Diary extends Component {
     });
   };
 
-  onToggleComplete = (id, val, type, startDate) => {
-    Reactotron.log(id, val, type, startDate);
+  onToggleComplete = (id, val, type, endDate) => {
+    Reactotron.log(id, val, type, endDate);
     if (typeof id === "string" && id.includes("_")) {
       const [localId, timeStamp] = id.split("_");
-      // Reactotron.log("recurring", +localId, +timeStamp);
+      Reactotron.log("recurring", +localId, +timeStamp, endDate);
+      // return;
       this.props.dispatch(
         completeRecurringEvent({
-          payload: { eventId: +localId, startDate: +timeStamp }
+          payload: {
+            eventId: +localId,
+            startDate: +timeStamp,
+            endDate: endDate
+          }
         })
       );
     } else {
