@@ -276,6 +276,8 @@ function ItemContent({
           findEventById={findEventById}
           id={id}
           completed={completed}
+          startDate={startDate}
+          endDate={endDate}
         />
       );
     case eventCategories.housing:
@@ -460,18 +462,29 @@ function HousingContent({
       >
         <View style={styles.itemContent}>
           <Text style={fonts.style.normal}>
-            {`${t(type)} ${startTime} - ${endTime}`}
+            {`${t(type)}  ${startTime} - ${endTime}`}
           </Text>
         </View>
       </TouchableOpacity>
     </React.Fragment>
   );
 }
-function ExerciseContent({ type, t, navigateTo, findEventById, id }) {
+function ExerciseContent({
+  type,
+  t,
+  navigateTo,
+  findEventById,
+  id,
+  startDate,
+  endDate
+}) {
   const localId =
     typeof id === "string" && id.includes("_") ? id.split("_")[0] : id;
   const localDate =
     typeof id === "string" && id.includes("_") ? id.split("_")[1] : null;
+
+  const startTime = format(startDate, "HH:mm");
+  const endTime = format(endDate, "HH:mm");
 
   return (
     <React.Fragment>
@@ -486,7 +499,9 @@ function ExerciseContent({ type, t, navigateTo, findEventById, id }) {
         }
       >
         <View style={styles.itemContent}>
-          <Text style={fonts.style.normal}>{t("movement")}</Text>
+          <Text style={fonts.style.normal}>
+            {`${t(type)}  ${startTime} - ${endTime}`}
+          </Text>
         </View>
       </TouchableOpacity>
     </React.Fragment>
