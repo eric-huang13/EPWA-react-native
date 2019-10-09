@@ -64,7 +64,7 @@ import {
 import iconMap from "../constants/iconMap";
 import RecurringForm from "../components/RecurringForm";
 
-// import Reactotron from "reactotron-react-native";
+import Reactotron from "reactotron-react-native";
 
 const validationSchema = yup.object().shape({
   roughage: yup.array().of(quantityEventValidation),
@@ -463,7 +463,6 @@ class DiaryFeedingForm extends Component {
     const { t, setFieldValue, values, i18n } = this.props;
     const currentDate = this.props.navigation.getParam("currentDate");
 
-    // Reactotron.log('recurring', values);
     return (
       <RecurringForm
         t={t}
@@ -491,7 +490,7 @@ class DiaryFeedingForm extends Component {
               {this.renderFieldArray(eventTypes.concentrate)}
               {this.renderFieldArray(eventTypes.supplement)}
             </View>
-            {this.renderRecurring()}
+            {isNil(values[Object.keys(values)[0]]) && this.renderRecurring()}
             <View style={{ padding: 20 }}>
               <Button
                 style={{

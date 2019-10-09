@@ -39,13 +39,18 @@ class RecurringForm extends Component {
     this.state = {
       reveal: this.setRecurring() || false,
       notification: false,
-      tabIndex: this.setRecurringTab() || 1,
+      tabIndex: 1,
       recurring_untill: this.setRecurringUntill() || null
     };
     // this.setRecurring();
   }
 
   componentDidMount() {
+    const { values } = this.props;
+
+    if (isNil(values)) {
+      return;
+    }
     this.setRecurringTab();
   }
 
@@ -168,7 +173,8 @@ class RecurringForm extends Component {
     const recurVal = values[firstType][0].recurring;
 
     const indexForTab = indexOf(recurVal, recurringIndex);
-    return indexForTab;
+
+    this.setState({ tabIndex: indexForTab });
   };
 
   setRecurringUntill = () => {
@@ -218,7 +224,6 @@ class RecurringForm extends Component {
     const { t, i18n, setFieldValue, values, currentDate } = this.props;
     let ref;
 
-    Reactotron.log("reccurringForm", values);
     return (
       <View>
         <View style={styles.container}>
@@ -233,7 +238,7 @@ class RecurringForm extends Component {
         <Collapsible collapsed={!this.state.reveal}>
           <SegmentedControlTab
             values={[t("daily"), t("weekly"), t("monthly"), t("yearly")]}
-            selectedIndex={this.setRecurringTab()}
+            selectedIndex={this.state.tabIndex}
             onTabPress={this.handleIndexChange}
             borderRadius={0}
             tabTextStyle={styles.tabTextStyle}
