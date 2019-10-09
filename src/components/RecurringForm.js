@@ -1,30 +1,37 @@
-import React, {Component} from 'react';
-import {View, Text, Switch, StyleSheet} from 'react-native';
-import Collapsible from 'react-native-collapsible';
-import SegmentedControlTab from 'react-native-segmented-control-tab';
-import {format, parse, getHours, getMinutes, getTime, isValid} from 'date-fns';
-import {__, compose, flatten, isNil, indexOf} from 'ramda';
-import {get} from 'lodash';
+import React, { Component } from "react";
+import { View, Text, Switch, StyleSheet } from "react-native";
+import Collapsible from "react-native-collapsible";
+import SegmentedControlTab from "react-native-segmented-control-tab";
+import {
+  format,
+  parse,
+  getHours,
+  getMinutes,
+  getTime,
+  isValid
+} from "date-fns";
+import { __, compose, flatten, isNil, indexOf } from "ramda";
+import { get } from "lodash";
 
-import {colors, fonts} from '../themes';
-import DatePicker from './DatePicker';
+import { colors, fonts } from "../themes";
+import DatePicker from "./DatePicker";
 import {
   setHours,
   setMinutes,
   setSecondsToZero,
-  setMillisecondsToZero,
-} from '../services/date';
-import SelectButton from './SelectButton';
+  setMillisecondsToZero
+} from "../services/date";
+import SelectButton from "./SelectButton";
 
-import Reactotron from 'reactotron-react-native';
+import Reactotron from "reactotron-react-native";
 
 const recurringVal = {
-  0: 'd',
-  1: 'w',
-  2: 'm',
-  3: 'y',
+  0: "d",
+  1: "w",
+  2: "m",
+  3: "y"
 };
-const recurringIndex = ['d', 'w', 'm', 'y'];
+const recurringIndex = ["d", "w", "m", "y"];
 
 class RecurringForm extends Component {
   constructor(props) {
@@ -33,9 +40,13 @@ class RecurringForm extends Component {
       reveal: this.setRecurring() || false,
       notification: false,
       tabIndex: this.setRecurringTab() || 1,
-      recurring_untill: this.setRecurringUntill() || null,
+      recurring_untill: this.setRecurringUntill() || null
     };
     // this.setRecurring();
+  }
+
+  componentDidMount() {
+    this.setRecurringTab();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -44,11 +55,11 @@ class RecurringForm extends Component {
     }
     const prevFlattenValues = compose(
       flatten,
-      Object.values,
+      Object.values
     )(prevProps.values);
     const thisFlattenValues = compose(
       flatten,
-      Object.values,
+      Object.values
     )(this.props.values);
     if (
       this.state.reveal &&
@@ -68,29 +79,29 @@ class RecurringForm extends Component {
     }
 
     this.setState(prevState => ({
-      reveal: !prevState.reveal,
+      reveal: !prevState.reveal
     }));
   };
 
   handleAddRecurringEvents = () => {
-    const {setFieldValue, values} = this.props;
+    const { setFieldValue, values } = this.props;
 
     Object.keys(values).map(feedingType => {
       values[feedingType].map((_, i) => {
         setFieldValue(
           `${feedingType}[${i}].recurring`,
-          recurringVal[this.state.tabIndex],
+          recurringVal[this.state.tabIndex]
         );
         setFieldValue(
           `${feedingType}[${i}].recurring_untill`,
-          recurringVal[this.state.recurring_untill] || null,
+          recurringVal[this.state.recurring_untill] || null
         );
       });
     });
   };
 
   handleDeleteRecurringEvents = () => {
-    const {setFieldValue, values} = this.props;
+    const { setFieldValue, values } = this.props;
 
     Object.keys(values).map(feedingType => {
       values[feedingType].map((_, i) => {
@@ -103,7 +114,7 @@ class RecurringForm extends Component {
   };
 
   handleIndexChange = index => {
-    const {setFieldValue, values} = this.props;
+    const { setFieldValue, values } = this.props;
 
     Object.keys(values).map(feedingType => {
       values[feedingType].map((_, i) => {
@@ -112,12 +123,12 @@ class RecurringForm extends Component {
     });
 
     this.setState({
-      tabIndex: index,
+      tabIndex: index
     });
   };
 
   handleDateChange = date => {
-    const {setFieldValue, values} = this.props;
+    const { setFieldValue, values } = this.props;
 
     Object.keys(values).map(feedingType => {
       values[feedingType].map((_, i) => {
@@ -126,12 +137,12 @@ class RecurringForm extends Component {
     });
 
     this.setState({
-      recurring_untill: date,
+      recurring_untill: date
     });
   };
 
   setRecurring = () => {
-    const {values} = this.props;
+    const { values } = this.props;
     if (isNil(Object.keys(values)[0])) {
       return false;
     }
@@ -144,7 +155,7 @@ class RecurringForm extends Component {
   };
 
   setRecurringTab = () => {
-    const {values} = this.props;
+    const { values } = this.props;
     if (isNil(Object.keys(values)[0])) {
       return 1;
     }
@@ -161,7 +172,7 @@ class RecurringForm extends Component {
   };
 
   setRecurringUntill = () => {
-    const {values} = this.props;
+    const { values } = this.props;
     if (isNil(Object.keys(values)[0])) {
       return null;
     }
@@ -177,7 +188,7 @@ class RecurringForm extends Component {
 
   setNotification = () => {
     this.setState(prevState => ({
-      notification: !prevState.notification,
+      notification: !prevState.notification
     }));
   };
   setDatePickerRef = element => {
@@ -187,7 +198,7 @@ class RecurringForm extends Component {
   parseDateField = dateInstance => {
     const pickedTime = {
       hours: getHours(dateInstance),
-      minutes: getMinutes(dateInstance),
+      minutes: getMinutes(dateInstance)
     };
 
     return compose(
@@ -196,32 +207,33 @@ class RecurringForm extends Component {
       setSecondsToZero,
       setMinutes(__, pickedTime.minutes),
       setHours(__, pickedTime.hours),
-      parse,
+      parse
     )(dateInstance);
   };
 
   formatDateField = timestamp =>
-    isValid(parse(timestamp)) ? format(timestamp, 'DD MMM YYYY') : '';
+    isValid(parse(timestamp)) ? format(timestamp, "DD MMM YYYY") : "";
 
   render() {
-    const {t, i18n, setFieldValue, values, currentDate} = this.props;
+    const { t, i18n, setFieldValue, values, currentDate } = this.props;
     let ref;
 
+    Reactotron.log("reccurringForm", values);
     return (
       <View>
         <View style={styles.container}>
-          <Text style={fonts.style.normal}>{t('recurring')}</Text>
+          <Text style={fonts.style.normal}>{t("recurring")}</Text>
           <Switch
-            style={{marginLeft: 20}}
+            style={{ marginLeft: 20 }}
             value={this.state.reveal}
-            trackColor={{true: colors.lima}}
+            trackColor={{ true: colors.lima }}
             onValueChange={this.toggleReveal}
           />
         </View>
         <Collapsible collapsed={!this.state.reveal}>
           <SegmentedControlTab
-            values={[t('daily'), t('weekly'), t('monthly'), t('yearly')]}
-            selectedIndex={this.state.tabIndex}
+            values={[t("daily"), t("weekly"), t("monthly"), t("yearly")]}
+            selectedIndex={this.setRecurringTab()}
             onTabPress={this.handleIndexChange}
             borderRadius={0}
             tabTextStyle={styles.tabTextStyle}
@@ -230,13 +242,17 @@ class RecurringForm extends Component {
             activeTabTextStyle={styles.activeTabTextStyle}
           />
           <View style={styles.contentContainer}>
-            <View style={{height: 80}}>
+            <View style={{ height: 80 }}>
               <Text
-                style={[fonts.style.normal, {marginTop: 40, marginBottom: 10}]}>
-                {t('recurringTill')}
+                style={[
+                  fonts.style.normal,
+                  { marginTop: 40, marginBottom: 10 }
+                ]}
+              >
+                {t("recurringTill")}
               </Text>
             </View>
-            <View style={{height: 50}}>
+            <View style={{ height: 50 }}>
               <DatePicker
                 locale={i18n.language}
                 t={t}
@@ -254,19 +270,20 @@ class RecurringForm extends Component {
                     // this.props.submitCount > 0 && hasErrors && f.dateInputWithError,
                   ]
                 }
-                onPress={() => ref.show()}>
+                onPress={() => ref.show()}
+              >
                 {this.state.recurring_untill
                   ? this.formatDateField(this.state.recurring_untill)
-                  : t('selectDate')}
+                  : t("selectDate")}
               </SelectButton>
             </View>
           </View>
           <View style={styles.container}>
-            <Text style={fonts.style.normal}>{t('notification')}</Text>
+            <Text style={fonts.style.normal}>{t("notification")}</Text>
             <Switch
-              style={{marginLeft: 20}}
+              style={{ marginLeft: 20 }}
               value={this.state.notification}
-              trackColor={{true: colors.lima}}
+              trackColor={{ true: colors.lima }}
               onValueChange={this.setNotification}
             />
           </View>
@@ -279,44 +296,44 @@ class RecurringForm extends Component {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center"
   },
   contentContainer: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 20
   },
   tabStyle: {
     height: 70,
     backgroundColor: colors.whiteSmoke,
     borderColor: colors.whiteSmoke,
-    borderLeftColor: '#AAAAAA',
-    borderRightColor: '#AAAAAA',
+    borderLeftColor: "#AAAAAA",
+    borderRightColor: "#AAAAAA"
   },
   tabTextStyle: {
     color: colors.black,
-    ...fonts.style.bold,
+    ...fonts.style.bold
   },
   activeTabStyle: {
     backgroundColor: colors.white,
     borderBottomColor: colors.white,
     borderLeftColor: colors.white,
-    borderRightColor: colors.white,
+    borderRightColor: colors.white
   },
   activeTabTextStyle: {
-    color: colors.black,
+    color: colors.black
   },
   tabContent: {
-    color: '#444444',
+    color: "#444444",
     fontSize: 18,
-    margin: 24,
+    margin: 24
   },
   tabContentTitle: {
     ...fonts.style.titleFont,
-    textAlign: 'center',
-    marginVertical: 40,
-  },
+    textAlign: "center",
+    marginVertical: 40
+  }
 });
 
 export default RecurringForm;

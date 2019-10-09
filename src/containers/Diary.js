@@ -245,17 +245,18 @@ class Diary extends Component {
     Reactotron.log(id, val, type, startDate);
     if (typeof id === "string" && id.includes("_")) {
       const [localId, timeStamp] = id.split("_");
-      Reactotron.log("recurring", +localId, +timeStamp);
+      // Reactotron.log("recurring", +localId, +timeStamp);
       this.props.dispatch(
         completeRecurringEvent({
           payload: { eventId: +localId, startDate: +timeStamp }
         })
-      );;
+      );
+    } else {
+      Reactotron.log("recurring event mag deze niet tonen");
+      this.props.dispatch(
+        completeEvent({ payload: { eventId: id, completed: !val } })
+      );
     }
-    return;
-    this.props.dispatch(
-      completeEvent({ payload: { eventId: id, completed: !val } })
-    );
   };
 
   exportCSV = () => {

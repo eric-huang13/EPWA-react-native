@@ -423,17 +423,19 @@ const recurringDays = (event, endDate, num) => {
 const recurringMonths = event => {
   const eventNextMonth = addMonths(format(event.startDate), 1);
   const eventPrevMonth = addMonths(format(event.startDate), -1);
-
+  const prevDate = parseDateField(eventPrevMonth, event);
+  const nextDate = parseDateField(eventNextMonth, event);
   return [
-    { ...event, startDate: parseDateField(eventPrevMonth, event), id: getId() },
-    { ...event, startDate: parseDateField(eventNextMonth, event), id: getId() }
+    { ...event, startDate: prevDate, id: `${event.id}_${prevDate}` },
+    { ...event, startDate: nextDate, id: `${event.id}_${nextDate}` }
   ];
 };
 
 const recurringYear = (event, currentDate) => {
   const thisYear = getYear(currentDate);
   const yearDate = setYear(format(event.startDate), thisYear);
-  return [{ ...event, startDate: parseDateField(yearDate, event) }];
+  const eventDate = parseDateField(yearDate, event);
+  return [{ ...event, startDate: eventDate, id: `${event.id}_${eventDate}` }];
 };
 
 const getRecurringEvents = (event, endDay, currentDate) => {

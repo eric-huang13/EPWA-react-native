@@ -51,7 +51,7 @@ export function* getEvents(api, accessToken) {
     map(event => {
       const result = event;
 
-      if (event.data === "null" && event.data === '"null"') {
+      if (event.data === "null" && event.data === "\"null\"") {
         result.data = null;
       }
 
@@ -63,6 +63,12 @@ export function* getEvents(api, accessToken) {
       if (isNil(result.endDate)) {
         return omit(["endDate"])(result);
       }
+
+      // if (not(isNil(result.completed)) && +result.completed === 0) {
+      //   result.completed = false;
+      // } else if (not(isNil(result.completed)) && +result.completed === 1) {
+      //   result.completed = true;
+      // }
 
       return result;
     }),
@@ -91,6 +97,8 @@ export function* addEvent(api, dispatch, action) {
     map(omit(["local_id"])),
     map(snakeCaseKeys)
   )(payload);
+
+  Reactotron.log("from api");
 
   yield put({
     type: "ADD_EVENT_REQUEST_SENT",
@@ -139,7 +147,7 @@ export function* addEventCommit(action) {
   const events = action.payload
     .map(event => camelcaseKeys(event))
     .map(event => {
-      if (event.data === "null" || event.data === '"null"') {
+      if (event.data === "null" || event.data === "\"null\"") {
         event.data = null;
       }
 
@@ -372,7 +380,7 @@ export function* completeRecurringEvent(api, dispatch, action) {
     event => {
       const result = event;
 
-      if (event.data === "null" && event.data === '"null"') {
+      if (event.data === "null" && event.data === "\"null\"") {
         result.data = null;
       }
 
@@ -380,6 +388,8 @@ export function* completeRecurringEvent(api, dispatch, action) {
         result.data = JSON.parse(result.data);
         result.data = camelcaseKeys(result.data);
       }
+
+      result.recurring = null;
 
       if (isNil(result.endDate)) {
         return omit(["endDate"])(result);
