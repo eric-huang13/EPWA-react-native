@@ -490,7 +490,9 @@ class DiaryFeedingForm extends Component {
               {this.renderFieldArray(eventTypes.concentrate)}
               {this.renderFieldArray(eventTypes.supplement)}
             </View>
-            {isNil(values[Object.keys(values)[0]]) && this.renderRecurring()}
+            {values[Object.keys(values)[0]] &&
+              values[Object.keys(values)[0]].length > 0 &&
+              this.renderRecurring()}
             <View style={{ padding: 20 }}>
               <Button
                 style={{
