@@ -802,7 +802,7 @@ const onSubmit = (values, formikBag) => {
   const completeEvent =
     formikBag.props.navigation.getParam("completeEvent") || false;
   // return;;
-  if (completeEvent) {
+  if (completeEvent && !isNil(localDate)) {
     flattenValues[0].completed = true;
     flattenValues[0].localId = getId();
 
@@ -812,6 +812,15 @@ const onSubmit = (values, formikBag) => {
     Reactotron.log("flattenValues after reject", flattenValues);
   }
   // return;
+
+  if (completeEvent && isNil(localDate)) {
+    flattenValues[0].completed = true;
+    // flattenValues[0].localId = getId();
+
+    delete flattenValues[0].recurring;
+    delete flattenValues[0].recurringUntill;
+    Reactotron.log("flattenValues 3", flattenValues);
+  }
 
   if (
     completeEvent === false &&
@@ -824,8 +833,8 @@ const onSubmit = (values, formikBag) => {
     ]);
   }
 
-  if (completeEvent || (completeEvent && isNil(localDate))) {
-    isEditing = false;
+  if (completeEvent && isNil(localDate)) {
+    isEditing = true;
   }
 
   if (!isEditing) {
