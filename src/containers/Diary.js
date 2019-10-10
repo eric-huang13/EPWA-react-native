@@ -243,6 +243,39 @@ class Diary extends Component {
 
   onToggleComplete = (id, val, type, endDate) => {
     Reactotron.log(id, val, type, endDate);
+    // return;
+    if (
+      type === eventTypes.temperature ||
+      type === eventTypes.recovery ||
+      type === eventTypes.treatment
+    ) {
+      const localId =
+        typeof id === "string" && id.includes("_") ? id.split("_")[0] : id;
+      const localDate =
+        typeof id === "string" && id.includes("_") ? id.split("_")[1] : null;
+
+      this.navigateTo("DiaryMedicationForm", {
+        initialValue: this.findEventById(+localId),
+        localDate,
+        completeEvent: true
+      });
+      return;
+    }
+    if (type === eventTypes.composite) {
+      this.navigateTo(this.routes.startPainMeasurement, {
+        redirectPath: "Diary",
+        animal: this.props.data.animals[this.state.currentIndex]
+      });
+      return;
+    }
+    if (type === eventTypes.facialExpression) {
+      this.navigateTo(this.routes.startPainMeasurement, {
+        redirectPath: "Diary",
+        animal: this.props.data.animals[this.state.currentIndex]
+      });
+      return;
+    }
+
     if (typeof id === "string" && id.includes("_")) {
       const [localId, timeStamp] = id.split("_");
       Reactotron.log("recurring", +localId, +timeStamp, endDate);

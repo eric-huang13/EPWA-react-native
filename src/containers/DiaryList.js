@@ -251,6 +251,7 @@ function ItemContent({
   findEventById,
   id,
   completed,
+  data,
   toggleComplete,
   startDate,
   endDate
@@ -314,6 +315,7 @@ function ItemContent({
           findEventById={findEventById}
           id={id}
           completed={completed}
+          data={data}
         />
       );
     default:
@@ -356,11 +358,16 @@ function PainMeasureContent({
   );
 }
 
-function MedicationContent({ type, navigateTo, t, findEventById, id }) {
+function MedicationContent({ type, navigateTo, t, findEventById, id, data }) {
   const localId =
     typeof id === "string" && id.includes("_") ? id.split("_")[0] : id;
   const localDate =
     typeof id === "string" && id.includes("_") ? id.split("_")[1] : null;
+
+  const content =
+    type === eventTypes.pill
+      ? `${data.quantity} ${data.unit} ${data.name}`
+      : `${t(type)}`;
 
   return (
     <React.Fragment>
@@ -375,7 +382,7 @@ function MedicationContent({ type, navigateTo, t, findEventById, id }) {
         }
       >
         <View style={styles.itemContent}>
-          <Text style={fonts.style.normal}>{t("eventMedication")}</Text>
+          <Text style={fonts.style.normal}>{content}</Text>
         </View>
       </TouchableOpacity>
     </React.Fragment>

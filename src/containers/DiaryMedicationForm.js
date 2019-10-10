@@ -30,6 +30,7 @@ import {
   always,
   compose,
   flatten,
+  reject,
   T as ramdaT,
   isNil
 } from "ramda";
@@ -73,6 +74,8 @@ import {
   setMillisecondsToZero
 } from "../services/date";
 import iconMap from "../constants/iconMap";
+
+import Reactotron from "reactotron-react-native";
 
 const validationSchema = yup.object().shape({
   pill: yup.array().of(quantityEventValidation),
@@ -131,17 +134,19 @@ class DiaryMedicationForm extends Component {
 
     const isEditing = Boolean(props.navigation.getParam("initialValue"));
     const localDate = +props.navigation.getParam("localDate") || null;
+    const completeEvent = props.navigation.getParam("completeEvent") || false;
 
     this.state = {
       isEditing,
-      localDate
+      localDate,
+      completeEvent
     };
 
     this.isAndroid = Platform.OS === "android";
   }
 
   submitForm = () => {
-    if (!this.props.dirty) {
+    if (!this.props.dirty && !this.state.completeEvent) {
       return;
     }
 
@@ -153,7 +158,7 @@ class DiaryMedicationForm extends Component {
 
     const event = {
       localId: getId(),
-      completed: false,
+      completed: this.state.completeEvent,
       category: eventCategories.medication,
       type: eventType,
       animalId,
@@ -703,6 +708,9 @@ class DiaryMedicationForm extends Component {
   };
 
   render() {
+    const btnColor = this.state.completeEvent
+      ? { backgroundColor: colors.lima }
+      : null;
     return (
       <View style={s.screenContainer}>
         <KeyboardAvoidingView
@@ -717,14 +725,19 @@ class DiaryMedicationForm extends Component {
               {this.renderFieldArray(eventTypes.temperature)}
               {this.renderFieldArray(eventTypes.recovery)}
             </View>
-            {this.renderRecurring()}
+            {!this.state.completeEvent && this.renderRecurring()}
             <View style={{ padding: 20 }}>
               <Button
                 style={{
                   minWidth: 200,
-                  marginBottom: 20
+                  marginBottom: 20,
+                  ...btnColor
                 }}
-                label={this.props.t("save")}
+                label={
+                  this.state.completeEvent
+                    ? this.props.t("completeEvent")
+                    : this.props.t("save")
+                }
                 onPress={this.submitForm}
               />
             </View>
@@ -780,15 +793,39 @@ const onSubmit = (values, formikBag) => {
     Object.values
   )(values);
 
+  Reactotron.log("flattenValues before reject", flattenValues);
+  // return
   const initialValue = formikBag.props.navigation.getParam("initialValue");
   let isEditing = Boolean(initialValue);
 
   const localDate = formikBag.props.navigation.getParam("localDate");
-  if (!isNil(localDate) && !isNil(flattenValues[0].recurring)) {
+  const completeEvent =
+    formikBag.props.navigation.getParam("completeEvent") || false;
+  // return;;
+  if (completeEvent) {
+    flattenValues[0].completed = true;
+    flattenValues[0].localId = getId();
+
+    delete flattenValues[0].id;
+    delete flattenValues[0].recurring;
+    delete flattenValues[0].recurringUntill;
+    Reactotron.log("flattenValues after reject", flattenValues);
+  }
+  // return;
+
+  if (
+    completeEvent === false &&
+    !isNil(localDate) &&
+    !isNil(flattenValues[0].recurring)
+  ) {
     Alert.alert(t("editRecurringEventWarning"), t("selectAnOption"), [
       { text: t("editRecurring"), onPress: () => (isEditing = true) },
       { text: t("newRecurring"), onPress: () => (isEditing = false) }
     ]);
+  }
+
+  if (completeEvent || (completeEvent && isNil(localDate))) {
+    isEditing = false;
   }
 
   if (!isEditing) {
