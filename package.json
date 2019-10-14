@@ -27,6 +27,7 @@
     "react-i18next": "^9.0.10",
     "react-native": "0.60.5",
     "react-native-action-button": "^2.8.5",
+    "react-native-alert-async": "^1.0.3",
     "react-native-calendars": "^1.212.0",
     "react-native-collapsible": "^1.5.1",
     "react-native-dropdownalert": "^4.2.0",

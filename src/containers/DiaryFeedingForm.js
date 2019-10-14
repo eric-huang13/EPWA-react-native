@@ -10,6 +10,7 @@ import {
   Text,
   Alert
 } from "react-native";
+import AlertAsync from "react-native-alert-async";
 import { HeaderBackButton } from "react-navigation-stack";
 import { FieldArray, withFormik } from "formik";
 import { translate } from "react-i18next";
@@ -562,36 +563,75 @@ const onSubmit = (values, formikBag) => {
   let isEditing = Boolean(initialValue);
 
   const localDate = formikBag.props.navigation.getParam("localDate");
+
   if (!isNil(localDate) && !isNil(flattenValues[0].recurring)) {
-    Alert.alert(t("editRecurringEventWarning"), t("selectAnOption"), [
-      { text: t("editRecurring"), onPress: () => (isEditing = true) },
-      { text: t("newRecurring"), onPress: () => (isEditing = false) }
-    ]);
-  }
+    const myAction = async () => {
+      const choice = await AlertAsync(
+        t("editRecurringEventWarning"),
+        t("selectAnOption"),
+        [
+          { text: t("editRecurring"), onPress: () => "yes" },
+          { text: t("newRecurring"), onPress: () => "no" },
+          { text: t("cancel"), onPress: () => "cancel" }
+        ],
+        {
+          cancelable: true,
+          onDismiss: () => "cancel"
+        }
+      );
 
-  if (!isEditing) {
-    return triggerSubmitType(flattenValues, {
+      if (choice === "yes") {
+        if (isEditing && flattenValues.length > 0) {
+          return await triggerSubmitType(flattenValues[0], {
+            formikBag,
+            alertTitle: "alertSuccess",
+            alertMsg: "eventEditSuccessMsg",
+            actionCreator: editEvent,
+            initialValue
+          });
+        }
+      } else if (choice === "no") {
+        Reactotron.log("voor", flattenValues);
+        delete flattenValues[0].id;
+        flattenValues[0].localId = getId();
+        Reactotron.log("na", flattenValues);
+        // return;
+        return await triggerSubmitType(flattenValues, {
+          formikBag,
+          alertTitle: "alertSuccess",
+          alertMsg: "eventAddSuccessMsg",
+          actionCreator: addEvent
+        });
+      } else {
+        return;
+      }
+    };
+    myAction();
+  } else {
+    if (!isEditing) {
+      return triggerSubmitType(flattenValues, {
+        formikBag,
+        alertTitle: "alertSuccess",
+        alertMsg: "eventAddSuccessMsg",
+        actionCreator: addEvent
+      });
+    } else if (isEditing && flattenValues.length > 0) {
+      return triggerSubmitType(flattenValues[0], {
+        formikBag,
+        alertTitle: "alertSuccess",
+        alertMsg: "eventEditSuccessMsg",
+        actionCreator: editEvent,
+        initialValue
+      });
+    }
+
+    return triggerSubmitType(initialValue, {
       formikBag,
       alertTitle: "alertSuccess",
-      alertMsg: "eventAddSuccessMsg",
-      actionCreator: addEvent
-    });
-  } else if (isEditing && flattenValues.length > 0) {
-    return triggerSubmitType(flattenValues[0], {
-      formikBag,
-      alertTitle: "alertSuccess",
-      alertMsg: "eventEditSuccessMsg",
-      actionCreator: editEvent,
-      initialValue
+      alertMsg: "eventDeleteSuccessMsg",
+      actionCreator: deleteEvent
     });
   }
-
-  return triggerSubmitType(initialValue, {
-    formikBag,
-    alertTitle: "alertSuccess",
-    alertMsg: "eventDeleteSuccessMsg",
-    actionCreator: deleteEvent
-  });
 };
 
 const formikOptions = {
