@@ -29,6 +29,7 @@ import DiaryPainMeasurementFormScreen from "../containers/DiaryPainMeasurementFo
 import DiaryPainMeasurementInfoScreen from "../containers/PainMeasurementStartInfo";
 import DiaryMedicationFormInfoScreen from "../containers/DiaryMedicationFormInfo";
 import DiaryAppointmentFormScreen from "../containers/DiaryAppointmentForm";
+import DiaryShareFormScreen from "../containers/DiaryShareScreen";
 import RedirectToPainMeasurementScreen from "../containers/RedirectToPainMeasurement";
 import WelfareScreen from "../containers/WelfareInfo";
 
@@ -116,7 +117,8 @@ const AppStack = createDrawerNavigator(
           painMeasurement: PainMeasurementScreen,
           PainMeasurementOverview: PainMeasurementOverviewScreen,
           PainMeasurementDetails: PainMeasurementDetailsScreen,
-          DiaryAppointmentForm: DiaryAppointmentFormScreen
+          DiaryAppointmentForm: DiaryAppointmentFormScreen,
+          DiaryShareForm: DiaryShareFormScreen
         },
         {
           initialRouteName: "Diary",

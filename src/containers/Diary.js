@@ -108,7 +108,8 @@ class Diary extends Component {
       housing: "DiaryHousingForm",
       feeding: "DiaryFeedingForm",
       medication: "DiaryMedicationForm",
-      startPainMeasurement: "painMeasurement"
+      startPainMeasurement: "painMeasurement",
+      share: "DiaryShareForm"
     };
 
     this.actionButtons = [
@@ -226,12 +227,18 @@ class Diary extends Component {
 
   share = () => {
     const animal = this.getSelectedAnimal();
-    Share.share({
-      title: this.props.t("shareAppTitleAnimalProfile"),
-      message: this.props.t("shareAppContentAnimalProfile", {
-        animalName: animal.name
-      }),
-      url: this.props.t("shareAppUrl")
+    // Share.share({
+    //   title: this.props.t("shareAppTitleAnimalProfile"),
+    //   message: this.props.t("shareAppContentAnimalProfile", {
+    //     animalName: animal.name
+    //   }),
+    //   url: this.props.t("shareAppUrl")
+    // });
+
+    this.navigateTo(this.routes.share, {
+      redirectPath: "Diary",
+      animal: this.props.data.animals[this.state.currentIndex],
+      currentDate: this.state.currentDate
     });
   };
 

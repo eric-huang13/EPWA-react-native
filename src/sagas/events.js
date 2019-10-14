@@ -5,7 +5,7 @@ import { get } from "lodash";
 import { compose, evolve, isNil, map, reject, omit, not } from "ramda";
 import { format } from "date-fns";
 
-import Reactotron from "reactotron-react-native";
+// import Reactotron from "reactotron-react-native";
 
 import {
   ADD_EVENT,
@@ -51,7 +51,8 @@ export function* getEvents(api, accessToken) {
     map(event => {
       const result = event;
 
-      if (event.data === "null" && event.data === "\"null\"") {
+      // eslint-disable-next-line quotes
+      if (event.data === "null" && event.data === '"null"') {
         result.data = null;
       }
 
@@ -97,8 +98,6 @@ export function* addEvent(api, dispatch, action) {
     map(omit(["local_id"])),
     map(snakeCaseKeys)
   )(payload);
-
-  Reactotron.log("from api");
 
   yield put({
     type: "ADD_EVENT_REQUEST_SENT",
@@ -147,6 +146,7 @@ export function* addEventCommit(action) {
   const events = action.payload
     .map(event => camelcaseKeys(event))
     .map(event => {
+      // eslint-disable-next-line prettier/prettier
       if (event.data === "null" || event.data === "\"null\"") {
         event.data = null;
       }
@@ -380,7 +380,7 @@ export function* completeRecurringEvent(api, dispatch, action) {
     event => {
       const result = event;
 
-      if (event.data === "null" && event.data === "\"null\"") {
+      if (event.data === "null" && event.data === '"null"') {
         result.data = null;
       }
 
