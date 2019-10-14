@@ -318,8 +318,24 @@ function ItemContent({
           data={data}
         />
       );
+    case eventCategories.appointment:
+      return (
+        <AppointmentContent
+          type={type}
+          t={t}
+          navigateTo={navigateTo}
+          findEventById={findEventById}
+          id={id}
+          completed={completed}
+          data={data}
+        />
+      );
     default:
-      return null;
+      return (
+        <View>
+          <Text>DEBUG THIS</Text>
+        </View>
+      );
   }
 }
 
@@ -509,6 +525,40 @@ function ExerciseContent({
           <Text style={fonts.style.normal}>
             {`${t(type)}  ${startTime} - ${endTime}`}
           </Text>
+        </View>
+      </TouchableOpacity>
+    </React.Fragment>
+  );
+}
+
+function AppointmentContent({
+  type,
+  t,
+  navigateTo,
+  findEventById,
+  id,
+  startDate
+}) {
+  const localId =
+    typeof id === "string" && id.includes("_") ? id.split("_")[0] : id;
+  const localDate =
+    typeof id === "string" && id.includes("_") ? id.split("_")[1] : null;
+
+  const startTime = format(startDate, "HH:mm");
+
+  return (
+    <React.Fragment>
+      <TouchableOpacity
+        key={id}
+        onPress={() =>
+          navigateTo("DiaryExerciseForm", {
+            initialValue: findEventById(+localId),
+            localDate
+          })
+        }
+      >
+        <View style={styles.itemContent}>
+          <Text style={fonts.style.normal}>{`${t(type)}  ${startTime}`}</Text>
         </View>
       </TouchableOpacity>
     </React.Fragment>

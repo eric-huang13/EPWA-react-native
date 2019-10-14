@@ -34,8 +34,8 @@ export const eventTypes = {
   temperature: "temperature",
   recovery: "recovery",
   facialExpression: "facialExpression",
-  composite: "composite"
-  // appointmentType: "appointmentType"
+  composite: "composite",
+  appointment: "appointment"
 };
 
 export const eventTypeIconNames = {

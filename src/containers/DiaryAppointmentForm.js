@@ -50,7 +50,7 @@ import withExitPrompt from "../components/withExitPrompt";
 import RecurringForm from "../components/RecurringForm";
 
 import { addEvent, editEvent, deleteEvent } from "../actions/events";
-import { eventCategories } from "../constants";
+import { eventCategories, eventTypes } from "../constants";
 import {
   dateEventProps,
   noteEventValidation
@@ -132,7 +132,7 @@ class diaryAppointmentForm extends Component {
       localId: getId(),
       completed: false,
       category: eventCategories.appointment,
-      // type: "appointmentType",
+      type: eventTypes.appointment,
       animalId
     };
   }
@@ -393,6 +393,7 @@ const onSubmit = ({ payload }, formikBag) => {
 
   const localDate = formikBag.props.navigation.getParam("localDate");
   Reactotron.log("Payload", payload, formikBag);
+  return;
   if (!isNil(localDate) && !isNil(payload[0].recurring)) {
     Alert.alert(t("editRecurringEventWarning"), t("selectAnOption"), [
       { text: t("editRecurring"), onPress: () => (isEditing = true) },
