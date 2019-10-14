@@ -114,8 +114,8 @@ class Diary extends Component {
 
     this.actionButtons = [
       {
-        color: colors.whiteSmoke,
-        icon: "note",
+        color: colors.lightGrey,
+        icon: "calendar",
         title: props.t("registerAppointment"),
         onPress: () => this.navigateTo(this.routes.registerAppointment)
       },
