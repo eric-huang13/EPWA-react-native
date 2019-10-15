@@ -98,7 +98,10 @@ class Diary extends Component {
     this.state = {
       currentIndex: isInitialValuePassed ? selectedAnimalIndex : 0,
       currentDate: new Date(),
-      tabIndex: 1
+      tabIndex: 1,
+      currentEvents: [],
+      currentCalendarData: []
+      // selectedCalendarMonth:
     };
 
     this.routes = {
@@ -285,7 +288,7 @@ class Diary extends Component {
 
     if (typeof id === "string" && id.includes("_")) {
       const [localId, timeStamp] = id.split("_");
-      Reactotron.log("recurring", +localId, +timeStamp, endDate);
+      // Reactotron.log("recurring", +localId, +timeStamp, endDate);
       // return;
       this.props.dispatch(
         completeRecurringEvent({
@@ -297,7 +300,7 @@ class Diary extends Component {
         })
       );
     } else {
-      Reactotron.log("recurring event mag deze niet tonen");
+      // Reactotron.log("recurring event mag deze niet tonen");
       this.props.dispatch(
         completeEvent({ payload: { eventId: id, completed: !val } })
       );
@@ -496,9 +499,43 @@ class Diary extends Component {
       (a, b) => a.startDate - b.startDate
     );
 
-    if (tabIndex === 1) {
-      Reactotron.log("tab 1", allEvents);
+    const allDaysArr = uniq(
+      allEvents
+        .reverse()
+        .map(({ startDate }) => format(startDate, "D MMM", { locale }))
+    );
 
+    const eventsGroupedByDay = allDaysArr.map(date => {
+      const sameDate = allEvents.filter(
+        item => date === format(item.startDate, "D MMM", { locale })
+      );
+      if (sameDate.length === 0) {
+        return null;
+      }
+      return {
+        startDate: date,
+        events: sameDate
+      };
+    });
+
+    const maxEventsTab0 = eventsGroupedByDay.slice(1, 15);
+
+    const eventsGroupedByDayTab2 = allDaysArr.sort().map(date => {
+      const eventsOnSameDay = allEvents.filter(
+        item => date === format(item.startDate, "D MMM", { locale })
+      );
+      if (eventsOnSameDay.length === 0) {
+        return null;
+      }
+      return {
+        startDate: date,
+        events: eventsOnSameDay
+      };
+    });
+
+    const maxEventsTab2 = eventsGroupedByDayTab2.slice(1, 5);
+
+    if (tabIndex === 1) {
       return (
         <EventsList
           events={allEvents}
@@ -508,67 +545,10 @@ class Diary extends Component {
           toggleComplete={this.onToggleComplete}
         />
       );
-    }
-
-    if (tabIndex === 0) {
-      // datastructure voor blik terug en kijk vooruit
-      const allDaysArr = uniq(
-        allEvents
-          .reverse()
-          .map(({ startDate }) => format(startDate, "D MMM", { locale }))
-      );
-
-      const eventsGroupedByDay = allDaysArr.map(date => {
-        const sameDate = allEvents.filter(
-          item => date === format(item.startDate, "D MMM", { locale })
-        );
-        if (sameDate.lenght === 0) {
-          return null;
-        }
-        return {
-          startDate: date,
-          events: sameDate
-        };
-      });
-
-      const maxEvents = eventsGroupedByDay.slice(1, 15);
+    } else {
       return (
         <AccordionView
-          data={maxEvents}
-          t={t}
-          navigateTo={this.navigateTo}
-          findEventById={this.findEventById}
-          toggleComplete={this.onToggleComplete}
-        />
-      );
-    }
-
-    if (tabIndex === 2) {
-      // datastructure voor blik terug en kijk vooruit
-      const allDaysArr = uniq(
-        allEvents.map(({ startDate }) =>
-          format(startDate, "D MMMM", { locale })
-        )
-      );
-
-      const eventsGroupedByDay = allDaysArr.map(date => {
-        const eventsOnSameDay = allEvents.filter(
-          item => date === format(item.startDate, "D MMMM", { locale })
-        );
-        if (eventsOnSameDay.lenght === 0) {
-          return null;
-        }
-        return {
-          startDate: date,
-          events: eventsOnSameDay
-        };
-      });
-
-      const maxEvents = eventsGroupedByDay.slice(1, 5);
-
-      return (
-        <AccordionView
-          data={maxEvents}
+          data={tabIndex === 0 ? maxEventsTab0 : maxEventsTab2}
           t={t}
           navigateTo={this.navigateTo}
           findEventById={this.findEventById}

@@ -112,10 +112,10 @@ LocaleConfig.locales.en = {
 };
 // LocaleConfig.defaultLocale = "nl";
 
-const activity = {
-  color: colors.mediumPurple,
-  selectedDotColor: colors.mediumPurple
-};
+// const activity = {
+//   color: colors.mediumPurple,
+//   selectedDotColor: colors.mediumPurple
+// };
 
 function formatDate(date, lang) {
   const monthNames =
@@ -161,8 +161,21 @@ export default class DiaryCalendar extends Component {
     this.state = {
       revealCalendar: false,
       selected_date: new Date(),
-      selected_month: format(new Date())
+      selected_month: format(new Date()),
+      markedDates: []
     };
+  }
+
+  componentDidMount() {
+    ///markedDates berekenen
+    this.setMarkedDates();
+    Reactotron.log("calendar mountend");
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.selected_month !== prevState.selected_month) {
+      // this.setMarkedDates();
+    }
   }
 
   toggleRevealCalendar = () => {
@@ -186,7 +199,16 @@ export default class DiaryCalendar extends Component {
     this.setState({ selected_month: new Date(), selected_date: new Date() });
   };
 
-  setMarkedDates = events => {
+  calendarEvents() {
+    return addRecurringCalendarEvents(
+      this.props.events,
+      this.state.selected_month
+    );
+  }
+
+  setMarkedDates() {
+    const events = this.calendarEvents();
+
     const eventsDates = events.map(event =>
       format(event.startDate, "YYYY-MM-DD", { locale: nl })
     );
@@ -208,25 +230,24 @@ export default class DiaryCalendar extends Component {
         ? alEventsInCalendar.reduce((x, y) => ({ ...y, ...x }))
         : {};
 
-    return marks;
-  };
+    // return marks;
+    this.setState({ markedDates: marks });
+  }
 
   render() {
     LocaleConfig.defaultLocale = this.props.lang;
 
-    const allEvents = compose(
-      filter(isRelatedToAnimal(this.props.currentAnimal))
-    )(this.props.events || []);
+    // const allEvents = compose(
+    //   filter(isRelatedToAnimal(this.props.currentAnimal))
+    // )(this.props.events || []);
 
-    const calendarEvents = addRecurringCalendarEvents(
-      allEvents,
-      this.state.selected_month
-    );
     // Reactotron.log("calendarEvents", calendarEvents);
 
-    const marks = this.setMarkedDates(calendarEvents);
+    // const marks = this.setMarkedDates(calendarEvents);
     // Reactotron.log("marks", marks);
-    // Reactotron.log("state", this.state);
+    // Reactotron.log("calendarState", this.state);
+    const marks = this.state.markedDates;
+
     return (
       <React.Fragment>
         <View

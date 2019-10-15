@@ -9,6 +9,7 @@ import {
   subDays,
   eachDay,
   addMonths,
+  subMonths,
   addYears,
   subYears,
   getYear,
@@ -562,8 +563,10 @@ export const addRecurringEvents = (allEvents, currentDate = new Date()) => {
 };
 
 export const addRecurringCalendarEvents = (allEvents, month = new Date()) => {
-  const beginDate = subYears(startOfMonth(format(month)), 1);
-  const endDate = addYears(endOfMonth(format(month)), 1);
+  const beginDate = subMonths(startOfMonth(format(month)), 1);
+  const endDate = addMonths(endOfMonth(format(month)), 6);
+  // const beginDate = startOfMonth(format(month));
+  // const endDate = endOfMonth(format(month));
 
   const allReducedEvents = allEvents.reduce((a, event) => {
     if (
