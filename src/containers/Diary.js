@@ -456,7 +456,7 @@ class Diary extends Component {
     const { t } = this.props;
     const locale = this.props.i18n.language === "nl" ? nl : en;
 
-    Reactotron.log("begin calc diaryevents");;
+    Reactotron.log("begin calc diaryevents");
     const propsDataEvents = addRecurringEvents(
       this.props.data.events,
       currentDate
@@ -718,6 +718,7 @@ class Diary extends Component {
             events={events}
             onPress={this.onDatePicked}
             lang={i18n.language}
+            tabToday={this.handleIndexChange}
             t={t}
           />
           <DiaryTimeTab

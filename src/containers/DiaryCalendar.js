@@ -200,6 +200,7 @@ export default class DiaryCalendar extends Component {
   resetToday = () => {
     this.props.onPress(new Date());
     this.setState({ selected_month: new Date(), selected_date: new Date() });
+    this.props.tabToday(1);
   };
 
   calendarEvents() {
