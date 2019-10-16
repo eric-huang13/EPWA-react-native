@@ -26,14 +26,14 @@ import { colors, fonts } from "../themes";
 // import iconMap from "../constants/iconMap";
 import { isNil } from "ramda";
 import { eventTypes } from "../constants";
-import Reactotron from "reactotron-react-native";
-import reactotron from "reactotron-react-native";
+// import Reactotron from "reactotron-react-native";
 
 class PainMeasurementGraph extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      maxScore: 55,
       ticks: [],
       tickStrings: [],
       data: [],
@@ -92,7 +92,7 @@ class PainMeasurementGraph extends React.Component {
     const formatDate = timestamp =>
       format(timestamp, "D MMM-HH:mm", { locale: this.props.locale });
     const { t } = this.props;
-    const maxScore = 55;
+    // const maxScore = 55;
     const ticks = [];
     const tickStrings = [];
 
@@ -134,6 +134,7 @@ class PainMeasurementGraph extends React.Component {
       .length;
 
     this.setState({
+      // maxScore,
       ticks,
       tickStrings,
       data,
@@ -145,9 +146,10 @@ class PainMeasurementGraph extends React.Component {
   };
 
   render() {
-    Reactotron.log("RENDER GRAPH");
+    // Reactotron.log("RENDER GRAPH");
     const { t } = this.props;
     const {
+      // maxScore,
       ticks,
       tickStrings,
       data,
@@ -189,9 +191,7 @@ class PainMeasurementGraph extends React.Component {
               this.scrollView.scrollToEnd({ animated: true });
             }}
           >
-            {/* TODO line before graph fill gap
-
-              this.state.compositeLine.length > 0 ||
+            {this.state.compositeLine.length > 0 ||
               (this.state.facialExpressionLine.length > 0 && (
                 <View
                   style={{
@@ -204,9 +204,9 @@ class PainMeasurementGraph extends React.Component {
                     borderColor: "#EDE8E8"
                   }}
                 />
-                )) */}
+              ))}
             <VictoryChart
-              domain={{ y: [0, 30 || maxScore] }}
+              domain={{ y: [0, 30 || this.state.maxScore] }}
               domainPadding={{ x: 20 }}
               padding={{ top: 0, right: 15, bottom: 40, left: 15 }}
               width={ticks.length * 44}
@@ -241,11 +241,7 @@ class PainMeasurementGraph extends React.Component {
                     return;
                   }
                 })}
-              {Reactotron.log(
-                "line",
-                this.state.showFacial,
-                this.state.facialExpressionLine
-              )}
+
               {this.state.showFacial &&
                 this.state.facialExpressionLine.length > 0 &&
                 this.state.facialExpressionLine.map((line, index) => {
