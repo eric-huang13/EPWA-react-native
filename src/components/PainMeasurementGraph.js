@@ -9,7 +9,7 @@ import {
   Switch,
   StyleSheet
 } from "react-native";
-import { Svg, Rect, Text as SVGText, Line } from "react-native-svg";
+import { Rect, Text as SVGText, Line } from "react-native-svg";
 import {
   VictoryAxis,
   VictoryScatter,
@@ -25,7 +25,8 @@ import { colors, fonts } from "../themes";
 // import Icon from "./Icon";
 // import iconMap from "../constants/iconMap";
 import { isNil } from "ramda";
-// import Reactotron from "reactotron-react-native";
+import { eventTypes } from "../constants";
+import Reactotron from "reactotron-react-native";
 
 class PainMeasurementGraph extends React.Component {
   constructor(props) {
@@ -35,19 +36,43 @@ class PainMeasurementGraph extends React.Component {
       compositeLine: [],
       facialExpressionLine: [],
       showComposite: true,
-      showFacial: true
+      showFacial: true,
+      items: []
     };
   }
 
+  componentDidMount() {
+    this.setItems();
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.items.length !== this.props.items.length) {
+      this.resetLines();
+    }
+  }
+
+  resetLines() {
+    this.setState({
+      compositeLine: [],
+      facialExpressionLine: []
+    });
+  }
+
+  setItems() {
+    this.setState({ items: this.props.items });
+  }
+
   setLineXY = (xCoor, yCoor, type, dataLenght1, dataLenght2) => {
-    if (type === "composite" && this.state.compositeLine <= dataLenght1) {
+    if (
+      type === eventTypes.composite &&
+      this.state.compositeLine.length < dataLenght1
+    ) {
       this.setState(prevState => ({
         compositeLine: [...prevState.compositeLine, { xCoor, yCoor }]
       }));
     }
     if (
-      type === "facialExpression" &&
-      this.state.facialExpressionLine <= dataLenght2
+      type === eventTypes.facialExpression &&
+      this.state.facialExpressionLine.length < dataLenght2
     ) {
       this.setState(prevState => ({
         facialExpressionLine: [
@@ -72,6 +97,7 @@ class PainMeasurementGraph extends React.Component {
 
   render() {
     // Reactotron.log(this.state);
+
     const formatDate = timestamp =>
       format(timestamp, "D MMM-HH:mm", { locale: this.props.locale });
     const { t } = this.props;
@@ -109,11 +135,12 @@ class PainMeasurementGraph extends React.Component {
         };
       });
 
-    const facialExpressionLenght = data.filter(
-      a => a.type === "facialExpression"
+    const facialExpressionLength = data.filter(
+      a => a.type === eventTypes.facialExpression
     ).length;
 
-    const compositeLenght = data.filter(a => a.type === "composite").length;
+    const compositeLength = data.filter(a => a.type === eventTypes.composite)
+      .length;
 
     return (
       <View>
@@ -201,7 +228,11 @@ class PainMeasurementGraph extends React.Component {
                     return;
                   }
                 })}
-
+              {Reactotron.log(
+                "line",
+                this.state.showFacial,
+                this.state.facialExpressionLine
+              )}
               {this.state.showFacial &&
                 this.state.facialExpressionLine.length > 0 &&
                 this.state.facialExpressionLine.map((line, index) => {
@@ -234,8 +265,8 @@ class PainMeasurementGraph extends React.Component {
                     showExpression={this.state.showFacial}
                     showComposite={this.state.showComposite}
                     lineXY={this.setLineXY}
-                    length1={compositeLenght}
-                    length2={facialExpressionLenght}
+                    length1={compositeLength}
+                    length2={facialExpressionLength}
                   />
                 }
                 y="score"
@@ -269,10 +300,10 @@ function Box({
 }) {
   lineXY(x, y, datum.type, length1, length2);
 
-  if (datum.type === "facialExpression" && showExpression === false) {
+  if (datum.type === eventTypes.facialExpression && showExpression === false) {
     return null;
   }
-  if (datum.type === "composite" && showComposite === false) {
+  if (datum.type === eventTypes.composite && showComposite === false) {
     return null;
   }
 
@@ -284,7 +315,9 @@ function Box({
         rx="3"
         ry="3"
         fill={
-          datum.type === "facialExpression" ? colors.lightBlue : colors.lima
+          datum.type === eventTypes.facialExpression
+            ? colors.lightBlue
+            : colors.lima
         }
         height={15}
         width={17}
@@ -354,7 +387,7 @@ PainMeasurementGraph.propTypes = {
     T.shape({
       score: T.number,
       timestamp: T.number,
-      type: T.oneOf(["composite", "facialExpression"])
+      type: T.oneOf([eventTypes.composite, eventTypes.facialExpression])
     })
   ).isRequired,
   locale: T.string

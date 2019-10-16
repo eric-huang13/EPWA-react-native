@@ -508,31 +508,6 @@ export const addRecurringEvents = (allEvents, currentDate = new Date()) => {
   );
   Reactotron.log("allComposite", allCompositePainEvents);
 
-  // const nonRecurringEventIfCompleted = allNonRecurringEvents.filter(event => {
-  //   if (event.category !== eventCategories.painMeasurement) {
-  //     true;
-  //   }
-
-  //   if (event.type === eventTypes.facialExpression) {
-  //     const countFacialOnDay = allFacialPainEvents.filter(facial =>
-  //       isSameDay(format(facial.startDate, event.startDate))
-  //     );
-  //     if (countFacialOnDay > 1) {
-  //       return false;
-  //     }
-  //     return true;
-  //   }
-  //   if (event.type === eventTypes.composite) {
-  //     const countCompositeOnDay = allCompositePainEvents.filter(composite =>
-  //       isSameDay(format(composite.startDate, event.startDate))
-  //     );
-  //     if (countCompositeOnDay > 1) {
-  //       return false;
-  //     }
-  //     return true;
-  //   }
-  // });
-
   const removedDoubleEvents = allRecurringEvents.filter(event => {
     // Reactotron.log(
     //   "dates-eq",

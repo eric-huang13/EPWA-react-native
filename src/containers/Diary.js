@@ -456,6 +456,7 @@ class Diary extends Component {
     const { t } = this.props;
     const locale = this.props.i18n.language === "nl" ? nl : en;
 
+    Reactotron.log("begin calc diaryevents");;
     const propsDataEvents = addRecurringEvents(
       this.props.data.events,
       currentDate
@@ -534,6 +535,8 @@ class Diary extends Component {
     });
 
     const maxEventsTab2 = eventsGroupedByDayTab2.slice(1, 5);
+
+    Reactotron.log("Einde calc diary events");
 
     if (tabIndex === 1) {
       return (
