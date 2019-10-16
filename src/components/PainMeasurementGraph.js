@@ -27,38 +27,31 @@ import { colors, fonts } from "../themes";
 import { isNil } from "ramda";
 import { eventTypes } from "../constants";
 import Reactotron from "reactotron-react-native";
+import reactotron from "reactotron-react-native";
 
 class PainMeasurementGraph extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      ticks: [],
+      tickStrings: [],
+      data: [],
       compositeLine: [],
       facialExpressionLine: [],
       showComposite: true,
-      showFacial: true,
-      items: []
+      showFacial: true
     };
   }
 
   componentDidMount() {
-    this.setItems();
+    this.setGraphData();
   }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.items.length !== this.props.items.length) {
-      this.resetLines();
+      this.setGraphData();
     }
-  }
-
-  resetLines() {
-    this.setState({
-      compositeLine: [],
-      facialExpressionLine: []
-    });
-  }
-
-  setItems() {
-    this.setState({ items: this.props.items });
   }
 
   setLineXY = (xCoor, yCoor, type, dataLenght1, dataLenght2) => {
@@ -95,9 +88,7 @@ class PainMeasurementGraph extends React.Component {
     }));
   };
 
-  render() {
-    // Reactotron.log(this.state);
-
+  setGraphData = () => {
     const formatDate = timestamp =>
       format(timestamp, "D MMM-HH:mm", { locale: this.props.locale });
     const { t } = this.props;
@@ -141,6 +132,28 @@ class PainMeasurementGraph extends React.Component {
 
     const compositeLength = data.filter(a => a.type === eventTypes.composite)
       .length;
+
+    this.setState({
+      ticks,
+      tickStrings,
+      data,
+      facialExpressionLength,
+      compositeLength,
+      facialExpressionLine: [],
+      compositeLine: []
+    });
+  };
+
+  render() {
+    Reactotron.log("RENDER GRAPH");
+    const { t } = this.props;
+    const {
+      ticks,
+      tickStrings,
+      data,
+      facialExpressionLength,
+      compositeLength
+    } = this.state;
 
     return (
       <View>
