@@ -82,6 +82,7 @@ import DiaryTimeTab from "./DiaryTimeTab";
 
 import EventsList, { AccordionView } from "./DiaryList";
 import Reactotron from "reactotron-react-native";
+import reactotron from "reactotron-react-native";
 
 class Diary extends Component {
   static navigationOptions = ({ navigation, screenProps }) => ({
@@ -169,7 +170,6 @@ class Diary extends Component {
       currentAnimal,
       currentDate: this.state.currentDate,
       tabIndex: this.state.tabIndex
-      // tabIndex: 1
     });
     // this.getCurrentTabEvents({
     //   currentAnimal,
@@ -183,8 +183,18 @@ class Diary extends Component {
     // });
   }
 
+  componentDidUpdate() {
+    Reactotron.log("COMPONENTDIDUPDATE");
+  }
+
   onDatePicked = date => {
+    const currentAnimal = this.getSelectedAnimal();
     this.setState({ currentDate: date });
+    this.getCurrentTabEvents({
+      currentAnimal,
+      currentDate: date,
+      tabIndex: this.state.tabIndex
+    });
   };
 
   getTypeIcon = name => (
@@ -887,7 +897,30 @@ class Diary extends Component {
             }
             label={t("addPainMeasurement")}
           />
-          {this.renderEvents({ currentAnimal, currentDate, tabIndex })}
+          {/*this.renderEvents({ currentAnimal, currentDate, tabIndex })*/}
+
+          {this.state.tabIndex === 1 ? (
+            <EventsList
+              events={this.state.eventsTab1}
+              navigateTo={this.navigateTo}
+              t={t}
+              findEventById={this.findEventById}
+              toggleComplete={this.onToggleComplete}
+            />
+          ) : (
+            <AccordionView
+              data={
+                this.state.tabIndex === 0
+                  ? this.state.eventsTab0
+                  : this.state.eventsTab2
+              }
+              t={t}
+              navigateTo={this.navigateTo}
+              findEventById={this.findEventById}
+              toggleComplete={this.onToggleComplete}
+            />
+          )}
+
           <View style={{ height: 80 }} />
         </ScrollView>
         <ActionButton
