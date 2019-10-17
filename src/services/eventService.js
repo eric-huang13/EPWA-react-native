@@ -592,27 +592,39 @@ export const addRecurringEvents = (allEvents, currentDate = new Date()) => {
   Reactotron.log("allComposite", allCompositePainEvents);
 
   const removedDoubleEvents = allRecurringEvents.filter(event => {
-    // Reactotron.log(
-    //   "dates-eq",
-    //   event.startDate + "  " + allNonRecurringEvents[0].startDate
-    // );
-    const toCompareArr = allNonRecurringEvents.map(item => {
-      return {
-        startDate: item.startDate,
-        type: item.type
-      };
-    });
     // Reactotron.log("compare", toCompareArr);
 
     if (event.category === eventCategories.feeding) {
-      return !contains(
-        { startDate: event.startDate, type: event.type },
-        toCompareArr
+      return isNil(
+        allNonRecurringEvents
+          .filter(nonRec => nonRec.category === eventCategories.feeding)
+          .find(
+            compare =>
+              isSameDay(format(compare.startDate), format(event.startDate)) &&
+              compare.type === event.type &&
+              compare.data.name === event.data.name &&
+              compare.data.quantity === event.data.quantity
+          )
       );
     }
 
+    if (event.category === eventCategories.medication) {
+      return isNil(
+        allNonRecurringEvents
+          .filter(nonRec => nonRec.category === eventCategories.medication)
+          .find(
+            compare =>
+              isSameDay(format(compare.startDate), format(event.startDate)) &&
+              compare.type === event.type &&
+              compare.data.name === event.data.name &&
+              compare.data.quantity === event.data.quantity
+          )
+      );
+    }
+
+    //Painmesurements, Housing, exercise,
     return isNil(
-      toCompareArr.find(
+      allNonRecurringEvents.find(
         compare =>
           isSameDay(format(compare.startDate), format(event.startDate)) &&
           compare.type === event.type
