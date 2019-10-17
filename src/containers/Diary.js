@@ -162,31 +162,26 @@ class Diary extends Component {
     ];
   }
 
-  // componentDidMount() {
-  //   // const {
-  //   //   data: { animals }
-  //   // } = this.props;
-  //   // const currentAnimal = animals[this.state.currentIndex];
-
-  //   const currentAnimal = this.getSelectedAnimal();
-  //   Reactotron.log("ANIMAL:", currentAnimal);
-  //   this.getCurrentTabEvents({
-  //     currentAnimal,
-  //     currentDate: this.state.currentDate,
-  //     tabIndex: 1
-  //     // tabIndex: this.state.tabIndex
-  //   });
-  //   this.getCurrentTabEvents({
-  //     currentAnimal,
-  //     currentDate: this.state.currentDate,
-  //     tabIndex: 0
-  //   });
-  //   this.getCurrentTabEvents({
-  //     currentAnimal,
-  //     currentDate: this.state.currentDate,
-  //     tabIndex: 2
-  //   });
-  // }
+  componentDidMount() {
+    const currentAnimal = this.getSelectedAnimal();
+    Reactotron.log("ANIMAL:", currentAnimal);
+    this.getCurrentTabEvents({
+      currentAnimal,
+      currentDate: this.state.currentDate,
+      tabIndex: this.state.tabIndex
+      // tabIndex: 1
+    });
+    // this.getCurrentTabEvents({
+    //   currentAnimal,
+    //   currentDate: this.state.currentDate,
+    //   tabIndex: 0
+    // });
+    // this.getCurrentTabEvents({
+    //   currentAnimal,
+    //   currentDate: this.state.currentDate,
+    //   tabIndex: 2
+    // });
+  }
 
   onDatePicked = date => {
     this.setState({ currentDate: date });
@@ -566,10 +561,11 @@ class Diary extends Component {
     });
 
     const maxEventsTab0 = eventsGroupedByDay.slice(1, 15);
+    Reactotron.log("TAB0 MOUNT", maxEventsTab0);
     this.setState({
       eventsTab0: maxEventsTab0
     });
-    if (tabIndex === 1) {
+    if (tabIndex === 0) {
       return;
     }
 
@@ -587,6 +583,7 @@ class Diary extends Component {
     });
 
     const maxEventsTab2 = eventsGroupedByDayTab2.slice(1, 5);
+    Reactotron.log("TAB2 MOUNT", maxEventsTab0);
 
     this.setState({
       eventsTab2: maxEventsTab2
