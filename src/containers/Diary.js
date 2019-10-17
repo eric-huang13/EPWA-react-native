@@ -535,6 +535,8 @@ class Diary extends Component {
     });
 
     const maxEventsTab2 = eventsGroupedByDayTab2.slice(1, 5);
+    Reactotron.log("maxEventsTab2", maxEventsTab2);
+    Reactotron.log("tab 1 events", allEvents);
 
     Reactotron.log("Einde calc diary events");
 

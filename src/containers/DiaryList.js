@@ -103,6 +103,7 @@ export class AccordionView extends Component {
   _renderContent = section => (
     <View style={{ paddingHorizontal: 20, paddingBottom: 25 }}>
       {section.events.map((event, index) => {
+        Reactotron.log("_renderContent", event);
         return (
           <NewListItem
             {...event}
