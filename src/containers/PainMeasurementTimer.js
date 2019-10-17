@@ -110,9 +110,9 @@ class PainMeasurementTimer extends Component {
   }
 
   get timerInitialValue() {
-    return this.measurementType === "composite" ? 300 : 120;
+    // return this.measurementType === "composite" ? 300 : 120;
     // return this.measurementType === "composite" ? 3 : 1;
-    // return this.measurementType === "composite" ? 3 : 3;
+    return this.measurementType === "composite" ? 3 : 3;
   }
 
   get fields() {

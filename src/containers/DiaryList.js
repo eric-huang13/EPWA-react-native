@@ -364,7 +364,7 @@ function PainMeasureContent({
           })
         }
       >
-        <View style={[styles.itemContent, completed ? styles.completed : null]}>
+        <View style={styles.itemContent}>
           <Text style={fonts.style.normal}>
             {"- "}
             {painMeasurementType}
