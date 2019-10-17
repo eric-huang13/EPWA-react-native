@@ -144,6 +144,11 @@ function CheckInput({ id, completed, toggleComplete, type, endDate }) {
       <TouchableOpacity
         onPress={() => toggleComplete(id, completed, type, endDate)}
         underlayColor="#fff"
+        disabled={
+          (type === eventTypes.facialExpression ||
+            type === eventTypes.composite) &&
+          completed
+        }
       >
         {completed ? <CheckboxChecked /> : <Checkbox />}
       </TouchableOpacity>
