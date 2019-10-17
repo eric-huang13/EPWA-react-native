@@ -225,11 +225,11 @@ class DiaryPainMeasurementForm extends Component {
                 placeholder={{ label: "", value: null }}
                 items={[
                   {
-                    label: t("painMeasurements:composite"),
+                    label: t("painMeasurements.composite"),
                     value: eventTypes.composite
                   },
                   {
-                    label: t("painMeasurements:facialExpression"),
+                    label: t("painMeasurements.facialExpression"),
                     value: eventTypes.facialExpression
                   }
                 ]}
