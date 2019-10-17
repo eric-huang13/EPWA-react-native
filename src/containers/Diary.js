@@ -99,13 +99,7 @@ class Diary extends Component {
     this.state = {
       currentIndex: isInitialValuePassed ? selectedAnimalIndex : 0,
       currentDate: new Date(),
-      tabIndex: 1,
-      currentEvents: [],
-      currentCalendarData: [],
-      eventsTab0: [],
-      eventsTab1: [],
-      eventsTab2: []
-      // selectedCalendarMonth:
+      tabIndex: 1
     };
 
     this.routes = {
@@ -163,38 +157,12 @@ class Diary extends Component {
     ];
   }
 
-  componentDidMount() {
-    const currentAnimal = this.getSelectedAnimal();
-    Reactotron.log("ANIMAL:", currentAnimal);
-    this.getCurrentTabEvents({
-      currentAnimal,
-      currentDate: this.state.currentDate,
-      tabIndex: this.state.tabIndex
-    });
-    // this.getCurrentTabEvents({
-    //   currentAnimal,
-    //   currentDate: this.state.currentDate,
-    //   tabIndex: 0
-    // });
-    // this.getCurrentTabEvents({
-    //   currentAnimal,
-    //   currentDate: this.state.currentDate,
-    //   tabIndex: 2
-    // });
-  }
-
   componentDidUpdate() {
     Reactotron.log("COMPONENTDIDUPDATE");
   }
 
   onDatePicked = date => {
-    const currentAnimal = this.getSelectedAnimal();
     this.setState({ currentDate: date });
-    this.getCurrentTabEvents({
-      currentAnimal,
-      currentDate: date,
-      tabIndex: this.state.tabIndex
-    });
   };
 
   getTypeIcon = name => (
@@ -486,132 +454,124 @@ class Diary extends Component {
     );
   };
 
-  getCurrentTabEvents = ({ currentAnimal, currentDate, tabIndex }) => {
-    // const { t } = this.props;
-    const locale = this.props.i18n.language === "nl" ? nl : en;
+  // getCurrentTabEvents = ({ currentAnimal, currentDate, tabIndex }) => {
+  //   // const { t } = this.props;
+  //   const locale = this.props.i18n.language === "nl" ? nl : en;
 
-    Reactotron.log(
-      "PROPS-currenttabevents",
-      currentAnimal,
-      currentDate,
-      tabIndex
-    );
+  //   Reactotron.log(
+  //     "PROPS-currenttabevents",
+  //     currentAnimal,
+  //     currentDate,
+  //     tabIndex
+  //   );
 
-    const propsDataEvents = addRecurringEvents(
-      this.props.data.events,
-      currentDate
-    );
-    Reactotron.log("PROPSDATAEVENTS", propsDataEvents);
+  //   const propsDataEvents = addRecurringEvents(
+  //     this.props.data.events,
+  //     currentDate
+  //   );
+  //   Reactotron.log("PROPSDATAEVENTS", propsDataEvents);
 
-    const nonFeedingevents = compose(
-      filter(isSelectedTab(currentDate, tabIndex)),
-      filter(isRelatedToAnimal(currentAnimal)),
-      reject(isFeeding)
-    )(propsDataEvents || []);
-    Reactotron.log("PROPSDATAEVENTS", propsDataEvents);
+  //   const nonFeedingevents = compose(
+  //     filter(isSelectedTab(currentDate, tabIndex)),
+  //     filter(isRelatedToAnimal(currentAnimal)),
+  //     reject(isFeeding)
+  //   )(propsDataEvents || []);
+  //   Reactotron.log("PROPSDATAEVENTS", propsDataEvents);
 
-    const feedingEvents = compose(
-      filter(isSelectedTab(currentDate, tabIndex)),
-      filter(isRelatedToAnimal(currentAnimal)),
-      filter(isFeeding)
-    )(propsDataEvents || []);
-    Reactotron.log("feedingEvents", feedingEvents);
+  //   const feedingEvents = compose(
+  //     filter(isSelectedTab(currentDate, tabIndex)),
+  //     filter(isRelatedToAnimal(currentAnimal)),
+  //     filter(isFeeding)
+  //   )(propsDataEvents || []);
+  //   Reactotron.log("feedingEvents", feedingEvents);
 
-    const feedingEventsTimes = uniq(
-      feedingEvents.map(event => event.startDate)
-    );
+  //   const feedingEventsTimes = uniq(
+  //     feedingEvents.map(event => event.startDate)
+  //   );
 
-    const groupedFeedingEvents = feedingEventsTimes.map(time => {
-      const sameTime = feedingEvents.filter(item => time === item.startDate);
-      const groupedEvents = sameTime.map(
-        ({ id, type, data, completed, animalId }) => ({
-          id,
-          type,
-          data,
-          completed,
-          animalId
-        })
-      );
-      return {
-        category: "feeding",
-        startDate: time,
-        groupedEvents
-      };
-    });
-    Reactotron.log("groupedFeedingEvents", groupedFeedingEvents);
+  //   const groupedFeedingEvents = feedingEventsTimes.map(time => {
+  //     const sameTime = feedingEvents.filter(item => time === item.startDate);
+  //     const groupedEvents = sameTime.map(
+  //       ({ id, type, data, completed, animalId }) => ({
+  //         id,
+  //         type,
+  //         data,
+  //         completed,
+  //         animalId
+  //       })
+  //     );
+  //     return {
+  //       category: "feeding",
+  //       startDate: time,
+  //       groupedEvents
+  //     };
+  //   });
+  //   Reactotron.log("groupedFeedingEvents", groupedFeedingEvents);
 
-    const allEvents = [...groupedFeedingEvents, ...nonFeedingevents].sort(
-      (a, b) => a.startDate - b.startDate
-    );
-    Reactotron.log("TAB1 MOUNT", allEvents);
-    this.setState({
-      eventsTab1: allEvents
-    });
-    if (tabIndex === 1) {
-      return;
-    }
+  //   const allEvents = [...groupedFeedingEvents, ...nonFeedingevents].sort(
+  //     (a, b) => a.startDate - b.startDate
+  //   );
+  //   Reactotron.log("TAB1 MOUNT", allEvents);
+  //   this.setState({
+  //     eventsTab1: allEvents
+  //   });
+  //   if (tabIndex === 1) {
+  //     return;
+  //   }
 
-    const allDaysArr = uniq(
-      allEvents
-        .reverse()
-        .map(({ startDate }) => format(startDate, "D MMM", { locale }))
-    );
+  //   const allDaysArr = uniq(
+  //     allEvents
+  //       .reverse()
+  //       .map(({ startDate }) => format(startDate, "D MMM", { locale }))
+  //   );
 
-    const eventsGroupedByDay = allDaysArr.map(date => {
-      const sameDate = allEvents.filter(
-        item => date === format(item.startDate, "D MMM", { locale })
-      );
-      if (sameDate.length === 0) {
-        return null;
-      }
-      return {
-        startDate: date,
-        events: sameDate
-      };
-    });
+  //   const eventsGroupedByDay = allDaysArr.map(date => {
+  //     const sameDate = allEvents.filter(
+  //       item => date === format(item.startDate, "D MMM", { locale })
+  //     );
+  //     if (sameDate.length === 0) {
+  //       return null;
+  //     }
+  //     return {
+  //       startDate: date,
+  //       events: sameDate
+  //     };
+  //   });
 
-    const maxEventsTab0 = eventsGroupedByDay.slice(1, 15);
-    Reactotron.log("TAB0 MOUNT", maxEventsTab0);
-    this.setState({
-      eventsTab0: maxEventsTab0
-    });
-    if (tabIndex === 0) {
-      return;
-    }
+  //   const maxEventsTab0 = eventsGroupedByDay.slice(1, 15);
+  //   Reactotron.log("TAB0 MOUNT", maxEventsTab0);
+  //   this.setState({
+  //     eventsTab0: maxEventsTab0
+  //   });
+  //   if (tabIndex === 0) {
+  //     return;
+  //   }
 
-    const eventsGroupedByDayTab2 = allDaysArr.sort().map(date => {
-      const eventsOnSameDay = allEvents.filter(
-        item => date === format(item.startDate, "D MMM", { locale })
-      );
-      if (eventsOnSameDay.length === 0) {
-        return null;
-      }
-      return {
-        startDate: date,
-        events: eventsOnSameDay
-      };
-    });
+  //   const eventsGroupedByDayTab2 = allDaysArr.sort().map(date => {
+  //     const eventsOnSameDay = allEvents.filter(
+  //       item => date === format(item.startDate, "D MMM", { locale })
+  //     );
+  //     if (eventsOnSameDay.length === 0) {
+  //       return null;
+  //     }
+  //     return {
+  //       startDate: date,
+  //       events: eventsOnSameDay
+  //     };
+  //   });
 
-    const maxEventsTab2 = eventsGroupedByDayTab2.slice(1, 5);
-    Reactotron.log("TAB2 MOUNT", maxEventsTab0);
+  //   const maxEventsTab2 = eventsGroupedByDayTab2.slice(1, 5);
+  //   Reactotron.log("TAB2 MOUNT", maxEventsTab0);
 
-    this.setState({
-      eventsTab2: maxEventsTab2
-    });
-  };
+  //   this.setState({
+  //     eventsTab2: maxEventsTab2
+  //   });
+  // };
 
   renderEvents = ({ currentAnimal, currentDate, tabIndex }) => {
     const { t } = this.props;
     const locale = this.props.i18n.language === "nl" ? nl : en;
 
-    Reactotron.log(
-      "EVENTS-currenttabevents",
-      currentAnimal,
-      currentDate,
-      tabIndex
-    );
-
-    Reactotron.log("begin calc diaryevents");
     const propsDataEvents = addRecurringEvents(
       this.props.data.events,
       currentDate
@@ -654,46 +614,7 @@ class Diary extends Component {
     const allEvents = [...groupedFeedingEvents, ...nonFeedingevents].sort(
       (a, b) => a.startDate - b.startDate
     );
-
-    const allDaysArr = uniq(
-      allEvents
-        .reverse()
-        .map(({ startDate }) => format(startDate, "D MMM", { locale }))
-    );
-
-    const eventsGroupedByDay = allDaysArr.map(date => {
-      const sameDate = allEvents.filter(
-        item => date === format(item.startDate, "D MMM", { locale })
-      );
-      if (sameDate.length === 0) {
-        return null;
-      }
-      return {
-        startDate: date,
-        events: sameDate
-      };
-    });
-
-    const maxEventsTab0 = eventsGroupedByDay.slice(1, 15);
-
-    const eventsGroupedByDayTab2 = allDaysArr.sort().map(date => {
-      const eventsOnSameDay = allEvents.filter(
-        item => date === format(item.startDate, "D MMM", { locale })
-      );
-      if (eventsOnSameDay.length === 0) {
-        return null;
-      }
-      return {
-        startDate: date,
-        events: eventsOnSameDay
-      };
-    });
-
-    const maxEventsTab2 = eventsGroupedByDayTab2.slice(1, 5);
-    Reactotron.log("maxEventsTab2", maxEventsTab2);
-    Reactotron.log("tab 1 events", allEvents);
-
-    Reactotron.log("Einde calc diary events");
+    Reactotron.log("ALL-EVENTS", this.props.data.events);
 
     if (tabIndex === 1) {
       return (
@@ -705,10 +626,57 @@ class Diary extends Component {
           toggleComplete={this.onToggleComplete}
         />
       );
-    } else {
+    }
+
+    const allDaysArr = uniq(
+      allEvents
+        .reverse()
+        .map(({ startDate }) => format(startDate, "D MMM", { locale }))
+    );
+
+    if (tabIndex === 0) {
+      const eventsGroupedByDay = allDaysArr.map(date => {
+        const sameDate = allEvents.filter(
+          item => date === format(item.startDate, "D MMM", { locale })
+        );
+        if (sameDate.length === 0) {
+          return null;
+        }
+        return {
+          startDate: date,
+          events: sameDate
+        };
+      });
+
+      const maxEventsTab0 = eventsGroupedByDay.slice(1, 15);
       return (
         <AccordionView
-          data={tabIndex === 0 ? maxEventsTab0 : maxEventsTab2}
+          data={maxEventsTab0}
+          t={t}
+          navigateTo={this.navigateTo}
+          findEventById={this.findEventById}
+          toggleComplete={this.onToggleComplete}
+        />
+      );
+    }
+    if (tabIndex === 2) {
+      const eventsGroupedByDayTab2 = allDaysArr.sort().map(date => {
+        const eventsOnSameDay = allEvents.filter(
+          item => date === format(item.startDate, "D MMM", { locale })
+        );
+        if (eventsOnSameDay.length === 0) {
+          return null;
+        }
+        return {
+          startDate: date,
+          events: eventsOnSameDay
+        };
+      });
+
+      const maxEventsTab2 = eventsGroupedByDayTab2.slice(1, 5);
+      return (
+        <AccordionView
+          data={maxEventsTab2}
           t={t}
           navigateTo={this.navigateTo}
           findEventById={this.findEventById}
@@ -897,29 +865,7 @@ class Diary extends Component {
             }
             label={t("addPainMeasurement")}
           />
-          {/*this.renderEvents({ currentAnimal, currentDate, tabIndex })*/}
-
-          {this.state.tabIndex === 1 ? (
-            <EventsList
-              events={this.state.eventsTab1}
-              navigateTo={this.navigateTo}
-              t={t}
-              findEventById={this.findEventById}
-              toggleComplete={this.onToggleComplete}
-            />
-          ) : (
-            <AccordionView
-              data={
-                this.state.tabIndex === 0
-                  ? this.state.eventsTab0
-                  : this.state.eventsTab2
-              }
-              t={t}
-              navigateTo={this.navigateTo}
-              findEventById={this.findEventById}
-              toggleComplete={this.onToggleComplete}
-            />
-          )}
+          {this.renderEvents({ currentAnimal, currentDate, tabIndex })}
 
           <View style={{ height: 80 }} />
         </ScrollView>
