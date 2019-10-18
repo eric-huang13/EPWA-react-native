@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet, Switch, TouchableOpacity } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Switch,
+  TouchableOpacity,
+  Dimensions
+} from "react-native";
 import T from "prop-types";
 import { uniq } from "ramda";
 
@@ -170,6 +177,8 @@ export function NewListItem({
   navigateTo,
   findEventById
 }) {
+  const { width } = Dimensions.get("window");
+
   const content = (
     <ItemContent
       category={category}
@@ -193,12 +202,17 @@ export function NewListItem({
       ? true
       : false;
 
+  const eventTitle =
+    category !== eventTypes.appointment
+      ? t(`categories.${category}`)
+      : data.noteTitle;
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, width]}>
       <View style={styles.contentContainer}>
         {category !== "feeding" ? (
           <Text style={[styles.title, completed ? styles.completed : null]}>
-            {t(`categories.${category}`)}
+            {eventTitle}
           </Text>
         ) : (
           <Text
@@ -358,6 +372,7 @@ function PainMeasureContent({
     type === eventTypes.facialExpression
       ? t("facialMeasure")
       : t("compositeMeasure");
+  const { width } = Dimensions.get("window");
   return (
     <React.Fragment>
       <PainMesIcon isFacialExpression={isFacialExpression} />
@@ -370,7 +385,7 @@ function PainMeasureContent({
         }
       >
         <View style={styles.itemContent}>
-          <Text style={fonts.style.normal}>
+          <Text style={{ ...fonts.style.normal, width: width - 160 }}>
             {"- "}
             {painMeasurementType}
           </Text>
@@ -543,28 +558,38 @@ function AppointmentContent({
   navigateTo,
   findEventById,
   id,
-  startDate
+  startDate,
+  data
 }) {
   const localId =
     typeof id === "string" && id.includes("_") ? id.split("_")[0] : id;
   const localDate =
     typeof id === "string" && id.includes("_") ? id.split("_")[1] : null;
 
-  const startTime = format(startDate, "HH:mm");
+  // const startTime = format(startDate, "HH:mm");
+  const { width } = Dimensions.get("window");
 
   return (
     <React.Fragment>
       <TouchableOpacity
         key={id}
         onPress={() =>
-          navigateTo("DiaryExerciseForm", {
+          navigateTo("DiaryAppointmentForm", {
             initialValue: findEventById(+localId),
             localDate
           })
         }
       >
-        <View style={styles.itemContent}>
-          <Text style={fonts.style.normal}>{`${t(type)}  ${startTime}`}</Text>
+        <View style={{ ...styles.itemContent, flexDirection: "column" }}>
+          <Text
+            style={{
+              ...fonts.style.normal,
+              flexShrink: 1,
+              width: width - 150
+            }}
+          >
+            {data.note}
+          </Text>
         </View>
       </TouchableOpacity>
     </React.Fragment>

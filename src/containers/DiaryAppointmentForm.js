@@ -393,7 +393,7 @@ const onSubmit = ({ payload }, formikBag) => {
 
   const localDate = formikBag.props.navigation.getParam("localDate");
   Reactotron.log("Payload", payload, formikBag);
-  return;
+  // return;
   if (!isNil(localDate) && !isNil(payload[0].recurring)) {
     Alert.alert(t("editRecurringEventWarning"), t("selectAnOption"), [
       { text: t("editRecurring"), onPress: () => (isEditing = true) },

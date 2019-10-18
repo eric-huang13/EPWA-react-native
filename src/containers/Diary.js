@@ -795,7 +795,7 @@ class Diary extends Component {
     Reactotron.log("DiaryState", this.state);
 
     return (
-      <View style={s.screenContainer}>
+      <View style={(s.screenContainer, width)}>
         <ScrollView contentContainerStyle={s.scrollContainer}>
           <View>
             <SideSwipe
