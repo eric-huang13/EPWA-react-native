@@ -9,7 +9,7 @@ import {
   Alert
 } from "react-native";
 import { HeaderBackButton } from "react-navigation-stack";
-import { FieldArray, withFormik } from "formik";
+import { FieldArray, withFormik, Field } from "formik";
 import { translate } from "react-i18next";
 import { connect } from "react-redux";
 import { hoistStatics } from "recompose";
@@ -39,7 +39,7 @@ import s from "./styles/DiaryExerciseFormStyles";
 import Button from "../components/Button";
 import DatePicker from "../components/DatePicker";
 import RadioSection from "../components/RadioSection";
-import Field from "../components/Field";
+// import Field from "../components/Field";
 import FieldLabel from "../components/FieldLabel";
 import Icon from "../components/Icon";
 import PlusSection from "../components/PlusSection";
@@ -52,7 +52,7 @@ import withExitPrompt from "../components/withExitPrompt";
 import RecurringForm from "../components/RecurringForm";
 
 import { addEvent, editEvent, deleteEvent } from "../actions/events";
-import { eventCategories } from "../constants";
+import { eventCategories, eventTypes } from "../constants";
 import {
   dateEventProps,
   dateEventValidation
@@ -74,6 +74,69 @@ import iconMap from "../constants/iconMap";
 const validationSchema = yup.object().shape({
   payload: yup.array().of(dateEventValidation)
 });
+
+// const InputFeedback = ({ error }) =>
+//   error ? <View className={"input-feedback"}>{error}</View> : null;
+
+// const Checkbox = ({
+//   field: { name, value, onChange, onBlur },
+//   form: { errors, touched, setFieldValue },
+//   id,
+//   label,
+//   className,
+//   ...props
+// }) => {
+//   return (
+//     <View>
+//       <View
+//         name={name}
+//         id={id}
+//         type="checkbox"
+//         value={value}
+//         checked={value}
+//         onChange={onChange}
+//         onBlur={onBlur}
+//         className={"radio-button"}
+//       />
+//       <label htmlFor={id}>
+//         <Text>{label}</Text>
+//       </label>
+//       {touched[name] && <InputFeedback error={errors[name]} />}
+//     </View>
+//   );
+// };
+
+const CheckBoxField = ({ title = "Title", checked = false, handleSelect }) => {
+  return (
+    <TouchableOpacity onPress={handleSelect}>
+      <View
+        style={{
+          backgroundColor: checked ? colors.lima : colors.white,
+          minHeight: 55,
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          paddingHorizontal: 20,
+          borderBottomColor: colors.whiteSmoke,
+          borderBottomWidth: 1
+        }}
+      >
+        <View
+          style={{
+            width: 50,
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center"
+          }}
+        >
+          {checked ? <ActiveIcon /> : <InactiveIcon />}
+        </View>
+        <Text>{title}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+};
 
 const ActiveIcon = () => (
   <View
@@ -109,7 +172,7 @@ const InactiveIcon = () => (
 
 class DiaryShareEventsForm extends Component {
   static navigationOptions = ({ navigation, screenProps }) => ({
-    title: screenProps.t.t("headerBar.diaryShare"),
+    title: screenProps.t.t("headerBar.diary"),
     headerLeft: (
       <HeaderBackButton
         title={screenProps.t.t("headerBar.diary")}
@@ -121,67 +184,17 @@ class DiaryShareEventsForm extends Component {
 
   constructor(props) {
     super(props);
-
-    const isEditing = Boolean(props.navigation.getParam("initialValue"));
-
-    this.state = {
-      isEditing
-    };
+    this.state = {};
   }
 
   static getInitialEventValue(animalId) {
     return {
-      localId: getId(),
-      completed: false,
-      category: eventCategories.exercise,
-      animalId
+      animalId,
+      startDate: format(new Date()),
+      endDate: format(new Date()),
+      options: []
     };
   }
-
-  renderField = ({ entry, fieldName, index, label, date }) => {
-    const { i18n, t, errors, setFieldValue } = this.props;
-    const fieldPath = `payload[${index}].${fieldName}`;
-    const hasErrors = get(errors, fieldPath);
-    const currentDate = this.props.navigation.getParam("currentDate");
-    let ref;
-
-    return (
-      <View style={{ flex: 1 }}>
-        <DatePicker
-          locale={i18n.language}
-          t={t}
-          mode="date"
-          date={date}
-          ref={el => (ref = el)} // eslint-disable-line no-return-assign
-          onPick={date => setFieldValue(fieldPath, this.parseDateField(date))}
-        />
-        <FieldLabel style={s.fieldLabel}>{label}</FieldLabel>
-        <SelectButton
-          containerStyle={[
-            s.dateInput,
-            this.props.submitCount > 0 && hasErrors && s.dateInputWithError
-          ]}
-          onPress={() => ref.show()}
-        >
-          {this.formatDateField(entry[fieldName])}
-        </SelectButton>
-      </View>
-    );
-  };
-
-  submitForm = () => {
-    if (!this.props.dirty) {
-      return;
-    }
-    if (
-      !this.state.isEditing &&
-      (!this.props.values.payload || !this.props.values.payload.length)
-    ) {
-      return;
-    }
-
-    this.props.submitForm();
-  };
 
   formatDateField = timestamp =>
     isValid(parse(timestamp)) ? format(timestamp, "DD MMM HH:mm") : "";
@@ -210,9 +223,17 @@ class DiaryShareEventsForm extends Component {
     return (
       <View style={s.screenContainer}>
         <ScrollView contentContainerStyle={s.scrollContainer}>
+          <View style={{ marginTop: 20 }}>
+            <CheckBoxField />
+            <CheckBoxField />
+            <CheckBoxField />
+            <CheckBoxField checked />
+            <CheckBoxField />
+            <CheckBoxField />
+          </View>
           <View style={{ padding: 20 }}>
             <View>
-              <Text>input</Text>
+              <Text>Hier selectie</Text>
             </View>
 
             <View style={{ height: 80 }}>
@@ -238,9 +259,7 @@ class DiaryShareEventsForm extends Component {
                   }
                   onPress={() => ref.show()}
                 >
-                  {this.state.recurring_untill
-                    ? this.formatDateField(this.state.recurring_untill)
-                    : t("selectDate")}
+                  {t("selectDate")}
                 </SelectButton>
               </View>
             </View>
