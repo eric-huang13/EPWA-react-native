@@ -264,12 +264,20 @@ class PainMeasurementTimer extends Component {
   };
 
   onSubmit = () => {
+    const editId = this.props.navigation.getParam("editId");
+    const editType = this.props.navigation.getParam("editType");
     if (this.measurementType === "composite") {
-      this.props.navigation.navigate("PainMeasurementObservationFull");
+      this.props.navigation.navigate("PainMeasurementObservationFull", {
+        editId,
+        editType
+      });
     }
 
     if (this.measurementType === "facialExpression") {
-      this.props.navigation.navigate("PainMeasurementObservationHead");
+      this.props.navigation.navigate("PainMeasurementObservationHead", {
+        editId,
+        editType
+      });
     }
   };
 

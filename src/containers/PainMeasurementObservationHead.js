@@ -6,6 +6,7 @@ import { __, all, equals, compose, has, pick, not } from "ramda";
 import { connect } from "react-redux";
 import { hoistStatics } from "recompose";
 import Touchable from "react-native-platform-touchable";
+import Reactotron from "reactotron-react-native";
 
 import ProgressBar from "../components/ProgressBar";
 import TitleBar from "../components/TitleBar";
@@ -289,7 +290,9 @@ class PainMeasurementObservationHead extends PureComponent {
   };
 
   onSubmit = () => {
-    this.props.navigate("PainMeasurementScore");
+    const editId = this.props.navigation.getParam("editId");
+    const editType = this.props.navigation.getParam("editType");
+    this.props.navigate("PainMeasurementScore", { editId, editType });
   };
 
   render() {
@@ -450,6 +453,7 @@ class PainMeasurementObservationHeadContainer extends Component {
         setFieldValue={setFieldValue}
         t={t}
         navigate={navigate}
+        {...this.props}
       />
     );
   }

@@ -591,10 +591,10 @@ const onSubmit = (values, formikBag) => {
           });
         }
       } else if (choice === "no") {
-        Reactotron.log("voor", flattenValues);
+        // Reactotron.log("voor", flattenValues);
         delete flattenValues[0].id;
         flattenValues[0].localId = getId();
-        Reactotron.log("na", flattenValues);
+        // Reactotron.log("na", flattenValues);
         // return;
         return await triggerSubmitType(flattenValues, {
           formikBag,

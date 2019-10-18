@@ -141,8 +141,6 @@ class PainMeasurementIntro extends PureComponent {
 
   render() {
     const { shouldAllowUserToContinue } = this.props;
-    Reactotron.log("renderd wel");
-
     return (
       <View style={{ flex: 1, backgroundColor: colors.egyptianBlue }}>
         <ScrollView
@@ -204,8 +202,13 @@ class PainMeasurementIntroContainer extends Component {
 
   onNavigateToNextStep = () => {
     const { isUserLoggedIn } = this.props.screenProps;
+    const editId = this.props.navigation.getParam("editId");
+    const editType = this.props.navigation.getParam("editType");
     if (isUserLoggedIn) {
-      this.props.navigation.navigate("PainMeasurementStart");
+      this.props.navigation.navigate("PainMeasurementStart", {
+        editId,
+        editType
+      });
     } else {
       this.props.navigation.navigate("PainMeasurementLoginWarning");
     }

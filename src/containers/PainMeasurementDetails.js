@@ -1,5 +1,5 @@
-import React, {Fragment} from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import React, { Fragment } from "react";
+import { View, Text, ScrollView } from "react-native";
 import {
   __,
   compose,
@@ -9,15 +9,16 @@ import {
   pick,
   prop,
   propEq,
-  toPairs,
-} from 'ramda';
-import {translate} from 'react-i18next';
+  toPairs
+} from "ramda";
+import { translate } from "react-i18next";
 
-import CategoryHeader from '../components/CategoryHeader';
-import Icon from '../components/Icon';
+import CategoryHeader from "../components/CategoryHeader";
+import Icon from "../components/Icon";
 
-import iconMap from '../constants/iconMap';
-import {colors, fonts} from '../themes';
+import iconMap from "../constants/iconMap";
+import { colors, fonts } from "../themes";
+import Reactotron from "reactotron-react-native";
 
 const Row = (
   { iconName, children, paddingVertical } // eslint-disable-line
@@ -26,16 +27,17 @@ const Row = (
     style={[
       {
         minHeight: 70,
-        alignItems: 'center',
+        alignItems: "center",
         paddingHorizontal: 20,
         borderBottomColor: colors.darkFilter,
         borderBottomWidth: 1,
         paddingVertical: paddingVertical || 0,
-        flexDirection: 'row',
-      },
-    ]}>
+        flexDirection: "row"
+      }
+    ]}
+  >
     {iconName && <Icon name={iconName} size={30} color={colors.nero} />}
-    <View style={{marginLeft: iconName ? 20 : 0, flexGrow: 1}}>
+    <View style={{ marginLeft: iconName ? 20 : 0, flexGrow: 1 }}>
       {children[0]}
     </View>
     <View>{children[1]}</View>
@@ -45,303 +47,304 @@ const Row = (
 class PainMeasurementDetails extends React.Component {
   getCompositeMeasurementTimerFields = () => {
     const { t } = this.props; // eslint-disable-line
-    const basePath = 'painMeasurement.full.timer';
+    const basePath = "painMeasurement.full.timer";
 
     return [
       {
-        fieldPath: 'rollCount',
-        translationPath: `${basePath}.layingDownRolling`,
+        fieldPath: "rollCount",
+        translationPath: `${basePath}.layingDownRolling`
       },
       {
-        fieldPath: 'tailFlickCount',
-        translationPath: `${basePath}.tailFlicking`,
+        fieldPath: "tailFlickCount",
+        translationPath: `${basePath}.tailFlicking`
       },
       {
-        fieldPath: 'kickAtAbdomenCount',
-        translationPath: `${basePath}.kickingAtAbdomen`,
+        fieldPath: "kickAtAbdomenCount",
+        translationPath: `${basePath}.kickingAtAbdomen`
       },
       {
-        fieldPath: 'pawCount',
-        translationPath: `${basePath}.pawing`,
+        fieldPath: "pawCount",
+        translationPath: `${basePath}.pawing`
       },
       {
-        fieldPath: 'headMovementCount',
-        translationPath: `${basePath}.headMovements`,
+        fieldPath: "headMovementCount",
+        translationPath: `${basePath}.headMovements`
       },
       {
-        fieldPath: 'painSoundCount',
-        translationPath: `${basePath}.painSounds`,
+        fieldPath: "painSoundCount",
+        translationPath: `${basePath}.painSounds`
       },
       {
-        fieldPath: 'pointingTowardsTheFloorCount',
-        translationPath: `${basePath}.pointingTowardsTheFloor`,
+        fieldPath: "pointingTowardsTheFloorCount",
+        translationPath: `${basePath}.pointingTowardsTheFloor`
       },
       {
-        fieldPath: 'lookAtAbdomenCount',
-        translationPath: `${basePath}.lookingAtAbdomen`,
-      },
+        fieldPath: "lookAtAbdomenCount",
+        translationPath: `${basePath}.lookingAtAbdomen`
+      }
     ];
   };
 
   getFacialMeasurementTimerFields = () => {
-    const {t} = this.props;
-    const basePath = 'painMeasurement.head.timer';
+    const { t } = this.props;
+    const basePath = "painMeasurement.head.timer";
 
     return [
       {
-        fieldPath: 'flehmingCount',
-        translationPath: `${basePath}.flehming`,
+        fieldPath: "flehmingCount",
+        translationPath: `${basePath}.flehming`
       },
       {
-        fieldPath: 'yawningCount',
-        translationPath: `${basePath}.yawning`,
+        fieldPath: "yawningCount",
+        translationPath: `${basePath}.yawning`
       },
       {
-        fieldPath: 'teethGrindingCount',
-        translationPath: `${basePath}.teethGrinding`,
+        fieldPath: "teethGrindingCount",
+        translationPath: `${basePath}.teethGrinding`
       },
       {
-        fieldPath: 'moaningCount',
-        translationPath: `${basePath}.moaning`,
+        fieldPath: "moaningCount",
+        translationPath: `${basePath}.moaning`
       },
       {
-        fieldPath: 'smackingCount',
-        translationPath: `${basePath}.smacking`,
+        fieldPath: "smackingCount",
+        translationPath: `${basePath}.smacking`
       },
       {
-        fieldPath: 'headShakingCount',
-        translationPath: `${basePath}.headShaking`,
-      },
+        fieldPath: "headShakingCount",
+        translationPath: `${basePath}.headShaking`
+      }
     ];
   };
 
   getHorseFullQuestionFields = () => {
-    const basePath = 'painMeasurement';
+    const basePath = "painMeasurement";
 
     return [
       {
-        fieldPath: 'behaviourPostureScore',
-        translationPath: `${basePath}.full.observation.behaviourOptions`,
+        fieldPath: "behaviourPostureScore",
+        translationPath: `${basePath}.full.observation.behaviourOptions`
       },
       {
-        fieldPath: 'overallAppearanceScore',
-        translationPath: `${basePath}.full.observation.overallAppearanceOptions`,
+        fieldPath: "overallAppearanceScore",
+        translationPath: `${basePath}.full.observation.overallAppearanceOptions`
       },
       {
-        fieldPath: 'sweatingScore',
-        translationPath: `${basePath}.full.observation.sweatingOptions`,
+        fieldPath: "sweatingScore",
+        translationPath: `${basePath}.full.observation.sweatingOptions`
       },
       {
-        fieldPath: 'respiratoryRateScore',
-        translationPath: `${basePath}.full.vet.respiratoryRateOptions`,
+        fieldPath: "respiratoryRateScore",
+        translationPath: `${basePath}.full.vet.respiratoryRateOptions`
       },
       {
-        fieldPath: 'heartRateScore',
-        translationPath: `${basePath}.full.vet.heartRateOptions`,
+        fieldPath: "heartRateScore",
+        translationPath: `${basePath}.full.vet.heartRateOptions`
       },
       {
-        fieldPath: 'digestiveSoundsScore',
-        translationPath: `${basePath}.full.vet.digestiveSoundsOptions`,
+        fieldPath: "digestiveSoundsScore",
+        translationPath: `${basePath}.full.vet.digestiveSoundsOptions`
       },
       {
-        fieldPath: 'rectalTemperatureScore',
-        translationPath: `${basePath}.full.vet.rectalTemperatureOptions`,
+        fieldPath: "rectalTemperatureScore",
+        translationPath: `${basePath}.full.vet.rectalTemperatureOptions`
       },
       {
-        fieldPath: 'reactionToPalpationScore',
-        translationPath: `${basePath}.full.interaction.reactionToPalpationOptions`,
-      },
+        fieldPath: "reactionToPalpationScore",
+        translationPath: `${basePath}.full.interaction.reactionToPalpationOptions`
+      }
     ];
   };
 
   getHorseHeadQuestionFields = () => {
-    const basePath = 'painMeasurement';
+    const basePath = "painMeasurement";
 
     return [
       {
-        fieldPath: 'headScore',
-        translationPath: `${basePath}.head.observation.headOptions`,
+        fieldPath: "headScore",
+        translationPath: `${basePath}.head.observation.headOptions`
       },
       {
-        fieldPath: 'eyelidScore',
-        translationPath: `${basePath}.head.observation.eyelidsOptions`,
+        fieldPath: "eyelidScore",
+        translationPath: `${basePath}.head.observation.eyelidsOptions`
       },
       {
-        fieldPath: 'focusScore',
-        translationPath: `${basePath}.head.observation.focusOptions`,
+        fieldPath: "focusScore",
+        translationPath: `${basePath}.head.observation.focusOptions`
       },
       {
-        fieldPath: 'nostrilScore',
-        translationPath: `${basePath}.head.observation.nostrilsOptions`,
+        fieldPath: "nostrilScore",
+        translationPath: `${basePath}.head.observation.nostrilsOptions`
       },
       {
-        fieldPath: 'cornerMouthScore',
-        translationPath: `${basePath}.head.observation.mouthCornersOptions`,
+        fieldPath: "cornerMouthScore",
+        translationPath: `${basePath}.head.observation.mouthCornersOptions`
       },
       {
-        fieldPath: 'muscleToneHeadScore',
-        translationPath: `${basePath}.head.observation.muscleToneHeadOptions`,
+        fieldPath: "muscleToneHeadScore",
+        translationPath: `${basePath}.head.observation.muscleToneHeadOptions`
       },
       {
-        fieldPath: 'earScore',
-        translationPath: `${basePath}.head.observation.earsOptions`,
-      },
+        fieldPath: "earScore",
+        translationPath: `${basePath}.head.observation.earsOptions`
+      }
     ];
   };
 
   getDonkeyFullQuestionFields = () => {
-    const basePath = 'painMeasurement';
+    const basePath = "painMeasurement";
 
     return [
       {
-        fieldPath: 'layingDownRollingScore',
-        translationPath: `${basePath}.full.observation.donkey.layingDownRollingOptions`,
+        fieldPath: "layingDownRollingScore",
+        translationPath: `${basePath}.full.observation.donkey.layingDownRollingOptions`
       },
       {
-        fieldPath: 'overallAppearanceScore',
-        translationPath: `${basePath}.full.observation.donkey.overallAppearanceOptions`,
+        fieldPath: "overallAppearanceScore",
+        translationPath: `${basePath}.full.observation.donkey.overallAppearanceOptions`
       },
       {
-        fieldPath: 'earPositionScore',
-        translationPath: `${basePath}.full.observation.donkey.earPositionOptions`,
+        fieldPath: "earPositionScore",
+        translationPath: `${basePath}.full.observation.donkey.earPositionOptions`
       },
       {
-        fieldPath: 'postureScore',
-        translationPath: `${basePath}.full.observation.donkey.postureOptions`,
+        fieldPath: "postureScore",
+        translationPath: `${basePath}.full.observation.donkey.postureOptions`
       },
       {
-        fieldPath: 'weightDistributionScore',
-        translationPath: `${basePath}.full.observation.donkey.weightDistributionOptions`,
+        fieldPath: "weightDistributionScore",
+        translationPath: `${basePath}.full.observation.donkey.weightDistributionOptions`
       },
       {
-        fieldPath: 'headCarriageScore',
-        translationPath: `${basePath}.full.observation.donkey.headCarriageOptions`,
+        fieldPath: "headCarriageScore",
+        translationPath: `${basePath}.full.observation.donkey.headCarriageOptions`
       },
       {
-        fieldPath: 'sweatingScore',
-        translationPath: `${basePath}.full.observation.donkey.sweatingOptions`,
+        fieldPath: "sweatingScore",
+        translationPath: `${basePath}.full.observation.donkey.sweatingOptions`
       },
       {
-        fieldPath: 'eatingScore',
-        translationPath: `${basePath}.full.observation.donkey.eatingOptions`,
+        fieldPath: "eatingScore",
+        translationPath: `${basePath}.full.observation.donkey.eatingOptions`
       },
       {
-        fieldPath: 'changesInBehaviourScore',
-        translationPath: `${basePath}.full.observation.donkey.changesInBehaviourOptions`,
+        fieldPath: "changesInBehaviourScore",
+        translationPath: `${basePath}.full.observation.donkey.changesInBehaviourOptions`
       },
       {
-        fieldPath: 'reactionToObserverScore',
-        translationPath: `${basePath}.full.observation.donkey.reactionToObserverOptions`,
+        fieldPath: "reactionToObserverScore",
+        translationPath: `${basePath}.full.observation.donkey.reactionToObserverOptions`
       },
       {
-        fieldPath: 'reactionToPalpationScore',
-        translationPath: `${basePath}.full.interaction.donkey.reactionToPalpationOptions`,
+        fieldPath: "reactionToPalpationScore",
+        translationPath: `${basePath}.full.interaction.donkey.reactionToPalpationOptions`
       },
       {
-        fieldPath: 'movementScore',
-        translationPath: `${basePath}.full.interaction.donkey.movementOptions`,
+        fieldPath: "movementScore",
+        translationPath: `${basePath}.full.interaction.donkey.movementOptions`
       },
       {
-        fieldPath: 'respiratoryRateScore',
-        translationPath: `${basePath}.full.vet.donkey.respiratoryRateOptions`,
+        fieldPath: "respiratoryRateScore",
+        translationPath: `${basePath}.full.vet.donkey.respiratoryRateOptions`
       },
       {
-        fieldPath: 'heartRateScore',
-        translationPath: `${basePath}.full.vet.donkey.heartRateOptions`,
+        fieldPath: "heartRateScore",
+        translationPath: `${basePath}.full.vet.donkey.heartRateOptions`
       },
       {
-        fieldPath: 'digestiveSoundsScore',
-        translationPath: `${basePath}.full.vet.donkey.digestiveSoundsOptions`,
+        fieldPath: "digestiveSoundsScore",
+        translationPath: `${basePath}.full.vet.donkey.digestiveSoundsOptions`
       },
       {
-        fieldPath: 'rectalTemperatureScore',
-        translationPath: `${basePath}.full.vet.donkey.rectalTemperatureOptions`,
+        fieldPath: "rectalTemperatureScore",
+        translationPath: `${basePath}.full.vet.donkey.rectalTemperatureOptions`
       },
       {
-        fieldPath: 'reactionToPalpationScore',
-        translationPath: `${basePath}.full.vet.donkey.reactionToPalpationOptions`,
-      },
+        fieldPath: "reactionToPalpationScore",
+        translationPath: `${basePath}.full.vet.donkey.reactionToPalpationOptions`
+      }
     ];
   };
 
   getDonkeyHeadQuestionFields = () => {
-    const basePath = 'painMeasurement';
+    const basePath = "painMeasurement";
 
     return [
       {
-        fieldPath: 'headScore',
-        translationPath: `${basePath}.head.observation.donkey.headOptions`,
+        fieldPath: "headScore",
+        translationPath: `${basePath}.head.observation.donkey.headOptions`
       },
       {
-        fieldPath: 'eyelidsScore',
-        translationPath: `${basePath}.head.observation.donkey.eyelidsOptions`,
+        fieldPath: "eyelidsScore",
+        translationPath: `${basePath}.head.observation.donkey.eyelidsOptions`
       },
       {
-        fieldPath: 'focusScore',
-        translationPath: `${basePath}.head.observation.donkey.focusOptions`,
+        fieldPath: "focusScore",
+        translationPath: `${basePath}.head.observation.donkey.focusOptions`
       },
       {
-        fieldPath: 'nostrilsScore',
-        translationPath: `${basePath}.head.observation.donkey.nostrilsOptions`,
+        fieldPath: "nostrilsScore",
+        translationPath: `${basePath}.head.observation.donkey.nostrilsOptions`
       },
       {
-        fieldPath: 'mouthCornersScore',
-        translationPath: `${basePath}.head.observation.donkey.mouthCornersOptions`,
+        fieldPath: "mouthCornersScore",
+        translationPath: `${basePath}.head.observation.donkey.mouthCornersOptions`
       },
       {
-        fieldPath: 'muscleToneHeadScore',
-        translationPath: `${basePath}.head.observation.donkey.muscleToneHeadOptions`,
+        fieldPath: "muscleToneHeadScore",
+        translationPath: `${basePath}.head.observation.donkey.muscleToneHeadOptions`
       },
       {
-        fieldPath: 'sweatingBehindTheEarsScore',
-        translationPath: `${basePath}.head.observation.donkey.sweatingBehindTheEarsOptions`,
+        fieldPath: "sweatingBehindTheEarsScore",
+        translationPath: `${basePath}.head.observation.donkey.sweatingBehindTheEarsOptions`
       },
       {
-        fieldPath: 'earPositionScore',
-        translationPath: `${basePath}.head.observation.donkey.earPositionOptions`,
+        fieldPath: "earPositionScore",
+        translationPath: `${basePath}.head.observation.donkey.earPositionOptions`
       },
       {
-        fieldPath: 'responseToAuditoryStimulusScore',
-        translationPath: `${basePath}.head.observation.donkey.responseToAuditoryStimulusOptions`,
-      },
+        fieldPath: "responseToAuditoryStimulusScore",
+        translationPath: `${basePath}.head.observation.donkey.responseToAuditoryStimulusOptions`
+      }
     ];
   };
 
   render() {
-    const {navigation, t} = this.props;
-    const measurement = navigation.getParam('measurement');
+    const { navigation, t } = this.props;
+    const measurement = navigation.getParam("measurement");
+    const editId = navigation.getParam("editId");
     const translatedAnimalType = t(measurement.data.animalType).toLowerCase();
     const fieldTranslationMap =
-      measurement.type === 'composite'
+      measurement.type === "composite"
         ? this.getCompositeMeasurementTimerFields()
         : this.getFacialMeasurementTimerFields();
     const tObj = curry(t)(__, {
       returnObjects: true,
-      animalType: translatedAnimalType,
+      animalType: translatedAnimalType
     });
     const advicePaths = {
       composite: {
-        pain: 'painMeasurement.misc.adviceCompositeMeasurementPain',
-        noPain: 'painMeasurement.misc.adviceCompositeMeasurementNoPain',
+        pain: "painMeasurement.misc.adviceCompositeMeasurementPain",
+        noPain: "painMeasurement.misc.adviceCompositeMeasurementNoPain"
       },
       head: {
-        pain: 'painMeasurement.misc.adviceFacialExpressionMeasurementPain',
-        noPain: 'painMeasurement.misc.adviceFacialExpressionMeasurementNoPain',
-      },
+        pain: "painMeasurement.misc.adviceFacialExpressionMeasurementPain",
+        noPain: "painMeasurement.misc.adviceFacialExpressionMeasurementNoPain"
+      }
     };
 
     let questionfFeldTranslationMap;
     let advice;
 
-    if (measurement.data.animalType === 'horse') {
-      if (measurement.type === 'composite') {
+    if (measurement.data.animalType === "horse") {
+      if (measurement.type === "composite") {
         questionfFeldTranslationMap = this.getHorseFullQuestionFields();
       }
       advice =
         measurement.data.finalScore > 5
           ? tObj(advicePaths.composite.pain)
           : tObj(advicePaths.composite.noPain);
-      if (measurement.type === 'facialExpression') {
+      if (measurement.type === "facialExpression") {
         questionfFeldTranslationMap = this.getHorseHeadQuestionFields();
       }
       advice =
@@ -350,15 +353,15 @@ class PainMeasurementDetails extends React.Component {
           : tObj(advicePaths.head.noPain);
     }
 
-    if (measurement.data.animalType === 'donkey') {
-      if (measurement.type === 'composite') {
+    if (measurement.data.animalType === "donkey") {
+      if (measurement.type === "composite") {
         questionfFeldTranslationMap = this.getDonkeyFullQuestionFields();
       }
       advice =
         measurement.data.finalScore > 5
           ? tObj(advicePaths.composite.pain)
           : tObj(advicePaths.composite.noPain);
-      if (measurement.type === 'facialExpression') {
+      if (measurement.type === "facialExpression") {
         questionfFeldTranslationMap = this.getDonkeyHeadQuestionFields();
       }
       advice =
@@ -369,79 +372,82 @@ class PainMeasurementDetails extends React.Component {
 
     const timerAnswers = compose(
       map(pair => {
-        const foundMapItem = find(propEq('fieldPath', pair[0]))(
-          fieldTranslationMap,
+        const foundMapItem = find(propEq("fieldPath", pair[0]))(
+          fieldTranslationMap
         );
         return [t(foundMapItem.translationPath), pair[1]];
       }),
       toPairs,
-      pick(map(prop('fieldPath'))(fieldTranslationMap)),
+      pick(map(prop("fieldPath"))(fieldTranslationMap))
     )(measurement.data);
 
     const questionAnswers = compose(
       map(pair => {
-        const foundMapItem = find(propEq('fieldPath', pair[0]))(
-          questionfFeldTranslationMap,
+        const foundMapItem = find(propEq("fieldPath", pair[0]))(
+          questionfFeldTranslationMap
         );
         return {
           answer: tObj(foundMapItem.translationPath)[pair[1]],
-          title: tObj(foundMapItem.translationPath.replace('Options', '')),
+          title: tObj(foundMapItem.translationPath.replace("Options", ""))
         };
       }),
       toPairs,
-      pick(map(prop('fieldPath'))(questionfFeldTranslationMap)),
+      pick(map(prop("fieldPath"))(questionfFeldTranslationMap))
     )(measurement.data);
 
     return (
-      <View style={{flex: 1, backgroundColor: colors.white}}>
+      <View style={{ flex: 1, backgroundColor: colors.white }}>
         <ScrollView enabled>
           <CategoryHeader
             boxStyles={{
               paddingLeft: 20,
-              backgroundColor: colors.egyptianBlue,
+              backgroundColor: colors.egyptianBlue
             }}
-            textStyles={{fontWeight: '700', color: colors.white}}>
-            {measurement.type === 'composite'
-              ? t('painMeasurement.misc.compositePainScaleTitle')
-              : t('painMeasurement.misc.facialExpressionsTitle')}
+            textStyles={{ fontWeight: "700", color: colors.white }}
+          >
+            {measurement.type === "composite"
+              ? t("painMeasurement.misc.compositePainScaleTitle")
+              : t("painMeasurement.misc.facialExpressionsTitle")}
           </CategoryHeader>
           <Row iconName={iconMap.measurement}>
-            <Text style={{...fonts.style.h4}}>
-              {t('painMeasurement.misc.score')}
+            <Text style={{ ...fonts.style.h4 }}>
+              {t("painMeasurement.misc.score")}
             </Text>
-            <Text style={{...fonts.style.h1, color: colors.egyptianBlue}}>
+            <Text style={{ ...fonts.style.h1, color: colors.egyptianBlue }}>
               {`${measurement.data.finalScore}`}
             </Text>
           </Row>
-          <CategoryHeader boxStyles={{paddingLeft: 20}}>
-            {t('painMeasurement.misc.ourAdvice')}
+          <CategoryHeader boxStyles={{ paddingLeft: 20 }}>
+            {t("painMeasurement.misc.ourAdvice")}
           </CategoryHeader>
           <Row paddingVertical={20}>
-            <Text style={{...fonts.style.normal}}>{advice}</Text>
+            <Text style={{ ...fonts.style.normal }}>{advice}</Text>
             <View />
           </Row>
           <CategoryHeader
             boxStyles={{
               paddingLeft: 20,
-              backgroundColor: colors.egyptianBlue,
+              backgroundColor: colors.egyptianBlue
             }}
-            textStyles={{fontWeight: '700', color: colors.white}}>
-            {t('counting')}
+            textStyles={{ fontWeight: "700", color: colors.white }}
+          >
+            {t("counting")}
           </CategoryHeader>
           <View>
             {timerAnswers.map(pair => (
               <Row key={pair[0]}>
-                <Text style={{...fonts.style.normal}}>{pair[0]}</Text>
+                <Text style={{ ...fonts.style.normal }}>{pair[0]}</Text>
                 <View
                   style={{
                     height: 30,
                     width: 30,
                     backgroundColor: colors.egyptianBlue,
                     borderRadius: 15,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}>
-                  <Text style={{...fonts.style.bold, color: colors.white}}>
+                    alignItems: "center",
+                    justifyContent: "center"
+                  }}
+                >
+                  <Text style={{ ...fonts.style.bold, color: colors.white }}>
                     {pair[1]}
                   </Text>
                 </View>
@@ -451,19 +457,20 @@ class PainMeasurementDetails extends React.Component {
           <CategoryHeader
             boxStyles={{
               paddingLeft: 20,
-              backgroundColor: colors.egyptianBlue,
+              backgroundColor: colors.egyptianBlue
             }}
-            textStyles={{fontWeight: '700', color: colors.white}}>
-            {t('answers')}
+            textStyles={{ fontWeight: "700", color: colors.white }}
+          >
+            {t("answers")}
           </CategoryHeader>
           <View>
-            {questionAnswers.map(({title, answer}) => (
+            {questionAnswers.map(({ title, answer }) => (
               <View key={title}>
-                <CategoryHeader boxStyles={{paddingLeft: 20}}>
+                <CategoryHeader boxStyles={{ paddingLeft: 20 }}>
                   {title}
                 </CategoryHeader>
                 <Row>
-                  <Text style={{...fonts.style.normal}}>{answer}</Text>
+                  <Text style={{ ...fonts.style.normal }}>{answer}</Text>
                   <View />
                 </Row>
               </View>
@@ -474,13 +481,14 @@ class PainMeasurementDetails extends React.Component {
               <CategoryHeader
                 boxStyles={{
                   paddingLeft: 20,
-                  backgroundColor: colors.egyptianBlue,
+                  backgroundColor: colors.egyptianBlue
                 }}
-                textStyles={{fontWeight: '700', color: colors.white}}>
-                {t('notes')}
+                textStyles={{ fontWeight: "700", color: colors.white }}
+              >
+                {t("notes")}
               </CategoryHeader>
               <Row>
-                <Text style={{...fonts.style.normal}}>
+                <Text style={{ ...fonts.style.normal }}>
                   {measurement.data.note}
                 </Text>
                 <View />
@@ -493,4 +501,4 @@ class PainMeasurementDetails extends React.Component {
   }
 }
 
-export default translate('root')(PainMeasurementDetails);
+export default translate("root")(PainMeasurementDetails);

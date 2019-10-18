@@ -37,7 +37,7 @@ class PainMeasurementTimerIntro extends Component {
     return this.props.screenProps.form.values;
   }
 
-  navigateToInfoScreen = (fieldName) => {
+  navigateToInfoScreen = fieldName => {
     this.props.navigation.navigate("PainMeasurementTimerInfo", { fieldName });
   };
 
@@ -313,6 +313,8 @@ class PainMeasurementTimerIntro extends Component {
 
   render() {
     const { t } = this.props.screenProps;
+    const editId = this.props.navigation.getParam("editId");
+    const editType = this.props.navigation.getParam("editType");
 
     return (
       <View
@@ -366,7 +368,12 @@ class PainMeasurementTimerIntro extends Component {
           </ScrollView>
         </View>
         <Touchable
-          onPress={() => this.props.navigation.navigate("PainMeasurementTimer")}
+          onPress={() =>
+            this.props.navigation.navigate("PainMeasurementTimer", {
+              editId,
+              editType
+            })
+          }
           style={{
             minHeight: 60,
             backgroundColor: colors.lima,

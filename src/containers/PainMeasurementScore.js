@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Text, View, ScrollView } from "react-native";
-import { compose } from "ramda";
+import { compose, isNil } from "ramda";
 import { connect } from "react-redux";
 import { hoistStatics } from "recompose";
 import Touchable from "react-native-platform-touchable";
@@ -14,6 +14,8 @@ import { colors, fonts } from "../themes";
 
 import { calculateScore } from "../services/painMeasurement";
 import iconMap from "../constants/iconMap";
+
+import Reactotron from "reactotron-react-native";
 
 class PainMeasurementScore extends Component {
   static navigationOptions = ({ screenProps }) => {
@@ -47,7 +49,6 @@ class PainMeasurementScore extends Component {
     }
 
     if (isLoggedIn) {
-      // Screen will be changed by Saga
       return this.props.screenProps.form.submitForm();
     }
 
@@ -187,7 +188,7 @@ class PainMeasurementScore extends Component {
             <MultiLineTextField
               label=""
               value={values.note}
-              onChangeText={(value) => this.setState({ note: value })}
+              onChangeText={value => this.setState({ note: value })}
               maxLength={280}
             />
           </View>

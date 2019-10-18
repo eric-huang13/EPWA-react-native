@@ -21,6 +21,7 @@ import IconButton from "../components/IconButton";
 import AnimalSelect from "../components/AnimalSelect";
 
 import iconMap from "../constants/iconMap";
+import Reactotron from "../config/reactotronConfig";
 // import imageMap from "../constants/imageMap";
 
 const iconFacial = "starticoontje-pijnschalen-gezichtsuitdrukkingen";
@@ -111,6 +112,8 @@ class PainMeasurementStart extends PureComponent {
       "measurementType"
     ])(this.props);
 
+    const editType = this.props.navigation.getParam("editType");
+
     return (
       <View style={{ flex: 1, backgroundColor: colors.egyptianBlue }}>
         <ScrollView contentContainerStyle={{ flex: 1 }}>
@@ -130,22 +133,48 @@ class PainMeasurementStart extends PureComponent {
               justifyContent: "space-evenly"
             }}
           >
-            <IconButton
-              active={values.measurementType === "composite"}
-              // imagePath={imageMap.misc.compositeScale}
-              iconName={this.getCompositeIcon(values)}
-              onPress={() => setFieldValue("measurementType", "composite")}
-              label={t("painMeasurement.misc.compositePainScale")}
-            />
-            <IconButton
-              active={values.measurementType === "facialExpression"}
-              // imagePath={imageMap.misc.facialExpressionScale}
-              iconName={this.getFacialIcon(values)}
-              onPress={() =>
-                setFieldValue("measurementType", "facialExpression")
-              }
-              label={t("painMeasurement.misc.facialExpressions")}
-            />
+            {!isNil(editType) && editType === "composite" && (
+              <IconButton
+                active={values.measurementType === "composite"}
+                // imagePath={imageMap.misc.compositeScale}
+                iconName={this.getCompositeIcon(values)}
+                onPress={() => setFieldValue("measurementType", "composite")}
+                label={t("painMeasurement.misc.compositePainScale")}
+              />
+            )}
+
+            {!isNil(editType) && editType === "facialExpression" && (
+              <IconButton
+                active={values.measurementType === "facialExpression"}
+                // imagePath={imageMap.misc.facialExpressionScale}
+                iconName={this.getFacialIcon(values)}
+                onPress={() =>
+                  setFieldValue("measurementType", "facialExpression")
+                }
+                label={t("painMeasurement.misc.facialExpressions")}
+              />
+            )}
+
+            {isNil(editType) && (
+              <React.Fragment>
+                <IconButton
+                  active={values.measurementType === "composite"}
+                  // imagePath={imageMap.misc.compositeScale}
+                  iconName={this.getCompositeIcon(values)}
+                  onPress={() => setFieldValue("measurementType", "composite")}
+                  label={t("painMeasurement.misc.compositePainScale")}
+                />
+                <IconButton
+                  active={values.measurementType === "facialExpression"}
+                  // imagePath={imageMap.misc.facialExpressionScale}
+                  iconName={this.getFacialIcon(values)}
+                  onPress={() =>
+                    setFieldValue("measurementType", "facialExpression")
+                  }
+                  label={t("painMeasurement.misc.facialExpressions")}
+                />
+              </React.Fragment>
+            )}
           </View>
 
           <View
@@ -218,8 +247,14 @@ class PainMeasurementStartContainer extends Component {
     };
   };
 
-  onNavigateToNextStep = () =>
-    this.props.navigation.navigate("PainMeasurementTimerIntro");
+  onNavigateToNextStep = () => {
+    const editId = this.props.navigation.getParam("editId");
+    const editType = this.props.navigation.getParam("editType");
+    this.props.navigation.navigate("PainMeasurementTimerIntro", {
+      editId,
+      editType
+    });
+  };
 
   render() {
     const { t } = this.props.screenProps;
@@ -236,6 +271,7 @@ class PainMeasurementStartContainer extends Component {
         showAnimalSelect={values.forceAnimalSelection}
         t={t}
         setFieldValue={setFieldValue}
+        {...this.props}
       />
     );
   }

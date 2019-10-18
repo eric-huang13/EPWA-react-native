@@ -543,13 +543,13 @@ export const addRecurringEvents = (allEvents, currentDate = new Date()) => {
 
   const allReducedEvents = allEvents.reduce((a, event) => {
     if (
-      isNil(event.recurring) &&
+      (isNil(event.recurring) || event.recurring === "") &&
       !isWithinRange(format(event.startDate), beginDate, endDate)
     ) {
       return a;
     }
     if (
-      isNil(event.recurring) &&
+      (isNil(event.recurring) || event.recurring === "") &&
       isWithinRange(format(event.startDate), beginDate, endDate)
     ) {
       return [...a, event];
@@ -574,11 +574,11 @@ export const addRecurringEvents = (allEvents, currentDate = new Date()) => {
   }, []);
 
   const allRecurringEvents = allReducedEvents.filter(
-    event => !isNil(event.recurring)
+    event => !isNil(event.recurring) || event.recurring !== ""
   );
 
-  const allNonRecurringEvents = allReducedEvents.filter(event =>
-    isNil(event.recurring)
+  const allNonRecurringEvents = allReducedEvents.filter(
+    event => isNil(event.recurring) || event.recurring === ""
   );
 
   const allFacialPainEvents = allNonRecurringEvents.filter(

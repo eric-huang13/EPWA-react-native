@@ -82,7 +82,6 @@ import DiaryTimeTab from "./DiaryTimeTab";
 
 import EventsList, { AccordionView } from "./DiaryList";
 import Reactotron from "reactotron-react-native";
-import reactotron from "reactotron-react-native";
 
 class Diary extends Component {
   static navigationOptions = ({ navigation, screenProps }) => ({
@@ -155,10 +154,6 @@ class Diary extends Component {
         onPress: () => this.navigateTo(this.routes.medication)
       }
     ];
-  }
-
-  componentDidUpdate() {
-    Reactotron.log("COMPONENTDIDUPDATE");
   }
 
   onDatePicked = date => {
@@ -254,7 +249,7 @@ class Diary extends Component {
   };
 
   onToggleComplete = (id, val, type, endDate) => {
-    Reactotron.log(id, val, type, endDate);
+    // Reactotron.log(id, val, type, endDate);
     // return;
     if (
       type === eventTypes.temperature ||
@@ -276,14 +271,18 @@ class Diary extends Component {
     if (type === eventTypes.composite) {
       this.navigateTo(this.routes.startPainMeasurement, {
         redirectPath: "Diary",
-        animal: this.props.data.animals[this.state.currentIndex]
+        animal: this.props.data.animals[this.state.currentIndex],
+        editId: id,
+        editType: type
       });
       return;
     }
     if (type === eventTypes.facialExpression) {
       this.navigateTo(this.routes.startPainMeasurement, {
         redirectPath: "Diary",
-        animal: this.props.data.animals[this.state.currentIndex]
+        animal: this.props.data.animals[this.state.currentIndex],
+        editId: id,
+        editType: type
       });
       return;
     }
