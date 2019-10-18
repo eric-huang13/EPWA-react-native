@@ -38,6 +38,7 @@ import s from "./styles/DiaryExerciseFormStyles";
 
 import Button from "../components/Button";
 import DatePicker from "../components/DatePicker";
+import RadioSection from "../components/RadioSection";
 import Field from "../components/Field";
 import FieldLabel from "../components/FieldLabel";
 import Icon from "../components/Icon";
@@ -68,10 +69,43 @@ import {
 
 import Reactotron from "reactotron-react-native";
 import DateTimePicker from "react-native-modal-datetime-picker";
+import iconMap from "../constants/iconMap";
 
 const validationSchema = yup.object().shape({
   payload: yup.array().of(dateEventValidation)
 });
+
+const ActiveIcon = () => (
+  <View
+    style={{
+      width: 36,
+      height: 36,
+      borderWidth: 1,
+      borderRadius: 36 / 2,
+      borderColor: colors.white,
+      marginRight: 10,
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: colors.white
+    }}
+  >
+    <Icon name={iconMap.check} size={16} color={colors.lima} />
+  </View>
+);
+
+const InactiveIcon = () => (
+  <View
+    style={{
+      width: 22,
+      height: 22,
+      borderWidth: 1,
+      borderRadius: 11,
+      borderColor: colors.nero,
+      marginRight: 20,
+      backgroundColor: colors.transparent
+    }}
+  />
+);
 
 class DiaryShareEventsForm extends Component {
   static navigationOptions = ({ navigation, screenProps }) => ({

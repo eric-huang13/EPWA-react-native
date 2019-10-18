@@ -989,7 +989,6 @@
     "timeAndDay": "Dag en tijd",
     "kindOfAppointment": "Titel van afpraak",
     "unit": "Eenheid",
-    "unlimited": "Onbeperkt",
     "roughage": "Ruwvoer",
     "concentrate": "Krachtvoer",
     "supplement": "Supplementen",
@@ -1088,6 +1087,7 @@
     "addPainMeasurement": "Pijnmeting toevoegen",
     "recurring": "Terugkerend",
     "recurringTill": "Herhaal tot",
+    "quantity": "Aantal",
     "notification": "Melding",
     "emptyPainMeasurementList": "Nog geen pijnscores ingevoerd",
     "diaryFeeding": "Voeding",
@@ -1098,10 +1098,11 @@
     "deleteAllInfo": "Verwijder alle gegevens",
     "confirmDeleteAccount": "Weet je zeker dat je dit account wilt verwijderen?",
     "confirmDeleteAccountInfo": "Al jouw data zal verwijderd worden. Dit is niet te herstellen.",
+    "unlimited": "onbeperkt",
     "categories": {
       "painMeasurement": "Pijnmeting",
       "feeding": "Voeding",
-      "medication": "Medicatie",
+      "medication": "Medisch",
       "housing": "Huisvesting",
       "exercise": "Beweging"
     },
@@ -1113,7 +1114,11 @@
     "editRecurringEventWarning": "Wil je de huidige herhalende afspraak wijzigen, of een nieuwe herhalende afspraak maken?",
     "editRecurring": "Wijzig",
     "newRecurring": "Nieuw",
-    "selectAnOption": "Bij gewijzigde herhaalde afspaken worden alleen de toekomstige afspraken gewijzigd"
+    "selectAnOption": "Bij gewijzigde herhaalde afspaken worden alleen de toekomstige afspraken gewijzigd",
+    "daily": "dagelijks",
+    "weekly": "weekelijks",
+    "monthly": "maandelijks",
+    "yearly": "jaarlijks"
   },
 
   "calendar": {

@@ -464,7 +464,7 @@ function FeedingContent({
               >
                 <FeedingIcon type={type} />
                 <Text style={fonts.style.normal}>
-                  {t(type)} {data.quantity} {data.unit}
+                  {t(type)} {data.quantity} {t(data.unit)}
                 </Text>
               </View>
             </TouchableOpacity>
