@@ -179,6 +179,9 @@ export default class DiaryCalendar extends Component {
     if (this.props.events.length !== prevProps.events.length) {
       this.setMarkedDates();
     }
+    if (prevProps.currentAnimal !== this.props.currentAnimal) {
+      this.setMarkedDates();
+    }
   }
 
   toggleRevealCalendar = () => {

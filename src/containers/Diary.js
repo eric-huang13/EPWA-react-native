@@ -784,7 +784,7 @@ class Diary extends Component {
       return this.renderEmptyState();
     }
 
-    const events = this.props.data.events || [];
+    const allEvents = this.props.data.events || [];
     // Reactotron.log("all events", events);
     const currentAnimal = animals[this.state.currentIndex];
     const { currentDate, tabIndex } = this.state;
@@ -792,6 +792,7 @@ class Diary extends Component {
     //   filter(isRelatedToAnimal(currentAnimal)),
     //   filter(isPainMeasurement)
     // )(events);
+    const events = compose(filter(isRelatedToAnimal(currentAnimal)))(allEvents);
     Reactotron.log("DiaryState", this.state);
 
     return (
