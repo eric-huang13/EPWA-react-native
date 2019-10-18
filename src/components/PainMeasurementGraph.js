@@ -49,7 +49,9 @@ class PainMeasurementGraph extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.items.length !== this.props.items.length) {
+    const prev = prevProps.items.filter(event => event.completed === true);
+    const curr = this.props.items.filter(event => event.completed === true);
+    if (prev.length !== curr.length) {
       this.setGraphData();
     }
   }
