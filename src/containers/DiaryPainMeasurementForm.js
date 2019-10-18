@@ -196,6 +196,8 @@ class DiaryPainMeasurementForm extends Component {
     const typePath = `payload[${props.index}].type`;
     const hasErrors = submitCount > 0 && get(errors, typePath);
     const typeStyle = hasErrors ? { backgroundColor: colors.tomato } : {};
+    // const { completed } = this.props.navigation.getParam("initialValue");
+
     // Reactotron.log('props', this.props);
     return (
       <View
@@ -308,6 +310,10 @@ class DiaryPainMeasurementForm extends Component {
   };
 
   render() {
+    // Reactotron.log("painform", this.props);
+    // const { completed = 0 } = this.props.navigation.getParam("initialValue");
+    // const { completed } = this.props.values.payload[0];
+    // Reactotron.log("painform completed", completed);
     return (
       <View style={s.screenContainer}>
         <ScrollView contentContainerStyle={s.scrollContainer}>
