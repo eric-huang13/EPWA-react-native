@@ -347,7 +347,7 @@ class DiaryFeedingForm extends Component {
                 })}
               </Text>
               <Switch
-                trackColor={colors.lima}
+                trackColor={{ true: colors.lima }}
                 {...(Platform.OS === "ios"
                   ? {}
                   : { thumbTintColor: colors.white })}

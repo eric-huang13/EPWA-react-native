@@ -108,9 +108,12 @@ class DiaryPainMeasurementForm extends Component {
     super(props);
 
     const isEditing = Boolean(props.navigation.getParam("initialValue"));
+    const { completed = false } =
+      isEditing && props.navigation.getParam("initialValue");
 
     this.state = {
-      isEditing
+      isEditing,
+      completed: Boolean(completed)
     };
   }
 
@@ -208,7 +211,10 @@ class DiaryPainMeasurementForm extends Component {
         key={props.entry.id || props.entry.localId}
         style={s.fieldSectionContainer}
       >
-        <View style={{ flex: 1 }}>
+        <View
+          style={{ flex: 1, opacity: this.state.completed ? 0.4 : 1 }}
+          pointerEvents={this.state.completed ? "none" : "auto"}
+        >
           <View style={{ flex: 1, flexDirection: "row" }}>
             {this.renderField({
               fieldName: "startDate",
@@ -310,24 +316,37 @@ class DiaryPainMeasurementForm extends Component {
   };
 
   render() {
-    // Reactotron.log("painform", this.props);
+    Reactotron.log("painform", this.props, this.state);
     // const { completed = 0 } = this.props.navigation.getParam("initialValue");
-    // const { completed } = this.props.values.payload[0];
     // Reactotron.log("painform completed", completed);
     return (
       <View style={s.screenContainer}>
         <ScrollView contentContainerStyle={s.scrollContainer}>
           <View>{this.renderFieldArray()}</View>
-          {this.renderRecurring()}
+          {!this.state.completed && this.renderRecurring()}
           <View style={{ padding: 20 }}>
-            <Button
-              style={{
-                minWidth: 200,
-                marginBottom: 20
-              }}
-              label={this.props.t("save")}
-              onPress={this.submitForm}
-            />
+            {this.state.completed && this.props.values.payload.length === 0 ? (
+              <Button
+                style={{
+                  minWidth: 200,
+                  marginBottom: 20,
+                  backgroundColor: colors.tomato
+                }}
+                label={this.props.t("delete")}
+                onPress={this.submitForm}
+              />
+            ) : null}
+            {!this.state.completed && this.props.values.payload.length > 0 ? (
+              <Button
+                style={{
+                  minWidth: 200,
+                  marginBottom: 20
+                }}
+                label={this.props.t("save")}
+                onPress={this.submitForm}
+              />
+            ) : null}
+
           </View>
         </ScrollView>
       </View>

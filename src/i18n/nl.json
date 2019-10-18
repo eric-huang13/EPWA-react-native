@@ -1094,11 +1094,14 @@
     "movement": "Beweging",
     "eventHousing": "Huisvesting",
     "eventMedication": "Medicatie",
+    "delete": "Verwijder",
     "deleteUserInfo": "Verwijder alleen persoonsgegevens",
     "deleteAllInfo": "Verwijder alle gegevens",
     "confirmDeleteAccount": "Weet je zeker dat je dit account wilt verwijderen?",
     "confirmDeleteAccountInfo": "Al jouw data zal verwijderd worden. Dit is niet te herstellen.",
     "unlimited": "onbeperkt",
+    "completeEvent": "Voltooi",
+
     "categories": {
       "painMeasurement": "Pijnmeting",
       "feeding": "Voeding",

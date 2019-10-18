@@ -54,6 +54,9 @@ class PainMeasurementGraph extends React.Component {
     if (prev.length !== curr.length) {
       this.setGraphData();
     }
+    if (prevProps.currentAnimal !== this.props.currentAnimal) {
+      this.setGraphData();
+    }
   }
 
   setLineXY = (xCoor, yCoor, type, dataLenght1, dataLenght2) => {
