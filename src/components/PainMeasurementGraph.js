@@ -232,9 +232,9 @@ class PainMeasurementGraph extends React.Component {
                       <Line
                         key={index}
                         x1={line.xCoor}
-                        y1={line.yCoor + 8}
+                        y1={line.yCoor - 5}
                         x2={this.state.compositeLine[index + 1].xCoor}
-                        y2={this.state.compositeLine[index + 1].yCoor + 8}
+                        y2={this.state.compositeLine[index + 1].yCoor - 5}
                         strokeWidth="2"
                         stroke={colors.lima}
                       />
@@ -252,10 +252,10 @@ class PainMeasurementGraph extends React.Component {
                       <Line
                         key={index}
                         x1={line.xCoor}
-                        y1={line.yCoor + 8}
+                        y1={line.yCoor - 5}
                         x2={this.state.facialExpressionLine[index + 1].xCoor}
                         y2={
-                          this.state.facialExpressionLine[index + 1].yCoor + 8
+                          this.state.facialExpressionLine[index + 1].yCoor - 5
                         }
                         strokeWidth="2"
                         stroke={colors.lightBlue}
@@ -322,7 +322,7 @@ function Box({
     <React.Fragment>
       <Rect
         x={x - 10}
-        y={y}
+        y={y - 15}
         rx="3"
         ry="3"
         fill={
@@ -336,8 +336,8 @@ function Box({
       />
       <SVGText
         x={x - 1}
-        y={y + 11}
-        fill="#FFF"
+        y={y - 4}
+        fill="#FFFF"
         fontSize="9"
         fontWeight="bold"
         textAnchor="middle"
