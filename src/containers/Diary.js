@@ -709,6 +709,7 @@ class Diary extends Component {
     return (
       <PainMeasurementGraph
         currentDate={currentDate}
+        currentAnimal={currentAnimal}
         items={allPainMeasurements}
         locale={this.props.i18n.language}
         t={t}
