@@ -216,9 +216,7 @@ class DiaryFeedingForm extends Component {
           ]}
           onPress={() => ref.show()}
         >
-          {isNil(this.state.localDate)
-            ? this.formatDateField(entry[fieldName])
-            : this.formatDateField(this.state.localDate)}
+          {this.formatDateField(entry[fieldName])}
         </SelectButton>
       </View>
     );
@@ -580,6 +578,20 @@ const onSubmit = (values, formikBag) => {
 
   const localDate = formikBag.props.navigation.getParam("localDate");
 
+  if (!isNil(localDate) && isNil(flattenValues[0].recurring)) {
+    delete flattenValues[0].id;
+    delete flattenValues[0].recurring;
+    delete flattenValues[0].recurring_untill;
+    flattenValues[0].localId = getId();
+
+    return triggerSubmitType(flattenValues, {
+      formikBag,
+      alertTitle: "alertSuccess",
+      alertMsg: "eventAddSuccessMsg",
+      actionCreator: addEvent
+    });
+  }
+
   if (!isNil(localDate) && !isNil(flattenValues[0].recurring)) {
     const myAction = async () => {
       const choice = await AlertAsync(
@@ -609,6 +621,8 @@ const onSubmit = (values, formikBag) => {
       } else if (choice === "no") {
         // Reactotron.log("voor", flattenValues);
         delete flattenValues[0].id;
+        // delete flattenValues[0].recurring;
+        // delete flattenValues[0].recurring_untill;
         flattenValues[0].localId = getId();
         // Reactotron.log("na", flattenValues);
         // return;
