@@ -122,7 +122,7 @@ class Diary extends Component {
       {
         color: colors.egyptianBlue,
         icon: iconMap.measurement,
-        title: props.t("startPainMeasurement"),
+        title: props.t("registerPainMeasurement"),
         onPress: () => this.navigateTo(this.routes.painMeasurement)
       },
       {

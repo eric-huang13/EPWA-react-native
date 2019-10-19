@@ -22,6 +22,7 @@ import {
   setMillisecondsToZero
 } from "../services/date";
 import SelectButton from "./SelectButton";
+import nlLocale from "date-fns/locale/nl";
 
 import Reactotron from "reactotron-react-native";
 
@@ -91,14 +92,14 @@ class RecurringForm extends Component {
   handleAddRecurringEvents = () => {
     const { setFieldValue, values } = this.props;
 
-    Object.keys(values).map(feedingType => {
-      values[feedingType].map((_, i) => {
+    Object.keys(values).map(eventType => {
+      values[eventType].map((_, i) => {
         setFieldValue(
-          `${feedingType}[${i}].recurring`,
+          `${eventType}[${i}].recurring`,
           recurringVal[this.state.tabIndex]
         );
         setFieldValue(
-          `${feedingType}[${i}].recurring_untill`,
+          `${eventType}[${i}].recurring_untill`,
           recurringVal[this.state.recurring_untill] || null
         );
       });
@@ -108,12 +109,10 @@ class RecurringForm extends Component {
   handleDeleteRecurringEvents = () => {
     const { setFieldValue, values } = this.props;
 
-    Object.keys(values).map(feedingType => {
-      values[feedingType].map((_, i) => {
-        setFieldValue(`${feedingType}[${i}].recurring`, null);
-        if (this.state.recurring_untill !== null) {
-          setFieldValue(`${feedingType}[${i}].recurring_untill`, null);
-        }
+    Object.keys(values).map(eventType => {
+      values[eventType].map((_, i) => {
+        delete values[eventType][i].recurring;
+        delete values[eventType][i].recurring_untill;
       });
     });
   };
@@ -121,9 +120,9 @@ class RecurringForm extends Component {
   handleIndexChange = index => {
     const { setFieldValue, values } = this.props;
 
-    Object.keys(values).map(feedingType => {
-      values[feedingType].map((_, i) => {
-        setFieldValue(`${feedingType}[${i}].recurring`, recurringVal[index]);
+    Object.keys(values).map(eventType => {
+      values[eventType].map((_, i) => {
+        setFieldValue(`${eventType}[${i}].recurring`, recurringVal[index]);
       });
     });
 
@@ -135,9 +134,9 @@ class RecurringForm extends Component {
   handleDateChange = date => {
     const { setFieldValue, values } = this.props;
 
-    Object.keys(values).map(feedingType => {
-      values[feedingType].map((_, i) => {
-        setFieldValue(`${feedingType}[${i}].recurring_untill`, date);
+    Object.keys(values).map(eventType => {
+      values[eventType].map((_, i) => {
+        setFieldValue(`${eventType}[${i}].recurring_untill`, date);
       });
     });
 
@@ -217,13 +216,20 @@ class RecurringForm extends Component {
     )(dateInstance);
   };
 
-  formatDateField = timestamp =>
-    isValid(parse(timestamp)) ? format(timestamp, "DD MMM YYYY") : "";
+  formatDateField = timestamp => {
+    const lang = this.props.i18n.language;
+    return isValid(parse(timestamp))
+      ? lang === "nl"
+        ? format(timestamp, "DD MMMM, YYYY", { locale: nlLocale })
+        : format(timestamp, "MMMM DD, YYYY")
+      : "";
+  };
 
   render() {
     const { t, i18n, setFieldValue, values, currentDate } = this.props;
     let ref;
-
+    Reactotron.log("RECURRING", values);
+    // Reactotron.log("RECURRING2", values.roughage[0].recurring);
     return (
       <View>
         <View style={styles.container}>
