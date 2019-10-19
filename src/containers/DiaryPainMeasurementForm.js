@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import T from "prop-types";
-import { ScrollView, TouchableOpacity, View, TextInput } from "react-native";
+import {
+  ScrollView,
+  TouchableOpacity,
+  View,
+  TextInput,
+  Text
+} from "react-native";
 import { HeaderBackButton } from "react-navigation-stack";
 import { FieldArray, withFormik } from "formik";
 import { translate } from "react-i18next";
@@ -55,6 +61,7 @@ import {
   setMillisecondsToZero
 } from "../services/date";
 import iconMap from "../constants/iconMap";
+import nlLocale from "date-fns/locale/nl";
 
 import Reactotron from "reactotron-react-native";
 
@@ -141,7 +148,7 @@ class DiaryPainMeasurementForm extends Component {
   };
 
   formatDateField = timestamp =>
-    isValid(parse(timestamp)) ? format(timestamp, "DD MMM HH:mm") : "";
+    isValid(parse(timestamp)) ? format(timestamp, "HH:mm") : "";
 
   parseDateField = dateInstance => {
     // We have to combine picked time with date picked in Diary Screen
@@ -173,8 +180,8 @@ class DiaryPainMeasurementForm extends Component {
         <DatePicker
           locale={i18n.language}
           t={t}
-          mode="datetime"
-          date={new Date()}
+          mode="time"
+          date={currentDate || new Date()}
           ref={el => (ref = el)} // eslint-disable-line no-return-assign
           onPick={date => setFieldValue(fieldPath, this.parseDateField(date))}
         />
@@ -218,7 +225,7 @@ class DiaryPainMeasurementForm extends Component {
           <View style={{ flex: 1, flexDirection: "row" }}>
             {this.renderField({
               fieldName: "startDate",
-              label: t("timeAndDay"),
+              label: t("datePicker.titleTime"),
               date: new Date(),
               ...props
             })}
@@ -316,12 +323,27 @@ class DiaryPainMeasurementForm extends Component {
   };
 
   render() {
-    Reactotron.log("painform", this.props, this.state);
+    // Reactotron.log("painform", this.props, this.state);
+    const currentDate = this.props.navigation.getParam("currentDate");
+    const lang = this.props.i18n.language;
+
     // const { completed = 0 } = this.props.navigation.getParam("initialValue");
     // Reactotron.log("painform completed", completed);
     return (
       <View style={s.screenContainer}>
         <ScrollView contentContainerStyle={s.scrollContainer}>
+          <Text
+            style={{
+              fontWeight: "400",
+              fontSize: 22,
+              textAlign: "center",
+              marginVertical: 20
+            }}
+          >
+            {lang === "nl"
+              ? format(currentDate, "dddd MM D", { locale: nlLocale })
+              : format(currentDate, "dddd MMM D")}
+          </Text>
           <View>{this.renderFieldArray()}</View>
           {!this.state.completed && this.renderRecurring()}
           <View style={{ padding: 20 }}>
@@ -346,7 +368,6 @@ class DiaryPainMeasurementForm extends Component {
                 onPress={this.submitForm}
               />
             ) : null}
-
           </View>
         </ScrollView>
       </View>

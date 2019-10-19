@@ -75,7 +75,11 @@ class AnimalForm extends Component {
             })
           }
         >
-          <Icon name={iconMap.info} size={20} color={colors.nero} />
+          <Icon
+            name={iconMap.info2}
+            size={30}
+            color={colors.egyptianBlueDark}
+          />
         </TouchableOpacity>
 
         {/* <TouchableOpacity
