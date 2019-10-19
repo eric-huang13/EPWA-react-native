@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import T from "prop-types";
-import { ScrollView, TouchableOpacity, View, Alert } from "react-native";
+import { ScrollView, TouchableOpacity, View, Text, Alert } from "react-native";
 import { HeaderBackButton } from "react-navigation-stack";
 import { FieldArray, withFormik } from "formik";
 import { translate } from "react-i18next";
@@ -54,6 +54,9 @@ import {
   setMillisecondsToZero
 } from "../services/date";
 import iconMap from "../constants/iconMap";
+
+import Reactotron from "reactotron-react-native";
+import nlLocale from "date-fns/locale/nl";
 
 const validationSchema = yup.object().shape({
   paddock: yup.array().of(dateEventValidation),
@@ -139,7 +142,7 @@ class DiaryHousingForm extends Component {
   };
 
   formatDateField = timestamp =>
-    isValid(parse(timestamp)) ? format(timestamp, "DD MMM HH:mm") : "";
+    isValid(parse(timestamp)) ? format(timestamp, "HH:mm") : "";
 
   parseDateField = dateInstance => {
     // We have to combine picked time with date picked in Diary Screen
@@ -171,8 +174,8 @@ class DiaryHousingForm extends Component {
         <DatePicker
           locale={i18n.language}
           t={t}
-          mode="datetime"
-          date={new Date()}
+          mode="time"
+          date={currentDate || new Date()}
           ref={el => (ref = el)} // eslint-disable-line no-return-assign
           onPick={date => setFieldValue(fieldPath, this.parseDateField(date))}
         />
@@ -362,10 +365,25 @@ class DiaryHousingForm extends Component {
   };
 
   render() {
+    const currentDate = this.props.navigation.getParam("currentDate");
+    const lang = this.props.i18n.language;
+
     return (
       <View style={s.screenContainer}>
         <ScrollView contentContainerStyle={s.scrollContainer}>
           <View>
+            <Text
+              style={{
+                fontWeight: "400",
+                fontSize: 22,
+                textAlign: "center",
+                marginVertical: 20
+              }}
+            >
+              {lang === "nl"
+                ? format(currentDate, "dddd MM D", { locale: nlLocale })
+                : format(currentDate, "dddd MMM D")}
+            </Text>
             {this.renderFieldArray(eventTypes.paddock)}
             {this.renderFieldArray(eventTypes.pasture)}
             {this.renderFieldArray(eventTypes.stable)}

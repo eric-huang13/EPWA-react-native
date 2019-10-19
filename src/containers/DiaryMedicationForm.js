@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
   Platform,
+  Text,
   Alert
 } from "react-native";
 import { HeaderBackButton } from "react-navigation-stack";
@@ -74,6 +75,7 @@ import {
   setMillisecondsToZero
 } from "../services/date";
 import iconMap from "../constants/iconMap";
+import nlLocale from "date-fns/locale/nl";
 
 import Reactotron from "reactotron-react-native";
 
@@ -185,7 +187,7 @@ class DiaryMedicationForm extends Component {
   };
 
   formatDateField = timestamp =>
-    isValid(parse(timestamp)) ? format(timestamp, "DD MMM HH:mm") : "";
+    isValid(parse(timestamp)) ? format(timestamp, "HH:mm") : "";
 
   parseDateField = dateInstance => {
     // We have to combine picked time with date picked in Diary Screen
@@ -230,8 +232,8 @@ class DiaryMedicationForm extends Component {
         <DatePicker
           locale={i18n.language}
           t={t}
-          mode="datetime"
-          date={new Date()}
+          mode="time"
+          date={currentDate || new Date()}
           ref={el => (ref = el)} // eslint-disable-line no-return-assign
           onPick={date => setFieldValue(fieldPath, this.parseDateField(date))}
         />
@@ -270,7 +272,7 @@ class DiaryMedicationForm extends Component {
           <View style={{ marginBottom: 20 }}>
             {this.renderField({
               fieldName: "startDate",
-              label: t("timeAndDay"),
+              label: t("datePicker.titleTime"),
               ...props
             })}
           </View>
@@ -350,7 +352,7 @@ class DiaryMedicationForm extends Component {
           <View style={{ marginBottom: 20 }}>
             {this.renderField({
               fieldName: "startDate",
-              label: t("timeAndDay"),
+              label: t("datePicker.titleTime"),
               ...props
             })}
           </View>
@@ -429,7 +431,7 @@ class DiaryMedicationForm extends Component {
           <View style={{ marginBottom: 20 }}>
             {this.renderField({
               fieldName: "startDate",
-              label: t("timeAndDay"),
+              label: t("datePicker.titleTime"),
               ...props
             })}
           </View>
@@ -543,7 +545,7 @@ class DiaryMedicationForm extends Component {
           <View style={{ marginBottom: 20 }}>
             {this.renderField({
               fieldName: "startDate",
-              label: t("timeAndDay"),
+              label: t("datePicker.titleTime"),
               ...props
             })}
           </View>
@@ -708,6 +710,8 @@ class DiaryMedicationForm extends Component {
   };
 
   render() {
+    const currentDate = this.props.navigation.getParam("currentDate");
+    const lang = this.props.i18n.language;
     const btnColor = this.state.completeEvent
       ? { backgroundColor: colors.lima }
       : null;
@@ -720,6 +724,18 @@ class DiaryMedicationForm extends Component {
         >
           <ScrollView contentContainerStyle={s.scrollContainer}>
             <View>
+              <Text
+                style={{
+                  fontWeight: "400",
+                  fontSize: 22,
+                  textAlign: "center",
+                  marginVertical: 20
+                }}
+              >
+                {lang === "nl"
+                  ? format(currentDate, "dddd MM D", { locale: nlLocale })
+                  : format(currentDate, "dddd MMM D")}
+              </Text>
               {this.renderFieldArray(eventTypes.pill)}
               {this.renderFieldArray(eventTypes.treatment)}
               {this.renderFieldArray(eventTypes.temperature)}

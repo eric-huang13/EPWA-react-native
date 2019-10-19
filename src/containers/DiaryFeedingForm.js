@@ -64,6 +64,7 @@ import {
 } from "../services/date";
 import iconMap from "../constants/iconMap";
 import RecurringForm from "../components/RecurringForm";
+import nlLocale from "date-fns/locale/nl";
 
 import Reactotron from "reactotron-react-native";
 
@@ -155,7 +156,7 @@ class DiaryFeedingForm extends Component {
   };
 
   formatDateField = timestamp =>
-    isValid(parse(timestamp)) ? format(timestamp, "DD MMM HH:mm") : "";
+    isValid(parse(timestamp)) ? format(timestamp, "HH:mm") : "";
 
   parseDateField = dateInstance => {
     // We have to combine picked time with date picked in Diary Screen
@@ -202,8 +203,8 @@ class DiaryFeedingForm extends Component {
         <DatePicker
           locale={i18n.language}
           t={t}
-          mode="datetime"
-          date={new Date()}
+          mode="time"
+          date={currentDate || new Date()}
           ref={el => (ref = el)} // eslint-disable-line no-return-assign
           onPick={date => setFieldValue(fieldPath, this.parseDateField(date))}
         />
@@ -264,7 +265,7 @@ class DiaryFeedingForm extends Component {
           <View style={{ marginBottom: 20 }}>
             {this.renderField({
               fieldName: "startDate",
-              label: t("timeAndDay"),
+              label: t("datePicker.titleTime"),
               ...props
             })}
           </View>
@@ -477,6 +478,9 @@ class DiaryFeedingForm extends Component {
 
   render() {
     const { setFieldValue, values } = this.props;
+    const currentDate = this.props.navigation.getParam("currentDate");
+    const lang = this.props.i18n.language;
+
     // Reactotron.log("values", values);
     return (
       <View style={s.screenContainer}>
@@ -486,6 +490,18 @@ class DiaryFeedingForm extends Component {
           keyboardVerticalOffset={this.isAndroid ? 64 : 80}
         >
           <ScrollView contentContainerStyle={s.scrollContainer}>
+            <Text
+              style={{
+                fontWeight: "400",
+                fontSize: 22,
+                textAlign: "center",
+                marginVertical: 20
+              }}
+            >
+              {lang === "nl"
+                ? format(currentDate, "dddd MM D", { locale: nlLocale })
+                : format(currentDate, "dddd MMM D")}
+            </Text>
             <View>
               {this.renderFieldArray(eventTypes.roughage)}
               {this.renderFieldArray(eventTypes.concentrate)}

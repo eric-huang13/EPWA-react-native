@@ -30,8 +30,6 @@ import { getToken } from "../selectors/auth";
 import iconMap from "../constants/iconMap";
 import CircleButton from "../components/CircleButton";
 
-import Reactotron from "reactotron-react-native";
-
 class AnimalProfile extends Component {
   static navigationOptions = ({ navigation, screenProps }) => ({
     title: navigation.getParam("title", ""),
@@ -102,7 +100,6 @@ class AnimalProfile extends Component {
     const animalId = navigation.getParam("id");
     const selectedHorse = data.find(animal => animal.id === animalId);
 
-    Reactotron.log("SELECTEDANIMAL", selectedHorse);
     return selectedHorse;
   };
 

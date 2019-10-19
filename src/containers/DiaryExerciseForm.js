@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   View,
   TextInput,
+  Text,
   Alert
 } from "react-native";
 import { HeaderBackButton } from "react-navigation-stack";
@@ -66,6 +67,7 @@ import {
 } from "../services/date";
 import iconMap from "../constants/iconMap";
 import MultiLineTextField from "../components/MultiLineTextField";
+import nlLocale from "date-fns/locale/nl";
 
 import Reactotron from "reactotron-react-native";
 
@@ -151,7 +153,7 @@ class DiaryExerciseForm extends Component {
   };
 
   formatDateField = timestamp =>
-    isValid(parse(timestamp)) ? format(timestamp, "DD MMM HH:mm") : "";
+    isValid(parse(timestamp)) ? format(timestamp, "HH:mm") : "";
 
   parseDateField = dateInstance => {
     // We have to combine picked time with date picked in Diary Screen
@@ -183,7 +185,7 @@ class DiaryExerciseForm extends Component {
         <DatePicker
           locale={i18n.language}
           t={t}
-          mode="datetime"
+          mode="time"
           date={date}
           ref={el => (ref = el)} // eslint-disable-line no-return-assign
           onPick={date => setFieldValue(fieldPath, this.parseDateField(date))}
@@ -217,6 +219,7 @@ class DiaryExerciseForm extends Component {
         value: key
       }))
     )(this.props.t("animalDisciplines.horse", { returnObjects: true }));
+    const currentDate = this.props.navigation.getParam("currentDate");
 
     return (
       <View
@@ -232,14 +235,14 @@ class DiaryExerciseForm extends Component {
             {this.renderField({
               fieldName: "startDate",
               label: this.props.t("startTime"),
-              date: new Date(),
+              date: currentDate || new Date(),
               ...props
             })}
             {this.renderField({
               fieldName: "endDate",
               label: this.props.t("endTime"),
               // minimumDate: get(this.props.values, startDatePath), // something like this?
-              date: new Date(),
+              date: currentDate || new Date(),
               ...props
             })}
           </View>
@@ -332,9 +335,23 @@ class DiaryExerciseForm extends Component {
   };
 
   render() {
+    const currentDate = this.props.navigation.getParam("currentDate");
+    const lang = this.props.i18n.language;
     return (
       <View style={s.screenContainer}>
         <ScrollView contentContainerStyle={s.scrollContainer}>
+          <Text
+            style={{
+              fontWeight: "400",
+              fontSize: 22,
+              textAlign: "center",
+              marginVertical: 20
+            }}
+          >
+            {lang === "nl"
+              ? format(currentDate, "dddd MM D", { locale: nlLocale })
+              : format(currentDate, "dddd MMM D")}
+          </Text>
           <View>{this.renderFieldArray()}</View>
           {this.renderRecurring()}
           <View style={{ padding: 20 }}>
