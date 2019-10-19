@@ -266,7 +266,6 @@ class AnimalForm extends Component {
 
   renderMultiSelect = ({ name, values, selectItems }) => {
     const { setFieldValue, t } = this.props;
-
     return (
       <FieldArray
         name={name}
@@ -346,7 +345,7 @@ class AnimalForm extends Component {
       weight
     } = this.props.values || {};
 
-    const type = this.props.navigation.getParam("type");
+    const { type } = this.props.navigation.getParam("initialValue");
 
     const selectItems = {
       breed: ramdaValues(
