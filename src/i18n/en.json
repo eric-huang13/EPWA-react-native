@@ -1105,9 +1105,10 @@
     "categories": {
       "painMeasurement": "Painmeasurement",
       "feeding": "Feeding",
-      "medication": "Medication",
-      "housing": "Housing",
-      "exercise": "Excercise"
+      "medication": "My vet",
+      "housing": "Turnout",
+      "exercise": "Excercise",
+      "appointment": "Appointment"
     },
     "painMeasurements": {
       "composite": "Composite",

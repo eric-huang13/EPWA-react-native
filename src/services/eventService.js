@@ -537,9 +537,25 @@ const getRecurringEvents = (event, endDay, currentDate) => {
 //   return [...removedDoubleEvents, ...allNonRecurringEvents];
 // };
 
-export const addRecurringEvents = (allEvents, currentDate = new Date()) => {
-  const beginDate = subDays(format(currentDate), 15);
-  const endDate = addDays(format(currentDate), 5);
+export const addRecurringEvents = (allEvents, currentDate, tabIndex) => {
+  let beginDate;
+  let endDate;
+
+  if (tabIndex === 1) {
+    beginDate = subDays(format(currentDate), 1);
+    endDate = addDays(format(currentDate), 1);
+  }
+  if (tabIndex === 0) {
+    beginDate = subDays(format(currentDate), 14);
+    endDate = subDays(format(currentDate), 0);
+  }
+  if (tabIndex === 2) {
+    beginDate = addDays(format(currentDate), 1);
+    endDate = addDays(format(currentDate), 5);
+  }
+
+  // const beginDate = subDays(format(currentDate), 15);
+  // const endDate = addDays(format(currentDate), 5);
 
   const allReducedEvents = allEvents.reduce((a, event) => {
     if (

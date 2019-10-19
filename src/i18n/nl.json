@@ -1107,7 +1107,8 @@
       "feeding": "Voeding",
       "medication": "Medisch",
       "housing": "Huisvesting",
-      "exercise": "Beweging"
+      "exercise": "Training",
+      "appointment": "Appointment"
     },
     "painMeasurements": {
       "composite": "Samengestelde pijnmeting",

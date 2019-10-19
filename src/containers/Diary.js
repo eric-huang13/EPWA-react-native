@@ -573,7 +573,8 @@ class Diary extends Component {
 
     const propsDataEvents = addRecurringEvents(
       this.props.data.events,
-      currentDate
+      currentDate,
+      tabIndex
     );
 
     const nonFeedingevents = compose(
@@ -672,7 +673,7 @@ class Diary extends Component {
         };
       });
 
-      const maxEventsTab2 = eventsGroupedByDayTab2.slice(1, 5);
+      const maxEventsTab2 = eventsGroupedByDayTab2.slice(0, 5);
       return (
         <AccordionView
           data={maxEventsTab2}
