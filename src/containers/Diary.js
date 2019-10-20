@@ -567,25 +567,21 @@ class Diary extends Component {
   //   });
   // };
 
-  renderEvents = ({ currentAnimal, currentDate, tabIndex }) => {
+  renderEvents = (events, currentDate, tabIndex) => {
     const { t } = this.props;
     const locale = this.props.i18n.language === "nl" ? nl : en;
 
-    const propsDataEvents = addRecurringEvents(
-      this.props.data.events,
-      currentDate,
-      tabIndex
-    );
+    const propsDataEvents = addRecurringEvents(events, currentDate, tabIndex);
 
     const nonFeedingevents = compose(
       filter(isSelectedTab(currentDate, tabIndex)),
-      filter(isRelatedToAnimal(currentAnimal)),
+      // filter(isRelatedToAnimal(currentAnimal)),
       reject(isFeeding)
     )(propsDataEvents || []);
 
     const feedingEvents = compose(
       filter(isSelectedTab(currentDate, tabIndex)),
-      filter(isRelatedToAnimal(currentAnimal)),
+      // filter(isRelatedToAnimal(currentAnimal)),
       filter(isFeeding)
     )(propsDataEvents || []);
 
@@ -614,7 +610,7 @@ class Diary extends Component {
     const allEvents = [...groupedFeedingEvents, ...nonFeedingevents].sort(
       (a, b) => a.startDate - b.startDate
     );
-    Reactotron.log("ALL-EVENTS", this.props.data.events);
+    Reactotron.log("ALL-EVENTS", allEvents);
 
     if (tabIndex === 1) {
       return (
@@ -630,7 +626,7 @@ class Diary extends Component {
 
     const allDaysArr = uniq(
       allEvents
-        .reverse()
+        .reverse((a, b) => a.startDate - b.startDate)
         .map(({ startDate }) => format(startDate, "D MMM", { locale }))
     );
 
@@ -648,7 +644,8 @@ class Diary extends Component {
         };
       });
 
-      const maxEventsTab0 = eventsGroupedByDay.slice(1, 15);
+      const maxEventsTab0 = eventsGroupedByDay.slice(1, 16);
+      // const maxEventsTab0 = eventsGroupedByDay;
       return (
         <AccordionView
           data={maxEventsTab0}
@@ -673,7 +670,8 @@ class Diary extends Component {
         };
       });
 
-      const maxEventsTab2 = eventsGroupedByDayTab2.slice(0, 5);
+      // const maxEventsTab2 = eventsGroupedByDayTab2.slice(0, 5);
+      const maxEventsTab2 = eventsGroupedByDayTab2;
       return (
         <AccordionView
           data={maxEventsTab2}
@@ -867,7 +865,7 @@ class Diary extends Component {
             }
             label={t("addPainMeasurement")}
           />
-          {this.renderEvents({ currentAnimal, currentDate, tabIndex })}
+          {this.renderEvents(events, currentDate, tabIndex)}
 
           <View style={{ height: 80 }} />
         </ScrollView>

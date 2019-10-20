@@ -51,6 +51,8 @@ import { colors, fonts } from "../themes";
 import { getToken } from "../selectors/auth";
 import iconMap from "../constants/iconMap";
 
+import Reactotron from "reactotron-react-native";
+
 class AnimalForm extends Component {
   static navigationOptions = ({ navigation, screenProps }) => ({
     title:
@@ -349,7 +351,10 @@ class AnimalForm extends Component {
       weight
     } = this.props.values || {};
 
-    const { type } = this.props.navigation.getParam("initialValue");
+    const type =
+      this.props.navigation.getParam("type") ||
+      this.props.navigation.getParam("initialValue").type;
+    // Reactotron.log("animalform", type);
 
     const selectItems = {
       breed: ramdaValues(

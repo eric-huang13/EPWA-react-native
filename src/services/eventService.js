@@ -541,6 +541,8 @@ export const addRecurringEvents = (allEvents, currentDate, tabIndex) => {
   let beginDate;
   let endDate;
 
+  Reactotron.log("TAB?", tabIndex);
+
   if (tabIndex === 1) {
     beginDate = subDays(format(currentDate), 1);
     endDate = addDays(format(currentDate), 1);
@@ -550,9 +552,15 @@ export const addRecurringEvents = (allEvents, currentDate, tabIndex) => {
     endDate = subDays(format(currentDate), 0);
   }
   if (tabIndex === 2) {
-    beginDate = addDays(format(currentDate), 1);
+    beginDate = addDays(format(currentDate), 0);
     endDate = addDays(format(currentDate), 5);
   }
+  Reactotron.log(
+    "current, begin - end",
+    format(currentDate, "D-MMM-YYYY"),
+    format(beginDate, "D-MMM-YYYY"),
+    format(endDate, "D-MMM-YYYY")
+  );
 
   // const beginDate = subDays(format(currentDate), 15);
   // const endDate = addDays(format(currentDate), 5);
@@ -597,15 +605,13 @@ export const addRecurringEvents = (allEvents, currentDate, tabIndex) => {
     event => isNil(event.recurring) || event.recurring === ""
   );
 
-  const allFacialPainEvents = allNonRecurringEvents.filter(
-    event => event.type === eventTypes.facialExpression
-  );
-  Reactotron.log("allFacial", allFacialPainEvents);
+  // const allFacialPainEvents = allNonRecurringEvents.filter(
+  //   event => event.type === eventTypes.facialExpression
+  // );
 
-  const allCompositePainEvents = allNonRecurringEvents.filter(
-    event => event.type === eventTypes.composite
-  );
-  Reactotron.log("allComposite", allCompositePainEvents);
+  // const allCompositePainEvents = allNonRecurringEvents.filter(
+  //   event => event.type === eventTypes.composite
+  // );
 
   const removedDoubleEvents = allRecurringEvents.filter(event => {
     // Reactotron.log("compare", toCompareArr);
