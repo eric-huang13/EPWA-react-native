@@ -367,6 +367,10 @@ function PainMeasureContent({
   id,
   completed
 }) {
+  const localId =
+    typeof id === "string" && id.includes("_") ? id.split("_")[0] : id;
+  const localDate =
+    typeof id === "string" && id.includes("_") ? id.split("_")[1] : null;
   const isFacialExpression = type === eventTypes.facialExpression;
   const painMeasurementType =
     type === eventTypes.facialExpression
@@ -380,7 +384,7 @@ function PainMeasureContent({
         key={id}
         onPress={() =>
           navigateTo("DiaryPainMeasurementForm", {
-            initialValue: findEventById(id)
+            initialValue: findEventById(+localId)
           })
         }
       >
