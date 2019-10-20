@@ -7,8 +7,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   Switch,
-  Text,
-  Alert
+  Text
 } from "react-native";
 import AlertAsync from "react-native-alert-async";
 import { HeaderBackButton } from "react-navigation-stack";

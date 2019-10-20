@@ -6,9 +6,9 @@ import {
   TouchableOpacity,
   View,
   Platform,
-  Text,
-  Alert
+  Text
 } from "react-native";
+import AlertAsync from "react-native-alert-async";
 import { HeaderBackButton } from "react-navigation-stack";
 import { FieldArray, withFormik } from "formik";
 import { translate } from "react-i18next";
@@ -802,6 +802,8 @@ const triggerSubmitType = (
 };
 
 const onSubmit = (values, formikBag) => {
+  // Reactotron.log("Wat text", values, formikBag);
+
   const t = formikBag.props.t;
 
   const flattenValues = compose(
@@ -809,73 +811,95 @@ const onSubmit = (values, formikBag) => {
     Object.values
   )(values);
 
-  Reactotron.log("flattenValues before reject", flattenValues);
-  // return
   const initialValue = formikBag.props.navigation.getParam("initialValue");
   let isEditing = Boolean(initialValue);
 
   const localDate = formikBag.props.navigation.getParam("localDate");
-  const completeEvent =
-    formikBag.props.navigation.getParam("completeEvent") || false;
-  // return;;
-  if (completeEvent && !isNil(localDate)) {
-    flattenValues[0].completed = true;
-    flattenValues[0].localId = getId();
 
+  if (!isNil(localDate) && isNil(flattenValues[0].recurring)) {
     delete flattenValues[0].id;
     delete flattenValues[0].recurring;
-    delete flattenValues[0].recurringUntill;
-    Reactotron.log("flattenValues after reject", flattenValues);
-  }
-  // return;
+    delete flattenValues[0].recurring_untill;
+    flattenValues[0].localId = getId();
 
-  if (completeEvent && isNil(localDate)) {
-    flattenValues[0].completed = true;
-    // flattenValues[0].localId = getId();
-
-    delete flattenValues[0].recurring;
-    delete flattenValues[0].recurringUntill;
-    Reactotron.log("flattenValues 3", flattenValues);
-  }
-
-  if (
-    completeEvent === false &&
-    !isNil(localDate) &&
-    !isNil(flattenValues[0].recurring)
-  ) {
-    Alert.alert(t("editRecurringEventWarning"), t("selectAnOption"), [
-      { text: t("editRecurring"), onPress: () => (isEditing = true) },
-      { text: t("newRecurring"), onPress: () => (isEditing = false) }
-    ]);
-  }
-
-  if (completeEvent && isNil(localDate)) {
-    isEditing = true;
-  }
-
-  if (!isEditing) {
     return triggerSubmitType(flattenValues, {
       formikBag,
       alertTitle: "alertSuccess",
       alertMsg: "eventAddSuccessMsg",
       actionCreator: addEvent
     });
-  } else if (isEditing && flattenValues.length > 0) {
-    return triggerSubmitType(flattenValues[0], {
-      formikBag,
-      alertTitle: "alertSuccess",
-      alertMsg: "eventEditSuccessMsg",
-      actionCreator: editEvent,
-      initialValue
-    });
   }
 
-  return triggerSubmitType(initialValue, {
-    formikBag,
-    alertTitle: "alertSuccess",
-    alertMsg: "eventDeleteSuccessMsg",
-    actionCreator: deleteEvent
-  });
+  if (!isNil(localDate) && !isNil(flattenValues[0].recurring)) {
+    const myAction = async () => {
+      const choice = await AlertAsync(
+        t("editRecurringEventWarning"),
+        t("selectAnOption"),
+        [
+          { text: t("editRecurring"), onPress: () => "yes" },
+          { text: t("newRecurring"), onPress: () => "no" },
+          { text: t("cancel"), onPress: () => "cancel" }
+        ],
+        {
+          cancelable: true,
+          onDismiss: () => "cancel"
+        }
+      );
+
+      if (choice === "yes") {
+        if (isEditing && flattenValues.length > 0) {
+          return await triggerSubmitType(flattenValues[0], {
+            formikBag,
+            alertTitle: "alertSuccess",
+            alertMsg: "eventEditSuccessMsg",
+            actionCreator: editEvent,
+            initialValue
+          });
+        }
+      } else if (choice === "no") {
+        // Reactotron.log("voor", flattenValues);
+        delete flattenValues[0].id;
+        // delete flattenValues[0].recurring;
+        // delete flattenValues[0].recurring_untill;
+        flattenValues[0].localId = getId();
+        // Reactotron.log("na", flattenValues);
+        // return;
+        return await triggerSubmitType(flattenValues, {
+          formikBag,
+          alertTitle: "alertSuccess",
+          alertMsg: "eventAddSuccessMsg",
+          actionCreator: addEvent
+        });
+      } else {
+        return;
+      }
+    };
+    myAction();
+  } else {
+    if (!isEditing) {
+      return triggerSubmitType(flattenValues, {
+        formikBag,
+        alertTitle: "alertSuccess",
+        alertMsg: "eventAddSuccessMsg",
+        actionCreator: addEvent
+      });
+    } else if (isEditing && flattenValues.length > 0) {
+      return triggerSubmitType(flattenValues[0], {
+        formikBag,
+        alertTitle: "alertSuccess",
+        alertMsg: "eventEditSuccessMsg",
+        actionCreator: editEvent,
+        initialValue
+      });
+    }
+
+    return triggerSubmitType(initialValue, {
+      formikBag,
+      alertTitle: "alertSuccess",
+      alertMsg: "eventDeleteSuccessMsg",
+      actionCreator: deleteEvent
+    });
+  }
 };
 
 const formikOptions = {

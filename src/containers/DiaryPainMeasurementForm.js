@@ -7,6 +7,7 @@ import {
   TextInput,
   Text
 } from "react-native";
+import AlertAsync from "react-native-alert-async";
 import { HeaderBackButton } from "react-navigation-stack";
 import { FieldArray, withFormik } from "formik";
 import { translate } from "react-i18next";
@@ -22,7 +23,14 @@ import {
   isValid
 } from "date-fns";
 import { get } from "lodash";
-import { __, compose, mapObjIndexed, values as ramdaValues } from "ramda";
+import {
+  __,
+  compose,
+  mapObjIndexed,
+  isNil,
+  flatten,
+  values as ramdaValues
+} from "ramda";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 import getId from "../services/idGenerator";
@@ -408,34 +416,105 @@ const triggerSubmitType = (
     })
   );
 };
+const onSubmit = (values, formikBag) => {
+  // Reactotron.log("Wat text", values, formikBag);
 
-const onSubmit = ({ payload }, formikBag) => {
+  const t = formikBag.props.t;
+
+  const flattenValues = compose(
+    flatten,
+    Object.values
+  )(values);
+
   const initialValue = formikBag.props.navigation.getParam("initialValue");
-  const isEditing = Boolean(initialValue);
+  let isEditing = Boolean(initialValue);
 
-  if (!isEditing) {
-    return triggerSubmitType(payload, {
+  const localDate = formikBag.props.navigation.getParam("localDate");
+
+  if (!isNil(localDate) && isNil(flattenValues[0].recurring)) {
+    delete flattenValues[0].id;
+    delete flattenValues[0].recurring;
+    delete flattenValues[0].recurring_untill;
+    flattenValues[0].localId = getId();
+
+    return triggerSubmitType(flattenValues, {
       formikBag,
       alertTitle: "alertSuccess",
       alertMsg: "eventAddSuccessMsg",
       actionCreator: addEvent
     });
-  } else if (isEditing && payload.length > 0) {
-    return triggerSubmitType(payload[0], {
-      formikBag,
-      alertTitle: "alertSuccess",
-      alertMsg: "eventEditSuccessMsg",
-      actionCreator: editEvent,
-      initialValue
-    });
   }
 
-  return triggerSubmitType(initialValue, {
-    formikBag,
-    alertTitle: "alertSuccess",
-    alertMsg: "eventDeleteSuccessMsg",
-    actionCreator: deleteEvent
-  });
+  if (!isNil(localDate) && !isNil(flattenValues[0].recurring)) {
+    const myAction = async () => {
+      const choice = await AlertAsync(
+        t("editRecurringEventWarning"),
+        t("selectAnOption"),
+        [
+          { text: t("editRecurring"), onPress: () => "yes" },
+          { text: t("newRecurring"), onPress: () => "no" },
+          { text: t("cancel"), onPress: () => "cancel" }
+        ],
+        {
+          cancelable: true,
+          onDismiss: () => "cancel"
+        }
+      );
+
+      if (choice === "yes") {
+        if (isEditing && flattenValues.length > 0) {
+          return await triggerSubmitType(flattenValues[0], {
+            formikBag,
+            alertTitle: "alertSuccess",
+            alertMsg: "eventEditSuccessMsg",
+            actionCreator: editEvent,
+            initialValue
+          });
+        }
+      } else if (choice === "no") {
+        // Reactotron.log("voor", flattenValues);
+        delete flattenValues[0].id;
+        // delete flattenValues[0].recurring;
+        // delete flattenValues[0].recurring_untill;
+        flattenValues[0].localId = getId();
+        // Reactotron.log("na", flattenValues);
+        // return;
+        return await triggerSubmitType(flattenValues, {
+          formikBag,
+          alertTitle: "alertSuccess",
+          alertMsg: "eventAddSuccessMsg",
+          actionCreator: addEvent
+        });
+      } else {
+        return;
+      }
+    };
+    myAction();
+  } else {
+    if (!isEditing) {
+      return triggerSubmitType(flattenValues, {
+        formikBag,
+        alertTitle: "alertSuccess",
+        alertMsg: "eventAddSuccessMsg",
+        actionCreator: addEvent
+      });
+    } else if (isEditing && flattenValues.length > 0) {
+      return triggerSubmitType(flattenValues[0], {
+        formikBag,
+        alertTitle: "alertSuccess",
+        alertMsg: "eventEditSuccessMsg",
+        actionCreator: editEvent,
+        initialValue
+      });
+    }
+
+    return triggerSubmitType(initialValue, {
+      formikBag,
+      alertTitle: "alertSuccess",
+      alertMsg: "eventDeleteSuccessMsg",
+      actionCreator: deleteEvent
+    });
+  }
 };
 
 const formikOptions = {
