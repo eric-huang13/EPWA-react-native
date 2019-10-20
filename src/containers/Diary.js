@@ -623,7 +623,7 @@ class Diary extends Component {
     const allEvents = [...groupedFeedingEvents, ...nonFeedingevents].sort(
       (a, b) => a.startDate - b.startDate
     );
-    Reactotron.log("ALL-EVENTS", allEvents);
+    Reactotron.log("ALL-EVENTS", this.props.data.events);
 
     if (tabIndex === 1) {
       return (
