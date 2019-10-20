@@ -106,9 +106,14 @@ const validationSchema = yup.object().shape({
 //   );
 // };
 
-const CheckBoxField = ({ title = "Title", checked = false, handleSelect }) => {
+const CheckBoxField = ({
+  title = "Title",
+  checked = false,
+  onPress,
+  categorie
+}) => {
   return (
-    <TouchableOpacity onPress={handleSelect}>
+    <TouchableOpacity onPress={() => onPress(categorie)}>
       <View
         style={{
           backgroundColor: checked ? colors.lima : colors.white,
@@ -190,9 +195,13 @@ class DiaryShareEventsForm extends Component {
   static getInitialEventValue(animalId) {
     return {
       animalId,
-      startDate: format(new Date()),
-      endDate: format(new Date()),
-      options: []
+      startDate: "",
+      endDate: "",
+      feeding: false,
+      pain: false,
+      exersise: false,
+      housing: true,
+      medical: false
     };
   }
 
@@ -217,19 +226,51 @@ class DiaryShareEventsForm extends Component {
     )(currentDate);
   };
 
+  handleDateChange = date => {
+    const { setFieldValue, values } = this.props;
+
+    Reactotron.log(values, date);
+  };
+
+  handleSelection = categorie => {
+    const { setFieldValue, values } = this.props;
+    // values.payload[0][categorie] = !values.payload[0][categorie];
+    // Reactotron.log(values, categorie, values.payload[0][categorie]);
+    // Reactotron.log("HANDLE");
+    // Reactotron.log("HANDLE", values.payload[0][categorie]);
+    setFieldValue(values[categorie], !values.payload[0][categorie]);
+  };
+
   render() {
     const { t, i18n, setFieldValue, values, currentDate } = this.props;
+    Reactotron.log("render", values);
     let ref;
     return (
       <View style={s.screenContainer}>
         <ScrollView contentContainerStyle={s.scrollContainer}>
           <View style={{ marginTop: 20 }}>
-            <CheckBoxField />
-            <CheckBoxField />
-            <CheckBoxField />
-            <CheckBoxField checked />
-            <CheckBoxField />
-            <CheckBoxField />
+            <CheckBoxField
+              title={t("categories.painMeasurement")}
+              categorie={"pain"}
+              checked={values.payload[0].pain}
+              onPress={this.handleSelection}
+            />
+            <CheckBoxField
+              title={t("categories.exercise")}
+              checked={values.payload[0].exercise}
+            />
+            <CheckBoxField
+              title={t("categories.feeding")}
+              checked={values.payload[0].feeding}
+            />
+            <CheckBoxField
+              title={t("categories.housing")}
+              checked={values.payload[0].housing}
+            />
+            <CheckBoxField
+              title={t("categories.medication")}
+              checked={values.payload[0].medication}
+            />
           </View>
           <View style={{ padding: 20 }}>
             <View>
@@ -318,8 +359,8 @@ DiaryShareEventsForm.propTypes = {
   }),
   t: T.func,
   values: T.shape({
-    groundWork: T.arrayOf(dateEventProps),
-    riding: T.arrayOf(dateEventProps)
+    // groundWork: T.arrayOf(dateEventProps),
+    // riding: T.arrayOf(dateEventProps)
   })
 };
 
@@ -327,22 +368,22 @@ const showSuccess = (alertDropdown, title, msg) => {
   alertDropdown("success", title, msg);
 };
 
-const triggerSubmitType = (
-  payload,
-  { formikBag, actionCreator, initialValue, alertTitle, alertMsg }
-) => {
-  const { dispatch, t } = formikBag.props;
+// const triggerSubmitType = (
+//   payload,
+//   { formikBag, actionCreator, initialValue, alertTitle, alertMsg }
+// ) => {
+//   const { dispatch, t } = formikBag.props;
 
-  showSuccess(formikBag.props.alertDropdown, t(alertTitle), t(alertMsg));
+//   showSuccess(formikBag.props.alertDropdown, t(alertTitle), t(alertMsg));
 
-  dispatch(
-    actionCreator({
-      payload,
-      formHelpers: formikBag,
-      initialValue
-    })
-  );
-};
+//   dispatch(
+//     actionCreator({
+//       payload,
+//       formHelpers: formikBag,
+//       initialValue
+//     })
+//   );
+// };
 
 const onSubmit = ({ payload }, formikBag) => {
   const initialValue = formikBag.props.navigation.getParam("initialValue");
@@ -361,7 +402,7 @@ const formikOptions = {
 
     if (!initialValue) {
       return {
-        payload: [DiaryShareEventsForm.getInitialEventValue(animalId)]
+        ...DiaryShareEventsForm.getInitialEventValue(animalId)
       };
     }
 
