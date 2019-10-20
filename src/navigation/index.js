@@ -17,7 +17,7 @@ import StartUpScreen from "../containers/StartUp";
 import ForgotPasswordScreen from "../containers/ForgotPassword";
 import AuthLoadingScreen from "../containers/AuthLoading";
 import DiaryScreen from "../containers/Diary";
-import DiaryCopyScreen from "../containers/DiaryCopy";
+// import DiaryCopyScreen from "../containers/DiaryCopy";
 import DiaryExerciseFormScreen from "../containers/DiaryExerciseForm";
 import DiaryExerciseFormInfoScreen from "../containers/DiaryExerciseFormInfo";
 import DiaryHousingFormScreen from "../containers/DiaryHousingForm";
@@ -103,7 +103,7 @@ const AppStack = createDrawerNavigator(
       screen: createStackNavigator(
         {
           Diary: DiaryScreen,
-          DiaryCopy: DiaryCopyScreen,
+          // DiaryCopy: DiaryCopyScreen,
           DiaryExerciseForm: DiaryExerciseFormScreen,
           DiaryExerciseFormInfo: DiaryExerciseFormInfoScreen,
           DiaryHousingForm: DiaryHousingFormScreen,

@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
   SafeAreaView
 } from "react-native";
-import { DrawerActions } from 'react-navigation-drawer';
+import { DrawerActions } from "react-navigation-drawer";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { translate } from "react-i18next";
@@ -38,11 +38,11 @@ class CustomDrawerContent extends React.Component {
     };
 
     return (
-      <ScrollView>
-        <SafeAreaView
-          style={s.container}
-          forceInset={{ top: "always", horizontal: "never" }}
-        >
+      <SafeAreaView
+        style={s.container}
+        forceInset={{ top: "always", horizontal: "never" }}
+      >
+        <ScrollView>
           <View style={s.header}>
             <View style={s.headerRow}>
               <View style={s.headerLeftIcon}>
@@ -94,8 +94,8 @@ class CustomDrawerContent extends React.Component {
               iconName={iconMap.share}
             />
           </View>
-        </SafeAreaView>
-      </ScrollView>
+        </ScrollView>
+      </SafeAreaView>
     );
   }
 }
@@ -109,7 +109,7 @@ CustomDrawerContent.propTypes = {
   })
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   const firstName = get(state, "profile.firstName");
   const lastName = get(state, "profile.lastName");
   const pictureUrl = get(state, "profile.pictureUrl");

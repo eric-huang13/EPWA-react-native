@@ -65,11 +65,7 @@ export function* getEvents(api, accessToken) {
         return omit(["endDate"])(result);
       }
 
-      // if (not(isNil(result.completed)) && +result.completed === 0) {
-      //   result.completed = false;
-      // } else if (not(isNil(result.completed)) && +result.completed === 1) {
-      //   result.completed = true;
-      // }
+      result.completed = Boolean(result.completed);
 
       return result;
     }),
@@ -157,6 +153,9 @@ export function* addEventCommit(action) {
           data: camelcaseKeys(JSON.parse(event.data))
         };
       }
+
+      event.completed = Boolean(event.completed);
+
       return event;
     });
 
@@ -380,7 +379,7 @@ export function* completeRecurringEvent(api, dispatch, action) {
     event => {
       const result = event;
 
-      if (event.data === "null" && event.data === '"null"') {
+      if (event.data === "null" && event.data === "\"null\"") {
         result.data = null;
       }
 
@@ -389,7 +388,10 @@ export function* completeRecurringEvent(api, dispatch, action) {
         result.data = camelcaseKeys(result.data);
       }
 
-      result.recurring = null;
+      //Complete to boolean
+      result.completed = Boolean(result.completed);
+
+      // result.recurring = null;
 
       if (isNil(result.endDate)) {
         return omit(["endDate"])(result);
