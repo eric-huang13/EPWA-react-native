@@ -350,7 +350,7 @@ class DiaryExerciseForm extends Component {
             }}
           >
             {lang === "nl"
-              ? format(currentDate, "dddd MM D", { locale: nlLocale })
+              ? format(currentDate, "dddd MM MMMM", { locale: nlLocale })
               : format(currentDate, "dddd MMM D")}
           </Text>
           <View>{this.renderFieldArray()}</View>

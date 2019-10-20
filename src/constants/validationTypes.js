@@ -86,7 +86,7 @@ export const noteEventValidation = yup.object().shape({
   type: yup.string().required("Required"),
   startDate: yup.number().required("Required"),
   data: yup.object().shape({
-    note: yup.string().required("Required"),
-    noteTitle: yup.string().required("Required")
+    noteTitle: yup.string().required("Required"),
+    note: yup.string().required("Required")
   })
 });

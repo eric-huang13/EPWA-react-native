@@ -216,7 +216,9 @@ class diaryAppointmentForm extends Component {
     const notePath = `payload[${props.index}].data.note`;
     const titlePath = `payload[${props.index}].data.noteTitle`;
     const hasErrors = submitCount > 0 && get(errors, typePath);
-    const typeStyle = hasErrors ? { backgroundColor: colors.tomato } : {};
+    const typeStyle = get(hasErrors, notePath)
+      ? { backgroundColor: colors.tomato }
+      : {};
     const currentDate = this.props.navigation.getParam("currentDate");
 
     return (
@@ -234,6 +236,7 @@ class diaryAppointmentForm extends Component {
             value={get(this.props.values, titlePath)}
             onChangeText={value => this.props.setFieldValue(titlePath, value)}
             maxLength={100}
+            style={typeStyle}
           />
           {/*<View>
             <Field
@@ -260,6 +263,11 @@ class diaryAppointmentForm extends Component {
             value={get(this.props.values, notePath)}
             onChangeText={value => this.props.setFieldValue(notePath, value)}
             maxLength={280}
+            style={
+              this.props.submitCount > 0 && get(errors, notePath)
+                ? { backgroundColor: colors.tomato }
+                : {}
+            }
           />
           <View style={{ flex: 1, flexDirection: "row" }}>
             {this.renderField({
@@ -292,7 +300,6 @@ class diaryAppointmentForm extends Component {
     const { navigation, values } = this.props;
     const animalId = navigation.getParam("animalId");
     const pushValue = diaryAppointmentForm.getInitialEventValue(animalId);
-    Reactotron.log(values);
     return (
       <FieldArray
         name="payload"
@@ -347,7 +354,7 @@ class diaryAppointmentForm extends Component {
             }}
           >
             {lang === "nl"
-              ? format(currentDate, "dddd MM D", { locale: nlLocale })
+              ? format(currentDate, "dddd MM MMMM", { locale: nlLocale })
               : format(currentDate, "dddd MMM D")}
           </Text>
           <View>{this.renderFieldArray()}</View>
