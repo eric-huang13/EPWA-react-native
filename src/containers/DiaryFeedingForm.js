@@ -496,7 +496,7 @@ class DiaryFeedingForm extends Component {
               }}
             >
               {lang === "nl"
-                ? format(currentDate, "dddd MM MMMM", { locale: nlLocale })
+                ? format(currentDate, "dddd DD MMMM", { locale: nlLocale })
                 : format(currentDate, "dddd MMM D")}
             </Text>
             <View>
