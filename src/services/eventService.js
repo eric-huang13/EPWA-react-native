@@ -548,11 +548,11 @@ export const addRecurringEvents = (allEvents, currentDate, tabIndex) => {
     endDate = addDays(format(currentDate), 1);
   }
   if (tabIndex === 0) {
-    beginDate = subDays(format(currentDate), 14);
+    beginDate = subDays(format(currentDate), 15);
     endDate = subDays(format(currentDate), 0);
   }
   if (tabIndex === 2) {
-    beginDate = addDays(format(currentDate), 0);
+    beginDate = addDays(format(currentDate), 1);
     endDate = addDays(format(currentDate), 5);
   }
   Reactotron.log(

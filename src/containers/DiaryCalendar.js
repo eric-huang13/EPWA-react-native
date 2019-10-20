@@ -164,11 +164,13 @@ export default class DiaryCalendar extends Component {
       selected_month: format(new Date()),
       markedDates: []
     };
+    LocaleConfig.defaultLocale = props.lang;
   }
 
   componentDidMount() {
     ///markedDates berekenen
     this.setMarkedDates();
+    LocaleConfig.defaultLocale = this.props.lang;
     Reactotron.log("calendar mountend");
   }
 
@@ -181,6 +183,9 @@ export default class DiaryCalendar extends Component {
     }
     if (prevProps.currentAnimal !== this.props.currentAnimal) {
       this.setMarkedDates();
+    }
+    if (prevProps.lang !== this.props.lang) {
+      LocaleConfig.defaultLocale = this.props.lang;
     }
   }
 
@@ -242,8 +247,6 @@ export default class DiaryCalendar extends Component {
   }
 
   render() {
-    LocaleConfig.defaultLocale = this.props.lang;
-
     // const allEvents = compose(
     //   filter(isRelatedToAnimal(this.props.currentAnimal))
     // )(this.props.events || []);
@@ -254,6 +257,7 @@ export default class DiaryCalendar extends Component {
     // Reactotron.log("marks", marks);
     // Reactotron.log("calendarState", this.state);
     const marks = this.state.markedDates;
+    // LocaleConfig.defaultLocale = this.props.lang;
 
     return (
       <React.Fragment>

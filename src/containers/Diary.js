@@ -111,49 +111,61 @@ class Diary extends Component {
       startPainMeasurement: "painMeasurement",
       share: "DiaryShareForm"
     };
+  }
 
+  setButtons() {
     this.actionButtons = [
       {
         color: colors.lightGrey,
         icon: "calendar",
-        title: props.t("registerAppointment"),
+        title: this.props.t("registerAppointment"),
         onPress: () => this.navigateTo(this.routes.registerAppointment)
       },
       {
         color: colors.egyptianBlue,
         icon: iconMap.measurement,
-        title: props.t("registerPainMeasurement"),
+        title: this.props.t("registerPainMeasurement"),
         onPress: () => this.navigateTo(this.routes.painMeasurement)
       },
       {
         color: colors.lima,
         icon: iconMap.horse1,
         name: eventCategories.exercise,
-        title: props.t("registerExercises"),
+        title: this.props.t("registerExercises"),
         onPress: () => this.navigateTo(this.routes.exercise)
       },
       {
         color: colors.supernova,
         icon: iconMap.home,
         name: eventCategories.housing,
-        title: props.t("registerHousing"),
+        title: this.props.t("registerHousing"),
         onPress: () => this.navigateTo(this.routes.housing)
       },
       {
         color: colors.barleyCorn,
         icon: iconMap.carrot,
         name: eventCategories.feeding,
-        title: props.t("registerFeeding"),
+        title: this.props.t("registerFeeding"),
         onPress: () => this.navigateTo(this.routes.feeding)
       },
       {
         color: colors.harleyDavidsonOrange,
         icon: iconMap.treatment,
         name: eventCategories.medication,
-        title: props.t("addMedication"),
+        title: this.props.t("addMedication"),
         onPress: () => this.navigateTo(this.routes.medication)
       }
     ];
+  }
+
+  componentDidMount() {
+    this.setButtons();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.t !== this.props.t) {
+      this.setButtons();
+    }
   }
 
   onDatePicked = date => {
@@ -601,6 +613,7 @@ class Diary extends Component {
         })
       );
       return {
+        id: `${time}${groupedEvents[0].id}`,
         category: "feeding",
         startDate: time,
         groupedEvents
@@ -644,8 +657,8 @@ class Diary extends Component {
         };
       });
 
-      const maxEventsTab0 = eventsGroupedByDay.slice(1, 16);
-      // const maxEventsTab0 = eventsGroupedByDay;
+      // const maxEventsTab0 = eventsGroupedByDay.slice(1, 16);
+      const maxEventsTab0 = eventsGroupedByDay;
       return (
         <AccordionView
           data={maxEventsTab0}
@@ -876,26 +889,28 @@ class Diary extends Component {
           // Prevent this ugly issue with disabling native feedback on Android.
           useNativeFeedback={Platform.select({ ios: true, android: false })}
         >
-          {this.actionButtons.map(({ color, icon, name, title, onPress }) => {
-            if (
-              currentAnimal &&
-              currentAnimal.type === "donkey" &&
-              name === eventCategories.exercise
-            ) {
-              return <View key={title} />;
-            }
+          {this.actionButtons &&
+            this.actionButtons.length > 0 &&
+            this.actionButtons.map(({ color, icon, name, title, onPress }) => {
+              if (
+                currentAnimal &&
+                currentAnimal.type === "donkey" &&
+                name === eventCategories.exercise
+              ) {
+                return <View key={title} />;
+              }
 
-            return (
-              <ActionButton.Item
-                key={title}
-                buttonColor={color}
-                title={title}
-                onPress={onPress}
-              >
-                <Icon name={icon} color={colors.white} size={22} />
-              </ActionButton.Item>
-            );
-          })}
+              return (
+                <ActionButton.Item
+                  key={title}
+                  buttonColor={color}
+                  title={title}
+                  onPress={onPress}
+                >
+                  <Icon name={icon} color={colors.white} size={22} />
+                </ActionButton.Item>
+              );
+            })}
         </ActionButton>
       </View>
     );
