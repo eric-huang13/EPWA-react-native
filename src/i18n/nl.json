@@ -1121,11 +1121,12 @@
     "newRecurring": "Nieuw",
     "selectAnOption": "Bij gewijzigde herhaalde afspaken worden alleen de toekomstige afspraken gewijzigd",
     "daily": "dagelijks",
-    "weekly": "weekelijks",
+    "weekly": "wekelijks",
     "monthly": "maandelijks",
     "yearly": "jaarlijks",
     "start": "Start",
-    "end": "Einde"
+    "end": "Einde",
+    "warnDeleteAccount1": "ACCOUNT PERMANENT VERWIJDEREN?"
   },
 
   "calendar": {

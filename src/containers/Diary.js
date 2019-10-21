@@ -111,6 +111,8 @@ class Diary extends Component {
       startPainMeasurement: "painMeasurement",
       share: "DiaryShareForm"
     };
+
+    this.setButtons();
   }
 
   setButtons() {
@@ -159,7 +161,7 @@ class Diary extends Component {
   }
 
   componentDidMount() {
-    this.setButtons();
+    // this.setButtons();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -464,120 +466,6 @@ class Diary extends Component {
       </View>
     );
   };
-
-  // getCurrentTabEvents = ({ currentAnimal, currentDate, tabIndex }) => {
-  //   // const { t } = this.props;
-  //   const locale = this.props.i18n.language === "nl" ? nl : en;
-
-  //   Reactotron.log(
-  //     "PROPS-currenttabevents",
-  //     currentAnimal,
-  //     currentDate,
-  //     tabIndex
-  //   );
-
-  //   const propsDataEvents = addRecurringEvents(
-  //     this.props.data.events,
-  //     currentDate
-  //   );
-  //   Reactotron.log("PROPSDATAEVENTS", propsDataEvents);
-
-  //   const nonFeedingevents = compose(
-  //     filter(isSelectedTab(currentDate, tabIndex)),
-  //     filter(isRelatedToAnimal(currentAnimal)),
-  //     reject(isFeeding)
-  //   )(propsDataEvents || []);
-  //   Reactotron.log("PROPSDATAEVENTS", propsDataEvents);
-
-  //   const feedingEvents = compose(
-  //     filter(isSelectedTab(currentDate, tabIndex)),
-  //     filter(isRelatedToAnimal(currentAnimal)),
-  //     filter(isFeeding)
-  //   )(propsDataEvents || []);
-  //   Reactotron.log("feedingEvents", feedingEvents);
-
-  //   const feedingEventsTimes = uniq(
-  //     feedingEvents.map(event => event.startDate)
-  //   );
-
-  //   const groupedFeedingEvents = feedingEventsTimes.map(time => {
-  //     const sameTime = feedingEvents.filter(item => time === item.startDate);
-  //     const groupedEvents = sameTime.map(
-  //       ({ id, type, data, completed, animalId }) => ({
-  //         id,
-  //         type,
-  //         data,
-  //         completed,
-  //         animalId
-  //       })
-  //     );
-  //     return {
-  //       category: "feeding",
-  //       startDate: time,
-  //       groupedEvents
-  //     };
-  //   });
-  //   Reactotron.log("groupedFeedingEvents", groupedFeedingEvents);
-
-  //   const allEvents = [...groupedFeedingEvents, ...nonFeedingevents].sort(
-  //     (a, b) => a.startDate - b.startDate
-  //   );
-  //   Reactotron.log("TAB1 MOUNT", allEvents);
-  //   this.setState({
-  //     eventsTab1: allEvents
-  //   });
-  //   if (tabIndex === 1) {
-  //     return;
-  //   }
-
-  //   const allDaysArr = uniq(
-  //     allEvents
-  //       .reverse()
-  //       .map(({ startDate }) => format(startDate, "D MMM", { locale }))
-  //   );
-
-  //   const eventsGroupedByDay = allDaysArr.map(date => {
-  //     const sameDate = allEvents.filter(
-  //       item => date === format(item.startDate, "D MMM", { locale })
-  //     );
-  //     if (sameDate.length === 0) {
-  //       return null;
-  //     }
-  //     return {
-  //       startDate: date,
-  //       events: sameDate
-  //     };
-  //   });
-
-  //   const maxEventsTab0 = eventsGroupedByDay.slice(1, 15);
-  //   Reactotron.log("TAB0 MOUNT", maxEventsTab0);
-  //   this.setState({
-  //     eventsTab0: maxEventsTab0
-  //   });
-  //   if (tabIndex === 0) {
-  //     return;
-  //   }
-
-  //   const eventsGroupedByDayTab2 = allDaysArr.sort().map(date => {
-  //     const eventsOnSameDay = allEvents.filter(
-  //       item => date === format(item.startDate, "D MMM", { locale })
-  //     );
-  //     if (eventsOnSameDay.length === 0) {
-  //       return null;
-  //     }
-  //     return {
-  //       startDate: date,
-  //       events: eventsOnSameDay
-  //     };
-  //   });
-
-  //   const maxEventsTab2 = eventsGroupedByDayTab2.slice(1, 5);
-  //   Reactotron.log("TAB2 MOUNT", maxEventsTab0);
-
-  //   this.setState({
-  //     eventsTab2: maxEventsTab2
-  //   });
-  // };
 
   renderEvents = (events, currentDate, tabIndex) => {
     const { t } = this.props;

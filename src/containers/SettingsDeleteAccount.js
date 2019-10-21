@@ -1,7 +1,14 @@
 import React from "react";
 import T from "prop-types";
 import * as yup from "yup";
-import { View, Text, StyleSheet, Platform, Alert } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Platform,
+  ImageBackground,
+  Alert
+} from "react-native";
 import { compose } from "ramda";
 import { withFormik } from "formik";
 import { translate } from "react-i18next";
@@ -20,6 +27,8 @@ import { deleteAccountRequest } from "../actions/auth";
 import iconMap from "../constants/iconMap";
 
 import { colors, fonts } from "../themes";
+import HorseImageBackground from "../components/HorseImageBackground";
+import bgImage from "../images/account/bg-delete-account.png";
 
 class SettingsDeleteAccount extends React.Component {
   static navigationOptions = ({ navigation, screenProps }) => ({
@@ -52,7 +61,7 @@ class SettingsDeleteAccount extends React.Component {
     this.props.submitForm();
   };
 
-  onDeleteAccount = (id, val) => {
+  onDeleteAccount = id => {
     this.props.dispatch(deleteAccountRequest({ payload: { userId: id } }));
   };
 
@@ -64,23 +73,39 @@ class SettingsDeleteAccount extends React.Component {
 
     return (
       <View style={{ flex: 1, backgroundColor: colors.white }}>
+        <ImageBackground
+          source={bgImage}
+          style={{ width: "100%", height: 200 }}
+        >
+          <Text />
+        </ImageBackground>
         <View
           style={{
-            height: 200,
-            backgroundColor: colors.deleteRed,
+            height: 150,
+            backgroundColor: colors.whiteSmoke,
             color: "white",
             justifyContent: "center",
             alignItems: "center"
           }}
         >
-          <Text styl={{ color: "white" }}>Te bepalen content</Text>
+          <Text
+            style={{
+              color: colors.deleteRed,
+              fontSize: 18,
+              fontWeight: 600,
+              textAlign: "center"
+            }}
+          >
+            {t("warnDeleteAccount1")}
+          </Text>
         </View>
 
         <View style={{ padding: 20 }}>
           <Button
             style={{
               minWidth: 200,
-              marginBottom: 20
+              marginBottom: 20,
+              backgroundColor: colors.deleteRed
             }}
             label={this.props.t("deleteAccount")}
             onPress={this.submitForm}
@@ -92,11 +117,6 @@ class SettingsDeleteAccount extends React.Component {
 }
 
 SettingsDeleteAccount.propTypes = {
-  // values: T.shape({
-  // currentPassword: T.string,
-  // password: T.string,
-  // passwordConfirmation: T.string
-  // }),
   setFieldValue: T.func,
   submitForm: T.func,
   t: T.func

@@ -1102,7 +1102,7 @@
     "eventMedication": "Medication",
     "deleteUserInfo": "Delete my user information",
     "deleteAllInfo": "Delete all information",
-    "confirmDeleteAccount": "Are you sure you want to delete you'r user account?",
+    "confirmDeleteAccount": "Are you sure you want to delete your user account?",
     "confirmDeleteAccountInfo": "This will remove all your data and can't be restored",
     "categories": {
       "painMeasurement": "Painmeasurement",
@@ -1120,6 +1120,7 @@
     "editRecurringEventWarning": "Do you want to change the current recurring event or make a new one?",
     "editRecurring": "Edit",
     "newRecurring": "New",
-    "selectAnOption": "Edited recurring events will only apply to future events"
+    "selectAnOption": "Edited recurring events will only apply to future events",
+    "warnDeleteAccount1": "PERMANENTLY DELETE YOUR ACCOUNT?"
   }
 }

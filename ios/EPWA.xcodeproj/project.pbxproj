@@ -34,6 +34,8 @@
 		8ED818899D06413B93CD0985 /* SourceSerifPro-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FFA1E518AECF4D94801FA733 /* SourceSerifPro-Semibold.ttf */; };
 		92449882BFA44BEB93AB2B02 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E5F021A34BB41BA8617A37A /* FontAwesome5_Solid.ttf */; };
 		953DB7E30521453986B6CA52 /* Ubuntu-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 363BE6BC546D4A4BBA6E4AE2 /* Ubuntu-Bold.ttf */; };
+		A47ADBA7235DAB9500C2CD05 /* moaning.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A47ADBA5235DAB9500C2CD05 /* moaning.mp3 */; };
+		A47ADBA8235DAB9500C2CD05 /* teeth_grinding.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A47ADBA6235DAB9500C2CD05 /* teeth_grinding.mp3 */; };
 		A49CA19E10F746C18B31ABA4 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 73BB6181CA1C42859F435120 /* Foundation.ttf */; };
 		A4E15526232B884D00AEE2AF /* libFBSDKCoreKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E15525232B884D00AEE2AF /* libFBSDKCoreKit.a */; };
 		A4E15528232B885300AEE2AF /* libFBSDKLoginKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E15527232B885300AEE2AF /* libFBSDKLoginKit.a */; };
@@ -137,6 +139,8 @@
 		99D3942D9E055C9B0F124E04 /* libPods-EPWATests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EPWATests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E0EC901AFC648618F9E2531 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		A2E6CFE62D3843C48E30DA6E /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
+		A47ADBA5235DAB9500C2CD05 /* moaning.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = moaning.mp3; path = ../resources/sounds/moaning.mp3; sourceTree = "<group>"; };
+		A47ADBA6235DAB9500C2CD05 /* teeth_grinding.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = teeth_grinding.mp3; path = ../resources/sounds/teeth_grinding.mp3; sourceTree = "<group>"; };
 		A4E15525232B884D00AEE2AF /* libFBSDKCoreKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFBSDKCoreKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E15527232B885300AEE2AF /* libFBSDKLoginKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFBSDKLoginKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E15529232B885A00AEE2AF /* libFBSDKShareKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFBSDKShareKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -358,6 +362,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				A47ADBA5235DAB9500C2CD05 /* moaning.mp3 */,
+				A47ADBA6235DAB9500C2CD05 /* teeth_grinding.mp3 */,
 				13B07FAE1A68108700A75B9A /* EPWA */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* EPWATests */,
@@ -556,6 +562,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A47ADBA7235DAB9500C2CD05 /* moaning.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				267A5F3814574E23AB4D7E01 /* icomoon.ttf in Resources */,
@@ -574,6 +581,7 @@
 				D36E220FFC7E4C0FB3369409 /* Fontisto.ttf in Resources */,
 				A49CA19E10F746C18B31ABA4 /* Foundation.ttf in Resources */,
 				3E1B4156C12C462BBE457C25 /* Ionicons.ttf in Resources */,
+				A47ADBA8235DAB9500C2CD05 /* teeth_grinding.mp3 in Resources */,
 				B134977398B04749BF3F9A99 /* MaterialCommunityIcons.ttf in Resources */,
 				0333E29F5E0F492E896B8120 /* MaterialIcons.ttf in Resources */,
 				1456B0B5BB9143828D050D75 /* Octicons.ttf in Resources */,
