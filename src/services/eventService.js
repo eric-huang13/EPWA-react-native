@@ -454,89 +454,6 @@ const getRecurringEvents = (event, endDay, currentDate) => {
   }
 };
 
-// export const addRecurringEvents = (allEvents, currentDate = new Date()) => {
-//   const beginDate = subDays(format(currentDate), 15);
-//   const endDate = addDays(format(currentDate), 5);
-
-//   const allReducedEvents = allEvents.reduce((a, event) => {
-//     if (
-//       isNil(event.recurring) &&
-//       !isWithinRange(format(event.startDate), beginDate, endDate)
-//     ) {
-//       return a;
-//     }
-//     if (
-//       isNil(event.recurring) &&
-//       isWithinRange(format(event.startDate), beginDate, endDate)
-//     ) {
-//       return [...a, event];
-//     }
-
-//     if (
-//       !isNil(event.recurringUntill) &&
-//       isBefore(format(beginDate), format(event.recurringUntill))
-//     ) {
-//       return a;
-//     }
-//     if (
-//       !isNil(event.recurringUntill) &&
-//       isBefore(format(event.recurringUntill), format(endDate))
-//     ) {
-//       return [
-//         ...a,
-//         ...getRecurringEvents(event, endDate, format(event.recurringUntill))
-//       ];
-//     }
-//     return [...a, ...getRecurringEvents(event, endDate, currentDate)];
-//   }, []);
-
-//   const allRecurringEvents = allReducedEvents.filter(
-//     event => !isNil(event.recurring)
-//   );
-
-//   const allNonRecurringEvents = allReducedEvents.filter(event =>
-//     isNil(event.recurring)
-//   );
-
-//   const allFacialPainEvents = allNonRecurringEvents.filter(
-//     event => event.type === eventTypes.facialExpression
-//   );
-//   Reactotron.log("allFacial", allFacialPainEvents);
-
-//   const allCompositePainEvents = allNonRecurringEvents.filter(
-//     event => event.type === eventTypes.composite
-//   );
-//   Reactotron.log("allComposite", allCompositePainEvents);
-
-//   const removedDoubleEvents = allRecurringEvents.filter(event => {
-//     // Reactotron.log(
-//     //   "dates-eq",
-//     //   event.startDate + "  " + allNonRecurringEvents[0].startDate
-//     // );
-//     const toCompareArr = allNonRecurringEvents.map(item => {
-//       return {
-//         startDate: item.startDate,
-//         type: item.type
-//       };
-//     });
-//     // Reactotron.log("compare", toCompareArr);
-
-//     if (event.category === eventCategories.feeding) {
-//       return !contains(
-//         { startDate: event.startDate, type: event.type },
-//         toCompareArr
-//       );
-//     }
-
-//     return !(
-//       isSameDay(format(event.startDate), format(toCompareArr.startDate)) &&
-//       event.type === toCompareArr.type
-//     );
-//   });
-
-//   return [...removedDoubleEvents, ...allNonRecurringEvents];
-// };
-
 export const addRecurringEvents = (allEvents, currentDate, tabIndex) => {
   let beginDate;
   let endDate;
@@ -654,16 +571,14 @@ export const addRecurringEvents = (allEvents, currentDate, tabIndex) => {
     );
   });
 
-  return [...removedDoubleEvents, ...allNonRecurringEvents];
+  return [...removedDoubleEvents, ...allNonRecurringEvents].filter(item =>
+    isWithinRange(item.startDate, beginDate, endDate)
+  );
 };
-
-/////////////
 
 export const addRecurringCalendarEvents = (allEvents, month = new Date()) => {
   const beginDate = subMonths(startOfMonth(format(month)), 1);
   const endDate = addMonths(endOfMonth(format(month)), 6);
-  // const beginDate = startOfMonth(format(month));
-  // const endDate = endOfMonth(format(month));
 
   const allReducedEvents = allEvents.reduce((a, event) => {
     if (

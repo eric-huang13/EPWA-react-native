@@ -475,13 +475,11 @@ class Diary extends Component {
 
     const nonFeedingevents = compose(
       filter(isSelectedTab(currentDate, tabIndex)),
-      // filter(isRelatedToAnimal(currentAnimal)),
       reject(isFeeding)
     )(propsDataEvents || []);
 
     const feedingEvents = compose(
       filter(isSelectedTab(currentDate, tabIndex)),
-      // filter(isRelatedToAnimal(currentAnimal)),
       filter(isFeeding)
     )(propsDataEvents || []);
 
