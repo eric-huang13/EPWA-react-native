@@ -6,7 +6,8 @@ import {
   View,
   TextInput,
   Text,
-  Alert
+  Alert,
+  Share
 } from "react-native";
 import { HeaderBackButton } from "react-navigation-stack";
 import { FieldArray, withFormik, Field } from "formik";
@@ -58,7 +59,7 @@ import {
   dateEventValidation
 } from "../constants/validationTypes";
 
-import { colors } from "../themes";
+import { colors, fonts } from "../themes";
 
 import {
   setHours,
@@ -70,53 +71,37 @@ import {
 import Reactotron from "reactotron-react-native";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import iconMap from "../constants/iconMap";
+import nlLocale from "date-fns/locale/nl";
 
 const validationSchema = yup.object().shape({
-  payload: yup.array().of(dateEventValidation)
+  startDate: yup
+    .number()
+    .min(9)
+    .max(11)
+    .required(),
+  endDate: yup
+    .number()
+    .min(9)
+    .max(11)
+    .required(),
+  animalId: yup.number().required(),
+  pain: yup.bool(),
+  exercise: yup.bool(),
+  feeding: yup.bool(),
+  housing: yup.bool(),
+  medical: yup.bool()
 });
 
-// const InputFeedback = ({ error }) =>
-//   error ? <View className={"input-feedback"}>{error}</View> : null;
-
-// const Checkbox = ({
-//   field: { name, value, onChange, onBlur },
-//   form: { errors, touched, setFieldValue },
-//   id,
-//   label,
-//   className,
-//   ...props
-// }) => {
-//   return (
-//     <View>
-//       <View
-//         name={name}
-//         id={id}
-//         type="checkbox"
-//         value={value}
-//         checked={value}
-//         onChange={onChange}
-//         onBlur={onBlur}
-//         className={"radio-button"}
-//       />
-//       <label htmlFor={id}>
-//         <Text>{label}</Text>
-//       </label>
-//       {touched[name] && <InputFeedback error={errors[name]} />}
-//     </View>
-//   );
-// };
-
-const CheckBoxField = ({
-  title = "Title",
-  checked = false,
-  onPress,
-  categorie
-}) => {
+const CheckBoxField = ({ label, formikKey, values, setFieldValue }) => {
   return (
-    <TouchableOpacity onPress={() => onPress(categorie)}>
+    <TouchableOpacity
+      onPress={() => {
+        setFieldValue(formikKey, !values[formikKey]);
+      }}
+    >
       <View
         style={{
-          backgroundColor: checked ? colors.lima : colors.white,
+          backgroundColor: values[formikKey] ? colors.lima : colors.white,
           minHeight: 55,
           display: "flex",
           flexDirection: "row",
@@ -135,9 +120,9 @@ const CheckBoxField = ({
             justifyContent: "center"
           }}
         >
-          {checked ? <ActiveIcon /> : <InactiveIcon />}
+          {values[formikKey] ? <ActiveIcon /> : <InactiveIcon />}
         </View>
-        <Text>{title}</Text>
+        <Text>{label}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -187,30 +172,28 @@ class DiaryShareEventsForm extends Component {
     )
   });
 
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   static getInitialEventValue(animalId) {
     return {
       animalId,
-      startDate: "",
-      endDate: "",
-      feeding: false,
       pain: false,
-      exersise: false,
-      housing: true,
-      medical: false
+      exercise: false,
+      feeding: false,
+      housing: false,
+      medical: false,
+      startDate: null,
+      endDate: null
     };
   }
 
-  formatDateField = timestamp =>
-    isValid(parse(timestamp)) ? format(timestamp, "DD MMM HH:mm") : "";
+  formatDateField = timestamp => {
+    return isValid(parse(timestamp)) && this.props.i18n.language === "nl"
+      ? format(timestamp, "DD MMMM, YYYY", { locale: nlLocale })
+      : format(timestamp, "MMMM DD, YYYY");
+  };
 
   parseDateField = dateInstance => {
     // We have to combine picked time with date picked in Diary Screen
-    const currentDate = this.props.navigation.getParam("currentDate");
+    // const currentDate = this.props.navigation.getParam("currentDate");
     const pickedTime = {
       hours: getHours(dateInstance),
       minutes: getMinutes(dateInstance)
@@ -223,71 +206,86 @@ class DiaryShareEventsForm extends Component {
       setMinutes(__, pickedTime.minutes),
       setHours(__, pickedTime.hours),
       parse
-    )(currentDate);
+    )(dateInstance);
   };
 
-  handleDateChange = date => {
-    const { setFieldValue, values } = this.props;
+  onShare = async () => {
+    const { t } = this.props;
+    const uri = "www.epwa.com";
+    try {
+      const result = await Share.share({
+        message: t("shareAppContentAnimalProfile"),
+        url: uri
+      });
 
-    Reactotron.log(values, date);
-  };
-
-  handleSelection = categorie => {
-    const { setFieldValue, values } = this.props;
-    // values.payload[0][categorie] = !values.payload[0][categorie];
-    // Reactotron.log(values, categorie, values.payload[0][categorie]);
-    // Reactotron.log("HANDLE");
-    // Reactotron.log("HANDLE", values.payload[0][categorie]);
-    setFieldValue(values[categorie], !values.payload[0][categorie]);
+      // if (result.action === Share.sharedAction) {
+      //   if (result.activityType) {
+      //     // shared with activity type of result.activityType
+      //   } else {
+      //     // shared
+      //   }
+      // } else if (result.action === Share.dismissedAction) {
+      //   // dismissed
+      // }
+    } catch (error) {
+      Alert.alert(error.message);
+    }
   };
 
   render() {
     const { t, i18n, setFieldValue, values, currentDate } = this.props;
     Reactotron.log("render", values);
-    let ref;
+    let ref1;
+    let ref2;
     return (
       <View style={s.screenContainer}>
         <ScrollView contentContainerStyle={s.scrollContainer}>
           <View style={{ marginTop: 20 }}>
             <CheckBoxField
-              title={t("categories.painMeasurement")}
-              categorie={"pain"}
-              checked={values.payload[0].pain}
-              onPress={this.handleSelection}
+              label={t("categories.painMeasurement")}
+              formikKey={"pain"}
+              values={values}
+              setFieldValue={setFieldValue}
             />
             <CheckBoxField
-              title={t("categories.exercise")}
-              checked={values.payload[0].exercise}
+              label={t("categories.exercise")}
+              values={values}
+              formikKey={"exercise"}
+              setFieldValue={setFieldValue}
             />
             <CheckBoxField
-              title={t("categories.feeding")}
-              checked={values.payload[0].feeding}
+              label={t("categories.feeding")}
+              values={values}
+              formikKey={"feeding"}
+              setFieldValue={setFieldValue}
             />
             <CheckBoxField
-              title={t("categories.housing")}
-              checked={values.payload[0].housing}
+              label={t("categories.housing")}
+              values={values}
+              formikKey={"housing"}
+              setFieldValue={setFieldValue}
             />
             <CheckBoxField
-              title={t("categories.medication")}
-              checked={values.payload[0].medication}
+              label={t("categories.medication")}
+              values={values}
+              formikKey={"medication"}
+              setFieldValue={setFieldValue}
             />
           </View>
           <View style={{ padding: 20 }}>
-            <View>
-              <Text>Hier selectie</Text>
-            </View>
-
-            <View style={{ height: 80 }}>
+            <View style={{ height: 120 }}>
               <View style={{ height: 50 }}>
-                <Text>{t("start")}</Text>
+                <Text style={{ ...fonts.style.h4, marginBottom: 20 }}>
+                  {t("start")}
+                </Text>
                 <DatePicker
                   locale={i18n.language}
                   t={t}
                   mode="date"
                   date={currentDate}
-                  ref={el => (ref = el)} // eslint-disable-line no-return-assign
+                  ref={el => (ref1 = el)} // eslint-disable-line no-return-assign
                   onPick={date =>
-                    this.handleDateChange(this.parseDateField(date))
+                    setFieldValue("startDate", this.parseDateField(date))
                   }
                 />
 
@@ -298,23 +296,27 @@ class DiaryShareEventsForm extends Component {
                       // this.props.submitCount > 0 && hasErrors && f.dateInputWithError,
                     ]
                   }
-                  onPress={() => ref.show()}
+                  onPress={() => ref1.show()}
                 >
-                  {t("selectDate")}
+                  {isNil(values.startDate)
+                    ? t("selectDate")
+                    : this.formatDateField(values.startDate)}
                 </SelectButton>
               </View>
             </View>
-            <View style={{ height: 80 }}>
+            <View style={{ height: 150 }}>
               <View style={{ height: 50 }}>
-                <Text>{t("end")}</Text>
+                <Text style={{ ...fonts.style.h4, marginBottom: 20 }}>
+                  {t("end")}
+                </Text>
                 <DatePicker
                   locale={i18n.language}
                   t={t}
                   mode="date"
                   date={currentDate}
-                  ref={el => (ref = el)} // eslint-disable-line no-return-assign
+                  ref={el => (ref2 = el)} // eslint-disable-line no-return-assign
                   onPick={date =>
-                    this.handleDateChange(this.parseDateField(date))
+                    setFieldValue("endDate", this.parseDateField(date))
                   }
                 />
                 <SelectButton
@@ -324,11 +326,11 @@ class DiaryShareEventsForm extends Component {
                       // this.props.submitCount > 0 && hasErrors && f.dateInputWithError,
                     ]
                   }
-                  onPress={() => ref.show()}
+                  onPress={() => ref2.show()}
                 >
-                  {this.state.recurring_untill
-                    ? this.formatDateField(this.state.recurring_untill)
-                    : t("selectDate")}
+                  {isNil(values.endDate)
+                    ? t("selectDate")
+                    : this.formatDateField(values.endDate)}
                 </SelectButton>
               </View>
             </View>
@@ -339,7 +341,7 @@ class DiaryShareEventsForm extends Component {
                 marginBottom: 20
               }}
               label={this.props.t("share")}
-              onPress={this.submitForm}
+              onPress={this.onShare}
             />
           </View>
         </ScrollView>
@@ -364,25 +366,8 @@ DiaryShareEventsForm.propTypes = {
   })
 };
 
-const showSuccess = (alertDropdown, title, msg) => {
-  alertDropdown("success", title, msg);
-};
-
-// const triggerSubmitType = (
-//   payload,
-//   { formikBag, actionCreator, initialValue, alertTitle, alertMsg }
-// ) => {
-//   const { dispatch, t } = formikBag.props;
-
-//   showSuccess(formikBag.props.alertDropdown, t(alertTitle), t(alertMsg));
-
-//   dispatch(
-//     actionCreator({
-//       payload,
-//       formHelpers: formikBag,
-//       initialValue
-//     })
-//   );
+// const showSuccess = (alertDropdown, title, msg) => {
+//   alertDropdown("success", title, msg);
 // };
 
 const onSubmit = ({ payload }, formikBag) => {
@@ -392,6 +377,30 @@ const onSubmit = ({ payload }, formikBag) => {
 
   const localDate = formikBag.props.navigation.getParam("localDate");
   Reactotron.log("Payload", payload, formikBag);
+
+  const onShare = async () => {
+    const { t } = this.props;
+    const uri = "www.epwa.com";
+    try {
+      const result = await Share.share({
+        message: t("shareAppContentAnimalProfile"),
+        url: uri
+      });
+
+      // if (result.action === Share.sharedAction) {
+      //   if (result.activityType) {
+      //     // shared with activity type of result.activityType
+      //   } else {
+      //     // shared
+      //   }
+      // } else if (result.action === Share.dismissedAction) {
+      //   // dismissed
+      // }
+    } catch (error) {
+      Alert.alert(error.message);
+    }
+  };
+  onShare();
 };
 
 const formikOptions = {
@@ -406,8 +415,7 @@ const formikOptions = {
       };
     }
 
-    const result = {};
-    result.payload = [initialValue];
+    const result = { ...initialValue };
 
     return result;
   },

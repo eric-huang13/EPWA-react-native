@@ -1067,6 +1067,7 @@
     "shareAppTitleAnimalProfile": "EPWA",
     "shareAppContentAnimalProfile": "I’m using EPWA, the Equine Pain and Welfare App, to monitor the health and welfare of {{animalName}}. Check www.epwa.nl/en for information.",
     "shareAppUrl": "https://www.epwa.nl/en",
+    "shareMessage": "I’m using EPWA, the Equine Pain and Welfare App",
     "painMeasurementLoginWarning": "To save the pain measurement, log in first. You could also continue without saving your result.",
     "quit": "Exit",
     "painMeasurementQuitTitle": "Exit the measurement",

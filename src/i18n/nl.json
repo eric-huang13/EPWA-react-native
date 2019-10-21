@@ -1123,7 +1123,9 @@
     "daily": "dagelijks",
     "weekly": "weekelijks",
     "monthly": "maandelijks",
-    "yearly": "jaarlijks"
+    "yearly": "jaarlijks",
+    "start": "Start",
+    "end": "Einde"
   },
 
   "calendar": {
