@@ -470,7 +470,7 @@ export const addRecurringEvents = (allEvents, currentDate, tabIndex) => {
   }
   if (tabIndex === 2) {
     beginDate = addDays(format(currentDate), 1);
-    endDate = addDays(format(currentDate), 5);
+    endDate = addDays(format(currentDate), 6);
   }
   Reactotron.log(
     "current, begin - end",
