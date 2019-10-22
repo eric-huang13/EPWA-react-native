@@ -74,6 +74,7 @@
 		A4E1556C232B8DCD00AEE2AF /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E1556B232B8DCD00AEE2AF /* libRNSVG.a */; };
 		A4E1556E232B8DCD00AEE2AF /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E1556D232B8DCD00AEE2AF /* libRNVectorIcons.a */; };
 		A4E15570232B8DCD00AEE2AF /* libyoga.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E1556F232B8DCD00AEE2AF /* libyoga.a */; };
+		A4E3D584235F20E900A959FF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A4E3D586235F20E900A959FF /* InfoPlist.strings */; };
 		A756A895AB62409DAECA59D4 /* Icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2684146B576246FBB69D7B1D /* Icomoon.ttf */; };
 		B134977398B04749BF3F9A99 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EE85F9D6D304BA39942F222 /* MaterialCommunityIcons.ttf */; };
 		C06D5A3E75B84F7FAC8B9348 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 444F2FAC234343D5A4B82E29 /* AntDesign.ttf */; };
@@ -178,6 +179,7 @@
 		A4E1556B232B8DCD00AEE2AF /* libRNSVG.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNSVG.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E1556D232B8DCD00AEE2AF /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E1556F232B8DCD00AEE2AF /* libyoga.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libyoga.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4E3D585235F20E900A959FF /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A6568294C5E04826A95B9B87 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		A7BA242FAE2A4AED9EB053D7 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		B6869BCACEC8A91C0819E833 /* Pods-EPWA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EPWA.debug.xcconfig"; path = "Target Support Files/Pods-EPWA/Pods-EPWA.debug.xcconfig"; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				A4E3D586235F20E900A959FF /* InfoPlist.strings */,
 			);
 			name = EPWA;
 			sourceTree = "<group>";
@@ -536,6 +539,7 @@
 				English,
 				en,
 				Base,
+				nl,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
@@ -563,6 +567,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A47ADBA7235DAB9500C2CD05 /* moaning.mp3 in Resources */,
+				A4E3D584235F20E900A959FF /* InfoPlist.strings in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				267A5F3814574E23AB4D7E01 /* icomoon.ttf in Resources */,
@@ -800,6 +805,14 @@
 			);
 			name = LaunchScreen.xib;
 			path = EPWA;
+			sourceTree = "<group>";
+		};
+		A4E3D586235F20E900A959FF /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A4E3D585235F20E900A959FF /* nl */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

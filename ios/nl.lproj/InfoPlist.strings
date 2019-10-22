@@ -1,0 +1,12 @@
+/* 
+  InfoPlist.strings
+  EPWA
+
+  Created by Stephano on 22/10/2019.
+  Copyright © 2019 Facebook. All rights reserved.
+*/
+"NSCameraUsageDescription" = "EPWA gebruikt je camera om plaatjes te maken die worden gebruikt in profielen en dagboek invullingen.";
+"NSLocationAlwaysUsageDescription" = "Je huidige locatie zal worden gebruikt in dagboek invullingen.";
+"NSLocationWhenInUseUsageDescription" = "Je huidige locatie zal worden gebruikt in dagboek invullingen.";
+"NSPhotoLibraryAddUsageDescription" = "EPWA gebruikt je foto's in profielen en dagboek invullingen. We uploaden en delen alleen foto's die je zelf kiest.";
+"NSPhotoLibraryUsageDescription" = "EPWA gebruikt je foto's in profielen en dagboek invullingen. We uploaden en delen alleen foto's die je zelf kiest.";
