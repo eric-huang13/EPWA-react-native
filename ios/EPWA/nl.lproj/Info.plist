@@ -76,6 +76,10 @@
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
+    <key>NSAllowsArbitraryLoadsInWebContent</key>
+    <true/>
+    <key>NSAllowsLocalNetworking</key>
+    <true/>
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>localhost</key>
@@ -85,16 +89,16 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Your current location will be used in your diary entries.</string>
-  <key>NSCameraUsageDescription</key>
-  <string>EPWA uses your camera to take pictures, used in profiles and diary entries.</string>
-  <key>NSLocationAlwaysUsageDescription</key>
-  <string>Your current location will be used in your diary entries.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>EPWA gebruikt je camera om plaatjes te maken die worden gebruikt in profielen en dagboek invullingen.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Je huidige locatie zal worden gebruikt in dagboek invullingen.</string>
   <key>NSPhotoLibraryAddUsageDescription</key>
-  <string>EPWA uses your photos in profiles and diary entries. We only upload and share photos that you choose.</string>
+  <string>EPWA gebruikt je foto's in profielen en dagboek invullingen. We uploaden en delen alleen foto's die je zelf kiest.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Je huidige locatie zal worden gebruikt in dagboek invullingen.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>EPWA uses your photos in profiles and diary entries. We only upload and share photos that you choose.</string>
+	<string>EPWA gebruikt je foto&apos;s in profielen en dagboek invullingen. We uploaden en delen alleen foto&apos;s die je zelf kiest.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Entypo.ttf</string>
