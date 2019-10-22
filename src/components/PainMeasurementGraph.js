@@ -162,6 +162,14 @@ class PainMeasurementGraph extends React.Component {
       compositeLength
     } = this.state;
 
+    if (facialExpressionLength + compositeLength === 0) {
+      return (
+        <View style={{ marginTop: 40, marginBottom: 20, alignItems: "center" }}>
+          <Text>{t("noRecentPainMeasurements")}</Text>
+        </View>
+      );
+    }
+
     return (
       <View>
         <Text

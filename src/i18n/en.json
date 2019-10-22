@@ -1085,6 +1085,7 @@
     "today": "Today",
     "lookAhead": "Look ahead",
     "graphTitle": "Recent pain measurements",
+    "noRecentPainMeasurements": "No recent painmeasurements",
     "addPainMeasurement": "Add painmeasurement",
     "recurring": "Recurring",
     "recurringTill": "Recurring till",

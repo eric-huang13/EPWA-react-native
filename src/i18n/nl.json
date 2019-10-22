@@ -1083,6 +1083,7 @@
     "today": "Vandaag",
     "lookAhead": "Kijk vooruit",
     "graphTitle": "Recente pijnscores",
+    "noRecentPainMeasurements": "Geen recente pijnscores",
     "compositeMeasure": "Samengestelde pijnmeting",
     "facialMeasure": "Gezichtspijnmeting",
     "addPainMeasurement": "Pijnmeting toevoegen",
