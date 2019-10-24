@@ -160,10 +160,6 @@ class Diary extends Component {
     ];
   }
 
-  componentDidMount() {
-    // this.setButtons();
-  }
-
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.t !== this.props.t) {
       this.setButtons();

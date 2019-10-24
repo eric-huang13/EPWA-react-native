@@ -11,6 +11,8 @@ import { calculateScore } from "../services/painMeasurement";
 import { addEvent, editEvent } from "../actions/events";
 import getId from "../services/idGenerator";
 
+// import Reactotron from "reactotron-react-native";
+
 import { defaultHeaderStyling } from "../navigation";
 import PainMeasurementStartScreen from "./PainMeasurementStart";
 import PainMeasurementStartInfoScreen from "./PainMeasurementStartInfo";
@@ -24,8 +26,6 @@ import PainMeasurementObservationVetScreen from "./PainMeasurementVet";
 import PainMeasurementObservationHeadScreen from "./PainMeasurementObservationHead";
 import PainMeasurementLoginWarningScreen from "../containers/PainMeasurementLoginWarning";
 import withAlertDropdown from "../components/withAlertDropdown";
-
-import Reactotron from "reactotron-react-native";
 
 const PainMeasurementNavigator = createStackNavigator(
   {

@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import { View } from "react-native";
 import { connect } from "react-redux";
-import { NavigationActions } from "react-navigation";
+
+import Reactotron from "reactotron-react-native";
 
 class RedirectToPainMeasurement extends Component {
   componentDidMount() {
+    Reactotron.log("didmount redirect", this.props);
+
     this.props.navigation.navigate("painMeasurement", {
       redirectPath: "Diary",
       forceAnimalSelection: true,
