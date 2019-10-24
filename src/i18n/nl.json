@@ -282,7 +282,7 @@
         "timer": {
           "fullCountdown": "Hoe werkt de pijnmeting?",
           "headCountdown": "Hoe werkt de pijnmeting?",
-          "flehming": "Flehmen",
+          "flehming": "Flemen",
           "yawning": "Geeuwen",
           "teethGrinding": "Tandenknarsen",
           "moaning": "Kreunen",
@@ -427,7 +427,7 @@
           "Klik gedurende de pijnmeting op het icoon elke keer dat jouw {{animalType}} kreunt of tandenknarst."
         ],
         "flehming": [
-          "Flehmen is natuurlijk gedrag, maar kan ook een teken zijn van pijn.",
+          "Flemen is natuurlijk gedrag, maar kan ook een teken zijn van pijn.",
           "Klik gedurende de pijnmeting op het icoon elke keer dat jouw {{animalType}} flehmt."
         ],
         "yawning": [
@@ -511,7 +511,7 @@
       "introductionTitle": "Testen op PPID",
       "introductionContent": "Behandeling van PPID is een mogelijkheid, er zijn bepaalde medicijnen die de verschijnselen tegen kunnen gaan. Ook kun je door extra aandacht aan de verzorging te besteden complicaties verminderen of voorkomen.\n\nBlijkt uit de PPID check dat jouw paard mogelijk PPID heeft, dan kun je een PPID test laten uitvoeren. Jouw dierenarts kan met een eenvoudig bloedonderzoek en binnen een paar dagen vaststellen of jouw paard aan PPID lijdt.",
       "startTitle": "Doe de PPID check",
-      "startContent": "Pituitary Pars Intermedia Dysfunction (PPID), vroeger ook wel de ziekte van Cushing genoemd, komt vaak voor bij paarden en pony’s vanaf 15 jaar.\nVoor Stichting De Paardenkamp, het nationale rusthuis en kenniscentrum voor oudere paarden, is deze aandoening geen onbekend fenomeen. Het vakbekwame team en de betrokken dierenartsen van De Paardenkamp delen graag hun kennis en ervaring. Bijvoorbeeld met deze checklist.\n\nWil je weten hoe het jouw paard gesteld is?\nDoe de PPID check!",
+      "startContent": "Pituitary Pars Intermedia Dysfunction (PPID), vroeger ook wel de ziekte van Cushing genoemd, komt vaak voor bij paarden en pony’s vanaf 15 jaar.\nVoor Stichting De Paardenkamp, het nationale rusthuis en kenniscentrum voor oudere paarden, is deze aandoening geen onbekend fenomeen. Het vakbekwame team en de betrokken dierenartsen van De Paardenkamp delen graag hun kennis en ervaring. Bijvoorbeeld met deze checklist.\n\nWil je weten hoe het met jouw paard gesteld is?\nDoe de PPID check!",
       "startButton": "Start PPID check",
       "resultTitleNegative": "PPID uitslag – Waarschijnlijk niet",
       "resultTitlePositive": "PPID uitslag – Waarschijnlijk wel",
