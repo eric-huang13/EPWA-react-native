@@ -107,7 +107,7 @@ class Diary extends Component {
     this.state = {
       currentIndex: isInitialValuePassed ? selectedAnimalIndex : 0,
       currentDate: new Date(),
-      tabIndex: 1
+      tabIndex: 0
     };
 
     this.routes = {

@@ -761,21 +761,25 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     marginTop: 15,
     width: 55,
-    alignItems: "center"
+    alignItems: "center",
+    height: 25
   },
   title: {
     fontSize: 19,
     paddingLeft: 40,
-    marginBottom: 5
+    marginBottom: 5,
+    height: 25
   },
   itemContentContainer: {
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
+    minHeight: 50
   },
   subItemContentContainer: {
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 7
+    paddingVertical: 7,
+    minHeight: 40
   },
   calendarTitle: {
     fontSize: 20,
