@@ -1103,7 +1103,8 @@
     "confirmDeleteAccountInfo": "Al jouw data zal verwijderd worden. Dit is niet te herstellen.",
     "unlimited": "onbeperkt",
     "completeEvent": "Voltooi",
-
+    "noFutureCompletionTitle": "Toekomstige taak",
+    "noFutureCompletionText": "Toekomstige taken kunnen niet voltooid worden",
     "categories": {
       "painMeasurement": "Pijnmeting",
       "feeding": "Voeding",

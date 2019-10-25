@@ -145,11 +145,18 @@ export class AccordionView extends Component {
   }
 }
 
-function CheckInput({ id, completed, toggleComplete, type, endDate }) {
+function CheckInput({
+  id,
+  completed,
+  toggleComplete,
+  type,
+  endDate,
+  startDate
+}) {
   return (
     <View style={{ width: 40 }}>
       <TouchableOpacity
-        onPress={() => toggleComplete(id, completed, type, endDate)}
+        onPress={() => toggleComplete(id, completed, type, endDate, startDate)}
         underlayColor="#fff"
         disabled={
           (type === eventTypes.facialExpression ||

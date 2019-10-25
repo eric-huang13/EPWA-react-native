@@ -21,7 +21,16 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { translate } from "react-i18next";
 import { hoistStatics } from "recompose";
-import { addDays, subDays, isThisSecond, isSameDay, format } from "date-fns";
+import {
+  addDays,
+  subDays,
+  isThisSecond,
+  isSameDay,
+  format,
+  isBefore,
+  isAfter,
+  isToday
+} from "date-fns";
 import nl from "date-fns/locale/nl";
 import en from "date-fns/locale/en";
 
@@ -258,9 +267,17 @@ class Diary extends Component {
     });
   };
 
-  onToggleComplete = (id, val, type, endDate) => {
-    // Reactotron.log(id, val, type, endDate);
-    // return;
+  onToggleComplete = (id, val, type, endDate, startDate) => {
+    const { t } = this.props;
+
+    // Reactotron.log("werkt ervoor dateNow");
+    const dateNow = new Date();
+    if (!isToday(startDate) && isAfter(startDate, dateNow)) {
+      Alert.alert(t("noFutureCompletionTitle"), t("noFutureCompletionText"));
+      Reactotron.log("werkt dateNow");
+      return;
+    }
+
     if (
       type === eventTypes.temperature ||
       type === eventTypes.recovery ||

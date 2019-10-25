@@ -1122,6 +1122,8 @@
     "editRecurring": "Edit",
     "newRecurring": "New",
     "selectAnOption": "Edited recurring events will only apply to future events",
-    "warnDeleteAccount1": "PERMANENTLY DELETE YOUR ACCOUNT?"
+    "warnDeleteAccount1": "PERMANENTLY DELETE YOUR ACCOUNT?",
+    "noFutureCompletionTitle": "Event in future",
+    "noFutureCompletionText": "Events in the future cant be completed"
   }
 }
