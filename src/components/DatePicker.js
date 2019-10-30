@@ -11,7 +11,7 @@ class DatePicker extends Component {
     };
   }
 
-  onConfirm = (date) => {
+  onConfirm = date => {
     this.hide();
 
     this.props.onPick(date);
@@ -51,7 +51,7 @@ class DatePicker extends Component {
 DatePicker.propTypes = {
   locale: T.string,
   t: T.func,
-  onPick: T.func,
+  onPick: T.func
 };
 
 export default DatePicker;

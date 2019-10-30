@@ -1,16 +1,16 @@
-import React, {Component} from 'react';
-import T from 'prop-types';
+import React, { Component } from "react";
+import T from "prop-types";
 import {
   StyleSheet,
   Text,
   View,
   Switch,
   TouchableOpacity,
-  Platform,
-} from 'react-native';
-import {translate} from 'react-i18next';
-import {connect} from 'react-redux';
-import {HeaderBackButton} from 'react-navigation-stack';
+  Platform
+} from "react-native";
+import { translate } from "react-i18next";
+import { connect } from "react-redux";
+import { HeaderBackButton } from "react-navigation-stack";
 import {
   format,
   parse,
@@ -24,8 +24,8 @@ import {
   setSeconds,
   getTime,
   setMilliseconds,
-  getMilliseconds,
-} from 'date-fns';
+  getMilliseconds
+} from "date-fns";
 import {
   filter,
   groupBy,
@@ -36,44 +36,44 @@ import {
   flatten,
   assoc,
   omit,
-  map,
-} from 'ramda';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {hoistStatics} from 'recompose';
+  map
+} from "ramda";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import { hoistStatics } from "recompose";
 
-import Button from '../components/Button';
-import DatePicker from '../components/DatePicker';
-import DateSlider from '../components/DateSlider';
-import FieldLabel from '../components/FieldLabel';
-import SelectButton from '../components/SelectButton';
-import withAlertDropdown from '../components/withAlertDropdown';
+import Button from "../components/Button";
+import DatePicker from "../components/DatePicker";
+import DateSlider from "../components/DateSlider";
+import FieldLabel from "../components/FieldLabel";
+import SelectButton from "../components/SelectButton";
+import withAlertDropdown from "../components/withAlertDropdown";
 
-import {isDuringCurrentDate} from '../services/eventService';
+import { isDuringCurrentDate } from "../services/eventService";
 
-import {colors, fonts} from '../themes';
-import {eventCategories} from '../constants';
-import getId from '../services/idGenerator';
-import {addEvent} from '../actions/events';
-import iconMap from '../constants/iconMap';
+import { colors, fonts } from "../themes";
+import { eventCategories } from "../constants";
+import getId from "../services/idGenerator";
+import { addEvent } from "../actions/events";
+import iconMap from "../constants/iconMap";
 
 class DiaryCopy extends Component {
-  static navigationOptions = ({navigation, screenProps}) => ({
-    title: screenProps.t.t('headerBar.copyEvents'),
+  static navigationOptions = ({ navigation, screenProps }) => ({
+    title: screenProps.t.t("headerBar.copyEvents"),
     headerLeft: (
       <HeaderBackButton
-        title={screenProps.t.t('headerBar.back')}
+        title={screenProps.t.t("headerBar.back")}
         tintColor={colors.nero}
-        onPress={() => navigation.navigate('Diary')}
+        onPress={() => navigation.navigate("Diary")}
       />
-    ),
+    )
   });
 
   get events() {
-    return this.props.navigation.getParam('events');
+    return this.props.navigation.getParam("events");
   }
 
   get copyToDate() {
-    return this.props.navigation.getParam('copyToDate');
+    return this.props.navigation.getParam("copyToDate");
   }
 
   constructor(props) {
@@ -85,31 +85,31 @@ class DiaryCopy extends Component {
         [eventCategories.exercise]: false,
         [eventCategories.housing]: false,
         [eventCategories.feeding]: false,
-        [eventCategories.medication]: false,
-      },
+        [eventCategories.medication]: false
+      }
     };
   }
 
   getEventsFromSelectedDate = events =>
     filter(isDuringCurrentDate(this.state.selectedDate))(events);
 
-  getGroupedEventsByCategory = events => groupBy(prop('category'), events);
+  getGroupedEventsByCategory = events => groupBy(prop("category"), events);
 
   onCheckboxChange = (key, value) => {
-    const checkboxValues = {...this.state.checkboxValues};
+    const checkboxValues = { ...this.state.checkboxValues };
     checkboxValues[key] = value;
-    this.setState({checkboxValues});
+    this.setState({ checkboxValues });
   };
 
   replaceEventIdWithLocalId = event =>
     compose(
-      assoc('localId', getId()),
-      omit(['localId']),
-      omit(['id'])
+      assoc("localId", getId()),
+      omit(["localId"]),
+      omit(["id"])
     )(event);
 
   replaceEventDateWithSelectedDate = event => {
-    const clonedEvent = {...event};
+    const clonedEvent = { ...event };
 
     const transformDate = (currentDate, targetDate) => {
       let newDate = targetDate;
@@ -122,7 +122,7 @@ class DiaryCopy extends Component {
 
     clonedEvent.startDate = transformDate(
       clonedEvent.startDate,
-      this.copyToDate,
+      this.copyToDate
     );
 
     if (clonedEvent.endDate) {
@@ -133,45 +133,47 @@ class DiaryCopy extends Component {
   };
 
   onSubmit = () => {
-    const {dispatch, alertDropdown, t} = this.props;
+    const { dispatch, alertDropdown, t } = this.props;
     const events = this.events;
 
-    if (this.state.isSubmitting) {return;}
+    if (this.state.isSubmitting) {
+      return;
+    }
 
-    this.setState({isSubmitting: true});
+    this.setState({ isSubmitting: true });
 
     const groupedEvents = compose(
       this.getGroupedEventsByCategory,
-      this.getEventsFromSelectedDate,
+      this.getEventsFromSelectedDate
     )(events);
 
-    const {checkboxValues} = this.state;
+    const { checkboxValues } = this.state;
 
     const eventsToCopy = compose(
       map(this.replaceEventDateWithSelectedDate),
       map(this.replaceEventIdWithLocalId),
       flatten,
       values,
-      mapObjIndexed((value, key) => (value ? groupedEvents[key] : [])),
+      mapObjIndexed((value, key) => (value ? groupedEvents[key] : []))
     )(checkboxValues);
 
-    alertDropdown('success', t('alertSuccess'), t('eventAddSuccessMsg'));
+    alertDropdown("success", t("alertSuccess"), t("eventAddSuccessMsg"));
 
-    dispatch(addEvent({payload: eventsToCopy, formHelpers: null}));
+    dispatch(addEvent({ payload: eventsToCopy, formHelpers: null }));
 
-    this.setState({isSubmitting: false});
+    this.setState({ isSubmitting: false });
   };
 
   formatDateField = timestamp =>
     isValid(parse(timestamp))
-      ? format(timestamp, this.props.t('dateFormat'))
-      : '';
+      ? format(timestamp, this.props.t("dateFormat"))
+      : "";
 
   hasEventsOnGivenDay = () =>
     Boolean(this.getEventsFromSelectedDate(this.events).length);
 
   renderDatePicker = () => {
-    const {t} = this.props;
+    const { t } = this.props;
     let ref;
     return (
       <View>
@@ -187,14 +189,15 @@ class DiaryCopy extends Component {
           locale={this.props.i18n.language}
           t={this.props.t}
           ref={element => (ref = element)} // eslint-disable-line no-return-assign
-          onPick={date => this.setState({selectedDate: date})}
+          onPick={date => this.setState({ selectedDate: date })}
           date={this.state.selectedDate}
         />
-        <FieldLabel style={{marginBottom: 5}}>{t('copyFromDate')}</FieldLabel>
-        <View style={{height: 50}}>
+        <FieldLabel style={{ marginBottom: 5 }}>{t("copyFromDate")}</FieldLabel>
+        <View style={{ height: 50 }}>
           <SelectButton
-            containerStyle={{height: 50}}
-            onPress={() => ref.show()}>
+            containerStyle={{ height: 50 }}
+            onPress={() => ref.show()}
+          >
             {this.formatDateField(this.state.selectedDate)}
           </SelectButton>
         </View>
@@ -203,49 +206,51 @@ class DiaryCopy extends Component {
   };
 
   renderCheckboxSection = () => {
-    const {t} = this.props;
+    const { t } = this.props;
     const groupedEvents = compose(
       this.getGroupedEventsByCategory,
-      this.getEventsFromSelectedDate,
+      this.getEventsFromSelectedDate
     )(this.events);
 
     const fields = [
       {
         key: eventCategories.exercise,
         name: t(eventCategories.exercise),
-        events: groupedEvents[eventCategories.exercise] || [],
+        events: groupedEvents[eventCategories.exercise] || []
       },
       {
         key: eventCategories.housing,
         name: t(eventCategories.housing),
-        events: groupedEvents[eventCategories.housing] || [],
+        events: groupedEvents[eventCategories.housing] || []
       },
       {
         key: eventCategories.feeding,
         name: t(eventCategories.feeding),
-        events: groupedEvents[eventCategories.feeding] || [],
+        events: groupedEvents[eventCategories.feeding] || []
       },
       {
         key: eventCategories.medication,
         name: t(eventCategories.medication),
-        events: groupedEvents[eventCategories.medication] || [],
-      },
+        events: groupedEvents[eventCategories.medication] || []
+      }
     ];
 
     return (
       <View>
-        <Text style={styles.headerText}>{t('copyChoice')}</Text>
+        <Text style={styles.headerText}>{t("copyChoice")}</Text>
         {fields.map(field => (
           <View
             key={field.key}
-            style={{flexDirection: 'row', marginBottom: 10}}>
+            style={{ flexDirection: "row", marginBottom: 10 }}
+          >
             <Text
               style={{
                 ...fonts.style.bold,
                 paddingRight: 10,
                 flex: 1,
-                color: field.events.length ? colors.black : colors.grey,
-              }}>
+                color: field.events.length ? colors.black : colors.grey
+              }}
+            >
               {field.name}
             </Text>
             <Switch
@@ -260,10 +265,10 @@ class DiaryCopy extends Component {
   };
 
   renderNoEventsWarning = () => {
-    const {t} = this.props;
+    const { t } = this.props;
     return (
-      <Text style={[styles.headerText, {color: colors.tomato}]}>
-        {t('copyNoEventsAvailable')}
+      <Text style={[styles.headerText, { color: colors.tomato }]}>
+        {t("copyNoEventsAvailable")}
       </Text>
     );
   };
@@ -272,9 +277,9 @@ class DiaryCopy extends Component {
     return (
       <Button
         style={{
-          marginVertical: 20,
+          marginVertical: 20
         }}
-        label={this.props.t('copy')}
+        label={this.props.t("copy")}
         onPress={this.onSubmit}
       />
     );
@@ -286,7 +291,7 @@ class DiaryCopy extends Component {
     return (
       <View style={styles.screenContainer}>
         {this.renderDatePicker()}
-        <View style={{padding: 20}}>
+        <View style={{ padding: 20 }}>
           {hasEventsOnCurrentDate
             ? this.renderCheckboxSection()
             : this.renderNoEventsWarning()}
@@ -300,44 +305,44 @@ class DiaryCopy extends Component {
 DiaryCopy.propTypes = {
   t: T.func,
   i18n: T.shape({
-    language: T.string,
-  }),
+    language: T.string
+  })
 };
 
 export default hoistStatics(
   compose(
     connect(),
-    translate('root'),
-    withAlertDropdown,
-  ),
+    translate("root"),
+    withAlertDropdown
+  )
 )(DiaryCopy);
 
 const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
     backgroundColor: colors.white,
-    padding: 20,
+    padding: 20
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center"
   },
   headerText: {
     ...fonts.style.h6,
     marginBottom: 20,
-    textAlign: 'center',
+    textAlign: "center"
   },
   button: {
-    backgroundColor: 'lightblue',
+    backgroundColor: "lightblue",
     padding: 12,
     margin: 16,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     borderRadius: 4,
-    borderColor: 'rgba(0, 0, 0, 0.1)',
+    borderColor: "rgba(0, 0, 0, 0.1)"
   },
   modalContent: {
-    flex: 1,
-  },
+    flex: 1
+  }
 });

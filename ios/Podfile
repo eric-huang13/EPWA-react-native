@@ -32,12 +32,15 @@ target 'EPWA' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
+  pod 'Firebase/Core', '~> 6.3.0'
+  pod 'Firebase/Messaging', '~> 6.3.0'
 
   pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'
 
   pod 'RNGoogleSignin', :path => '../node_modules/react-native-google-signin'
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
 
   target 'EPWATests' do
     inherit! :search_paths

@@ -1,17 +1,17 @@
-import {NativeModules} from 'react-native';
-import Reactotron from 'reactotron-react-native';
-import {reactotronRedux as reduxPlugin} from 'reactotron-redux';
-import sagaPlugin from 'reactotron-redux-saga';
+import { NativeModules } from "react-native";
+import Reactotron from "reactotron-react-native";
+import { reactotronRedux as reduxPlugin } from "reactotron-redux";
+import sagaPlugin from "reactotron-redux-saga";
 
-import {useReactotron} from '../../env.json';
+import { useReactotron } from "../../env.json";
 
 if (useReactotron) {
   const {
-    SourceCode: {scriptURL},
+    SourceCode: { scriptURL }
   } = NativeModules;
-  const scriptHostname = scriptURL.split('://')[1].split(':')[0];
+  const scriptHostname = scriptURL.split("://")[1].split(":")[0];
 
-  Reactotron.configure({name: 'EPWA', host: scriptHostname})
+  Reactotron.configure({ name: "EPWA", host: scriptHostname })
     .useReactNative()
     .use(reduxPlugin())
     .use(sagaPlugin())
