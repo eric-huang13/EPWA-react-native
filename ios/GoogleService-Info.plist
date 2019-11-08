@@ -2,30 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
-	<string>ca-app-pub-3940256099942544/2934735716</string>
-	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
-	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>342296454651-k9r4t75imtecm05gt8ia3d6elvptrbs8.apps.googleusercontent.com</string>
+	<string>105807776637-gpud09t1m1tfvjn6tuggtuefth3a8m62.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.342296454651-k9r4t75imtecm05gt8ia3d6elvptrbs8</string>
-	<key>ANDROID_CLIENT_ID</key>
-	<string>342296454651-uie181f7dv7f7o2sclct2os7lrj3cabt.apps.googleusercontent.com</string>
+	<string>com.googleusercontent.apps.105807776637-gpud09t1m1tfvjn6tuggtuefth3a8m62</string>
 	<key>API_KEY</key>
-	<string>AIzaSyA6uR18negDDJjTloUHlexwVCk0WXkOfnY</string>
+	<string>AIzaSyAPmfF-ja90v-dj6gXDNPTkKlCOrN8IJ60</string>
 	<key>GCM_SENDER_ID</key>
-	<string>342296454651</string>
+	<string>105807776637</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>nl.wirelab.apps.epwa</string>
 	<key>PROJECT_ID</key>
-	<string>epwa-40e58</string>
+	<string>epwa-1bd6d</string>
 	<key>STORAGE_BUCKET</key>
-	<string>epwa-40e58.appspot.com</string>
+	<string>epwa-1bd6d.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<true></true>
+	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
 	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
@@ -35,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:342296454651:ios:e22204dfeffc9903</string>
+	<string>1:105807776637:ios:cfcf65f7bfc35190329a14</string>
 	<key>DATABASE_URL</key>
-	<string>https://epwa-40e58.firebaseio.com</string>
+	<string>https://epwa-1bd6d.firebaseio.com</string>
 </dict>
 </plist>

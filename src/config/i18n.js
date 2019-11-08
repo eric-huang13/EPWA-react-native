@@ -1,54 +1,57 @@
-import i18n from 'i18next';
-import {reactI18nextModule} from 'react-i18next';
-import {Platform, NativeModules} from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
-import {take} from 'ramda';
+import i18n from "i18next";
+import { reactI18nextModule } from "react-i18next";
+import { Platform, NativeModules } from "react-native";
+import AsyncStorage from "@react-native-community/async-storage";
+import { take } from "ramda";
 
-import en from '../i18n/en.json';
-import nl from '../i18n/nl.json';
-import reactotron from 'reactotron-react-native';
+import en from "../i18n/en.json";
+import nl from "../i18n/nl.json";
+import reactotron from "reactotron-react-native";
 
 const languageDetector = {
-  type: 'languageDetector',
+  type: "languageDetector",
   async: true, // flags below detection to be async
   detect: callback =>
-    AsyncStorage.getItem('reduxPersist:language').then(persistedState => {
+    AsyncStorage.getItem("reduxPersist:language").then(persistedState => {
       const savedLocale = persistedState ? JSON.parse(persistedState) : false;
 
       if (savedLocale) {
         // For some reason redux-persist wraps json values in additional quotation marks
-        callback(savedLocale.replace(/"/g, ''));
+        callback(savedLocale.replace(/"/g, ""));
       } else {
-        const fullLocale =
-          Platform.OS === 'android'
+        let fullLocale =
+          Platform.OS === "android"
             ? NativeModules.I18nManager.localeIdentifier
             : NativeModules.SettingsManager.settings.AppleLocale;
-        const result = take(2, fullLocale.toLowerCase().replace('_', '-'));
+        if (fullLocale == undefined) {
+          fullLocale = "en"; // default language
+        }
+        const result = take(2, fullLocale.toLowerCase().replace("_", "-"));
         callback(result);
       }
     }),
   init: () => {},
-  cacheUserLanguage: () => {},
+  cacheUserLanguage: () => {}
 };
 
 i18n
   .use(languageDetector)
   .use(reactI18nextModule)
   .init({
-    fallbackLng: 'en',
+    fallbackLng: "en",
 
     resources: {
       en: {
-        ...en,
+        ...en
       },
       nl: {
-        ...nl,
-      },
+        ...nl
+      }
     },
 
     // have a common namespace used around the full app
-    ns: ['root'],
-    defaultNS: 'root',
+    ns: ["root"],
+    defaultNS: "root",
 
     debug: false,
 
@@ -57,12 +60,12 @@ i18n
     // },
 
     react: {
-      wait: true,
+      wait: true
     },
 
     interpolation: {
-      escapeValue: false, // not needed for react as it does escape per default to prevent xss!
-    },
+      escapeValue: false // not needed for react as it does escape per default to prevent xss!
+    }
   });
 
 export default i18n;

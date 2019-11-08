@@ -4,7 +4,7 @@ import snakeCaseKeys from "snakecase-keys";
 import { get } from "lodash";
 import { compose, evolve, isNil, map, reject, omit, not } from "ramda";
 import { format } from "date-fns";
-
+import RNCalendarEvents from "react-native-calendar-events";
 // import Reactotron from "reactotron-react-native";
 
 import {
@@ -117,7 +117,6 @@ export function* addEvent(api, dispatch, action) {
       }
     }
   });
-
   yield all(
     payload.map(entry =>
       put({
@@ -128,6 +127,54 @@ export function* addEvent(api, dispatch, action) {
       })
     )
   );
+
+  if (yield RNCalendarEvents.authorizationStatus() != "authorized") {
+    let auth = yield RNCalendarEvents.authorizeEventStore();
+    if (auth == "authorized") {
+      let title = payload[0].data.noteTitle;
+      let description = payload[0].data.note;
+      let recurring = payload[0].recurring;
+      let startDate = new Date(payload[0].startDate).toISOString();
+      let endDate = new Date(payload[0].recurring_untill).toISOString();
+      switch (recurring) {
+        case "d":
+          recurring = "daily";
+          break;
+        case "w":
+          recurring = "weekly";
+          break;
+        case "m":
+          recurring = "monthly";
+          break;
+        case "y":
+          recurring = "yearly";
+          break;
+        default:
+          recurring = null;
+      }
+      console.tron.log("Event", {
+        title,
+        description,
+        recurring,
+        startDate,
+        endDate
+      });
+      yield RNCalendarEvents.saveEvent(
+        title,
+        {
+          title,
+          description,
+          startDate,
+          endDate,
+          recurrenceRule: {
+            frequency: recurring,
+            endDate: endDate
+          }
+        },
+        {}
+      );
+    }
+  }
 
   // If formHelpers are not passed, do not alter state of the UI
   if (formHelpers) {

@@ -32,10 +32,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.googleusercontent.apps.342296454651-9j13anctvbbcjtrv5u1pjjhc94tds9ii</string>
+			<string>com.googleusercontent.apps.105807776637-gpud09t1m1tfvjn6tuggtuefth3a8m62</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.342296454651-9j13anctvbbcjtrv5u1pjjhc94tds9ii</string>
+				<string>com.googleusercontent.apps.105807776637-gpud09t1m1tfvjn6tuggtuefth3a8m62</string>
 			</array>
 		</dict>
 		<dict>
@@ -46,14 +46,6 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.epwa</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>com.googleusercontent.apps.342296454651-k9r4t75imtecm05gt8ia3d6elvptrbs8</string>
 			</array>
 		</dict>
 	</array>
@@ -85,6 +77,8 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCalendarsUsageDescription</key>
+	<string>This app requires access to the calendar for event notifications</string>
 	<key>NSCameraUsageDescription</key>
 	<string>EPWA uses your camera to take pictures, used in profiles and diary entries.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
