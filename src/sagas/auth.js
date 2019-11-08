@@ -7,7 +7,10 @@ import { RESET_STATE as REDUX_OFFLINE_RESET_STATE } from "@redux-offline/redux-o
 import camelcaseKeys from "camelcase-keys";
 import snakeCaseKeys from "snakecase-keys";
 import { AccessToken, LoginManager } from "react-native-fbsdk";
-import { GoogleSignin, statusCodes } from "react-native-google-signin";
+import {
+  GoogleSignin,
+  statusCodes
+} from "@react-native-community/google-signin";
 // import Reactotron from "reactotron-redux";
 
 import i18n from "../config/i18n";
@@ -82,7 +85,7 @@ export function* facebookLogin(api, facebookApi) {
 
   try {
     LoginManager.logOut();
-    authResponse = yield LoginManager.logInWithReadPermissions([
+    authResponse = yield LoginManager.logInWithPermissions([
       "public_profile",
       "email"
     ]);
@@ -562,9 +565,7 @@ export function* pollProfileHead(api) {
 }
 
 export function* watchPollProfileHead(api) {
-  while (true) {
-    yield call(pollProfileHead, api);
-  }
+  yield call(pollProfileHead, api);
 }
 
 export function* deleteAccount(api) {
