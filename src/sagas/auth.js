@@ -189,9 +189,8 @@ export function* googleLogin(api, googleApi) {
     return;
   }
 
-  const { accessToken, user } = authResponse;
-
-  if (!accessToken || !user) {
+  const { idToken, user } = authResponse;
+  if (!idToken || !user) {
     yield put(mixedAccountsErrorAction);
     yield put(errorAction);
     return;
@@ -200,7 +199,7 @@ export function* googleLogin(api, googleApi) {
   const { email, familyName, givenName, id, photo } = user;
 
   const loginResponse = yield call(api.loginSocial, {
-    accessToken,
+    accessToken: idToken,
     socialId: id,
     provider: "google"
   });
