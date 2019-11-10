@@ -243,7 +243,7 @@
             "Normale motiliteit",
             "Verminderde motiliteit",
             "Geen motiliteit",
-            "Hypermotiliteit of steelband"
+            "Hypermotiliteit of hoogtonige geluiden"
           ],
           "rectalTemperature": "Rectale temperatuur",
           "rectalTemperatureOptions": [
@@ -1084,8 +1084,8 @@
     "lookAhead": "Kijk vooruit",
     "graphTitle": "Recente pijnscores",
     "noRecentPainMeasurements": "Geen recente pijnscores",
-    "compositeMeasure": "Samengestelde pijnmeting",
-    "facialMeasure": "Gezichtspijnmeting",
+    "compositeMeasure": "Samengesteld",
+    "facialMeasure": "Gezichtsuitdrukkingen",
     "addPainMeasurement": "Pijnmeting toevoegen",
     "recurring": "Terugkerend",
     "recurringTill": "Herhaal tot",
@@ -1114,8 +1114,8 @@
       "appointment": "Appointment"
     },
     "painMeasurements": {
-      "composite": "Samengestelde pijnmeting",
-      "facialExpression": "Gezichtspijnmeting"
+      "composite": "Samengesteld",
+      "facialExpression": "Gezichtsuitdrukkingen"
     },
     "typePainMeasurement": "Type pijnmeting",
     "editRecurringEventWarning": "Wil je de huidige herhalende afspraak wijzigen, of een nieuwe herhalende afspraak maken?",

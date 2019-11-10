@@ -210,8 +210,27 @@ class DiaryShareEventsForm extends Component {
   };
 
   onShare = async () => {
-    const { t } = this.props;
-    const uri = "www.epwa.com";
+    const {
+      t,
+      values,
+      values: { startDate, endDate, animalId }
+    } = this.props;
+
+    const RemoveFalseAndTransformToArray = Obj => {
+      const myObj = { ...Obj };
+      for (var key in myObj) {
+        if (typeof myObj[key] !== "boolean" || myObj[key] === false) {
+          delete myObj[key];
+        }
+      }
+      return myObj;
+    };
+
+    const selectionTrue = RemoveFalseAndTransformToArray(values);
+    const selection = Object.keys(selectionTrue).toString();
+
+    const uri = `http://localhost:3000/user/1/animal/${animalId}/start/${startDate}/end/${endDate}/selection/${selection}`;
+
     try {
       const result = await Share.share({
         message: t("shareAppContentAnimalProfile"),
@@ -234,7 +253,7 @@ class DiaryShareEventsForm extends Component {
 
   render() {
     const { t, i18n, setFieldValue, values, currentDate } = this.props;
-    Reactotron.log("render", values);
+    // Reactotron.log("render", values, this.props);
     let ref1;
     let ref2;
     return (
@@ -376,11 +395,11 @@ const onSubmit = ({ payload }, formikBag) => {
   let isEditing = Boolean(initialValue);
 
   const localDate = formikBag.props.navigation.getParam("localDate");
-  Reactotron.log("Payload", payload, formikBag);
+  // Reactotron.log("Payload", payload, formikBag);
 
   const onShare = async () => {
     const { t } = this.props;
-    const uri = "www.epwa.com";
+    const uri = `https://epwa-api.ehero.es/api/api/pdf/events?from=${startRange}&untill=${endRange}&animal_id=${animalId}&user_id=1&selection=${selection}`;
     try {
       const result = await Share.share({
         message: t("shareAppContentAnimalProfile"),

@@ -398,17 +398,6 @@ export const transformCurrentDayEvents = events => {
   return sortedCategories;
 };
 
-// const recurringDays = (event, endDate, num) => {
-//   if (isBefore(endDate, format(event.startDate))) {
-//     return [];
-//   }
-//   const days = eachDay(format(event.startDate), endDate, num);
-//   const daysEvents = days.map(day => {
-//     return { ...event, startDate: parseDateField(day, event), id: getId() };
-//   });
-//   return daysEvents;
-// };
-
 const recurringDays = (event, endDate, num) => {
   if (isBefore(endDate, format(event.startDate))) {
     return [];
@@ -422,8 +411,8 @@ const recurringDays = (event, endDate, num) => {
 };
 
 const recurringMonths = event => {
-  const eventNextMonth = addMonths(format(event.startDate), 1);
-  const eventPrevMonth = addMonths(format(event.startDate), -1);
+  const eventNextMonth = addMonths(format(event.startDate, "MM/DD/YYYY"), 1);
+  const eventPrevMonth = addMonths(format(event.startDate, "MM/DD/YYYY"), -1);
   const prevDate = parseDateField(eventPrevMonth, event);
   const nextDate = parseDateField(eventNextMonth, event);
   return [
@@ -458,57 +447,53 @@ export const addRecurringEvents = (allEvents, currentDate, tabIndex) => {
   let beginDate;
   let endDate;
 
-  Reactotron.log("TAB?", tabIndex);
-
   if (tabIndex === 1) {
-    beginDate = subDays(format(currentDate), 1);
+    beginDate = subDays(format(currentDate, "MM/DD/YYYY"), 1);
     endDate = addDays(format(currentDate), 1);
   }
   if (tabIndex === 0) {
-    beginDate = subDays(format(currentDate), 15);
-    endDate = subDays(format(currentDate), 0);
+    beginDate = subDays(format(currentDate, "MM/DD/YYYY"), 15);
+    endDate = subDays(format(currentDate, "MM/DD/YYYY"), 0);
   }
   if (tabIndex === 2) {
-    beginDate = addDays(format(currentDate), 1);
-    endDate = addDays(format(currentDate), 6);
+    beginDate = addDays(format(currentDate, "MM/DD/YYYY"), 1);
+    endDate = addDays(format(currentDate, "MM/DD/YYYY"), 6);
   }
-  Reactotron.log(
-    "current, begin - end",
-    format(currentDate, "D-MMM-YYYY"),
-    format(beginDate, "D-MMM-YYYY"),
-    format(endDate, "D-MMM-YYYY")
-  );
-
-  // const beginDate = subDays(format(currentDate), 15);
-  // const endDate = addDays(format(currentDate), 5);
 
   const allReducedEvents = allEvents.reduce((a, event) => {
     if (
       (isNil(event.recurring) || event.recurring === "") &&
-      !isWithinRange(format(event.startDate), beginDate, endDate)
+      !isWithinRange(format(event.startDate, "MM/DD/YYYY"), beginDate, endDate)
     ) {
       return a;
     }
     if (
       (isNil(event.recurring) || event.recurring === "") &&
-      isWithinRange(format(event.startDate), beginDate, endDate)
+      isWithinRange(format(event.startDate, "MM/DD/YYYY"), beginDate, endDate)
     ) {
       return [...a, event];
     }
 
     if (
       !isNil(event.recurringUntill) &&
-      isBefore(format(beginDate), format(event.recurringUntill))
+      isBefore(
+        format(beginDate, "MM/DD/YYYY"),
+        format(event.recurringUntill, "MM/DD/YYYY")
+      )
     ) {
       return a;
     }
     if (
       !isNil(event.recurringUntill) &&
-      isBefore(format(event.recurringUntill), format(endDate))
+      isBefore(format(event.recurringUntill, "MM/DD/YYYY"), format(endDate))
     ) {
       return [
         ...a,
-        ...getRecurringEvents(event, endDate, format(event.recurringUntill))
+        ...getRecurringEvents(
+          event,
+          endDate,
+          format(event.recurringUntill, "MM/DD/YYYY")
+        )
       ];
     }
     return [...a, ...getRecurringEvents(event, endDate, currentDate)];

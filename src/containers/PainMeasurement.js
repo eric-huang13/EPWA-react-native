@@ -62,9 +62,6 @@ class painMeasurement extends Component {
     const redirectPath = navigation.getParam("redirectPath");
     const animal = navigation.getParam("animal");
 
-    const editId = this.props.navigation.getParam("editId");
-    const editType = this.props.navigation.getParam("editType");
-
     if (redirectPath) {
       result.redirectPath = redirectPath;
     }

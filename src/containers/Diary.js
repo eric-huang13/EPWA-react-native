@@ -107,7 +107,7 @@ class Diary extends Component {
     this.state = {
       currentIndex: isInitialValuePassed ? selectedAnimalIndex : 0,
       currentDate: new Date(),
-      tabIndex: 0
+      tabIndex: 1
     };
 
     this.routes = {
@@ -503,9 +503,10 @@ class Diary extends Component {
     const groupedFeedingEvents = feedingEventsTimes.map(time => {
       const sameTime = feedingEvents.filter(item => time === item.startDate);
       const groupedEvents = sameTime.map(
-        ({ id, type, data, completed, animalId }) => ({
+        ({ id, type, startDate, data, completed, animalId }) => ({
           id,
           type,
+          startDate,
           data,
           completed,
           animalId

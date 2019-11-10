@@ -194,7 +194,7 @@ const AppStack = createDrawerNavigator(
       )
     }
   },
-  { contentComponent: CustomDrawerContent }
+  { contentComponent: CustomDrawerContent, unmountInactiveRoutes: true }
 );
 
 const RootStack = createAppContainer(

@@ -52,10 +52,14 @@ export default function EventsList({
 }
 export class AccordionView extends Component {
   state = {
-    activeSections: [],
-    collapsed: true,
-    multipleSelect: false
+    activeSections: []
   };
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.activeSections[0] === this.state.activeSections[0]) {
+      return false;
+    }
+    true;
+  }
 
   _renderHeader = (section, _, isActive) => (
     <View
@@ -107,30 +111,35 @@ export class AccordionView extends Component {
     </View>
   );
 
-  _renderContent = section => (
-    <View style={{ paddingHorizontal: 20, paddingBottom: 25 }}>
-      {section.events.map((event, index) => {
-        Reactotron.log("_renderContent", event);
-        return (
-          <NewListItem
-            {...event}
-            key={index}
-            t={this.props.t}
-            navigateTo={this.props.navigateTo}
-            findEventById={this.props.findEventById}
-            toggleComplete={this.props.toggleComplete}
-          />
-        );
-      })}
-    </View>
-  );
+  _renderContent = (section, index, isActive) => {
+    return (
+      <View
+        style={{
+          paddingHorizontal: 20,
+          paddingBottom: 25
+        }}
+      >
+        {section.events.map(event => {
+          return (
+            <NewListItem
+              {...event}
+              key={event.id}
+              t={this.props.t}
+              navigateTo={this.props.navigateTo}
+              findEventById={this.props.findEventById}
+              toggleComplete={this.props.toggleComplete}
+            />
+          );
+        })}
+      </View>
+    );
+  };
 
   _updateSections = activeSections => {
     this.setState({ activeSections });
   };
 
   render() {
-    // Reactotron.log("accordeon", this.props.data);
     return (
       <Accordion
         sections={this.props.data}
@@ -140,6 +149,7 @@ export class AccordionView extends Component {
         renderContent={this._renderContent}
         onChange={this._updateSections}
         touchableComponent={TouchableOpacity}
+        expandMultiple={false}
       />
     );
   }
@@ -161,7 +171,7 @@ function CheckInput({
         disabled={
           (type === eventTypes.facialExpression ||
             type === eventTypes.composite) &&
-          completed
+          Boolean(completed)
         }
       >
         {completed ? <CheckboxChecked /> : <Checkbox />}
@@ -215,7 +225,7 @@ export function NewListItem({
       : data.noteTitle;
 
   return (
-    <View style={[styles.container, width]}>
+    <View style={[styles.itemContainer, width]}>
       <View style={styles.contentContainer}>
         {category !== "feeding" ? (
           <Text style={[styles.title, completed ? styles.completed : null]}>
@@ -446,7 +456,7 @@ function FeedingContent({
 }) {
   return (
     <React.Fragment>
-      {groupedEvents.map(({ type, data, id, completed }, index) => {
+      {groupedEvents.map(({ type, data, id, completed, startDate }, index) => {
         const localId =
           typeof id === "string" && id.includes("_") ? id.split("_")[0] : id;
         const localDate =
@@ -458,6 +468,7 @@ function FeedingContent({
               id={id}
               completed={completed}
               toggleComplete={toggleComplete}
+              startDate={startDate}
             />
             <TouchableOpacity
               onPress={() =>
@@ -748,10 +759,9 @@ function HousingIcon({ type }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  itemContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    flex: 1,
     marginBottom: 25
   },
   time: {
@@ -767,13 +777,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 19,
     paddingLeft: 40,
-    marginBottom: 5,
-    height: 25
+    marginBottom: 5
   },
   itemContentContainer: {
     flexDirection: "row",
-    alignItems: "center",
-    minHeight: 50
+    alignItems: "center"
   },
   subItemContentContainer: {
     flexDirection: "row",
