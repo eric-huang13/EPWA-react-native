@@ -36,7 +36,7 @@ export default function EventsList({
   toggleComplete
 }) {
   return (
-    <View style={{ paddingHorizontal: 20 }}>
+    <View style={{ paddingRight: 20 }}>
       {events.map((event, index) => (
         <NewListItem
           {...event}
@@ -115,7 +115,7 @@ export class AccordionView extends Component {
     return (
       <View
         style={{
-          paddingHorizontal: 20,
+          paddingRight: 20,
           paddingBottom: 25
         }}
       >
@@ -164,8 +164,9 @@ function CheckInput({
   startDate
 }) {
   return (
-    <View style={{ width: 40 }}>
+    <View style={{ width: 60 }}>
       <TouchableOpacity
+        style={{ width: 60, justifyContent: "center", alignItems: "center" }}
         onPress={() => toggleComplete(id, completed, type, endDate, startDate)}
         underlayColor="#fff"
         disabled={
