@@ -57,6 +57,9 @@ class PainMeasurementGraph extends React.Component {
     if (prevProps.currentAnimal !== this.props.currentAnimal) {
       this.setGraphData();
     }
+    if (prevProps.currentDate !== this.props.currentDate) {
+      this.setGraphData();
+    }
   }
 
   setLineXY = (xCoor, yCoor, type, dataLenght1, dataLenght2) => {
@@ -107,7 +110,7 @@ class PainMeasurementGraph extends React.Component {
     const isPainScore = value => isNil(value.data) === false;
 
     const data = this.props.items
-      .slice(start, end)
+      // .slice(start, end)
       .filter(isPainScore)
       .filter(item => {
         return isWithinRange(

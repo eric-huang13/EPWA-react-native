@@ -124,6 +124,10 @@ export const isRelatedToAnimal = R.curry(
   (animal, event) => event.animalId === animal.id
 );
 
+export const isInRange = R.curry((currentDate, { startDate }) =>
+  isWithinRange(startDate, subDays(currentDate, 15), addDays(currentDate, 5))
+);
+
 export const isDuringCurrentDate = R.curry((date, event) =>
   isSameDay(event.startDate, date)
 );

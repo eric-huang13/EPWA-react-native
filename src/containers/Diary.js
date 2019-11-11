@@ -76,7 +76,8 @@ import {
   isPainMeasurement,
   isFeeding,
   isSelectedTab,
-  addRecurringEvents
+  addRecurringEvents,
+  isInRange
 } from "../services/eventService";
 import { eventTypeIconNames, eventCategories, eventTypes } from "../constants";
 import { getToken } from "../selectors/auth";
@@ -600,6 +601,7 @@ class Diary extends Component {
   renderGraph = ({ currentAnimal, currentDate }) => {
     const { t } = this.props;
     const allPainMeasurements = compose(
+      filter(isInRange(currentDate)),
       filter(isRelatedToAnimal(currentAnimal)),
       filter(isPainMeasurement)
     )(this.props.data.events);
