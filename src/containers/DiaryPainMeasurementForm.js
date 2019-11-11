@@ -5,7 +5,8 @@ import {
   TouchableOpacity,
   View,
   TextInput,
-  Text
+  Text,
+  Alert
 } from "react-native";
 import AlertAsync from "react-native-alert-async";
 import { HeaderBackButton } from "react-navigation-stack";
@@ -420,6 +421,14 @@ const triggerSubmitType = (
 const onSubmit = ({ payload }, formikBag) => {
   const initialValue = formikBag.props.navigation.getParam("initialValue");
   const isEditing = Boolean(initialValue);
+
+  if (payload[0].startDate > payload[0].recurring_untill) {
+    Alert.alert(
+      "",
+      "Please select recurring date that comes after event start time"
+    );
+    return;
+  }
 
   if (!isEditing) {
     return triggerSubmitType(payload, {

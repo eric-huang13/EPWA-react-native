@@ -131,11 +131,21 @@ export function* addEvent(api, dispatch, action) {
   if (yield RNCalendarEvents.authorizationStatus() != "authorized") {
     let auth = yield RNCalendarEvents.authorizeEventStore();
     if (auth == "authorized") {
-      let title = payload[0].data.noteTitle;
-      let description = payload[0].data.note;
+      let title = (payload[0].data || {}).noteTitle || "";
+      let description = (payload[0].data || {}).note || "";
       let recurring = payload[0].recurring;
       let startDate = new Date(payload[0].startDate).toISOString();
-      let endDate = new Date(payload[0].recurring_untill).toISOString();
+      let endDate = payload[0].recurring_untill
+        ? new Date(payload[0].recurring_untill).toISOString()
+        : startDate;
+
+      const options = {
+        title,
+        description,
+        startDate,
+        endDate
+      };
+
       switch (recurring) {
         case "d":
           recurring = "daily";
@@ -152,27 +162,22 @@ export function* addEvent(api, dispatch, action) {
         default:
           recurring = null;
       }
-      console.tron.log("Event", {
+      console.log("Event", {
         title,
         description,
         recurring,
         startDate,
         endDate
       });
-      yield RNCalendarEvents.saveEvent(
-        title,
-        {
-          title,
-          description,
-          startDate,
-          endDate,
-          recurrenceRule: {
-            frequency: recurring,
-            endDate: endDate
-          }
-        },
-        {}
-      );
+
+      if (recurring) {
+        options.recurrenceRule = {
+          frequency: recurring,
+          endDate: endDate
+        };
+      }
+
+      yield RNCalendarEvents.saveEvent(title, options, {});
     }
   }
 
@@ -426,7 +431,7 @@ export function* completeRecurringEvent(api, dispatch, action) {
     event => {
       const result = event;
 
-      if (event.data === "null" && event.data === "\"null\"") {
+      if (event.data === "null" && event.data === '"null"') {
         result.data = null;
       }
 

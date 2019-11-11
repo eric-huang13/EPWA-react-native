@@ -5,7 +5,8 @@ import {
   TouchableOpacity,
   View,
   TextInput,
-  Text
+  Text,
+  Alert
 } from "react-native";
 import AlertAsync from "react-native-alert-async";
 import { HeaderBackButton } from "react-navigation-stack";
@@ -426,6 +427,14 @@ const onSubmit = (values, formikBag) => {
   let isEditing = Boolean(initialValue);
 
   const localDate = formikBag.props.navigation.getParam("localDate");
+
+  if (flattenValues[0].startDate > flattenValues[0].recurring_untill) {
+    Alert.alert(
+      "",
+      "Please select recurring date that comes after event start time"
+    );
+    return;
+  }
 
   if (!isNil(localDate) && isNil(flattenValues[0].recurring)) {
     delete flattenValues[0].id;
