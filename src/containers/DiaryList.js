@@ -26,7 +26,6 @@ import nl from "date-fns/locale/nl";
 import en from "date-fns/locale/en";
 
 import Reactotron from "reactotron-react-native";
-// import { t } from "i18next/dist/commonjs";
 
 export default function EventsList({
   events,
@@ -36,7 +35,7 @@ export default function EventsList({
   toggleComplete
 }) {
   return (
-    <View style={{ paddingRight: 20 }}>
+    <View style={{ paddingRight: 20, minHeight: 200 }}>
       {events.map((event, index) => (
         <NewListItem
           {...event}
@@ -150,6 +149,7 @@ export class AccordionView extends Component {
         onChange={this._updateSections}
         touchableComponent={TouchableOpacity}
         expandMultiple={false}
+        containerStyle={{ minHeight: 200 }}
       />
     );
   }
@@ -215,7 +215,7 @@ export function NewListItem({
   );
   const time = format(startDate, "HH:mm");
   const feedingCompleted =
-    groupedEvents.filter(event => event.completed === true).length ===
+    groupedEvents.filter(event => Boolean(event.completed) === true).length ===
     groupedEvents.length
       ? true
       : false;
@@ -229,12 +229,12 @@ export function NewListItem({
     <View style={[styles.itemContainer, width]}>
       <View style={styles.contentContainer}>
         {category !== "feeding" ? (
-          <Text style={[styles.title, completed ? styles.completed : null]}>
+          <Text style={[styles.title, completed ? styles.completed : ""]}>
             {eventTitle}
           </Text>
         ) : (
           <Text
-            style={[styles.title, feedingCompleted ? styles.completed : null]}
+            style={[styles.title, feedingCompleted ? styles.completed : ""]}
           >
             {t(`categories.${category}`)}
           </Text>
@@ -253,7 +253,7 @@ export function NewListItem({
             <View
               style={[
                 styles.itemContentContainer,
-                completed ? styles.completed : null
+                completed ? styles.completed : ""
               ]}
             >
               {content}
@@ -777,7 +777,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 19,
-    paddingLeft: 40,
+    paddingLeft: 60,
     marginBottom: 5
   },
   itemContentContainer: {
