@@ -1,14 +1,6 @@
 import React from "react";
 import T from "prop-types";
-import {
-  View,
-  // TouchableOpacity,
-  // Dimensions,
-  ScrollView,
-  Text,
-  Switch,
-  StyleSheet
-} from "react-native";
+import { View, ScrollView, Text, Switch, StyleSheet } from "react-native";
 import { Rect, Text as SVGText, Line } from "react-native-svg";
 import {
   VictoryAxis,
@@ -17,16 +9,9 @@ import {
   VictoryLabel
 } from "victory-native";
 import { format, isWithinRange, addDays } from "date-fns";
-// import { dropRight } from "lodash";
-
-// import { getMaximalScore } from "../services/painMeasurement";
-// import s from "./styles/PainMeasurementGraphStyles";
 import { colors, fonts } from "../themes";
-// import Icon from "./Icon";
-// import iconMap from "../constants/iconMap";
 import { isNil } from "ramda";
 import { eventTypes } from "../constants";
-// import Reactotron from "reactotron-react-native";
 
 class PainMeasurementGraph extends React.Component {
   constructor(props) {
@@ -100,17 +85,12 @@ class PainMeasurementGraph extends React.Component {
     const formatDate = timestamp =>
       format(timestamp, "D MMM-HH:mm", { locale: this.props.locale });
     const { t } = this.props;
-    // const maxScore = 55;
     const ticks = [];
     const tickStrings = [];
-
-    const end = this.props.items.length;
-    const start = end > 15 ? end - 15 : 0;
 
     const isPainScore = value => isNil(value.data) === false;
 
     const data = this.props.items
-      // .slice(start, end)
       .filter(isPainScore)
       .filter(item => {
         return isWithinRange(
@@ -120,7 +100,6 @@ class PainMeasurementGraph extends React.Component {
         );
       })
       .map((item, index) => {
-        // maxScore = Math.max(maxScore, getMaximalScore(item));
         ticks.push(index);
         tickStrings.push(formatDate(item.startDate).replace("-", "\n"));
         return {
@@ -142,7 +121,6 @@ class PainMeasurementGraph extends React.Component {
       .length;
 
     this.setState({
-      // maxScore,
       ticks,
       tickStrings,
       data,
@@ -154,10 +132,8 @@ class PainMeasurementGraph extends React.Component {
   };
 
   render() {
-    // Reactotron.log("RENDER GRAPH");
     const { t } = this.props;
     const {
-      // maxScore,
       ticks,
       tickStrings,
       data,

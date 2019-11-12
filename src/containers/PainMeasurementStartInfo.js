@@ -5,11 +5,11 @@ import { __, curry, path, isNil } from "ramda";
 
 import { colors, fonts } from "../themes";
 
-import Reactotron from "reactotron-react-native";
+// import Reactotron from "reactotron-react-native";
 
 class PainMeasurementStartInfo extends Component {
   static navigationOptions = ({ navigation, screenProps }) => {
-    Reactotron.log("screenProps", screenProps);
+    // Reactotron.log("screenProps", screenProps);
     const t = isNil(screenProps.t.t) ? screenProps.t : screenProps.t.t;
 
     return {

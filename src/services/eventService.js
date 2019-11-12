@@ -520,8 +520,6 @@ export const addRecurringEvents = (allEvents, currentDate, tabIndex) => {
   // );
 
   const removedDoubleEvents = allRecurringEvents.filter(event => {
-    // Reactotron.log("compare", toCompareArr);
-
     if (event.category === eventCategories.feeding) {
       return isNil(
         allNonRecurringEvents

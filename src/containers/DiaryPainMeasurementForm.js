@@ -217,7 +217,6 @@ class DiaryPainMeasurementForm extends Component {
     const typeStyle = hasErrors ? { backgroundColor: colors.tomato } : {};
     // const { completed } = this.props.navigation.getParam("initialValue");
 
-    // Reactotron.log('props', this.props);
     return (
       <View
         // REMEMBER: In order to not lose focus of fields, the key between rerenders should stay the same!
@@ -316,10 +315,8 @@ class DiaryPainMeasurementForm extends Component {
 
   renderRecurring = () => {
     const { t, setFieldValue, values, i18n } = this.props;
-    // Reactotron.log(values);
     const currentDate = this.props.navigation.getParam("currentDate");
 
-    // Reactotron.log('recurring', values);
     return (
       <RecurringForm
         t={t}
@@ -332,12 +329,9 @@ class DiaryPainMeasurementForm extends Component {
   };
 
   render() {
-    // Reactotron.log("painform", this.props, this.state);
     const currentDate = this.props.navigation.getParam("currentDate");
     const lang = this.props.i18n.language;
 
-    // const { completed = 0 } = this.props.navigation.getParam("initialValue");
-    // Reactotron.log("painform completed", completed);
     return (
       <View style={s.screenContainer}>
         <ScrollView contentContainerStyle={s.scrollContainer}>

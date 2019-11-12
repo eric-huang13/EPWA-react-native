@@ -271,11 +271,9 @@ class Diary extends Component {
   onToggleComplete = (id, val, type, endDate, startDate) => {
     const { t } = this.props;
 
-    // Reactotron.log("werkt ervoor dateNow");
     const dateNow = new Date();
     if (!isToday(startDate) && isAfter(startDate, dateNow)) {
       Alert.alert(t("noFutureCompletionTitle"), t("noFutureCompletionText"));
-      Reactotron.log("werkt dateNow");
       return;
     }
 
@@ -317,8 +315,6 @@ class Diary extends Component {
 
     if (typeof id === "string" && id.includes("_")) {
       const [localId, timeStamp] = id.split("_");
-      // Reactotron.log("recurring", +localId, +timeStamp, endDate);
-      // return;
       this.props.dispatch(
         completeRecurringEvent({
           payload: {
@@ -329,7 +325,6 @@ class Diary extends Component {
         })
       );
     } else {
-      // Reactotron.log("recurring event mag deze niet tonen");
       this.props.dispatch(
         completeEvent({ payload: { eventId: id, completed: !val } })
       );
@@ -524,7 +519,6 @@ class Diary extends Component {
     const allEvents = [...groupedFeedingEvents, ...nonFeedingevents].sort(
       (a, b) => a.startDate - b.startDate
     );
-    Reactotron.log("ALL-EVENTS", this.props.data.events);
 
     if (tabIndex === 1) {
       return (
@@ -700,15 +694,9 @@ class Diary extends Component {
     }
 
     const allEvents = this.props.data.events || [];
-    // Reactotron.log("all events", events);
     const currentAnimal = animals[this.state.currentIndex];
     const { currentDate, tabIndex } = this.state;
-    // const allPainMeasurements = compose(
-    //   filter(isRelatedToAnimal(currentAnimal)),
-    //   filter(isPainMeasurement)
-    // )(events);
     const events = compose(filter(isRelatedToAnimal(currentAnimal)))(allEvents);
-    Reactotron.log("DiaryState", this.state);
 
     return (
       <View style={(s.screenContainer, width)}>

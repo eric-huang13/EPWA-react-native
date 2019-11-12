@@ -6,8 +6,6 @@ import Reactotron from "reactotron-react-native";
 
 class RedirectToPainMeasurement extends Component {
   componentDidMount() {
-    Reactotron.log("didmount redirect", this.props);
-
     this.props.navigation.navigate("painMeasurement", {
       redirectPath: "Diary",
       forceAnimalSelection: true,

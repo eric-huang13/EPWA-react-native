@@ -354,7 +354,6 @@ class AnimalForm extends Component {
     const type =
       this.props.navigation.getParam("type") ||
       this.props.navigation.getParam("initialValue").type;
-    // Reactotron.log("animalform", type);
 
     const selectItems = {
       breed: ramdaValues(

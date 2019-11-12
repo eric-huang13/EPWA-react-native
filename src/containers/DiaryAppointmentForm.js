@@ -71,8 +71,6 @@ import iconMap from "../constants/iconMap";
 import MultiLineTextField from "../components/MultiLineTextField";
 import nlLocale from "date-fns/locale/nl";
 
-import Reactotron from "reactotron-react-native";
-
 const validationSchema = yup.object().shape({
   payload: yup.array().of(noteEventValidation)
 });
@@ -327,7 +325,6 @@ class diaryAppointmentForm extends Component {
     const { t, setFieldValue, values, i18n } = this.props;
     const currentDate = this.props.navigation.getParam("currentDate");
 
-    // Reactotron.log('recurring', values);
     return (
       <RecurringForm
         t={t}
@@ -414,8 +411,6 @@ const triggerSubmitType = (
 };
 
 const onSubmit = (values, formikBag) => {
-  // Reactotron.log("Wat text", values, formikBag);
-
   const t = formikBag.props.t;
 
   const flattenValues = compose(
@@ -477,13 +472,10 @@ const onSubmit = (values, formikBag) => {
           });
         }
       } else if (choice === "no") {
-        // Reactotron.log("voor", flattenValues);
         delete flattenValues[0].id;
         // delete flattenValues[0].recurring;
         // delete flattenValues[0].recurring_untill;
         flattenValues[0].localId = getId();
-        // Reactotron.log("na", flattenValues);
-        // return;
         return await triggerSubmitType(flattenValues, {
           formikBag,
           alertTitle: "alertSuccess",

@@ -11,7 +11,6 @@ import {
   isValid
 } from "date-fns";
 import { __, compose, flatten, isNil, indexOf } from "ramda";
-import { get } from "lodash";
 
 import { colors, fonts } from "../themes";
 import DatePicker from "./DatePicker";
@@ -23,8 +22,6 @@ import {
 } from "../services/date";
 import SelectButton from "./SelectButton";
 import nlLocale from "date-fns/locale/nl";
-
-import Reactotron from "reactotron-react-native";
 
 const recurringVal = {
   0: "d",
@@ -43,7 +40,6 @@ class RecurringForm extends Component {
       tabIndex: 1,
       recurring_untill: this.setRecurringUntill() || null
     };
-    // this.setRecurring();
   }
 
   componentDidMount() {
@@ -183,11 +179,9 @@ class RecurringForm extends Component {
     }
     const firstType = Object.keys(values)[0];
     if (isNil(values[firstType][0].recurringUntill)) {
-      // Reactotron.log('untill', values[firstType][0]);
       return null;
     }
     const recurUntill = values[firstType][0].recurringUntill;
-    // Reactotron.log('untill', recurUntill);
     return recurUntill;
   };
 
@@ -228,8 +222,6 @@ class RecurringForm extends Component {
   render() {
     const { t, i18n, setFieldValue, values, currentDate } = this.props;
     let ref;
-    Reactotron.log("RECURRING", values);
-    // Reactotron.log("RECURRING2", values.roughage[0].recurring);
     return (
       <View>
         <View style={styles.container}>

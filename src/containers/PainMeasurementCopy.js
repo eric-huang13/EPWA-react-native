@@ -61,7 +61,6 @@ class painMeasurement extends Component {
 
     const redirectPath = navigation.getParam("redirectPath");
     const animal = navigation.getParam("animal");
-    Reactotron.log("PARAM", animal, redirectPath);
     // const editId = this.props.navigation.getParam("editId");
     // const editType = this.props.navigation.getParam("editType");
 

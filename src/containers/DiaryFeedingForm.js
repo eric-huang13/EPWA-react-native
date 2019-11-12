@@ -122,8 +122,6 @@ class DiaryFeedingForm extends Component {
     const isEditing = Boolean(props.navigation.getParam("initialValue"));
     const localDate = +props.navigation.getParam("localDate") || null;
 
-    // Reactotron.log("localDate in Form", format(localDate));
-
     this.state = {
       isEditing,
       localDate
@@ -194,7 +192,6 @@ class DiaryFeedingForm extends Component {
     const fieldPath = `${namespace}[${index}].${fieldName}`;
     const hasErrors = get(errors, fieldPath);
     const currentDate = this.props.navigation.getParam("currentDate");
-    // Reactotron.log("currentDate in Form", currentDate);
 
     let ref;
 
@@ -422,7 +419,6 @@ class DiaryFeedingForm extends Component {
 
   renderFieldArray = name => {
     const { values } = this.props;
-    // Reactotron.log(values);
     const pushValue = this.getInitialEventValue(eventTypes[name]);
 
     const shouldRender =
@@ -479,7 +475,6 @@ class DiaryFeedingForm extends Component {
     const currentDate = this.props.navigation.getParam("currentDate");
     const lang = this.props.i18n.language;
 
-    // Reactotron.log("values", values);
     return (
       <View style={s.screenContainer}>
         <KeyboardAvoidingView
@@ -564,8 +559,6 @@ const triggerSubmitType = (
 };
 
 const onSubmit = (values, formikBag) => {
-  // Reactotron.log("Wat text", values, formikBag);
-
   const t = formikBag.props.t;
 
   const flattenValues = compose(
@@ -627,12 +620,10 @@ const onSubmit = (values, formikBag) => {
           });
         }
       } else if (choice === "no") {
-        // Reactotron.log("voor", flattenValues);
         delete flattenValues[0].id;
         // delete flattenValues[0].recurring;
         // delete flattenValues[0].recurring_untill;
         flattenValues[0].localId = getId();
-        // Reactotron.log("na", flattenValues);
         // return;
         return await triggerSubmitType(flattenValues, {
           formikBag,

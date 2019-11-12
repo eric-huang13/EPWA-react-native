@@ -353,7 +353,6 @@ class DiaryHousingForm extends Component {
     const { t, setFieldValue, values, i18n } = this.props;
     const currentDate = this.props.navigation.getParam("currentDate");
 
-    // Reactotron.log('recurring', values);
     return (
       <RecurringForm
         t={t}
@@ -505,12 +504,10 @@ const onSubmit = (values, formikBag) => {
           });
         }
       } else if (choice === "no") {
-        // Reactotron.log("voor", flattenValues);
         delete flattenValues[0].id;
         // delete flattenValues[0].recurring;
         // delete flattenValues[0].recurring_untill;
         flattenValues[0].localId = getId();
-        // Reactotron.log("na", flattenValues);
         // return;
         return await triggerSubmitType(flattenValues, {
           formikBag,
