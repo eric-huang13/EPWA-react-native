@@ -229,11 +229,11 @@ class DiaryShareEventsForm extends Component {
     const selectionTrue = RemoveFalseAndTransformToArray(values);
     const selection = Object.keys(selectionTrue).toString();
 
-    const uri = `http://localhost:3000/user/1/animal/${animalId}/start/${startDate}/end/${endDate}/selection/${selection}`;
+    const uri = `https://epwa-api.ehero.es/getpdf/user/1/animal/${animalId}/start/${startDate}/end/${endDate}/selection/${selection}`;
 
     try {
       const result = await Share.share({
-        message: t("shareAppContentAnimalProfile"),
+        message: "Bekijk mijn epwa resultaten",
         url: uri
       });
 
@@ -397,29 +397,29 @@ const onSubmit = ({ payload }, formikBag) => {
   const localDate = formikBag.props.navigation.getParam("localDate");
   // Reactotron.log("Payload", payload, formikBag);
 
-  const onShare = async () => {
-    const { t } = this.props;
-    const uri = `https://epwa-api.ehero.es/api/api/pdf/events?from=${startRange}&untill=${endRange}&animal_id=${animalId}&user_id=1&selection=${selection}`;
-    try {
-      const result = await Share.share({
-        message: t("shareAppContentAnimalProfile"),
-        url: uri
-      });
+  // const onShare = async () => {
+  //   const { t } = this.props;
+  //   const uri = `https://epwa-api.ehero.es/api/api/pdf/events?from=${startRange}&untill=${endRange}&animal_id=${animalId}&user_id=1&selection=${selection}`;
+  //   try {
+  //     const result = await Share.share({
+  //       message: t("shareAppContentAnimalProfile"),
+  //       url: uri
+  //     });
 
-      // if (result.action === Share.sharedAction) {
-      //   if (result.activityType) {
-      //     // shared with activity type of result.activityType
-      //   } else {
-      //     // shared
-      //   }
-      // } else if (result.action === Share.dismissedAction) {
-      //   // dismissed
-      // }
-    } catch (error) {
-      Alert.alert(error.message);
-    }
-  };
-  onShare();
+  //     // if (result.action === Share.sharedAction) {
+  //     //   if (result.activityType) {
+  //     //     // shared with activity type of result.activityType
+  //     //   } else {
+  //     //     // shared
+  //     //   }
+  //     // } else if (result.action === Share.dismissedAction) {
+  //     //   // dismissed
+  //     // }
+  //   } catch (error) {
+  //     Alert.alert(error.message);
+  //   }
+  // };
+  // onShare();
 };
 
 const formikOptions = {
