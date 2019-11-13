@@ -32,10 +32,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.googleusercontent.apps.105807776637-gpud09t1m1tfvjn6tuggtuefth3a8m62</string>
+			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.105807776637-gpud09t1m1tfvjn6tuggtuefth3a8m62</string>
+				<string>com.googleusercontent.apps.131572239324-onjvedkh3kqj9fm1s6sle41he93g8n3d</string>
 			</array>
 		</dict>
 		<dict>
@@ -50,7 +50,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>38</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>FacebookAppID</key>
 	<string>421272148390513</string>
 	<key>FacebookDisplayName</key>
