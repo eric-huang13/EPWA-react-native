@@ -177,7 +177,7 @@ export function* addEvent(api, dispatch, action) {
         };
       }
 
-      yield RNCalendarEvents.saveEvent(title, options, {});
+      // yield RNCalendarEvents.saveEvent(title, options, {});
     }
   }
 
@@ -187,7 +187,9 @@ export function* addEvent(api, dispatch, action) {
     formHelpers.resetForm();
   }
 
-  yield call(NavigatorService.navigate, "Diary");
+  yield call(NavigatorService.navigate, "Diary", {
+    id: payload
+  });
 }
 
 export function* addEventCommit(action) {
@@ -431,7 +433,7 @@ export function* completeRecurringEvent(api, dispatch, action) {
     event => {
       const result = event;
 
-      if (event.data === "null" && event.data === '"null"') {
+      if (event.data === "null" && event.data === "\"null\"") {
         result.data = null;
       }
 

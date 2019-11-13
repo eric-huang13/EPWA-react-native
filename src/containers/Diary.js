@@ -102,11 +102,8 @@ class Diary extends Component {
   constructor(props) {
     super(props);
 
-    const selectedAnimalIndex = this.getSelectedAnimalIndex();
-    const isInitialValuePassed = selectedAnimalIndex !== -1;
-
     this.state = {
-      currentIndex: isInitialValuePassed ? selectedAnimalIndex : 0,
+      currentIndex: 0,
       currentDate: new Date(),
       tabIndex: 1
     };
@@ -170,11 +167,32 @@ class Diary extends Component {
     ];
   }
 
+  static getDerivedStateFromProps(props, state) {
+    const event = props.navigation.getParam("id");
+    if (event) {
+      const animalId = event[0].animalId;
+      const selectedAnimalIndex = props.data.animals.findIndex(
+        animal => animal.id === animalId
+      );
+      const isInitialValuePassed = selectedAnimalIndex !== -1;
+      const index = isInitialValuePassed ? selectedAnimalIndex : 0;
+      return {
+        ...state,
+        currentIndex: index
+      };
+    }
+    return null;
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.t !== this.props.t) {
       this.setButtons();
     }
   }
+
+  setCurrentIndex = index => {
+    this.setState({ currentIndex: index });
+  };
 
   onDatePicked = date => {
     this.setState({ currentDate: date });
@@ -692,7 +710,6 @@ class Diary extends Component {
     if (!animals.length) {
       return this.renderEmptyState();
     }
-
     const allEvents = this.props.data.events || [];
     const currentAnimal = animals[this.state.currentIndex];
     const { currentDate, tabIndex } = this.state;
