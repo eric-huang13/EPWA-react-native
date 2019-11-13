@@ -465,31 +465,27 @@ export const addRecurringEvents = (allEvents, currentDate, tabIndex) => {
   }
 
   const allReducedEvents = allEvents.reduce((a, event) => {
+    const eventStartDate = new Date(event.startDate);
+    const eventRecurring = new Date(event.recurringUntill);
     if (
       (isNil(event.recurring) || event.recurring === "") &&
-      !isWithinRange(format(event.startDate, "MM/DD/YYYY"), beginDate, endDate)
+      !isWithinRange(eventStartDate, beginDate, endDate)
     ) {
       return a;
     }
     if (
       (isNil(event.recurring) || event.recurring === "") &&
-      isWithinRange(format(event.startDate, "MM/DD/YYYY"), beginDate, endDate)
+      isWithinRange(eventStartDate, beginDate, endDate)
     ) {
       return [...a, event];
     }
 
-    if (
-      !isNil(event.recurringUntill) &&
-      isBefore(
-        format(beginDate, "MM/DD/YYYY"),
-        format(event.recurringUntill, "MM/DD/YYYY")
-      )
-    ) {
-      return a;
+    if (!isNil(event.recurringUntill) && isBefore(beginDate, eventRecurring)) {
+      return [...a, event];
     }
     if (
       !isNil(event.recurringUntill) &&
-      isBefore(format(event.recurringUntill, "MM/DD/YYYY"), format(endDate))
+      isBefore(eventRecurring, format(endDate))
     ) {
       return [
         ...a,
@@ -545,6 +541,17 @@ export const addRecurringEvents = (allEvents, currentDate, tabIndex) => {
               compare.data.name === event.data.name &&
               compare.data.quantity === event.data.quantity
           )
+      );
+    }
+
+    if (event.category === eventCategories.appointment) {
+      return isNil(
+        allNonRecurringEvents.find(
+          compare =>
+            isSameDay(format(compare.startDate), format(event.startDate)) &&
+            compare.type === event.type &&
+            compare.id === event.id
+        )
       );
     }
 

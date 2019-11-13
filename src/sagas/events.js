@@ -135,16 +135,10 @@ export function* addEvent(api, dispatch, action) {
       let description = (payload[0].data || {}).note || "";
       let recurring = payload[0].recurring;
       let startDate = new Date(payload[0].startDate).toISOString();
-      let endDate = payload[0].recurring_untill
+      let endDate = new Date(new Date(payload[0].startDate).setUTCHours(23, 59, 59, 999)).toISOString(); // eslint-disable-line prettier/prettier
+      let recurrenceEndDate = payload[0].recurring_untill
         ? new Date(payload[0].recurring_untill).toISOString()
-        : startDate;
-
-      const options = {
-        title,
-        description,
-        startDate,
-        endDate
-      };
+        : endDate;
 
       switch (recurring) {
         case "d":
@@ -170,10 +164,12 @@ export function* addEvent(api, dispatch, action) {
         endDate
       });
 
+      const options = { title, description, startDate, endDate };
+
       if (recurring) {
         options.recurrenceRule = {
           frequency: recurring,
-          endDate: endDate
+          endDate: recurrenceEndDate
         };
       }
 
