@@ -421,6 +421,7 @@ const recurringMonths = event => {
   const nextDate = parseDateField(eventNextMonth, event);
   return [
     { ...event, startDate: prevDate, id: `${event.id}_${prevDate}` },
+    { ...event },
     { ...event, startDate: nextDate, id: `${event.id}_${nextDate}` }
   ];
 };
@@ -433,11 +434,17 @@ const recurringYear = (event, currentDate) => {
 };
 
 const getRecurringEvents = (event, endDay, currentDate) => {
+  let maxDate;
+  if (isBefore(endDay, currentDate)) {
+    maxDate = endDay;
+  } else {
+    maxDate = currentDate;
+  }
   switch (event.recurring) {
     case "d":
-      return recurringDays(event, endDay, 1);
+      return recurringDays(event, maxDate, 1);
     case "w":
-      return recurringDays(event, endDay, 7);
+      return recurringDays(event, maxDate, 7);
     case "m":
       return recurringMonths(event);
     case "y":
@@ -479,14 +486,8 @@ export const addRecurringEvents = (allEvents, currentDate, tabIndex) => {
     ) {
       return [...a, event];
     }
-
-    if (!isNil(event.recurringUntill) && isBefore(beginDate, eventRecurring)) {
-      return [...a, event];
-    }
-    if (
-      !isNil(event.recurringUntill) &&
-      isBefore(eventRecurring, format(endDate))
-    ) {
+    if (!isNil(event.recurringUntill) && isBefore(eventRecurring, endDate)) {
+      Reactotron.log("eerste");
       return [
         ...a,
         ...getRecurringEvents(
@@ -496,7 +497,8 @@ export const addRecurringEvents = (allEvents, currentDate, tabIndex) => {
         )
       ];
     }
-    return [...a, ...getRecurringEvents(event, endDate, currentDate)];
+    Reactotron.log("tweede");
+    return [...a, ...getRecurringEvents(event, endDate, endDate)];
   }, []);
 
   const allRecurringEvents = allReducedEvents.filter(
@@ -506,14 +508,6 @@ export const addRecurringEvents = (allEvents, currentDate, tabIndex) => {
   const allNonRecurringEvents = allReducedEvents.filter(
     event => isNil(event.recurring) || event.recurring === ""
   );
-
-  // const allFacialPainEvents = allNonRecurringEvents.filter(
-  //   event => event.type === eventTypes.facialExpression
-  // );
-
-  // const allCompositePainEvents = allNonRecurringEvents.filter(
-  //   event => event.type === eventTypes.composite
-  // );
 
   const removedDoubleEvents = allRecurringEvents.filter(event => {
     if (event.category === eventCategories.feeding) {
@@ -571,32 +565,27 @@ export const addRecurringEvents = (allEvents, currentDate, tabIndex) => {
 };
 
 export const addRecurringCalendarEvents = (allEvents, month = new Date()) => {
-  const beginDate = subMonths(startOfMonth(format(month)), 1);
-  const endDate = addMonths(endOfMonth(format(month)), 6);
+  const beginDate = subMonths(startOfMonth(format(month)), 3);
+  const endDate = addMonths(endOfMonth(format(month)), 12);
 
   const allReducedEvents = allEvents.reduce((a, event) => {
+    const eventStartDate = new Date(event.startDate);
+    const eventRecurring = new Date(event.recurringUntill);
     if (
-      isNil(event.recurring) &&
-      !isWithinRange(format(event.startDate), beginDate, endDate)
+      (isNil(event.recurring) || event.recurring === "") &&
+      !isWithinRange(eventStartDate, beginDate, endDate)
     ) {
       return a;
     }
     if (
-      isNil(event.recurring) &&
-      isWithinRange(format(event.startDate), beginDate, endDate)
+      (isNil(event.recurring) || event.recurring === "") &&
+      isWithinRange(eventStartDate, beginDate, endDate)
     ) {
       return [...a, event];
     }
-
     if (
-      !isNil(event.recurringUntill) &&
-      isBefore(format(beginDate), format(event.recurringUntill))
-    ) {
-      return a;
-    }
-    if (
-      !isNil(event.recurringUntill) &&
-      isBefore(format(event.recurringUntill), format(endDate))
+      (!isNil(event.recurringUntill) || event.recurring === "") &&
+      isBefore(eventRecurring, format(endDate))
     ) {
       return [
         ...a,
@@ -607,11 +596,11 @@ export const addRecurringCalendarEvents = (allEvents, month = new Date()) => {
   }, []);
 
   const allRecurringEvents = allReducedEvents.filter(
-    event => !isNil(event.recurring)
+    event => !isNil(event.recurring) || event.recurring !== ""
   );
 
-  const allNonRecurringEvents = allReducedEvents.filter(event =>
-    isNil(event.recurring)
+  const allNonRecurringEvents = allReducedEvents.filter(
+    event => isNil(event.recurring) || event.recurring === ""
   );
 
   const removedDoubleEvents = allRecurringEvents.filter(event => {
