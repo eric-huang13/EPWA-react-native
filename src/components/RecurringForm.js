@@ -148,7 +148,7 @@ class RecurringForm extends Component {
     }
     const firstType = Object.keys(values)[0];
     const recurVal = values[firstType][0].recurring;
-    if (isNil(recurVal)) {
+    if (isNil(recurVal) || recurVal === "") {
       return false;
     }
     return true;

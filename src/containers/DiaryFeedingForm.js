@@ -66,7 +66,7 @@ import iconMap from "../constants/iconMap";
 import RecurringForm from "../components/RecurringForm";
 import nlLocale from "date-fns/locale/nl";
 
-import Reactotron from "reactotron-react-native";
+// import Reactotron from "reactotron-react-native";
 
 const validationSchema = yup.object().shape({
   roughage: yup.array().of(quantityEventValidation),
