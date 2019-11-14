@@ -103,7 +103,7 @@ class Diary extends Component {
   constructor(props) {
     super(props);
 
-    const selectedAnimalIndex = this.getSelectedAnimalIndex();
+    const selectedAnimalIndex = this.getSelectedAnimalIndex(props);
     const isInitialValuePassed = selectedAnimalIndex !== -1;
 
     this.state = {
@@ -194,12 +194,6 @@ class Diary extends Component {
       this.setButtons();
     }
   }
-
-  // shouldComponentUpdate(prevProps, prevState) {
-  //   if (prevProps.currentIndex !== this.state.currentIndex) {
-  //     return true;
-  //   }
-  // }
 
   setCurrentIndex = index => {
     this.setState({ currentIndex: index });

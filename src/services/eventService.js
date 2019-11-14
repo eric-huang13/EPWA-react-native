@@ -487,7 +487,6 @@ export const addRecurringEvents = (allEvents, currentDate, tabIndex) => {
       return [...a, event];
     }
     if (!isNil(event.recurringUntill) && isBefore(eventRecurring, endDate)) {
-      Reactotron.log("eerste");
       return [
         ...a,
         ...getRecurringEvents(
@@ -497,7 +496,6 @@ export const addRecurringEvents = (allEvents, currentDate, tabIndex) => {
         )
       ];
     }
-    Reactotron.log("tweede");
     return [...a, ...getRecurringEvents(event, endDate, endDate)];
   }, []);
 

@@ -186,6 +186,16 @@ class RecurringForm extends Component {
   };
 
   setNotification = () => {
+    const { setFieldValue, values } = this.props;
+
+    Object.keys(values).map(eventType => {
+      values[eventType].map((_, i) => {
+        setFieldValue(
+          `${eventType}[${i}].notification`,
+          !this.state.notification
+        );
+      });
+    });
     this.setState(prevState => ({
       notification: !prevState.notification
     }));
