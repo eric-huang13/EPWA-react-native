@@ -224,6 +224,15 @@ class RecurringForm extends Component {
     let ref;
     return (
       <View>
+        <View style={[styles.container, styles.borderBottom]}>
+          <Text style={fonts.style.normal}>{t("notification")}</Text>
+          <Switch
+            style={{ marginLeft: 20 }}
+            value={this.state.notification}
+            trackColor={{ true: colors.lima }}
+            onValueChange={this.setNotification}
+          />
+        </View>
         <View style={styles.container}>
           <Text style={fonts.style.normal}>{t("recurring")}</Text>
           <Switch
@@ -281,15 +290,6 @@ class RecurringForm extends Component {
               </SelectButton>
             </View>
           </View>
-          <View style={styles.container}>
-            <Text style={fonts.style.normal}>{t("notification")}</Text>
-            <Switch
-              style={{ marginLeft: 20 }}
-              value={this.state.notification}
-              trackColor={{ true: colors.lima }}
-              onValueChange={this.setNotification}
-            />
-          </View>
         </Collapsible>
       </View>
     );
@@ -336,6 +336,10 @@ const styles = StyleSheet.create({
     ...fonts.style.titleFont,
     textAlign: "center",
     marginVertical: 40
+  },
+  borderBottom: {
+    borderBottomWidth: 1,
+    borderBottomColor: colors.darkFilter
   }
 });
 
