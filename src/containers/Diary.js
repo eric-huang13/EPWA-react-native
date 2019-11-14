@@ -102,8 +102,11 @@ class Diary extends Component {
   constructor(props) {
     super(props);
 
+    const selectedAnimalIndex = this.getSelectedAnimalIndex();
+    const isInitialValuePassed = selectedAnimalIndex !== -1;
+
     this.state = {
-      currentIndex: 0,
+      currentIndex: isInitialValuePassed ? selectedAnimalIndex : 0,
       currentDate: new Date(),
       tabIndex: 1
     };
@@ -167,26 +170,33 @@ class Diary extends Component {
     ];
   }
 
-  static getDerivedStateFromProps(props, state) {
-    const event = props.navigation.getParam("id");
-    if (event) {
-      const animalId = event[0].animalId;
-      const selectedAnimalIndex = props.data.animals.findIndex(
-        animal => animal.id === animalId
-      );
-      const isInitialValuePassed = selectedAnimalIndex !== -1;
-      const index = isInitialValuePassed ? selectedAnimalIndex : 0;
-      return {
-        ...state,
-        currentIndex: index
-      };
-    }
-    return null;
-  }
+  // static getDerivedStateFromProps(props, state) {
+  //   const event = props.navigation.getParam("id");
+
+  //   if (event) {
+  //     const animalId = event[0].animalId;
+  //     const selectedAnimalIndex = props.data.animals.findIndex(
+  //       animal => animal.id === animalId
+  //     );
+  //     const isInitialValuePassed = selectedAnimalIndex !== -1;
+  //     const index = isInitialValuePassed ? selectedAnimalIndex : 0;
+  //     return {
+  //       ...state,
+  //       currentIndex: index
+  //     };
+  //   }
+  //   return null;
+  // }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.t !== this.props.t) {
       this.setButtons();
+    }
+  }
+
+  shouldComponentUpdate(prevProps, prevState) {
+    if (prevProps.currentIndex !== this.state.currentIndex) {
+      return true;
     }
   }
 
