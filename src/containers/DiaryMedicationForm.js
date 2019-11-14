@@ -810,17 +810,21 @@ const onSubmit = (values, formikBag) => {
   )(values);
 
   if (flattenValues[0].startDate > flattenValues[0].recurring_untill) {
-    Alert.alert(
-      "",
-      "Please select recurring date that comes after event start time"
-    );
+    Alert.alert("", t("recurringAfterStartDate"));
     return;
   }
 
   const initialValue = formikBag.props.navigation.getParam("initialValue");
+  const completeEvent =
+    formikBag.props.navigation.getParam("completeEvent") || false;
+
   let isEditing = Boolean(initialValue);
 
   const localDate = formikBag.props.navigation.getParam("localDate");
+
+  if (completeEvent) {
+    flattenValues[0].completed = true;
+  }
 
   if (!isNil(localDate) && isNil(flattenValues[0].recurring)) {
     delete flattenValues[0].id;

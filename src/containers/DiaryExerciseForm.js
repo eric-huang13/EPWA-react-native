@@ -417,10 +417,7 @@ const onSubmit = (values, formikBag) => {
   )(values);
 
   if (flattenValues[0].startDate > flattenValues[0].recurring_untill) {
-    Alert.alert(
-      "",
-      "Please select recurring date that comes after event start time"
-    );
+    Alert.alert("", t("recurringAfterStartDate"));
     return;
   }
 

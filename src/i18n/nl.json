@@ -1128,7 +1128,8 @@
     "yearly": "jaarlijks",
     "start": "Start",
     "end": "Einde",
-    "warnDeleteAccount1": "ACCOUNT PERMANENT VERWIJDEREN?"
+    "warnDeleteAccount1": "ACCOUNT PERMANENT VERWIJDEREN?",
+    "recurringAfterStartDate": "De herhaling kan niet eindigen voor de startdatum van de huidige taak."
   },
 
   "calendar": {
