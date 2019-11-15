@@ -5,7 +5,6 @@
 	};
 	objectVersion = 51;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* EPWATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* EPWATests.m */; };
 		09BF61E6D4E042F692E0AC47 /* SourceSerifPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D9A3468C98694042A8134CDD /* SourceSerifPro-Bold.ttf */; };

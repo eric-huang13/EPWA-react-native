@@ -25,8 +25,8 @@ import Reactotron from "../config/reactotronConfig";
 // import imageMap from "../constants/imageMap";
 
 const iconFacial = "starticoontje-pijnschalen-gezichtsuitdrukkingen";
-const iconComposite = "compositeScale";
-const iconCompositeHorse = "icoontje-samenegstelde-pijnschaal-paard-schrapen";
+const iconComposite = "starticoontje-pijnschalen-samengestelde-pijnschaal";
+const iconCompositeHorse = "starticoontje-pijnschalen-PAARD1";
 const iconCompositeDonkey = "starticoontje-pijnschale-EZEL";
 const iconFacialHorse = "PAARD-gezichtsuitdrukking-pijn-alles";
 const iconFacialDonkey = "EZEL-gezichtsuitdrukking-pijn-alles";
