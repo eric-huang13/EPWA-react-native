@@ -176,6 +176,9 @@ class Diary extends Component {
 
   //   if (event) {
   //     const animalId = event[0].animalId;
+  //     if (isNil(animalId)) {
+  //       return null;
+  //     }
   //     const selectedAnimalIndex = props.data.animals.findIndex(
   //       animal => animal.id === animalId
   //     );

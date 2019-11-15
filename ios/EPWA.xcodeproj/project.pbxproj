@@ -5,6 +5,7 @@
 	};
 	objectVersion = 51;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* EPWATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* EPWATests.m */; };
 		09BF61E6D4E042F692E0AC47 /* SourceSerifPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D9A3468C98694042A8134CDD /* SourceSerifPro-Bold.ttf */; };
@@ -864,7 +865,7 @@
 			baseConfigurationReference = 6283133371B3B76ADC44E0DA /* Pods-EPWA.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 44;
+				CURRENT_PROJECT_VERSION = 45;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = Z39492TXR7;
 				HEADER_SEARCH_PATHS = (
@@ -987,7 +988,7 @@
 			baseConfigurationReference = 27D53785C4E2E35EE2EA6430 /* Pods-EPWA.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 44;
+				CURRENT_PROJECT_VERSION = 45;
 				DEVELOPMENT_TEAM = Z39492TXR7;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
