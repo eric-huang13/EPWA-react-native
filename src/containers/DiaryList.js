@@ -778,7 +778,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 19,
     paddingLeft: 60,
-    marginBottom: 5
+    marginBottom: 5,
+    maxWidth: 250
   },
   itemContentContainer: {
     flexDirection: "row",
@@ -797,6 +798,9 @@ const styles = StyleSheet.create({
   },
   completed: {
     opacity: 0.2
+  },
+  appointmentContent: {
+    maxWidth: "80%"
   }
 });
 
