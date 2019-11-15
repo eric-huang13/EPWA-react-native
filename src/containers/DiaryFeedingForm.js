@@ -65,6 +65,7 @@ import {
 import iconMap from "../constants/iconMap";
 import RecurringForm from "../components/RecurringForm";
 import nlLocale from "date-fns/locale/nl";
+import Reactotron from "../config/reactotronConfig";
 
 // import Reactotron from "reactotron-react-native";
 
@@ -575,6 +576,21 @@ const onSubmit = (values, formikBag) => {
   let isEditing = Boolean(initialValue);
 
   const localDate = formikBag.props.navigation.getParam("localDate");
+
+  for (let i = 0; i < flattenValues.length; i++) {
+    if (flattenValues[i].notification) {
+      const content =
+        flattenValues[i].data.unit === "unlimited"
+          ? t(flattenValues[i].data.unit)
+          : `${t(flattenValues[i].data.quantity)} ${t(
+              flattenValues[i].data.unit
+            )}`;
+      flattenValues[i].notificationData = `${t(
+        flattenValues[i].category
+      )} ${content} `;
+      Reactotron.log("NOTIFICATION VALUES", flattenValues[i]);
+    }
+  }
 
   if (!isNil(localDate) && isNil(flattenValues[0].recurring)) {
     delete flattenValues[0].id;

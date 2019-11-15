@@ -3,7 +3,7 @@ import camelcaseKeys from "camelcase-keys";
 import snakeCaseKeys from "snakecase-keys";
 import { get } from "lodash";
 import { compose, evolve, isNil, map, reject, omit, not } from "ramda";
-import { format } from "date-fns";
+import { format, addMinutes } from "date-fns";
 import RNCalendarEvents from "react-native-calendar-events";
 import Reactotron from "reactotron-react-native";
 
@@ -128,60 +128,75 @@ export function* addEvent(api, dispatch, action) {
     )
   );
 
-  Reactotron.log(payload[0]);
+  for (let i = 0; i < payload.length; i++) {
+    if (payload[i].notification === true) {
+      Reactotron.log("Start notification" + i);
 
-  if (payload[0].notification === true) {
-    Reactotron.log("Start notification");
+      if (yield RNCalendarEvents.authorizationStatus() !== "authorized") {
+        let auth = yield RNCalendarEvents.authorizeEventStore();
+        if (auth === "authorized") {
+          let title = payload[i].notificationData || payload[i].category;
+          let description;
+          let notes;
+          if (!isNil(payload[i].data)) {
+            description = payload[i].data.note || "";
+            notes = payload[i].data.note || "";
+          }
+          let recurring = payload[i].recurring;
+          let startDate = new Date(payload[i].startDate).toISOString();
+          let endDate;
+          // let endDate = new Date(new Date(payload[i].startDate).setHours(23, 59, 59, 999)).toISOString(); // eslint-disable-line prettier/prettier
+          let recurrenceEndDate = payload[i].recurring_untill
+            ? new Date(payload[i].recurring_untill).toISOString()
+            : endDate;
 
-    if (yield RNCalendarEvents.authorizationStatus() != "authorized") {
-      let auth = yield RNCalendarEvents.authorizeEventStore();
-      if (auth == "authorized") {
-        let title = payload[0].data.noteTitle || payload[0].category;
-        let description = payload[0].data.note || "";
-        let recurring = payload[0].recurring;
-        let startDate = new Date(payload[0].startDate).toISOString();
-        let endDate = new Date(new Date(payload[0].startDate).setHours(23, 59, 59, 999)).toISOString(); // eslint-disable-line prettier/prettier
-        let recurrenceEndDate = payload[0].recurring_untill
-          ? new Date(payload[0].recurring_untill).toISOString()
-          : endDate;
+          if (
+            payload[i].category === "housing" ||
+            payload[i].category === "exercise"
+          ) {
+            endDate = new Date(payload[i].endDate).toISOString();
+          } else {
+            endDate = new Date(addMinutes(new Date(payload[i].startDate), 15)).toISOString(); // eslint-disable-line prettier/prettier
+          }
 
-        switch (recurring) {
-          case "d":
-            recurring = "daily";
-            break;
-          case "w":
-            recurring = "weekly";
-            break;
-          case "m":
-            recurring = "monthly";
-            break;
-          case "y":
-            recurring = "yearly";
-            break;
-          default:
-            recurring = null;
+          switch (recurring) {
+            case "d":
+              recurring = "daily";
+              break;
+            case "w":
+              recurring = "weekly";
+              break;
+            case "m":
+              recurring = "monthly";
+              break;
+            case "y":
+              recurring = "yearly";
+              break;
+            default:
+              recurring = null;
+          }
+
+          Reactotron.log("Event", {
+            title,
+            description,
+            recurring,
+            startDate,
+            endDate
+          });
+
+          const details = { title, description, startDate, endDate, notes };
+
+          details.alarms = [{ date: -5 }];
+
+          if (recurring) {
+            details.recurrenceRule = {
+              frequency: recurring,
+              endDate: recurrenceEndDate
+            };
+          }
+
+          yield RNCalendarEvents.saveEvent(title, details, {});
         }
-
-        Reactotron.log("Event", {
-          title,
-          description,
-          recurring,
-          startDate,
-          endDate
-        });
-
-        const details = { title, description, startDate, endDate };
-
-        details.alarm = [{ date: 30 }];
-
-        if (recurring) {
-          details.recurrenceRule = {
-            frequency: recurring,
-            endDate: recurrenceEndDate
-          };
-        }
-
-        yield RNCalendarEvents.saveEvent(title, details, {});
       }
     }
   }
@@ -198,6 +213,7 @@ export function* addEvent(api, dispatch, action) {
 }
 
 export function* addEventCommit(action) {
+  Reactotron.log("ADD EVENT COMMIT", action.payload[0].id, action.payload[0]);
   const events = action.payload
     .map(event => camelcaseKeys(event))
     .map(event => {
@@ -438,7 +454,7 @@ export function* completeRecurringEvent(api, dispatch, action) {
     event => {
       const result = event;
 
-      if (event.data === "null" && event.data === '"null"') {
+      if (event.data === "null" && event.data === "\"null\"") {
         result.data = null;
       }
 

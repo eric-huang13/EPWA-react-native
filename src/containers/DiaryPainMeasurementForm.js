@@ -290,7 +290,7 @@ class DiaryPainMeasurementForm extends Component {
     const { navigation, values } = this.props;
     const animalId = navigation.getParam("animalId");
     const pushValue = DiaryPainMeasurementForm.getInitialEventValue(animalId);
-
+    Reactotron.log("PZIN", values);
     return (
       <FieldArray
         name="payload"
@@ -304,9 +304,10 @@ class DiaryPainMeasurementForm extends Component {
                   index
                 })
               )}
-            {this.state.isEditing ? null : (
+            {/*{this.state.isEditing ? null : (
               <PlusSection onPress={() => arrayHelpers.push(pushValue)} />
-            )}
+            )}*/}
+
           </View>
         )}
       />
@@ -415,6 +416,7 @@ const triggerSubmitType = (
 const onSubmit = ({ payload }, formikBag) => {
   const initialValue = formikBag.props.navigation.getParam("initialValue");
   const isEditing = Boolean(initialValue);
+  const { t } = formikBag.props;
 
   if (payload[0].startDate > payload[0].recurring_untill) {
     Alert.alert(
@@ -422,6 +424,11 @@ const onSubmit = ({ payload }, formikBag) => {
       "Please select recurring date that comes after event start time"
     );
     return;
+  }
+  if (payload[0].notification) {
+    payload[0].notificationData = `${t(
+      `categories.${payload[0].category}`
+    )} ${t(`painMeasurements.${payload[0].type}`)}`;
   }
 
   if (!isEditing) {

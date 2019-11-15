@@ -826,6 +826,14 @@ const onSubmit = (values, formikBag) => {
     flattenValues[0].completed = true;
   }
 
+  for (let i = 0; i < flattenValues.length; i++) {
+    if (flattenValues[i].notification) {
+      flattenValues[i].notificationData = `${t(flattenValues[i].category)} ${t(
+        flattenValues[i].data.quantity
+      )} ${t(flattenValues[i].data.unit)} `;
+    }
+  }
+
   if (!isNil(localDate) && isNil(flattenValues[0].recurring)) {
     delete flattenValues[0].id;
     delete flattenValues[0].recurring;

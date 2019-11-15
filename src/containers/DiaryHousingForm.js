@@ -450,6 +450,14 @@ const onSubmit = (values, formikBag) => {
     Object.values
   )(values);
 
+  for (let i = 0; i < flattenValues.length; i++) {
+    if (flattenValues[i].notification) {
+      flattenValues[i].notificationData = `${t(flattenValues[i].category)} ${t(
+        flattenValues[i].type
+      )}`;
+    }
+  }
+
   if (flattenValues[0].startDate > flattenValues[0].recurring_untill) {
     Alert.alert("", t("recurringAfterStartDate"));
     return;

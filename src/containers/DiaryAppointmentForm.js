@@ -427,6 +427,13 @@ const onSubmit = (values, formikBag) => {
     Alert.alert("", t("recurringAfterStartDate"));
     return;
   }
+  for (let i = 0; i < flattenValues.length; i++) {
+    if (flattenValues[i].notification) {
+      flattenValues[i].notificationData = `${t(
+        flattenValues[i].data.noteTitle
+      )}`;
+    }
+  }
 
   if (!isNil(localDate) && isNil(flattenValues[0].recurring)) {
     delete flattenValues[0].id;
