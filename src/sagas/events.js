@@ -128,14 +128,54 @@ export function* addEvent(api, dispatch, action) {
     )
   );
 
-  for (let i = 0; i < payload.length; i++) {
-    if (payload[i].notification === true) {
-      Reactotron.log("Start notification" + i);
+  // If formHelpers are not passed, do not alter state of the UI
+  if (formHelpers) {
+    formHelpers.setSubmitting(false);
+    formHelpers.resetForm();
+  }
 
+  yield call(NavigatorService.navigate, "Diary", {
+    id: payload
+  });
+}
+
+export function* addEventCommit(action) {
+  const payload = action.payload
+    .map(event => camelcaseKeys(event))
+    .map(event => {
+      // eslint-disable-next-line prettier/prettier
+      if (event.data === "null" || event.data === "\"null\"") {
+        event.data = null;
+      }
+
+      if (not(isNil(event.data))) {
+        return {
+          ...event,
+          data: camelcaseKeys(JSON.parse(event.data))
+        };
+      }
+
+      event.completed = Boolean(event.completed);
+
+      return event;
+    });
+
+  yield all(
+    payload.map((event, index) =>
+      put({
+        type: ADD_EVENT_COMMIT,
+        payload: event,
+        meta: { localId: get(action, `meta.formPayload[${index}].localId`) }
+      })
+    )
+  );
+
+  for (let i = 0; i < payload.length; i++) {
+    if (payload[i].data.notification === true) {
       if (yield RNCalendarEvents.authorizationStatus() !== "authorized") {
         let auth = yield RNCalendarEvents.authorizeEventStore();
         if (auth === "authorized") {
-          let title = payload[i].notificationData || payload[i].category;
+          let title = payload[i].data.notificationData || payload[i].category;
           let description;
           let notes;
           if (!isNil(payload[i].data)) {
@@ -145,7 +185,6 @@ export function* addEvent(api, dispatch, action) {
           let recurring = payload[i].recurring;
           let startDate = new Date(payload[i].startDate).toISOString();
           let endDate;
-          // let endDate = new Date(new Date(payload[i].startDate).setHours(23, 59, 59, 999)).toISOString(); // eslint-disable-line prettier/prettier
           let recurrenceEndDate = payload[i].recurring_untill
             ? new Date(payload[i].recurring_untill).toISOString()
             : endDate;
@@ -176,16 +215,7 @@ export function* addEvent(api, dispatch, action) {
               recurring = null;
           }
 
-          Reactotron.log("Event", {
-            title,
-            description,
-            recurring,
-            startDate,
-            endDate
-          });
-
           const details = { title, description, startDate, endDate, notes };
-
           details.alarms = [{ date: -5 }];
 
           if (recurring) {
@@ -200,49 +230,6 @@ export function* addEvent(api, dispatch, action) {
       }
     }
   }
-
-  // If formHelpers are not passed, do not alter state of the UI
-  if (formHelpers) {
-    formHelpers.setSubmitting(false);
-    formHelpers.resetForm();
-  }
-
-  yield call(NavigatorService.navigate, "Diary", {
-    id: payload
-  });
-}
-
-export function* addEventCommit(action) {
-  Reactotron.log("ADD EVENT COMMIT", action.payload[0].id, action.payload[0]);
-  const events = action.payload
-    .map(event => camelcaseKeys(event))
-    .map(event => {
-      // eslint-disable-next-line prettier/prettier
-      if (event.data === "null" || event.data === "\"null\"") {
-        event.data = null;
-      }
-
-      if (not(isNil(event.data))) {
-        return {
-          ...event,
-          data: camelcaseKeys(JSON.parse(event.data))
-        };
-      }
-
-      event.completed = Boolean(event.completed);
-
-      return event;
-    });
-
-  yield all(
-    events.map((event, index) =>
-      put({
-        type: ADD_EVENT_COMMIT,
-        payload: event,
-        meta: { localId: get(action, `meta.formPayload[${index}].localId`) }
-      })
-    )
-  );
 }
 
 export function* addEventRollback(action) {
@@ -297,6 +284,68 @@ export function* editEvent(api, dispatch, action) {
 
   formHelpers.setSubmitting(false);
   formHelpers.resetForm();
+
+  for (let i = 0; i < payload.length; i++) {
+    if (payload[i].data.notification === true) {
+      if (yield RNCalendarEvents.authorizationStatus() !== "authorized") {
+        let auth = yield RNCalendarEvents.authorizeEventStore();
+        if (auth === "authorized") {
+          let title = payload[i].data.notificationData || payload[i].category;
+          let description;
+          let notes;
+          if (!isNil(payload[i].data)) {
+            description = payload[i].data.note || "";
+            notes = payload[i].data.note || "";
+          }
+          let recurring = payload[i].recurring;
+          let startDate = new Date(payload[i].startDate).toISOString();
+          let endDate;
+          let recurrenceEndDate = payload[i].recurring_untill
+            ? new Date(payload[i].recurring_untill).toISOString()
+            : endDate;
+
+          if (
+            payload[i].category === "housing" ||
+            payload[i].category === "exercise"
+          ) {
+            endDate = new Date(payload[i].endDate).toISOString();
+          } else {
+            endDate = new Date(addMinutes(new Date(payload[i].startDate), 15)).toISOString(); // eslint-disable-line prettier/prettier
+          }
+
+          switch (recurring) {
+            case "d":
+              recurring = "daily";
+              break;
+            case "w":
+              recurring = "weekly";
+              break;
+            case "m":
+              recurring = "monthly";
+              break;
+            case "y":
+              recurring = "yearly";
+              break;
+            default:
+              recurring = null;
+          }
+
+          const details = { title, description, startDate, endDate, notes };
+          details.id = payload[i].id;
+          details.alarms = [{ date: -5 }];
+
+          if (recurring) {
+            details.recurrenceRule = {
+              frequency: recurring,
+              endDate: recurrenceEndDate
+            };
+          }
+
+          yield RNCalendarEvents.saveEvent(title, details, {});
+        }
+      }
+    }
+  }
 
   yield call(NavigatorService.navigate, "Diary");
 }

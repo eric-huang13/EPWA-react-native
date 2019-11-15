@@ -451,10 +451,10 @@ const onSubmit = (values, formikBag) => {
   )(values);
 
   for (let i = 0; i < flattenValues.length; i++) {
-    if (flattenValues[i].notification) {
-      flattenValues[i].notificationData = `${t(flattenValues[i].category)} ${t(
-        flattenValues[i].type
-      )}`;
+    if (flattenValues[i].data.notification) {
+      flattenValues[i].data.notificationData = `${t(
+        flattenValues[i].category
+      )} ${t(flattenValues[i].type)}`;
     }
   }
 

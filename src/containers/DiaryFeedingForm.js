@@ -578,14 +578,14 @@ const onSubmit = (values, formikBag) => {
   const localDate = formikBag.props.navigation.getParam("localDate");
 
   for (let i = 0; i < flattenValues.length; i++) {
-    if (flattenValues[i].notification) {
+    if (flattenValues[i].data.notification) {
       const content =
         flattenValues[i].data.unit === "unlimited"
           ? t(flattenValues[i].data.unit)
-          : `${t(flattenValues[i].data.quantity)} ${t(
-              flattenValues[i].data.unit
-            )}`;
-      flattenValues[i].notificationData = `${t(
+          : ` ${t(flattenValues[i].data.name)} ${t(
+              flattenValues[i].data.quantity
+            )} ${t(flattenValues[i].data.unit)}`;
+      flattenValues[i].data.notificationData = `${t(
         flattenValues[i].category
       )} ${content} `;
       Reactotron.log("NOTIFICATION VALUES", flattenValues[i]);

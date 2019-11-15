@@ -191,7 +191,7 @@ class RecurringForm extends Component {
     Object.keys(values).map(eventType => {
       values[eventType].map((_, i) => {
         setFieldValue(
-          `${eventType}[${i}].notification`,
+          `${eventType}[${i}].data.notification`,
           !this.state.notification
         );
       });

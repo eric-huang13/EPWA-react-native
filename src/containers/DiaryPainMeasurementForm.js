@@ -290,7 +290,6 @@ class DiaryPainMeasurementForm extends Component {
     const { navigation, values } = this.props;
     const animalId = navigation.getParam("animalId");
     const pushValue = DiaryPainMeasurementForm.getInitialEventValue(animalId);
-    Reactotron.log("PZIN", values);
     return (
       <FieldArray
         name="payload"
@@ -307,7 +306,6 @@ class DiaryPainMeasurementForm extends Component {
             {/*{this.state.isEditing ? null : (
               <PlusSection onPress={() => arrayHelpers.push(pushValue)} />
             )}*/}
-
           </View>
         )}
       />
@@ -425,8 +423,8 @@ const onSubmit = ({ payload }, formikBag) => {
     );
     return;
   }
-  if (payload[0].notification) {
-    payload[0].notificationData = `${t(
+  if (payload[0].data.notification) {
+    payload[0].data.notificationData = `${t(
       `categories.${payload[0].category}`
     )} ${t(`painMeasurements.${payload[0].type}`)}`;
   }
