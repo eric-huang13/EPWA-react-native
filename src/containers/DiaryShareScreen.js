@@ -253,7 +253,6 @@ class DiaryShareEventsForm extends Component {
 
   render() {
     const { t, i18n, setFieldValue, values, currentDate } = this.props;
-    // Reactotron.log("render", values, this.props);
     let ref1;
     let ref2;
     return (

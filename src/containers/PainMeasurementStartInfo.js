@@ -9,7 +9,6 @@ import { colors, fonts } from "../themes";
 
 class PainMeasurementStartInfo extends Component {
   static navigationOptions = ({ navigation, screenProps }) => {
-    // Reactotron.log("screenProps", screenProps);
     const t = isNil(screenProps.t.t) ? screenProps.t : screenProps.t.t;
 
     return {

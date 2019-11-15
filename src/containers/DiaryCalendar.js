@@ -171,7 +171,6 @@ export default class DiaryCalendar extends Component {
     ///markedDates berekenen
     this.setMarkedDates();
     LocaleConfig.defaultLocale = this.props.lang;
-    Reactotron.log("calendar mountend");
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -202,7 +201,6 @@ export default class DiaryCalendar extends Component {
   setSelectedDate = day => {
     this.setState({ selected_date: day.dateString });
     this.props.onPress(new Date(day.timestamp));
-    // Reactotron.log("day", day);
   };
 
   resetToday = () => {
@@ -247,17 +245,7 @@ export default class DiaryCalendar extends Component {
   }
 
   render() {
-    // const allEvents = compose(
-    //   filter(isRelatedToAnimal(this.props.currentAnimal))
-    // )(this.props.events || []);
-
-    // Reactotron.log("calendarEvents", calendarEvents);
-
-    // const marks = this.setMarkedDates(calendarEvents);
-    // Reactotron.log("marks", marks);
-    // Reactotron.log("calendarState", this.state);
     const marks = this.state.markedDates;
-    // LocaleConfig.defaultLocale = this.props.lang;
 
     return (
       <React.Fragment>
@@ -322,7 +310,6 @@ export default class DiaryCalendar extends Component {
                 this.closeCalendar();
               }}
               onMonthChange={month => {
-                // Reactotron.log("month changed", month);
                 this.setState({
                   selected_month: month.timestamp
                 });

@@ -588,7 +588,6 @@ const onSubmit = (values, formikBag) => {
       flattenValues[i].data.notificationData = `${t(
         flattenValues[i].category
       )} ${content} `;
-      Reactotron.log("NOTIFICATION VALUES", flattenValues[i]);
     }
   }
 

@@ -505,7 +505,6 @@ class Diary extends Component {
 
     const propsDataEvents = addRecurringEvents(events, currentDate, tabIndex);
 
-    Reactotron.log("RECURRING", propsDataEvents);
     const nonFeedingevents = compose(
       filter(isSelectedTab(currentDate, tabIndex)),
       reject(isFeeding)
@@ -601,7 +600,6 @@ class Diary extends Component {
           events: eventsOnSameDay
         };
       });
-      Reactotron.log("TAB2", eventsGroupedByDayTab2);
       // const maxEventsTab2 = eventsGroupedByDayTab2.slice(0, 5);
       const maxEventsTab2 = eventsGroupedByDayTab2;
       return (
@@ -720,8 +718,6 @@ class Diary extends Component {
     const currentAnimal = animals[this.state.currentIndex];
     const { currentDate, tabIndex } = this.state;
     const events = compose(filter(isRelatedToAnimal(currentAnimal)))(allEvents);
-
-    Reactotron.log("DIARY EVENTS", events);
 
     return (
       <View style={(s.screenContainer, width)}>
