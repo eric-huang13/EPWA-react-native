@@ -26,13 +26,13 @@
 		60AA3A18237381A2006A554E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60AA3A17237381A2006A554E /* SystemConfiguration.framework */; };
 		60AA3A1A237381B6006A554E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 60AA3A19237381B6006A554E /* libz.tbd */; };
 		60AA3A1F237451EC006A554E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		60F855E72375E83F007D662E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 60F855E62375E83F007D662E /* GoogleService-Info.plist */; };
 		6A6C52FFF83CBA2BFF888F5F /* libPods-EPWA.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB9E10E6FD3F79A33AEB1AEF /* libPods-EPWA.a */; };
 		89FB4DEA59EA4FBF9726F0F7 /* Ubuntu-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4CB651E047C34ED8911F72E5 /* Ubuntu-Regular.ttf */; };
 		8ED818899D06413B93CD0985 /* SourceSerifPro-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FFA1E518AECF4D94801FA733 /* SourceSerifPro-Semibold.ttf */; };
 		953DB7E30521453986B6CA52 /* Ubuntu-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 363BE6BC546D4A4BBA6E4AE2 /* Ubuntu-Bold.ttf */; };
 		A47ADBA7235DAB9500C2CD05 /* moaning.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A47ADBA5235DAB9500C2CD05 /* moaning.mp3 */; };
 		A47ADBA8235DAB9500C2CD05 /* teeth_grinding.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A47ADBA6235DAB9500C2CD05 /* teeth_grinding.mp3 */; };
+		A4DB8796237F8AB8001D0D90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A4DB8795237F8AB8001D0D90 /* GoogleService-Info.plist */; };
 		A4E15526232B884D00AEE2AF /* libFBSDKCoreKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E15525232B884D00AEE2AF /* libFBSDKCoreKit.a */; };
 		A4E15528232B885300AEE2AF /* libFBSDKLoginKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E15527232B885300AEE2AF /* libFBSDKLoginKit.a */; };
 		A4E1552A232B885A00AEE2AF /* libFBSDKShareKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E15529232B885A00AEE2AF /* libFBSDKShareKit.a */; };
@@ -127,7 +127,6 @@
 		60AA3A1523738197006A554E /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		60AA3A17237381A2006A554E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		60AA3A19237381B6006A554E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		60F855E62375E83F007D662E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		61387DB16D234474B30481F9 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		6283133371B3B76ADC44E0DA /* Pods-EPWA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EPWA.debug.xcconfig"; path = "Target Support Files/Pods-EPWA/Pods-EPWA.debug.xcconfig"; sourceTree = "<group>"; };
 		73BB6181CA1C42859F435120 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
@@ -140,6 +139,7 @@
 		A2E6CFE62D3843C48E30DA6E /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		A47ADBA5235DAB9500C2CD05 /* moaning.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = moaning.mp3; path = ../resources/sounds/moaning.mp3; sourceTree = "<group>"; };
 		A47ADBA6235DAB9500C2CD05 /* teeth_grinding.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = teeth_grinding.mp3; path = ../resources/sounds/teeth_grinding.mp3; sourceTree = "<group>"; };
+		A4DB8795237F8AB8001D0D90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A4E15525232B884D00AEE2AF /* libFBSDKCoreKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFBSDKCoreKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E15527232B885300AEE2AF /* libFBSDKLoginKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFBSDKLoginKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E15529232B885A00AEE2AF /* libFBSDKShareKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFBSDKShareKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -292,7 +292,7 @@
 		13B07FAE1A68108700A75B9A /* EPWA */ = {
 			isa = PBXGroup;
 			children = (
-				60F855E62375E83F007D662E /* GoogleService-Info.plist */,
+				A4DB8795237F8AB8001D0D90 /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -579,7 +579,7 @@
 				CF98DDF67EBE4609992E7E0E /* SourceSerifPro-Regular.ttf in Resources */,
 				8ED818899D06413B93CD0985 /* SourceSerifPro-Semibold.ttf in Resources */,
 				953DB7E30521453986B6CA52 /* Ubuntu-Bold.ttf in Resources */,
-				60F855E72375E83F007D662E /* GoogleService-Info.plist in Resources */,
+				A4DB8796237F8AB8001D0D90 /* GoogleService-Info.plist in Resources */,
 				41F1A115302E4444A6A3ECD7 /* Ubuntu-Light.ttf in Resources */,
 				4180FA6BEF5F4E0CA19C3859 /* Ubuntu-LightItalic.ttf in Resources */,
 				43A826A15FA64ED69C324CD6 /* Ubuntu-Medium.ttf in Resources */,

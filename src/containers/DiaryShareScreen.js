@@ -175,7 +175,7 @@ class DiaryShareEventsForm extends Component {
   static getInitialEventValue(animalId) {
     return {
       animalId,
-      pain: false,
+      painMeasurement: false,
       exercise: false,
       feeding: false,
       housing: false,
@@ -261,7 +261,7 @@ class DiaryShareEventsForm extends Component {
           <View style={{ marginTop: 20 }}>
             <CheckBoxField
               label={t("categories.painMeasurement")}
-              formikKey={"pain"}
+              formikKey={"painMeasurement"}
               values={values}
               setFieldValue={setFieldValue}
             />
