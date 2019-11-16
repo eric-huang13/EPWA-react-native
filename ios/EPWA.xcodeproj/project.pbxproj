@@ -865,7 +865,7 @@
 			baseConfigurationReference = 6283133371B3B76ADC44E0DA /* Pods-EPWA.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 45;
+				CURRENT_PROJECT_VERSION = 46;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = Z39492TXR7;
 				HEADER_SEARCH_PATHS = (
@@ -988,7 +988,7 @@
 			baseConfigurationReference = 27D53785C4E2E35EE2EA6430 /* Pods-EPWA.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 45;
+				CURRENT_PROJECT_VERSION = 46;
 				DEVELOPMENT_TEAM = Z39492TXR7;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
