@@ -171,7 +171,7 @@ export function* addEventCommit(action) {
   );
 
   for (let i = 0; i < payload.length; i++) {
-    if (payload[i].data.notification === true) {
+    if (payload[i].data && payload[i].data.notification === true) {
       if (yield RNCalendarEvents.authorizationStatus() !== "authorized") {
         let auth = yield RNCalendarEvents.authorizeEventStore();
         if (auth === "authorized") {
@@ -503,7 +503,7 @@ export function* completeRecurringEvent(api, dispatch, action) {
     event => {
       const result = event;
 
-      if (event.data === "null" && event.data === "\"null\"") {
+      if (event.data === "null" && event.data === '"null"') {
         result.data = null;
       }
 

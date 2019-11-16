@@ -304,6 +304,7 @@ function ItemContent({
           findEventById={findEventById}
           id={id}
           completed={completed}
+          data={data}
         />
       );
     case eventCategories.exercise:
@@ -383,7 +384,8 @@ function PainMeasureContent({
   t,
   findEventById,
   id,
-  completed
+  completed,
+  data
 }) {
   const localId =
     typeof id === "string" && id.includes("_") ? id.split("_")[0] : id;
@@ -399,11 +401,20 @@ function PainMeasureContent({
     <React.Fragment>
       <PainMesIcon isFacialExpression={isFacialExpression} />
       <TouchableOpacity
-        key={id}
+        // key={id}
+        // onPress={() =>
+        //   navigateTo("DiaryPainMeasurementForm", {
+        //     initialValue: findEventById(+localId)
+        //   })
+        // }
         onPress={() =>
-          navigateTo("DiaryPainMeasurementForm", {
-            initialValue: findEventById(+localId)
-          })
+          completed
+            ? navigateTo("PainMeasurementDetails", {
+                measurement: { data, type, id }
+              })
+            : navigateTo("DiaryPainMeasurementForm", {
+                initialValue: findEventById(+localId)
+              })
         }
       >
         <View style={styles.itemContent}>

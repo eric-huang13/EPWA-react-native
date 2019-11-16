@@ -137,6 +137,10 @@ class DiaryPainMeasurementForm extends Component {
     return {
       localId: getId(),
       completed: false,
+      data: {
+        notification: false,
+        notificationData: ""
+      },
       category: eventCategories.painMeasurement,
       animalId
     };
