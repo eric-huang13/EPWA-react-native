@@ -109,7 +109,8 @@ class Diary extends Component {
     this.state = {
       currentIndex: isInitialValuePassed ? selectedAnimalIndex : 0,
       currentDate: new Date(),
-      tabIndex: 1
+      tabIndex: 1,
+      initial: true
     };
 
     this.routes = {
@@ -171,32 +172,28 @@ class Diary extends Component {
     ];
   }
 
-  // static getDerivedStateFromProps(props, state) {
-  //   const event = props.navigation.getParam("id");
-
-  //   if (event) {
-  //     const animalId = event[0].animalId;
-  //     if (isNil(animalId)) {
-  //       return null;
-  //     }
-  //     const selectedAnimalIndex = props.data.animals.findIndex(
-  //       animal => animal.id === animalId
-  //     );
-  //     const isInitialValuePassed = selectedAnimalIndex !== -1;
-  //     const index = isInitialValuePassed ? selectedAnimalIndex : 0;
-  //     return {
-  //       ...state,
-  //       currentIndex: index
-  //     };
-  //   }
-  //   return null;
-  // }
-
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.t !== this.props.t) {
       this.setButtons();
     }
+    const { navigation, data } = this.props;
+
+    const event = navigation.getParam("id");
+
+    if (!isNil(event) && this.state.initial) {
+      const animalId = event[0].animalId;
+      const selectedAnimalIndex = data.animals.findIndex(
+        animal => animal.id === animalId
+      );
+      const isInitialValuePassed = selectedAnimalIndex !== -1;
+      const index = isInitialValuePassed ? selectedAnimalIndex : 0;
+
+      this.changeInitial(index);
+    }
   }
+  changeInitial = index => {
+    this.setState({ currentIndex: index, initial: false });
+  };
 
   setCurrentIndex = index => {
     this.setState({ currentIndex: index });
@@ -214,6 +211,7 @@ class Diary extends Component {
     const { navigation, data } = this.props;
 
     const animalId = navigation.getParam("id");
+    Reactotron.log("animal", animalId);
     const index = data.animals.findIndex(animal => animal.id === animalId);
 
     return index;
