@@ -24,7 +24,8 @@ export default StyleSheet.create({
   },
   googleBtn: {
     marginRight: 10,
-    minWidth: 120
+    minWidth: 120,
+    justifyContent: "center"
   },
   facebookBtn: {
     minWidth: 120

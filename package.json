@@ -9,7 +9,8 @@
     "android:clean": "cd android && ./gradlew clean",
     "android:build": "cd android && ./gradlew assembleRelease",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@hocs/safe-timers": "^0.4.0",
@@ -79,6 +80,8 @@
     "jest": "^24.9.0",
     "jetifier": "^1.6.4",
     "metro-react-native-babel-preset": "^0.56.0",
+    "patch-package": "^6.2.0",
+    "postinstall-postinstall": "^2.0.0",
     "react-devtools": "^3.6.3",
     "react-native-svg-transformer": "^0.13.0",
     "react-test-renderer": "16.8.6"
