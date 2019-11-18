@@ -215,7 +215,13 @@ export function* addEventCommit(action) {
               recurring = null;
           }
 
-          const details = { title, description, startDate, endDate, notes };
+          const details = {
+            title,
+            description,
+            startDate,
+            endDate,
+            notes
+          };
           details.alarms = [{ date: -5 }];
 
           if (recurring) {
@@ -503,7 +509,7 @@ export function* completeRecurringEvent(api, dispatch, action) {
     event => {
       const result = event;
 
-      if (event.data === "null" && event.data === '"null"') {
+      if (event.data === "null" && event.data === "\"null\"") {
         result.data = null;
       }
 
