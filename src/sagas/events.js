@@ -509,7 +509,7 @@ export function* completeRecurringEvent(api, dispatch, action) {
     event => {
       const result = event;
 
-      if (event.data === "null" && event.data === "\"null\"") {
+      if (event.data === "null" && event.data === '"null"') {
         result.data = null;
       }
 

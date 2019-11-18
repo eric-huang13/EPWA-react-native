@@ -216,6 +216,11 @@ class DiaryShareEventsForm extends Component {
       values: { startDate, endDate, animalId }
     } = this.props;
 
+    if (startDate > endDate) {
+      Alert.alert("", t("endDateAfterStartDate"));
+      return;
+    }
+
     const RemoveFalseAndTransformToArray = Obj => {
       const myObj = { ...Obj };
       for (var key in myObj) {

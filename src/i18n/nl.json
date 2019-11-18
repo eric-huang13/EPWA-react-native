@@ -1129,7 +1129,8 @@
     "start": "Start",
     "end": "Einde",
     "warnDeleteAccount1": "ACCOUNT PERMANENT VERWIJDEREN?",
-    "recurringAfterStartDate": "De herhaling kan niet eindigen voor de startdatum van de huidige taak."
+    "recurringAfterStartDate": "De herhaling kan niet eindigen voor de startdatum van de huidige taak.",
+    "endDateAfterStartDate": "Selecteer een eind datum dat na de startdatum ligt"
   },
 
   "calendar": {

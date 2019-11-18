@@ -1125,6 +1125,7 @@
     "warnDeleteAccount1": "PERMANENTLY DELETE YOUR ACCOUNT?",
     "noFutureCompletionTitle": "Event in future",
     "noFutureCompletionText": "Events in the future cant be completed",
-    "recurringAfterStartDate": "Please select recurring date that comes after event start time"
+    "recurringAfterStartDate": "Please select recurring date that comes after event start time",
+    "endDateAfterStartDate": "Please select end date after the start date"
   }
 }

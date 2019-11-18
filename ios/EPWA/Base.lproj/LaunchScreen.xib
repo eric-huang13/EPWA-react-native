@@ -13,12 +13,15 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="SplashEN" translatesAutoresizingMaskIntoConstraints="NO" id="elH-cW-Sqz">
-                    <rect key="frame" x="128" y="148" width="225" height="185"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="SplashEN" translatesAutoresizingMaskIntoConstraints="NO" id="elH-cW-Sqz">
+                    <rect key="frame" x="98" y="123" width="284" height="234"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="0.67784762382507324" green="0.44774115085601807" blue="0.85886389017105103" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="elH-cW-Sqz" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Skd-ij-vgO"/>
+                <constraint firstItem="elH-cW-Sqz" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="q9F-DV-5fV"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="547.20000000000005" y="454.27286356821594"/>
