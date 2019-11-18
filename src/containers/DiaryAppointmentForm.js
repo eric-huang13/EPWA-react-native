@@ -422,6 +422,7 @@ const onSubmit = (values, formikBag) => {
   let isEditing = Boolean(initialValue);
 
   const localDate = formikBag.props.navigation.getParam("localDate");
+  const animal = formikBag.props.navigation.getParam("animal");
 
   if (flattenValues[0].startDate > flattenValues[0].recurring_untill) {
     Alert.alert("", t("recurringAfterStartDate"));
@@ -429,9 +430,9 @@ const onSubmit = (values, formikBag) => {
   }
   for (let i = 0; i < flattenValues.length; i++) {
     if (flattenValues[i].data.notification) {
-      flattenValues[i].data.notificationData = `${t(
-        flattenValues[i].data.noteTitle
-      )}`;
+      flattenValues[i].data.notificationData = `(${t(animal.type)}: ${
+        animal.name
+      }) ${t(flattenValues[i].data.noteTitle)}`;
     }
   }
 

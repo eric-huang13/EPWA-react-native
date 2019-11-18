@@ -821,6 +821,7 @@ const onSubmit = (values, formikBag) => {
   let isEditing = Boolean(initialValue);
 
   const localDate = formikBag.props.navigation.getParam("localDate");
+  const animal = formikBag.props.navigation.getParam("animal");
 
   if (completeEvent) {
     flattenValues[0].completed = true;
@@ -828,11 +829,11 @@ const onSubmit = (values, formikBag) => {
 
   for (let i = 0; i < flattenValues.length; i++) {
     if (flattenValues[i].data.notification) {
-      flattenValues[i].data.notificationData = `${t(
-        flattenValues[i].category
-      )} ${t(flattenValues[i].data.quantity)} ${t(
-        flattenValues[i].data.unit
-      )} `;
+      flattenValues[i].data.notificationData = `(${t(animal.type)}: ${
+        animal.name
+      }) ${t(flattenValues[i].category)} ${t(
+        flattenValues[i].data.quantity
+      )} ${t(flattenValues[i].data.unit)} `;
     }
   }
 

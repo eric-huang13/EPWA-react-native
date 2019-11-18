@@ -418,6 +418,8 @@ const triggerSubmitType = (
 const onSubmit = ({ payload }, formikBag) => {
   const initialValue = formikBag.props.navigation.getParam("initialValue");
   const isEditing = Boolean(initialValue);
+  const animal = formikBag.props.navigation.getParam("animal");
+
   const { t } = formikBag.props;
 
   if (payload[0].startDate > payload[0].recurring_untill) {
@@ -428,7 +430,7 @@ const onSubmit = ({ payload }, formikBag) => {
     return;
   }
   if (payload[0].data.notification) {
-    payload[0].data.notificationData = `${t(
+    payload[0].data.notificationData = `(${t(animal.type)}: ${animal.name}) ${t(
       `categories.${payload[0].category}`
     )} ${t(`painMeasurements.${payload[0].type}`)}`;
   }

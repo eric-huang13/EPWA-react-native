@@ -133,41 +133,59 @@ class Diary extends Component {
         color: colors.lightGrey,
         icon: "calendar",
         title: this.props.t("registerAppointment"),
-        onPress: () => this.navigateTo(this.routes.registerAppointment)
+        onPress: () =>
+          this.navigateTo(this.routes.registerAppointment, {
+            animal: this.getSelectedAnimalName()
+          })
       },
       {
         color: colors.egyptianBlue,
         icon: iconMap.measurement,
         title: this.props.t("registerPainMeasurement"),
-        onPress: () => this.navigateTo(this.routes.painMeasurement)
+        onPress: () =>
+          this.navigateTo(this.routes.painMeasurement, {
+            animal: this.getSelectedAnimalName()
+          })
       },
       {
         color: colors.lima,
         icon: iconMap.horse1,
         name: eventCategories.exercise,
         title: this.props.t("registerExercises"),
-        onPress: () => this.navigateTo(this.routes.exercise)
+        onPress: () =>
+          this.navigateTo(this.routes.exercise, {
+            animal: this.getSelectedAnimalName()
+          })
       },
       {
         color: colors.supernova,
         icon: iconMap.home,
         name: eventCategories.housing,
         title: this.props.t("registerHousing"),
-        onPress: () => this.navigateTo(this.routes.housing)
+        onPress: () =>
+          this.navigateTo(this.routes.housing, {
+            animal: this.getSelectedAnimalName()
+          })
       },
       {
         color: colors.barleyCorn,
         icon: iconMap.carrot,
         name: eventCategories.feeding,
         title: this.props.t("registerFeeding"),
-        onPress: () => this.navigateTo(this.routes.feeding)
+        onPress: () =>
+          this.navigateTo(this.routes.feeding, {
+            animal: this.getSelectedAnimalName()
+          })
       },
       {
         color: colors.harleyDavidsonOrange,
         icon: iconMap.treatment,
         name: eventCategories.medication,
         title: this.props.t("addMedication"),
-        onPress: () => this.navigateTo(this.routes.medication)
+        onPress: () =>
+          this.navigateTo(this.routes.medication, {
+            animal: this.getSelectedAnimalName()
+          })
       }
     ];
   }
@@ -211,7 +229,6 @@ class Diary extends Component {
     const { navigation, data } = this.props;
 
     const animalId = navigation.getParam("id");
-    Reactotron.log("animal", animalId);
     const index = data.animals.findIndex(animal => animal.id === animalId);
 
     return index;
@@ -223,6 +240,11 @@ class Diary extends Component {
       index = this.state.currentIndex;
     }
     return this.props.data.animals[index];
+  };
+
+  getSelectedAnimalName = () => {
+    const animal = this.getSelectedAnimal();
+    return { type: animal.type, name: animal.name };
   };
 
   setDatePickerRef = element => {
