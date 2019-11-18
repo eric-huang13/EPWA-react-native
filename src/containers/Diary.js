@@ -160,7 +160,10 @@ class Diary extends Component {
         icon: iconMap.carrot,
         name: eventCategories.feeding,
         title: this.props.t("registerFeeding"),
-        onPress: () => this.navigateTo(this.routes.feeding)
+        onPress: () =>
+          this.navigateTo(this.routes.feeding, {
+            animal: this.getSelectedAnimalName()
+          })
       },
       {
         color: colors.harleyDavidsonOrange,
@@ -211,7 +214,6 @@ class Diary extends Component {
     const { navigation, data } = this.props;
 
     const animalId = navigation.getParam("id");
-    Reactotron.log("animal", animalId);
     const index = data.animals.findIndex(animal => animal.id === animalId);
 
     return index;
@@ -223,6 +225,11 @@ class Diary extends Component {
       index = this.state.currentIndex;
     }
     return this.props.data.animals[index];
+  };
+
+  getSelectedAnimalName = () => {
+    const animal = this.getSelectedAnimal();
+    return { type: animal.type, name: animal.name };
   };
 
   setDatePickerRef = element => {
