@@ -4,13 +4,12 @@ import {
   ScrollView,
   TouchableOpacity,
   View,
-  TextInput,
   Text,
   Alert,
   Share
 } from "react-native";
 import { HeaderBackButton } from "react-navigation-stack";
-import { FieldArray, withFormik, Field } from "formik";
+import { withFormik } from "formik";
 import { translate } from "react-i18next";
 import { connect } from "react-redux";
 import { hoistStatics } from "recompose";
@@ -21,57 +20,30 @@ import {
   getHours,
   getMinutes,
   getTime,
-  isValid
+  isValid,
+  addDays
 } from "date-fns";
-import { get } from "lodash";
-import {
-  __,
-  compose,
-  mapObjIndexed,
-  values as ramdaValues,
-  isNil
-} from "ramda";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-
-import getId from "../services/idGenerator";
-
+import { compose, isNil } from "ramda";
 import s from "./styles/DiaryExerciseFormStyles";
-
 import Button from "../components/Button";
 import DatePicker from "../components/DatePicker";
-import RadioSection from "../components/RadioSection";
-// import Field from "../components/Field";
-import FieldLabel from "../components/FieldLabel";
 import Icon from "../components/Icon";
-import PlusSection from "../components/PlusSection";
-import Select from "../components/Select";
 import SelectButton from "../components/SelectButton";
-import SubmitHeaderButton from "../components/SubmitHeaderButton";
 import withAlert from "../components/withAlert";
 import withAlertDropdown from "../components/withAlertDropdown";
 import withExitPrompt from "../components/withExitPrompt";
-import RecurringForm from "../components/RecurringForm";
-
-import { addEvent, editEvent, deleteEvent } from "../actions/events";
-import { eventCategories, eventTypes } from "../constants";
-import {
-  dateEventProps,
-  dateEventValidation
-} from "../constants/validationTypes";
-
 import { colors, fonts } from "../themes";
-
 import {
-  setHours,
-  setMinutes,
   setSecondsToZero,
-  setMillisecondsToZero
+  setMillisecondsToZero,
+  setHoursToZero,
+  setMinutesToZero
 } from "../services/date";
-
-import Reactotron from "reactotron-react-native";
-import DateTimePicker from "react-native-modal-datetime-picker";
 import iconMap from "../constants/iconMap";
 import nlLocale from "date-fns/locale/nl";
+import apisauce from "apisauce";
+
+// import Reactotron from "reactotron-react-native";
 
 const validationSchema = yup.object().shape({
   startDate: yup
@@ -203,14 +175,15 @@ class DiaryShareEventsForm extends Component {
       getTime,
       setMillisecondsToZero,
       setSecondsToZero,
-      setMinutes(__, pickedTime.minutes),
-      setHours(__, pickedTime.hours),
+      setMinutesToZero,
+      setHoursToZero,
       parse
     )(dateInstance);
   };
 
   onShare = async () => {
     const {
+      i18n,
       t,
       values,
       values: { startDate, endDate, animalId }
@@ -218,6 +191,11 @@ class DiaryShareEventsForm extends Component {
 
     if (startDate > endDate) {
       Alert.alert("", t("endDateAfterStartDate"));
+      return;
+    }
+
+    if (isNil(startDate) || isNil(endDate)) {
+      Alert.alert("", t("emtyDates"));
       return;
     }
 
@@ -232,32 +210,55 @@ class DiaryShareEventsForm extends Component {
     };
 
     const selectionTrue = RemoveFalseAndTransformToArray(values);
+
     const selection = Object.keys(selectionTrue).toString();
+    if (isNil(selection) || selection === "") {
+      Alert.alert("", t("chooseShareSelection"));
+      return;
+    }
+
+    // const lang = i18n.language;
 
     const uri = `https://epwa-api.ehero.es/getpdf/user/1/animal/${animalId}/start/${startDate}/end/${endDate}/selection/${selection}`;
+    // const uri = `https://epwa-api.ehero.es/getpdf/user/1/animal/${animalId}/start/${startDate}/end/${endDate}/selection/${selection}/${lang}`;
 
-    try {
-      const result = await Share.share({
-        message: "Bekijk mijn epwa resultaten",
-        url: uri
+    const apiUrl = `https://epwa-api.ehero.es/pdf/events?from=${startDate}&untill=${endDate}&animal_id=${animalId}&user_id=1&selection=${selection}`;
+
+    const getApiItems = async (baseURL = apiUrl) => {
+      const api = apisauce.create({
+        baseURL
       });
 
-      // if (result.action === Share.sharedAction) {
-      //   if (result.activityType) {
-      //     // shared with activity type of result.activityType
-      //   } else {
-      //     // shared
-      //   }
-      // } else if (result.action === Share.dismissedAction) {
-      //   // dismissed
-      // }
+      return await api
+        .get()
+        .then(response => response.data)
+        .catch(err => err);
+    };
+
+    try {
+      const { events } = await getApiItems();
+      if (events.length === 0) {
+        Alert.alert("", t("noEventsToShare"));
+        return;
+      }
     } catch (error) {
-      Alert.alert(error.message);
+      return;
+    }
+
+    try {
+      await Share.share({
+        message: t("seeShareResults"),
+        url: uri
+      });
+    } catch (error) {
+      Alert.alert("error");
+      return;
     }
   };
 
   render() {
     const { t, i18n, setFieldValue, values, currentDate } = this.props;
+
     let ref1;
     let ref2;
     return (
@@ -339,7 +340,10 @@ class DiaryShareEventsForm extends Component {
                   date={currentDate}
                   ref={el => (ref2 = el)} // eslint-disable-line no-return-assign
                   onPick={date =>
-                    setFieldValue("endDate", this.parseDateField(date))
+                    setFieldValue(
+                      "endDate",
+                      this.parseDateField(addDays(date, 1))
+                    )
                   }
                 />
                 <SelectButton
@@ -353,7 +357,7 @@ class DiaryShareEventsForm extends Component {
                 >
                   {isNil(values.endDate)
                     ? t("selectDate")
-                    : this.formatDateField(values.endDate)}
+                    : this.formatDateField(addDays(values.endDate, -1))}
                 </SelectButton>
               </View>
             </View>
@@ -389,41 +393,12 @@ DiaryShareEventsForm.propTypes = {
   })
 };
 
-// const showSuccess = (alertDropdown, title, msg) => {
-//   alertDropdown("success", title, msg);
-// };
-
 const onSubmit = ({ payload }, formikBag) => {
   const initialValue = formikBag.props.navigation.getParam("initialValue");
   const t = formikBag.props.t;
   let isEditing = Boolean(initialValue);
 
   const localDate = formikBag.props.navigation.getParam("localDate");
-  // Reactotron.log("Payload", payload, formikBag);
-
-  // const onShare = async () => {
-  //   const { t } = this.props;
-  //   const uri = `https://epwa-api.ehero.es/api/api/pdf/events?from=${startRange}&untill=${endRange}&animal_id=${animalId}&user_id=1&selection=${selection}`;
-  //   try {
-  //     const result = await Share.share({
-  //       message: t("shareAppContentAnimalProfile"),
-  //       url: uri
-  //     });
-
-  //     // if (result.action === Share.sharedAction) {
-  //     //   if (result.activityType) {
-  //     //     // shared with activity type of result.activityType
-  //     //   } else {
-  //     //     // shared
-  //     //   }
-  //     // } else if (result.action === Share.dismissedAction) {
-  //     //   // dismissed
-  //     // }
-  //   } catch (error) {
-  //     Alert.alert(error.message);
-  //   }
-  // };
-  // onShare();
 };
 
 const formikOptions = {

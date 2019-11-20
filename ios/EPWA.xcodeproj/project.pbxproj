@@ -32,7 +32,7 @@
 		953DB7E30521453986B6CA52 /* Ubuntu-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 363BE6BC546D4A4BBA6E4AE2 /* Ubuntu-Bold.ttf */; };
 		A47ADBA7235DAB9500C2CD05 /* moaning.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A47ADBA5235DAB9500C2CD05 /* moaning.mp3 */; };
 		A47ADBA8235DAB9500C2CD05 /* teeth_grinding.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A47ADBA6235DAB9500C2CD05 /* teeth_grinding.mp3 */; };
-		A4AC726B23820AE6009483CC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A4AC726A23820AE6009483CC /* GoogleService-Info.plist */; };
+		A4A52DAC238303840061BC7E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A4A52DAB238303840061BC7E /* GoogleService-Info.plist */; };
 		A4E15526232B884D00AEE2AF /* libFBSDKCoreKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E15525232B884D00AEE2AF /* libFBSDKCoreKit.a */; };
 		A4E15528232B885300AEE2AF /* libFBSDKLoginKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E15527232B885300AEE2AF /* libFBSDKLoginKit.a */; };
 		A4E1552A232B885A00AEE2AF /* libFBSDKShareKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E15529232B885A00AEE2AF /* libFBSDKShareKit.a */; };
@@ -139,7 +139,7 @@
 		A2E6CFE62D3843C48E30DA6E /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		A47ADBA5235DAB9500C2CD05 /* moaning.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = moaning.mp3; path = ../resources/sounds/moaning.mp3; sourceTree = "<group>"; };
 		A47ADBA6235DAB9500C2CD05 /* teeth_grinding.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = teeth_grinding.mp3; path = ../resources/sounds/teeth_grinding.mp3; sourceTree = "<group>"; };
-		A4AC726A23820AE6009483CC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A4A52DAB238303840061BC7E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A4E15525232B884D00AEE2AF /* libFBSDKCoreKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFBSDKCoreKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E15527232B885300AEE2AF /* libFBSDKLoginKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFBSDKLoginKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E15529232B885A00AEE2AF /* libFBSDKShareKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFBSDKShareKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -293,11 +293,11 @@
 			isa = PBXGroup;
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
-				A4AC726A23820AE6009483CC /* GoogleService-Info.plist */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
+				A4A52DAB238303840061BC7E /* GoogleService-Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				A4E3D586235F20E900A959FF /* InfoPlist.strings */,
@@ -579,7 +579,7 @@
 				CF98DDF67EBE4609992E7E0E /* SourceSerifPro-Regular.ttf in Resources */,
 				8ED818899D06413B93CD0985 /* SourceSerifPro-Semibold.ttf in Resources */,
 				953DB7E30521453986B6CA52 /* Ubuntu-Bold.ttf in Resources */,
-				A4AC726B23820AE6009483CC /* GoogleService-Info.plist in Resources */,
+				A4A52DAC238303840061BC7E /* GoogleService-Info.plist in Resources */,
 				41F1A115302E4444A6A3ECD7 /* Ubuntu-Light.ttf in Resources */,
 				4180FA6BEF5F4E0CA19C3859 /* Ubuntu-LightItalic.ttf in Resources */,
 				43A826A15FA64ED69C324CD6 /* Ubuntu-Medium.ttf in Resources */,
@@ -865,7 +865,7 @@
 			baseConfigurationReference = 6283133371B3B76ADC44E0DA /* Pods-EPWA.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 46;
+				CURRENT_PROJECT_VERSION = 48;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = Z39492TXR7;
 				HEADER_SEARCH_PATHS = (
@@ -988,7 +988,7 @@
 			baseConfigurationReference = 27D53785C4E2E35EE2EA6430 /* Pods-EPWA.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 46;
+				CURRENT_PROJECT_VERSION = 48;
 				DEVELOPMENT_TEAM = Z39492TXR7;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",

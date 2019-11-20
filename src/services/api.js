@@ -3,6 +3,8 @@ import { Alert } from "react-native";
 
 import { basePath, csvUploadPath } from "../constants";
 
+import Reactotron from "reactotron-react-native";
+
 const createFacebookApi = (baseURL = "https://graph.facebook.com/") => {
   const api = apisauce.create({
     baseURL,
@@ -25,12 +27,13 @@ const createGoogleApi = (baseURL = "https://www.googleapis.com/") => {
     timeout: 10000
   });
 
-  const getProfile = token =>
+  const getProfile = token => {
     api.get(
-      "/userinfo/v2/me",
+      "/oauth2/v3/userinfo",
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
+  };
 
   return {
     getProfile

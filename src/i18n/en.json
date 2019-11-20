@@ -1126,6 +1126,10 @@
     "noFutureCompletionTitle": "Event in future",
     "noFutureCompletionText": "Events in the future cant be completed",
     "recurringAfterStartDate": "Please select recurring date that comes after event start time",
-    "endDateAfterStartDate": "Please select end date after the start date"
+    "endDateAfterStartDate": "Please select end date after the start date",
+    "noEventsToShare": "Selected period has no events to share",
+    "emtyDates": "Dates can't be empty",
+    "seeShareResults": "Look at my EPWA app results",
+    "chooseShareSelection": "Select one ore more categories to share"
   }
 }

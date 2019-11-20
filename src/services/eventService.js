@@ -118,6 +118,8 @@ const addItemCountLabels = event => ({
 
 export const isPainMeasurement = event => event.category === "painMeasurement";
 
+export const isCompleted = event => Boolean(event.completed);
+
 export const isFeeding = event => event.category === "feeding";
 
 export const isRelatedToAnimal = R.curry(
