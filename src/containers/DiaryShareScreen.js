@@ -14,15 +14,7 @@ import { translate } from "react-i18next";
 import { connect } from "react-redux";
 import { hoistStatics } from "recompose";
 import * as yup from "yup";
-import {
-  format,
-  parse,
-  getHours,
-  getMinutes,
-  getTime,
-  isValid,
-  addDays
-} from "date-fns";
+import { format, parse, getTime, isValid, addDays } from "date-fns";
 import { compose, isNil } from "ramda";
 import s from "./styles/DiaryExerciseFormStyles";
 import Button from "../components/Button";
@@ -166,10 +158,6 @@ class DiaryShareEventsForm extends Component {
   parseDateField = dateInstance => {
     // We have to combine picked time with date picked in Diary Screen
     // const currentDate = this.props.navigation.getParam("currentDate");
-    const pickedTime = {
-      hours: getHours(dateInstance),
-      minutes: getMinutes(dateInstance)
-    };
 
     return compose(
       getTime,

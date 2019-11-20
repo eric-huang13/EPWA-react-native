@@ -11,13 +11,14 @@ import {
   GoogleSignin,
   statusCodes
 } from "@react-native-community/google-signin";
-// import Reactotron from "reactotron-redux";
+// import Reactotron from "reactotron-react-native";
 
 import i18n from "../config/i18n";
 
 import {
   facebookAppId,
   googleClientIdIos,
+  googleClientIdWeb,
   googleClientIdAndroid
 } from "../../env.json";
 
@@ -175,6 +176,8 @@ export function* googleLogin(api, googleApi) {
     GoogleSignin.configure({
       scopes: ["profile", "email"],
       iosClientId: googleClientIdIos,
+      webClientId: googleClientIdWeb,
+      offlineAccess: true,
       forceConsentPrompt: true
     });
     yield GoogleSignin.hasPlayServices();
