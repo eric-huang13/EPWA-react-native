@@ -199,9 +199,7 @@ class PainMeasurementStart extends PureComponent {
             <View style={{ flexDirection: "row" }}>
               <Switch
                 trackColor={{ true: colors.lima }}
-                {...(Platform.OS === "ios"
-                  ? {}
-                  : { thumbTintColor: colors.white })}
+                {...(Platform.OS === "ios" ? {} : { thumbColor: colors.white })}
                 onValueChange={value => setFieldValue("isVet", value)}
                 value={values.isVet}
               />

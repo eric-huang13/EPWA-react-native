@@ -345,9 +345,7 @@ class DiaryFeedingForm extends Component {
               </Text>
               <Switch
                 trackColor={{ true: colors.lima }}
-                {...(Platform.OS === "ios"
-                  ? {}
-                  : { thumbTintColor: colors.white })}
+                {...(Platform.OS === "ios" ? {} : { thumbColor: colors.white })}
                 onValueChange={value => {
                   if (value) {
                     setFieldValue(fieldPaths.unit, "unlimited");
