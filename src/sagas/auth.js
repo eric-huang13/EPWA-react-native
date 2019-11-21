@@ -177,6 +177,7 @@ export function* googleLogin(api, googleApi) {
       scopes: ["profile", "email"],
       iosClientId: googleClientIdIos,
       webClientId: googleClientIdWeb,
+      androidClientId: googleClientIdAndroid,
       offlineAccess: true,
       forceConsentPrompt: true
     });

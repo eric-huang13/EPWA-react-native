@@ -1,14 +1,52 @@
 import React, { Component } from "react";
 import T from "prop-types";
-import { Alert } from "react-native";
+import { Alert, PermissionsAndroid, Platform } from "react-native";
 import { translate } from "react-i18next";
 import ImagePicker from "react-native-image-picker";
 
-const withImagePicker = (WrappedComponent) => {
+const withImagePicker = WrappedComponent => {
   class ImagePickerHOC extends Component {
     static IMAGE_BYTE_SIZE_THRESHOLD = 1024 * 1024 * 10; // 10MB
 
-    showImagePicker = async (callback) => {
+    checkPermission = async permission => {
+      if (Platform.OS === "android") {
+        try {
+          const granted = await PermissionsAndroid.request(permission, {
+            title: "Permissions for write/read access",
+            message: "Give permission to your storage to write/read a file",
+            buttonPositive: "ok"
+          });
+          if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+            return true;
+          } else {
+            return false;
+          }
+        } catch (err) {
+          console.warn(err);
+          return false;
+        }
+      }
+    };
+
+    showImagePicker = async callback => {
+      const { t } = this.props;
+      const galeryPermission = await this.checkPermission(
+        PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE
+      );
+
+      if (!galeryPermission) {
+        Alert.alert(
+          t("errors.alertTitleGeneric"),
+          t("errors.imagePickerFailed"),
+          [
+            {
+              text: t("ok")
+            }
+          ]
+        );
+        return;
+      }
+
       ImagePicker.launchImageLibrary(
         {
           mediaType: "photo",
@@ -18,10 +56,12 @@ const withImagePicker = (WrappedComponent) => {
           rotation: 360,
           noData: true
         },
-        (response) => {
-          const { t } = this.props;
+        response => {
+          console.log("response", response);
 
-          if (response.cancelled) return;
+          if (response.cancelled) {
+            return;
+          }
 
           if (response.error) {
             Alert.alert(
@@ -53,7 +93,26 @@ const withImagePicker = (WrappedComponent) => {
       );
     };
 
-    showCamera = async (callback) => {
+    showCamera = async callback => {
+      const cameraPermission = await this.checkPermission(
+        PermissionsAndroid.PERMISSIONS.CAMERA
+      );
+
+      const { t } = this.props;
+
+      if (!cameraPermission) {
+        Alert.alert(
+          t("errors.alertTitleGeneric"),
+          t("errors.imagePickerFailed"),
+          [
+            {
+              text: t("ok")
+            }
+          ]
+        );
+        return;
+      }
+
       ImagePicker.launchCamera(
         {
           mediaType: "photo",
@@ -63,10 +122,12 @@ const withImagePicker = (WrappedComponent) => {
           rotation: 360,
           noData: true
         },
-        (response) => {
+        response => {
           const { t } = this.props;
 
-          if (response.cancelled) return;
+          if (response.cancelled) {
+            return;
+          }
 
           if (response.error) {
             Alert.alert(
@@ -98,7 +159,7 @@ const withImagePicker = (WrappedComponent) => {
       );
     };
 
-    showCameraOrLibraryPicker = (callback) => {
+    showCameraOrLibraryPicker = callback => {
       const { t } = this.props;
 
       Alert.alert(
