@@ -1128,8 +1128,10 @@
     "recurringAfterStartDate": "Please select recurring date that comes after event start time",
     "endDateAfterStartDate": "Please select end date after the start date",
     "noEventsToShare": "Selected period has no events to share",
-    "emtyDates": "Dates can't be empty",
+    "emptyDates": "Dates can't be empty",
     "seeShareResults": "Look at my EPWA app results",
-    "chooseShareSelection": "Select one ore more categories to share"
+    "chooseShareSelection": "Select one ore more categories to share",
+    "connectionError": "epwa app can't connect with the server",
+    "networkError": "epwa can't connect with the network"
   }
 }

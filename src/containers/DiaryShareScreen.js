@@ -35,7 +35,7 @@ import iconMap from "../constants/iconMap";
 import nlLocale from "date-fns/locale/nl";
 import apisauce from "apisauce";
 
-// import Reactotron from "reactotron-react-native";
+import Reactotron from "reactotron-react-native";
 
 const validationSchema = yup.object().shape({
   startDate: yup
@@ -183,7 +183,7 @@ class DiaryShareEventsForm extends Component {
     }
 
     if (isNil(startDate) || isNil(endDate)) {
-      Alert.alert("", t("emtyDates"));
+      Alert.alert("", t("emptyDates"));
       return;
     }
 
@@ -205,10 +205,10 @@ class DiaryShareEventsForm extends Component {
       return;
     }
 
-    // const lang = i18n.language;
+    const lang = i18n.language;
 
-    const uri = `https://epwa-api.ehero.es/getpdf/user/1/animal/${animalId}/start/${startDate}/end/${endDate}/selection/${selection}`;
-    // const uri = `https://epwa-api.ehero.es/getpdf/user/1/animal/${animalId}/start/${startDate}/end/${endDate}/selection/${selection}/${lang}`;
+    // const uri = `https://epwa-api.ehero.es/getpdf/user/1/animal/${animalId}/start/${startDate}/end/${endDate}/selection/${selection}`;
+    const uri = `https://epwa-api.ehero.es/getpdf/user/1/animal/${animalId}/start/${startDate}/end/${endDate}/selection/${selection}/${lang}`;
 
     const apiUrl = `https://epwa-api.ehero.es/pdf/events?from=${startDate}&untill=${endDate}&animal_id=${animalId}&user_id=1&selection=${selection}`;
 
@@ -219,8 +219,29 @@ class DiaryShareEventsForm extends Component {
 
       return await api
         .get()
-        .then(response => response.data)
-        .catch(err => err);
+        .then(response => {
+          if (response.ok) {
+            return response.data;
+          } else if (response.problem) {
+            switch (response.problem) {
+              case "SERVER_ERROR":
+                Alert.alert("", t("serverError"));
+                return;
+              case "CONNECTION_ERROR":
+                Alert.alert("", t("connectionError"));
+                return;
+              case "NETWORK_ERROR":
+                Alert.alert("", t("networkError"));
+                return;
+              default:
+                Alert.alert("", t("connectionError"));
+                return;
+            }
+          }
+        })
+        .catch(err => {
+          console.log("API err:", err);
+        });
     };
 
     try {

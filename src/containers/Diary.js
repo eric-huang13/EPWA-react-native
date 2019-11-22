@@ -639,6 +639,7 @@ class Diary extends Component {
 
   renderGraph = ({ currentAnimal, currentDate }) => {
     const { t } = this.props;
+    const locale = this.props.i18n.language === "nl" ? nl : en;
     const allPainMeasurements = compose(
       filter(isInRange(currentDate)),
       filter(isCompleted),
@@ -665,7 +666,7 @@ class Diary extends Component {
         currentDate={currentDate}
         currentAnimal={currentAnimal}
         items={allPainMeasurements}
-        locale={this.props.i18n.language}
+        locale={locale}
         t={t}
       />
     );

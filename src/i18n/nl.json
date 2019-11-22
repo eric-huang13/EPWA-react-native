@@ -920,7 +920,6 @@
     "selectSex": "Selecteer een geslacht",
     "animalHeight": "Stokmaat (in cm)",
     "animalWeight": "Gewicht (in kg)",
-
     "selectAnimalHeight": "Selecteer een stokmaat",
     "fillInAnimalHeight": "Vul stokmaat in (centimeters)",
     "fillInAnimalWeight": "Vul gewicht in (kilo's)",
@@ -1132,9 +1131,11 @@
     "recurringAfterStartDate": "De herhaling kan niet eindigen voor de startdatum van de huidige taak.",
     "endDateAfterStartDate": "Selecteer een eind datum dat na de startdatum ligt",
     "noEventsToShare": "Geselecteerde periode heeft geen uitgevoerde taken",
-    "emtyDates": "Selecteer een begin en eindtijd",
+    "emptyDates": "Selecteer een begin en einddatum",
     "seeShareResults": "Bekijk mijn EPWA app resultaten",
-    "chooseShareSelection": "Selecteer minimaal één categorie om te delen"
+    "chooseShareSelection": "Selecteer minimaal één categorie om te delen",
+    "connectionError": "epwa app kan geen verbindig maken met de server",
+    "networkError": "epwa app kan geen verbinding maken met het netwerk"
   },
 
   "calendar": {
