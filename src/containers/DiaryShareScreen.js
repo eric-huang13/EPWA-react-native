@@ -317,25 +317,25 @@ class DiaryShareEventsForm extends Component {
                   mode="date"
                   date={currentDate}
                   ref={el => (ref1 = el)} // eslint-disable-line no-return-assign
-                  onPick={date =>
-                    setFieldValue("startDate", this.parseDateField(date))
-                  }
+                  onPick={date => {
+                    setFieldValue("startDate", this.parseDateField(date));
+                  }}
                 />
-
-                <SelectButton
-                  containerStyle={
-                    [
-                      // f.dateInput,
-                      // this.props.submitCount > 0 && hasErrors && f.dateInputWithError,
-                    ]
-                  }
-                  onPress={() => ref1.show()}
-                >
-                  {isNil(values.startDate)
-                    ? t("selectDate")
-                    : this.formatDateField(values.startDate)}
-                </SelectButton>
               </View>
+              <SelectButton
+                touchStyle={{ flex: 0, height: 46 }}
+                containerStyle={
+                  [
+                    // f.dateInput,
+                    // this.props.submitCount > 0 && hasErrors && f.dateInputWithError,
+                  ]
+                }
+                onPress={() => ref1.show()}
+              >
+                {isNil(values.startDate)
+                  ? t("selectDate")
+                  : this.formatDateField(values.startDate)}
+              </SelectButton>
             </View>
             <View style={{ height: 150 }}>
               <View style={{ height: 50 }}>
@@ -348,27 +348,28 @@ class DiaryShareEventsForm extends Component {
                   mode="date"
                   date={currentDate}
                   ref={el => (ref2 = el)} // eslint-disable-line no-return-assign
-                  onPick={date =>
+                  onPick={date => {
                     setFieldValue(
                       "endDate",
                       this.parseDateField(addDays(date, 1))
-                    )
-                  }
+                    );
+                  }}
                 />
-                <SelectButton
-                  containerStyle={
-                    [
-                      // f.dateInput,
-                      // this.props.submitCount > 0 && hasErrors && f.dateInputWithError,
-                    ]
-                  }
-                  onPress={() => ref2.show()}
-                >
-                  {isNil(values.endDate)
-                    ? t("selectDate")
-                    : this.formatDateField(addDays(values.endDate, -1))}
-                </SelectButton>
               </View>
+              <SelectButton
+                touchStyle={{ flex: 0, height: 46 }}
+                containerStyle={
+                  [
+                    // f.dateInput,
+                    // this.props.submitCount > 0 && hasErrors && f.dateInputWithError,
+                  ]
+                }
+                onPress={() => ref2.show()}
+              >
+                {isNil(values.endDate)
+                  ? t("selectDate")
+                  : this.formatDateField(addDays(values.endDate, -1))}
+              </SelectButton>
             </View>
 
             <Button

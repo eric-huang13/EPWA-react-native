@@ -7,8 +7,8 @@ import s from "./styles/SelectButtonStyles";
 import { colors } from "../themes";
 import iconMap from "../constants/iconMap";
 
-const SelectButton = ({ onPress, children, containerStyle }) => (
-  <TouchableOpacity onPress={onPress} style={{ flex: 1 }}>
+const SelectButton = ({ onPress, children, containerStyle, touchStyle }) => (
+  <TouchableOpacity onPress={onPress} style={[{ flex: 1 }, touchStyle]}>
     <View style={[s.container, containerStyle]}>
       <Text style={s.text}>{children}</Text>
       <Icon name={iconMap.dropdown} size={20} color={colors.nero} />
