@@ -391,7 +391,7 @@ PainMeasurementGraph.propTypes = {
       type: T.oneOf([eventTypes.composite, eventTypes.facialExpression])
     })
   ).isRequired,
-  locale: T.string
+  locale: T.object
 };
 
 export default PainMeasurementGraph;

@@ -8,7 +8,6 @@ import {
   Image,
   Linking,
   ScrollView,
-  Share,
   Text,
   SafeAreaView,
   StatusBar,
@@ -730,6 +729,7 @@ class Diary extends Component {
 
   render() {
     const { width } = Dimensions.get("window");
+    Reactotron.log(width);
     const {
       i18n,
       t,
@@ -835,13 +835,13 @@ class Diary extends Component {
               ) {
                 return <View key={title} />;
               }
-
               return (
                 <ActionButton.Item
                   key={title}
                   buttonColor={color}
                   title={title}
                   onPress={onPress}
+                  size={width > 320 ? 56 : 45}
                 >
                   <Icon name={icon} color={colors.white} size={22} />
                 </ActionButton.Item>
