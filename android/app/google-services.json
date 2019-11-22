@@ -1,41 +1,49 @@
 {
   "project_info": {
-    "project_number": "105807776637",
-    "firebase_url": "https://epwa-1bd6d.firebaseio.com",
-    "project_id": "epwa-1bd6d",
-    "storage_bucket": "epwa-1bd6d.appspot.com"
+    "project_number": "131572239324",
+    "firebase_url": "https://epwa-206611.firebaseio.com",
+    "project_id": "epwa-206611",
+    "storage_bucket": "epwa-206611.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:105807776637:android:1a6646029902520f329a14",
+        "mobilesdk_app_id": "1:131572239324:android:1289c0d47ca91e52fc1d19",
         "android_client_info": {
           "package_name": "com.epwa"
         }
       },
       "oauth_client": [
         {
-          "client_id": "105807776637-arir5hvia1oa1e6656a8tihdp15iq03j.apps.googleusercontent.com",
+          "client_id": "131572239324-gvfisq83msqdlc5tvr06rjec7fehpj83.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.epwa",
+            "certificate_hash": "35a1a4c41bd3418631a3250569167c1fe915fe95"
+          }
+        },
+        {
+          "client_id": "131572239324-fh4ll8t46ergm1v3lpeuej88ulrj80j9.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDYo7-nxDAf-s_nQs5w-zzkfRMtEEf0_1c"
+          "current_key": "AIzaSyD2JQrVAU8pxYDKAV1RmjpwNfduSqLX_gY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "105807776637-arir5hvia1oa1e6656a8tihdp15iq03j.apps.googleusercontent.com",
+              "client_id": "131572239324-fh4ll8t46ergm1v3lpeuej88ulrj80j9.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "105807776637-2d81olujps62dp0mhap1km2d16ld0608.apps.googleusercontent.com",
+              "client_id": "131572239324-onjvedkh3kqj9fm1s6sle41he93g8n3d.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "nl.wirelab.apps.epiou"
+                "bundle_id": "nl.wirelab.apps.epwa"
               }
             }
           ]
