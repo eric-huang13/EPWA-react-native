@@ -841,7 +841,7 @@ class Diary extends Component {
                   buttonColor={color}
                   title={title}
                   onPress={onPress}
-                  size={width > 320 ? 56 : 45}
+                  size={width > 370 ? 56 : 45}
                 >
                   <Icon name={icon} color={colors.white} size={22} />
                 </ActionButton.Item>
