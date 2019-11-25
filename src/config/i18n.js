@@ -6,7 +6,7 @@ import { take } from "ramda";
 
 import en from "../i18n/en.json";
 import nl from "../i18n/nl.json";
-import reactotron from "reactotron-react-native";
+// import reactotron from "reactotron-react-native";
 
 const languageDetector = {
   type: "languageDetector",

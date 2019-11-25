@@ -24,7 +24,7 @@ import {
   addRecurringCalendarEvents
 } from "../services/eventService";
 
-import Reactotron from "reactotron-react-native";
+// import Reactotron from "reactotron-react-native";
 import { compose } from "redux";
 
 LocaleConfig.locales.nl = {

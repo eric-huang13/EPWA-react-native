@@ -25,7 +25,7 @@ import PainMeasurementObservationHeadScreen from "./PainMeasurementObservationHe
 import PainMeasurementLoginWarningScreen from "./PainMeasurementLoginWarning";
 import withAlertDropdown from "../components/withAlertDropdown";
 
-import Reactotron from "reactotron-react-native";
+// import Reactotron from "reactotron-react-native";
 
 const PainMeasurementNavigator = createStackNavigator(
   {

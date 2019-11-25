@@ -6,7 +6,7 @@ import { __, all, equals, compose, has, pick, not } from "ramda";
 import { connect } from "react-redux";
 import { hoistStatics } from "recompose";
 import Touchable from "react-native-platform-touchable";
-import Reactotron from "reactotron-react-native";
+// import Reactotron from "reactotron-react-native";
 
 import ProgressBar from "../components/ProgressBar";
 import TitleBar from "../components/TitleBar";

@@ -5,7 +5,7 @@ import { get } from "lodash";
 import { compose, evolve, isNil, map, reject, omit, not } from "ramda";
 import { format, addMinutes } from "date-fns";
 import RNCalendarEvents from "react-native-calendar-events";
-import Reactotron from "reactotron-react-native";
+// import Reactotron from "reactotron-react-native";
 
 import {
   ADD_EVENT,
@@ -509,7 +509,7 @@ export function* completeRecurringEvent(api, dispatch, action) {
     event => {
       const result = event;
 
-      if (event.data === "null" && event.data === '"null"') {
+      if (event.data === "null" && event.data === "\"null\"") {
         result.data = null;
       }
 

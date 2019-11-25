@@ -65,7 +65,6 @@ import {
 import iconMap from "../constants/iconMap";
 import RecurringForm from "../components/RecurringForm";
 import nlLocale from "date-fns/locale/nl";
-import Reactotron from "../config/reactotronConfig";
 
 // import Reactotron from "reactotron-react-native";
 

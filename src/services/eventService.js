@@ -32,7 +32,7 @@ import {
   setMillisecondsToZero
 } from "../services/date";
 import getId from "./idGenerator";
-import Reactotron from "reactotron-react-native";
+// import Reactotron from "reactotron-react-native";
 
 import { eventCategories, eventCategoryColors, eventTypes } from "../constants";
 import { capitalize } from "../transforms";

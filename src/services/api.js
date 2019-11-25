@@ -3,7 +3,7 @@ import { Alert } from "react-native";
 
 import { basePath, csvUploadPath } from "../constants";
 
-import Reactotron from "reactotron-react-native";
+// import Reactotron from "reactotron-react-native";
 
 const createFacebookApi = (baseURL = "https://graph.facebook.com/") => {
   const api = apisauce.create({

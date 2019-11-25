@@ -25,7 +25,7 @@ import Arrow from "../images/svg/arrow-down-black.svg";
 import nl from "date-fns/locale/nl";
 import en from "date-fns/locale/en";
 
-import Reactotron from "reactotron-react-native";
+// import Reactotron from "reactotron-react-native";
 
 export default function EventsList({
   events,

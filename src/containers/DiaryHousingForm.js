@@ -56,7 +56,7 @@ import {
 } from "../services/date";
 import iconMap from "../constants/iconMap";
 
-import Reactotron from "reactotron-react-native";
+// import Reactotron from "reactotron-react-native";
 import nlLocale from "date-fns/locale/nl";
 
 const validationSchema = yup.object().shape({

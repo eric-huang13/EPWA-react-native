@@ -71,7 +71,7 @@ import iconMap from "../constants/iconMap";
 import MultiLineTextField from "../components/MultiLineTextField";
 import nlLocale from "date-fns/locale/nl";
 
-import Reactotron from "reactotron-react-native";
+// import Reactotron from "reactotron-react-native";
 
 const validationSchema = yup.object().shape({
   payload: yup.array().of(dateEventValidation)

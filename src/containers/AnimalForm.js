@@ -51,7 +51,7 @@ import { colors, fonts } from "../themes";
 import { getToken } from "../selectors/auth";
 import iconMap from "../constants/iconMap";
 
-import Reactotron from "reactotron-react-native";
+// import Reactotron from "reactotron-react-native";
 
 class AnimalForm extends Component {
   static navigationOptions = ({ navigation, screenProps }) => ({

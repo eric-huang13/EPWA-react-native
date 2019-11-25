@@ -12,7 +12,7 @@ import PainMeasurementList from "../components/PainMeasurementList";
 import { isPainMeasurement, isRelatedToAnimal } from "../services/eventService";
 import { colors } from "../themes";
 
-import Reactotron from "reactotron-react-native";
+// import Reactotron from "reactotron-react-native";
 
 class PainMeasurementOverview extends React.Component {
   get locale() {

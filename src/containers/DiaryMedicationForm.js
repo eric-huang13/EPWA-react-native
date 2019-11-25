@@ -78,7 +78,7 @@ import {
 import iconMap from "../constants/iconMap";
 import nlLocale from "date-fns/locale/nl";
 
-import Reactotron from "reactotron-react-native";
+// import Reactotron from "reactotron-react-native";
 
 const validationSchema = yup.object().shape({
   pill: yup.array().of(quantityEventValidation),

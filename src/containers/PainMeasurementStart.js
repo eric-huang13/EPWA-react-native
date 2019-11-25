@@ -21,7 +21,6 @@ import IconButton from "../components/IconButton";
 import AnimalSelect from "../components/AnimalSelect";
 
 import iconMap from "../constants/iconMap";
-import Reactotron from "../config/reactotronConfig";
 // import imageMap from "../constants/imageMap";
 
 const iconFacial = "starticoontje-pijnschalen-gezichtsuitdrukkingen";

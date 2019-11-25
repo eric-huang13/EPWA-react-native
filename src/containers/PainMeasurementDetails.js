@@ -18,7 +18,7 @@ import Icon from "../components/Icon";
 
 import iconMap from "../constants/iconMap";
 import { colors, fonts } from "../themes";
-import Reactotron from "reactotron-react-native";
+// import Reactotron from "reactotron-react-native";
 
 const Row = (
   { iconName, children, paddingVertical } // eslint-disable-line

@@ -15,7 +15,7 @@ import { colors, fonts } from "../themes";
 import { calculateScore } from "../services/painMeasurement";
 import iconMap from "../constants/iconMap";
 
-import Reactotron from "reactotron-react-native";
+// import Reactotron from "reactotron-react-native";
 
 class PainMeasurementScore extends Component {
   static navigationOptions = ({ screenProps }) => {

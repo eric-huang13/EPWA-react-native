@@ -91,7 +91,7 @@ import {
 import DiaryTimeTab from "./DiaryTimeTab";
 
 import EventsList, { AccordionView } from "./DiaryList";
-import Reactotron from "reactotron-react-native";
+// import Reactotron from "reactotron-react-native";
 
 class Diary extends Component {
   static navigationOptions = ({ navigation, screenProps }) => ({
@@ -198,7 +198,6 @@ class Diary extends Component {
     const event = navigation.getParam("id");
 
     if (!isNil(event) && typeof event !== "number" && this.state.initial) {
-      Reactotron.log(event);
       const animalId = event[0].animalId;
       const selectedAnimalIndex = data.animals.findIndex(
         animal => animal.id === animalId
@@ -730,7 +729,6 @@ class Diary extends Component {
 
   render() {
     const { width } = Dimensions.get("window");
-    Reactotron.log(width);
     const {
       i18n,
       t,
