@@ -197,7 +197,8 @@ class Diary extends Component {
 
     const event = navigation.getParam("id");
 
-    if (!isNil(event) && this.state.initial) {
+    if (!isNil(event) && typeof event !== "number" && this.state.initial) {
+      Reactotron.log(event);
       const animalId = event[0].animalId;
       const selectedAnimalIndex = data.animals.findIndex(
         animal => animal.id === animalId
@@ -642,8 +643,8 @@ class Diary extends Component {
     const allPainMeasurements = compose(
       filter(isInRange(currentDate)),
       filter(isCompleted),
-      filter(isRelatedToAnimal(currentAnimal)),
-      filter(isPainMeasurement)
+      filter(isPainMeasurement),
+      filter(isRelatedToAnimal(currentAnimal))
     )(this.props.data.events);
 
     if (isNil(allPainMeasurements.length)) {

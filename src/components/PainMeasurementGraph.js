@@ -8,7 +8,7 @@ import {
   VictoryChart,
   VictoryLabel
 } from "victory-native";
-import { format, isWithinRange, addDays } from "date-fns";
+import { format } from "date-fns";
 import { colors, fonts } from "../themes";
 import { isNil } from "ramda";
 import { eventTypes } from "../constants";
@@ -84,34 +84,25 @@ class PainMeasurementGraph extends React.Component {
   setGraphData = () => {
     const formatDate = timestamp =>
       format(timestamp, "D MMM-HH:mm", { locale: this.props.locale });
-    const { t } = this.props;
+    // const { t } = this.props;
     const ticks = [];
     const tickStrings = [];
 
     const isPainScore = value => isNil(value.data) === false;
 
-    const data = this.props.items
-      .filter(isPainScore)
-      .filter(item => {
-        return isWithinRange(
-          format(this.props.currentDate),
-          addDays(format(item.startDate), -15),
-          addDays(format(item.startDate), 5)
-        );
-      })
-      .map((item, index) => {
-        ticks.push(index);
-        tickStrings.push(formatDate(item.startDate).replace("-", "\n"));
-        return {
-          index,
-          date: item.startDate,
-          score: item.data && item.data.finalScore ? item.data.finalScore : 0,
-          type:
-            item.data && item.data.measurementType
-              ? item.data.measurementType
-              : ""
-        };
-      });
+    const data = this.props.items.filter(isPainScore).map((item, index) => {
+      ticks.push(index);
+      tickStrings.push(formatDate(item.startDate).replace("-", "\n"));
+      return {
+        index,
+        date: item.startDate,
+        score: item.data && item.data.finalScore ? item.data.finalScore : 0,
+        type:
+          item.data && item.data.measurementType
+            ? item.data.measurementType
+            : ""
+      };
+    });
 
     const facialExpressionLength = data.filter(
       a => a.type === eventTypes.facialExpression

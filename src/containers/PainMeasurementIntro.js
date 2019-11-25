@@ -10,7 +10,7 @@ import Button from "../components/Button";
 import iconMap from "../constants/iconMap";
 import { colors, fonts } from "../themes";
 
-import Reactotron from "reactotron-react-native";
+// import Reactotron from "reactotron-react-native";
 
 // Extending PureComponent to prevent unnecessary rerenders
 // while interacting with other screens in a stack
