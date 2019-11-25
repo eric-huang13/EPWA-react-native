@@ -6,6 +6,7 @@ import {
   View,
   Text,
   Alert,
+  Platform,
   Share
 } from "react-native";
 import { HeaderBackButton } from "react-navigation-stack";
@@ -35,7 +36,7 @@ import iconMap from "../constants/iconMap";
 import nlLocale from "date-fns/locale/nl";
 import apisauce from "apisauce";
 
-import Reactotron from "reactotron-react-native";
+// import Reactotron from "reactotron-react-native";
 
 const validationSchema = yup.object().shape({
   startDate: yup
@@ -256,7 +257,10 @@ class DiaryShareEventsForm extends Component {
 
     try {
       await Share.share({
-        message: t("seeShareResults"),
+        message:
+          Platform.OS === "ios"
+            ? t("seeShareResults")
+            : `${t("seeShareResults")}: ${uri}`,
         url: uri
       });
     } catch (error) {
