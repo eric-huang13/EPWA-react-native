@@ -53,7 +53,6 @@ import {
   DELETE_EVENT_ROLLBACK_REQUESTED,
   EXPORT_EVENTS,
   COMPLETE_EVENT_REQUESTED,
-  COMPLETE_EVENT_ROLLBACK_REQUESTED,
   COMPLETE_RECURRING_EVENT_REQUESTED
 } from "../actions/events";
 import { SET_LANGUAGE_REQUEST } from "../actions/language";
@@ -69,7 +68,6 @@ import {
   deleteEventRollback,
   exportEvents,
   completeEvent,
-  completeEventRollback,
   completeRecurringEvent
 } from "./events";
 
