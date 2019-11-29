@@ -37,7 +37,7 @@ import nlLocale from "date-fns/locale/nl";
 import apisauce from "apisauce";
 import { apiBasePath } from "../../env.json";
 
-import Reactotron from "reactotron-react-native";
+// import Reactotron from "reactotron-react-native";
 
 const validationSchema = yup.object().shape({
   startDate: yup
@@ -211,7 +211,7 @@ class DiaryShareEventsForm extends Component {
 
     const uri = `${apiBasePath}/getpdf/user/1/animal/${animalId}/start/${startDate}/end/${endDate}/selection/${selection}/${lang}`;
     const apiUrl = `${apiBasePath}/pdf/events?from=${startDate}&untill=${endDate}&animal_id=${animalId}&user_id=1&selection=${selection}`;
-    Reactotron.log(apiUrl);
+    // Reactotron.log(apiUrl);
 
     const getApiItems = async (baseURL = apiUrl) => {
       const api = apisauce.create({

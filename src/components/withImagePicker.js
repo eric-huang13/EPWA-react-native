@@ -52,7 +52,6 @@ const withImagePicker = WrappedComponent => {
 
       ImagePicker.launchImageLibrary(
         {
-          title: "",
           mediaType: "photo",
           // Resolves issue on some Android devices where image would be rotated by 90deg for no apparent reason
           // See more at: https://github.com/react-community/react-native-image-picker/issues/655#issuecomment-417738511
@@ -61,7 +60,7 @@ const withImagePicker = WrappedComponent => {
           noData: true,
           storageOptions: {
             skipBackup: true,
-            path: "images",
+            // path: "images",
             cameraRoll: true,
             waitUntilSaved: true
           }
@@ -98,18 +97,11 @@ const withImagePicker = WrappedComponent => {
             );
           }
 
-          // const uri =
-          //   Platform.OS === "android"
-          //     ? response.uri
-          //     : "~" +
-          //       response.uri.substring(response.uri.indexOf("/Documents"));
-
-          // const uri = Platform.OS === "android" ? response.uri : response.uri;
-
           const uri =
             Platform.OS === "android"
               ? response.uri
-              : response.uri.replace("file://", "");
+              : "~" +
+                response.uri.substring(response.uri.indexOf("/Documents"));
 
           callback(uri);
         }
