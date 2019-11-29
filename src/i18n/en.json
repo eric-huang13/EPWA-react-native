@@ -1132,6 +1132,8 @@
     "seeShareResults": "Look at my EPWA app results",
     "chooseShareSelection": "Select one ore more categories to share",
     "connectionError": "epwa app can't connect with the server",
-    "networkError": "epwa can't connect with the network"
+    "networkError": "epwa can't connect with the network",
+    "permissionReadWriteTitle": "Permissions for write/read access",
+    "permissionReadWriteMessage": "Give permission to your storage to write/read a file"
   }
 }

@@ -1135,7 +1135,9 @@
     "seeShareResults": "Bekijk mijn EPWA app resultaten",
     "chooseShareSelection": "Selecteer minimaal één categorie om te delen",
     "connectionError": "epwa app kan geen verbindig maken met de server",
-    "networkError": "epwa app kan geen verbinding maken met het netwerk"
+    "networkError": "epwa app kan geen verbinding maken met het netwerk",
+    "permissionReadWriteTitle": "Toestemming toegang bestanden",
+    "permissionReadWriteMessage": "Toestemming nodig voor het ophalen en opslaan van foto's"
   },
 
   "calendar": {

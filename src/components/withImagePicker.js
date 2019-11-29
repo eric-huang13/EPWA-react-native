@@ -9,11 +9,13 @@ const withImagePicker = WrappedComponent => {
     static IMAGE_BYTE_SIZE_THRESHOLD = 1024 * 1024 * 10; // 10MB
 
     checkPermission = async permission => {
+      const { t } = this.props;
+
       if (Platform.OS === "android") {
         try {
           const granted = await PermissionsAndroid.request(permission, {
-            title: "Permissions for write/read access",
-            message: "Give permission to your storage to write/read a file",
+            title: t("permissionReadWriteTitle"),
+            message: t("permissionReadWriteMessage"),
             buttonPositive: "ok"
           });
           if (granted === PermissionsAndroid.RESULTS.GRANTED) {
