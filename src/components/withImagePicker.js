@@ -30,34 +30,44 @@ const withImagePicker = WrappedComponent => {
 
     showImagePicker = async callback => {
       const { t } = this.props;
-      const galeryPermission = await this.checkPermission(
-        PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE
-      );
 
-      if (!galeryPermission) {
-        Alert.alert(
-          t("errors.alertTitleGeneric"),
-          t("errors.imagePickerFailed"),
-          [
-            {
-              text: t("ok")
-            }
-          ]
+      if (Platform.OS === "android") {
+        const galeryPermission = await this.checkPermission(
+          PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE
         );
-        return;
+
+        if (!galeryPermission) {
+          Alert.alert(
+            t("errors.alertTitleGeneric"),
+            t("errors.imagePickerFailed"),
+            [
+              {
+                text: t("ok")
+              }
+            ]
+          );
+          return;
+        }
       }
 
       ImagePicker.launchImageLibrary(
         {
+          title: "",
           mediaType: "photo",
           // Resolves issue on some Android devices where image would be rotated by 90deg for no apparent reason
           // See more at: https://github.com/react-community/react-native-image-picker/issues/655#issuecomment-417738511
           quality: 0.99,
           rotation: 360,
-          noData: true
+          noData: true,
+          storageOptions: {
+            skipBackup: true,
+            path: "images",
+            cameraRoll: true,
+            waitUntilSaved: true
+          }
         },
         response => {
-          console.log("response", response);
+          // console.log("response", response);
 
           if (response.cancelled) {
             return;
@@ -88,29 +98,43 @@ const withImagePicker = WrappedComponent => {
             );
           }
 
-          callback(response.uri);
+          // const uri =
+          //   Platform.OS === "android"
+          //     ? response.uri
+          //     : "~" +
+          //       response.uri.substring(response.uri.indexOf("/Documents"));
+
+          // const uri = Platform.OS === "android" ? response.uri : response.uri;
+
+          const uri =
+            Platform.OS === "android"
+              ? response.uri
+              : response.uri.replace("file://", "");
+
+          callback(uri);
         }
       );
     };
 
     showCamera = async callback => {
-      const cameraPermission = await this.checkPermission(
-        PermissionsAndroid.PERMISSIONS.CAMERA
-      );
-
       const { t } = this.props;
-
-      if (!cameraPermission) {
-        Alert.alert(
-          t("errors.alertTitleGeneric"),
-          t("errors.imagePickerFailed"),
-          [
-            {
-              text: t("ok")
-            }
-          ]
+      if (Platform.OS === "android") {
+        const cameraPermission = await this.checkPermission(
+          PermissionsAndroid.PERMISSIONS.CAMERA
         );
-        return;
+
+        if (!cameraPermission) {
+          Alert.alert(
+            t("errors.alertTitleGeneric"),
+            t("errors.imagePickerFailed"),
+            [
+              {
+                text: t("ok")
+              }
+            ]
+          );
+          return;
+        }
       }
 
       ImagePicker.launchCamera(
