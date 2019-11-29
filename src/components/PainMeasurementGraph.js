@@ -13,12 +13,14 @@ import { colors, fonts } from "../themes";
 import { isNil } from "ramda";
 import { eventTypes } from "../constants";
 
+// import Reactotron from "reactotron-react-native";
+
 class PainMeasurementGraph extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      maxScore: 55,
+      maxScore: 0,
       ticks: [],
       tickStrings: [],
       data: [],
@@ -34,9 +36,7 @@ class PainMeasurementGraph extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const prev = prevProps.items.filter(event => event.completed === true);
-    const curr = this.props.items.filter(event => event.completed === true);
-    if (prev.length !== curr.length) {
+    if (prevProps.items.length !== this.props.items.length) {
       this.setGraphData();
     }
     if (prevProps.currentAnimal !== this.props.currentAnimal) {
@@ -96,7 +96,12 @@ class PainMeasurementGraph extends React.Component {
       return {
         index,
         date: item.startDate,
-        score: item.data && item.data.finalScore ? item.data.finalScore : 0,
+        score:
+          item.data && item.data.finalScore
+            ? item.data.finalScore < 55
+              ? item.data.finalScore
+              : 55
+            : 0,
         type:
           item.data && item.data.measurementType
             ? item.data.measurementType
@@ -111,7 +116,14 @@ class PainMeasurementGraph extends React.Component {
     const compositeLength = data.filter(a => a.type === eventTypes.composite)
       .length;
 
+    const calcMaxScore = this.props.items.reduce(
+      (acc, event) =>
+        (acc = acc > event.data.finalScore ? acc : event.data.finalScore),
+      0
+    );
+
     this.setState({
+      maxScore: calcMaxScore,
       ticks,
       tickStrings,
       data,
@@ -139,6 +151,7 @@ class PainMeasurementGraph extends React.Component {
         </View>
       );
     }
+    const yDistance = 8;
 
     return (
       <View>
@@ -167,7 +180,7 @@ class PainMeasurementGraph extends React.Component {
             persistentScrollbar
             style={{
               width: "100%",
-              paddingBottom: 35
+              paddingBottom: 20
             }}
             ref={ref => (this.scrollView = ref)}
             onContentSizeChange={(contentWidth, contentHeight) => {
@@ -178,7 +191,7 @@ class PainMeasurementGraph extends React.Component {
               (this.state.facialExpressionLine.length > 0 && (
                 <View
                   style={{
-                    height: 120,
+                    height: 200,
                     width: 20,
                     position: "relative",
                     left: 15,
@@ -189,11 +202,11 @@ class PainMeasurementGraph extends React.Component {
                 />
               ))}
             <VictoryChart
-              domain={{ y: [0, 30 || this.state.maxScore] }}
+              domain={{ y: [0, 60 || this.state.maxScore] }}
               domainPadding={{ x: 20 }}
               padding={{ top: 0, right: 15, bottom: 40, left: 15 }}
               width={ticks.length * 44}
-              height={120}
+              height={this.state.maxScore * 5}
             >
               <VictoryAxis
                 style={{
@@ -208,43 +221,42 @@ class PainMeasurementGraph extends React.Component {
               {this.state.showComposite &&
                 this.state.compositeLine.length > 0 &&
                 this.state.compositeLine.map((line, index) => {
-                  if (this.state.compositeLine[index + 1]) {
-                    return (
+                  return (
+                    this.state.compositeLine[index + 1] && (
                       <Line
                         key={index}
                         x1={line.xCoor}
-                        y1={line.yCoor - 5}
+                        y1={line.yCoor - yDistance}
                         x2={this.state.compositeLine[index + 1].xCoor}
-                        y2={this.state.compositeLine[index + 1].yCoor - 5}
+                        y2={
+                          this.state.compositeLine[index + 1].yCoor - yDistance
+                        }
                         strokeWidth="2"
                         stroke={colors.lima}
                       />
-                    );
-                  } else {
-                    return;
-                  }
+                    )
+                  );
                 })}
 
               {this.state.showFacial &&
                 this.state.facialExpressionLine.length > 0 &&
                 this.state.facialExpressionLine.map((line, index) => {
-                  if (this.state.facialExpressionLine[index + 1]) {
-                    return (
+                  return (
+                    this.state.facialExpressionLine[index + 1] && (
                       <Line
                         key={index}
                         x1={line.xCoor}
-                        y1={line.yCoor - 5}
+                        y1={line.yCoor - yDistance}
                         x2={this.state.facialExpressionLine[index + 1].xCoor}
                         y2={
-                          this.state.facialExpressionLine[index + 1].yCoor - 5
+                          this.state.facialExpressionLine[index + 1].yCoor -
+                          yDistance
                         }
                         strokeWidth="2"
                         stroke={colors.lightBlue}
                       />
-                    );
-                  } else {
-                    return;
-                  }
+                    )
+                  );
                 })}
 
               <VictoryScatter
@@ -282,8 +294,6 @@ function Box({
   x,
   y,
   datum,
-  color,
-  data,
   lineXY,
   length1,
   length2,
