@@ -222,7 +222,7 @@ export function* addEventCommit(action) {
             endDate,
             notes
           };
-          details.alarms = [{ date: -5 }];
+          details.alarms = [{ date: 0 }];
 
           if (recurring) {
             details.recurrenceRule = {

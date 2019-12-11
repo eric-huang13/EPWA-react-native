@@ -116,14 +116,7 @@ class PainMeasurementGraph extends React.Component {
     const compositeLength = data.filter(a => a.type === eventTypes.composite)
       .length;
 
-    const calcMaxScore = this.props.items.reduce(
-      (acc, event) =>
-        (acc = acc > event.data.finalScore ? acc : event.data.finalScore),
-      0
-    );
-
     this.setState({
-      maxScore: calcMaxScore,
       ticks,
       tickStrings,
       data,
@@ -187,26 +180,27 @@ class PainMeasurementGraph extends React.Component {
               this.scrollView.scrollToEnd({ animated: true });
             }}
           >
-            {this.state.compositeLine.length > 0 ||
-              (this.state.facialExpressionLine.length > 0 && (
-                <View
-                  style={{
-                    height: 200,
-                    width: 20,
-                    position: "relative",
-                    left: 15,
-                    bottom: 39,
-                    borderBottomWidth: 2,
-                    borderColor: "#EDE8E8"
-                  }}
-                />
-              ))}
+            {this.state.compositeLine.length +
+              this.state.facialExpressionLine.length >
+              0 && (
+              <View
+                style={{
+                  height: 80,
+                  width: 20,
+                  position: "relative",
+                  left: 15,
+                  bottom: -11,
+                  borderBottomWidth: 2,
+                  borderColor: "#EDE8E8"
+                }}
+              />
+            )}
             <VictoryChart
-              domain={{ y: [0, 60 || this.state.maxScore] }}
+              domain={{ y: [0, 80] }}
               domainPadding={{ x: 20 }}
               padding={{ top: 0, right: 15, bottom: 40, left: 15 }}
               width={ticks.length * 44}
-              height={this.state.maxScore * 5}
+              height={130}
             >
               <VictoryAxis
                 style={{
