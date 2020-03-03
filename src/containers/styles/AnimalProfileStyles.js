@@ -12,7 +12,7 @@ export default StyleSheet.create({
     backgroundColor: colors.white
   },
   photoContainer: {
-    minHeight: 140,
+    minHeight: 220,
     backgroundColor: colors.mediumPurple,
     alignItems: "center",
     justifyContent: "center"
@@ -27,5 +27,9 @@ export default StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 20,
     minHeight: 62.7
+  },
+  imageContainer: {
+    width: windowWidth,
+    height: 220
   }
 });

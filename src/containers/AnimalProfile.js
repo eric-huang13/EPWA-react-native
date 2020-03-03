@@ -151,7 +151,7 @@ class AnimalProfile extends Component {
                   uri: pictureUrl,
                   headers: { Authorization: `Bearer ${authToken}` }
                 }}
-                style={{ width: 100, height: 100, borderRadius: 50 }}
+                style={s.imageContainer}
               />
             </View>
           ) : (
