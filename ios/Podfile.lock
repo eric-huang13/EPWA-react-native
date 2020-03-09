@@ -178,6 +178,9 @@ PODS:
   - react-native-fbsdk/Share (1.0.3):
     - FBSDKShareKit (~> 5.0)
     - React
+  - react-native-image-editor (2.2.0):
+    - React
+    - React-RCTImage
   - react-native-image-picker (1.1.0):
     - React
   - react-native-netinfo (4.6.0):
@@ -256,6 +259,7 @@ DEPENDENCIES:
   - react-native-calendar-events (from `../node_modules/react-native-calendar-events`)
   - react-native-camera (from `../node_modules/react-native-camera`)
   - react-native-fbsdk (from `../node_modules/react-native-fbsdk`)
+  - "react-native-image-editor (from `../node_modules/@react-native-community/image-editor`)"
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -329,6 +333,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-camera"
   react-native-fbsdk:
     :path: "../node_modules/react-native-fbsdk"
+  react-native-image-editor:
+    :path: "../node_modules/@react-native-community/image-editor"
   react-native-image-picker:
     :path: "../node_modules/react-native-image-picker"
   react-native-netinfo:
@@ -408,6 +414,7 @@ SPEC CHECKSUMS:
   react-native-calendar-events: 2fe35a9294af05de0ed819d3a1b5dac048d2c010
   react-native-camera: 1a62f163f06c7e54811fc9396cdb80269a665238
   react-native-fbsdk: 7bde3b84fc093d2c5e7fdccea03fe8fa9f112834
+  react-native-image-editor: e52b0c069384c71963c6b5e8a1a4d7f5d7189ac9
   react-native-image-picker: 3637d63fef7e32a230141ab4660d3ceb773c824f
   react-native-netinfo: bd4c115afdf0821b8ddb6c59ef3ddc5f0a7e8ad0
   React-RCTActionSheet: b0f1ea83f4bf75fb966eae9bfc47b78c8d3efd90

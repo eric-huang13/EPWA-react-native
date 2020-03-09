@@ -5,8 +5,6 @@ import HamburgerButton from "../components/HamburgerButton";
 
 import Button from "../components/Button";
 
-import takenphoto from "../images/epwa/horse_crop_1.png";
-
 import s from "./styles/EPWAStyles";
 
 import { colors, fonts } from "../themes";
@@ -23,10 +21,6 @@ class EPWAPhotoIsGood extends Component {
     },
     headerLeft: <HamburgerButton onPress={navigation.openDrawer} />
   });
-
-  images = {
-    horsecrop: takenphoto,
-  };
 
   get navigation() {
     return this.props.navigation;
@@ -51,8 +45,8 @@ class EPWAPhotoIsGood extends Component {
               <Image
                 source={image}
                 style={s.cropImg}
-                width={imageWidth}
-                height={imageHeight}
+                width={imageWidth * 0.9}
+                height={imageHeight * 0.9}
               />
             </View>
           </View>

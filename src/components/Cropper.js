@@ -63,8 +63,7 @@ class Cropper extends Component {
             borderColor: '#6038B5',
             borderWidth: 3,
             borderStyle: 'dashed',
-            borderRadius: 1,
-            borderTopColor:'white'
+            borderRadius: 1
           }}
         />
       </DragResizeBlock>

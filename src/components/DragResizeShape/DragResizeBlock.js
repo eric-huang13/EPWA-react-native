@@ -729,6 +729,7 @@ export class DragResizeBlock extends Component {
           top: y,
           width: w,
           height: h,
+          borderStyle: 'dotted',
           padding: this.size / 2,
           zIndex: isSelected ? zIndex + 1 : zIndex,
         }}

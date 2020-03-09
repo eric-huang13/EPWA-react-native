@@ -15,8 +15,6 @@ import Button from "../components/Button";
 
 import { colors, fonts } from "../themes";
 
-import horsecropphoto from "../images/epwa/horse_crop_1.png";
-
 import s from "./styles/EPWAStyles";
 import {getImageScaleSize} from '../transforms';
 import Cropper from '../components/Cropper';
@@ -47,10 +45,6 @@ class EPWACropImage extends Component {
     const { state } = this.props.navigation;
     // const image = state && state.params && state.params.image;
     const lastLetterInRoute = last(routeName).toLowerCase();
-
-    const images = {
-      horsecrop: horsecropphoto,
-    };
 
     let desc_content= {};
  
@@ -87,7 +81,6 @@ class EPWACropImage extends Component {
   };
 
   onHandleCrop = (fieldName, hasCropedYes) => {
-    const { state } = this.props.navigation;
     this.setFieldValue(fieldName, hasCropedYes);
 
     if (fieldName === "a") {
@@ -157,7 +150,6 @@ class EPWACropImage extends Component {
 
   render() {
     const { crops, image = {} } = this.props;
-    const { t } = this.props.screenProps;
     const content = this.getContent(this.navigation.state.routeName);
     const { imageWidth, imageHeight } = getImageScaleSize(image.width, image.height);
     const coord = cropImages[content.fieldName] || {};
@@ -173,28 +165,28 @@ class EPWACropImage extends Component {
               <Image
                 source={image}
                 style={s.cropImg}
-                width={imageWidth}
-                height={imageHeight}
+                width={imageWidth * 0.9}
+                height={imageHeight * 0.9}
               />
               {!!cropImages[content.fieldName]
                 ? (<Cropper
-                  x={coord.x || 0}
-                  y={coord.y * imageHeight || 0}
+                  x={coord.x || 5}
+                  y={coord.y * imageHeight * 0.9 || 5}
                   w={coord.w || imageWidth - 48}
-                  h={coord.h || imageHeight / 4  }
-                  maxWidth={imageWidth}
-                  maxHeight={imageHeight}
+                  h={coord.h || imageHeight * 0.9 / 4  }
+                  maxWidth={imageWidth * 0.9}
+                  maxHeight={imageHeight * 0.9}
                   onChange={this.setPosition}
                 />)
                 : (map(crops, (item, index) => (
                   <Cropper
                     key={index}
-                    x={item.x || 0}
-                    y={item.y || 0}
+                    x={item.x || 5}
+                    y={item.y || 5}
                     w={item.w || imageWidth - 48}
-                    h={item.h || imageHeight / 4  }
-                    maxWidth={imageWidth}
-                    maxHeight={imageHeight}
+                    h={item.h || imageHeight * 0.9 / 4  }
+                    maxWidth={imageWidth * 0.9}
+                    maxHeight={imageHeight * 0.9}
                   />
                 )))
               }
