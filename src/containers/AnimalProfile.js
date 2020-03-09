@@ -6,7 +6,8 @@ import {
   ScrollView,
   TouchableOpacity,
   Share,
-  View
+  View,
+  Text
 } from "react-native";
 import { HeaderBackButton } from "react-navigation-stack";
 import { compose } from "redux";
@@ -24,8 +25,8 @@ import withAlertDropdown from "../components/withAlertDropdown";
 
 import s from "./styles/AnimalProfileStyles";
 
-import { colors } from "../themes";
-import { deleteAnimal } from "../actions/animals";
+import { colors, fonts } from "../themes";
+import { deleteAnimal, getAnimalCaregiver } from "../actions/animals";
 import { getToken } from "../selectors/auth";
 import iconMap from "../constants/iconMap";
 import CircleButton from "../components/CircleButton";
@@ -76,6 +77,18 @@ class AnimalProfile extends Component {
     });
   }
 
+  // componentDidMount() {
+  //   const { alertDropdown, t } = this.props;
+    
+  //   this.props.dispatch(
+  //     getAnimalCaregiver({
+  //       payload: this.getSelectedAnimal().id,
+  //       showNotification: alertDropdown,
+  //       translate: t
+  //     })
+  //   );
+  // }
+
   onEdit = () => {
     this.props.navigation.navigate("AnimalForm", {
       initialValue: this.getSelectedAnimal()
@@ -117,6 +130,11 @@ class AnimalProfile extends Component {
       }),
       url: this.props.t("shareAppUrl")
     });
+  };
+
+  addCaregiver = () => {
+    const { id, pictureUrl, type } = this.getSelectedAnimal();
+    this.props.navigation.navigate("AnimalCaregiver", { id, pictureUrl, type });
   };
 
   render() {
@@ -230,12 +248,47 @@ class AnimalProfile extends Component {
               {notes}
             </FieldText>
           </Field>
-          <Field showBorder label={t("caregiverTitle")}>
-            <FieldText lines={4} style={s.fieldText}>
-              {t("addCaregiverDesc")}
-            </FieldText>
-            
-          </Field>
+          <View style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  paddingTop: 15,
+                  paddingBottom: 10,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderBottomWidth: 1,
+                  borderBottomColor: colors.darkFilter}}
+          >
+            <View style={{paddingLeft: 20, flex: 1, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start'}}>
+              <Text style={{flex: 1,
+                      paddingBottom: 10,
+                      color: colors.nero,
+                      ...fonts.style.label}}
+              >
+                {t("caregiverTitle")}
+              </Text>
+              <FieldText lines={1} style={{flex: 1}}>
+                {t("addCaregiverDesc")}
+              </FieldText>
+            </View>
+            <View style={{
+              paddingRight: 23,
+              flex: 1,
+              justifyContent: 'flex-end',
+              alignItems: 'flex-end'}}
+            >
+              <CircleButton
+                onPress={this.addCaregiver}
+                containerStyles={{
+                  height: 42,
+                  width: 42,
+                  shadowOpacity: 0,
+                  backgroundColor: colors.mediumPurple
+                }}
+              >
+                <Icon name={iconMap.plus} size={20} color={colors.white} />
+              </CircleButton>
+            </View>
+          </View>
           <View style={s.buttonContainer}>
             <Button
               label={t("remove")}

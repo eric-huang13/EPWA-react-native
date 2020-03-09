@@ -7,7 +7,10 @@ import {
   ADD_ANIMAL,
   EDIT_ANIMAL,
   FETCH_ANIMALS_SUCCEEDED,
-  DELETE_ANIMAL
+  DELETE_ANIMAL,
+  GET_ANIMAL_CAREGIVER,
+  ADD_ANIMAL_CAREGIVER,
+  DELETE_ANIMAL_CAREGIVER
 } from "../actions/animals";
 
 import { getToken } from "../selectors/auth";
@@ -303,4 +306,252 @@ export function* deleteAnimal(api, action) {
   });
 
   yield call(NavigatorService.navigate, "Stable");
+}
+
+export function* getAnimalCaregiver(api, action) {
+  const { payload, showNotification, translate } = action;
+
+  const accessToken = yield select(getToken);
+  const data = {
+    animail_id: payload
+  }
+  const body = compose(
+    JSON.stringify,
+    snakeCaseKeys
+  )(data);
+
+  let response = yield call(api.getAnimalCaregiver, body, payload, accessToken);
+
+  if (!response.ok) {
+    if (response.status !== 401) {
+      yield call(
+        showNotification,
+        "error",
+        translate("errors.alertTitleGeneric"),
+        translate("animalFetchErrorMsg")
+      );
+      return;
+    }
+
+    const hasRefreshedToken = yield call(refreshToken, api);
+
+    if (hasRefreshedToken) {
+      const newAccessToken = yield select(getToken);
+      response = yield call(api.getAnimalCaregiver, body, payload, newAccessToken);
+    } else {
+      return;
+    }
+  }
+  
+  const parsedResponse = camelcaseKeys(response.data);
+  // let payload = parsedResponse;
+
+  // if (Array.isArray(parsedResponse)) {
+  //   payload = parsedResponse.map((animal) => {
+  //     return animal;
+  //   });
+  // }
+
+  yield put({
+    type: GET_ANIMAL_CAREGIVER,
+    payload
+  });
+}
+
+export function* addAnimalCaregiver(api, action) {
+  const { payload, formHelpers, showNotification, translate } = action;
+  const accessToken = yield select(getToken);
+  const isOnline = yield select(getIsOnline);
+  const editedAnimal = yield select(getAnimalById, payload.id);
+  const hasImageChanged = payload.pictureUrl !== editedAnimal.pictureUrl;
+
+  const body = compose(
+    JSON.stringify,
+    snakeCaseKeys
+  )(payload);
+
+  if (!isOnline) {
+    yield call(
+      showNotification,
+      "warn",
+      translate("errors.alertTitleGeneric"),
+      translate("offlineWarning")
+    );
+    return;
+  }
+
+  let response = yield call(api.addAnimalCaregiver, body, payload.id, accessToken);
+
+  if (!response.ok) {
+    if (response.status !== 401) {
+      yield call(
+        showNotification,
+        "error",
+        translate("errors.alertTitleGeneric"),
+        translate("animalEditErrorMsg")
+      );
+      return;
+    }
+
+    const hasRefreshedToken = yield call(refreshToken);
+
+    if (hasRefreshedToken) {
+      const newAccessToken = yield select(getToken);
+      response = yield call(api.addAnimalCaregiver, body, payload.id, newAccessToken);
+    } else {
+      return;
+    }
+  }
+
+  const parsedResponse = camelcaseKeys(response.data);
+
+  let pictureUrl;
+
+  if (hasImageChanged) {
+    const uri = payload.pictureUrl;
+    const uriParts = uri.split(".");
+    const fileType = uriParts[uriParts.length - 1];
+
+    const formData = new FormData();
+    formData.append("data", {
+      uri,
+      name: `photo.${fileType}`,
+      type: `image/${fileType}`
+    });
+
+    const responsePhoto = yield call(
+      api.uploadAnimalImage,
+      formData,
+      accessToken,
+      parsedResponse.id
+    );
+
+    if (!responsePhoto.ok) {
+      yield call(
+        showNotification,
+        "error",
+        translate("errors.alertTitleGeneric"),
+        translate("animalEditErrorMsg")
+      );
+      return;
+    }
+
+    pictureUrl = `${assetPath}/${responsePhoto.data.medium}`;
+  }
+
+  yield put({
+    type: ADD_ANIMAL_CAREGIVER,
+    payload: {
+      ...parsedResponse,
+      pictureUrl: hasImageChanged ? pictureUrl : editedAnimal.pictureUrl
+    }
+  });
+
+  formHelpers.setSubmitting(false);
+  formHelpers.resetForm();
+
+  yield call(NavigatorService.navigate, "AnimalProfile", {
+    id: parsedResponse.id,
+    // Overwrite old header title
+    title: parsedResponse.name
+  });
+}
+
+export function* deleteAnimalCaregiver(api, action) {
+  const { payload, formHelpers, showNotification, translate } = action;
+  const accessToken = yield select(getToken);
+  const isOnline = yield select(getIsOnline);
+  const editedAnimal = yield select(getAnimalById, payload.id);
+  const hasImageChanged = payload.pictureUrl !== editedAnimal.pictureUrl;
+
+  const body = compose(
+    JSON.stringify,
+    snakeCaseKeys
+  )(payload);
+
+  if (!isOnline) {
+    yield call(
+      showNotification,
+      "warn",
+      translate("errors.alertTitleGeneric"),
+      translate("offlineWarning")
+    );
+    return;
+  }
+
+  let response = yield call(api.deleteAnimalCaregiver, body, payload.id, accessToken);
+
+  if (!response.ok) {
+    if (response.status !== 401) {
+      yield call(
+        showNotification,
+        "error",
+        translate("errors.alertTitleGeneric"),
+        translate("animalEditErrorMsg")
+      );
+      return;
+    }
+
+    const hasRefreshedToken = yield call(refreshToken);
+
+    if (hasRefreshedToken) {
+      const newAccessToken = yield select(getToken);
+      response = yield call(api.deleteAnimalCaregiver, body, payload.id, newAccessToken);
+    } else {
+      return;
+    }
+  }
+
+  const parsedResponse = camelcaseKeys(response.data);
+
+  let pictureUrl;
+
+  if (hasImageChanged) {
+    const uri = payload.pictureUrl;
+    const uriParts = uri.split(".");
+    const fileType = uriParts[uriParts.length - 1];
+
+    const formData = new FormData();
+    formData.append("data", {
+      uri,
+      name: `photo.${fileType}`,
+      type: `image/${fileType}`
+    });
+
+    const responsePhoto = yield call(
+      api.uploadAnimalImage,
+      formData,
+      accessToken,
+      parsedResponse.id
+    );
+
+    if (!responsePhoto.ok) {
+      yield call(
+        showNotification,
+        "error",
+        translate("errors.alertTitleGeneric"),
+        translate("animalEditErrorMsg")
+      );
+      return;
+    }
+
+    pictureUrl = `${assetPath}/${responsePhoto.data.medium}`;
+  }
+
+  yield put({
+    type: DELETE_ANIMAL_CAREGIVER,
+    payload: {
+      ...parsedResponse,
+      pictureUrl: hasImageChanged ? pictureUrl : editedAnimal.pictureUrl
+    }
+  });
+
+  formHelpers.setSubmitting(false);
+  formHelpers.resetForm();
+
+  yield call(NavigatorService.navigate, "AnimalProfile", {
+    id: parsedResponse.id,
+    // Overwrite old header title
+    title: parsedResponse.name
+  });
 }

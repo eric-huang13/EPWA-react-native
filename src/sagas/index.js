@@ -35,12 +35,24 @@ import {
   deleteAccount
 } from "./auth";
 import { updateProfile } from "./profile";
-import { addAnimal, editAnimal, deleteAnimal, getAnimals } from "./animals";
+import { 
+  addAnimal,
+  editAnimal,
+  deleteAnimal,
+  getAnimals,
+  getAnimalCaregiver,
+  addAnimalCaregiver,
+  deleteAnimalCaregiver
+} from "./animals";
+
 import {
   ADD_ANIMAL_REQUESTED,
   EDIT_ANIMAL_REQUESTED,
   FETCH_ANIMALS_REQUESTED,
-  DELETE_ANIMAL_REQUESTED
+  DELETE_ANIMAL_REQUESTED,
+  GET_ANIMAL_CAREGIVER_REQUESTED,
+  ADD_ANIMAL_CAREGIVER_REQUESTED,
+  DELETE_ANIMAL_CAREGIVER_REQUESTED
 } from "../actions/animals";
 import {
   ADD_EVENT_REQUESTED,
@@ -95,6 +107,9 @@ export default function* root(dispatch) {
   yield takeLatest(ADD_ANIMAL_REQUESTED, addAnimal, api);
   yield takeLatest(EDIT_ANIMAL_REQUESTED, editAnimal, api);
   yield takeLatest(DELETE_ANIMAL_REQUESTED, deleteAnimal, api);
+  yield takeLatest(GET_ANIMAL_CAREGIVER_REQUESTED, getAnimalCaregiver, api);
+  yield takeLatest(ADD_ANIMAL_CAREGIVER_REQUESTED, addAnimalCaregiver, api);
+  yield takeLatest(DELETE_ANIMAL_CAREGIVER_REQUESTED, deleteAnimalCaregiver, api);
   yield takeLatest(SET_LANGUAGE_REQUEST, setLanguage, api);
   yield takeLatest(CHANGE_PASSWORD_REQUEST, changePassword, api);
   yield takeLatest(EXPORT_EVENTS, exportEvents, csvUploadApi);
