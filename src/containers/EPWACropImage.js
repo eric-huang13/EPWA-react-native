@@ -20,7 +20,7 @@ import {getImageScaleSize} from '../transforms';
 import Cropper from '../components/Cropper';
 import { cropImages } from '../constants/index';
 import {connect} from 'react-redux';
-import { setCropPosition } from '../actions/crop';
+import { setCropPosition, saveCropImage } from '../actions/crop';
 
 class EPWACropImage extends Component {
   static navigationOptions = ({ navigation, screenProps }) => ({
@@ -101,7 +101,7 @@ class EPWACropImage extends Component {
     if (fieldName === "d") {
       if(hasCropedYes) {
         this.finalCrop();
-        this.navigation.navigate("EPWACropImageResult");
+        // this.navigation.navigate("EPWACropImageResult");
       } else {
         this.navigation.navigate("EPWACropImageA")
       }
@@ -110,7 +110,7 @@ class EPWACropImage extends Component {
   };
 
   finalCrop = () => {
-    const { crops, image = {} } = this.props;
+    const { alertDropdown, t, crops, image = {} } = this.props;
     const images = {};
     forEach(crops, (item, index) => {
       if (!!cropImages[index]) {
@@ -120,18 +120,30 @@ class EPWACropImage extends Component {
           displaySize: {width: item.w, height: item.h},
           resizeMode: 'contain',
         };
-        images[index] = this._crop(image.uri, cropData);
+        this._crop(image.uri, cropData).then((cropImageUri) => {
+          console.log(cropImageUri)
+          images[index] = cropImageUri;
+        });
       }
     });
-    console.log('final images', images);
-    // TODO send images to backend
+    console.log(images.length)
+    console.log(images)
+    // if(images.length)
+    this.props.dispatch(
+      saveCropImage({
+        original: image.uri,
+        crop_images: images,
+        showNotification: alertDropdown,
+        translate: t
+      })
+    );
   };
 
    _crop = async (uri, cropData) => {
     try {
       const croppedImageURI = await ImageEditor.cropImage(
         uri,
-        cropData,
+        cropData
       );
       return croppedImageURI;
     } catch (cropError) {
@@ -170,13 +182,13 @@ class EPWACropImage extends Component {
               />
               {!!cropImages[content.fieldName]
                 ? (<Cropper
-                  x={coord.x || 5}
-                  y={coord.y * imageHeight * 0.9 || 5}
-                  w={coord.w || imageWidth - 48}
-                  h={coord.h || imageHeight * 0.9 / 4  }
-                  maxWidth={imageWidth * 0.9}
-                  maxHeight={imageHeight * 0.9}
-                  onChange={this.setPosition}
+                    x={coord.x || 5}
+                    y={coord.y * imageHeight * 0.9 || 5}
+                    w={coord.w || imageWidth - 48}
+                    h={coord.h || imageHeight * 0.9 / 4  }
+                    maxWidth={imageWidth * 0.9}
+                    maxHeight={imageHeight * 0.9}
+                    onChange={this.setPosition}
                 />)
                 : (map(crops, (item, index) => (
                   <Cropper
