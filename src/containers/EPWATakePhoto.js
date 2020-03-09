@@ -27,6 +27,7 @@ class EPWATakePhoto extends Component {
     constructor(props){
         super(props)
 
+      console.log(123)
         this.currentFlashArrayPosition = 0;
         this.flashArray = [
             {
@@ -107,23 +108,24 @@ class EPWATakePhoto extends Component {
                         }}
                     >
                         <Image source={this.state.horsemaskImg} style={{ width: "100%", height: "100%", opacity: 5, resizeMode: 'stretch' }} />
-                        <TouchableOpacity
-                            onPress={() => this.filpImage()}
-                        >
-                            <View
-                                style={styles.flipButtonContainer}
+
+                        <View style={styles.flipButtonContainer}>
+                            <TouchableOpacity
+                              onPress={() => this.flipImage()}
+                              style={styles.flipButton}
                             >
-                                <Image
-                                    style={{ flex: 1, justifyContent: 'flex-start', width: 20, height: 30, resizeMode: 'stretch' }}
-                                    source={this.state.flipbtnImg}
-                                />
-                                <Text
-                                    style={{flex: 1, color: 'white', fontSize: 20, paddingTop: 4, paddingLeft: 10}}
-                                >
-                                    {desc_content.flipbtnText}
-                                </Text>
-                            </View>
-                        </TouchableOpacity>
+                                    <Image
+                                        style={{ flex: 1, justifyContent: 'flex-start', width: 20, height: 30, resizeMode: 'stretch' }}
+                                        source={this.state.flipbtnImg}
+                                    />
+                                    <Text
+                                        style={{flex: 1, color: 'white', fontSize: 20, paddingTop: 4, paddingLeft: 10}}
+                                    >
+                                        {desc_content.flipbtnText}
+                                    </Text>
+                            </TouchableOpacity>
+                        </View>
+
                     </RNCamera>
                 </View>
 
@@ -201,11 +203,11 @@ class EPWATakePhoto extends Component {
     renderFlashButton = () => {
         return (
             <TouchableOpacity
-                style={{ paddingHorizontal: 15 }}
+                style={{ paddingHorizontal: 15, paddingVertical: 10 }}
                 onPress={() => this.onSetFlash(FLASH_MODE_AUTO)}
             >
                 <Image
-                    style={{ flex: 1, justifyContent: 'center' }}
+                    style={{ height: '80%', justifyContent: 'center' }}
                     source={this.state.flashData.image}
                     resizeMode={"contain"}
                 />
@@ -235,14 +237,11 @@ class EPWATakePhoto extends Component {
         );
     }
 
-    filpImage = () => {
-        this.setState({isflipped: !this.state.isflipped});
-        
-        if(this.state.isflipped) {
-            this.setState({horsemaskImg: horsemaskImg});
-        } else {
-            this.setState({horsemaskImg: flippedhorsemaskImg});
-        }
+    flipImage = () => {
+        this.setState({
+          isflipped: !this.state.isflipped,
+          horsemaskImg: this.state.isflipped ? horsemaskImg : flippedhorsemaskImg
+        });
     }
 
     // takePicture = async() => {
@@ -290,10 +289,11 @@ class EPWATakePhoto extends Component {
     }
     
     async changeCamera() {
-        console.log('changeCamera', GalleryManager)
-        return GalleryManager && await GalleryManager.changeCamera();
+        console.log('changeCamera', GalleryManager, RNCamera.Constants.Type.back, this.state.backCamera)
+        // return GalleryManager && await GalleryManager.changeCamera();
+        this.setState({backCamera: !this.state.backCamera});
     }
-    
+
     async setFlashMode(flashMode = 'auto') {
         console.log('setFlashMode', flashMode, GalleryManager)
         return GalleryManager && await GalleryManager.setFlashMode(flashMode);
@@ -310,7 +310,7 @@ const styles = StyleSheet.create({
     preview: {
         position: 'relative',
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center'
     },
     overlayImage: {
@@ -330,12 +330,13 @@ const styles = StyleSheet.create({
         paddingBottom: 10
     },
     topButtons: {
-        flex: 1.5,
+        flex: 1,
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        alignItems: 'center'
     },
     cameraContainer: {
-        flex: 10,
+        flex: 14,
         flexDirection: 'row',
     },
     captureButtonContainer: {
@@ -345,23 +346,25 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     switchButtonContainer: {
-        paddingTop: 20,
+        paddingTop: 0,
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
     },
     flipButtonContainer: {
         position: 'absolute',
-        bottom: 375,
-        right: 90,
-        width: 80,
+        top: 11,
+        left: 10,
+        width: 100,
         height: 40,
-        flexDirection: 'row',
-        justifyContent: "flex-start",
-        alignItems: 'flex-start'
+    },
+    flipButton: {
+      flexDirection: 'row',
+      justifyContent: "flex-start",
+      alignItems: 'flex-start'
     },
     bottomButton: {
-        paddingTop: 20,
+        paddingTop: 0,
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'

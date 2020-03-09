@@ -17,6 +17,7 @@ import horsecropphoto from "../images/epwa/horse_crop_1.png";
 
 import s from "./styles/EPWAStyles";
 import {getImageScaleSize} from '../transforms';
+import Cropper from '../components/Cropper';
 
 class EPWACropImage extends Component {
   static navigationOptions = ({ navigation, screenProps }) => ({
@@ -128,6 +129,7 @@ class EPWACropImage extends Component {
                 width={imageWidth}
                 height={imageHeight}
               />
+              <Cropper maxWidth={imageWidth} maxHeight={imageHeight} />
             </View>
           </View>
           {content.rbuttonText &&
