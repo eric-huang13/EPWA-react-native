@@ -33,11 +33,11 @@ export default StyleSheet.create({
   },
   cropDescImg: {
     width: "100%",
-    height: 250,
+    resizeMode: 'contain',
     marginBottom: 10
   },
   photoContainer: {
-    height: 240,
+    resizeMode: 'contain',
     alignItems: "center",
     justifyContent: "space-between",
     paddingBottom: 10
@@ -69,14 +69,14 @@ export default StyleSheet.create({
     borderWidth: 1
   },
   cropImageDescPhotoContainer: {
-    height: 395,
+    resizeMode: 'contain',
     alignItems: "center",
     justifyContent: "center",
     paddingBottom: 10
   },
   cropImageDescImg: {
     width: "85%",
-    height: 395,
+    resizeMode: 'contain',
     marginBottom: 10
   },
   cropImageDescButtonContainer: {
@@ -86,14 +86,14 @@ export default StyleSheet.create({
     paddingBottom: 10
   },
   cropPhotoContainer: {
-    height: 465,
+    resizeMode: 'contain',
     alignItems: "center",
     justifyContent: "center",
     paddingBottom: 10
   },
   cropImg: {
     width: "100%",
-    height: 465,
+    resizeMode: 'stretch',
     marginBottom: 10
   },
   photoIsGoodButtonContainer: {
