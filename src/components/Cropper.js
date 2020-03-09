@@ -3,30 +3,51 @@ import { View } from 'react-native';
 import {DragResizeBlock} from './DragResizeShape';
 
 class Cropper extends Component {
+  componentDidMount() {
+    const {x, y, w, h, onChange} = this.props;
+
+    if (onChange && typeof onChange === 'function') {
+      onChange({x, y, w, h});
+    }
+  }
+
+  toObject = (coord) => {
+    return {
+      x: coord[0],
+      y: coord[1],
+      w: coord[2],
+      h: coord[3],
+    }
+  };
+
   render() {
-    const {maxWidth, maxHeight} = this.props;
+    const {x, y, w, h, maxWidth, maxHeight, onChange, size} = this.props;
     return (
       <DragResizeBlock
-        x={0}
-        y={0}
-        w={maxWidth - 48}
-        h={maxHeight / 4}
+        x={x || 0}
+        y={y || 0}
+        w={w || 40}
+        h={h || 40}
         limitation={{
           x: 0,
           y: 0,
-          w: maxWidth - 48,
-          h: maxHeight,
+          w: (maxWidth - 48) || 80,
+          h: maxHeight || 80,
         }}
         connectors={['tl', 'tr', 'br', 'bl', 'c']}
-        size={10}
+        size={size || 15}
         zIndex={2}
         borderColor="#6038B5"
         borderBackground="#AC76DB"
         onResizeEnd={(coord) => {
-          console.log('onResizeEnd', coord);
+          if (onChange && typeof onChange === 'function') {
+            onChange(this.toObject(coord));
+          }
         }}
         onDragEnd={(coord) => {
-          console.log('onDragEnd', coord);
+          if (onChange && typeof onChange === 'function') {
+            onChange(this.toObject(coord));
+          }
         }}
         style={{
           borderStyle: 'dotted',

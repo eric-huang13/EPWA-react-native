@@ -62,3 +62,9 @@ export const eventCategoryColors = {
   [eventCategories.feeding]: colors.barleyCorn,
   [eventCategories.medication]: colors.harleyDavidsonOrange
 };
+
+export const cropImages = {
+  a: {x: 0, y: 0},
+  b: {x: 0, y: .25},
+  c: {x: 0, y: .75},
+};

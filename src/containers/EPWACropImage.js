@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import HamburgerButton from "../components/HamburgerButton";
 import { last } from "ramda";
+import { map } from 'lodash';
 
 import Button from "../components/Button";
 
@@ -18,6 +19,9 @@ import horsecropphoto from "../images/epwa/horse_crop_1.png";
 import s from "./styles/EPWAStyles";
 import {getImageScaleSize} from '../transforms';
 import Cropper from '../components/Cropper';
+import { cropImages } from '../constants/index';
+import {connect} from 'react-redux';
+import {setCropPosition} from '../actions/crop';
 
 class EPWACropImage extends Component {
   static navigationOptions = ({ navigation, screenProps }) => ({
@@ -82,20 +86,22 @@ class EPWACropImage extends Component {
   };
 
   onHandleCrop = (fieldName, hasCropedYes) => {
+    const { state } = this.props.navigation;
+    const image = state && state.params && state.params.image;
     this.setFieldValue(fieldName, hasCropedYes);
 
     if (fieldName === "a") {
-      this.navigation.navigate("EPWACropImageB");
+      this.navigation.navigate("EPWACropImageB", { image });
       return;
     }
 
     if (fieldName === "b") {
-      this.navigation.navigate("EPWACropImageC");
+      this.navigation.navigate("EPWACropImageC", { image });
       return;
     }
 
     if (fieldName === "c") {
-      this.navigation.navigate("EPWACropImageD");
+      this.navigation.navigate("EPWACropImageD", { image });
       return;
     }
 
@@ -103,17 +109,26 @@ class EPWACropImage extends Component {
       if(hasCropedYes) {
         this.navigation.navigate("EPWACropImageResult");
       } else {
-        this.navigation.navigate("EPWACropImageA")
+        this.navigation.navigate("EPWACropImageA", { image })
       }
       return;
     }
   };
 
+  setPosition = (data) => {
+    const { dispatch } = this.props;
+    const content = this.getContent(this.navigation.state.routeName);
+    dispatch(setCropPosition({id: content.fieldName, data}))
+  };
+
   render() {
+    const { crops, image } = this.props;
     const { t } = this.props.screenProps;
     const content = this.getContent(this.navigation.state.routeName);
     const { imageWidth, imageHeight } = getImageScaleSize(content.image.width, content.image.height);
-    console.log('content', content)
+    console.log('content', content, content.fieldName, cropImages);
+    const coord = cropImages[content.fieldName] || {};
+    console.log('crops, image', crops, image);
 
     return (
       <View style={s.mainContainer}>
@@ -129,7 +144,28 @@ class EPWACropImage extends Component {
                 width={imageWidth}
                 height={imageHeight}
               />
-              <Cropper maxWidth={imageWidth} maxHeight={imageHeight} />
+              {content.fieldName === 'd'
+                ? (map(crops, (item, index) => (
+                  <Cropper
+                    key={index}
+                    x={item.x || 0}
+                    y={item.y || 0}
+                    w={item.w || imageWidth - 48}
+                    h={item.h || imageHeight / 4  }
+                    maxWidth={imageWidth}
+                    maxHeight={imageHeight}
+                  />
+                )))
+                : (<Cropper
+                  x={coord.x || 0}
+                  y={coord.y * imageHeight || 0}
+                  w={coord.w || imageWidth - 48}
+                  h={coord.h || imageHeight / 4  }
+                  maxWidth={imageWidth}
+                  maxHeight={imageHeight}
+                  onChange={this.setPosition}
+                />)
+              }
             </View>
           </View>
           {content.rbuttonText &&
@@ -161,4 +197,9 @@ class EPWACropImage extends Component {
   }
 }
 
-export default EPWACropImage;
+const mapStateToProps = state => ({
+  crops: state.crop.crops,
+  image: state.crop.image,
+});
+
+export default connect(mapStateToProps)(EPWACropImage);
