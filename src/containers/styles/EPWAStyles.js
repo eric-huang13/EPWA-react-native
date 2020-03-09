@@ -89,12 +89,10 @@ export default StyleSheet.create({
     resizeMode: 'contain',
     alignItems: "center",
     justifyContent: "center",
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   cropImg: {
-    width: "100%",
-    resizeMode: 'stretch',
-    marginBottom: 10
+    marginBottom: 10,
   },
   photoIsGoodButtonContainer: {
     paddingTop: 30,

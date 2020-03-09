@@ -16,6 +16,7 @@ import { colors, fonts } from "../themes";
 import horsecropphoto from "../images/epwa/horse_crop_1.png";
 
 import s from "./styles/EPWAStyles";
+import {getImageScaleSize} from '../transforms';
 
 class EPWACropImage extends Component {
   static navigationOptions = ({ navigation, screenProps }) => ({
@@ -37,7 +38,8 @@ class EPWACropImage extends Component {
 
   getContent = (routeName) => {
     const { t } = this.props.screenProps;
-
+    const { state } = this.props.navigation;
+    const image = state && state.params && state.params.image;
     const lastLetterInRoute = last(routeName).toLowerCase();
 
     const images = {
@@ -71,7 +73,7 @@ class EPWACropImage extends Component {
 
     return {
       fieldName: lastLetterInRoute,
-      image: images[desc_content.imageTitle],
+      image: image,
       title: desc_content.question,
       lbuttonText: desc_content.lbuttonText,
       rbuttonText: desc_content.rbuttonText
@@ -109,6 +111,8 @@ class EPWACropImage extends Component {
   render() {
     const { t } = this.props.screenProps;
     const content = this.getContent(this.navigation.state.routeName);
+    const { imageWidth, imageHeight } = getImageScaleSize(content.image.width, content.image.height);
+    console.log('content', content)
 
     return (
       <View style={s.mainContainer}>
@@ -121,6 +125,8 @@ class EPWACropImage extends Component {
               <Image
                 source={content.image}
                 style={s.cropImg}
+                width={imageWidth}
+                height={imageHeight}
               />
             </View>
           </View>

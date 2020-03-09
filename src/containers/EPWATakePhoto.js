@@ -262,31 +262,41 @@ class EPWATakePhoto extends Component {
     }
 
     async onButtonPressed() {
-        GalleryManager.deleteTempImage(this.state.imageCaptured.uri);
+        GalleryManager && GalleryManager.deleteTempImage(this.state.imageCaptured.uri);
         this.setState({ imageCaptured: undefined });
+        this.navigation.navigate("EPWACropImageDesc")
     }
 
     async onCaptureImagePressed() {
-        this.navigation.navigate('EPWAPhotoIsGood');
-        
-        const image = await this.camera.capture();
+        if (this.camera) {
+            const options = { quality: 0.5, base64: true, fixOrientation: true };
+            const image = await this.camera.takePictureAsync(options);
 
-        if (image) {
-            this.setState({ captured: true, imageCaptured: image });
+            if (image) {
+                this.setState({ captured: true, imageCaptured: image });
+                this.navigation.navigate('EPWAPhotoIsGood', { image });
+            }
+
         }
+
+        // const image = this.camera && await this.camera.capture();
+
 
     }
 
     async capture(saveToCameraRoll = true) {
-        return await GalleryManager.capture(saveToCameraRoll);
+      console.log('capture', saveToCameraRoll, GalleryManager)
+        return GalleryManager && await GalleryManager.capture(saveToCameraRoll);
     }
     
     async changeCamera() {
-        return await GalleryManager.changeCamera();
+        console.log('changeCamera', GalleryManager)
+        return GalleryManager && await GalleryManager.changeCamera();
     }
     
     async setFlashMode(flashMode = 'auto') {
-        return await GalleryManager.setFlashMode(flashMode);
+        console.log('setFlashMode', flashMode, GalleryManager)
+        return GalleryManager && await GalleryManager.setFlashMode(flashMode);
     }
 }
   

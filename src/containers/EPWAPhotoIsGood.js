@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ScrollView, View, Text, Image } from "react-native";
+import { ScrollView, View, Text, Image, Dimensions } from "react-native";
 import { translate } from "react-i18next";
 import HamburgerButton from "../components/HamburgerButton";
 
@@ -10,6 +10,9 @@ import takenphoto from "../images/epwa/horse_crop_1.png";
 import s from "./styles/EPWAStyles";
 
 import { colors, fonts } from "../themes";
+import {getImageScaleSize} from '../transforms';
+
+
 
 class EPWAPhotoIsGood extends Component {
   static navigationOptions = ({ navigation, screenProps }) => ({
@@ -31,9 +34,12 @@ class EPWAPhotoIsGood extends Component {
 
   render() {
     const { t } = this.props.screenProps;
+    const { state } = this.props.navigation;
+    const image = state && state.params && state.params.image;
+
+    const { imageWidth, imageHeight } = getImageScaleSize(image.width, image.height);
 
     const desc_content = t("info.epwaphotoupload.thirdpage", { returnObjects: true });
-
     return (
       <View style={s.mainContainer}>
         <ScrollView
@@ -43,8 +49,10 @@ class EPWAPhotoIsGood extends Component {
             <Text style={s.titleStyle}>{desc_content.question}</Text>
             <View style={s.cropPhotoContainer}>
               <Image
-                source={this.images[desc_content.imageTitle]}
+                source={image}
                 style={s.cropImg}
+                width={imageWidth}
+                height={imageHeight}
               />
             </View>
           </View>
@@ -57,7 +65,7 @@ class EPWAPhotoIsGood extends Component {
             <Button
               style={s.photoIsGoodRButton}
               label={desc_content.rbuttonText}
-              onPress={() => this.navigation.navigate("EPWACropImageA")}
+              onPress={() => this.navigation.navigate("EPWACropImageA", {image})}
             />
           </View>
         </ScrollView>
