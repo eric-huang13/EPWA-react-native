@@ -8,7 +8,8 @@ import {
 } from "react-native";
 import HamburgerButton from "../components/HamburgerButton";
 import { last } from "ramda";
-import { map } from 'lodash';
+import { map, forEach } from 'lodash';
+import ImageEditor from "@react-native-community/image-editor";
 
 import Button from "../components/Button";
 
@@ -21,7 +22,7 @@ import {getImageScaleSize} from '../transforms';
 import Cropper from '../components/Cropper';
 import { cropImages } from '../constants/index';
 import {connect} from 'react-redux';
-import {setCropPosition} from '../actions/crop';
+import { setCropPosition } from '../actions/crop';
 
 class EPWACropImage extends Component {
   static navigationOptions = ({ navigation, screenProps }) => ({
@@ -44,7 +45,7 @@ class EPWACropImage extends Component {
   getContent = (routeName) => {
     const { t } = this.props.screenProps;
     const { state } = this.props.navigation;
-    const image = state && state.params && state.params.image;
+    // const image = state && state.params && state.params.image;
     const lastLetterInRoute = last(routeName).toLowerCase();
 
     const images = {
@@ -78,7 +79,7 @@ class EPWACropImage extends Component {
 
     return {
       fieldName: lastLetterInRoute,
-      image: image,
+      // image: image,
       title: desc_content.question,
       lbuttonText: desc_content.lbuttonText,
       rbuttonText: desc_content.rbuttonText
@@ -87,48 +88,79 @@ class EPWACropImage extends Component {
 
   onHandleCrop = (fieldName, hasCropedYes) => {
     const { state } = this.props.navigation;
-    const image = state && state.params && state.params.image;
     this.setFieldValue(fieldName, hasCropedYes);
 
     if (fieldName === "a") {
-      this.navigation.navigate("EPWACropImageB", { image });
+      this.navigation.navigate("EPWACropImageB");
       return;
     }
 
     if (fieldName === "b") {
-      this.navigation.navigate("EPWACropImageC", { image });
+      this.navigation.navigate("EPWACropImageC");
       return;
     }
 
     if (fieldName === "c") {
-      this.navigation.navigate("EPWACropImageD", { image });
+      this.navigation.navigate("EPWACropImageD");
       return;
     }
 
     if (fieldName === "d") {
       if(hasCropedYes) {
+        this.finalCrop();
         this.navigation.navigate("EPWACropImageResult");
       } else {
-        this.navigation.navigate("EPWACropImageA", { image })
+        this.navigation.navigate("EPWACropImageA")
       }
       return;
+    }
+  };
+
+  finalCrop = () => {
+    const { crops, image = {} } = this.props;
+    const images = {};
+    forEach(crops, (item, index) => {
+      if (!!cropImages[index]) {
+        const cropData = {
+          offset: {x: item.x, y: item.y},
+          size: {width: item.w, height: item.h},
+          displaySize: {width: item.w, height: item.h},
+          resizeMode: 'contain',
+        };
+        images[index] = this._crop(image.uri, cropData);
+      }
+    });
+    console.log('final images', images);
+    // TODO send images to backend
+  };
+
+   _crop = async (uri, cropData) => {
+    try {
+      const croppedImageURI = await ImageEditor.cropImage(
+        uri,
+        cropData,
+      );
+      return croppedImageURI;
+    } catch (cropError) {
+      return cropError;
     }
   };
 
   setPosition = (data) => {
     const { dispatch } = this.props;
     const content = this.getContent(this.navigation.state.routeName);
-    dispatch(setCropPosition({id: content.fieldName, data}))
+
+    if (!!cropImages[content.fieldName]) {
+      dispatch(setCropPosition({id: content.fieldName, data}))
+    }
   };
 
   render() {
-    const { crops, image } = this.props;
+    const { crops, image = {} } = this.props;
     const { t } = this.props.screenProps;
     const content = this.getContent(this.navigation.state.routeName);
-    const { imageWidth, imageHeight } = getImageScaleSize(content.image.width, content.image.height);
-    console.log('content', content, content.fieldName, cropImages);
+    const { imageWidth, imageHeight } = getImageScaleSize(image.width, image.height);
     const coord = cropImages[content.fieldName] || {};
-    console.log('crops, image', crops, image);
 
     return (
       <View style={s.mainContainer}>
@@ -139,13 +171,22 @@ class EPWACropImage extends Component {
             <Text style={s.titleStyle}>{content.title}</Text>
             <View style={s.cropPhotoContainer}>
               <Image
-                source={content.image}
+                source={image}
                 style={s.cropImg}
                 width={imageWidth}
                 height={imageHeight}
               />
-              {content.fieldName === 'd'
-                ? (map(crops, (item, index) => (
+              {!!cropImages[content.fieldName]
+                ? (<Cropper
+                  x={coord.x || 0}
+                  y={coord.y * imageHeight || 0}
+                  w={coord.w || imageWidth - 48}
+                  h={coord.h || imageHeight / 4  }
+                  maxWidth={imageWidth}
+                  maxHeight={imageHeight}
+                  onChange={this.setPosition}
+                />)
+                : (map(crops, (item, index) => (
                   <Cropper
                     key={index}
                     x={item.x || 0}
@@ -156,15 +197,6 @@ class EPWACropImage extends Component {
                     maxHeight={imageHeight}
                   />
                 )))
-                : (<Cropper
-                  x={coord.x || 0}
-                  y={coord.y * imageHeight || 0}
-                  w={coord.w || imageWidth - 48}
-                  h={coord.h || imageHeight / 4  }
-                  maxWidth={imageWidth}
-                  maxHeight={imageHeight}
-                  onChange={this.setPosition}
-                />)
               }
             </View>
           </View>

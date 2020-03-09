@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, TouchableOpacity, Button, Image, View, SafeAreaView, NativeModules, Platform, ImageBackground } from 'react-native';
 import { translate } from "react-i18next";
 import { RNCamera } from 'react-native-camera';
+import { compose } from "redux";
 
 import HamburgerButton from "../components/HamburgerButton";
 
@@ -15,6 +16,8 @@ import flashOffImg from '../images/epwa/flashOff.png';
 import flashOnImg from '../images/epwa/flashOn.png';
 
 import { colors, fonts } from "../themes";
+import {connect} from 'react-redux';
+import {setCropImage} from '../actions/crop';
 
 const IsIOS = Platform.OS === 'ios';
 const GalleryManager = IsIOS ? NativeModules.CKGalleryManager : NativeModules.NativeGalleryModule;
@@ -27,7 +30,6 @@ class EPWATakePhoto extends Component {
     constructor(props){
         super(props)
 
-      console.log(123)
         this.currentFlashArrayPosition = 0;
         this.flashArray = [
             {
@@ -274,6 +276,7 @@ class EPWATakePhoto extends Component {
             if (image) {
                 this.setState({ captured: true, imageCaptured: image });
                 this.navigation.navigate('EPWAPhotoIsGood', { image });
+                this.props.dispatch(setCropImage(image))
             }
 
         }
@@ -376,4 +379,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export default translate("root")(EPWATakePhoto);
+export default compose(
+  connect(),
+  translate("root")
+)(EPWATakePhoto);
