@@ -38,6 +38,8 @@ import PainMeasurementOverviewScreen from "../containers/PainMeasurementOverview
 import PainMeasurementDetailsScreen from "../containers/PainMeasurementDetails";
 import PPIDScreen from "../containers/PPID";
 
+import EPWAscreen from "../containers/EPWA";
+
 import CustomDrawerContent from "../components/CustomDrawerContent";
 
 import { colors, fonts } from "../themes";
@@ -147,6 +149,18 @@ const AppStack = createDrawerNavigator(
       screen: createStackNavigator(
         {
           Syndromes: PPIDScreen
+        },
+        {
+          defaultNavigationOptions: {
+            ...defaultHeaderStyling
+          }
+        }
+      )
+    },
+    EpwaphotouploadNavigator: {
+      screen: createStackNavigator(
+        {
+          Epwaphotoupload: EPWAscreen
         },
         {
           defaultNavigationOptions: {
