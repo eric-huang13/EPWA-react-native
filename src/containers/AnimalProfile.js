@@ -281,7 +281,7 @@ class AnimalProfile extends Component {
               </View>
               <View style={s.caregiver_button_container}>
                 <CircleButton onPress={() => {this.addCaregiver()}} containerStyles={[s.caregiver_circlebutton_style, {backgroundColor: colors.mediumPurple}]} >
-                  <Icon size={20} name={iconMap.plus} color={colors.white} />
+                  <Icon size={15} name={iconMap.plus} color={colors.white} />
                 </CircleButton>
               </View>
             </View>
@@ -310,7 +310,7 @@ class AnimalProfile extends Component {
                       }}
                       containerStyles={[s.caregiver_circlebutton_style, {backgroundColor: colors.white}]}
                     >
-                      <Icon size={20} name={iconMap.garbage} color={colors.harleyDavidsonOrange} />
+                      <Icon size={15} name={iconMap.garbage} color={colors.harleyDavidsonOrange} />
                     </CircleButton>
                   }
                   {!c_giver.accepted &&
@@ -332,7 +332,7 @@ class AnimalProfile extends Component {
               </View>
               <View style={s.caregiver_button_container}>
                 <CircleButton onPress={() => {this.addCaregiver()}} containerStyles={[s.caregiver_circlebutton_style, {backgroundColor: colors.mediumPurple}]}>
-                  <Icon size={20} name={iconMap.plus} color={colors.white}/>
+                  <Icon size={15} name={iconMap.plus} color={colors.white}/>
                 </CircleButton>
               </View>
             </View>

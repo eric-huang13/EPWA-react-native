@@ -65,7 +65,7 @@ export default StyleSheet.create({
   caregiver_circlebutton_style: {
     height: 42,
     width: 42,
-    shadowOpacity: 0,
+    shadowOpacity: 0.4,
   },
   caregiver_text_field_style: {
     flex: 1,

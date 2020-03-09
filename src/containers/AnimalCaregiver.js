@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import T from "prop-types";
 import {HeaderBackButton} from 'react-navigation-stack';
-import {ScrollView, View, Image, Alert } from 'react-native';
+import {ScrollView, View, Image, Alert, KeyboardAvoidingView, Keyboard, Platform } from 'react-native';
 import {translate} from 'react-i18next';
 import { compose } from "redux";
 import { connect } from "react-redux";
@@ -13,12 +13,15 @@ import Icon from "../components/Icon";
 import Field from "../components/Field";
 import Button from "../components/Button";
 import TextInput from "../components/TextInput";
+import withDismissKeyboard from "../components/DismissKeyboard";
 
 import iconMap from "../constants/iconMap";
 
 import s from "./styles/AnimalProfileStyles";
 
 import {colors, fonts} from '../themes';
+
+const DismissKeyboardView = withDismissKeyboard(View);
 
 class AnimalCaregiver extends Component {
     static navigationOptions = ({navigation, screenProps}) => ({
@@ -41,9 +44,40 @@ class AnimalCaregiver extends Component {
 
         this.state = {
             email_validataion: false,
-            email_address: ''
+            email_address: '',
+            isKeyboardActive: false
         }
+
+        this.isAndroid = Platform.OS === "android";
     }
+
+    componentDidMount() {
+        this.keyboardDidShowListener = Keyboard.addListener(
+            this.isAndroid ? "keyboardDidShow" : "keyboardWillShow",
+            this.onKeyboardDidShow
+        );
+        this.keyboardDidHideListener = Keyboard.addListener(
+            this.isAndroid ? "keyboardDidHide" : "keyboardWillHide",
+            this.onKeyboardDidHide
+        );
+    }
+
+    componentWillUnmount() {
+        this.keyboardDidShowListener.remove();
+        this.keyboardDidHideListener.remove();
+    }
+
+    onKeyboardDidShow = () => this.setState({ isKeyboardActive: true });
+
+    onKeyboardDidHide = () => this.setState({ isKeyboardActive: false });
+
+    setSendButtonRef = (element) => {
+        this.sendButton = element;
+    };
+    
+    setFocusToSendButton = () => {
+        this.sendButton.focus();
+    };
 
     onValidation = (e) => {
         const email_pattern = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
@@ -76,47 +110,53 @@ class AnimalCaregiver extends Component {
         const animalType = navigation.getParam("type");
 
         return (
-            <View style={{ flex: 1, backgroundColor: colors.white }}>
-                <ScrollView contentContainerStyle={s.screenContainer}>
-                { pictureUrl ? (
-                    <View style={s.photoContainer}>
-                    <Image
-                        source={{
-                            uri: pictureUrl,
-                            headers: { Authorization: `Bearer ${authToken}` }
-                        }}
-                        style={s.imageContainer}
-                    />
+            <DismissKeyboardView style={s.screenContainer}>
+                <KeyboardAvoidingView
+                    keyboardVerticalOffset={this.isAndroid ? 0 : 50}
+                    behavior={this.isAndroid ? null : "padding"}
+                    enabled
+                >
+                    <View contentContainerStyle={s.screenContainer}>
+                        { pictureUrl ? (
+                            <View style={s.photoContainer}>
+                            <Image
+                                source={{
+                                    uri: pictureUrl,
+                                    headers: { Authorization: `Bearer ${authToken}` }
+                                }}
+                                style={s.imageContainer}
+                            />
+                            </View>
+                        ) : (
+                            <View style={s.photoContainer}>
+                            <Icon
+                                name={animalType === "horse" ? iconMap.horse3 : "donkey"}
+                                size={50}
+                                color={colors.white}
+                            />
+                            </View>
+                        )}
+                        <Field label={t("addCaregiverDesc")}>
+                            <TextInput
+                                style={s.caregiver_textinput_style}
+                                autoCapitalize="none"
+                                keyboardType="email-address"
+                                returnKeyType="send"
+                                placeholder={"E-mailaddres"}
+                                onChangeText={this.onValidation}
+                            />
+                        </Field>
+                        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                            <Button
+                                disabled={!this.state.email_validataion? true: false}
+                                style={s.caregiver_invite_button_style}
+                                label={t("caregiverInviteBtnText")}
+                                onPress={this.sendInvitation}
+                            />
+                        </View>
                     </View>
-                ) : (
-                    <View style={s.photoContainer}>
-                    <Icon
-                        name={animalType === "horse" ? iconMap.horse3 : "donkey"}
-                        size={50}
-                        color={colors.white}
-                    />
-                    </View>
-                )}
-                <Field label={t("addCaregiverDesc")}>
-                    <TextInput
-                        style={s.caregiver_textinput_style}
-                        autoCapitalize="none"
-                        keyboardType="email-address"
-                        returnKeyType="next"
-                        placeholder={"E-mailaddres"}
-                        onChangeText={this.onValidation}
-                    />
-                </Field>
-                <View style={{ justifyContent: 'center', alignItems: 'center', padding: 20 }}>
-                    <Button
-                        disabled={!this.state.email_validataion? true: false}
-                        style={s.caregiver_invite_button_style}
-                        label={t("caregiverInviteBtnText")}
-                        onPress={() => {this.sendInvitation()}}
-                    />
-                </View>
-            </ScrollView>
-        </View>
+                </KeyboardAvoidingView>
+            </DismissKeyboardView>
         );
     }
 }
