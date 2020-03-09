@@ -35,25 +35,33 @@ import {
   deleteAccount
 } from "./auth";
 import { updateProfile } from "./profile";
+
 import { 
   addAnimal,
   editAnimal,
   deleteAnimal,
-  getAnimals,
+  getAnimals
+} from "./animals";
+
+import { 
   getAnimalCaregiver,
   addAnimalCaregiver,
   deleteAnimalCaregiver
-} from "./animals";
+} from "./caregiver";
 
 import {
   ADD_ANIMAL_REQUESTED,
   EDIT_ANIMAL_REQUESTED,
   FETCH_ANIMALS_REQUESTED,
-  DELETE_ANIMAL_REQUESTED,
+  DELETE_ANIMAL_REQUESTED
+} from "../actions/animals";
+
+import {
   GET_ANIMAL_CAREGIVER_REQUESTED,
   ADD_ANIMAL_CAREGIVER_REQUESTED,
   DELETE_ANIMAL_CAREGIVER_REQUESTED
-} from "../actions/animals";
+} from "../actions/caregiver";
+
 import {
   ADD_EVENT_REQUESTED,
   ADD_EVENT_COMMIT_REQUESTED,

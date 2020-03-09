@@ -2,10 +2,7 @@ import {
   ADD_ANIMAL,
   EDIT_ANIMAL,
   FETCH_ANIMALS_SUCCEEDED,
-  DELETE_ANIMAL,
-  GET_ANIMAL_CAREGIVER,
-  ADD_ANIMAL_CAREGIVER,
-  DELETE_ANIMAL_CAREGIVER
+  DELETE_ANIMAL
 } from "../actions/animals";
 
 const initialState = [];
@@ -22,16 +19,6 @@ function reducer(state = initialState, action) {
       );
     case DELETE_ANIMAL:
       return state.filter((animal) => animal.id !== action.payload);
-    case ADD_ANIMAL_CAREGIVER:
-      return state.map(
-        (caregiver) => (caregiver.id === action.payload.id ? action.payload : caregiver)
-      );
-    case DELETE_ANIMAL_CAREGIVER:
-      return state.map(
-        (caregiver) => (caregiver.id === action.payload.id ? action.payload : caregiver)
-      );
-    case GET_ANIMAL_CAREGIVER:
-        return action.payload;
     default:
       return state;
   }

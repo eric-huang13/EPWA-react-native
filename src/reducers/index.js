@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {combineReducers} from 'redux';
 
 import animals from './animals';
+import caregiver from './caregiver';
 import auth from './auth';
 import authForm from './authForm';
 import events from './events';
@@ -20,6 +21,7 @@ const AppReducers = combineReducers({
   profileForm,
   rehydration,
   animals,
+  caregiver,
   events,
 });
 

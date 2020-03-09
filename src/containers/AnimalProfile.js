@@ -26,7 +26,8 @@ import withAlertDropdown from "../components/withAlertDropdown";
 import s from "./styles/AnimalProfileStyles";
 
 import { colors, fonts } from "../themes";
-import { deleteAnimal, getAnimalCaregiver } from "../actions/animals";
+import { deleteAnimal } from "../actions/animals";
+import { getAnimalCaregiver, deleteAnimalCaregiver } from "../actions/caregiver";
 import { getToken } from "../selectors/auth";
 import iconMap from "../constants/iconMap";
 import CircleButton from "../components/CircleButton";
@@ -77,17 +78,17 @@ class AnimalProfile extends Component {
     });
   }
 
-  // componentDidMount() {
-  //   const { alertDropdown, t } = this.props;
-    
-  //   this.props.dispatch(
-  //     getAnimalCaregiver({
-  //       payload: this.getSelectedAnimal().id,
-  //       showNotification: alertDropdown,
-  //       translate: t
-  //     })
-  //   );
-  // }
+  componentDidMount() {
+    const { alertDropdown, t } = this.props;
+
+    this.props.dispatch(
+      getAnimalCaregiver({
+        animal_id: this.getSelectedAnimal().id,
+        showNotification: alertDropdown,
+        translate: t
+      })
+    );
+  }
 
   onEdit = () => {
     this.props.navigation.navigate("AnimalForm", {
@@ -133,8 +134,21 @@ class AnimalProfile extends Component {
   };
 
   addCaregiver = () => {
-    const { id, pictureUrl, type } = this.getSelectedAnimal();
-    this.props.navigation.navigate("AnimalCaregiver", { id, pictureUrl, type });
+    const { id, pictureUrl, type, name } = this.getSelectedAnimal();
+    this.props.navigation.navigate("AnimalCaregiver", { id, pictureUrl, type, name });
+  };
+
+  onCaregiverDelete = (share_id) => {
+    const{alertDropdown, t} = this.props;
+
+    this.props.dispatch(
+      deleteAnimalCaregiver({
+            share_id: share_id,
+            animal_id: this.getSelectedAnimal().id,
+            showNotification: alertDropdown,
+            translate: t
+        })
+    );
   };
 
   render() {
@@ -142,8 +156,8 @@ class AnimalProfile extends Component {
       return null;
     }
 
-    const { authToken, t } = this.props;
-
+    const { caregiver, authToken, t } = this.props;
+    
     const {
       birthdate,
       competitionLevel,
@@ -158,6 +172,13 @@ class AnimalProfile extends Component {
       type,
       notes
     } = this.getSelectedAnimal();
+
+    let caregiver_exist = true;
+    let caregiver_count = 0;
+
+    if(caregiver.error || !caregiver.length) {
+      caregiver_exist = false;
+    }
 
     return (
       <View style={{ flex: 1, backgroundColor: colors.white }}>
@@ -248,47 +269,74 @@ class AnimalProfile extends Component {
               {notes}
             </FieldText>
           </Field>
-          <View style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  paddingTop: 15,
-                  paddingBottom: 10,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderBottomWidth: 1,
-                  borderBottomColor: colors.darkFilter}}
-          >
-            <View style={{paddingLeft: 20, flex: 1, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start'}}>
-              <Text style={{flex: 1,
-                      paddingBottom: 10,
-                      color: colors.nero,
-                      ...fonts.style.label}}
-              >
-                {t("caregiverTitle")}
-              </Text>
-              <FieldText lines={1} style={{flex: 1}}>
-                {t("addCaregiverDesc")}
-              </FieldText>
+          {!caregiver_exist &&
+            <View style={s.caregiver_field_containter}>
+              <View style={s.caregiver_leftside_container}>
+                <Text style={s.caregiver_label_style}>
+                  {t("caregiverTitle")}
+                </Text>
+                <FieldText lines={1} style={[s.caregiver_text_field, {fontWeight: 'normal'}]}>
+                  {t("addCaregiverDesc")}
+                </FieldText>
+              </View>
+              <View style={s.caregiver_button_container}>
+                <CircleButton onPress={() => {this.addCaregiver()}} containerStyles={[s.caregiver_circlebutton_style, {backgroundColor: colors.mediumPurple}]} >
+                  <Icon size={20} name={iconMap.plus} color={colors.white} />
+                </CircleButton>
+              </View>
             </View>
-            <View style={{
-              paddingRight: 23,
-              flex: 1,
-              justifyContent: 'flex-end',
-              alignItems: 'flex-end'}}
-            >
-              <CircleButton
-                onPress={this.addCaregiver}
-                containerStyles={{
-                  height: 42,
-                  width: 42,
-                  shadowOpacity: 0,
-                  backgroundColor: colors.mediumPurple
-                }}
-              >
-                <Icon name={iconMap.plus} size={20} color={colors.white} />
-              </CircleButton>
+          }
+          {caregiver_exist && 
+            caregiver.map((c_giver) => (
+              <View key={caregiver_count++} style={s.caregiver_field_containter}>
+                <View style={s.caregiver_leftside_container}>
+                  {caregiver_count == 1 &&
+                    <Text style={s.caregiver_label_style}>
+                      {t("caregiverTitle")}
+                    </Text>
+                  }
+                  <FieldText lines={1} style={caregiver_count > 1? s.caregiver_text_field_style: s.caregiver_text_field}>
+                    { c_giver.userShareEmail }
+                  </FieldText>
+                </View>
+                <View style={s.caregiver_button_container}>
+                  {c_giver.accepted == 1 &&
+                    <CircleButton
+                      onPress={() => {
+                        Alert.alert(t("sufixRemoveMessage"), t("prefixRemoveMessage"), [
+                          { text: t("cancel"), style: "cancel" },
+                          { text: t("caregiverRemoveBtnText"), onPress: () => {this.onCaregiverDelete(c_giver.userShareId)} }
+                        ]);
+                      }}
+                      containerStyles={[s.caregiver_circlebutton_style, {backgroundColor: colors.white}]}
+                    >
+                      <Icon size={20} name={iconMap.garbage} color={colors.harleyDavidsonOrange} />
+                    </CircleButton>
+                  }
+                  {!c_giver.accepted &&
+                    <Text>
+                      {t("caregiver_pending")}
+                    </Text>
+                  }
+                </View>
+              </View>
+            ))
+          }
+          {caregiver_exist &&
+            caregiver.length < 5 &&
+            <View style={s.caregiver_field_containter}>
+              <View style={s.caregiver_leftside_container}>
+                <FieldText lines={1} style={[caregiver_count > 0? s.caregiver_text_field_style: s.caregiver_text_field, {fontWeight: 'normal'}]}>
+                  {t("addCaregiverDesc")}
+                </FieldText>
+              </View>
+              <View style={s.caregiver_button_container}>
+                <CircleButton onPress={() => {this.addCaregiver()}} containerStyles={[s.caregiver_circlebutton_style, {backgroundColor: colors.mediumPurple}]}>
+                  <Icon size={20} name={iconMap.plus} color={colors.white}/>
+                </CircleButton>
+              </View>
             </View>
-          </View>
+          }
           <View style={s.buttonContainer}>
             <Button
               label={t("remove")}
@@ -296,11 +344,7 @@ class AnimalProfile extends Component {
               textColor={colors.harleyDavidsonOrange}
               iconName={iconMap.garbage}
               iconColor={colors.harleyDavidsonOrange}
-              style={{
-                width: 180,
-                borderWidth: 1,
-                borderColor: colors.harleyDavidsonOrange
-              }}
+              style={s.remove_button_style}
               onPress={() => {
                 Alert.alert(t("deleteAnimal"), t("deleteAnimalMessage"), [
                   { text: t("cancel"), style: "cancel" },
@@ -308,16 +352,8 @@ class AnimalProfile extends Component {
                 ]);
               }}
             />
-            <CircleButton
-              onPress={this.share}
-              containerStyles={{
-                height: 46,
-                width: 46,
-                shadowOpacity: 0,
-                backgroundColor: colors.nero
-              }}
-            >
-              <Icon name={iconMap.share} size={20} color={colors.white} />
+            <CircleButton onPress={this.share} containerStyles={s.share_button_style}>
+              <Icon size={20} name={iconMap.share} color={colors.white}/>
             </CircleButton>
           </View>
         </ScrollView>
@@ -350,7 +386,8 @@ AnimalProfile.propTypes = {
 
 const mapStateToProps = state => ({
   authToken: getToken(state),
-  data: state.animals
+  data: state.animals,
+  caregiver: state.caregiver
 });
 
 export default hoistStatics(
