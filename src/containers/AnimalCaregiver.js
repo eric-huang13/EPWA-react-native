@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import T from "prop-types";
 import {HeaderBackButton} from 'react-navigation-stack';
-import {ScrollView, View, Image, Alert, KeyboardAvoidingView, Keyboard, Platform } from 'react-native';
+import { View, Image, Alert, KeyboardAvoidingView, Keyboard, Platform } from 'react-native';
 import {translate} from 'react-i18next';
 import { compose } from "redux";
 import { connect } from "react-redux";
@@ -67,24 +67,58 @@ class AnimalCaregiver extends Component {
         this.keyboardDidHideListener.remove();
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        const{caregiver, t} = this.props;
+        if (prevProps.caregiver.loading && !caregiver.loading) {
+            if(!caregiver.message.success){
+                const errorMessage = caregiver.message;
+                if(errorMessage.error == "user_unknown") {
+                    Alert.alert(t("caregiverAlertTitle"), t("caregiverAlertUserUnknown"), [
+                            { text: t("OK"), onPress: () => {this.setFocusTextInput()} },
+                        ],
+                        { cancelable: false }
+                    );
+                } else if(errorMessage.error == "cant_invite_yourself") {
+                    Alert.alert(t("caregiverAlertTitle"), t("caregiverAlertSelf"), [
+                            { text: t("OK"), onPress: () => {this.setFocusTextInput()} },
+                        ],
+                        { cancelable: false }
+                    );
+                } else if(errorMessage.error == "invite_exists") {
+                    Alert.alert(t("caregiverAlertTitle"), t("caregiverAlertDuplicate"), [
+                            { text: t("OK"), onPress: () => {this.setFocusTextInput()} },
+                        ],
+                        { cancelable: false }
+                    );
+                } else if(errorMessage.error == "maximum_shares") {
+                    Alert.alert(t("caregiverAlertTitle"), t("caregiverAlertMaximum"), [
+                            { text: t("OK"), onPress: () => {this.setFocusTextInput()} },
+                        ],
+                        { cancelable: false }
+                    );
+                } else {
+                    Alert.alert(t("caregiverAlertTitle"), t("caregiverAlertNotAllowed"), [
+                            { text: t("OK"), onPress: () => {this.setFocusTextInput()} },
+                        ],
+                        { cancelable: false }
+                    );
+                }
+            } else {
+                this.props.navigation.navigate("AnimalProfile");
+            }
+        }
+    }
+
     onKeyboardDidShow = () => this.setState({ isKeyboardActive: true });
 
     onKeyboardDidHide = () => this.setState({ isKeyboardActive: false });
 
-    setSendButtonRef = (element) => {
-        this.sendButton = element;
-    };
-    
-    setFocusToSendButton = () => {
-        this.sendButton.focus();
-    };
-
     onValidation = (e) => {
         const email_pattern = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
 
+        this.setState({email_address: e});
         if(e.match(email_pattern)) {
             this.setState({email_validataion: true});
-            this.setState({email_address: e});
         } else {
             this.setState({email_validataion: false});
         }
@@ -102,6 +136,10 @@ class AnimalCaregiver extends Component {
             })
         );
     };
+
+    setFocusTextInput = () => {
+        this.setState({email_address: ""});
+    }
 
     render() {
         const {authToken, navigation, t} = this.props;
@@ -143,10 +181,11 @@ class AnimalCaregiver extends Component {
                                 keyboardType="email-address"
                                 returnKeyType="send"
                                 placeholder={"E-mailaddres"}
+                                value={this.state.email_address}
                                 onChangeText={this.onValidation}
                             />
                         </Field>
-                        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                        <View style={s.caregiver_sendbutton_style}>
                             <Button
                                 disabled={!this.state.email_validataion? true: false}
                                 style={s.caregiver_invite_button_style}
@@ -169,6 +208,7 @@ AnimalCaregiver.propTypes = {
 
 const mapStateToProps = state => ({
     authToken: getToken(state),
+    caregiver: state.caregiver
 });
 
 export default hoistStatics(

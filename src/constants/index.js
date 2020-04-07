@@ -64,7 +64,7 @@ export const eventCategoryColors = {
 };
 
 export const cropImages = {
-  a: {x: 0, y: 0},
-  b: {x: 0, y: .25},
-  c: {x: 0, y: .75},
+  a: {x: 24, y: 0},
+  b: {x: 24, y: .25},
+  c: {x: 24, y: .6},
 };

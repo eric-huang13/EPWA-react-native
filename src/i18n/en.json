@@ -914,7 +914,7 @@
           "content1": "After the photo is taken, it must be cropped. This way your horse can be used anonymously.",
           "content2": "First, Choose the ears, and the eyes and then the nose and mouth.",
           "content3": "Make sure that parts are always correctly and clearly positioned in the cropping area, as shown here in the example.",
-          "chk_text": "My photo may be used for words training purposes",
+          "chk_text": "My photo may be used for training purposes",
           "imageTitle": "exhorsecrop",
           "checkedbtnImg": "checkedbtnImg",
           "uncheckedbtnImg": "uncheckedbtnImg",
@@ -925,7 +925,14 @@
           "cancelbutton": "Cancel",
           "horsemaskImg": "horsemaskImg",
           "flipbtnImg": "flipbtnImg",
-          "flipbtnText": "Flip"
+          "flipbtnText": "Flip",
+          "loadingText": "Saving...",
+          "cameraPermissionTitle": "Permission to use camera",
+          "cameraPermissionMessage": "We need your permission to use your camera",
+          "cameraPermissionPositiveButtonText": "OK",
+          "cameraPermissionNegativeButtonText": "Cancel",
+          "audioiPermissonTitle": "Permission to use audio recording",
+          "audioPermissionMessage": "We need your permission to use your audio" 
         },
         "thirdpage": {
           "question": "Is this photo good?",
@@ -936,23 +943,27 @@
         "forthpage": {
           "question": "Now, crop image of the ears",
           "imageTitle": "horsecrop",
-          "lbuttonText": "Save ears"
+          "lbuttonText": "Save ears",
+          "loadingText": "Sending..."
         },
         "fifthpage": {
           "question": "Now, crop image of the eyes",
           "imageTitle": "horsecrop",
-          "lbuttonText": "Save eyes"
+          "lbuttonText": "Save eyes",
+          "loadingText": "Sending..."
         },
         "sixthpage": {
           "question": "Now, crop image of the nose and mouth",
           "imageTitle": "horsecrop",
-          "lbuttonText": "Save nose/mouth"
+          "lbuttonText": "Save nose/mouth",
+          "loadingText": "Sending..."
         },
         "seventhpage": {
           "question": "Are the crops good?",
           "imageTitle": "horsecrop",
           "lbuttonText": "To Adjust",
-          "rbuttonText": "Send"
+          "rbuttonText": "Send",
+          "loadingText": "Sending..."
         },
         "lastpage": {
           "title": "Thanks!",
@@ -989,7 +1000,7 @@
     "addCaregiverDesc": "Add new caregiver",
     "caregiverInviteBtnText": "Send",
     "prefixRemoveMessage": "Are you sure you want to remove",
-    "sufixRemoveMessage": "from caretaker list?",
+    "sufixRemoveMessage": "from caregiver(s) list?",
     "caregiverRemoveBtnText": "Remove",
     "caregiver_pending": "Pending",
     "ok": "OK",
@@ -1093,6 +1104,13 @@
     "animalCaregiverFetchErrorMsg": "There has been an error while fetching caregivers",
     "animalCaregiverAddErrorMsg": "There has been an error while sending an invitation",
     "animalCaregiverDeleteErrorMsg": "There has been an error while deleting an caregiver",
+    "caregiverAlertTitle": "Error",
+    "caregiverAlertUserUnknown": "Unknown User",
+    "caregiverAlertSelf": "You can not invite yourself",
+    "caregiverAlertDuplicate": "This user has already invited",
+    "caregiverAlertMaximum": "You can invite only 5 users",
+    "caregiverAlertNotAllowed": "This user didn't own a horse or a donkey",
+    "photoUploadErrorMsg": "There has been an error while uploading cropped images",
     "eventAddSuccessMsg": "Entry has been added!",
     "eventEditSuccessMsg": "Entry has been updated!",
     "eventDeleteSuccessMsg": "Entry has been deleted!",

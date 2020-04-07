@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   Share,
   View,
-  Text
+  Text,
+  Platform
 } from "react-native";
 import { HeaderBackButton } from "react-navigation-stack";
 import { compose } from "redux";
@@ -17,6 +18,7 @@ import { format, parse } from "date-fns";
 import { hoistStatics } from "recompose";
 import { capitalize } from "lodash";
 
+import Modal from 'react-native-modalbox';
 import Button from "../components/Button";
 import Field from "../components/Field";
 import FieldText from "../components/FieldText";
@@ -31,6 +33,8 @@ import { getAnimalCaregiver, deleteAnimalCaregiver } from "../actions/caregiver"
 import { getToken } from "../selectors/auth";
 import iconMap from "../constants/iconMap";
 import CircleButton from "../components/CircleButton";
+
+const IsIOS = Platform.OS === 'ios';
 
 class AnimalProfile extends Component {
   static navigationOptions = ({ navigation, screenProps }) => ({
@@ -64,6 +68,11 @@ class AnimalProfile extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      shareUserName: "",
+      shareUserId: ""
+    }
 
     const selectedHorse = this.getSelectedAnimal();
 
@@ -149,6 +158,15 @@ class AnimalProfile extends Component {
             translate: t
         })
     );
+
+    this.refs.removeModal.close();
+  };
+
+  onRemove = (shareUserId, shareUserName) => {
+    this.setState({shareUserName: shareUserName});
+    this.setState({shareUserId: shareUserId});
+
+    this.refs.removeModal.open();
   };
 
   render() {
@@ -156,7 +174,8 @@ class AnimalProfile extends Component {
       return null;
     }
 
-    const { caregiver, authToken, t } = this.props;
+    const { authToken, t } = this.props;
+    const caregiver = this.props.caregiver.data;
     
     const {
       birthdate,
@@ -176,7 +195,7 @@ class AnimalProfile extends Component {
     let caregiver_exist = true;
     let caregiver_count = 0;
 
-    if(caregiver.error || !caregiver.length) {
+    if(!caregiver.length) {
       caregiver_exist = false;
     }
 
@@ -296,18 +315,13 @@ class AnimalProfile extends Component {
                     </Text>
                   }
                   <FieldText lines={1} style={caregiver_count > 1? s.caregiver_text_field_style: s.caregiver_text_field}>
-                    { c_giver.userShareEmail }
+                    { c_giver.accepted && c_giver.invitedName !== " "? c_giver.invitedName : c_giver.userShareEmail }
                   </FieldText>
                 </View>
                 <View style={s.caregiver_button_container}>
                   {c_giver.accepted == 1 &&
                     <CircleButton
-                      onPress={() => {
-                        Alert.alert(t("sufixRemoveMessage"), t("prefixRemoveMessage"), [
-                          { text: t("cancel"), style: "cancel" },
-                          { text: t("caregiverRemoveBtnText"), onPress: () => {this.onCaregiverDelete(c_giver.userShareId)} }
-                        ]);
-                      }}
+                      onPress={() => {this.onRemove(c_giver.id, c_giver.invitedName == " "? c_giver.userShareEmail: c_giver.invitedName)}}
                       containerStyles={[s.caregiver_circlebutton_style, {backgroundColor: colors.white}]}
                     >
                       <Icon size={15} name={iconMap.garbage} color={colors.harleyDavidsonOrange} />
@@ -357,6 +371,31 @@ class AnimalProfile extends Component {
             </CircleButton>
           </View>
         </ScrollView>
+        <Modal
+          style={[s.caregiver_modal_style, IsIOS? {height: "40%"}: {height: "50%"}]}
+          position={"center"}
+          ref={"removeModal"}
+        >
+          <CircleButton onPress={() => {this.refs.removeModal.close()}} containerStyles={s.modal_close_button_style}>
+              <Icon size={14} name={iconMap.close} color={colors.black}/>
+          </CircleButton>
+          <Text style={s.caregiver_modal_text_style}>
+            {t("prefixRemoveMessage")}
+          </Text>
+          <Text style={[s.caregiver_modal_text_style, {fontWeight: "bold"}]}>
+            {this.state.shareUserName}
+          </Text>
+          <Text style={s.caregiver_modal_text_style}>
+            {t("sufixRemoveMessage")}
+          </Text>
+          <Button
+            label={t("remove")}
+            backgroundColor={colors.mediumPurple}
+            textColor={colors.white}
+            style={s.modal_remove_button_style}
+            onPress={() => {this.onCaregiverDelete(this.state.shareUserId)}}
+          />
+        </Modal>
       </View>
     );
   }

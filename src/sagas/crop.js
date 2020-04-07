@@ -1,69 +1,100 @@
 import { call, put, select } from "redux-saga/effects";
-import snakeCaseKeys from "snakecase-keys";
 import camelcaseKeys from "camelcase-keys";
-import { compose } from "ramda";
 
 import {
-  SAVE_CROP_IMAGE
-} from "../actions/crop";
+  SAVE_CROP_IMAGE, SAVE_CROP_IMAGE_FAILED, REQUEST_CROP_IMAGE
+} from '../actions/crop';
 
 import { getToken } from "../selectors/auth";
-
 import { refreshToken } from "./auth";
 
 import NavigatorService from "../services/navigator";
-import { basePath, assetPath } from "../constants";
 
 export function* saveCropImage(api, action) {
+  yield put({
+    type: REQUEST_CROP_IMAGE
+  });
+
   const { original, crop_images, showNotification, translate } = action;
   const accessToken = yield select(getToken);
+  const formData = new FormData();
 
-//   const data = {
-//       original: original,
-//       ears: ear_image,
-//       eyes: eye_image,
-//       mouth: mouth_image
-//   }
+  if (original) {
+    const uri = original;
+    const uriParts = uri.split(".");
+    const fileType = uriParts[uriParts.length - 1];
 
-//   const body = compose(
-//     JSON.stringify,
-//     snakeCaseKeys
-//   )(data);
-console.log("original============>", original)
-console.log(crop_images)
-  console.log(crop_images.toString())
-  console.log(crop_images.valueOf(2))
-  console.log(crop_images.c)
+    formData.append("original", {
+      uri,
+      name: `photo.${fileType}`,
+      type: `image/${fileType}`
+    });
+  }
 
-//   let response = yield call(api.saveCropImage, body, accessToken);
+  if (crop_images.a) {
+    const uri = crop_images.a;
+    const uriParts = uri.split(".");
+    const fileType = uriParts[uriParts.length - 1];
 
-//   if (!response.ok) {
-//     if (response.status !== 401) {
-//       yield call(
-//         showNotification,
-//         "error",
-//         translate("errors.alertTitleGeneric"),
-//         translate("animalDeleteErrorMsg")
-//       );
-//       return;
-//     }
+    formData.append("ears", {
+      uri,
+      name: `photo.${fileType}`,
+      type: `image/${fileType}`
+    });
+  }
 
-//     const hasRefreshedToken = yield call(refreshToken);
+  if (crop_images.b) {
+    const uri = crop_images.b;
+    const uriParts = uri.split(".");
+    const fileType = uriParts[uriParts.length - 1];
 
-//     if (hasRefreshedToken) {
-//       const newAccessToken = yield select(getToken);
-//       response = yield call(api.saveCropImage, body, newAccessToken);
-//     } else {
-//       return;
-//     }
-//   }
+    formData.append("eyes", {
+      uri,
+      name: `photo.${fileType}`,
+      type: `image/${fileType}`
+    });
+  }
 
-//   const parsedResponse = camelcaseKeys(response.data);
+  if (crop_images.c) {
+    const uri = crop_images.c;
+    const uriParts = uri.split(".");
+    const fileType = uriParts[uriParts.length - 1];
 
-//   yield put({
-//     type: SAVE_CROP_IMAGE,
-//     payload
-//   });
+    formData.append("mouth", {
+      uri,
+      name: `photo.${fileType}`,
+      type: `image/${fileType}`
+    });
+  }
 
-//   yield call(NavigatorService.navigate, "EPWACropImageResult");
+  let response = yield call(api.saveCropImage, formData, accessToken);
+
+  if (!response.ok) {
+    if (response.status !== 401) {
+      yield call(
+        showNotification,
+        "error",
+        translate("errors.alertTitleGeneric"),
+        translate("photoUploadErrorMsg")
+      );
+      return;
+    }
+
+    const hasRefreshedToken = yield call(refreshToken);
+
+    if (hasRefreshedToken) {
+      const newAccessToken = yield select(getToken);
+      response = yield call(api.saveCropImage, formData, newAccessToken);
+    } else {
+      return;
+    }
+  }
+
+  // TODO check code below
+
+  yield put({
+    type: SAVE_CROP_IMAGE
+  });
+
+  yield call(NavigatorService.navigate, "EPWACropImageResult");
 }

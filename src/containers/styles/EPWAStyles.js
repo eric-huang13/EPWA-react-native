@@ -56,12 +56,12 @@ export default StyleSheet.create({
     paddingBottom: 10
   },
   button: {
-    backgroundColor: "#AC76DB",
-    width: 180
+    backgroundColor: colors.mediumPurple,
+    width: "60%"
   },
   disabledbutton: {
     backgroundColor: "#D8D8D8",
-    width: 180
+    width: "60%"
   },
   checkedbtnStyle: {
     borderRadius: 2,
@@ -102,24 +102,24 @@ export default StyleSheet.create({
     paddingBottom: 10
   },
   photoIsGoodLButton: {
-    marginLeft: 25,
-    backgroundColor: "#AC76DB",
-    width: 120
+    marginLeft: 10,
+    backgroundColor: colors.mediumPurple,
+    width: "45%"
   },
   photoIsGoodRButton: {
-    marginRight: 25,
-    backgroundColor: "#AC76DB",
-    width: 120
+    marginRight: 10,
+    backgroundColor: colors.mediumPurple,
+    width: "45%"
   },
   cropImgLButton: {
-    marginLeft: 15,
-    backgroundColor: "#AC76DB",
-    width: 140
+    marginLeft: 10,
+    backgroundColor: colors.mediumPurple,
+    width: "45%"
   },
   cropImgRButton: {
-    marginRight: 15,
-    backgroundColor:"#AC76DB",
-    width: 140
+    marginRight: 10,
+    backgroundColor:colors.mediumPurple,
+    width: "45%"
   },
   cropImgButtonContainer: {
     paddingTop: 30,

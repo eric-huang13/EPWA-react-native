@@ -6,6 +6,7 @@ import { compose } from "ramda";
 import {
   GET_ANIMAL_CAREGIVER,
   ADD_ANIMAL_CAREGIVER,
+  REQUEST_CAREGIVER,
   DELETE_ANIMAL_CAREGIVER
 } from "../actions/caregiver";
 
@@ -18,7 +19,7 @@ import NavigatorService from "../services/navigator";
 export function* getAnimalCaregiver(api, action) {
     const { animal_id, showNotification, translate } = action;
     const accessToken = yield select(getToken);
-    
+
     const data = {
         animal_id: animal_id
     }
@@ -68,6 +69,10 @@ export function* getAnimalCaregiver(api, action) {
 }
 
 export function* addAnimalCaregiver(api, action) {
+    yield put({
+        type: REQUEST_CAREGIVER
+    });
+
     const { email_address, animal_id, showNotification, translate } = action;
     const accessToken = yield select(getToken);
 
@@ -80,10 +85,9 @@ export function* addAnimalCaregiver(api, action) {
         JSON.stringify,
         snakeCaseKeys
     )(data);
-    console.log("adfasdfasdfsadf==============>", body)
+
     let response = yield call(api.addAnimalCaregiver, body, accessToken);
-    console.log("response===============>", response)
-    console.log("accesstoken=============>", accessToken)
+
     if (!response.ok) {
         if (response.status !== 401) {
             yield call(
@@ -106,17 +110,51 @@ export function* addAnimalCaregiver(api, action) {
     }
 
     const parsedResponse = camelcaseKeys(response.data);
-    console.log(parsedResponse)
+
     yield put({
         type: ADD_ANIMAL_CAREGIVER,
-        payload: { ...parsedResponse }
+        payload: parsedResponse
     });
 
-    yield call(NavigatorService.navigate, "AnimalProfile", {
-        id: animal_id,
-        // Overwrite old header title
-        // title: parsedResponse.name
-    });
+    if(parsedResponse.success) {
+        let response = yield call(api.getAnimalCaregiver, body, accessToken);
+
+        if (!response.ok) {
+            if (response.status !== 401) {
+                yield call(
+                    showNotification,
+                    "error",
+                    translate("errors.alertTitleGeneric"),
+                    translate("animalCaregiverFetchErrorMsg")
+                );
+                return;
+            }
+
+            const hasRefreshedToken = yield call(refreshToken, api);
+
+            if (hasRefreshedToken) {
+                const newAccessToken = yield select(getToken);
+                response = yield call(api.getAnimalCaregiver, body, newAccessToken);
+            } else {
+                return;
+            }
+        }
+
+        const parsedResponse = camelcaseKeys(response.data);
+
+        let sharelist = parsedResponse;
+
+        if (Array.isArray(parsedResponse)) {
+            sharelist = parsedResponse.map((share) => {
+                return share;
+            });
+        }
+
+        yield put({
+            type: GET_ANIMAL_CAREGIVER, 
+            sharelist
+        });
+    }
 }
 
 export function* deleteAnimalCaregiver(api, action) {
@@ -124,10 +162,10 @@ export function* deleteAnimalCaregiver(api, action) {
     const accessToken = yield select(getToken);
 
     const data = {
-        share_id: share_id,
-        animal_id: animal_id
+        animal_id: animal_id,
+        share_id: share_id
     }
-
+    
     const body = compose(
         JSON.stringify,
         snakeCaseKeys
@@ -160,12 +198,46 @@ export function* deleteAnimalCaregiver(api, action) {
 
     yield put({
         type: DELETE_ANIMAL_CAREGIVER,
-        payload: { ...parsedResponse }
+        payload: parsedResponse
     });
 
-    yield call(NavigatorService.navigate, "AnimalProfile", {
-        id: parsedResponse.id,
-        // Overwrite old header title
-        // title: parsedResponse.name
-    });
+    if(parsedResponse.success) {
+        let response = yield call(api.getAnimalCaregiver, body, accessToken);
+
+        if (!response.ok) {
+            if (response.status !== 401) {
+                yield call(
+                    showNotification,
+                    "error",
+                    translate("errors.alertTitleGeneric"),
+                    translate("animalCaregiverFetchErrorMsg")
+                );
+                return;
+            }
+
+            const hasRefreshedToken = yield call(refreshToken, api);
+
+            if (hasRefreshedToken) {
+                const newAccessToken = yield select(getToken);
+                response = yield call(api.getAnimalCaregiver, body, newAccessToken);
+            } else {
+                return;
+            }
+        }
+
+        const parsedResponse = camelcaseKeys(response.data);
+
+        let sharelist = parsedResponse;
+
+        if (Array.isArray(parsedResponse)) {
+            sharelist = parsedResponse.map((share) => {
+                return share;
+            });
+        }
+
+        yield put({
+            type: GET_ANIMAL_CAREGIVER, 
+            sharelist
+        });
+    }
 }

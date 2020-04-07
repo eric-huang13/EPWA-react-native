@@ -195,7 +195,7 @@ const createApi = (baseURL = basePath) => {
     });
 
   const deleteAnimalCaregiver = (body, accessToken) =>
-    api.delete(`/api/animal/share/delete`, body, {
+    api.post(`/api/animal/share/delete`, body, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`
@@ -203,9 +203,9 @@ const createApi = (baseURL = basePath) => {
     });
 
   const saveCropImage = (body, accessToken) =>
-    api.delete(`/api/training/upload`, body, {
+    api.post(`/api/training/upload`, body, {
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${accessToken}`
       }
     });

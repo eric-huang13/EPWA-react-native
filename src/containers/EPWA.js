@@ -23,7 +23,7 @@ const EPWANavigator = createStackNavigator(
     EPWACropImageB: EPWACropImageScreen,
     EPWACropImageC: EPWACropImageScreen,
     EPWACropImageD: EPWACropImageScreen,
-    EPWACropImageResult: EPWACropImageResultScreen,
+    EPWACropImageResult: EPWACropImageResultScreen
   },
   {
     initialRouteName: 'EPWADescription',

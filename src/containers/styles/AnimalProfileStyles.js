@@ -45,7 +45,7 @@ export default StyleSheet.create({
   },
   caregiver_leftside_container: {
     paddingLeft: 20,
-    flex: 8,
+    flex: 7,
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'flex-start'
@@ -58,7 +58,7 @@ export default StyleSheet.create({
   },
   caregiver_button_container: {
     paddingRight: 23,
-    flex: 2,
+    flex: 3,
     justifyContent: 'flex-end',
     alignItems: 'flex-end'
   },
@@ -66,6 +66,14 @@ export default StyleSheet.create({
     height: 42,
     width: 42,
     shadowOpacity: 0.4,
+  },
+  modal_close_button_style: {
+    height: 42,
+    width: 42,
+    backgroundColor: colors.white,
+    shadowOpacity: 0.2,
+    marginLeft: "65%",
+    marginBottom: 20
   },
   caregiver_text_field_style: {
     flex: 1,
@@ -81,6 +89,25 @@ export default StyleSheet.create({
     borderRadius: 28,
     borderColor: colors.mediumPurple
   },
+  caregiver_sendbutton_style: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 30
+  },
+  caregiver_modal_style: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: "80%"
+  },
+  caregiver_modal_text_style: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: 10
+  },
+  modal_remove_button_style: {
+    width: "80%",
+    marginTop: 30
+  },
   caregiver_invite_button_style: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -95,7 +122,7 @@ export default StyleSheet.create({
     backgroundColor: colors.nero
   },
   remove_button_style: {
-    width: "50%",
+    width: "55%",
     borderWidth: 1,
     borderColor: colors.harleyDavidsonOrange
   }
