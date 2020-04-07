@@ -7,6 +7,7 @@ import AboutScreen from "../containers/About";
 import AnimalFormScreen from "../containers/AnimalForm";
 import AnimalFormInfoScreen from "../containers/AnimalFormInfo";
 import AnimalProfileScreen from "../containers/AnimalProfile";
+import AnimalCaregiverScreen from "../containers/AnimalCaregiver";
 import SignInScreen from "../containers/SignIn";
 import SignUpScreen from "../containers/SignUp";
 import LogoutScreen from "../containers/Logout";
@@ -91,7 +92,8 @@ const AppStack = createDrawerNavigator(
           Stable: HomeScreen,
           AnimalForm: AnimalFormScreen,
           AnimalFormInfo: AnimalFormInfoScreen,
-          AnimalProfile: AnimalProfileScreen
+          AnimalProfile: AnimalProfileScreen,
+          AnimalCaregiver: AnimalCaregiverScreen
         },
         {
           initialRouteName: "Stable",

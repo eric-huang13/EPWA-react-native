@@ -23,7 +23,6 @@ export function* getAnimals(api, action) {
   const { showNotification, translate } = action;
 
   const accessToken = yield select(getToken);
-
   let response = yield call(api.getAnimals, accessToken);
 
   if (!response.ok) {

@@ -46,7 +46,11 @@ export const editAnimal = ({
   type: EDIT_ANIMAL_REQUESTED
 });
 
-export const deleteAnimal = ({ payload, showNotification, translate }) => ({
+export const deleteAnimal = ({
+  payload,
+  showNotification,
+  translate
+}) => ({
   payload,
   showNotification,
   translate,

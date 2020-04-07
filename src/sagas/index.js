@@ -35,7 +35,18 @@ import {
   deleteAccount
 } from "./auth";
 import { updateProfile } from "./profile";
-import { addAnimal, editAnimal, deleteAnimal, getAnimals } from "./animals";
+import { 
+  addAnimal,
+  editAnimal,
+  deleteAnimal,
+  getAnimals
+} from "./animals";
+import { 
+  getAnimalCaregiver,
+  addAnimalCaregiver,
+  deleteAnimalCaregiver
+} from "./caregiver";
+
 import { saveCropImage } from "./crop";
 import {
   ADD_ANIMAL_REQUESTED,
@@ -43,6 +54,13 @@ import {
   FETCH_ANIMALS_REQUESTED,
   DELETE_ANIMAL_REQUESTED
 } from "../actions/animals";
+
+import {
+  GET_ANIMAL_CAREGIVER_REQUESTED,
+  ADD_ANIMAL_CAREGIVER_REQUESTED,
+  DELETE_ANIMAL_CAREGIVER_REQUESTED
+} from "../actions/caregiver";
+
 import {
   SAVE_CROP_IMAGE_REQUESTED
 } from "../actions/crop";
@@ -99,6 +117,9 @@ export default function* root(dispatch) {
   yield takeLatest(ADD_ANIMAL_REQUESTED, addAnimal, api);
   yield takeLatest(EDIT_ANIMAL_REQUESTED, editAnimal, api);
   yield takeLatest(DELETE_ANIMAL_REQUESTED, deleteAnimal, api);
+  yield takeLatest(GET_ANIMAL_CAREGIVER_REQUESTED, getAnimalCaregiver, api);
+  yield takeLatest(ADD_ANIMAL_CAREGIVER_REQUESTED, addAnimalCaregiver, api);
+  yield takeLatest(DELETE_ANIMAL_CAREGIVER_REQUESTED, deleteAnimalCaregiver, api);
   yield takeLatest(SAVE_CROP_IMAGE_REQUESTED, saveCropImage, api);
   yield takeLatest(SET_LANGUAGE_REQUEST, setLanguage, api);
   yield takeLatest(CHANGE_PASSWORD_REQUEST, changePassword, api);

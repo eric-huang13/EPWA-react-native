@@ -177,6 +177,30 @@ const createApi = (baseURL = basePath) => {
         Authorization: `Bearer ${accessToken}`
       }
     });
+  
+  const getAnimalCaregiver = (body, accessToken) =>
+    api.post(`/api/animal/share/list`, body, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`
+      }
+    });
+
+  const addAnimalCaregiver = (body, accessToken) =>
+    api.post(`/api/animal/share`, body, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`
+      }
+    });
+
+  const deleteAnimalCaregiver = (body, accessToken) =>
+    api.delete(`/api/animal/share/delete`, body, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`
+      }
+    });
 
   const saveCropImage = (body, accessToken) =>
     api.delete(`/api/training/upload`, body, {
@@ -271,6 +295,9 @@ const createApi = (baseURL = basePath) => {
     uploadAnimalImage,
     editAnimal,
     deleteAnimal,
+    getAnimalCaregiver,
+    addAnimalCaregiver,
+    deleteAnimalCaregiver,
     saveCropImage,
     getEvents,
     addEvent,
