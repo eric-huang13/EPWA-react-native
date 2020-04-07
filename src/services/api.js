@@ -202,6 +202,14 @@ const createApi = (baseURL = basePath) => {
       }
     });
 
+  const saveCropImage = (body, accessToken) =>
+    api.delete(`/api/training/upload`, body, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`
+      }
+    });
+
   const getEvents = accessToken =>
     api.get("/api/events", null, {
       headers: {
@@ -290,6 +298,7 @@ const createApi = (baseURL = basePath) => {
     getAnimalCaregiver,
     addAnimalCaregiver,
     deleteAnimalCaregiver,
+    saveCropImage,
     getEvents,
     addEvent,
     editEvent,

@@ -50,7 +50,7 @@ export default StyleSheet.create({
     paddingBottom: 10
   },
   buttonContainer: {
-    paddingTop: 60,
+    paddingTop: 30,
     alignItems: "center",
     justifyContent: "center",
     paddingBottom: 10
@@ -86,14 +86,12 @@ export default StyleSheet.create({
     paddingBottom: 10
   },
   cropPhotoContainer: {
-    resizeMode: 'contain',
     alignItems: "center",
     justifyContent: "center",
     paddingBottom: 10
   },
   cropImg: {
-    width: "100%",
-    resizeMode: 'stretch',
+    resizeMode: 'contain',
     marginBottom: 10
   },
   photoIsGoodButtonContainer: {

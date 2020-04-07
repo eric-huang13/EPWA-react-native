@@ -10,6 +10,7 @@ import language from './language';
 import profile from './profile';
 import profileForm from './profileForm';
 import rehydration from './rehydration';
+import crop from './crop';
 
 import {RESET_STATE} from '../actions/auth';
 
@@ -23,6 +24,7 @@ const AppReducers = combineReducers({
   animals,
   caregiver,
   events,
+  crop,
 });
 
 const rootReducer = (state, action) => {

@@ -8,6 +8,7 @@ import {
   reject,
   pick
 } from "ramda";
+import { Dimensions } from "react-native";
 
 const firstCharacterToLowerCase = str =>
   str.charAt(0).toLowerCase() + str.slice(1);
@@ -37,3 +38,11 @@ export const isEmptyIgnoreNil = compose(
   isEmpty,
   reject(isNil)
 );
+
+export const getImageScaleSize = (width, height) => {
+  const dimensions = Dimensions.get('window');
+  const k = width ? height / width : 0;
+  const imageHeight = Math.round(dimensions.width * k);
+  const imageWidth = dimensions.width;
+  return {imageWidth, imageHeight}
+};
