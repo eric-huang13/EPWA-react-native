@@ -6,6 +6,7 @@ import {withFormik} from 'formik';
 import {hoistStatics} from 'recompose';
 
 import {defaultHeaderStyling} from '../navigation';
+import HomeScreen from "./Home";
 import EPWADescriptionScreen from './EPWADescription';
 import EPWACropImageDescScreen from './EPWACropImageDesc';
 import EPWATakePhotoScreen from './EPWATakePhoto';
@@ -24,6 +25,7 @@ const EPWANavigator = createStackNavigator(
     EPWACropImageC: EPWACropImageScreen,
     EPWACropImageD: EPWACropImageScreen,
     EPWACropImageResult: EPWACropImageResultScreen,
+    Stable: HomeScreen
   },
   {
     initialRouteName: 'EPWADescription',

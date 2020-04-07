@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   Share,
   View,
-  Text
+  Text,
+  Platform
 } from "react-native";
 import { HeaderBackButton } from "react-navigation-stack";
 import { compose } from "redux";
@@ -32,6 +33,8 @@ import { getAnimalCaregiver, deleteAnimalCaregiver } from "../actions/caregiver"
 import { getToken } from "../selectors/auth";
 import iconMap from "../constants/iconMap";
 import CircleButton from "../components/CircleButton";
+
+const IsIOS = Platform.OS === 'ios';
 
 class AnimalProfile extends Component {
   static navigationOptions = ({ navigation, screenProps }) => ({
@@ -369,7 +372,7 @@ class AnimalProfile extends Component {
           </View>
         </ScrollView>
         <Modal
-          style={s.caregiver_modal_style}
+          style={[s.caregiver_modal_style, IsIOS? {height: "40%"}: {height: "50%"}]}
           position={"center"}
           ref={"removeModal"}
         >

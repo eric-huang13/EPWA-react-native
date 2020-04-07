@@ -5,6 +5,8 @@ import { translate } from "react-i18next";
 import Button from "../components/Button";
 import HamburgerButton from "../components/HamburgerButton";
 
+import { getAnimals } from "../actions/animals";
+
 import s from "./styles/EPWAStyles";
 
 import { colors, fonts } from "../themes";
@@ -23,6 +25,19 @@ class EPWACropImageResult extends Component {
     return this.props.navigation;
   }
 
+  go_to_stable = () => {
+    const {alertDropdown, t} = this.props;
+
+    this.props.navigation.dispatch(
+      getAnimals({
+        showNotification: alertDropdown,
+        translate: t
+      })
+    );
+    
+    this.props.screenProps.t.t = t;
+    this.navigation.navigate("Stable");
+  }
   render() {
     const { t } = this.props.screenProps;
 
@@ -41,7 +56,7 @@ class EPWACropImageResult extends Component {
             <Button
               style={s.button}
               label={desc_content.buttonText}
-              onPress={() => this.navigation.navigate("EPWADescription")}
+              onPress={() => {this.go_to_stable()}}
             />
           </View>
         </ScrollView>

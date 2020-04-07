@@ -76,10 +76,6 @@ class EPWATakePhoto extends Component {
         return this.props.navigation;
     }
 
-    componentDidMount() {
-
-    }
-
     render() {
         const { t } = this.props.screenProps;
 
@@ -116,15 +112,15 @@ class EPWATakePhoto extends Component {
                               onPress={() => this.flipImage()}
                               style={styles.flipButton}
                             >
-                                    <Image
-                                        style={{ flex: 1, justifyContent: 'flex-start', width: 20, height: 30, resizeMode: 'stretch' }}
-                                        source={this.state.flipbtnImg}
-                                    />
-                                    <Text
-                                        style={{flex: 1, color: 'white', fontSize: 20, paddingTop: 4, paddingLeft: 10}}
-                                    >
-                                        {desc_content.flipbtnText}
-                                    </Text>
+                                <Image
+                                    style={{ flex: 1, justifyContent: 'flex-start', width: 20, height: 30, resizeMode: 'stretch' }}
+                                    source={this.state.flipbtnImg}
+                                />
+                                <Text
+                                    style={{flex: 3, color: 'white', fontSize: 20, paddingTop: 4, paddingLeft: 10}}
+                                >
+                                    {desc_content.flipbtnText}
+                                </Text>
                             </TouchableOpacity>
                         </View>
 
@@ -220,7 +216,7 @@ class EPWATakePhoto extends Component {
     renderTopButtons = () => {
         return (
             <SafeAreaView
-                style={styles.topButtons}
+                style={IsIOS? styles.topButtons: [styles.topButtons, {backgroundColor: colors.black, zIndex: 2}]}
             >
                 {this.renderFlashButton()}
             </SafeAreaView>
@@ -230,7 +226,7 @@ class EPWATakePhoto extends Component {
     renderBottomButtons = () => {
         return (
             <SafeAreaView
-                style={styles.bottomButtons}
+                style={IsIOS? styles.bottomButtons: [styles.bottomButtons, {backgroundColor: colors.black}]}
             >
                 {this.renderBottomButton()}
                 {this.renderCaptureButton()}
@@ -245,15 +241,6 @@ class EPWATakePhoto extends Component {
           horsemaskImg: this.state.isflipped ? horsemaskImg : flippedhorsemaskImg
         });
     }
-
-    // takePicture = async() => {
-    //     if (this.camera) {
-    //         // const options = { quality: 0.5, base64: true };
-    //         // const data = await this.camera.takePictureAsync(options);
-    //         const data = await this.camera.takePictureAsync();
-    //         console.log(data);
-    //     }
-    // }
 
     async onSetFlash() {
         this.currentFlashArrayPosition = (this.currentFlashArrayPosition + 1) % 3;
@@ -280,10 +267,6 @@ class EPWATakePhoto extends Component {
             }
 
         }
-
-        // const image = this.camera && await this.camera.capture();
-
-
     }
 
     async capture(saveToCameraRoll = true) {
@@ -316,12 +299,6 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center'
     },
-    overlayImage: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        zIndex: 2
-    },
     textStyle: {
         color: 'white',
         fontSize: 20
@@ -333,13 +310,13 @@ const styles = StyleSheet.create({
         paddingBottom: 10
     },
     topButtons: {
-        flex: 1,
+        flex: 1.5,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center'
     },
     cameraContainer: {
-        flex: 14,
+        flex: 13,
         flexDirection: 'row',
     },
     captureButtonContainer: {
@@ -358,7 +335,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 11,
         left: 10,
-        width: 100,
+        width: 150,
         height: 40,
     },
     flipButton: {

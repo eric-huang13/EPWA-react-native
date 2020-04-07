@@ -19,13 +19,17 @@ import withAlertDropdown from "../components/withAlertDropdown";
 
 import { getAnimals } from "../actions/animals";
 
-import { colors } from "../themes";
+import { colors, fonts } from "../themes";
 import { getToken } from "../selectors/auth";
 import iconMap from "../constants/iconMap";
 
 class HomeScreen extends Component {
   static navigationOptions = ({ navigation, screenProps }) => ({
     title: screenProps.t.t("headerBar.stable"),
+    headerTitleStyle: {
+      ...fonts.style.h4,
+      fontWeight: "400"
+    },
     headerLeft: <HamburgerButton onPress={navigation.openDrawer} />,
     headerRight: (
       <CalendarButton
