@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {
-  Image,
   View,
   ScrollView,
   Text
@@ -10,11 +9,13 @@ import { last, compose } from "ramda";
 import { map, forEach } from 'lodash';
 import { translate } from "react-i18next";
 import ImageEditor from "@react-native-community/image-editor";
+import FastImage from "react-native-fast-image";
 import { hoistStatics } from "recompose";
 
 import HamburgerButton from "../components/HamburgerButton";
 import withAlertDropdown from "../components/withAlertDropdown";
 import Button from "../components/Button";
+import Spinner from 'react-native-loading-spinner-overlay';
 
 import { colors, fonts } from "../themes";
 
@@ -27,13 +28,21 @@ import { setCropPosition, saveCropImage } from '../actions/crop';
 
 class EPWACropImage extends Component {
   static navigationOptions = ({ navigation, screenProps }) => ({
-    title: screenProps.t("headerBar.syndromes"),
+    title: screenProps.t("headerBar.epwaphotoupload"),
     headerTitleStyle: {
       ...fonts.style.h4,
       fontWeight: "400"
     },
     headerLeft: <HamburgerButton onPress={navigation.openDrawer} />
   });
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+        isLoading: false
+    }
+  }
 
   get navigation() {
     return this.props.navigation;
@@ -75,6 +84,7 @@ class EPWACropImage extends Component {
 
     return {
       fieldName: lastLetterInRoute,
+      loadingText: desc_content.loadingText,
       title: desc_content.question,
       lbuttonText: desc_content.lbuttonText,
       rbuttonText: desc_content.rbuttonText
@@ -126,6 +136,7 @@ class EPWACropImage extends Component {
         images[index] = cropRes;
       }
     }
+
     this.props.dispatch(
       saveCropImage({
         original: image.uri,
@@ -166,17 +177,21 @@ class EPWACropImage extends Component {
 
     return (
       <View style={s.mainContainer}>
+        <Spinner
+            visible={this.props.isLoading}
+            textContent={content.loadingText}
+            textStyle={{color: colors.mediumPurple}}
+        />
         <ScrollView
           contentContainerStyle={s.scrollViewContainerStyle}
         >
           <View key={content.title}>
             <Text style={s.titleStyle}>{content.title}</Text>
             <View style={s.cropPhotoContainer}>
-              <Image
+              <FastImage
+                style={[s.cropImg, {width: imageWidth * 0.9, height: imageHeight * 0.9}]}
                 source={image}
-                style={s.cropImg}
-                width={imageWidth * 0.9}
-                height={imageHeight * 0.9}
+                resizeMode={FastImage.resizeMode.contain}
               />
               {!!cropImages[content.fieldName]
                 ? (<Cropper
@@ -238,6 +253,7 @@ EPWACropImage.propTypes = {
 };
 
 const mapStateToProps = state => ({
+  isLoading: state.crop.loading,
   crops: state.crop.crops,
   image: state.crop.image
 });

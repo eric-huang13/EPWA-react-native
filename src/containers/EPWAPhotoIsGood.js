@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { ScrollView, View, Text, Image, Dimensions } from "react-native";
+import { ScrollView, View, Text } from "react-native";
 import { translate } from "react-i18next";
 import HamburgerButton from "../components/HamburgerButton";
+import FastImage from "react-native-fast-image";
 
 import Button from "../components/Button";
 
@@ -42,11 +43,10 @@ class EPWAPhotoIsGood extends Component {
           <View key={desc_content.question}>
             <Text style={s.titleStyle}>{desc_content.question}</Text>
             <View style={s.cropPhotoContainer}>
-              <Image
+              <FastImage
+                style={[s.cropImg, {width: imageWidth * 0.9, height: imageHeight * 0.9}]}
                 source={image}
-                style={s.cropImg}
-                width={imageWidth * 0.9}
-                height={imageHeight * 0.9}
+                resizeMode={FastImage.resizeMode.contain}
               />
             </View>
           </View>

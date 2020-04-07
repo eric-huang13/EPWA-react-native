@@ -928,7 +928,14 @@
           "cancelbutton": "Annuleer",
           "horsemaskImg": "horsemaskImg",
           "flipbtnImg": "flipbtnImg",
-          "flipbtnText": "Omdraaien"
+          "flipbtnText": "Omdraaien",
+          "loadingText": "Besparing...",
+          "cameraPermissionTitle": "Toestemming om camera te gebruiken",
+          "cameraPermissionMessage": "We hebben uw toestemming nodig om uw camera te gebruiken",
+          "cameraPermissionPositiveButtonText": "OK",
+          "cameraPermissionNegativeButtonText": "Annuleren",
+          "audioiPermissonTitle": "Toestemming om audio-opname te gebruiken",
+          "audioPermissionMessage": "We hebben uw toestemming nodig om uw audio te gebruiken"
         },
         "thirdpage": {
           "question": "Is deze foto goed?",
@@ -939,23 +946,27 @@
         "forthpage": {
           "question": "Maak nu een uitsnede van de oren",
           "imageTitle": "horsecrop",
-          "lbuttonText": "Bewaar oren"
+          "lbuttonText": "Bewaar oren",
+          "loadingText": "Bezig met verzenden..."
         },
         "fifthpage": {
           "question": "Maak nu een uitsnede van de ogen",
           "imageTitle": "horsecrop",
-          "lbuttonText": "Bewaar ogen"
+          "lbuttonText": "Bewaar ogen",
+          "loadingText": "Bezig met verzenden..."
         },
         "sixthpage": {
           "question": "Maak nu een uitsnede van de neus en mond",
           "imageTitle": "horsecrop",
-          "lbuttonText": "Bewaar neus/mond"
+          "lbuttonText": "Bewaar neus/mond",
+          "loadingText": "Bezig met verzenden..."
         },
         "seventhpage": {
           "question": "Zijn de uitsneden goed?",
           "imageTitle": "horsecrop",
           "lbuttonText": "Aanpassen",
-          "rbuttonText": "Versturen"
+          "rbuttonText": "Versturen",
+          "loadingText": "Bezig met verzenden..."
         },
         "lastpage": {
           "title": "Bedankt!",

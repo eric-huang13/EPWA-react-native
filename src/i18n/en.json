@@ -925,7 +925,14 @@
           "cancelbutton": "Cancel",
           "horsemaskImg": "horsemaskImg",
           "flipbtnImg": "flipbtnImg",
-          "flipbtnText": "Flip"
+          "flipbtnText": "Flip",
+          "loadingText": "Saving...",
+          "cameraPermissionTitle": "Permission to use camera",
+          "cameraPermissionMessage": "We need your permission to use your camera",
+          "cameraPermissionPositiveButtonText": "OK",
+          "cameraPermissionNegativeButtonText": "Cancel",
+          "audioiPermissonTitle": "Permission to use audio recording",
+          "audioPermissionMessage": "We need your permission to use your audio" 
         },
         "thirdpage": {
           "question": "Is this photo good?",
@@ -936,23 +943,27 @@
         "forthpage": {
           "question": "Now, crop image of the ears",
           "imageTitle": "horsecrop",
-          "lbuttonText": "Save ears"
+          "lbuttonText": "Save ears",
+          "loadingText": "Sending..."
         },
         "fifthpage": {
           "question": "Now, crop image of the eyes",
           "imageTitle": "horsecrop",
-          "lbuttonText": "Save eyes"
+          "lbuttonText": "Save eyes",
+          "loadingText": "Sending..."
         },
         "sixthpage": {
           "question": "Now, crop image of the nose and mouth",
           "imageTitle": "horsecrop",
-          "lbuttonText": "Save nose/mouth"
+          "lbuttonText": "Save nose/mouth",
+          "loadingText": "Sending..."
         },
         "seventhpage": {
           "question": "Are the crops good?",
           "imageTitle": "horsecrop",
           "lbuttonText": "To Adjust",
-          "rbuttonText": "Send"
+          "rbuttonText": "Send",
+          "loadingText": "Sending..."
         },
         "lastpage": {
           "title": "Thanks!",
