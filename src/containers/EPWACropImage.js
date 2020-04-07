@@ -5,11 +5,15 @@ import {
   ScrollView,
   Text
 } from "react-native";
-import HamburgerButton from "../components/HamburgerButton";
-import { last } from "ramda";
+import T from "prop-types";
+import { last, compose } from "ramda";
 import { map, forEach } from 'lodash';
+import { translate } from "react-i18next";
 import ImageEditor from "@react-native-community/image-editor";
+import { hoistStatics } from "recompose";
 
+import HamburgerButton from "../components/HamburgerButton";
+import withAlertDropdown from "../components/withAlertDropdown";
 import Button from "../components/Button";
 
 import { colors, fonts } from "../themes";
@@ -40,8 +44,8 @@ class EPWACropImage extends Component {
   }
 
   getContent = (routeName) => {
-    const { t } = this.props.screenProps;
-    const { state } = this.props.navigation;
+    const { t } = this.props;
+    // const { state } = this.props.navigation;
     const lastLetterInRoute = last(routeName).toLowerCase();
 
     let desc_content= {};
@@ -122,7 +126,6 @@ class EPWACropImage extends Component {
         images[index] = cropRes;
       }
     }
-
     this.props.dispatch(
       saveCropImage({
         original: image.uri,
@@ -159,6 +162,7 @@ class EPWACropImage extends Component {
     const content = this.getContent(this.navigation.state.routeName);
     const { imageWidth, imageHeight } = getImageScaleSize(image.width, image.height);
     const coord = cropImages[content.fieldName] || {};
+    const coordStore = crops[content.fieldName] || {};
 
     return (
       <View style={s.mainContainer}>
@@ -176,10 +180,10 @@ class EPWACropImage extends Component {
               />
               {!!cropImages[content.fieldName]
                 ? (<Cropper
-                    x={coord.x || 5}
-                    y={coord.y * imageHeight || 5}
-                    w={coord.w || imageWidth - 90}
-                    h={coord.h || imageHeight / 4  }
+                    x={coordStore.x || coord.x || 5}
+                    y={coordStore.y || coord.y * imageHeight || 5}
+                    w={coordStore.w || coord.w || imageWidth - 90}
+                    h={coordStore.h || coord.h || imageHeight / 4  }
                     maxWidth={imageWidth}
                     maxHeight={imageHeight * 0.9}
                     onChange={this.setPosition}
@@ -227,9 +231,21 @@ class EPWACropImage extends Component {
   }
 }
 
+EPWACropImage.propTypes = {
+  alertDropdown: T.func,
+  dispatch: T.func,
+  t: T.func
+};
+
 const mapStateToProps = state => ({
   crops: state.crop.crops,
   image: state.crop.image
 });
 
-export default connect(mapStateToProps)(EPWACropImage);
+export default hoistStatics(
+  compose(
+    connect(mapStateToProps),
+    withAlertDropdown,
+    translate("root"),
+  )
+)(EPWACropImage);

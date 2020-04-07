@@ -9,7 +9,7 @@ import grouphorsephoto from "../images/epwa/epwa_horse.png";
 
 import s from "./styles/EPWAStyles";
 
-import { colors, fonts } from "../themes";
+import { fonts } from "../themes";
 
 class EPWADescription extends Component {
   static navigationOptions = ({ navigation, screenProps }) => ({

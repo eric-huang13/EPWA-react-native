@@ -5,11 +5,9 @@ import { translate } from "react-i18next";
 import Button from "../components/Button";
 import HamburgerButton from "../components/HamburgerButton";
 
-import { getAnimals } from "../actions/animals";
-
 import s from "./styles/EPWAStyles";
 
-import { colors, fonts } from "../themes";
+import { fonts } from "../themes";
 
 class EPWACropImageResult extends Component {
   static navigationOptions = ({ navigation, screenProps }) => ({
@@ -20,26 +18,20 @@ class EPWACropImageResult extends Component {
     },
     headerLeft: <HamburgerButton onPress={navigation.openDrawer} />
   });
-
+ 
   get navigation() {
     return this.props.navigation;
   }
 
   go_to_stable = () => {
-    const {alertDropdown, t} = this.props;
+    const {t} = this.props.screenProps;
 
-    this.props.navigation.dispatch(
-      getAnimals({
-        showNotification: alertDropdown,
-        translate: t
-      })
-    );
-    
     this.props.screenProps.t.t = t;
     this.navigation.navigate("Stable");
   }
+
   render() {
-    const { t } = this.props.screenProps;
+    const { t } = this.props;
 
     const desc_content = t("info.epwaphotoupload.lastpage", { returnObjects: true });
 
