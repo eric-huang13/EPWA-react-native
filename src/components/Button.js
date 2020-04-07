@@ -9,9 +9,10 @@ import { colors, fonts } from "../themes";
 
 const Button = (props) => (
   <Touchable
+    disabled={props.disabled}
     style={[
       s.touchable,
-      { backgroundColor: props.backgroundColor },
+      { backgroundColor: props.disabled ? 'grey' : props.backgroundColor },
       // Put incoming styles last so that they can override defaults
       props.style
     ]}
@@ -45,10 +46,12 @@ Button.defaultProps = {
   backgroundColor: colors.nero,
   textColor: colors.white,
   iconColor: colors.white,
-  iconSize: 22
+  iconSize: 22,
+  disabled: false
 };
 
 Button.propTypes = {
+  disabled: T.bool,
   backgroundColor: T.string,
   containerStyles: T.any, // eslint-disable-line
   textColor: T.string,

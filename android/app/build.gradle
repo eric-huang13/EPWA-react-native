@@ -133,6 +133,8 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 40
         versionName "1.6.1"
+        missingDimensionStrategy 'react-native-camera', 'general'
+        multiDexEnabled true
     }
     splits {
         abi {
@@ -188,6 +190,8 @@ android {
 }
 
 dependencies {
+    implementation 'com.android.support:multidex-instrumentation:26.1.0'
+    implementation project(':react-native-camera')
     implementation "com.google.firebase:firebase-core:16.0.9"
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules

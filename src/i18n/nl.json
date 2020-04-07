@@ -78,7 +78,9 @@
       "welfareInfo": "Welzijnstips",
       "welfareNavigator": "Welzijnstips",
       "copyEvents": "Kopiëren",
-      "agenda": "Agenda"
+      "agenda": "Agenda",
+      "epwaphotoupload": "EPWA foto upload",
+      "epwaphotouploadNavigator": "EPWA foto upload"
     },
     "turnout": {
       "sharedAreaWithOtherAnimals": "Gedeeld gebied met andere dieren",
@@ -901,6 +903,65 @@
             "imageTitle": "behaviour"
           }
         ]
+      },
+      "epwaphotoupload": {
+        "firstpage": {
+          "title": "Uitleg voor het uploaden van een eigen foto voor trainingsdoeleinden",
+          "content": "We zien graag de oren, ogen en de mond duidelijk in beeld. Op deze manier kunnen we goed inzoomen op de belangrijkste onderdelen en kunnen we jouw foto goed gebruiken. Maak dus een foto die alleen het hoofd en nek laat zien van je paard.",
+          "exphotoTitle": "Voobeelden",
+          "imageTitle": "grouphorse",
+          "buttonText": "Verder"
+        },
+        "secondpage": {
+          "title": "Uitleg voor het bijsnijden van je foto",
+          "content1": "Nadat de foto is gemaakt moet deze bijgesneden worden. Op deze manier kan jouw paard anoniem worden gebruikt.",
+          "content2": "Je kiest eerst de oren, daarna de ogen en dan de neus en mond.",
+          "content3": "Zorg er voor dat onderdelen telkens goed en duidelijk in het uitsnede gebied staan, zoals hier in het voorbeeld te zien is.",
+          "chk_text": "Mijn foto mag gebruikt woorden voor trainingsdoeleinden",
+          "imageTitle": "exhorsecrop",
+          "checkedbtnImg": "checkedbtnImg",
+          "uncheckedbtnImg": "uncheckedbtnImg",
+          "buttonText": "Foto maken"
+        },
+        "takephotopage": {
+          "photobutton": "FOTO",
+          "cancelbutton": "Annuleer",
+          "horsemaskImg": "horsemaskImg",
+          "flipbtnImg": "flipbtnImg",
+          "flipbtnText": "Omdraaien"
+        },
+        "thirdpage": {
+          "question": "Is deze foto goed?",
+          "imageTitle": "horsecrop",
+          "lbuttonText": "Opnieuw",
+          "rbuttonText": "Jazeker"
+        },
+        "forthpage": {
+          "question": "Maak nu een uitsnede van de oren",
+          "imageTitle": "horsecrop",
+          "buttonText": "Bewaar oren"
+        },
+        "fifthpage": {
+          "question": "Maak nu een uitsnede van de ogen",
+          "imageTitle": "horsecrop",
+          "buttonText": "Bewaar ogen"
+        },
+        "sixthpage": {
+          "question": "Maak nu een uitsnede van de neus en mond",
+          "imageTitle": "horsecrop",
+          "buttonText": "Bewaar neus/mond"
+        },
+        "seventhpage": {
+          "question": "Zijn de uitsneden goed?",
+          "imageTitle": "horsecrop",
+          "lbuttonText": "Aanpassen",
+          "rbuttonText": "Versturen"
+        },
+        "lastpage": {
+          "title": "Bedankt!",
+          "content": "Met jouw foto kunnen we onze systemen nog beter trainen.",
+          "buttonText": "Terug naar stal"
+        }
       }
     },
     "profileUpdateSuccess": "Je profiel is geupdate!",
@@ -927,6 +988,12 @@
     "selectHorseCompetitionLevel": "Selecteer een wedstrijdniveau",
     "particularities": "Bijzonderheden",
     "fillInParticularities": "Vul hier bijzonderheden in",
+    "caregiverTitle": "Verzorger(s)",
+    "addCaregiverDesc": "Nieuwe verzorger toevoegen",
+    "caregiverInviteBtnText": "Verzenden",
+    "prefixRemoveMessage": "Weet je zeker dat je",
+    "sufixRemoveMessage": "wilt verwijderen als verzorg(st)er?",
+    "caregiverRemoveBtnText": "Verwijderen",
     "ok": "OK",
     "submit": "Aanmaken",
     "save": "Opslaan",

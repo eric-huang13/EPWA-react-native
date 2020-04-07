@@ -78,7 +78,9 @@
       "welfareInfo": "Guidelines",
       "welfareNavigator": "Guidelines for horse welfare",
       "copyEvents": "Copy",
-      "agenda": "Agenda"
+      "agenda": "Agenda",
+      "epwaphotoupload": "EPWA photo upload",
+      "epwaphotouploadNavigator": "EPWA photo upload"
     },
     "turnout": {
       "sharedAreaWithOtherAnimals": "Shared area with other animals",
@@ -898,6 +900,65 @@
             "imageTitle": "behaviour"
           }
         ]
+      },
+      "epwaphotoupload": {
+        "firstpage": {
+          "title": "Explanation for uploading an own photo for training purposes",
+          "content": "We would like to see the ears, eyes and mouth clearly in the picture. This way we can zoom in on the most important parts and we can use your photo well. So make a photo that only shows the head and neck of your horse.",
+          "exphotoTitle": "Example",
+          "imageTitle": "grouphorse",
+          "buttonText": "Next"
+        },
+        "secondpage": {
+          "title": "Explanation for cropping your photo",
+          "content1": "After the photo is taken, it must be cropped. This way your horse can be used anonymously.",
+          "content2": "First, Choose the ears, and the eyes and then the nose and mouth.",
+          "content3": "Make sure that parts are always correctly and clearly positioned in the cropping area, as shown here in the example.",
+          "chk_text": "My photo may be used for words training purposes",
+          "imageTitle": "exhorsecrop",
+          "checkedbtnImg": "checkedbtnImg",
+          "uncheckedbtnImg": "uncheckedbtnImg",
+          "buttonText": "Take a picture"
+        },
+        "takephotopage": {
+          "photobutton": "PHOTO",
+          "cancelbutton": "Cancel",
+          "horsemaskImg": "horsemaskImg",
+          "flipbtnImg": "flipbtnImg",
+          "flipbtnText": "Flip"
+        },
+        "thirdpage": {
+          "question": "Is this photo good?",
+          "imageTitle": "horsecrop",
+          "lbuttonText": "Again",
+          "rbuttonText": "Yes"
+        },
+        "forthpage": {
+          "question": "Now, crop image of the ears",
+          "imageTitle": "horsecrop",
+          "lbuttonText": "Save ears"
+        },
+        "fifthpage": {
+          "question": "Now, crop image of the eyes",
+          "imageTitle": "horsecrop",
+          "lbuttonText": "Save eyes"
+        },
+        "sixthpage": {
+          "question": "Now, crop image of the nose and mouth",
+          "imageTitle": "horsecrop",
+          "lbuttonText": "Save nose/mouth"
+        },
+        "seventhpage": {
+          "question": "Are the crops good?",
+          "imageTitle": "horsecrop",
+          "lbuttonText": "To Adjust",
+          "rbuttonText": "Send"
+        },
+        "lastpage": {
+          "title": "Thanks!",
+          "content": "With your photo we can use our systems train even better.",
+          "buttonText": "Back to the stable"
+        }
       }
     },
     "profileUpdateSuccess": "Profile updated!",
@@ -924,6 +985,12 @@
     "selectHorseCompetitionLevel": "Select competition level",
     "particularities": "Additional information",
     "fillInParticularities": "Note any additional information here",
+    "caregiverTitle": "Caregiver(s)",
+    "addCaregiverDesc": "Add new caregiver",
+    "caregiverInviteBtnText": "Send",
+    "prefixRemoveMessage": "Are you sure you want to remove",
+    "sufixRemoveMessage": "from caretaker list?",
+    "caregiverRemoveBtnText": "Remove",
     "ok": "OK",
     "submit": "Submit",
     "save": "Save",

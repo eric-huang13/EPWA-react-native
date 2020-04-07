@@ -230,6 +230,12 @@ class AnimalProfile extends Component {
               {notes}
             </FieldText>
           </Field>
+          <Field showBorder label={t("caregiverTitle")}>
+            <FieldText lines={4} style={s.fieldText}>
+              {t("addCaregiverDesc")}
+            </FieldText>
+            
+          </Field>
           <View style={s.buttonContainer}>
             <Button
               label={t("remove")}
