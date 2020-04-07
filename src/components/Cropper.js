@@ -21,7 +21,7 @@ class Cropper extends Component {
   };
 
   render() {
-    const {x, y, w, h, maxWidth, maxHeight, onChange, size} = this.props;
+    const {x, y, w, h, maxWidth, maxHeight, onChange, size, isDisabled} = this.props;
     return (
       <DragResizeBlock
         x={x || 0}
@@ -39,6 +39,7 @@ class Cropper extends Component {
         zIndex={2}
         borderColor="#6038B5"
         borderBackground="#AC76DB"
+        isDisabled={isDisabled}
         onResizeEnd={(coord) => {
           if (onChange && typeof onChange === 'function') {
             onChange(this.toObject(coord));

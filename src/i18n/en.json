@@ -914,7 +914,7 @@
           "content1": "After the photo is taken, it must be cropped. This way your horse can be used anonymously.",
           "content2": "First, Choose the ears, and the eyes and then the nose and mouth.",
           "content3": "Make sure that parts are always correctly and clearly positioned in the cropping area, as shown here in the example.",
-          "chk_text": "My photo may be used for words training purposes",
+          "chk_text": "My photo may be used for training purposes",
           "imageTitle": "exhorsecrop",
           "checkedbtnImg": "checkedbtnImg",
           "uncheckedbtnImg": "uncheckedbtnImg",

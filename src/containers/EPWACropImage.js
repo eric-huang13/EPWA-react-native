@@ -212,6 +212,7 @@ class EPWACropImage extends Component {
                     h={item.h || imageHeight / 4  }
                     maxWidth={imageWidth}
                     maxHeight={imageHeight * 0.9}
+                    isDisabled={true}
                   />
                 )))
               }
