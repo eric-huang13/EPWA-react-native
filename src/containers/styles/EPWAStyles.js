@@ -61,7 +61,7 @@ export default StyleSheet.create({
   },
   disabledbutton: {
     backgroundColor: "#D8D8D8",
-    width: "60%"
+    width: "80%"
   },
   checkedbtnStyle: {
     borderRadius: 2,

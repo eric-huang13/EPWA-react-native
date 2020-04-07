@@ -7,7 +7,7 @@ import HamburgerButton from "../components/HamburgerButton";
 
 import s from "./styles/EPWAStyles";
 
-import { fonts } from "../themes";
+import { colors, fonts } from "../themes";
 
 class EPWACropImageResult extends Component {
   static navigationOptions = ({ navigation, screenProps }) => ({
@@ -18,20 +18,13 @@ class EPWACropImageResult extends Component {
     },
     headerLeft: <HamburgerButton onPress={navigation.openDrawer} />
   });
- 
+
   get navigation() {
     return this.props.navigation;
   }
 
-  go_to_stable = () => {
-    const {t} = this.props.screenProps;
-
-    this.props.screenProps.t.t = t;
-    this.navigation.navigate("Stable");
-  }
-
   render() {
-    const { t } = this.props;
+    const { t } = this.props.screenProps;
 
     const desc_content = t("info.epwaphotoupload.lastpage", { returnObjects: true });
 
@@ -48,7 +41,7 @@ class EPWACropImageResult extends Component {
             <Button
               style={s.button}
               label={desc_content.buttonText}
-              onPress={() => {this.go_to_stable()}}
+              onPress={() => this.navigation.navigate("EPWADescription")}
             />
           </View>
         </ScrollView>

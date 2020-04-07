@@ -914,7 +914,7 @@
           "content1": "After the photo is taken, it must be cropped. This way your horse can be used anonymously.",
           "content2": "First, Choose the ears, and the eyes and then the nose and mouth.",
           "content3": "Make sure that parts are always correctly and clearly positioned in the cropping area, as shown here in the example.",
-          "chk_text": "My photo may be used for training purposes",
+          "chk_text": "My photo may be used for words training purposes",
           "imageTitle": "exhorsecrop",
           "checkedbtnImg": "checkedbtnImg",
           "uncheckedbtnImg": "uncheckedbtnImg",
@@ -925,14 +925,7 @@
           "cancelbutton": "Cancel",
           "horsemaskImg": "horsemaskImg",
           "flipbtnImg": "flipbtnImg",
-          "flipbtnText": "Flip",
-          "loadingText": "Saving...",
-          "cameraPermissionTitle": "Permission to use camera",
-          "cameraPermissionMessage": "We need your permission to use your camera",
-          "cameraPermissionPositiveButtonText": "OK",
-          "cameraPermissionNegativeButtonText": "Cancel",
-          "audioiPermissonTitle": "Permission to use audio recording",
-          "audioPermissionMessage": "We need your permission to use your audio" 
+          "flipbtnText": "Flip"
         },
         "thirdpage": {
           "question": "Is this photo good?",
@@ -943,27 +936,23 @@
         "forthpage": {
           "question": "Now, crop image of the ears",
           "imageTitle": "horsecrop",
-          "lbuttonText": "Save ears",
-          "loadingText": "Sending..."
+          "lbuttonText": "Save ears"
         },
         "fifthpage": {
           "question": "Now, crop image of the eyes",
           "imageTitle": "horsecrop",
-          "lbuttonText": "Save eyes",
-          "loadingText": "Sending..."
+          "lbuttonText": "Save eyes"
         },
         "sixthpage": {
           "question": "Now, crop image of the nose and mouth",
           "imageTitle": "horsecrop",
-          "lbuttonText": "Save nose/mouth",
-          "loadingText": "Sending..."
+          "lbuttonText": "Save nose/mouth"
         },
         "seventhpage": {
           "question": "Are the crops good?",
           "imageTitle": "horsecrop",
           "lbuttonText": "To Adjust",
-          "rbuttonText": "Send",
-          "loadingText": "Sending..."
+          "rbuttonText": "Send"
         },
         "lastpage": {
           "title": "Thanks!",

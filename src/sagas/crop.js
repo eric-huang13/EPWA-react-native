@@ -2,7 +2,7 @@ import { call, put, select } from "redux-saga/effects";
 import camelcaseKeys from "camelcase-keys";
 
 import {
-  SAVE_CROP_IMAGE, SAVE_CROP_IMAGE_FAILED, REQUEST_CROP_IMAGE
+  SAVE_CROP_IMAGE, SAVE_CROP_IMAGE_FAILED
 } from '../actions/crop';
 
 import { getToken } from "../selectors/auth";
@@ -11,10 +11,6 @@ import { refreshToken } from "./auth";
 import NavigatorService from "../services/navigator";
 
 export function* saveCropImage(api, action) {
-  yield put({
-    type: REQUEST_CROP_IMAGE
-  });
-
   const { original, crop_images, showNotification, translate } = action;
   const accessToken = yield select(getToken);
   const formData = new FormData();
@@ -91,10 +87,12 @@ export function* saveCropImage(api, action) {
   }
 
   // TODO check code below
+  // const parsedResponse = camelcaseKeys(response.data);
 
-  yield put({
-    type: SAVE_CROP_IMAGE
-  });
+  // yield put({
+  //   type: SAVE_CROP_IMAGE,
+  //   payload
+  // });
 
   yield call(NavigatorService.navigate, "EPWACropImageResult");
 }

@@ -842,7 +842,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 460CFF83C786764AC9846AAD /* Pods-EPWATests.debug.xcconfig */;
 			buildSettings = {
-				DEVELOPMENT_TEAM = Z39492TXR7;
+				DEVELOPMENT_TEAM = Z2RV6WNU8C;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -872,7 +872,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = Z39492TXR7;
+				DEVELOPMENT_TEAM = 4X6F2N97AV;
 				INFOPLIST_FILE = EPWATests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -899,11 +899,10 @@
 			baseConfigurationReference = 6283133371B3B76ADC44E0DA /* Pods-EPWA.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 61;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 55;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = Z39492TXR7;
+				DEVELOPMENT_TEAM = 4X6F2N97AV;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -1010,7 +1009,6 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-image-picker\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/yoga\"",
 				);
-				MARKETING_VERSION = 1.6.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1018,7 +1016,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = nl.wirelab.apps.epwa;
 				PRODUCT_NAME = EPWA;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "YJ dev wild";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1028,10 +1026,9 @@
 			baseConfigurationReference = 27D53785C4E2E35EE2EA6430 /* Pods-EPWA.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 61;
-				DEVELOPMENT_TEAM = Z39492TXR7;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 55;
+				DEVELOPMENT_TEAM = 4X6F2N97AV;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -1138,7 +1135,6 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-image-picker\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/yoga\"",
 				);
-				MARKETING_VERSION = 1.6.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1146,7 +1142,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = nl.wirelab.apps.epwa;
 				PRODUCT_NAME = EPWA;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "YJ dev wild";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

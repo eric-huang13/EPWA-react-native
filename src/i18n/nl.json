@@ -908,7 +908,7 @@
         "firstpage": {
           "title": "Uitleg voor het uploaden van een eigen foto voor trainingsdoeleinden",
           "content": "We zien graag de oren, ogen en de mond duidelijk in beeld. Op deze manier kunnen we goed inzoomen op de belangrijkste onderdelen en kunnen we jouw foto goed gebruiken. Maak dus een foto die alleen het hoofd en nek laat zien van je paard.",
-          "exphotoTitle": "Voorbeelden",
+          "exphotoTitle": "Voobeelden",
           "imageTitle": "grouphorse",
           "buttonText": "Verder"
         },
@@ -917,7 +917,7 @@
           "content1": "Nadat de foto is gemaakt moet deze bijgesneden worden. Op deze manier kan jouw paard anoniem worden gebruikt.",
           "content2": "Je kiest eerst de oren, daarna de ogen en dan de neus en mond.",
           "content3": "Zorg er voor dat onderdelen telkens goed en duidelijk in het uitsnede gebied staan, zoals hier in het voorbeeld te zien is.",
-          "chk_text": "Mijn foto mag gebruikt worden voor trainingsdoeleinden",
+          "chk_text": "Mijn foto mag gebruikt woorden voor trainingsdoeleinden",
           "imageTitle": "exhorsecrop",
           "checkedbtnImg": "checkedbtnImg",
           "uncheckedbtnImg": "uncheckedbtnImg",
@@ -928,14 +928,7 @@
           "cancelbutton": "Annuleer",
           "horsemaskImg": "horsemaskImg",
           "flipbtnImg": "flipbtnImg",
-          "flipbtnText": "Omdraaien",
-          "loadingText": "Bezig met opslaan...",
-          "cameraPermissionTitle": "Toestemming om camera te gebruiken",
-          "cameraPermissionMessage": "We hebben uw toestemming nodig om uw camera te gebruiken",
-          "cameraPermissionPositiveButtonText": "OK",
-          "cameraPermissionNegativeButtonText": "Annuleren",
-          "audioiPermissonTitle": "Toestemming om audio-opname te gebruiken",
-          "audioPermissionMessage": "We hebben uw toestemming nodig om uw audio te gebruiken"
+          "flipbtnText": "Omdraaien"
         },
         "thirdpage": {
           "question": "Is deze foto goed?",
@@ -946,27 +939,23 @@
         "forthpage": {
           "question": "Maak nu een uitsnede van de oren",
           "imageTitle": "horsecrop",
-          "lbuttonText": "Bewaar oren",
-          "loadingText": "Bezig met verzenden..."
+          "lbuttonText": "Bewaar oren"
         },
         "fifthpage": {
           "question": "Maak nu een uitsnede van de ogen",
           "imageTitle": "horsecrop",
-          "lbuttonText": "Bewaar ogen",
-          "loadingText": "Bezig met verzenden..."
+          "lbuttonText": "Bewaar ogen"
         },
         "sixthpage": {
           "question": "Maak nu een uitsnede van de neus en mond",
           "imageTitle": "horsecrop",
-          "lbuttonText": "Bewaar neus/mond",
-          "loadingText": "Bezig met verzenden..."
+          "lbuttonText": "Bewaar neus/mond"
         },
         "seventhpage": {
           "question": "Zijn de uitsneden goed?",
           "imageTitle": "horsecrop",
           "lbuttonText": "Aanpassen",
-          "rbuttonText": "Versturen",
-          "loadingText": "Bezig met verzenden..."
+          "rbuttonText": "Versturen"
         },
         "lastpage": {
           "title": "Bedankt!",

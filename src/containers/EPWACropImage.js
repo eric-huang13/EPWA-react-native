@@ -1,21 +1,16 @@
 import React, { Component } from "react";
 import {
+  Image,
   View,
   ScrollView,
   Text
 } from "react-native";
-import T from "prop-types";
-import { last, compose } from "ramda";
-import { map, forEach } from 'lodash';
-import { translate } from "react-i18next";
-import ImageEditor from "@react-native-community/image-editor";
-import FastImage from "react-native-fast-image";
-import { hoistStatics } from "recompose";
-
 import HamburgerButton from "../components/HamburgerButton";
-import withAlertDropdown from "../components/withAlertDropdown";
+import { last } from "ramda";
+import { map, forEach } from 'lodash';
+import ImageEditor from "@react-native-community/image-editor";
+
 import Button from "../components/Button";
-import Spinner from 'react-native-loading-spinner-overlay';
 
 import { colors, fonts } from "../themes";
 
@@ -28,21 +23,13 @@ import { setCropPosition, saveCropImage } from '../actions/crop';
 
 class EPWACropImage extends Component {
   static navigationOptions = ({ navigation, screenProps }) => ({
-    title: screenProps.t("headerBar.epwaphotoupload"),
+    title: screenProps.t("headerBar.syndromes"),
     headerTitleStyle: {
       ...fonts.style.h4,
       fontWeight: "400"
     },
     headerLeft: <HamburgerButton onPress={navigation.openDrawer} />
   });
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-        isLoading: false
-    }
-  }
 
   get navigation() {
     return this.props.navigation;
@@ -53,8 +40,8 @@ class EPWACropImage extends Component {
   }
 
   getContent = (routeName) => {
-    const { t } = this.props;
-    // const { state } = this.props.navigation;
+    const { t } = this.props.screenProps;
+    const { state } = this.props.navigation;
     const lastLetterInRoute = last(routeName).toLowerCase();
 
     let desc_content= {};
@@ -84,7 +71,6 @@ class EPWACropImage extends Component {
 
     return {
       fieldName: lastLetterInRoute,
-      loadingText: desc_content.loadingText,
       title: desc_content.question,
       lbuttonText: desc_content.lbuttonText,
       rbuttonText: desc_content.rbuttonText
@@ -173,32 +159,27 @@ class EPWACropImage extends Component {
     const content = this.getContent(this.navigation.state.routeName);
     const { imageWidth, imageHeight } = getImageScaleSize(image.width, image.height);
     const coord = cropImages[content.fieldName] || {};
-    const coordStore = crops[content.fieldName] || {};
 
     return (
       <View style={s.mainContainer}>
-        <Spinner
-            visible={this.props.isLoading}
-            textContent={content.loadingText}
-            textStyle={{color: colors.mediumPurple}}
-        />
         <ScrollView
           contentContainerStyle={s.scrollViewContainerStyle}
         >
           <View key={content.title}>
             <Text style={s.titleStyle}>{content.title}</Text>
             <View style={s.cropPhotoContainer}>
-              <FastImage
-                style={[s.cropImg, {width: imageWidth * 0.9, height: imageHeight * 0.9}]}
+              <Image
                 source={image}
-                resizeMode={FastImage.resizeMode.contain}
+                style={s.cropImg}
+                width={imageWidth * 0.9}
+                height={imageHeight * 0.9}
               />
               {!!cropImages[content.fieldName]
                 ? (<Cropper
-                    x={coordStore.x || coord.x || 5}
-                    y={coordStore.y || coord.y * imageHeight || 5}
-                    w={coordStore.w || coord.w || imageWidth - 90}
-                    h={coordStore.h || coord.h || imageHeight / 4  }
+                    x={coord.x || 5}
+                    y={coord.y * imageHeight || 5}
+                    w={coord.w || imageWidth - 90}
+                    h={coord.h || imageHeight / 4  }
                     maxWidth={imageWidth}
                     maxHeight={imageHeight * 0.9}
                     onChange={this.setPosition}
@@ -212,7 +193,6 @@ class EPWACropImage extends Component {
                     h={item.h || imageHeight / 4  }
                     maxWidth={imageWidth}
                     maxHeight={imageHeight * 0.9}
-                    isDisabled={true}
                   />
                 )))
               }
@@ -247,22 +227,9 @@ class EPWACropImage extends Component {
   }
 }
 
-EPWACropImage.propTypes = {
-  alertDropdown: T.func,
-  dispatch: T.func,
-  t: T.func
-};
-
 const mapStateToProps = state => ({
-  isLoading: state.crop.loading,
   crops: state.crop.crops,
   image: state.crop.image
 });
 
-export default hoistStatics(
-  compose(
-    connect(mapStateToProps),
-    withAlertDropdown,
-    translate("root"),
-  )
-)(EPWACropImage);
+export default connect(mapStateToProps)(EPWACropImage);

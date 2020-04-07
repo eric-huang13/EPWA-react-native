@@ -5,7 +5,6 @@ import { RNCamera } from 'react-native-camera';
 import { compose } from "redux";
 
 import HamburgerButton from "../components/HamburgerButton";
-import Spinner from 'react-native-loading-spinner-overlay';
 
 import horsemaskImg from '../images/epwa/horse_mask.png';
 import flippedhorsemaskImg from '../images/epwa/flipped_horse_mask.png';
@@ -48,7 +47,6 @@ class EPWATakePhoto extends Component {
         ];
 
         this.state = {
-            isLoading: false,
             data: null,
             flashMode: false,
             backCamera: true,
@@ -78,6 +76,10 @@ class EPWATakePhoto extends Component {
         return this.props.navigation;
     }
 
+    componentDidMount() {
+
+    }
+
     render() {
         const { t } = this.props.screenProps;
 
@@ -85,11 +87,6 @@ class EPWATakePhoto extends Component {
 
         return (
             <View style={styles.container}>
-                <Spinner
-                    visible={this.state.isLoading}
-                    textContent={desc_content.loadingText}
-                    textStyle={{color: colors.mediumPurple}}
-                />
                 {this.renderTopButtons()}
                 <View style={styles.cameraContainer}>
                     <RNCamera
@@ -100,36 +97,37 @@ class EPWATakePhoto extends Component {
                         type={this.state.backCamera? RNCamera.Constants.Type.back: RNCamera.Constants.Type.front}
                         flashMode={this.state.flashMode? RNCamera.Constants.FlashMode.on: RNCamera.Constants.FlashMode.off}
                         androidCameraPermissionOptions={{
-                            title: desc_content.cameraPermissionTitle,
-                            message: desc_content.cameraPermissionMessage,
-                            buttonPositive: desc_content.cameraPermissionPositiveButtonText,
-                            buttonNegative: desc_content.cameraPermissionNegativeButtonText,
+                            title: 'Permission to use camera',
+                            message: 'We need your permission to use your camera',
+                            buttonPositive: 'Ok',
+                            buttonNegative: 'Cancel',
                         }}
                         androidRecordAudioPermissionOptions={{
-                            title: desc_content.audioiPermissonTitle,
-                            message: desc_content.audioPermissionMessage,
-                            buttonPositive: desc_content.cameraPermissionPositiveButtonText,
-                            buttonNegative: desc_content.cameraPermissionNegativeButtonText,
+                            title: 'Permission to use audio recording',
+                            message: 'We need your permission to use your audio',
+                            buttonPositive: 'Ok',
+                            buttonNegative: 'Cancel',
                         }}
                     >
                         <Image source={this.state.horsemaskImg} style={{ width: "100%", height: "100%", opacity: 5, resizeMode: 'stretch' }} />
 
                         <View style={styles.flipButtonContainer}>
                             <TouchableOpacity
-                                onPress={() => this.flipImage()}
-                                style={styles.flipButton}
+                              onPress={() => this.flipImage()}
+                              style={styles.flipButton}
                             >
-                                <Image
-                                    style={{ flex: 1, justifyContent: 'flex-start', width: 20, height: 30, resizeMode: 'stretch' }}
-                                    source={this.state.flipbtnImg}
-                                />
-                                <Text
-                                    style={{flex: 3, color: 'white', fontSize: 20, paddingTop: 4, paddingLeft: 10}}
-                                >
-                                    {desc_content.flipbtnText}
-                                </Text>
+                                    <Image
+                                        style={{ flex: 1, justifyContent: 'flex-start', width: 20, height: 30, resizeMode: 'stretch' }}
+                                        source={this.state.flipbtnImg}
+                                    />
+                                    <Text
+                                        style={{flex: 1, color: 'white', fontSize: 20, paddingTop: 4, paddingLeft: 10}}
+                                    >
+                                        {desc_content.flipbtnText}
+                                    </Text>
                             </TouchableOpacity>
                         </View>
+
                     </RNCamera>
                 </View>
 
@@ -222,7 +220,7 @@ class EPWATakePhoto extends Component {
     renderTopButtons = () => {
         return (
             <SafeAreaView
-                style={IsIOS? styles.topButtons: [styles.topButtons, {backgroundColor: colors.black, zIndex: 2}]}
+                style={styles.topButtons}
             >
                 {this.renderFlashButton()}
             </SafeAreaView>
@@ -232,7 +230,7 @@ class EPWATakePhoto extends Component {
     renderBottomButtons = () => {
         return (
             <SafeAreaView
-                style={IsIOS? styles.bottomButtons: [styles.bottomButtons, {backgroundColor: colors.black}]}
+                style={styles.bottomButtons}
             >
                 {this.renderBottomButton()}
                 {this.renderCaptureButton()}
@@ -247,6 +245,15 @@ class EPWATakePhoto extends Component {
           horsemaskImg: this.state.isflipped ? horsemaskImg : flippedhorsemaskImg
         });
     }
+
+    // takePicture = async() => {
+    //     if (this.camera) {
+    //         // const options = { quality: 0.5, base64: true };
+    //         // const data = await this.camera.takePictureAsync(options);
+    //         const data = await this.camera.takePictureAsync();
+    //         console.log(data);
+    //     }
+    // }
 
     async onSetFlash() {
         this.currentFlashArrayPosition = (this.currentFlashArrayPosition + 1) % 3;
@@ -263,26 +270,24 @@ class EPWATakePhoto extends Component {
 
     async onCaptureImagePressed() {
         if (this.camera) {
-            this.setState({isLoading: true})
-            const options = { quality: 0.5, base64: true, fixOrientation: true, pauseAfterCapture: true };
+            const options = { quality: 0.5, base64: true, fixOrientation: true };
             const image = await this.camera.takePictureAsync(options);
-            
+
             if (image) {
                 this.setState({ captured: true, imageCaptured: image });
-                const taken_image = {}
-                taken_image.width = image.width;
-                taken_image.height = image.height;
-                taken_image.uri = image.uri;
-                this.props.dispatch(setCropImage(taken_image))
-                this.setState({isLoading: false})
                 this.navigation.navigate('EPWAPhotoIsGood', { image });
+                this.props.dispatch(setCropImage(image))
             }
 
         }
+
+        // const image = this.camera && await this.camera.capture();
+
+
     }
 
     async capture(saveToCameraRoll = true) {
-        console.log('capture', saveToCameraRoll, GalleryManager)
+      console.log('capture', saveToCameraRoll, GalleryManager)
         return GalleryManager && await GalleryManager.capture(saveToCameraRoll);
     }
     
@@ -311,6 +316,12 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center'
     },
+    overlayImage: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 2
+    },
     textStyle: {
         color: 'white',
         fontSize: 20
@@ -322,13 +333,13 @@ const styles = StyleSheet.create({
         paddingBottom: 10
     },
     topButtons: {
-        flex: 1.5,
+        flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center'
     },
     cameraContainer: {
-        flex: 13,
+        flex: 14,
         flexDirection: 'row',
     },
     captureButtonContainer: {
@@ -347,7 +358,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 11,
         left: 10,
-        width: 150,
+        width: 100,
         height: 40,
     },
     flipButton: {
@@ -368,11 +379,7 @@ const styles = StyleSheet.create({
     }
 });
 
-const mapStateToProps = state => ({
-    isLoading: state.crop.loading,
-});
-
 export default compose(
-  connect(mapStateToProps),
+  connect(),
   translate("root")
 )(EPWATakePhoto);

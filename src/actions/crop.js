@@ -4,8 +4,6 @@ export const SAVE_CROP_IMAGE = "SAVE_CROP_IMAGE";
 export const SAVE_CROP_IMAGE_REQUESTED = "SAVE_CROP_IMAGE_REQUESTED";
 export const SAVE_CROP_IMAGE_FAILED = "SAVE_CROP_IMAGE_FAILED";
 
-export const REQUEST_CROP_IMAGE = "REQUEST_CROP_IMAGE";
-
 export const setCropImage = (payload) => ({
   type: SET_CROP_IMAGE,
   payload

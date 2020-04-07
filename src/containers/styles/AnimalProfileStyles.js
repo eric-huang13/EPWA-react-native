@@ -45,7 +45,7 @@ export default StyleSheet.create({
   },
   caregiver_leftside_container: {
     paddingLeft: 20,
-    flex: 7,
+    flex: 6,
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'flex-start'
@@ -58,7 +58,7 @@ export default StyleSheet.create({
   },
   caregiver_button_container: {
     paddingRight: 23,
-    flex: 3,
+    flex: 4,
     justifyContent: 'flex-end',
     alignItems: 'flex-end'
   },
@@ -97,6 +97,7 @@ export default StyleSheet.create({
   caregiver_modal_style: {
     justifyContent: 'center',
     alignItems: 'center',
+    height: "60%",
     width: "80%"
   },
   caregiver_modal_text_style: {
