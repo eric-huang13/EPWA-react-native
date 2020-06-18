@@ -419,10 +419,10 @@ const onSubmit = (values, formikBag) => {
   const animal = formikBag.props.navigation.getParam("animal");
 
   for (let i = 0; i < flattenValues.length; i++) {
-    if (flattenValues[i].data.notification) {
-      flattenValues[i].data.notificationData = `(${t(animal.type)}: ${
-        animal.name
-      }) ${t(flattenValues[i].category)} ${t(flattenValues[i].type)}`;
+    if(flattenValues[i].data != undefined) {
+      if (flattenValues[i].data.notification) {
+        flattenValues[i].data.notificationData = `(${t(animal.type)}: ${animal.name}) ${t(flattenValues[i].category)} ${t(flattenValues[i].type)}`;
+      }
     }
   }
 

@@ -62,7 +62,6 @@ class EPWACropImage extends Component {
     switch(lastLetterInRoute) {
       case "a":
         desc_content = t("info.epwaphotoupload.forthpage", { returnObjects: true });
-
         break;
       case "b":
         desc_content = t("info.epwaphotoupload.fifthpage", { returnObjects: true });
@@ -95,17 +94,17 @@ class EPWACropImage extends Component {
     this.setFieldValue(fieldName, hasCropedYes);
 
     if (fieldName === "a") {
-      this.navigation.navigate("EPWACropImageB");
+      this.navigation.navigate("EPWACropImageB", {"image": this.navigation.getParam("image")});
       return;
     }
 
     if (fieldName === "b") {
-      this.navigation.navigate("EPWACropImageC");
+      this.navigation.navigate("EPWACropImageC", {"image": this.navigation.getParam("image")});
       return;
     }
 
     if (fieldName === "c") {
-      this.navigation.navigate("EPWACropImageD");
+      this.navigation.navigate("EPWACropImageD", {"image": this.navigation.getParam("image")});
       return;
     }
 
@@ -113,14 +112,15 @@ class EPWACropImage extends Component {
       if(hasCropedYes) {
         this.finalCrop();
       } else {
-        this.navigation.navigate("EPWACropImageA")
+        this.navigation.navigate("EPWACropImageA", {"image": this.navigation.getParam("image")})
       }
       return;
     }
   };
 
   finalCrop = async () => {
-    const { alertDropdown, t, crops, image = {} } = this.props;
+    const { alertDropdown, t, crops } = this.props;
+    const image = this.navigation.getParam("image");
     const images = {};
 
     for (const index in crops) {
@@ -169,7 +169,8 @@ class EPWACropImage extends Component {
   };
 
   render() {
-    const { crops, image = {} } = this.props;
+    const { crops } = this.props;
+    const image = this.navigation.getParam("image");
     const content = this.getContent(this.navigation.state.routeName);
     const { imageWidth, imageHeight } = getImageScaleSize(image.width, image.height);
     const coord = cropImages[content.fieldName] || {};

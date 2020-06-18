@@ -9,7 +9,7 @@ import {
   EDIT_EVENT_ROLLBACK,
   DELETE_EVENT,
   DELETE_EVENT_ROLLBACK,
-  COMPLETE_EVENT
+  COMPLETE_EVENT,
 } from "../actions/events";
 
 const initialState = [];
@@ -20,11 +20,11 @@ function reducer(state = initialState, action) {
       return [
         ...state,
         {
-          ...action.data
-        }
+          ...action.data,
+        },
       ];
     case ADD_EVENT_COMMIT:
-      return state.map(event => {
+      return state.map((event) => {
         if (event.localId === action.meta.localId) {
           return action.payload;
         }
@@ -33,29 +33,30 @@ function reducer(state = initialState, action) {
       });
 
     case ADD_EVENT_ROLLBACK:
-      return reject(event => event.localId === action.payload.localId)(state);
+      return reject((event) => event.localId === action.payload.localId)(state);
     case EDIT_EVENT:
-      return state.map(event =>
+      return state.map((event) =>
         event.id === action.payload.id ? action.payload : event
       );
     case EDIT_EVENT_COMMIT:
-      return state.map(event =>
+      return state.map((event) =>
         event.id === action.payload.id ? action.payload : event
       );
     case EDIT_EVENT_ROLLBACK:
-      return state.map(event =>
+      return state.map((event) =>
         event.id === action.payload.id ? action.payload : event
       );
     case DELETE_EVENT:
-      return state.filter(event => event.id !== action.payload.id);
+      return state.filter((event) => event.id !== action.payload.id);
     case DELETE_EVENT_ROLLBACK:
       return [...state, action.payload];
     case COMPLETE_EVENT:
-      return state.map(event =>
-        event.id === action.payload.eventId
+      return state.map((event) =>
+        event.id === action.payload.eventId ||
+        event.localId === action.payload.eventId
           ? (event.completed = {
               ...event,
-              completed: action.payload.completed
+              completed: action.payload.completed,
             })
           : event
       );

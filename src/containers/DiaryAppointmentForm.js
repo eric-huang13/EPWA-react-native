@@ -91,7 +91,7 @@ class diaryAppointmentForm extends Component {
           hitSlop={{ top: 10, bottom: 10, left: 15, right: 5 }}
           style={{ marginRight: 30 }}
           onPress={() =>
-            navigation.navigate("diaryAppointmentFormInfo", {
+            navigation.navigate("DiaryAppointmentFormInfo", {
               animalType: navigation.getParam("animalType")
             })
           }
@@ -102,17 +102,6 @@ class diaryAppointmentForm extends Component {
             color={colors.egyptianBlueDark}
           />
         </TouchableOpacity>
-        {/* <TouchableOpacity
-          hitSlop={{ top: 10, bottom: 10, left: 15, right: 30 }}
-          onPress={navigation.getParam("onSubmitButtonPress")}
-        >
-          <MaterialIcons
-            style={{ marginRight: 10 }}
-            name={iconMap.send}
-            size={24}
-            color={colors.mediumPurple}
-          />
-        </TouchableOpacity> */}
       </View>
     )
   });
@@ -143,10 +132,7 @@ class diaryAppointmentForm extends Component {
     if (!this.props.dirty) {
       return;
     }
-    if (
-      !this.state.isEditing &&
-      (!this.props.values.payload || !this.props.values.payload.length)
-    ) {
+    if (!this.state.isEditing && (!this.props.values.payload || !this.props.values.payload.length)) {
       return;
     }
 
@@ -209,17 +195,17 @@ class diaryAppointmentForm extends Component {
 
   renderRow = props => {
     const { errors, submitCount } = this.props;
-
     const startDatePath = `payload[${props.index}].startDate`;
     const typePath = `payload[${props.index}].type`;
     const notePath = `payload[${props.index}].data.note`;
     const titlePath = `payload[${props.index}].data.noteTitle`;
     const hasErrors = submitCount > 0 && get(errors, typePath);
-    const typeStyle = get(hasErrors, notePath)
-      ? { backgroundColor: colors.tomato }
-      : {};
-    const currentDate = this.props.navigation.getParam("currentDate");
+    
+    const typeStyle = (get(this.props.values, titlePath) == "" || get(this.props.values, titlePath) == undefined) && submitCount > 0
+      ? true
+      : false;
 
+    const currentDate = this.props.navigation.getParam("currentDate");
     return (
       <View
         // REMEMBER: In order to not lose focus of fields, the key between rerenders should stay the same!
@@ -235,7 +221,7 @@ class diaryAppointmentForm extends Component {
             value={get(this.props.values, titlePath)}
             onChangeText={value => this.props.setFieldValue(titlePath, value)}
             maxLength={100}
-            style={typeStyle}
+            hasError={typeStyle}
           />
           {/*<View>
             <Field
@@ -262,11 +248,6 @@ class diaryAppointmentForm extends Component {
             value={get(this.props.values, notePath)}
             onChangeText={value => this.props.setFieldValue(notePath, value)}
             maxLength={280}
-            style={
-              this.props.submitCount > 0 && get(errors, notePath)
-                ? { backgroundColor: colors.tomato }
-                : {}
-            }
           />
           <View style={{ flex: 1, flexDirection: "row" }}>
             {this.renderField({

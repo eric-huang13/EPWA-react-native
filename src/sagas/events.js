@@ -21,7 +21,7 @@ import {
   DELETE_EVENT,
   DELETE_EVENT_ROLLBACK,
   DELETE_EVENT_ROLLBACK_REQUESTED,
-  COMPLETE_EVENT
+  COMPLETE_EVENT,
 } from "../actions/events";
 
 import NavigatorService from "../services/navigator";
@@ -48,7 +48,7 @@ export function* getEvents(api, accessToken) {
   }
 
   const parsedEventsResponse = compose(
-    map(event => {
+    map((event) => {
       const result = event;
 
       // eslint-disable-next-line quotes
@@ -73,12 +73,12 @@ export function* getEvents(api, accessToken) {
   )(eventResponse.data);
 
   yield all(
-    parsedEventsResponse.map(entry =>
+    parsedEventsResponse.map((entry) =>
       put({
         type: ADD_EVENT,
         data: {
-          ...entry
-        }
+          ...entry,
+        },
       })
     )
   );
@@ -104,26 +104,26 @@ export function* addEvent(api, dispatch, action) {
           api,
           body,
           dispatch,
-          method: api.addEvent
+          method: api.addEvent,
         },
         commit: {
           type: ADD_EVENT_COMMIT_REQUESTED,
-          meta: { formPayload: payload }
+          meta: { formPayload: payload },
         },
         rollback: {
           type: ADD_EVENT_ROLLBACK_REQUESTED,
-          meta: { formPayload: payload }
-        }
-      }
-    }
+          meta: { formPayload: payload },
+        },
+      },
+    },
   });
   yield all(
-    payload.map(entry =>
+    payload.map((entry) =>
       put({
         type: ADD_EVENT,
         data: {
-          ...entry
-        }
+          ...entry,
+        },
       })
     )
   );
@@ -135,23 +135,23 @@ export function* addEvent(api, dispatch, action) {
   }
 
   yield call(NavigatorService.navigate, "Diary", {
-    id: payload
+    id: payload,
   });
 }
 
 export function* addEventCommit(action) {
   const payload = action.payload
-    .map(event => camelcaseKeys(event))
-    .map(event => {
+    .map((event) => camelcaseKeys(event))
+    .map((event) => {
       // eslint-disable-next-line prettier/prettier
-      if (event.data === "null" || event.data === "\"null\"") {
+      if (event.data === "null" || event.data === '"null"') {
         event.data = null;
       }
 
       if (not(isNil(event.data))) {
         return {
           ...event,
-          data: camelcaseKeys(JSON.parse(event.data))
+          data: camelcaseKeys(JSON.parse(event.data)),
         };
       }
 
@@ -165,7 +165,7 @@ export function* addEventCommit(action) {
       put({
         type: ADD_EVENT_COMMIT,
         payload: event,
-        meta: { localId: get(action, `meta.formPayload[${index}].localId`) }
+        meta: { localId: get(action, `meta.formPayload[${index}].localId`) },
       })
     )
   );
@@ -195,7 +195,9 @@ export function* addEventCommit(action) {
           ) {
             endDate = new Date(payload[i].endDate).toISOString();
           } else {
-            endDate = new Date(addMinutes(new Date(payload[i].startDate), 15)).toISOString(); // eslint-disable-line prettier/prettier
+            endDate = new Date(
+              addMinutes(new Date(payload[i].startDate), 15)
+            ).toISOString(); // eslint-disable-line prettier/prettier
           }
 
           switch (recurring) {
@@ -220,14 +222,14 @@ export function* addEventCommit(action) {
             description,
             startDate,
             endDate,
-            notes
+            notes,
           };
           details.alarms = [{ date: 0 }];
 
           if (recurring) {
             details.recurrenceRule = {
               frequency: recurring,
-              endDate: recurrenceEndDate
+              endDate: recurrenceEndDate,
             };
           }
 
@@ -242,10 +244,10 @@ export function* addEventRollback(action) {
   const events = action.meta.formPayload;
 
   yield all(
-    events.map(event =>
+    events.map((event) =>
       put({
         type: ADD_EVENT_ROLLBACK,
-        payload: event
+        payload: event,
       })
     )
   );
@@ -269,23 +271,23 @@ export function* editEvent(api, dispatch, action) {
           api,
           body,
           dispatch,
-          method: api.editEvent
+          method: api.editEvent,
         },
         commit: {
           type: EDIT_EVENT_COMMIT_REQUESTED,
-          meta: { formPayload: payload }
+          meta: { formPayload: payload },
         },
         rollback: {
           type: EDIT_EVENT_ROLLBACK_REQUESTED,
-          meta: { formPayload: payload, initialValue }
-        }
-      }
-    }
+          meta: { formPayload: payload, initialValue },
+        },
+      },
+    },
   });
 
   yield put({
     type: EDIT_EVENT,
-    payload
+    payload,
   });
 
   formHelpers.setSubmitting(false);
@@ -316,7 +318,9 @@ export function* editEvent(api, dispatch, action) {
           ) {
             endDate = new Date(payload[i].endDate).toISOString();
           } else {
-            endDate = new Date(addMinutes(new Date(payload[i].startDate), 15)).toISOString(); // eslint-disable-line prettier/prettier
+            endDate = new Date(
+              addMinutes(new Date(payload[i].startDate), 15)
+            ).toISOString(); // eslint-disable-line prettier/prettier
           }
 
           switch (recurring) {
@@ -343,7 +347,7 @@ export function* editEvent(api, dispatch, action) {
           if (recurring) {
             details.recurrenceRule = {
               frequency: recurring,
-              endDate: recurrenceEndDate
+              endDate: recurrenceEndDate,
             };
           }
 
@@ -366,7 +370,7 @@ export function* editEventCommit(action) {
 
   yield put({
     type: EDIT_EVENT_COMMIT,
-    payload: event
+    payload: event,
   });
 }
 
@@ -375,7 +379,7 @@ export function* editEventRollback(action) {
 
   yield put({
     type: EDIT_EVENT_ROLLBACK,
-    payload: previousValue
+    payload: previousValue,
   });
 }
 
@@ -394,21 +398,21 @@ export function* deleteEvent(api, dispatch, action) {
           api,
           dispatch,
           eventId,
-          method: api.deleteEvent
+          method: api.deleteEvent,
         },
         // We don't need commit action
         // We optimistically delete the event and if server confirms it we have to do nothing more
         rollback: {
           type: DELETE_EVENT_ROLLBACK_REQUESTED,
-          meta: { formPayload: payload }
-        }
-      }
-    }
+          meta: { formPayload: payload },
+        },
+      },
+    },
   });
 
   yield put({
     type: DELETE_EVENT,
-    payload
+    payload,
   });
 
   formHelpers.setSubmitting(false);
@@ -420,7 +424,7 @@ export function* deleteEvent(api, dispatch, action) {
 export function* deleteEventRollback(action) {
   yield put({
     type: DELETE_EVENT_ROLLBACK,
-    payload: action.meta.formPayload
+    payload: action.meta.formPayload,
   });
 }
 
@@ -432,7 +436,7 @@ export function* exportEvents(api, action) {
 
   const fileName = [
     currentAnimal.name,
-    format(currentDate, "YYYYMMDD_HHmmss")
+    format(currentDate, "YYYYMMDD_HHmmss"),
   ].join("_");
 
   const formData = new FormData();
@@ -449,7 +453,7 @@ export function* exportEvents(api, action) {
 }
 
 export function* completeEvent(api, dispatch, action) {
-  const { eventId, completed } = action.payload;
+  const { eventId, completed, type } = action.payload;
   const accessToken = yield select(getToken);
 
   yield put({
@@ -461,9 +465,10 @@ export function* completeEvent(api, dispatch, action) {
           api,
           eventId,
           completed,
+          type,
           dispatch,
-          method: api.completeEvent
-        }
+          method: api.completeEvent,
+        },
         // commit: {
         //   type: EDIT_EVENT_COMMIT_REQUESTED,
         //   meta: { formPayload: payload }
@@ -472,13 +477,13 @@ export function* completeEvent(api, dispatch, action) {
         //   type: EDIT_EVENT_ROLLBACK_REQUESTED,
         //   meta: { formPayload: payload, initialValue }
         // }
-      }
-    }
+      },
+    },
   });
 
   yield put({
     type: COMPLETE_EVENT,
-    payload: { eventId, completed }
+    payload: { eventId, completed, type },
   });
 }
 
@@ -497,7 +502,7 @@ export function* completeRecurringEvent(api, dispatch, action) {
     accessToken,
     eventId,
     startDate,
-    endDate
+    endDate,
   });
 
   if (!eventResponse.ok) {
@@ -506,10 +511,10 @@ export function* completeRecurringEvent(api, dispatch, action) {
     }
   }
   const parsedEventsResponse = compose(
-    event => {
+    (event) => {
       const result = event;
 
-      if (event.data === "null" && event.data === "\"null\"") {
+      if (event.data === "null" && event.data === '"null"') {
         result.data = null;
       }
 
@@ -534,7 +539,7 @@ export function* completeRecurringEvent(api, dispatch, action) {
 
   yield put({
     type: ADD_EVENT,
-    data: parsedEventsResponse
+    data: parsedEventsResponse,
   });
 
   return true;

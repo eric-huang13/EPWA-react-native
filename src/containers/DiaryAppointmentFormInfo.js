@@ -43,15 +43,15 @@ class DiaryAppointmentFormInfo extends Component {
         ? t("horse").toLowerCase()
         : t("donkey").toLowerCase();
 
-    const screenTitle = t("info.diaryExercise.title", {
+    const screenTitle = t("info.diaryAppointment.title", {
       animalType: translatedAnimalType
     });
 
-    const screenPreface = t("info.diaryExercise.preface", {
+    const screenPreface = t("info.diaryAppointment.preface", {
       animalType: translatedAnimalType
     });
 
-    const content = t("info.diaryExercise.sections", {
+    const content = t("info.diaryAppointment.sections", {
       animalType: translatedAnimalType,
       returnObjects: true
     });

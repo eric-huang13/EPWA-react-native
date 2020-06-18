@@ -8,6 +8,8 @@ import { REQUEST_PROFILE_FORM_ERROR } from "../actions/profileForm";
 
 import { getToken } from "../selectors/auth";
 
+import { refreshToken } from "./auth";
+
 import { assetPath } from "../constants";
 import { compose } from "../../node_modules/redux";
 
@@ -19,7 +21,7 @@ export function* updateProfile(api, action) {
     error: "generic"
   };
 
-  const accessToken = yield select(getToken);
+  let accessToken = yield select(getToken);
   let pictureUrl;
 
   if (action.data.pictureUrl) {
@@ -34,11 +36,22 @@ export function* updateProfile(api, action) {
       type: `image/${fileType}`
     });
 
-    const response = yield call(api.uploadProfileImage, formData, accessToken);
+    let response = yield call(api.uploadProfileImage, formData, accessToken);
 
     if (!response.ok) {
-      yield put(networkErrorAction);
-      return;
+      if (response.status !== 401) {
+        yield put(networkErrorAction);
+        return;
+      }
+
+      const hasRefreshedToken = yield call(refreshToken, api);
+
+      if (hasRefreshedToken) {
+          accessToken = yield select(getToken);
+          response = yield call(api.uploadProfileImage, formData, accessToken);
+      } else {
+          return;
+      }
     }
 
     pictureUrl = `${assetPath}/${response.data.medium}`;
@@ -48,9 +61,8 @@ export function* updateProfile(api, action) {
     snakecaseKeys,
     omit(["pictureUrl"])
   )(action.data);
-
   // Drop photo as it's handled by separate endpoint
-  const response = yield call(api.updateProfile, requestPayload, accessToken);
+  response = yield call(api.updateProfile, requestPayload, accessToken);
 
   if (!response.ok) {
     yield put(networkErrorAction);

@@ -30,6 +30,7 @@ import DiaryPainMeasurementFormScreen from "../containers/DiaryPainMeasurementFo
 import DiaryPainMeasurementInfoScreen from "../containers/PainMeasurementStartInfo";
 import DiaryMedicationFormInfoScreen from "../containers/DiaryMedicationFormInfo";
 import DiaryAppointmentFormScreen from "../containers/DiaryAppointmentForm";
+import DiaryAppointmentFormInfoScreen from "../containers/DiaryAppointmentFormInfo";
 import DiaryShareFormScreen from "../containers/DiaryShareScreen";
 import RedirectToPainMeasurementScreen from "../containers/RedirectToPainMeasurement";
 import WelfareScreen from "../containers/WelfareInfo";
@@ -122,6 +123,7 @@ const AppStack = createDrawerNavigator(
           PainMeasurementOverview: PainMeasurementOverviewScreen,
           PainMeasurementDetails: PainMeasurementDetailsScreen,
           DiaryAppointmentForm: DiaryAppointmentFormScreen,
+          DiaryAppointmentFormInfo: DiaryAppointmentFormInfoScreen,
           DiaryShareForm: DiaryShareFormScreen
         },
         {

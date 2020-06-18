@@ -59,9 +59,17 @@ export default StyleSheet.create({
     backgroundColor: colors.mediumPurple,
     width: "60%"
   },
+  rbutton: {
+    backgroundColor: colors.mediumPurple,
+    width: "47%"
+  },
+  lbutton: {
+    backgroundColor: colors.mediumPurple,
+    width: "47%"
+  },
   disabledbutton: {
     backgroundColor: "#D8D8D8",
-    width: "60%"
+    width: "47%"
   },
   checkedbtnStyle: {
     borderRadius: 2,
@@ -81,8 +89,9 @@ export default StyleSheet.create({
   },
   cropImageDescButtonContainer: {
     paddingTop: 30,
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between",
     paddingBottom: 10
   },
   cropPhotoContainer: {

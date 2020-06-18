@@ -54,12 +54,12 @@ class EPWAPhotoIsGood extends Component {
             <Button
               style={s.photoIsGoodLButton}
               label={desc_content.lbuttonText}
-              onPress={() => this.navigation.navigate("EPWATakePhoto")}
+              onPress={() => this.navigation.navigate("EPWACropImageDesc")}
             />
             <Button
               style={s.photoIsGoodRButton}
               label={desc_content.rbuttonText}
-              onPress={() => this.navigation.navigate("EPWACropImageA", {image})}
+              onPress={() => this.navigation.navigate("EPWACropImageA", {"image": image})}
             />
           </View>
         </ScrollView>

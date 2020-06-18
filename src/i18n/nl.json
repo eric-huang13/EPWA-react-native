@@ -78,7 +78,7 @@
       "welfareInfo": "Welzijnstips",
       "welfareNavigator": "Welzijnstips",
       "copyEvents": "Kopiëren",
-      "agenda": "Agenda",
+      "agenda": "Afspraak inplannen",
       "epwaphotoupload": "EPWA foto upload",
       "epwaphotouploadNavigator": "EPWA foto upload"
     },
@@ -657,11 +657,12 @@
     "aboutScreen": {
       "title": "Deze app werd ontwikkeld door onderzoeker-dierenartsen van de faculteit Diergeneeskunde Universiteit Utrecht, Stichting De Paardenkamp en Vrienden Diergeneeskunde.",
       "university": {
+        "logo": "uniLogoNeImg",
         "title": "Faculteit Diergeneeskunde Universiteit Utrecht",
         "description": "De faculteit Diergeneeskunde is hét veterinaire kenniscentrum in Nederland. Onze primaire taken zijn onderwijs, onderzoek en patiëntenzorg. Op deze manier bouwen wij bruggen tussen wetenschap en maatschappij en leveren specialistische zorg in het grootste academische dierenziekenhuis van Europa.",
         "link": {
-          "label": "www.uu.nl/organisatie/faculteit-diergeneeskunde",
-          "url": "https://www.uu.nl/organisatie/faculteit-diergeneeskunde"
+          "label": "www.diergeneeskunde.nl",
+          "url": "https://www.diergeneeskunde.nl/"
         }
       },
       "paardenkamp": {
@@ -674,21 +675,21 @@
       },
       "friends": {
         "title": "Vrienden Diergeneeskunde",
+        "logo": "vriendenNeLogoImg",
         "description": "Vrienden Diergeneeskunde is het goede doel van de faculteit Diergeneeskunde. Wij zetten ons in voor onderzoek en innovaties die de gezondheid en het welzijn van dieren bevorderen en beschermen. Nu en in de toekomst, met particulieren en organisaties die net zo denken als wij.",
         "link": {
           "label": "www.vriendendiergeneeskunde.nl",
           "url": "https://www.vriendendiergeneeskunde.nl"
         }
       },
+      "sponsor": {
+        "title": "EPWA is mede-mogelijk gemaakt door"
+      },
       "more": {
         "links": [
           {
             "label": "Meer informatie over EPWA",
             "url": "https://www.epwa.nl"
-          },
-          {
-            "label": "Sponsoren van EPWA",
-            "url": "https://www.epwa.nl/over-de-app/sponsoren"
           }
         ]
       },
@@ -816,7 +817,18 @@
         ]
       },
       "diaryAppointment": {
-        "title": "Afspraak"
+        "title": "Afspraak inplannen",
+        "preface": "In de kalender van het dagboek kun je een afspraak of vervolgafspraak inplannen, bij voorbeeld met je dierenarts of hoefsmid. Je kunt ervoor kiezen een reminder op de telefoon te krijgen en later eventuele bijzonderheden van de afspraak of medicatie vast te leggen in het dagboek.",
+        "sections": [
+          {
+            "title": "",
+            "content": "Bij het maken van een afspraak kun je eenvoudig het soort, datum en tijd kiezen."
+          },
+          {
+            "title": "",
+            "content": "Je kunt ook een terugkerende afspraak aanmaken om bijvoorbeeld de entingen of andere behandelingen vast te leggen en reminders voor EPWA afspraken aan te maken in de telefoon."
+          }
+        ]
       },
       "diaryFeeding": {
         "title": "Voeding",
@@ -907,7 +919,7 @@
       "epwaphotoupload": {
         "firstpage": {
           "title": "Uitleg voor het uploaden van een eigen foto voor trainingsdoeleinden",
-          "content": "We zien graag de oren, ogen en de mond duidelijk in beeld. Op deze manier kunnen we goed inzoomen op de belangrijkste onderdelen en kunnen we jouw foto goed gebruiken. Maak dus een foto die alleen het hoofd en nek laat zien van je paard.",
+          "content": "Upload een eigen foto en help ons met het ontwikkelen van geautomatiseerde gezichtsherkenning bij paarden en ezels.",
           "exphotoTitle": "Voorbeelden",
           "imageTitle": "grouphorse",
           "buttonText": "Verder"
@@ -921,7 +933,8 @@
           "imageTitle": "exhorsecrop",
           "checkedbtnImg": "checkedbtnImg",
           "uncheckedbtnImg": "uncheckedbtnImg",
-          "buttonText": "Foto maken"
+          "lbuttonText": "Foto maken",
+          "rbuttonText": "Uit galerij"
         },
         "takephotopage": {
           "photobutton": "FOTO",

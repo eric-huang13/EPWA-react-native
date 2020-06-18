@@ -67,7 +67,7 @@
       "logout": "Logout",
       "logoutNavigator": "Logout",
       "diaryExercise": "Exercise",
-      "diaryAppointment": "Diary",
+      "diaryAppointment": "Appointment Plan",
       "diaryFeeding": "Feeding",
       "diaryHousing": "Turnout",
       "diaryMedication": "My vet",
@@ -78,7 +78,7 @@
       "welfareInfo": "Guidelines",
       "welfareNavigator": "Guidelines for horse welfare",
       "copyEvents": "Copy",
-      "agenda": "Agenda",
+      "agenda": "Appointment Plan",
       "epwaphotoupload": "EPWA photo upload",
       "epwaphotouploadNavigator": "EPWA photo upload"
     },
@@ -654,11 +654,12 @@
     "aboutScreen": {
       "title": "This app was developed by researchers and veterinarians of the Utrecht University Faculty of Veterinary Medicine, Stichting De Paardenkamp and Fund Vrienden Diergeneeskunde.",
       "university": {
+        "logo": "uniLogoEnImg",
         "title": "Utrecht University - Faculty of Veterinary Medicine",
         "description": "We are the Faculty of Veterinary Medicine, the veterinary knowledge center in the Netherlands. We build bridges between science and society and provide specialist care in the largest academic animal hospital in Europe. We believe in multidisciplinary cooperation with our partners, both nationally and internationally.",
         "link": {
-          "label": "www.uu.nl/organisatie/faculteit-diergeneeskunde",
-          "url": "https://www.uu.nl/organisatie/faculteit-diergeneeskunde"
+          "label": "www.diergeneeskunde.nl",
+          "url": "https://www.diergeneeskunde.nl/"
         }
       },
       "paardenkamp": {
@@ -671,21 +672,21 @@
       },
       "friends": {
         "title": "Fund Friends Veterinary Medicine",
+        "logo": "vriendenEnLogoImg",
         "description": "Friends Veterinary Medicine is the fund of the Faculty of Veterinary Medicine Utrecht University. We raise money for research and innovative top-quality care that promote and protect the health and well-being of animals.",
         "link": {
           "label": "www.vriendendiergeneeskunde.nl",
           "url": "https://www.vriendendiergeneeskunde.nl"
         }
       },
+      "sponsor": {
+        "title": "EPWA is being supported by"
+      },
       "more": {
         "links": [
           {
             "label": "More information about EPWA",
             "url": "https://www.epwa.nl/en"
-          },
-          {
-            "label": "Sponsors of EPWA",
-            "url": "https://www.epwa.nl/en/over-de-app/sponsoren"
           }
         ]
       },
@@ -813,7 +814,18 @@
         ]
       },
       "diaryAppointment": {
-        "title": "Appointment"
+        "title": "Appointment Plan",
+        "preface": "You can schedule an appointment or follow-up appointment in the calendar function of the diary. You can choose to receive a reminder through your phone as well as record particular details relating to the appointment or any prescribed medication in the diary.",
+        "sections": [
+          {
+            "title": "",
+            "content": "When adding an appointment, choose the type of appointment, date and time from the drop-down menu."
+          },
+          {
+            "title": "",
+            "content": "Recurring appointments can also be made, for example, to record vaccinations or other treatments. Also reminders in the phone can be created for the EPWA appointments."
+          }
+        ]
       },
       "diaryFeeding": {
         "title": "Feeding",
@@ -904,7 +916,7 @@
       "epwaphotoupload": {
         "firstpage": {
           "title": "Explanation for uploading an own photo for training purposes",
-          "content": "We would like to see the ears, eyes and mouth clearly in the picture. This way we can zoom in on the most important parts and we can use your photo well. So make a photo that only shows the head and neck of your horse.",
+          "content": "Please upload one (or more) of your own photos and help us to develop automated facial recognition for horses and donkeys.",
           "exphotoTitle": "Example",
           "imageTitle": "grouphorse",
           "buttonText": "Next"
@@ -918,7 +930,8 @@
           "imageTitle": "exhorsecrop",
           "checkedbtnImg": "checkedbtnImg",
           "uncheckedbtnImg": "uncheckedbtnImg",
-          "buttonText": "Take a picture"
+          "lbuttonText": "Take a picture",
+          "rbuttonText": "From Gallery"
         },
         "takephotopage": {
           "photobutton": "PHOTO",

@@ -30,34 +30,36 @@ export const EXPORT_EVENTS = "EXPORT_EVENTS";
 export const addEvent = ({ payload, formHelpers }) => ({
   formHelpers,
   payload,
-  type: ADD_EVENT_REQUESTED
+  type: ADD_EVENT_REQUESTED,
 });
 
 export const editEvent = ({ initialValue, payload, formHelpers }) => ({
   initialValue,
   formHelpers,
   payload,
-  type: EDIT_EVENT_REQUESTED
+  type: EDIT_EVENT_REQUESTED,
 });
 
 export const deleteEvent = ({ payload, formHelpers }) => ({
   formHelpers,
   payload,
-  type: DELETE_EVENT_REQUESTED
+  type: DELETE_EVENT_REQUESTED,
 });
 
 export const exportEvents = ({ payload, meta }) => ({
   meta,
   payload,
-  type: EXPORT_EVENTS
+  type: EXPORT_EVENTS,
 });
 
-export const completeEvent = ({ payload }) => ({
-  payload,
-  type: COMPLETE_EVENT_REQUESTED
-});
+export const completeEvent = ({ payload }) => {
+  return {
+    payload,
+    type: COMPLETE_EVENT_REQUESTED,
+  };
+};
 
 export const completeRecurringEvent = ({ payload }) => ({
   payload,
-  type: COMPLETE_RECURRING_EVENT_REQUESTED
+  type: COMPLETE_RECURRING_EVENT_REQUESTED,
 });

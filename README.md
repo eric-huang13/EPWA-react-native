@@ -9,6 +9,9 @@
     -  `npm ios` will open xCode 
     - build from xCode
     
+    ### iOS redux-offline
+    - Need to replace this with fixed one.
+
     ### Android
     
     - Run `npm android`

@@ -24,7 +24,7 @@ target 'EPWA' do
   pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
   
   pod 'GoogleSignIn', '~> 5.0.0' 
-  pod 'FBSDKCoreKit'
+  pod 'FBSDKCoreKit', :modular_headers => true
   pod 'FBSDKLoginKit'
   pod 'FBSDKShareKit'
 
@@ -40,10 +40,12 @@ target 'EPWA' do
 
   pod 'react-native-camera', :path => '../node_modules/react-native-camera'
   
-  target 'EPWATests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+  pod 'react-native-image-base64', :path => '../node_modules/react-native-image-base64'
+
+  # target 'EPWATests' do
+  #   inherit! :search_paths
+  #   # Pods for testing
+  # end
 
   use_native_modules!
 end

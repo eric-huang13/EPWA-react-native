@@ -264,7 +264,7 @@ class EPWATakePhoto extends Component {
     async onCaptureImagePressed() {
         if (this.camera) {
             this.setState({isLoading: true})
-            const options = { quality: 0.5, base64: true, fixOrientation: true, pauseAfterCapture: true };
+            const options = { quality: 0.3, base64: true, pauseAfterCapture: true };
             const image = await this.camera.takePictureAsync(options);
             
             if (image) {
@@ -275,6 +275,7 @@ class EPWATakePhoto extends Component {
                 taken_image.uri = image.uri;
                 this.props.dispatch(setCropImage(taken_image))
                 this.setState({isLoading: false})
+                this.camera.resumePreview()
                 this.navigation.navigate('EPWAPhotoIsGood', { image });
             }
 

@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Switch,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
 } from "react-native";
 import T from "prop-types";
 import { uniq } from "ramda";
@@ -32,7 +32,7 @@ export default function EventsList({
   t,
   navigateTo,
   findEventById,
-  toggleComplete
+  toggleComplete,
 }) {
   return (
     <View style={{ paddingRight: 20, minHeight: 200 }}>
@@ -51,7 +51,7 @@ export default function EventsList({
 }
 export class AccordionView extends Component {
   state = {
-    activeSections: []
+    activeSections: [],
   };
   componentDidUpdate(prevProps, prevState) {
     if (prevState.activeSections[0] === this.state.activeSections[0]) {
@@ -69,7 +69,7 @@ export class AccordionView extends Component {
         paddingHorizontal: 20,
         paddingVertical: 25,
         borderTopColor: colors.whiteSmoke,
-        borderTopWidth: 2
+        borderTopWidth: 2,
       }}
     >
       <View>
@@ -80,12 +80,12 @@ export class AccordionView extends Component {
           style={{
             flexDirection: "row",
             flexWrap: "wrap",
-            width: 260
+            width: 260,
           }}
         >
           {!isActive &&
             uniq(section.events.map(({ category }) => category)).map(
-              category => (
+              (category) => (
                 <View
                   key={category}
                   style={{ paddingRight: 10, paddingBottom: 10 }}
@@ -102,7 +102,7 @@ export class AccordionView extends Component {
         style={{
           width: 50,
           paddingHorizontal: 20,
-          paddingTop: 20
+          paddingTop: 20,
         }}
       >
         <Arrow style={isActive ? { transform: [{ rotate: "180deg" }] } : ""} />
@@ -115,10 +115,10 @@ export class AccordionView extends Component {
       <View
         style={{
           paddingRight: 20,
-          paddingBottom: 25
+          paddingBottom: 25,
         }}
       >
-        {section.events.map(event => {
+        {section.events.map((event) => {
           return (
             <NewListItem
               {...event}
@@ -134,7 +134,7 @@ export class AccordionView extends Component {
     );
   };
 
-  _updateSections = activeSections => {
+  _updateSections = (activeSections) => {
     this.setState({ activeSections });
   };
 
@@ -161,7 +161,7 @@ function CheckInput({
   toggleComplete,
   type,
   endDate,
-  startDate
+  startDate,
 }) {
   return (
     <View style={{ width: 60 }}>
@@ -183,6 +183,7 @@ function CheckInput({
 
 export function NewListItem({
   id,
+  localId,
   completed,
   startDate,
   endDate,
@@ -193,10 +194,9 @@ export function NewListItem({
   groupedEvents = [],
   t,
   navigateTo,
-  findEventById
+  findEventById,
 }) {
   const { width } = Dimensions.get("window");
-
   const content = (
     <ItemContent
       category={category}
@@ -207,7 +207,7 @@ export function NewListItem({
       t={t}
       navigateTo={navigateTo}
       findEventById={findEventById}
-      id={id}
+      id={localId}
       toggleComplete={toggleComplete}
       startDate={startDate}
       endDate={endDate}
@@ -215,8 +215,8 @@ export function NewListItem({
   );
   const time = format(startDate, "HH:mm");
   const feedingCompleted =
-    groupedEvents.filter(event => Boolean(event.completed) === true).length ===
-    groupedEvents.length
+    groupedEvents.filter((event) => Boolean(event.completed) === true)
+      .length === groupedEvents.length
       ? true
       : false;
 
@@ -243,7 +243,7 @@ export function NewListItem({
         {category !== "feeding" ? (
           <View style={styles.itemContentContainer}>
             <CheckInput
-              id={id}
+              id={id ? id : localId}
               completed={completed}
               toggleComplete={toggleComplete}
               type={type}
@@ -253,7 +253,7 @@ export function NewListItem({
             <View
               style={[
                 styles.itemContentContainer,
-                completed ? styles.completed : ""
+                completed ? styles.completed : "",
               ]}
             >
               {content}
@@ -292,7 +292,7 @@ function ItemContent({
   data,
   toggleComplete,
   startDate,
-  endDate
+  endDate,
 }) {
   switch (category) {
     case eventCategories.painMeasurement:
@@ -385,7 +385,7 @@ function PainMeasureContent({
   findEventById,
   id,
   completed,
-  data
+  data,
 }) {
   const localId =
     typeof id === "string" && id.includes("_") ? id.split("_")[0] : id;
@@ -410,10 +410,10 @@ function PainMeasureContent({
         onPress={() =>
           completed
             ? navigateTo("PainMeasurementDetails", {
-                measurement: { data, type, id }
+                measurement: { data, type, id },
               })
             : navigateTo("DiaryPainMeasurementForm", {
-                initialValue: findEventById(+localId)
+                initialValue: findEventById(+localId),
               })
         }
       >
@@ -447,7 +447,7 @@ function MedicationContent({ type, navigateTo, t, findEventById, id, data }) {
         onPress={() =>
           navigateTo("DiaryMedicationForm", {
             initialValue: findEventById(+localId),
-            localDate
+            localDate,
           })
         }
       >
@@ -464,7 +464,7 @@ function FeedingContent({
   t,
   navigateTo,
   findEventById,
-  toggleComplete
+  toggleComplete,
 }) {
   return (
     <React.Fragment>
@@ -486,14 +486,14 @@ function FeedingContent({
               onPress={() =>
                 navigateTo("DiaryFeedingForm", {
                   initialValue: findEventById(+localId),
-                  localDate
+                  localDate,
                 })
               }
             >
               <View
                 style={[
                   styles.itemContentContainer,
-                  completed && styles.completed
+                  completed && styles.completed,
                 ]}
               >
                 <FeedingIcon type={type} />
@@ -517,7 +517,7 @@ function HousingContent({
   findEventById,
   id,
   startDate,
-  endDate
+  endDate,
 }) {
   const localId =
     typeof id === "string" && id.includes("_") ? id.split("_")[0] : id;
@@ -535,7 +535,7 @@ function HousingContent({
         onPress={() =>
           navigateTo("DiaryHousingForm", {
             initialValue: findEventById(+localId),
-            localDate
+            localDate,
           })
         }
       >
@@ -555,7 +555,7 @@ function ExerciseContent({
   findEventById,
   id,
   startDate,
-  endDate
+  endDate,
 }) {
   const localId =
     typeof id === "string" && id.includes("_") ? id.split("_")[0] : id;
@@ -573,7 +573,7 @@ function ExerciseContent({
         onPress={() =>
           navigateTo("DiaryExerciseForm", {
             initialValue: findEventById(+localId),
-            localDate
+            localDate,
           })
         }
       >
@@ -594,7 +594,7 @@ function AppointmentContent({
   findEventById,
   id,
   startDate,
-  data
+  data,
 }) {
   const localId =
     typeof id === "string" && id.includes("_") ? id.split("_")[0] : id;
@@ -611,7 +611,7 @@ function AppointmentContent({
         onPress={() =>
           navigateTo("DiaryAppointmentForm", {
             initialValue: findEventById(+localId),
-            localDate
+            localDate,
           })
         }
       >
@@ -620,7 +620,7 @@ function AppointmentContent({
             style={{
               ...fonts.style.normal,
               flexShrink: 1,
-              width: width - 150
+              width: width - 150,
             }}
           >
             {data.note}
@@ -644,7 +644,7 @@ function PainMesIcon({ isFacialExpression }) {
         shadowColor: colors.black,
         shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.2,
-        shadowRadius: 6
+        shadowRadius: 6,
       }}
     />
   );
@@ -774,7 +774,7 @@ const styles = StyleSheet.create({
   itemContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 25
+    marginBottom: 25,
   },
   time: {
     backgroundColor: colors.whiteSmoke,
@@ -784,42 +784,42 @@ const styles = StyleSheet.create({
     marginTop: 15,
     width: 55,
     alignItems: "center",
-    height: 25
+    height: 25,
   },
   title: {
     fontSize: 19,
     paddingLeft: 60,
     marginBottom: 5,
-    maxWidth: 250
+    maxWidth: 250,
   },
   itemContentContainer: {
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
   },
   subItemContentContainer: {
     flexDirection: "row",
     alignItems: "center",
     paddingVertical: 7,
-    minHeight: 40
+    minHeight: 40,
   },
   calendarTitle: {
     fontSize: 20,
     fontWeight: "400",
-    color: "#282828"
+    color: "#282828",
   },
   completed: {
-    opacity: 0.2
+    opacity: 0.2,
   },
   appointmentContent: {
-    maxWidth: "80%"
-  }
+    maxWidth: "80%",
+  },
 });
 
 NewListItem.propTypes = {
   checked: T.bool,
-  onPress: T.func
+  onPress: T.func,
 };
 
 PainMesIcon.propTypes = {
-  pain: T.bool
+  pain: T.bool,
 };

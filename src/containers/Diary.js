@@ -13,7 +13,7 @@ import {
   StatusBar,
   TouchableOpacity,
   View,
-  Platform
+  Platform,
 } from "react-native";
 import FeatherIcons from "react-native-vector-icons/Feather";
 import { compose } from "redux";
@@ -28,7 +28,7 @@ import {
   format,
   isBefore,
   isAfter,
-  isToday
+  isToday,
 } from "date-fns";
 import nl from "date-fns/locale/nl";
 import en from "date-fns/locale/en";
@@ -44,7 +44,7 @@ import R, {
   sortBy,
   ascend,
   descend,
-  isNil
+  isNil,
 } from "ramda";
 import Touchable from "react-native-platform-touchable";
 import { get } from "lodash";
@@ -77,7 +77,7 @@ import {
   isSelectedTab,
   addRecurringEvents,
   isInRange,
-  isCompleted
+  isCompleted,
 } from "../services/eventService";
 import { eventTypeIconNames, eventCategories, eventTypes } from "../constants";
 import { getToken } from "../selectors/auth";
@@ -86,7 +86,7 @@ import iconMap from "../constants/iconMap";
 import {
   exportEvents,
   completeEvent,
-  completeRecurringEvent
+  completeRecurringEvent,
 } from "../actions/events";
 import DiaryTimeTab from "./DiaryTimeTab";
 
@@ -96,7 +96,7 @@ import EventsList, { AccordionView } from "./DiaryList";
 class Diary extends Component {
   static navigationOptions = ({ navigation, screenProps }) => ({
     title: screenProps.t.t("headerBar.diary"),
-    headerLeft: <HamburgerButton onPress={navigation.openDrawer} />
+    headerLeft: <HamburgerButton onPress={navigation.openDrawer} />,
   });
 
   constructor(props) {
@@ -109,7 +109,7 @@ class Diary extends Component {
       currentIndex: isInitialValuePassed ? selectedAnimalIndex : 0,
       currentDate: new Date(),
       tabIndex: 1,
-      initial: true
+      initial: true,
     };
 
     this.routes = {
@@ -120,7 +120,7 @@ class Diary extends Component {
       feeding: "DiaryFeedingForm",
       medication: "DiaryMedicationForm",
       startPainMeasurement: "painMeasurement",
-      share: "DiaryShareForm"
+      share: "DiaryShareForm",
     };
 
     this.setButtons();
@@ -134,8 +134,8 @@ class Diary extends Component {
         title: this.props.t("registerAppointment"),
         onPress: () =>
           this.navigateTo(this.routes.registerAppointment, {
-            animal: this.getSelectedAnimalName()
-          })
+            animal: this.getSelectedAnimalName(),
+          }),
       },
       {
         color: colors.egyptianBlue,
@@ -143,8 +143,8 @@ class Diary extends Component {
         title: this.props.t("registerPainMeasurement"),
         onPress: () =>
           this.navigateTo(this.routes.painMeasurement, {
-            animal: this.getSelectedAnimalName()
-          })
+            animal: this.getSelectedAnimalName(),
+          }),
       },
       {
         color: colors.lima,
@@ -153,8 +153,8 @@ class Diary extends Component {
         title: this.props.t("registerExercises"),
         onPress: () =>
           this.navigateTo(this.routes.exercise, {
-            animal: this.getSelectedAnimalName()
-          })
+            animal: this.getSelectedAnimalName(),
+          }),
       },
       {
         color: colors.supernova,
@@ -163,8 +163,8 @@ class Diary extends Component {
         title: this.props.t("registerHousing"),
         onPress: () =>
           this.navigateTo(this.routes.housing, {
-            animal: this.getSelectedAnimalName()
-          })
+            animal: this.getSelectedAnimalName(),
+          }),
       },
       {
         color: colors.barleyCorn,
@@ -173,8 +173,8 @@ class Diary extends Component {
         title: this.props.t("registerFeeding"),
         onPress: () =>
           this.navigateTo(this.routes.feeding, {
-            animal: this.getSelectedAnimalName()
-          })
+            animal: this.getSelectedAnimalName(),
+          }),
       },
       {
         color: colors.harleyDavidsonOrange,
@@ -183,9 +183,9 @@ class Diary extends Component {
         title: this.props.t("addMedication"),
         onPress: () =>
           this.navigateTo(this.routes.medication, {
-            animal: this.getSelectedAnimalName()
-          })
-      }
+            animal: this.getSelectedAnimalName(),
+          }),
+      },
     ];
   }
 
@@ -200,7 +200,7 @@ class Diary extends Component {
     if (!isNil(event) && typeof event !== "number" && this.state.initial) {
       const animalId = event[0].animalId;
       const selectedAnimalIndex = data.animals.findIndex(
-        animal => animal.id === animalId
+        (animal) => animal.id === animalId
       );
       const isInitialValuePassed = selectedAnimalIndex !== -1;
       const index = isInitialValuePassed ? selectedAnimalIndex : 0;
@@ -208,19 +208,19 @@ class Diary extends Component {
       this.changeInitial(index);
     }
   }
-  changeInitial = index => {
+  changeInitial = (index) => {
     this.setState({ currentIndex: index, initial: false });
   };
 
-  setCurrentIndex = index => {
+  setCurrentIndex = (index) => {
     this.setState({ currentIndex: index });
   };
 
-  onDatePicked = date => {
+  onDatePicked = (date) => {
     this.setState({ currentDate: date });
   };
 
-  getTypeIcon = name => (
+  getTypeIcon = (name) => (
     <Icon name={eventTypeIconNames[name]} size={28} color={colors.nero} />
   );
 
@@ -228,7 +228,7 @@ class Diary extends Component {
     const { navigation, data } = this.props;
 
     const animalId = navigation.getParam("id");
-    const index = data.animals.findIndex(animal => animal.id === animalId);
+    const index = data.animals.findIndex((animal) => animal.id === animalId);
 
     return index;
   };
@@ -246,25 +246,25 @@ class Diary extends Component {
     return { type: animal.type, name: animal.name };
   };
 
-  setDatePickerRef = element => {
+  setDatePickerRef = (element) => {
     this.datePicker = element;
   };
 
   moveCurrentDateBack = () => {
-    this.setState(prevState => ({
-      currentDate: subDays(prevState.currentDate, 1)
+    this.setState((prevState) => ({
+      currentDate: subDays(prevState.currentDate, 1),
     }));
   };
 
   moveCurrentDateForward = () => {
-    this.setState(prevState => ({
-      currentDate: addDays(prevState.currentDate, 1)
+    this.setState((prevState) => ({
+      currentDate: addDays(prevState.currentDate, 1),
     }));
   };
 
-  handleIndexChange = index => {
+  handleIndexChange = (index) => {
     this.setState({
-      tabIndex: index
+      tabIndex: index,
     });
   };
 
@@ -273,18 +273,18 @@ class Diary extends Component {
       currentDate: this.state.currentDate,
       animalId: this.props.data.animals[this.state.currentIndex].id,
       animalType: this.props.data.animals[this.state.currentIndex].type,
-      ...params
+      ...params,
     });
   });
 
-  findEventById = targetId => {
+  findEventById = (targetId) => {
     const events = get(this.props, "data.events");
 
     if (!events) {
       return undefined;
     }
 
-    return events.find(event => {
+    return events.find((event) => {
       const id = event.id || event.localId;
       return id === targetId;
     });
@@ -303,19 +303,18 @@ class Diary extends Component {
     this.navigateTo(this.routes.share, {
       redirectPath: "Diary",
       animal: this.props.data.animals[this.state.currentIndex],
-      currentDate: this.state.currentDate
+      currentDate: this.state.currentDate,
     });
   };
 
   onEditAnimal = () => {
     this.props.navigation.navigate("AnimalForm", {
-      initialValue: this.getSelectedAnimal()
+      initialValue: this.getSelectedAnimal(),
     });
   };
 
   onToggleComplete = (id, val, type, endDate, startDate) => {
     const { t } = this.props;
-
     const dateNow = new Date();
     if (!isToday(startDate) && isAfter(startDate, dateNow)) {
       Alert.alert(t("noFutureCompletionTitle"), t("noFutureCompletionText"));
@@ -335,7 +334,7 @@ class Diary extends Component {
       this.navigateTo("DiaryMedicationForm", {
         initialValue: this.findEventById(+localId),
         localDate,
-        completeEvent: true
+        completeEvent: true,
       });
       return;
     }
@@ -344,7 +343,7 @@ class Diary extends Component {
         redirectPath: "Diary",
         animal: this.props.data.animals[this.state.currentIndex],
         editId: id,
-        editType: type
+        editType: type,
       });
       return;
     }
@@ -353,7 +352,7 @@ class Diary extends Component {
         redirectPath: "Diary",
         animal: this.props.data.animals[this.state.currentIndex],
         editId: id,
-        editType: type
+        editType: type,
       });
       return;
     }
@@ -365,13 +364,13 @@ class Diary extends Component {
           payload: {
             eventId: +localId,
             startDate: +timeStamp,
-            endDate: endDate
-          }
+            endDate: endDate,
+          },
         })
       );
     } else {
       this.props.dispatch(
-        completeEvent({ payload: { eventId: id, completed: !val } })
+        completeEvent({ payload: { eventId: id, completed: !val, type: type } })
       );
     }
   };
@@ -386,9 +385,9 @@ class Diary extends Component {
       filter(isRelatedToAnimal(currentAnimal))
     )(this.props.data.events);
 
-    const goToLink = url => {
+    const goToLink = (url) => {
       Linking.canOpenURL(url)
-        .then(supported => {
+        .then((supported) => {
           if (!supported) {
             return false;
           }
@@ -398,13 +397,13 @@ class Diary extends Component {
         .catch(() => {});
     };
 
-    const showAlert = url => {
+    const showAlert = (url) => {
       Alert.alert(t("exportEvents.alertTitle"), t("exportEvents.alertMsg"), [
         { text: t("exportEvents.alertCancelBtn"), style: "cancel" },
         {
           text: t("exportEvents.alertDownloadBtn"),
-          onPress: () => goToLink(url)
-        }
+          onPress: () => goToLink(url),
+        },
       ]);
     };
 
@@ -413,11 +412,11 @@ class Diary extends Component {
         payload: {
           currentAnimal,
           currentDate,
-          events: currentEvents
+          events: currentEvents,
         },
         meta: {
-          showAlert
-        }
+          showAlert,
+        },
       })
     );
   };
@@ -434,7 +433,7 @@ class Diary extends Component {
 
     this.props.navigation.navigate("DiaryCopy", {
       events: eventsWithoutPainMeasurements,
-      copyToDate: this.state.currentDate
+      copyToDate: this.state.currentDate,
     });
   };
 
@@ -480,7 +479,7 @@ class Diary extends Component {
                 paddingLeft: 0,
                 backgroundColor: colors.whiteSmoke,
                 borderBottomWidth: 0,
-                marginBottom: 20
+                marginBottom: 20,
               }}
               textStyles={{ textAlign: "center" }}
             >
@@ -490,7 +489,7 @@ class Diary extends Component {
               style={{
                 paddingHorizontal: 20,
                 paddingBottom: 20,
-                ...fonts.style.normal
+                ...fonts.style.normal,
               }}
             >
               {t("noAnimalsInDiary")}
@@ -538,11 +537,11 @@ class Diary extends Component {
     )(propsDataEvents || []);
 
     const feedingEventsTimes = uniq(
-      feedingEvents.map(event => event.startDate)
+      feedingEvents.map((event) => event.startDate)
     );
 
-    const groupedFeedingEvents = feedingEventsTimes.map(time => {
-      const sameTime = feedingEvents.filter(item => time === item.startDate);
+    const groupedFeedingEvents = feedingEventsTimes.map((time) => {
+      const sameTime = feedingEvents.filter((item) => time === item.startDate);
       const groupedEvents = sameTime.map(
         ({ id, type, startDate, data, completed, animalId }) => ({
           id,
@@ -550,14 +549,14 @@ class Diary extends Component {
           startDate,
           data,
           completed,
-          animalId
+          animalId,
         })
       );
       return {
         id: `${time}${groupedEvents[0].id}`,
         category: "feeding",
         startDate: time,
-        groupedEvents
+        groupedEvents,
       };
     });
 
@@ -584,16 +583,16 @@ class Diary extends Component {
     );
 
     if (tabIndex === 0) {
-      const eventsGroupedByDay = allDaysArr.map(date => {
+      const eventsGroupedByDay = allDaysArr.map((date) => {
         const sameDate = allEvents.filter(
-          item => date === format(item.startDate, "D MMM", { locale })
+          (item) => date === format(item.startDate, "D MMM", { locale })
         );
         if (sameDate.length === 0) {
           return null;
         }
         return {
           startDate: date,
-          events: sameDate
+          events: sameDate,
         };
       });
 
@@ -610,16 +609,16 @@ class Diary extends Component {
       );
     }
     if (tabIndex === 2) {
-      const eventsGroupedByDayTab2 = allDaysArr.sort().map(date => {
+      const eventsGroupedByDayTab2 = allDaysArr.sort().map((date) => {
         const eventsOnSameDay = allEvents.filter(
-          item => date === format(item.startDate, "D MMM", { locale })
+          (item) => date === format(item.startDate, "D MMM", { locale })
         );
         if (eventsOnSameDay.length === 0) {
           return null;
         }
         return {
           startDate: date,
-          events: eventsOnSameDay
+          events: eventsOnSameDay,
         };
       });
       // const maxEventsTab2 = eventsGroupedByDayTab2.slice(0, 5);
@@ -652,7 +651,7 @@ class Diary extends Component {
           style={{
             height: 100,
             justifyContent: "center",
-            alignItems: "center"
+            alignItems: "center",
           }}
         >
           <Text>{t("emptyPainMeasurementList")}</Text>
@@ -679,7 +678,7 @@ class Diary extends Component {
         <AnimalPhoto
           source={{
             uri: item.pictureUrl,
-            headers: { Authorization: `Bearer ${this.props.authToken}` }
+            headers: { Authorization: `Bearer ${this.props.authToken}` },
           }}
         >
           <View
@@ -689,7 +688,7 @@ class Diary extends Component {
               left: 0,
               right: 0,
               bottom: 0,
-              alignItems: "center"
+              alignItems: "center",
             }}
           >
             <View style={s.editIconContainer}>
@@ -711,7 +710,7 @@ class Diary extends Component {
               flexDirection: "row",
               alignItems: "flex-end",
               justifyContent: "space-between",
-              paddingHorizontal: 20
+              paddingHorizontal: 20,
             }}
           >
             <View style={{ height: 46, width: 46 }} />
@@ -732,7 +731,7 @@ class Diary extends Component {
     const {
       i18n,
       t,
-      data: { animals }
+      data: { animals },
     } = this.props;
 
     if (!animals.length) {
@@ -754,7 +753,7 @@ class Diary extends Component {
               data={this.props.data.animals}
               threshold={90}
               useVelocityForIndex={false}
-              onIndexChange={index => this.setState({ currentIndex: index })}
+              onIndexChange={(index) => this.setState({ currentIndex: index })}
               renderItem={this.renderSliderItem}
             />
             <SafeAreaView style={{ flex: 1 }}>
@@ -769,7 +768,7 @@ class Diary extends Component {
                 bottom: 20,
                 flexDirection: "row",
                 justifyContent: "center",
-                marginHorizontal: 65
+                marginHorizontal: 65,
               }}
             >
               <SliderIndexIndicators
@@ -783,7 +782,7 @@ class Diary extends Component {
                 position: "absolute",
                 top: 45,
                 left: 20,
-                width: 20
+                width: 20,
               }}
             />
           </View>
@@ -808,7 +807,7 @@ class Diary extends Component {
             onPress={() =>
               this.navigateTo(this.routes.startPainMeasurement, {
                 redirectPath: "Diary",
-                animal: this.props.data.animals[this.state.currentIndex]
+                animal: this.props.data.animals[this.state.currentIndex],
               })
             }
             label={t("addPainMeasurement")}
@@ -857,14 +856,14 @@ Diary.propTypes = {
   t: T.func,
   i18n: T.shape({
     language: T.string,
-    calendar: T.object
+    calendar: T.object,
   }),
   data: T.shape({
     animals: T.arrayOf(
       T.shape({
         id: T.number,
         name: T.string,
-        pictureUrl: T.string
+        pictureUrl: T.string,
       })
     ),
     events: T.arrayOf(
@@ -873,18 +872,18 @@ Diary.propTypes = {
         type: T.string,
         category: T.string,
         startDate: T.number,
-        endDate: T.number
+        endDate: T.number,
       })
-    )
-  })
+    ),
+  }),
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   authToken: getToken(state),
   data: {
     animals: state.animals,
-    events: state.events
-  }
+    events: state.events,
+  },
 });
 
 export default hoistStatics(

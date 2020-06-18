@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<layer-list  xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:drawable="@color/mediumPurple"/>
+    android:drawable="@color/mediumPurple"/>
+
 
     <item
-        android:width="284dp"
-        android:height="234dp"
-        android:drawable="@mipmap/splash"
-        android:gravity="center" />
+        android:height="230dp"
+        android:width="280dp"
+        android:top="60dp"
+        android:gravity="top|center_horizontal"
+        android:drawable="@mipmap/splash">
+    </item>
+
+    <item
+        android:height="130dp"
+        android:width="170dp"
+        android:bottom="80dp"
+        android:drawable="@mipmap/dechra_logo"
+        android:gravity="bottom|center_horizontal">
+    </item>
 
 </layer-list>

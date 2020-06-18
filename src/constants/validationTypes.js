@@ -17,12 +17,10 @@ export const dateEventValidation = yup.object().shape({
   type: yup.string().required("Required"),
   startDate: yup.number().required("Required"),
   endDate: yup.number().required("Required"),
-  data: yup
-    .object()
-    .shape({
-      sharedAreaWithOtherAnimals: yup.string()
-    })
-    .notRequired()
+  data: yup.object().shape({
+    note: yup.string(),
+    sharedAreaWithOtherAnimals: yup.string()
+  }).notRequired()
 });
 
 export const painEventRegistration = yup.object().shape({
@@ -86,7 +84,6 @@ export const noteEventValidation = yup.object().shape({
   type: yup.string().required("Required"),
   startDate: yup.number().required("Required"),
   data: yup.object().shape({
-    noteTitle: yup.string().required("Required"),
-    note: yup.string().required("Required")
+    noteTitle: yup.string().required("Required")
   })
 });

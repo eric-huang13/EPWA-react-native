@@ -10,8 +10,19 @@ import {
 } from "react-native";
 import { translate } from "react-i18next";
 
-import uniLogo from "../images/uniLogo.jpg";
+import uniLogoNe from "../images/uniLogo-ne.png";
+import uniLogoEn from "../images/uniLogo-en.png";
 import paardenkampLogo from "../images/paardenkampLogo.jpg";
+import vriendenNeLogo from "../images/vrienden_ne.png";
+import vriendenEnLogo from "../images/vrienden_en.png";
+import dechraLogo from "../images/sponsor/dechra.jpg";
+import donkeySanctuaryLogo from "../images/sponsor/donkey-sanctuary.png";
+import msmLogo from "../images/sponsor/msm.png";
+import pavoLogo from "../images/sponsor/pavo.png";
+import scmFondsLogo from "../images/sponsor/scm-fonds.png";
+import stichtingNijdierLogo from "../images/sponsor/stichting-nijdier.png";
+import stichtingLogo from "../images/sponsor/stichting.jpg";
+import verenigingHetLogo from "../images/sponsor/vereniging-het.png";
 
 import CircleButton from "../components/CircleButton";
 import CategoryHeader from "../components/CategoryHeader";
@@ -20,6 +31,13 @@ import HamburgerButton from "../components/HamburgerButton";
 
 import { colors, fonts } from "../themes";
 import iconMap from "../constants/iconMap";
+
+images = {
+  vriendenNeLogoImg: vriendenNeLogo,
+  vriendenEnLogoImg: vriendenEnLogo,
+  uniLogoNeImg: uniLogoNe,
+  uniLogoEnImg: uniLogoEn
+};
 
 const tryOpenUrl = (url) => {
   if (!url) return;
@@ -69,8 +87,6 @@ const Logo = ({ source, url }) => (
     style={{
       paddingTop: 20,
       height: 200
-      // borderBottomWidth: 1,
-      // borderBottomColor: colors.darkFilter
     }}
   >
     <TouchableHighlight
@@ -129,7 +145,22 @@ class About extends Component {
             <Header url={t("aboutScreen.university.link.url")}>
               {t("aboutScreen.university.title")}
             </Header>
-            <Logo source={uniLogo} url={t("aboutScreen.university.link.url")} />
+            <View
+              style={{
+                marginTop: 10,
+                height: 120,
+                width: '100%',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}
+            >
+              <Image
+                resizeMode="contain"
+                source={images[t("aboutScreen.university.logo")]}
+                style={{ width: '80%'}}
+              />
+            </View>
             <Description>{t("aboutScreen.university.description")}</Description>
             <Link
               label={t("aboutScreen.university.link.label")}
@@ -151,49 +182,207 @@ class About extends Component {
               label={t("aboutScreen.paardenkamp.link.label")}
               url={t("aboutScreen.paardenkamp.link.url")}
             />
-            {/* <View>
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  paddingBottom: 20
-                }}
-              >
-                <CircleButton
-                  onPress={() => {
-                    tryOpenUrl("https://www.facebook.com/DePaardenkamp");
-                  }}
-                  containerStyles={{
-                    backgroundColor: colors.facebookBlue,
-                    marginRight: 20
-                  }}
-                >
-                  <Icon
-                    name={iconMap.facebook}
-                    size={20}
-                    color={colors.white}
-                  />
-                </CircleButton>
-                <CircleButton
-                  onPress={() => {
-                    tryOpenUrl("https://twitter.com/DePaardenkamp");
-                  }}
-                  containerStyles={{ backgroundColor: colors.twitterBlue }}
-                >
-                  <Icon name={iconMap.twitter} size={20} color={colors.white} />
-                </CircleButton>
-              </View>
-            </View> */}
           </Section>
           <Section>
             <Header url={t("aboutScreen.friends.link.url")}>
               {t("aboutScreen.friends.title")}
             </Header>
+            <View
+              style={{
+                marginTop: 10,
+                height: 120,
+                width: '100%',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}
+            >
+              <Image
+                resizeMode="contain"
+                source={images[t("aboutScreen.friends.logo")]}
+                style={{ width: '80%'}}
+              />
+            </View>
             <Description>{t("aboutScreen.friends.description")}</Description>
             <Link
               label={t("aboutScreen.friends.link.label")}
               url={t("aboutScreen.friends.link.url")}
             />
+          </Section>
+          <Section>
+            <Header>
+              {t("aboutScreen.sponsor.title")}
+            </Header>
+            <View 
+              style={{
+                marginVertical: 10,
+                paddingLeft: '5%',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '90%',
+                height: 500
+              }}
+            >
+              <View
+                style={{
+                  flex: 1,
+                  height: 100,
+                  width: '100%',
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  alignItems: 'center'
+                }}
+              >
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                  }}
+                >
+                  <Image
+                    resizeMode="contain"
+                    source={dechraLogo}
+                    style={{ width: '60%'}}
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                  }}
+                >
+                  <Image
+                    resizeMode="contain"
+                    source={stichtingNijdierLogo}
+                    style={{ width: '80%'}}
+                  />
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 1,
+                  height: 100,
+                  width: '100%',
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  alignItems: 'center'
+                }}
+              >
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                  }}
+                >
+                  <Image
+                    resizeMode="contain"
+                    source={scmFondsLogo}
+                    style={{ width: '60%'}}
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                  }}
+                >
+                  <Image
+                    resizeMode="contain"
+                    source={stichtingLogo}
+                    style={{ width: '60%'}}
+                  />
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 1,
+                  marginTop: 20,
+                  height: 100,
+                  width: '100%',
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  alignItems: 'center'
+                }}
+              >
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                  }}
+                >
+                  <Image
+                    resizeMode="contain"
+                    source={donkeySanctuaryLogo}
+                    style={{ width: '60%'}}
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                  }}
+                >
+                  <Image
+                    resizeMode="contain"
+                    source={msmLogo}
+                    style={{ width: '65%'}}
+                  />
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 1,
+                  marginTop: 30,
+                  height: 100,
+                  width: '100%',
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  alignItems: 'center'
+                }}
+              >
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                  }}
+                >
+                  <Image
+                    resizeMode="contain"
+                    source={verenigingHetLogo}
+                    style={{ width: '60%'}}
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                  }}
+                >
+                  <Image
+                    resizeMode="contain"
+                    source={pavoLogo}
+                    style={{ width: '70%'}}
+                  />
+                </View>
+              </View>
+            </View>
           </Section>
           <Section>
             <View
@@ -206,28 +395,6 @@ class About extends Component {
               )}
             </View>
           </Section>
-          {/* <Section>
-            <View style={{ padding: 20 }}>
-              <Text style={{ ...fonts.style.normal, paddingBottom: 10 }}>
-                {t("aboutScreen.listIntro")}
-              </Text>
-              {t("aboutScreen.list", { returnObjects: true }).map(
-                ({ label, url }) => (
-                  <Text
-                    key={label}
-                    style={{
-                      ...fonts.style.normal,
-                      paddingBottom: 10,
-                      color: url ? "rgb(0, 122, 255)" : colors.nero
-                    }}
-                    onPress={() => (url ? tryOpenUrl(url) : null)}
-                  >
-                    {"\u2022"} {label}
-                  </Text>
-                )
-              )}
-            </View>
-          </Section> */}
           <Section>
             <Header>{t("aboutScreen.privacy.title")}</Header>
             <Description>{t("aboutScreen.privacy.description")}</Description>

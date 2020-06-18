@@ -68,9 +68,7 @@ const withImagePicker = WrappedComponent => {
           }
         },
         response => {
-          // console.log("response", response);
-
-          if (response.cancelled) {
+          if (response.didCancel) {
             return;
           }
 
@@ -143,7 +141,7 @@ const withImagePicker = WrappedComponent => {
         response => {
           const { t } = this.props;
 
-          if (response.cancelled) {
+          if (response.didCancel) {
             return;
           }
 
