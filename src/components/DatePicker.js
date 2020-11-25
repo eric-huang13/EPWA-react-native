@@ -44,13 +44,13 @@ class DatePicker extends Component {
         is24Hour={true}
         datePickerContainerStyleIOS= {{
           justifyContent: 'center',
-          paddingLeft: 35,
+          paddingLeft: '3%',
         }}
         confirmTextStyle={{
-          paddingRight: 35,
+          paddingRight: '3%',
         }}
         titleStyle={{
-          paddingRight: 40,
+          paddingRight: '5%',
         }}
         {...rest}
       />

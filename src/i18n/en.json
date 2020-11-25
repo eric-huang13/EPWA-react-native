@@ -812,7 +812,7 @@
           },
           {
             "title": "Save",
-            "content": "Have you completed the training? Then click on the 'Save' button at the bottom to add the training to the diary. The training time is now automatically entered in the diary. If you have had multiple training sessions, you can see your total training time for that day in the diary."
+            "content": "Have you filled in your training details? Click the \"Save\" button at the bottom of the page to add the training to the diary. The time spent training has now been entered automatically in the diary. If you have completed multiple training sessions, the diary will show your total training time for that day."
           }
         ]
       },

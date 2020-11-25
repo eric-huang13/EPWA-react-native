@@ -818,7 +818,7 @@
           },
           {
             "title": "Enregistrer",
-            "content": "Avez-vous terminé la formation? Cliquez ensuite sur le bouton «Enregistrer» en bas pour ajouter la formation à l'agenda. Le temps d'entraînement est désormais automatiquement inscrit dans l'agenda. Si vous avez eu plusieurs séances d'entraînement, vous pouvez voir votre temps d'entraînement total pour ce jour-là dans le journal."
+            "content": "Avez-vous rempli les détails de votre formation? Cliquez ensuite sur le bouton \"Enregistrer\" en bas pour ajouter la formation à l’agenda. Le temps d’entraînement est désormais automatiquement inscrit dans l’agenda. Si vous avez fait plusieurs sessions de formation, vous pouvez voir votre temps d’entraînement total pour ce jour-là dans le journal."
           }
         ]
       },
