@@ -193,7 +193,7 @@ class PainMeasurementIntroContainer extends Component {
   }
 
   shouldAllowUserToContinue = () => {
-    const { animals, forceAnimalSelection } = this.form.values;
+    const { animals = [], forceAnimalSelection } = this.form.values || {};
     const noAnimalsPassed =
       isNil(animals) || (Array.isArray(animals) && isEmpty(animals));
 

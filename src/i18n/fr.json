@@ -1,0 +1,1253 @@
+{
+  "root": {
+    "loading": "Veuillez patienter...",
+    "appName": "Application d’Evaluation de la Douleur et du Bien-être Equins",
+    "language": {
+      "nl": "Néerlandais",
+      "en": "Anglais",
+      "de": "Allemande",
+      "fr": "Française"
+    },
+    "dateFormat": "JJ-MM-AAAA",
+    "errors": {
+      "facebookLoginGeneric": "La connexion à Facebook a échoué.",
+      "googleLoginGeneric": "La connexion à Google a échoué.",
+      "emailLoginGeneric": "La connexion au serveur a échoué.",
+      "emailLoginNoAccount": "Aucun compte n’est associé à cette adresse e-mail.",
+      "emailLoginInvalidCredentials": "dentifiant invalide",
+      "emailRegisterGeneric": "La connexion au serveur a échoué.",
+      "emailRegisterEmailAlreadyTaken": "Cette adresse e-mail est déjà utilisée.",
+      "emailRegisterEmailInvalid": "L’adresse e-mail doit être valide.",
+      "emailRegisterPasswordTooShort": "Le mot de passe doit comporter au moins 6 caractères.",
+      "mixedAccounts": "Cette adresse e-mail est déjà associée à un compte. Veuillez utiliser une autre méthode de connexion. Votre compte utilise un mot de passe. Assurez-vous de vous connecter avec votre adresse e-mail et votre mot de passe. Sinon, utilisez votre compte Google ou Facebook pour vous identifier.",
+      "forgotEmailGeneric": "La connexion au serveur a échoué.",
+      "alertTitleGeneric": "Erreur",
+      "alertTitleWarning": "Avertissement",
+      "alertButtonLabelGeneric": "OK",
+      "imagePickerFailed": "Une erreur s’est produite lors de la sélection de l’image.",
+      "imageOverSizeThreshold": "L’image que vous vous apprêtez à télécharger est particulièrement lourde. Assurez-vous de disposer d’une connexion Internet fiable et rapide.",
+      "generic": "Une erreur s’est produite.",
+      "fetchUserDataError": "Les données utilisateur récupérées du serveur sont détériorées. Veuillez faire part du problème à notre assistance technique."
+    },
+    "auth": {
+      "login": "Se connecter",
+      "loginGoogle": "Se connecter avec Google",
+      "loginFB": "Se connecter avec Facebook",
+      "loginEmail": "Se connecter avec une adresse e-mail",
+      "or": "OU",
+      "noAccountRegister": "Vous n’avez pas encore de compte ? S’inscrire ici >",
+      "register": "S’inscrire",
+      "registerFormSubmit": "S’inscrire",
+      "sendingRequest": "Envoi en cours...",
+      "logout": "Se déconnecter",
+      "email": "Adresse e-mail",
+      "password": "Mot de passe",
+      "forgottenPassword": "Mot de passe oublié ?",
+      "alreadyHaveAccount": "J’ai déjà un compte >",
+      "registerSubmitBtn": "S’inscrire",
+      "forgotPasswordSubmitBtn": "Envoyer",
+      "forgotEmailSuccededAlertTitle": "Opération réussie",
+      "forgotEmailSuccededAlertMessage": "Un e-mail contenant des instructions pour réinitialiser votre mot de passe a été envoyé à votre adresse e-mail.",
+      "forgotEmailSuccededAlertButtonLabel": "OK"
+    },
+    "headerBar": {
+      "back": "Précédent",
+      "login": "Se connecter",
+      "register": "S’inscrire",
+      "forgottenPassword": "Mot de passe oublié",
+      "settings": "Paramètres",
+      "settingsNavigator": "Paramètres",
+      "stable": "Mon écurie",
+      "stableNavigator": "Mon écurie",
+      "diary": "Journal",
+      "diaryNavigator": "Journal",
+      "animalForm": "Animal",
+      "syndromes": "Contrôle Cushing",
+      "syndromesNavigator": "Contrôle Cushing",
+      "about": "À propos de",
+      "aboutNavigator": "À propos de",
+      "logout": "Se déconnecter",
+      "logoutNavigator": "Se déconnecter",
+      "diaryExercise": "Exercice",
+      "diaryAppointment": "Calendrier",
+      "diaryFeeding": "Alimentation",
+      "diaryHousing": "Mise au paddock/pré",
+      "diaryMedication": "Mon véto",
+      "diaryPainMeasurement": "Évaluation de la douleur",
+      "changePassword": "Mot de passe",
+      "deleteAccount": "Supprimer le compte",
+      "painMeasurementNavigator": "Évaluation de la douleur",
+      "welfareInfo": "Conseils",
+      "welfareNavigator": "Conseils pour le bien-être du cheval",
+      "copyEvents": "Copier",
+      "agenda": "Calendrier",
+      "epwaphotoupload": "Télécharger photo EPWA",
+      "epwaphotouploadNavigator": "Télécharger photo EPWA"
+    },
+    "turnout": {
+      "sharedAreaWithOtherAnimals": "Zone partagée avec d’autres animaux",
+      "alone": "Seul",
+      "sharedWithHorses": "Avec d’autres chevaux",
+      "sharedWithDonkeys": "Avec d’autres ânes",
+      "sharedWithOtherAnimals": "Avec d’autres animaux"
+    },
+    "exportEvents": {
+      "alertTitle": "Exporter votre rapport journalier",
+      "alertMsg": "Votre rapport journalier est prêt à être téléchargé.",
+      "alertCancelBtn": "Annuler",
+      "alertDownloadBtn": "Télécharger"
+    },
+    "painMeasurement": {
+      "full": {
+        "timer": {
+          "fullCountdown": "Comment fonctionne l’évaluation de la douleur?",
+          "headCountdown": "Comment fonctionne l’évaluation de la douleur?",
+          "layingDownRolling": "Se couche, se roule",
+          "tailFlicking": "Fouaille de la queue",
+          "kickingAtAbdomen": "Se frappe l’abdomen",
+          "pawing": "Gratte le sol",
+          "headMovements": "Mouvements de tête",
+          "painSounds": "Plainte, gémissement",
+          "pointingTowardsTheFloor": "Regarde le sol",
+          "lookingAtAbdomen": "Regarde son abdomen"
+        },
+        "observation": {
+          "donkey": {
+            "layingDownRolling": "Se couche, se roule",
+            "layingDownRollingOptions": [
+              "L’âne se tient tranquillement debout ou est allongé et se repose.",
+              "Se couche ou se roule moins de 50 % du temps.",
+              "Se couche ou se roule plus de 50 % du temps.",
+              "Reste allongé en permanence dans une posture inhabituelle."
+            ],
+            "overallAppearance": "Attitude générale",
+            "overallAppearanceOptions": [
+              "Alerte/interactions avec ses congénères ou le groupe",
+              "Dépression légère et/ou agitation et/ou diminution des interactions avec ses congénères ou le groupe",
+              "Dépression modérée et/ou agressivité et/ou pas de réaction à ses congénères ou au groupe",
+              "Dépression sévère"
+            ],
+            "earPosition": "Position des oreilles",
+            "earPositionOptions": [
+              "Position normale plus de 75 % du temps",
+              "Position anormale (en arrière/sur le côté/plaquées)"
+            ],
+            "posture": "Posture",
+            "postureOptions": [
+              "Debout et calme et/ou un membre postérieur au repos",
+              "Abdomen légèrement creusé et/ou léger transfert de poids",
+              "Abdomen extrêmement creusé, dos arqué et/ou étirement du corps/des membres et/ou légers tremblements musculaires",
+              "Assis sur les postérieurs et/ou tremblements musculaires extrêmes"
+            ],
+            "weightDistribution": "Répartition du poids",
+            "weightDistributionOptions": [
+              "Répartition normale du poids",
+              "Répartition anormale du poids"
+            ],
+            "headCarriage": "",
+            "headCarriageOptions": [
+              "Base des oreilles au-dessus du garrot ou boit/mange au sol",
+              "Base des oreilles à hauteur du garrot",
+              "Base des oreilles sous le garrot"
+            ],
+            "sweating": "Sudation",
+            "sweatingOptions": [
+              "Aucun signe de sudation",
+              "Humide au toucher, pas de sueur visible",
+              "Zones humides visibles, pas de gouttes ni de ruissellement de sueur",
+              "Sudation excessive, possibilité de gouttes ou de ruissellement de sueur"
+            ],
+            "eating": "Alimentation",
+            "eatingOptions": [
+              "Mange normalement ou doit être mis à jeun",
+              "Mange moins et/ou lentement",
+              "Se désintéresse de la nourriture"
+            ],
+            "changesInBehaviour": "Changement de comportement avec ses congénères ou le groupe",
+            "changesInBehaviourOptions": [
+              "L’âne est intégré dans le groupe ou avec un congénère",
+              "L’âne est exclu par le groupe ou ses congénères"
+            ],
+            "reactionToObserver": "Réaction à l’observateur",
+            "reactionToObserverOptions": [
+              "S’approche/se tourne vers l’observateur",
+              "Réagit légèrement à la présence de l’observateur",
+              "Aucune réaction"
+            ]
+          },
+          "behaviour": "Comportement/posture",
+          "behaviourOptions": [
+            "Debout et calme et/ou un membre postérieur au repos, explore son environnement",
+            "Abdomen légèrement creusé, explore encore son environnement",
+            "Abdomen extrêmement creusé, dos arqué et/ou étirement du corps/des membres",
+            "Ne se lève pas ou pour de courtes périodes seulement, assis sur les postérieurs"
+          ],
+          "overallAppearance": "Aspect général, réaction à l’observateur",
+          "overallAppearanceOptions": [
+            "Calme mais alerte, s’approche/se tourne vers l’observateur",
+            "Alerte, pas de réticence à bouger, réaction évidente aux sons/mouvements",
+            "Agité, bouge constamment, réaction exagérée aux sons/mouvements",
+            "Stupeur : absence de mouvements, tête basse, réticence à bouger"
+          ],
+          "sweating": "Sudation",
+          "sweatingOptions": [
+            "Aucun signe de sudation",
+            "Humide au toucher, pas de sueur visible",
+            "Zones humides visibles, pas de gouttes ni de ruissellement de sueur",
+            "Sudation excessive, possibilité de gouttes ou de ruissellement de sueur"
+          ]
+        },
+        "vet": {
+          "donkey": {
+            "respiratoryRate": "Fréquence respiratoire",
+            "respiratoryRateOptions": [
+              "12-28 mouvements par minute",
+              "29-32 bmouvements par minute",
+              "33-36 mouvements par minute",
+              ">36 mouvements par minute"
+            ],
+            "heartRate": "Fréquence cardiaque",
+            "heartRateOptions": [
+              "32-52 battements par minute",
+              "53-60 battements par minute",
+              "61-68 battements par minute",
+              ">68 battements par minute"
+            ],
+            "digestiveSounds": "Bruits digestifs",
+            "digestiveSoundsOptions": [
+              "Motilité normale",
+              "Diminution de la motilité",
+              "Absence de motilité",
+              "Hypermotilité ou sons tympaniques"
+            ],
+            "rectalTemperature": "Température rectale",
+            "rectalTemperatureOptions": [
+              "35.7-38.0 °C",
+              "35.3-35.6 ou 38.1-38.5 °C",
+              "34.7-35.2 ou 38.6-39.0 °C",
+              "<34 ou > 39.1 degrees °C"
+            ]
+          },
+          "respiratoryRate": "Fréquence respiratoire",
+          "respiratoryRateOptions": [
+            "8-13 mouvements par minute",
+            "14-16 mouvements par minute",
+            "17-18 mouvements par minute",
+            ">18 mouvements par minute"
+          ],
+          "heartRate": "Fréquence cardiaque",
+          "heartRateOptions": [
+            "24-44 battements par minute",
+            "45-52 battements par minute",
+            "53-60 battements par minute",
+            ">60 battements par minute"
+          ],
+          "digestiveSounds": "Bruits digestifs",
+          "digestiveSoundsOptions": [
+            "Motilité normale",
+            "Diminution de la motilité",
+            "Absence de motilité",
+            "Hypermotilité ou sons tympaniques"
+          ],
+          "rectalTemperature": "Température rectale",
+          "rectalTemperatureOptions": [
+            "36.9-38.5 °C",
+            "36.4-36.9 ou 38.5-39 °C",
+            "35.9-36.4 ou 39-39.5 °C",
+            "35.4-35.9 ou 39.5-40 °C"
+          ]
+        },
+        "interaction": {
+          "donkey": {
+            "reactionToPalpation": "Réaction à la palpation de la zone douloureuse",
+            "reactionToPalpationOptions": [
+              "Absence de réaction à la palpation",
+              "Légère réaction à la palpation",
+              "Forte réaction à la palpation"
+            ],
+            "movement": "Mouvements",
+            "movementOptions": [
+              "Pas de réticence à bouger et démarche normale",
+              "Démarche légèrement anormale (1 ou 2 sur 5) et/ou raideur de la marche",
+              "Réticence à bouger quand on le motive et/ou démarche extrêmement anormale (3-5 sur 5)",
+              "Aucun mouvement ou l’âne est couché"
+            ]
+          },
+          "reactionToPalpation": "Réaction à la palpation",
+          "reactionToPalpationOptions": [
+            "Absence de réaction à la palpation",
+            "Légère réaction à la palpation",
+            "Réaction modérée à la palpation",
+            "Réaction violente à la (tentative de) palpation"
+          ]
+        }
+      },
+      "head": {
+        "timer": {
+          "fullCountdown": "Comment fonctionne l’évaluation de la douleur?",
+          "headCountdown": "Comment fonctionne l’évaluation de la douleur?",
+          "flehming": "Flehmen",
+          "yawning": "Bâillement",
+          "teethGrinding": "Grincements de dents (bruxisme)",
+          "moaning": "Gémissements",
+          "smacking": "Claquements",
+          "headShaking": "Headshaking (encensement)"
+        },
+        "observation": {
+          "donkey": {
+            "head": "Tête",
+            "headOptions": [
+              "Mouvements normaux/intérêt pour l’environnement",
+              "Moins de mouvements ou aucun mouvement",
+              "Davantage de mouvements/mouvements exagérés"
+            ],
+            "eyelids": "Paupières",
+            "eyelidsOptions": [
+              "Ouvertes",
+              "Yeux plus ouverts (bord supérieur de l’œil visible) ou resserrement des paupières",
+              "Yeux clairement plus ouverts (bord supérieur de l’œil visible) ou resserrement net des paupières"
+            ],
+            "focus": "Concentration",
+            "focusOptions": [
+              "Concentré sur l’environnement",
+              "Moins concentré sur l’environnement",
+              "Pas d’intérêt pour l’environnement"
+            ],
+            "nostrils": "Naseaux",
+            "nostrilsOptions": [
+              "Détendus",
+              "Légèrement ouverts, relevés, plis visibles",
+              "Nettement plus ouverts, dilatés, éventuellement respiration audible"
+            ],
+            "mouthCorners": "Coins de la bouche",
+            "mouthCornersOptions": ["Détendus", "Relevés"],
+            "muscleToneHead": "Tonus musculaire facial",
+            "muscleToneHeadOptions": [
+              "Ni fasciculations ni tension accrue",
+              "Légères fasciculations ou tension accrue",
+              "Fasciculations évidentes ou tension accrue"
+            ],
+            "sweatingBehindTheEars": "Sudation derrière les oreilles",
+            "sweatingBehindTheEarsOptions": [
+              "Aucun signe de sudation",
+              "Signes de sudation"
+            ],
+            "earPosition": "Position des oreilles",
+            "earPositionOptions": [
+              "Position normale",
+              "Position anormale : tombantes",
+              "Position anormale : en arrière"
+            ],
+            "responseToAuditoryStimulus": "Oreilles, réponse aux stimuli auditifs",
+            "responseToAuditoryStimulusOptions": [
+              "Réponse claire avec les deux oreilles ou celle la plus proche de la source sonore",
+              "Réponse différée/réduite aux sons",
+              "Aucune réaction aux sons"
+            ]
+          },
+          "head": "Tête",
+          "headOptions": [
+            "Mouvements normaux/intérêt pour l’environnement",
+            "Moins de mouvements",
+            "Aucun mouvement"
+          ],
+          "eyelids": "Paupières",
+          "eyelidsOptions": [
+            "Ouvertes, sclère visible lors des mouvements des yeux/de la tête.",
+            "Yeux plus ouverts (bord supérieur de l’œil visible) ou resserrement des paupières. Un bord de sclère est visible la plupart du temps.",
+            "Yeux clairement plus ouverts (bord supérieur de l’œil visible) ou resserrement net des paupières. Sclère visible la plupart du temps."
+          ],
+          "focus": "Concentration",
+          "focusOptions": [
+            "Concentré sur l’environnement",
+            "Moins concentré sur l’environnement",
+            "Pas d’intérêt pour l’environnement"
+          ],
+          "nostrils": "Naseaux",
+          "nostrilsOptions": [
+            "Détendus",
+            "Légèrement ouverts",
+            "Nettement plus ouverts, dilatés, éventuellement respiration audible"
+          ],
+          "mouthCorners": "Coins de la bouche",
+          "mouthCornersOptions": [
+            "Détendus",
+            "Légèrement relevés",
+            "Nettement relevés"
+          ],
+          "muscleToneHead": "Tonus musculaire facial",
+          "muscleToneHeadOptions": [
+            "Ni fasciculations ni tension accrue",
+            "Légères fasciculations ou tension accrue",
+            "Fasciculations évidentes ou tension accrue"
+          ],
+          "ears": "Oreilles (réponse aux stimuli auditifs)",
+          "earsOptions": [
+            "Orientation vers les sons/réponse claire avec les deux oreilles ou celle la plus proche de la source sonore",
+            "Réponse différée/réduite aux sons",
+            "Orientation vers l’arrière, aucune réaction aux sons"
+          ]
+        }
+      },
+      "explanationTexts": {
+        "fullCountdown": [
+          "Appuyez sur le bouton « Commencer l’évaluation de la douleur » pour commencer. Le premier ensemble d’observations durera 5 minutes. L’horloge au centre servira de compte à rebours.",
+          "Votre {{animalType}} se donne-t-il des coups à l’abdomen ? Cliquez sur l’icône correspondante et un chiffre s’affichera en exposant au-dessus de l’icône. Vous pourrez ainsi suivre le nombre de fois où votre {{animalType}} présente un comportement particulier.",
+          "Est-il couché en permanence dans une position anormale ?",
+          "L’âne/Le cheval {{animalType}} est considéré comme couché dans une position anormale s’il est allongé de tout son long, souvent avec les antérieurs étirés vers l’avant et les membres postérieurs vers l’arrière. L’âne/Le cheval {{animalType}} peut également être allongé sur le dos, les jambes en l’air.",
+          "Si votre {{animalType}} reste longtemps allongé dans une position anormale, veuillez cocher cette option à la fin des 5 minutes.",
+          "Vous avez fait une erreur et compté trop de mouvements ? Utilisez le bouton « Annuler » en bas à gauche pour supprimer votre dernière entrée."
+        ],
+        "headCountdown": [
+          "Appuyez sur le bouton « Commencer l’évaluation de la douleur » pour commencer. Le premier ensemble d’observations durera 2 minutes. L’horloge au centre servira de compte à rebours.",
+          "Votre {{animalType}} bâille-t-il ? Cliquez sur l’icône correspondante et un chiffre s’affichera en exposant au-dessus de l’icône. Vous pourrez ainsi suivre le nombre de fois où votre cheval présente un comportement particulier.",
+          "Vous avez fait une erreur et compté trop de mouvements ? Utilisez le bouton « Annuler » en bas à gauche pour supprimer votre dernière entrée."
+        ],
+        "layingDownRolling": [
+          "Le fait de se coucher et de se rouler est un comportement naturel pour un {{animalType}}. Cependant, cela peut également indiquer une douleur.",
+          "Cliquez sur l’icône pendant l’évaluation de la douleur à chaque fois que votre {{animalType}} commence à se coucher ou à se rouler."
+        ],
+        "tailFlicking": [
+          "Un {{animalType}} peut fouetter de la queue pour chasser les mouches. Cependant, cela peut également indiquer une douleur.",
+          "Cliquez sur l’icône pendant l’évaluation de la douleur à chaque fois que votre {{animalType}} fouette de la queue."
+        ],
+        "kickingAtAbdomen": [
+          "Un {{animalType}} peut se frapper le ventre pour chasser les mouches. Cependant, cela peut également indiquer une douleur.",
+          "Cliquez sur l’icône pendant l’évaluation de la douleur à chaque fois que votre {{animalType}} se frappe le ventre."
+        ],
+        "pawing": [
+          "Le fait de gratter le sol avec l’antérieur peut exprimer l’impatience. Cependant, cela peut également indiquer une douleur.",
+          "Cliquez sur l’icône pendant l’évaluation de la douleur à chaque fois que votre {{animalType}} gratte le sol avec son antérieur."
+        ],
+        "headMovements": [
+          "Un {{animalType}} peut bouger la tête pour chasser les mouches. Cependant, des mouvements de tête brusques, par exemple d’un côté à l’autre ou de haut en bas, ou le fait de se tourner pour regarder ses flancs peuvent indiquer une douleur.",
+          "Cliquez sur l’icône pendant l’évaluation de la douleur à chaque fois que votre {{animalType}} bouge sa tête brusquement."
+        ],
+        "painSounds": [
+          "Parmi les sons exprimant la douleur, on trouve les grincements de dents et les gémissements. Ils peuvent donc indiquer une douleur.",
+          "Cliquez sur l’icône pendant l’évaluation de la douleur à chaque fois que votre {{animalType}} gémit ou grince des dents."
+        ],
+        "flehming": [
+          "Le flehmen est un comportement naturel. Cependant, il peut également indiquer une douleur.",
+          "Cliquez sur l’icône pendant l’évaluation de la douleur à chaque fois que votre {{animalType}} retrousse la lèvre supérieure."
+        ],
+        "yawning": [
+          "Le bâillement peut indiquer une douleur.",
+          "Cliquez sur l’icône pendant l’évaluation de la douleur à chaque fois que votre {{animalType}} bâille."
+        ],
+        "teethGrinding": [
+          "Les grincements de dents peuvent indiquer une douleur.",
+          "Cliquez sur l’icône pendant l’évaluation de la douleur à chaque fois que votre {{animalType}} grince des dents."
+        ],
+        "moaning": [
+          "Les gémissements peuvent indiquer une douleur.",
+          "Cliquez sur l’icône pendant l’évaluation de la douleur à chaque fois que votre {{animalType}} gémit."
+        ],
+        "headShaking": [
+          "Le fait de secouer la tête peut indiquer une douleur.",
+          "Cliquez sur l’icône pendant l’évaluation de la douleur à chaque fois que votre {{animalType}} secoue la tête."
+        ],
+        "smacking": [
+          "Les claquements de lèvres peuvent indiquer une douleur.",
+          "Cliquez sur l’icône pendant l’évaluation de la douleur à chaque fois que votre {{animalType}} émet un claquement."
+        ],
+        "pointingTowardsTheFloor": [
+          "Le fait de pointer un antérieur peut indiquer une douleur, car le membre pointé est déchargé.",
+          "Cliquez sur l’icône pendant l’évaluation de la douleur à chaque fois que votre {{animalType}} pointe son antérieur."
+        ],
+        "lookingAtAbdomen": [
+          "Un âne peut regarder son ventre s’il souffre de coliques.",
+          "Cliquez sur l’icône pendant l’évaluation de la douleur à chaque fois que votre {{animalType}} regarde son ventre."
+        ]
+      },
+      "misc": {
+        "headerTitle": "Évaluation de la douleur",
+        "recentMeasurementTitle": "Dernière évaluation de la douleur",
+        "horse": "Cheval",
+        "horse_plural": "Chevaux",
+        "donkey": "Âne",
+        "donkey_plural": "Ânes",
+        "compositePainScale": "Échelle multiparamétrique d’évaluation de la douleur",
+        "facialExpressions": "Expressions faciales",
+        "adviceTitle": "Conseils",
+        "adviceText": "Évaluez la douleur à un moment où vous êtes sûr(e) que votre {{animalType}} va bien. Vous saurez ainsi à quoi vous attendre si vous devez utiliser l’appli dans une situation d’urgence. Pour observer votre {{animalType}} pendant la première partie de l’évaluation, tenez-vous calmement à proximité, de préférence hors du box. Cette application est fondée sur des recherches portant sur différents types de douleur aiguë et peut être utilisée aussi bien par les vétérinaires que par les propriétaires de{{animalType}}. Les résultats sont fiables scientifiquement pour les deux groupes. Toutefois, étant donné la formation spécifique des vétérinaires, ils auront accès à des paramètres légèrement différents. Il existe 2 options pour l’évaluation.",
+        "compositePainScaleTitle": "Échelle multiparamétrique d’évaluation de la douleur",
+        "compositePainScaleExplanation": "L’échelle multiparamétrique d’évaluation de la douleur est fondée sur la recherche scientifique et a démontré sa capacité à fournir des informations fiables chez les chevaux atteints de colique aiguë et chez les ânes atteints de douleurs orthopédiques aiguës. L'échelle évalue le langage corporel de l'animal à l'aide de paramètres comportementaux, d'interaction et physiologiques. Un score total supérieur à {{compositeMeasurementScoreThreshold}} peut être une indication de douleur aiguë. Plus le score est élevé, plus il est probable que l'animal éprouve une douleur aiguë.",
+        "facialExpressionsTitle": "Expressions faciales",
+        "facialExpressionExplanation": "L’échelle des expressions faciales est fondée sur la recherche scientifique. Elle a démontré sa capacité à fournir des informations fiables chez les chevaux atteints de colique aiguë, de douleurs faciales et de douleurs orthopédiques aiguës ainsi que chez les ânes atteints de douleurs orthopédiques aiguës, de douleurs postopératoires et de colique aiguë. Elle a également prouvé sa capacité à fournir des informations fiables chez les ânes souffrant de douleurs aiguës dues à la colique ou de douleurs faciales. Cette échelle évalue les mimiques de l’animal susceptibles d’être observées lorsqu’il souffre. Un score total supérieur à {{facialMeasurementThresholdScore}} peut indiquer une douleur aiguë. Plus le score est élevé, plus le {{animalType}} est susceptible de ressentir une douleur aigüe.",
+        "adviceCompositeMeasurementPain": "Il semblerait que votre {{animalType}} ressente une douleur aiguë. Vous devriez contacter votre vétérinaire.",
+        "adviceCompositeMeasurementNoPain": "Votre {{animalType}} ne semble pas ressentir de douleur aiguë actuellement.",
+        "adviceFacialExpressionMeasurementPain": "Il semblerait que votre {{animalType}} ressente une douleur aiguë. Vous devriez contacter votre vétérinaire.",
+        "adviceFacialExpressionMeasurementNoPain": "Votre {{animalType}} ne semble pas ressentir de douleur aiguë actuellement.",
+        "areYouVet": "Vous êtes vétérinaire?",
+        "animalTypeQuestion": "Quel animal souhaitez-vous évaluer?",
+        "measurementTypeQuestion": "Quelle échelle d’évaluation souhaitez-vous utiliser?",
+        "countMovementsCommand": "Évaluez les mouvements pendant {{minutes}} minutes.",
+        "prepareCommand": "Comment fonctionne l’évaluation de la douleur?",
+        "clickTheIconToKnowMore": "Cliquez sur les icônes pour de plus amples informations.",
+        "baseline": "Base de référence",
+        "pain": "Douleur",
+        "frequency": "Fréquence",
+        "observation": "Observation",
+        "reaction": "Réaction",
+        "liesInUnnaturalPosition": "Reste allongé en permanence dans une position anormale.",
+        "loginToSave": "Seuls les utilisateurs enregistrés peuvent sauvegarder l’évaluation de la douleur dans un journal.",
+        "resetForm": "Réessayer",
+        "nextStep": "Étape suivante",
+        "seeResult": "Voir les résultats",
+        "goToSignUp": "S’enregistrer",
+        "goToDiary": "Sauvegarder dans le journal",
+        "safetyInfo": [
+          "Veuillez noter que cette évaluation de la douleur ne remplace en aucun cas un diagnostic vétérinaire.",
+          "Si vous avez un doute, veuillez consulter votre vétérinaire. Votre sécurité et celle de votre animal doivent toujours être votre priorité."
+        ],
+        "selectAnswer": "Choisissez la meilleure réponse.",
+        "score": "Score",
+        "ourAdvice": "Nos conseils",
+        "startMeasurement": "Commencer l’évaluation",
+        "showOverview": "Voir toutes les évaluations"
+      }
+    },
+    "ppidCheck": {
+      "introductionTitle": "Dépistage/diagnostic Cushing",
+      "introductionContent": "Le traitement du syndrome de Cushing équin ou dysfonctionnement du lobe intermédiaire de l'hypophyse fait appel à certains types de médicaments qui permettent de diminuer les symptômes. En prenant particulièrement soin de votre cheval, vous pouvez également réduire et même prévenir les complications possibles. Si les résultats du contrôle Cushing semblent indiquer que votre cheval est atteint de cette maladie, vous pouvez demander à votre vétérinaire de lui faire passer un examen médical. Grâce à une simple prise de sang, il sera à même d’établir un diagnostic en quelques jours pour déterminer si votre cheval a la maladie.",
+      "startTitle": "Faire le contrôle Cushing",
+      "startContent": "La maladie de Cushing est une pathologie fréquente chez les chevaux et les poneys âgés de 15 ans et plus. À la fondation De Paardenkamp, la maison de retraite nationale accueillant les chevaux âgés aux Pays-Bas et grand centre de connaissances, cette maladie est un phénomène bien connu. Un personnel compétent et des vétérinaires dévoués sont toujours là pour partager leur savoir et leur expertise. C’est pourquoi ils ont mis au point le contrôle Cushing. Vous souhaitez savoir si votre cheval est à risque ? Alors faites le contrôle Cushing!",
+      "startButton": "Commencer le contrôle Cushing",
+      "resultTitleNegative": "Résultat Cushing : improbable",
+      "resultTitlePositive": "Résultat Cushing : probable",
+      "resultContentNegative": "Les résultats du contrôle Cushing semblent indiquer qu’actuellement, votre cheval ne présente pas les signes les plus importants de la maladie. Vous n’êtes pas totalement sûr(e) ? Demandez à votre vétérinaire de lui faire passer un test Cushing.",
+      "resultContentPositive": "Les résultats du contrôle Cushing semblent indiquer que votre cheval pourrait être atteint de la maladie. Vous pouvez demander à votre vétérinaire de lui faire passer un test Cushing. Grâce à une simple prise de sang, il sera à même d’établir un diagnostic en quelques jours pour déterminer si votre cheval a la maladie. Le traitement de cette pathologie fait appel à certains types de médicaments qui permettent de diminuer les symptômes. En prenant particulièrement soin de votre cheval, vous pouvez également réduire et même prévenir les complications possibles.",
+      "resultExitButton": "Fermer le résultat",
+      "title": {
+        "a": "Creux au-dessus des yeux",
+        "b": "Modifications du pelage",
+        "c": "Consommation d’eau et production d’urine",
+        "d": "Fourbure",
+        "others": [
+          "Âge",
+          "Appétit",
+          "Léthargie",
+          "Pelage d’hiver",
+          "Sudation",
+          "Faible résistance",
+          "Muscles dorsaux",
+          "Muscles abdominaux",
+          "Cécité soudaine ou crises d’épilepsie",
+          "Fertilité"
+        ]
+      },
+      "content": {
+        "a": "Y a-t-il une accumulation anormale de graisse au niveau des creux situés au-dessus des yeux de votre cheval ? Les dépôts adipeux à des endroits inhabituels, par exemple au-dessus des yeux, sont considérés comme un symptôme de la maladie.",
+        "b": "Votre cheval présente-t-il un pelage plus long avec des poils bouclés (peut-être même d’une autre couleur) ? Ou des poils bouclés plus longs poussent-ils soudainement sur différentes parties du corps ? La modification du pelage, par exemple présence de poils épais, longs et/ou bouclés, est un symptôme fréquent de la maladie.",
+        "c": "Votre cheval boit-il et urine-t-il beaucoup plus que d’habitude ? L’augmentation de la consommation d’eau et de la production d’urine peut être un signe de la maladie.",
+        "d": "Votre cheval souffre-t-il actuellement de laminite (fourbure), ou l'a-t-il fait dans le passé? nLa laminite pourrait être un symptôme de PPID.",
+        "others": [
+          "Votre cheval a-t-il plus de 15 ans? La maladie est plus fréquente chez les chevaux âgés de plus de 15 ans.",
+          "L’appétit de votre cheval a-t-il augmenté subitement? Les chevaux atteints de la maladie ont tendance à manger davantage tout en perdant du poids.",
+          "Votre cheval est-il léthargique ou moins enclin à travailler? La léthargie et la diminution des performances sont souvent les premiers signes de la maladie.",
+          "La mue hivernale de votre cheval prend-elle plus longtemps que d’habitude? La modification du pelage, par exemple présence de poils épais, longs et/ou bouclés, est un symptôme fréquent de la maladie.",
+          "Votre cheval transpire-t-il davantage et à des endroits inhabituels, par exemple au niveau de l’encolure et des épaules? Une sudation excessive, souvent autour de l’encolure et des épaules, peut être un signe de la maladie.",
+          "Votre cheval présente-t-il des signes de faiblesse du système immunitaire, par exemple des sinusites à répétition ou de petites blessures qui ne cicatrisent pas correctement? Un déficit immunitaire se traduit souvent par des infections répétées chez le cheval ou une mauvaise cicatrisation des blessures, ce qui peut être un signe de la maladie.",
+          "La taille des muscles du dos de votre cheval diminue-t-elle? La perte de masse musculaire, également appelée «atrophie musculaire», par exemple sur le dos d'un cheval, peut être un symptôme visible de PPID.",
+          "Observez-vous un affaiblissement des muscles abdominaux chez votre cheval et son ventre a-t-il un aspect distendu? Une atrophie musculaire, par exemple des muscles autour du ventre du cheval, peut constituer un signe visible de la maladie.",
+          "Votre cheval a-t-il subitement perdu la vue ou souffre-t-il de crises d’épilepsie? Dans certains cas, l’épilepsie et la cécité constituent des symptômes de la maladie.",
+          "Votre jument est-elle moins fertile, présente-t-elle des troubles de la reproduction ou est-elle complètement infertile ? Des troubles de la reproduction et une production spontanée de lait peuvent être symptomatiques de la maladie."
+        ]
+      }
+    },
+    "animalBreeds": {
+      "horse": {
+        "andalusian": "Andalou",
+        "appaloosa": "Appaloosa",
+        "arabianHorse": "Pur-sang arabe",
+        "connemara ": "Connemara",
+        "dartmoorPony": "Dartmoor",
+        "trotter": "Trotteur",
+        "falabella": "Falabella ",
+        "fjordHorse": "Fjord",
+        "friesianHorse": "Frison",
+        "gelderlandHorse": "Gelderland",
+        "groningenHorse": "Groningen",
+        "hackney": "Hackney",
+        "haflinger": "Haflinger",
+        "hanoverian": "Hanovrien",
+        "holsteiner": "Holstein",
+        "icelandicHorse": "Islandais",
+        "dutchWarmblood": "KWPN",
+        "lipizzan": "Lipizzan",
+        "merens": "Cheval de Mérens",
+        "newForest": "New Forest",
+        "miniatureHorse": "Cheval miniature",
+        "dutchRidingPony": "Poney hollandais de selle",
+        "oldenburgHorse": "Oldenbourg",
+        "quarterHorse": "Quarter horse",
+        "shetlandPony": "Poney Shetland",
+        "shire": "Shire",
+        "tinker ": "Tinker",
+        "trakehner ": "Trakehner",
+        "draftTrotter": "Trotteur scandinave",
+        "welshPony": "Poney Welsh",
+        "other": "Autres races"
+      },
+      "donkey": {
+        "grandNoir": "Grand Noir du Berry",
+        "poitou": "Âne du Poitou",
+        "dutch": "Âne néerlandais",
+        "pyrenean": "Âne des Pyrénées",
+        "mini": "Âne miniature",
+        "micro": "Âne microminiature",
+        "mule": "Mulet"
+      }
+    },
+    "animalCompetitionLevels": {
+      "horse": {
+        "amateur": "Amateur",
+        "professional": "Professionnel",
+        "elite": "Élite",
+        "n_a": "Ne s’applique pas"
+      }
+    },
+    "animalDisciplines": {
+      "horse": {
+        "dressage": "Dressage",
+        "showJumping": "Saut d’obstacles",
+        "crossTraining": "Cross",
+        "outsideRide": "Monte en extérieur",
+        "endurance": "Endurance",
+        "harness": "Attelage",
+        "lunging": "Travail à la longe",
+        "groundWork": "Travail à pied",
+        "hiking": "Balade en main",
+        "stepMill": "Marcheur",
+        "manualWork": "Travail en main",
+        "western": "Équitation western",
+        "other": "Autre"
+      }
+    },
+    "animalGenders": {
+      "horse": {
+        "mare": "ument",
+        "gelding": "Hongre",
+        "stallion": "Étalon"
+      },
+      "donkey": {
+        "jenny": "Ânesse",
+        "gelding": "Hongre",
+        "jack": "Baudet"
+      }
+    },
+    "animalRoles": {
+      "horse": {
+        "leisure": "Loisir",
+        "sport": "Sport",
+        "instruction": "Centre équestre",
+        "breeding": "Élevage",
+        "company / pensionado": "Animal de compagnie/retraite",
+        "other": "Autre"
+      },
+      "donkey": {
+        "leisure": "Loisir",
+        "company / pensionado": "Animal de compagnie/retraite",
+        "milk / farmwork": "Lait/travail à la ferme",
+        "trekking / riding": "Randonnée/balade montée",
+        "other": "Autre"
+      }
+    },
+    "aboutScreen": {
+      "title": "Cette application a été développée par les chercheurs et vétérinaires de la faculté de médecine vétérinaire de l’université d’Utrecht, la fondation De Paardenkamp et Friends of VetMed.",
+      "university": {
+        "logo": "uniLogoEnImg",
+        "title": "Université d’Utrecht – faculté de médecine vétérinaire",
+        "description": "Nous sommes la faculté de médecine vétérinaire et centre de connaissances des Pays-Bas dans ce domaine. Nous faisons le lien entre la science et la société et fournissons des soins spécialisés à l’hôpital universitaire vétérinaire le plus grand d’Europe. Nous croyons à la coopération interdisciplinaire avec nos partenaires, aussi bien à l’échelle nationale qu’internationale.",
+        "link": {
+          "label": "www.diergeneeskunde.nl",
+          "url": "https://www.diergeneeskunde.nl/"
+        }
+      },
+      "paardenkamp": {
+        "title": "Fondation De Paardenkamp à Soest",
+        "description": "Refuge national pour chevaux âgés et centre de connaissances. Le personnel travaille au quotidien pour que chevaux et poneys puissent profiter d’une retraite bien méritée et couler des jours paisibles après leur vingtième anniversaire. Grâce à nos donateurs, mécènes et bénévoles, nos trois fermes aux écuries généreuses et aux nombreuses zones de pâturage peuvent accueillir 120 chevaux et poneys, qui trouvent là une nouvelle maison.",
+        "link": {
+          "label": "www.paardenkamp.nl",
+          "url": "https://www.paardenkamp.nl"
+        }
+      },
+      "friends": {
+        "title": "Friends of VetMed",
+        "logo": "vriendenEnLogoImg",
+        "description": "Fonds de la faculté de médecine vétérinaire de l’université d’Utrecht. Nous levons des fonds pour la recherche et l’innovation afin de fournir des soins de la meilleure qualité possible. Notre objectif : promouvoir et protéger la santé et le bien-être des animaux.",
+        "link": {
+          "label": "www.vriendendiergeneeskunde.nl",
+          "url": "https://www.vriendendiergeneeskunde.nl"
+        }
+      },
+      "sponsor": {
+        "title": "L’initiative EPWA est soutenue par"
+      },
+      "more": {
+        "links": [
+          {
+            "label": "Pour en savoir plus sur EPWA",
+            "url": "https://www.epwa.nl/en/instructie"
+          }
+        ]
+      },
+      "listIntro": "Cette appli a pu voir le jour grâce à:",
+      "list": [
+        {
+          "label": "de nombreux amoureux des chevaux aux Pays-Bas et dans le monde entier"
+        },
+        { "label": "Pavo", "url": "http://www.pavo.fr" },
+        { "label": "Fondation Nijdier", "url": "http://www.nijdier.nl" },
+        {
+          "label": "The Donkey Sanctuary",
+          "url": "http://www.thedonkeysanctuary.org.uk"
+        },
+        {
+          "label": "Fondation Capelse Manegefonds",
+          "url": "http://www.capelsemanege.nl"
+        },
+        {
+          "label": "Fondation Moyra Stava-Morena",
+          "url": "http://www.moyrastavamorena.nl"
+        },
+        {
+          "label": "Nikki de Kerf photographie",
+          "url": "http://fotogenikki.nl"
+        },
+        {
+          "label": "Wirelab Digital Agency",
+          "url": "https://www.wirelab.nl/?__geom=%E2%9C%AA"
+        }
+      ],
+      "privacy": {
+        "title": "Protection des données",
+        "description": "Pour en savoir plus sur la protection de vos données, veuillez cliquer sur le lien ci-dessous.",
+        "link": {
+          "label": "Politique de confidentialité",
+          "url": "https://www.epwa.nl/contact/privacy-policy"
+        }
+      }
+    },
+    "datePicker": {
+      "titleDate": "Choisir une date",
+      "titleTime": "Choisir une heure",
+      "confirm": "Confirmer",
+      "cancel": "Annuler"
+    },
+    "tips": {
+      "title": "Conseils pour le bien-être du cheval",
+      "preface": "Vous voulez sans aucun doute prendre soin de votre cheval du mieux possible. C’est pourquoi vous devez faire attention à un certain nombre d’éléments concernant le bien-être équin, notamment l’alimentation, les conditions d’hébergement et les sorties au paddock, la santé et le comportement. Suivez-vous ces conseils?",
+      "sections": [
+        {
+          "title": "Une bonne nutrition : ni faim ni soif",
+          "list": [
+            "Un cheval a besoin de fourrage (fibres) au moins toutes les 6 heures.",
+            "Commencez toujours par lui donner sa ration fourragère avant de compléter (si nécessaire) par des concentrés. Cela est particulièrement important le matin, sinon il pourrait avoir des maux d’estomac.",
+            "Votre cheval doit avoir accès à de l’eau en permanence. Il est important qu’il ait de l’eau propre et fraîche, comme les humains ! Vérifiez donc bien chaque jour son seau d’eau ou son abreuvoir automatique pour être sûr(e) qu’il a de l’eau propre en permanence à sa disposition."
+          ]
+        },
+        {
+          "title": "Un bon hébergement : un bon sommeil, une température agréable et de la place pour bouger",
+          "list": [
+            "Le fait de pouvoir bouger librement est extrêmement important pour votre cheval. Plus son box est petit, plus il aura besoin de temps à l’extérieur pour pouvoir bouger en toute liberté. Sortez votre cheval au moins 2 heures par jour au paddock ou au champ. Il faut que l’espace soit suffisamment vaste pour un galop rapide, une ruade ou un saut de mouton.",
+            "Les chevaux ont besoin de se reposer suffisamment. Même s’ils font souvent des siestes debout, il leur faut également un endroit propre et sec avec une surface souple où s’allonger pour se reposer.",
+            "Le cheval est un animal grégaire. Les contacts sociaux avec d’autres chevaux sont donc une nécessité absolue. Pas uniquement au champ ou au paddock, mais aussi à l’écurie. Vous pouvez utiliser des barres pour compartimenter les boxes ou permettre aux chevaux de se voir les uns les autres en laissant la partie supérieure de la porte ouverte.",
+            "Il est également très important que votre cheval puisse voir à l’extérieur. L’observation de ce qui se passe autour de lui fait en effet partie de son comportement naturel.",
+            "Un accident est vite arrivé. Essayez de prévenir toute situation où votre cheval pourrait, par exemple, perdre ses appuis sur une surface glissante ou se blesser sur des objets pointus ou saillants. En bref : pensez à la sécurité de votre animal!"
+          ]
+        },
+        {
+          "title": "Une bonne santé : jeune et en forme, vieux et en bonne santé!",
+          "list": [
+            "Faites des visites régulières avec votre cheval chez le maréchal-ferrant, le dentiste, le vétérinaire et les autres spécialistes équins. Par exemple, faire contrôler les dents de votre cheval régulièrement dès son plus jeune âge vous permettra de le maintenir en bonne santé beaucoup plus longtemps."
+          ]
+        },
+        {
+          "title": "Un comportement approprié : une bonne santé psychique",
+          "list": [
+            "Assurez-vous que votre cheval n’est pas soumis à un stress inutile. Par exemple, agissez avec lui de manière prévisible. Si votre cheval est capable de manifester un comportement naturel élémentaire dans un environnement sûr, vous posez de bonnes bases pour son équilibre physique et mental. C’est bon pour lui comme pour vous!"
+          ]
+        }
+      ]
+    },
+    "info": {
+      "animalForm": {
+        "title": "Ajouter un cheval ou un âne",
+        "preface": "",
+        "sections": [
+          {
+            "title": "Ajouter un {{animalType}}",
+            "content": "Cette partie de l’appli vous permet d’ajouter un {{animalType}} à votre écurie rapidement et facilement en remplissant et en sauvegardant les informations importantes à son sujet. Votre {{animalType}} est-il issu du croisement de deux races ? Complétez la première race, puis utilisez le bouton violet + pour ajouter la seconde race."
+          },
+          {
+            "title": "Race",
+            "content": "Sélectionnez la race de votre {{animalType}} dans le menu déroulant des races. La race de votre {{animalType}} n’est pas répertoriée ? Choisissez « Autre » et entrez sa race manuellement."
+          },
+          {
+            "title": "Activités multiples et disciplines",
+            "content": "Faites-vous de la compétition avec votre {{animalType}}, mais pratiquez-vous également l’élevage ? Vous pouvez inclure plusieurs activités en commençant par en ajouter une, puis une autre en utilisant le bouton violet +. Il en va de même pour la rubrique des disciplines. ",
+            "hideForDonkey": "Vrai"
+          },
+          {
+            "title": "Vous avez fait une erreur?",
+            "content": "Utilisez le bouton rouge X pour annuler une sélection."
+          },
+          {
+            "title": "Ajouter une photo",
+            "content": "Cliquez sur l’icône de l’appareil photo en haut de l’écran. Vous pouvez maintenant prendre une photo ou en choisir une au format paysage dans la galerie de photos de votre téléphone. "
+          },
+          {
+            "title": "Enregistrer",
+            "content": "Vous avez complété toutes les informations importantes concernant votre {{animalType}} ? Utilisez l’icône > située en haut à droite pour enregistrer et ajouter le {{animalType}} à votre écurie."
+          },
+          {
+            "title": "Besoin d’effectuer une modification?",
+            "content": "Vous avez déjà ajouté votre {{animalType}} à l’écurie, mais avez besoin de modifier ou d’ajouter quelque chose ? Cliquez sur l’icône du crayon qui se trouve en haut à droite pour effectuer une modification."
+          }
+        ]
+      },
+      "diaryExercise": {
+        "title": "Exercice",
+        "preface": "Vous pouvez ajouter facilement l’entraînement quotidien de votre cheval ou tout autre exercice à votre journal. Entrez l’heure de début et l’heure de fin de votre séance d’entraînement ou d’exercice. Vous pourrez retrouver la durée totale de votre entraînement dans votre synthèse journalière. Quel type d’exercice avez-vous fait ? Faites votre choix dans le menu déroulant. Avez-vous fait plusieurs séances d’exercice avec votre cheval ? Vous pouvez enregistrer plusieurs séances par jour en cliquant simplement sur le bouton violet + pour ajouter une autre séance.",
+        "sections": [
+          {
+            "title": "Vous avez fait une erreur ?",
+            "content": "Utilisez le bouton rouge X pour annuler une sélection."
+          },
+          {
+            "title": "Enregistrer",
+            "content": "Avez-vous terminé la formation? Cliquez ensuite sur le bouton «Enregistrer» en bas pour ajouter la formation à l'agenda. Le temps d'entraînement est désormais automatiquement inscrit dans l'agenda. Si vous avez eu plusieurs séances d'entraînement, vous pouvez voir votre temps d'entraînement total pour ce jour-là dans le journal."
+          }
+        ]
+      },
+      "diaryAppointment": {
+        "title": "Calendrier",
+        "preface": "Vous pouvez programmer un rendez-vous ou suivre vos rendez-vous en utilisant la fonction « Calendrier » du journal. Vous avez la possibilité de recevoir un rappel sur votre téléphone ainsi que d’enregistrer dans le journal certaines informations concernant le rendez-vous ou des renseignements sur les prescriptions médicales.",
+        "sections": [
+          {
+            "title": "",
+            "content": "Lors de l’ajout d’un rendez-vous, choisissez le type de rendez-vous, la date et l’heure dans le menu déroulant."
+          },
+          {
+            "title": "",
+            "content": "Il est possible de saisir des rendez-vous périodiques, par exemple pour les vaccinations ou d’autres traitements. Des rappels sur le téléphone peuvent également être créés pour les rendez-vous EPWA."
+          }
+        ]
+      },
+      "diaryFeeding": {
+        "title": "Alimentation",
+        "preface": "Suivez le régime alimentaire de votre {{animalType}}. Ajoutez fourrage, concentrés et compléments alimentaires. Votre {{animalType}} a-t-il un accès permanent au fourrage ? Assurez-vous de cocher l’option « 24 heures/24 ».",
+        "sections": [
+          {
+            "title": "Vous avez fait une erreur?",
+            "content": "Utilisez le bouton rouge X pour annuler une sélection."
+          },
+          {
+            "title": "Enregistrer",
+            "content": "Vous avez saisi le régime alimentaire de votre {{animalType}} ? Utilisez l’icône > située en haut à droite pour enregistrer. Les informations figureront automatiquement dans votre journal."
+          }
+        ]
+      },
+      "diaryHousing": {
+        "title": "Mise au paddock/champ",
+        "preface": "Où votre {{animalType}} passe-t-il sa journée ? Combien de temps passe-t-il au box (si cela s’applique) et combien de temps durent ses sorties au champ ou au paddock ? Cliquez sur l’option « 24 heures/24 » s’il passe toute la journée au box ou au paddock. Vous pouvez préciser s’il est seul ou avec d’autres {{animalType}}.",
+        "sections": [
+          {
+            "title": "Vous avez fait une erreur?",
+            "content": "Utilisez le bouton rouge X pour annuler une sélection."
+          },
+          {
+            "title": "Enregistrer",
+            "content": "Vous avez complété le temps passé par votre {{animalType}} au box ou au paddock ? Utilisez l’icône > située en haut à droite pour enregistrer. Les informations figureront automatiquement dans votre journal."
+          }
+        ]
+      },
+      "diaryMedication": {
+        "title": "Mon véto",
+        "preface": "Votre {{animalType}} a-t-il un traitement médical ? Ou est-il actuellement traité par un kinésithérapeute ou tout autre spécialiste équin ? Saisissez facilement tous les renseignements médicaux concernant votre {{animalType}} dans votre journal.",
+        "sections": [
+          {
+            "title": "Médicaments",
+            "content": "Suivez l’administration des médicaments de votre {{animalType}} en entrant le moment d’administration et la dose administrée. Reçoit-il plusieurs types de médicaments ? Ajoutez-les tous en cliquant simplement sur le bouton violet."
+          },
+          {
+            "title": "Traitement",
+            "content": "Gardez une trace des spécialistes équins qui ont traité votre {{animalType}} en sélectionnant le type de professionnel dans le menu déroulant. Notez ce que le traitement implique ainsi que tous les conseils éventuellement reçus en remplissant le champ des commentaires."
+          },
+          {
+            "title": "Rééducation",
+            "content": "Votre {{animalType}} s’est blessé et a besoin de rééducation ? Notez ce que cela implique, par exemple s’il a besoin de rester au box pour se reposer. "
+          },
+          {
+            "title": "Température et poids",
+            "content": "Prenez-vous régulièrement la température de votre {{animalType}} ? Saisissez-la pour qu’elle figure automatiquement dans votre journal. Faites la même chose pour le poids (estimé) de votre {{animalType}}."
+          },
+          {
+            "title": "Vous avez fait une erreur?",
+            "content": "Utilisez le bouton rouge X pour annuler une sélection."
+          },
+          {
+            "title": "Enregistrer",
+            "content": "Vous avez complété tous les renseignements médicaux concernant votre {{animalType}} ? Utilisez l’icône > située en haut à droite pour enregistrer. Ces informations figureront automatiquement dans votre journal. "
+          }
+        ]
+      },
+      "welfare": {
+        "sections": [
+          {
+            "title": "Conseils pour le bien-être du cheval",
+            "content": "Vous voulez sans aucun doute prendre soin de votre cheval du mieux possible. C’est pourquoi vous devez faire attention à un certain nombre d’éléments concernant le bien-être équin, notamment l’alimentation, les conditions d’hébergement et les sorties au paddock, la santé et le comportement. Suivez-vous ces conseils?"
+          },
+          {
+            "title": "Une bonne nutrition : ni faim ni soif",
+            "content": "-Un cheval a besoin de fourrage (fibres) au moins toutes les 6 heures. Commencez toujours par lui donner sa ration fourragère avant de compléter (si nécessaire) par des concentrés. Cela est particulièrement important le matin, sinon il pourrait avoir des maux d’estomac. Votre cheval doit avoir accès à de l’eau en permanence. Il est important qu’il ait de l’eau propre et fraîche, comme les humains ! Vérifiez donc bien chaque jour son seau d’eau ou son abreuvoir automatique pour être sûr(e) qu’il a de l’eau propre en permanence à sa disposition.",
+            "imageTitle": "Alimentation"
+          },
+          {
+            "title": "Un bon hébergement : un bon sommeil, une température agréable et de la place pour bouger",
+            "content": "-Le fait de pouvoir bouger librement est extrêmement important pour votre cheval. Plus son box est petit, plus il aura besoin de temps à l’extérieur pour pouvoir bouger en toute liberté. Sortez votre cheval au moins 2 heures par jour au paddock ou au champ. Il faut que l’espace soit suffisamment vaste pour un galop rapide, une ruade ou un saut de mouton. Les chevaux ont besoin de se reposer suffisamment. Même s’ils font souvent des siestes debout, il leur faut également un endroit propre et sec avec une surface souple où s’allonger pour se reposer. Le cheval est un animal grégaire. Les contacts sociaux avec d’autres chevaux sont donc une nécessité absolue. Pas uniquement au champ ou au paddock, mais aussi à l’écurie. Vous pouvez utiliser des barres pour compartimenter les boxes ou permettre aux chevaux de se voir les uns les autres en laissant la partie supérieure de la porte ouverte. Il est également très important que votre cheval puisse voir à l’extérieur. L’observation de ce qui se passe autour de lui fait en effet partie de son comportement naturel. Un accident est vite arrivé. Essayez de prévenir toute situation où votre cheval pourrait, par exemple, perdre ses appuis sur une surface glissante ou se blesser sur des objets pointus ou saillants. En bref : pensez à la sécurité de votre animal!",
+            "imageTitle": "Conditions d’hébergement"
+          },
+          {
+            "title": "Une bonne santé : jeune et en forme, vieux et en bonne santé!",
+            "content": "- Faites des visites régulières avec votre cheval chez le maréchal-ferrant, le dentiste, le vétérinaire et les autres spécialistes équins. Par exemple, faire contrôler les dents de votre cheval régulièrement dès son plus jeune âge vous permettra de le maintenir en bonne santé beaucoup plus longtemps.",
+            "imageTitle": "Santé et bien-être"
+          },
+          {
+            "title": "Un comportement naturel : une bonne santé émotionnelle",
+            "content": "- Assurez-vous que votre cheval n’est pas exposé à un stress inutile. Par exemple, assurez-vous d’agir avec lui de manière prévisible. Si votre cheval est capable de manifester un comportement naturel dans un environnement sûr, vous poserez des bases solides pour son équilibre physique et mental. C’est bon pour lui comme pour vous!",
+            "imageTitle": "Comportement"
+          }
+        ]
+      },
+      "epwaphotoupload": {
+        "firstpage": {
+          "title": "Comment télécharger vos propres photos pour les exercices d’entraînement?",
+          "content": "Veuillez télécharger une photo (ou plus) vous appartenant pour nous aider à développer la reconnaissance automatique des expressions faciales chez le cheval et l’âne.",
+          "exphotoTitle": "Exemple",
+          "imageTitle": "Groupe_cheval",
+          "buttonText": "Suivant"
+        },
+        "secondpage": {
+          "title": "Comment recadrer votre photo?",
+          "content1": "Une fois la photo prise, elle doit être recadrée pour permettre une utilisation anonyme du cheval.",
+          "content2": "Commencez par sélectionner les oreilles, puis les yeux, et enfin le nez et la bouche.",
+          "content3": "Assurez-vous toujours que les parties sont bien visibles et bien positionnées sur l’image recadrée, comme dans l’exemple ci-dessous.",
+          "chk_text": "Ma photo peut être utilisée pour les exercices d’entraînement.",
+          "imageTitle": "Recadrage_cheval",
+          "checkedbtnImg": "vérifié",
+          "uncheckedbtnImg": "non vérifié",
+          "lbuttonText": "Prendre une photo",
+          "rbuttonText": "Dans la galerie"
+        },
+        "takephotopage": {
+          "photobutton": "PHOTO",
+          "cancelbutton": "Annuler",
+          "horsemaskImg": "masque_cheval",
+          "flipbtnImg": "Retourner",
+          "flipbtnText": "Retourner",
+          "loadingText": "Enregistrement en cours...",
+          "cameraPermissionTitle": "Permission d’utiliser l’appareil photo",
+          "cameraPermissionMessage": "Nous avons besoin de votre permission pour utiliser votre appareil photo",
+          "cameraPermissionPositiveButtonText": "OK",
+          "cameraPermissionNegativeButtonText": "Annulur",
+          "audioiPermissonTitle": "Permission d’utiliser l’enregistrement audio",
+          "audioPermissionMessage": "Nous avons besoin de votre permission pour utiliser votre son."
+        },
+        "thirdpage": {
+          "question": "Est-ce une bonne photo?",
+          "imageTitle": "Recadrage_cheval",
+          "lbuttonText": "Recommencer",
+          "rbuttonText": "Oui"
+        },
+        "forthpage": {
+          "question": "Recadrez maintenant l’image des oreilles.",
+          "imageTitle": "Recadrage_cheval",
+          "lbuttonText": "Enregistrer les oreilles",
+          "loadingText": "Envoi en cours..."
+        },
+        "fifthpage": {
+          "question": "Recadrez maintenant l’image des yeux.",
+          "imageTitle": "Recadrage_cheval",
+          "lbuttonText": "Enregistrer les yeux",
+          "loadingText": "Envoi en cours..."
+        },
+        "sixthpage": {
+          "question": "Recadrez maintenant l’image du nez et de la bouche.",
+          "imageTitle": "Recadrage_cheval",
+          "lbuttonText": "Enregistrer le nez/la bouche",
+          "loadingText": "Envoi en cours..."
+        },
+        "seventhpage": {
+          "question": "Le recadrage vous plaît-il?",
+          "imageTitle": "Recadrage_cheval",
+          "lbuttonText": "Ajuster",
+          "rbuttonText": "Envoyer",
+          "loadingText": "Envoi en cours..."
+        },
+        "lastpage": {
+          "title": "Merci!",
+          "content": "Grâce à votre photo, nous allons pouvoir améliorer l’entraînement de nos systèmes.",
+          "buttonText": "Retour à l’écurie"
+        }
+      }
+    },
+    "supportedby": "Cette application est soutenue par",
+    "profileUpdateSuccess": "Profil mis à jour!",
+    "name": "Nom",
+    "firstName": "Prénome",
+    "lastName": "nom",
+    "email": "Adresse e-mail",
+    "requiredField": "Champ obligatoire",
+    "fillInName": "Saisir un nom",
+    "breed": "Race",
+    "selectbreed": "Sélectionner une race",
+    "roles": "Rôle",
+    "selectroles": "Ce que je fais avec mon animal",
+    "disciplines": "Discipline",
+    "selectdisciplines": "Sélectionner une discipline",
+    "sex": "Sexe",
+    "selectSex": "Sélectionner un sexe",
+    "animalHeight": "Hauteur (en cm)",
+    "animalWeight": "Poids (en kg)",
+    "selectAnimalHeight": "Sélectionner le poids",
+    "fillInAnimalHeight": "Remplir la hauteur de l’animal (en centimètres)",
+    "fillInAnimalWeight": "Remplir le poids de l’animal (en kilogrammes)",
+    "horseCompetitionLevel": "Niveau de compétition",
+    "selectHorseCompetitionLevel": "Sélectionner un niveau de compétition",
+    "particularities": "Informations complémentaires",
+    "fillInParticularities": "Veuillez noter ici toute information complémentaire.",
+    "caregiverTitle": "Soigneur(s)",
+    "addCaregiverDesc": "Ajouter un nouveau soigneur",
+    "caregiverEmail": "Adresse e-mail",
+    "caregiverInviteBtnText": "Envoyer",
+    "prefixRemoveMessage": "Êtes-vous sûr(e) de vouloir supprimer",
+    "sufixRemoveMessage": "de la liste des soigneurs?",
+    "caregiverRemoveBtnText": "Supprimer",
+    "caregiver_pending": "En attente",
+    "ok": "OK",
+    "submit": "Envoyer",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "remove": "Supprimer",
+    "copy": "Copier",
+    "cameraOrGalleryPopupTitle": "Choisir une photo",
+    "chooseFromLibrary": "Galerie",
+    "takeAPhoto": "Appareil photo",
+    "birthdate": "Date de naissance",
+    "selectDate": "Sélectionner une date",
+    "openDiary": "Ouvrir le journal",
+    "noData": "n/a",
+    "diary": "Journal",
+    "addHorse": "Ajouter un cheval",
+    "editHorse": "Modifier un cheval",
+    "addDonkey": "Ajouter un âne",
+    "editDonkey": "Modifier un âne",
+    "deleteAnimal": "Supprimer le profil",
+    "delete": "Supprimer",
+    "deleteAnimalMessage": "Vous êtes sur le point de supprimer le profil de votre animal ainsi que toutes ses données. Cette action ne peut pas être annulée! Êtes-vous sûr(e)?",
+    "startPainMeasurement": "Évaluation de la douleur",
+    "menagerie": "Ménagerie",
+    "settings": "Paramètres",
+    "syndromes": "Contrôle Cushing",
+    "about": "À propos de",
+    "share": "Partager",
+    "shareApp": "Partager cette appli",
+    "noAnimalsToShow": "L’écurie est vide!",
+    "addMedication": "Mon véto",
+    "registerPainMeasurement": "Évaluation de la douleur",
+    "registerHousing": "Mise au paddock/champ",
+    "registerFeeding": "Alimentation",
+    "registerExercises": "Exercice",
+    "registerAppointment": "Rendez-vous",
+    "riding": "Exercice",
+    "groundWork": "Travail à pied",
+    "dressage": "Dressage",
+    "showJumping": "Saut d’obstacles",
+    "crossTraining": "Cross",
+    "outsideRide": "Monte en extérieur",
+    "western": "Équitation western",
+    "endurance": "Endurance",
+    "harness": "Attelage",
+    "hiking": "Balade en main",
+    "stepMill": "Marcheur",
+    "manualWork": "Travail en main",
+    "other": "Autre",
+    "startTime": "Heure de début",
+    "endTime": "Heure de fin",
+    "leavingFormTitle": "Êtes-vous sûr(e)?",
+    "leavingFormSubtitle": "Vous perdrez toutes les données non enregistrées.",
+    "leavingFormLeaveBtn": "Quitter",
+    "leavingFormStayBtn": "Poursuivre",
+    "paddock": "Paddock",
+    "pasture": "Champ",
+    "stable": "Écurie",
+    "exercise": "Exercice",
+    "exerciseType": "Type d’exercice",
+    "housing": "Mise au paddock/champ",
+    "feeding": "Alimentation",
+    "medication": "Médicaments",
+    "timeOfDay": "Jour et heure",
+    "timeAndDay": "Jour et heure",
+    "kindOfAppointment": "Titre du rendez-vous",
+    "quantity": "Quantité",
+    "unit": "Unité",
+    "unlimited": "Illimité",
+    "roughage": "Fourrage",
+    "concentrate": "Concentrés",
+    "supplement": "Supplémentation",
+    "pill": "Médicaments",
+    "treatment": "Traitement",
+    "temperature": "Température",
+    "recovery": "Rééducation",
+    "item": "items",
+    "gram": "g",
+    "kilogram": "kg",
+    "byWeight": "Pour ... kilo",
+    "milligram": "mg",
+    "cubicCentimetre": "cc par ml",
+    "sachet": "Sachet",
+    "tablet": "Comprimé",
+    "scoop": "Curette/pompe",
+    "drop": "Gouttes",
+    "celsius": "Celsius",
+    "fahrenheit": "Fahrenheit",
+    "vet": "Vétérinaire",
+    "physiotherapist": "Kinésithérapeute",
+    "osteopath": "Ostéopathe",
+    "dentist": "Dentiste",
+    "farrier": "Maréchal-ferrant",
+    "otherDoctor": "Autre",
+    "alertSuccess": "Opération réussie",
+    "offlineWarning": "Vous êtes déconnecté(e). Veuillez vérifier votre connexion.",
+    "animalFetchErrorMsg": "Une erreur s’est produite lors de la récupération des données sur les animaux!",
+    "animalAddErrorMsg": "Une erreur s’est produite lors de l’ajout d’un animal!",
+    "animalEditErrorMsg": "Une erreur s’est produite lors de la mise à jour d’un animal!",
+    "animalDeleteErrorMsg": "Une erreur s’est produite lors de la suppression d’un animal!",
+    "animalCaregiverFetchErrorMsg": "Une erreur s’est produite lors de la récupération des données sur les soigneurs",
+    "animalCaregiverAddErrorMsg": "Une erreur s’est produite lors de l’envoi d’une invitation.",
+    "animalCaregiverDeleteErrorMsg": "Une erreur s’est produite lors de la suppression d’un soigneur.",
+    "caregiverAlertTitle": "Erreur",
+    "caregiverAlertUserUnknown": "Utilisateur inconnu",
+    "caregiverAlertSelf": "Vous ne pouvez pas vous inviter vous-même",
+    "caregiverAlertDuplicate": "Cet utilisateur a déjà été invité",
+    "caregiverAlertMaximum": "Vous ne pouvez pas inviter plus de 5 utilisateurs",
+    "caregiverAlertNotAllowed": "Cet utilisateur ne possède ni cheval ni âne",
+    "photoUploadErrorMsg": "Une erreur s’est produite lors du téléchargement des images recadrées.",
+    "eventAddSuccessMsg": "L’entrée a été ajoutée!",
+    "eventEditSuccessMsg": "L’entrée a été mise à jour!",
+    "eventDeleteSuccessMsg": "L’entrée a été supprimée!",
+    "completeEvent": "Terminer évènement",
+    "changePasswordSuccessMsg": "Le mot de passe a été modifié.",
+    "changePasswordErrorMsg": "Une erreur s’est produite lors de la modification du mot de passe!",
+    "changePasswordCurrentPasswordWrongErrorMsg": "Le mot de passe que vous avez saisi ne correspond pas à votre mot de passe actuel",
+    "changePasswordPasswordConfirmDoesNotMatchErrorMsg": "La confirmation du mot de passe est différente du mot de passe",
+    "refreshTokenFailedLoggingOutMsg": "Vous avez été déconnecté(e), car votre session a expiré. Cela peut être dû au fait que vous êtes connecté(e) sur un autre appareil. Veuillez vous reconnecter.",
+    "roughageNameLabel": "Type de fourrage",
+    "concentrateNameLabel": "Type de concentrés",
+    "supplementNameLabel": "Type de supplémentation",
+    "pillNameLabel": "Type de médicament(s)",
+    "injectionNameLabel": "Type de traitement",
+    "temperatureNameLabel": "Température",
+    "recoveryNameLabel": "Note rééducation",
+    "yes": "Hoi",
+    "no": "Non",
+    "updateProfileSubmitBtn": "Envoyer",
+    "driving": "Attelage",
+    "lunging": "Travail à la longe",
+    "workInHand": "Travail en main",
+    "welcomeInDiary": "Bienvenue",
+    "noEventsOnThisDate": "Cette journée ne comporte aucune entrée. Cliquez sur l’icône + pour ajouter une entrée ou copier des entrées à partir d’une date antérieure.",
+    "noAnimalsInDiary": "Il semble que vous n’ayez ajouté ni cheval ni âne à votre écurie. Commencez par ajouter un animal pour pouvoir utiliser le journal.",
+    "selectDone": "Terminé",
+    "horse": "Cheval",
+    "donkey": "Âne",
+    "clickToAddPhoto": "Cliquez pour ajouter une photo.",
+    "clickToChangePhoto": "Cliquez pour changer la photo.",
+    "updatePasswordLink": "Modifier le mot de passe",
+    "deleteAccount": "Supprimer le compte",
+    "notApplicable": "N/A",
+    "currentPassword": "Mot de passe actuel",
+    "newPassword": "Nouveau mot de passe",
+    "newPasswordConfirmation": "Nouveau mot de passe (confirmer)",
+    "noOrNa": "Non - N/A",
+    "counting": "Calcul",
+    "answers": "Réponses",
+    "noAnimalsInStableWarning": "Pour commencer une évaluation de la douleur, veuillez d’abord ajouter un animal.",
+    "shareAppTitleDrawerMenu": "EPWA",
+    "shareAppContentDrawerMenu": "J’utilise EPWA, l’Application de la Douleur et du Bien-être Equins, pour suivre la santé et le bien-être de mon animal. Visitez www.epwa.nl/en pour de plus amples informations.",
+    "shareAppTitleAnimalProfile": "EPWA",
+    "shareAppContentAnimalProfile": "J’utilise EPWA, l’Application de la Douleur et du Bien-être Equins, pour suivre la santé et le bien-être de {{animalName}}.Visitez www.epwa.nl/en pour de plus amples informations.",
+    "shareAppUrl": "https://www.epwa.nl/en",
+    "shareMessage": "J’utilise EPWA, l’Application de la Douleur et du Bien-être Equins.",
+    "painMeasurementLoginWarning": "Pour sauvegarder l’évaluation de la douleur, veuillez vous connecter. Vous pouvez aussi continuer sans enregistrer.",
+    "quit": "Quitter",
+    "painMeasurementQuitTitle": "Quitter l’évaluation",
+    "painMeasurementQuitMessage": "Êtes-vous sûr(e) de vouloir quitter l’évaluation de la douleur?",
+    "ppidQuitTitle": "Quitter le contrôle",
+    "ppidQuitMessage": "Êtes-vous sûr(e) de vouloir quitter le contrôle Cushing?",
+    "finish": "Terminer",
+    "notes": "Notes",
+    "animalHasUnlimitedAmountOf": "L’animal a un accès illimité au {{feedType}}.",
+    "copyFromDate": "Copier à partir de la date",
+    "copyChoice": "Choisir les catégories à copier à partir des dates sélectionnées.",
+    "copyNoEventsAvailable": "La date sélectionnée ne comporte aucune entrée à copier.",
+    "customBreedPlaceholder": "Compléter le nom de la race",
+    "lookBack": "Dates antérieures",
+    "today": "Aujourd’hui",
+    "lookAhead": "Dates ultérieures",
+    "graphTitle": "Évaluations récentes de la douleur",
+    "noRecentPainMeasurements": "Aucune évaluation récente de la douleur",
+    "addPainMeasurement": "Ajouter une évaluation de la douleur",
+    "recurring": "Récurrent",
+    "recurringTill": "Récurrent jusqu’au",
+    "notification": "Notification",
+    "daily": "Quotidien",
+    "weekly": "Hebdomadaire",
+    "monthly": "Mensuel",
+    "yearly": "Annuel",
+    "facialMeasure": "Expressions faciales de la douleur",
+    "compositeMeasure": "Évaluation multiparamétrique de la douleur",
+    "emptyPainMeasurementList": "Aucune évaluation de la douleur à afficher",
+    "diaryFeeding": "Alimentation",
+    "movement": "Exercice",
+    "eventHousing": "Conditions d’hébergement",
+    "eventMedication": "Médicaments",
+    "deleteUserInfo": "Supprimer mes informations utilisateur",
+    "deleteAllInfo": "Supprimer toutes les informations",
+    "confirmDeleteAccount": "Êtes-vous sûr(e) de vouloir supprimer votre compte utilisateur?",
+    "confirmDeleteAccountInfo": "Cela supprimera toutes vos données de manière définitive.",
+    "categories": {
+      "painMeasurement": "Évaluation de la douleur",
+      "feeding": "Alimentation",
+      "medication": "Mon véto",
+      "housing": "Mise au paddock/champ",
+      "exercise": "Exercice",
+      "appointment": "Rendez-vous"
+    },
+    "painMeasurements": {
+      "composite": "Multiparamétrique",
+      "facialExpression": "Évaluation des expressions faciales de la douleur"
+    },
+    "typePainMeasurement": "Type d’évaluation de la douleur",
+    "editRecurringEventWarning": "Voulez-vous modifier l’évènement récurrent actuel ou en créer un nouveau?",
+    "editRecurring": "Modifier",
+    "newRecurring": "Nouveau",
+    "selectAnOption": "La modification des évènements récurrents s’appliquera uniquement aux évènements à venir",
+    "warnDeleteAccount1": "SUPPRIMER VOTRE COMPTE DÉFINITIVEMENT?",
+    "noFutureCompletionTitle": "Évènement à venir",
+    "noFutureCompletionText": "Impossible de terminer un évènement à venir",
+    "recurringAfterStartDate": "Veuillez sélectionner une date récurrente postérieure au début de l’évènement.",
+    "endDateAfterStartDate": "Veuillez sélectionner une date de fin postérieure à la date de début.",
+    "noEventsToShare": "Aucun évènement à partager sur la période sélectionnée",
+    "emptyDates": "Les dates ne peuvent pas être vides",
+    "seeShareResults": "Regardez mes résultats EPWA!",
+    "chooseShareSelection": "Sélectionner une catégorie ou plus à partager",
+    "connectionError": "L’appli EPWA ne parvient pas à se connecter au serveur.",
+    "networkError": "L’appli EPWA ne parvient pas à se connecter au réseau.",
+    "permissionReadWriteTitle": "Permissions d’accès en lecture/écriture",
+    "permissionReadWriteMessage": "Permettre à votre mémoire un accès aux fichiers en lecture/écriture"
+  }
+}

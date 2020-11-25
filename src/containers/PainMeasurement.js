@@ -82,29 +82,31 @@ class painMeasurement extends Component {
   };
 
   componentDidMount() {
+    const { animals } = this.props;
     const initialValues = this.setupEvent();
     const { navigation, setFieldValue } = this.props;
-    const animals = navigation.getParam("animals") || [];
+    const { id = "", type = "" } = navigation.getParam("animal") || {};
+    setTimeout(() => {
+      if (id && type) {
+        setFieldValue("animalId", id);
+        setFieldValue("animalType", type);
+      }
 
-    if (animals.length) {
-      setFieldValue("animalId", animals[0].id);
-      setFieldValue("animalType", animals[0].type);
-    }
+      compose(
+        map(pair => setFieldValue(pair[0], pair[1])),
+        toPairs
+      )(initialValues);
 
-    compose(
-      map(pair => setFieldValue(pair[0], pair[1])),
-      toPairs
-    )(initialValues);
-
-    setFieldValue(
-      "forceAnimalSelection",
-      navigation.getParam("forceAnimalSelection") || false
-    );
-    setFieldValue("animals", animals);
+      setFieldValue(
+        "forceAnimalSelection",
+        navigation.getParam("forceAnimalSelection") || false
+      );
+      setFieldValue("animals", animals);
+    }, 500);
   }
 
   render() {
-    const { i18n, t } = this.props;
+    const { i18n, t, submitForm } = this.props;
     const formProps = pickAll([
       "setFieldValue",
       "setValues",
@@ -121,7 +123,7 @@ class painMeasurement extends Component {
 
     const screenProps = {
       form: {
-        ...formProps
+        ...this.props
       },
       isUserLoggedIn: this.props.isUserLoggedIn,
       t,
@@ -140,7 +142,6 @@ class painMeasurement extends Component {
 const onSubmit = (values, formikBag) => {
   const { alertDropdown, dispatch, t } = formikBag.props;
   const editId = formikBag.props.navigation.getParam("editId");
-
   const topLevelFields = ["animalId", "startDate", "category", "completed"];
 
   /*
@@ -169,9 +170,16 @@ const onSubmit = (values, formikBag) => {
     alertDropdown("success", t("alertSuccess"), t("eventAddSuccessMsg"));
 
     if (isNil(editId)) {
+      const { category, completed, startDate } = payload;
+      let finalPayload = {
+        ...payload,
+        startDate: startDate || Date.now(),
+        completed: completed || completed === false || true,
+        category: category || "painMeasurement"
+      };
       dispatch(
         addEvent({
-          payload: [payload],
+          payload: [finalPayload],
           formHelpers: formikBag
         })
       );
@@ -194,7 +202,8 @@ const formikOptions = {
 };
 
 const mapStateToProps = state => ({
-  isUserLoggedIn: Boolean(state.auth.accessToken)
+  isUserLoggedIn: Boolean(state.auth.accessToken),
+  animals: state.animals
 });
 
 export default hoistStatics(

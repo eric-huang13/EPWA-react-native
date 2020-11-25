@@ -10,7 +10,7 @@ import {
   getTime,
   isValid
 } from "date-fns";
-import { __, compose, flatten, isNil, indexOf } from "ramda";
+import { __, compose, flatten, isNil, indexOf, isEmpty } from "ramda";
 
 import { colors, fonts } from "../themes";
 import DatePicker from "./DatePicker";
@@ -33,10 +33,11 @@ const recurringIndex = ["d", "w", "m", "y"];
 
 class RecurringForm extends Component {
   constructor(props) {
+    //console.log("props in here", props);
     super(props);
     this.state = {
       reveal: this.setRecurring() || false,
-      notification: false,
+      notification: this.setInitialNotification(),
       tabIndex: 1,
       recurring_untill: this.setRecurringUntill() || null
     };
@@ -44,6 +45,7 @@ class RecurringForm extends Component {
 
   componentDidMount() {
     const { values } = this.props;
+    //console.log(values, "check the values here in form");
 
     if (isNil(values)) {
       return;
@@ -130,14 +132,17 @@ class RecurringForm extends Component {
   handleDateChange = date => {
     const { setFieldValue, values } = this.props;
 
+    const recurringDate = new Date(date);
+    recurringDate.setHours(23);
+    recurringDate.setMinutes(59);
     Object.keys(values).map(eventType => {
       values[eventType].map((_, i) => {
-        setFieldValue(`${eventType}[${i}].recurring_untill`, date);
+        setFieldValue(`${eventType}[${i}].recurring_untill`, +recurringDate);
       });
     });
 
     this.setState({
-      recurring_untill: date
+      recurring_untill: +recurringDate
     });
   };
 
@@ -185,9 +190,20 @@ class RecurringForm extends Component {
     return recurUntill;
   };
 
+  setInitialNotification = () => {
+    const { values } = this.props;
+    if (!isEmpty(values)) {
+      const dataKeys = Object.keys(values);
+      const [eventData = {}] = values[dataKeys[0]];
+      if (eventData?.data?.notification) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   setNotification = () => {
     const { setFieldValue, values } = this.props;
-
     Object.keys(values).map(eventType => {
       values[eventType].map((_, i) => {
         setFieldValue(
@@ -200,6 +216,7 @@ class RecurringForm extends Component {
       notification: !prevState.notification
     }));
   };
+
   setDatePickerRef = element => {
     this.datePicker = element;
   };

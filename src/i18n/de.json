@@ -1,0 +1,1254 @@
+{
+  "root": {
+    "loading": "Bitte warten…...",
+    "appName": "Equine Pain and Welfare App",
+    "language": {
+      "nl": "Niederländisch",
+      "en": "Englisch",
+      "de": "Deutsche",
+      "fr": "Französisch"
+    },
+    "dateFormat": "DD-MM-YYYY",
+    "errors": {
+      "facebookLoginGeneric": "Verbindung zu Facebook fehlgeschlagen",
+      "googleLoginGeneric": "Verbindung zu Google fehlgeschlagen",
+      "emailLoginGeneric": "Verbindung zum Server fehlgeschlagen",
+      "emailLoginNoAccount": "Es gibt kein Konto mit folgender E-Mail-Adresse",
+      "emailLoginInvalidCredentials": "Ungültige Zugangsdaten",
+      "emailRegisterGeneric": "Verbindung zum Server fehlgeschlagen",
+      "emailRegisterEmailAlreadyTaken": "Diese E-Mail-Adresse ist bereits vergeben.",
+      "emailRegisterEmailInvalid": "Die E-Mail muss eine gültige E-Mail-Adresse sein.",
+      "emailRegisterPasswordTooShort": "Das Passwort muss mindestens 6 Zeichen lang sein.",
+      "mixedAccounts": "Diese E-Mail-Adresse ist bereits mit einem Konto verknüpft. Bitte versuchen Sie eine andere Anmeldungsmethode. Wenn Sie wissen, dass Ihr Konto ein Passwort hat, stellen Sie sicher, dass Sie sich mit Ihrer E-Mail-Adresse und Ihrem Passwort anmelden. Andernfalls verwenden Sie Ihr Google- oder Facebook-Konto zur Anmeldung.",
+      "forgotEmailGeneric": "Verbindung zum Server fehlgeschlagen",
+      "alertTitleGeneric": "Fehler",
+      "alertTitleWarning": "Warnung",
+      "alertButtonLabelGeneric": "OK",
+      "imagePickerFailed": "Bei der Auswahl des Bildes ist ein Fehler aufgetreten..",
+      "imageOverSizeThreshold": "Sie sind dabei, ein außergewöhnlich großes Bild hochzuladen. Stellen Sie sicher, dass Sie über eine schnelle und zuverlässige Internetverbindung verfügen.",
+      "generic": "Etwas ist schief gelaufen",
+      "fetchUserDataError": "Die vom Server abgerufenen Benutzerdaten sind deformiert. Bitte melden Sie dieses Problem an unser Support-Team."
+    },
+    "auth": {
+      "login": "Anmelden",
+      "loginGoogle": "Anmelden mit Google",
+      "loginFB": "Anmelden mit Facebook",
+      "loginEmail": "Anmelden mit email",
+      "or": "ODER",
+      "noAccountRegister": "Noch kein Account? Hier geht es zur Registrierung >",
+      "register": "Registrieren",
+      "registerFormSubmit": "Registrieren",
+      "sendingRequest": "Daten werden übermittelt...",
+      "logout": "Abmelden",
+      "email": "Email",
+      "password": "Passwort",
+      "forgottenPassword": "Passwort vergessen?",
+      "alreadyHaveAccount": "Ich habe bereits ein Konto >",
+      "registerSubmitBtn": "Registrieren",
+      "forgotPasswordSubmitBtn": "Abschicken",
+      "forgotEmailSuccededAlertTitle": "Erfolg",
+      "forgotEmailSuccededAlertMessage": "Eine E-Mail mit Anweisungen zum Einrichten eines neuen Passworts wurde an Ihre E-Mail-Adresse geschickt.",
+      "forgotEmailSuccededAlertButtonLabel": "OK"
+    },
+    "headerBar": {
+      "back": "Zurück",
+      "login": "Anmelden",
+      "register": "Registrieren",
+      "forgottenPassword": "Passwort vergessen",
+      "settings": "Einstellungen",
+      "settingsNavigator": "Einstellungen",
+      "stable": "Mein Stall",
+      "stableNavigator": "Mein Stall",
+      "diary": "Tagebuch",
+      "diaryNavigator": "Tagebuch",
+      "animalForm": "Tier",
+      "syndromes": "Cushing-check",
+      "syndromesNavigator": "Cushing-check",
+      "about": "Über",
+      "aboutNavigator": "Über",
+      "logout": "Abmelden",
+      "logoutNavigator": "Abmelden",
+      "diaryExercise": "Bewegung",
+      "diaryAppointment": "Terminplan",
+      "diaryFeeding": "Fütterung",
+      "diaryHousing": "Auslauf",
+      "diaryMedication": "Mein Tierarzt",
+      "diaryPainMeasurement": "Schmerzmessung",
+      "changePassword": "Passwort",
+      "deleteAccount": "Account löschen ",
+      "painMeasurementNavigator": "Schmerzmessung",
+      "welfareInfo": "Leitlinien",
+      "welfareNavigator": "Leitlinien für das Tierwohl bei Pferden",
+      "copyEvents": "Kopieren",
+      "agenda": "Terminplanung",
+      "epwaphotoupload": "EPWA foto-Upload",
+      "epwaphotouploadNavigator": "EPWA foto-Upload"
+    },
+    "turnout": {
+      "sharedAreaWithOtherAnimals": "Gemeinsam mit anderen Tieren genutzter Bereich",
+      "alone": "allein",
+      "sharedWithHorses": "Mit anderen Pferden",
+      "sharedWithDonkeys": "Mit anderen Eseln",
+      "sharedWithOtherAnimals": "Mit anderen Tieren"
+    },
+    "exportEvents": {
+      "alertTitle": "Exportieren Sie Ihren Tagesbericht",
+      "alertMsg": "Ihr Tagesbericht steht zum Herunterladen bereit",
+      "alertCancelBtn": "Abbrechen",
+      "alertDownloadBtn": "Herunterladen"
+    },
+    "painMeasurement": {
+      "full": {
+        "timer": {
+          "fullCountdown": "Wie funktioniert die Schmerzmessung?",
+          "headCountdown": "Wie funktioniert die Schmerzmessung?",
+          "layingDownRolling": "Hinlegen, Wälzen",
+          "tailFlicking": "Schweifschlagen",
+          "kickingAtAbdomen": "Treten nach dem Bauch ",
+          "pawing": "Scharren",
+          "headMovements": "Kopfbewegungen",
+          "painSounds": "Schmerzlaute",
+          "pointingTowardsTheFloor": "Auf den Boden zeigen",
+          "lookingAtAbdomen": "Sich nach dem Bauch umsehen"
+        },
+        "observation": {
+          "donkey": {
+            "layingDownRolling": "Hinlegen, Wälzen",
+            "layingDownRollingOptions": [
+              "Der Esel steht ruhig oder liegt und ruht",
+              "Liegen oder Wälzen < 50% der Zeit",
+              "Liegen oder Wälzen > 50% der Zeit",
+              "Liegt permanent in unnatürlicher Haltung "
+            ],
+            "overallAppearance": "Allgemeines Erscheinungsbild",
+            "overallAppearanceOptions": [
+              "Wach/Interaktion mit Partnertier oder Gruppe",
+              "Geringgradig apathisch und/oder ruhelos und/oder verminderte Interaktion mit Partnertier oder Gruppe",
+              "Mittelgradig apathisch und/oder agressive und/oder keine Reaktion auf Partnertier oder Gruppe",
+              "Hochgradig apathisch"
+            ],
+            "earPosition": "Position der Ohren",
+            "earPositionOptions": [
+              "Normale Position >75% der Zeit",
+              "Abnormale Position (nach hinten, zur Seite, flach anliegend)"
+            ],
+            "posture": "Haltung",
+            "postureOptions": [
+              "Steht ruhig und/oder schildert mit einem Hinterbein",
+              "Geringgradig aufgezogener Bauch und/oder geringgradige Gewichtsverlagerung",
+              "Bauch stark aufgezogen, runder Rücken und/oder gestreckter Körper/gestreckte Gliedmaßen und/oder geringgradiges Muskelzittern",
+              "Hundesitz und/oder extremes Muskelzittern"
+            ],
+            "weightDistribution": "Gewichtsverteilung",
+            "weightDistributionOptions": [
+              "Normale Gewichtsverteilung",
+              "Abnormale Gewichtsverteilung"
+            ],
+            "headCarriage": "Kopfhaltung",
+            "headCarriageOptions": [
+              "Ohrbasis oberhalb Widerrist oder frisst/trinkt vom Boden",
+              "Ohrbasis auf Höhe Widerrist",
+              "Ohrbasis unterhalb Widerrist"
+            ],
+            "sweating": "Schwitzt",
+            "sweatingOptions": [
+              "Keine Anzeichen für Schwitzen",
+              "Feuchtes Fell, kein Schweiss sichtbar",
+              "Nasse Flecken sichtbar, keine Tropfen oder laufender Schweiss",
+              "Extremes Schwitzen, laufender Schweiss oder Tropfen können vorhanden sein"
+            ],
+            "eating": "Frisst",
+            "eatingOptions": [
+              "Frisst normal oder darf nicht fressen",
+              "Frisst weniger und/oder langsam",
+              "NKein Interesse an Futter"
+            ],
+            "changesInBehaviour": "Verändertes Verhalten gegenüber Partnertier oder Gruppe",
+            "changesInBehaviourOptions": [
+              "Esel befindet sich in der Gruppe oder beim Partnertier",
+              "Gruppe oder Partnertier entfernt sich vom Esel"
+            ],
+            "reactionToObserver": "Reaktion auf Beobachter",
+            "reactionToObserverOptions": [
+              "Geht auf Beobachter zu/ wendet sich Beobachter zu",
+              "Geringe Reaktion auf Beobachter",
+              "Keine Reaktion auf Beobachter"
+            ]
+          },
+          "behaviour": "Verhalten/Körperhaltung",
+          "behaviourOptions": [
+            "Steht ruhig und/oder schildert mit einem Hinterbein, untersucht Umgebung",
+            "Etwas aufgezogener Bauch, untersucht noch Umgebung",
+            "Stark aufgezogener Bauch, aufgekrümmter Rücken und/oder gestreckter Körper, gestreckte Hintergliedmaßen",
+            "Steht entweder nicht oder nur für kurze Zeit, Hundesitz"
+          ],
+          "overallAppearance": "Allgemeiner Eindruck, Reaktion auf Beobachter",
+          "overallAppearanceOptions": [
+            "Ruhig aber aufmerksam, geht auf Beobachter zu/ wendet sich Beobachter zu",
+            "Aufmerksam, keine Bewegungsunlust, offensichtliche Reaktion auf Geräusche/Bewegungen",
+            "Unruhig, bewegt sich permanent, übertriebene Reaktion auf Geräusche/Bewegungen",
+            "Apathisch: bewegt sich nicht, lässt Kopf hängen, reagiert wenig oder nicht auf Bewegungsaufforderung"
+          ],
+          "sweating": "Schwitzt",
+          "sweatingOptions": [
+            "Keine Anzeichen für Schwitzen",
+            "Feuchtes Fell, kein Schweiss sichtbar",
+            "Nasse Flecken sichtbar, keine Tropfen oder laufender Schweiss",
+            "Extremes Schwitzen, laufender Schweiss oder Tropfen können vorhanden sein"
+          ]
+        },
+        "vet": {
+          "donkey": {
+            "respiratoryRate": "Atemfrequenz",
+            "respiratoryRateOptions": [
+              "12-28 Atemzüge/min",
+              "29-32 Atemzüge/min",
+              "33-36 Atemzüge/min",
+              ">36 Atemzüge/min"
+            ],
+            "heartRate": "Herzfrequenz",
+            "heartRateOptions": [
+              "32-52 Schläge/min",
+              "32-52 Schläge/min",
+              "61-68 Schläge/min",
+              ">68 Schläge/min"
+            ],
+            "digestiveSounds": "Darmgeräusche",
+            "digestiveSoundsOptions": [
+              "Normale Darmgeräusche/Darmbewegungen",
+              "Verminderte Darmgeräusche",
+              "Keine Darmgeräusche",
+              "Vermehrte Darmgeräusche oder tympanische Geräusche"
+            ],
+            "rectalTemperature": "Rektaltemperatur",
+            "rectalTemperatureOptions": [
+              "35,7-38,0 Grad Celsius",
+              "35,3-35,6 oder 38,1-38,5 Grad Celsius",
+              "34,7-35,2 oder 38,6-39,0 Grad Celsius",
+              "<34 oder >39,1 Grad Celsius"
+            ]
+          },
+          "respiratoryRate": "Atemfrequenz",
+          "respiratoryRateOptions": [
+            "8-13 Atemzüge/min",
+            "14-16 Atemzüge/min",
+            "17-18 Atemzüge/min",
+            "> 18 Atemzüge/min"
+          ],
+          "heartRate": "Herzfrequenz",
+          "heartRateOptions": [
+            "24-44 Schläge/Minute",
+            "45-52 Schläge/Minute",
+            "53-60 Schläge/Minute",
+            ">60 Schläge/Minute"
+          ],
+          "digestiveSounds": "Darmgeräusche",
+          "digestiveSoundsOptions": [
+            "Normale Darmgeräusche",
+            "Verminderte Darmgeräusche",
+            "Keine Darmgeräusche",
+            "Vermehrte Darmgeräusche oder tympanische Geräusche"
+          ],
+          "rectalTemperature": "Rektaltemperatur",
+          "rectalTemperatureOptions": [
+            "36,9-38,5 Grad Celsius",
+            "36.4-36.9 oder 38.5-39 Grad Celsius",
+            "35.9-36.4 oder 39-39.5 Grad Celsius",
+            "35.4-35.9 oder 39.5-40 Grad Celsius"
+          ]
+        },
+        "interaction": {
+          "donkey": {
+            "reactionToPalpation": "Reaktion auf Betasten der schmerzhaften Körperregion",
+            "reactionToPalpationOptions": [
+              "Keine Reaktion auf Betasten",
+              "Geringe Reaktion auf Betasten",
+              "Starke Reaktion auf Betasten"
+            ],
+            "movement": "Bewegung",
+            "movementOptions": [
+              "Keine Bewegungsunlust, keine Bewegungsstörung",
+              "Geringgradige Bewegungsstörung (Grad 1 oder 2 von 6) und/oder steifer Gang",
+              "Bewegungsunlust bei Aufforderung und/oder hochgradige Bewegungsstörung (Grad 3-5 von 5)",
+              "Bewegt sich nicht, oder Esel legt sich ab"
+            ]
+          },
+          "reactionToPalpation": "Reaktion auf Betasten",
+          "reactionToPalpationOptions": [
+            "Keine Reaktion auf Betasten",
+            "Geringe Reaktion auf Betasten",
+            "Mittelmäßige Reaktion auf Betasten",
+            "Starke Abwehrreaktion bei (Versuch des) Betastens"
+          ]
+        }
+      },
+      "head": {
+        "timer": {
+          "fullCountdown": "Wie funktioniert die Schmerzmessung?",
+          "headCountdown": "Wie funktioniert die Schmerzmessung?",
+          "flehming": "Flehmen",
+          "yawning": "Gähnen",
+          "teethGrinding": "Zähneknirschen",
+          "moaning": "Stöhnen",
+          "smacking": "Schmatzen",
+          "headShaking": "Kopfschütteln"
+        },
+        "observation": {
+          "donkey": {
+            "head": "Kopf",
+            "headOptions": [
+              "Bewegt sich normal/Interesse an der Umgebung",
+              "Bewegt sich weniger/gar nicht",
+              "Bewegt sich mehr/übermäßig"
+            ],
+            "eyelids": "Augenlider",
+            "eyelidsOptions": [
+              "Geöffnet",
+              "Augen mehr als normal geöffnet (Rand über dem Auge sichtbar) oder verengte Lidspalte",
+              "Augen vermehrt geöffnet (Rand über Auge sichtbar) oder verengte Lidspalte. Der Rand der Sklera ist die meiste Zeit sichtbar."
+            ],
+            "focus": "Aufmerksamkeit",
+            "focusOptions": [
+              "Auf die Umgebung fokussiert",
+              "Weniger auf die Umgebung fokussiert",
+              "Nicht auf die Umgebung fokussiert"
+            ],
+            "nostrils": "Nüstern",
+            "nostrilsOptions": [
+              "Entspannt",
+              "Etwas geöffnet, Nüstern geweitet, Falten sichtbar",
+              "Deutlich stärkere Öffnung, stark geweitete Nüstern, möglicherweise hörbare Atmung"
+            ],
+            "mouthCorners": "Maulwinkel",
+            "mouthCornersOptions": ["Entspannt", "Geweitet"],
+            "muscleToneHead": "Muskeltonus Kopf",
+            "muscleToneHeadOptions": [
+              "Keine Faszikulationen oder erhöhte Spannung",
+              "Geringradige Faszikulationen oder erhöhte Spannung",
+              "Deutliche Faszikultionen oder erhöhte Spannung"
+            ],
+            "sweatingBehindTheEars": "Schwitzt hinter den Ohren",
+            "sweatingBehindTheEarsOptions": [
+              "Keine Anzeichen für Schwitzen",
+              "Anzeichen für Schwitzen"
+            ],
+            "earPosition": "Position der Ohren",
+            "earPositionOptions": [
+              "Normale Position",
+              "Abnormale Position: Ohren hängen herunter",
+              "Abnormale Position: Ohren zeigen nach hinten"
+            ],
+            "responseToAuditoryStimulus": "Ohren, Reaktion auf Geräusch",
+            "responseToAuditoryStimulusOptions": [
+              "Deutliche Reaktion mit beiden Ohren oder dem der Geräuschquelle zugewandten Ohr",
+              "Verzögerte/verminderte Reaktion auf Geräusche",
+              "Keine Reaktion auf Geräusche"
+            ]
+          },
+          "head": "Kopf",
+          "headOptions": [
+            "Normale Bewegung/Interesse an der Umgegung",
+            "Bewegt sich weniger",
+            "Bewegt sich nicht"
+          ],
+          "eyelids": "Augenlider",
+          "eyelidsOptions": [
+            "Geöffnet, bei Bewegung von Auge/Kopf wird die Sklera (Weißes im Auge) sichtbar",
+            "Augen vermehrt geöffnet (Rand über Auge sichtbar) oder verengte Lidspalte. Der Rand der Sklera ist die meiste Zeit sichtbar. ",
+            "Augen vermehrt geöffnet (Rand über Auge sichtbar) oder verengte Lidspalte. Der Rand der Sklera ist die meiste Zeit sichtbar."
+          ],
+          "focus": "Fokus",
+          "focusOptions": [
+            "Auf die Umgebung fokussiert",
+            "Weniger auf die Umgebung fokussiert",
+            "Nicht auf die Umgebung fokussiert"
+          ],
+          "nostrils": "Nüstern",
+          "nostrilsOptions": [
+            "Entspannt",
+            "Etwas geöffnet",
+            "Deutlich stärkere Öffnung, stark geweitete Nüstern, möglicherweise hörbare Atmung"
+          ],
+          "mouthCorners": "Maulwinkel",
+          "mouthCornersOptions": [
+            "Entspannt",
+            "Etwas angespannt/zurückgezogen",
+            "Deutlich angespannt/zurückgezogen"
+          ],
+          "muscleToneHead": "Muskeltonus Kopf",
+          "muscleToneHeadOptions": [
+            "Keine Faszikulationen oder vermehrte Spannung",
+            "Geringgradige Faszikulationen oder vermehrte Spannung",
+            "Deutliche Faszikulationen oder vermehrte Spannung"
+          ],
+          "ears": "Ohren (Reaktion auf Geräusch)",
+          "earsOptions": [
+            "Orientierung in Richtung auf das Geräusch/deutliche Reaktion mit beiden Ohren oder aber mit dem dem Geräusch zugewandten Ohr",
+            "Verzögerte/verminderte Reaktion auf Geräusche",
+            "Ohren nach hinten gerichtet, keine Reaktion auf Geräusche"
+          ]
+        }
+      },
+      "explanationTexts": {
+        "fullCountdown": [
+          "Klicken Sie auf die Schaltfläche „Schmerzmessung starten“. Die ersten Beobachtungen nehmen 5 Minuten in Anspruch. Die Uhr in der Mitte misst die Zeit.",
+          "Tritt Ihr Tier {{Tierart}} nach seinem Bauch? Jedes Mal, wenn Sie das entsprechende Symbol anklicken, erscheint über dem Symbol eine Zahl. Auf diese Weise wird festgehalten, wie oft Ihr Tier {{Tierart}} das Verhalten zeigt.",
+          "Liegt das Tier permanent in einer unnatürlichen Position?",
+          "Das Tier {{Tierart}} liegt dann in einer unnatürlichen Position, wenn es ausgestreckt liegt, wobei die Vorderbeine häufig nach vorn und die Hinterbeine nach hinten gestreckt sind. Das Tier {{Tierart}} kann auch auf dem Rücken liegen, mit den Gliedmaßen nach oben.",
+          "Wenn Ihr {{Tierart}} über längere Zeiträume in einer abnormalen Position liegt, klicken Sie bitte nach 5 Minuten auf diese Schaltfläche.",
+          "Haben Sie einen Fehler gemacht und zu viele Bewegungen gezählt? Klicken Sie auf die Schaltfläche „Rückgängig“ links unten, um Ihre letzte Eingabe zu löschen."
+        ],
+        "headCountdown": [
+          "Klicken Sie auf die Schaltfläche „Schmerzmessung starten“, um anzufangen. Die erste Beobachtungsperiode dauert 2 Minuten. Die Uhr in der Mitte zeigt die verbleibende Zeit an.",
+          "Gähnt Ihr {{Tierart}}? Jedes Mal, wenn Sie das entsprechende Symbol anklicken, erscheint eine Zahl über dem Icon. Auf diese Weise wird festgehalten, wie oft Ihr Pferd ein bestimmtes Verhalten zeigt.",
+          "Haben Sie einen Fehler gemacht und zu viele Bewegungen gezählt? Klicken Sie auf die Schaltfläche „Rückgängig“ links unten, um Ihre letzte Eingabe zu löschen."
+        ],
+        "layingDownRolling": [
+          "Liegen und Wälzen sind natürliche Verhaltensweisen bei {{Tierart}}. Allerdings kann ein solches Verhalten auch Schmerz anzeigen.",
+          "Klicken Sie während der Schmerzmessung jedes Mal auf das Symbol, sobald Ihr {{Tierart}} damit beginnt, sich hinzulegen oder zu wälzen."
+        ],
+        "tailFlicking": [
+          "Ein {{Tierart}} schlägt mit dem Schweif, um Fliegen abzuwehren. Allerdings kann ein solches Verhalten auch Schmerz anzeigen.  .",
+          "Klicken Sie während der Schmerzmessung jedes Mal auf das Symbol, wenn Ihr {{Tierart}} mit dem Schweif schlägt."
+        ],
+        "kickingAtAbdomen": [
+          "Ein {{Tierart}} tritt ggf. nach dem Bauch, um Fliegen abzuwehren. Allerdings kann ein solches Verhalten auch Schmerz anzeigen.",
+          "Klicken Sie während der Schmerzmessung jedes Mal auf das Symbol, wenn Ihr {{Tierart}} nach dem Bauch tritt."
+        ],
+        "pawing": [
+          "Scharren mit den Vorderhufen kann ein Ausdruck von Ungeduld sein. Allerdings kann ein solches Verhalten auch Schmerz anzeigen.",
+          "Klicken Sie während der Schmerzmessung jedes Mal auf das Symbol, wenn Ihr {{Tierart}} mit den Vorderhufen scharrt."
+        ],
+        "headMovements": [
+          "Ein {{animalType}} bewegt seinen Kopf, um eine Fliege abzuschütteln. Abrupte Kopfbewegungen, etwa von rechts nach links, hoch und runter, oder Umsehen nach der Flanke, können aber auch Anzeichen von Schmerzen sein.",
+          "Klicken Sie während der Schmerzmessung jedes Mal auf das Symbol, wenn Ihr {{Tierart}} seinen Kopf plötzlich bewegt."
+        ],
+        "painSounds": [
+          "Beispiele für Schmerzlaute sind Zähneknirschen und Stöhnen. Solche Laute zeigen Schmerz an.",
+          "Klicken Sie während der Schmerzmessung jedes Mal auf das Symbol, wenn Ihr {{Tierart}} stöhnt oder mit den Zähnen knirscht."
+        ],
+        "flehming": [
+          "Flehmen ist ein natürliches Verhalten.",
+          "Klicken Sie während der Schmerzmessung jedes Mal auf das Symbol, wenn Ihr {{Tierart}} flehmt."
+        ],
+        "yawning": [
+          "Gähnen kann ein Schmerzsignal sein.",
+          "Klicken Sie während der Schmerzmessung jedes Mal auf das Symbol, wenn Ihr {{Tierart}} gähnt."
+        ],
+        "teethGrinding": [
+          "Zähneknirschen kann ein Schmerzsignal sein.",
+          "Klicken Sie während der Schmerzmessung jedes Mal auf das Symbol, wenn Ihr {{Tierart}} mit den Zähnen knirscht."
+        ],
+        "moaning": [
+          "Stöhnen kann ein Schmerzsignal sein.",
+          "Klicken Sie während der Schmerzmessung jedes Mal auf das Symbol, wenn Ihr {{Tierart}} stöhnt."
+        ],
+        "headShaking": [
+          "Kopfschütteln kann ein Schmerzsignal sein.",
+          "Klicken Sie während der Schmerzmessung jedes Mal auf das Symbol, wenn Ihr {{Tierart}} mit dem Kopf schüttelt."
+        ],
+        "smacking": [
+          "Schmatzen kann ein Schmerzsignal sein. .",
+          "Klicken Sie während der Schmerzmessung jedes Mal auf das Symbol, wenn Ihr {{Tierart}} schmatzt."
+        ],
+        "pointingTowardsTheFloor": [
+          "Das Anheben eines Vorderbeines kann Schmerz anzeigen, da das Vorderbein hierdurch entlastet wird.",
+          "Klicken Sie während der Schmerzmessung jedes Mal auf das Symbol, wenn Ihr {{Tierart}} ein Vorderbein anhebt."
+        ],
+        "lookingAtAbdomen": [
+          "Ein Esel kann sich zu seinem Bauch umsehen, wenn er (Kolik) Schmerzen hat.",
+          "Klicken Sie während der Schmerzmessung jedes Mal auf das Symbol, wenn Ihr {{Tierart}} sich nach dem Bauch umsieht."
+        ]
+      },
+      "misc": {
+        "headerTitle": "Schmerzmessung",
+        "recentMeasurementTitle": "Letzte Schmerzmessung",
+        "horse": "Pherd",
+        "horse_plural": "Pherde",
+        "donkey": "Esel",
+        "donkey_plural": "Esel",
+        "compositePainScale": "Zusammengesetzte Schmerzskala",
+        "facialExpressions": "Gesichtsausdrücke (Mimik)",
+        "adviceTitle": "Empfehlung",
+        "adviceText": "Führen Sie die Schmerzmessung zunächst zu einem Zeitpunkt durch, an dem Sie sicher sind, dass Ihr {{Tierart}} komplett gesund ist. Damit haben Sie einen Vergleich, sollten Sie die App in einem Notfall benutzen müssen.\n \nPositionieren Sie sich in kurzem Abstand, idealerweise ausserhalb der Box, von Ihrem {{Tierart}} und verhalten Sie sich ruhig, wenn Sie Ihr/Ihren {{Tierart}} während des ersten Abschnitts der Schmerzmessung beobachten. Diese App basiert auf Forschungsergebnissen zu den unterschiedliche Arten akuter Schmerzen und kann von Tierärzten und Besitzern von {{Tierart}} benutzt werden. Tierärzte sehen dabei etwas andere Parameter als Tierbesitzer.\n \nEs bestehen zwei verschiedene Optionen für die Bewertung:",
+        "compositePainScaleTitle": "Zusammengesetzte Schmerzskala",
+        "compositePainScaleExplanation": "Die zusammengesetzte Schmerzskala basiert auf wissenschaftlichen Forschungsergebnissen und liefert verlässliche Informationen bei Pferden mit akuter Kolik und Eseln mit akuten orthopädischen Problemen, postoperative Schmerzen und Schmerzen durch Koliken. Die Skala bewertet die Körpersprache des Tieres anhand von Verhaltens-, Interaktions- und physiologischen Parametern. Eine höhere Gesamtpunktzahl als {{composMeasurementScoreThreshold}} kann ein Hinweis auf akute Schmerzen sein. Je höher die Punktzahl, desto wahrscheinlicher ist es, dass das Tier akute Schmerzen hat.",
+        "facialExpressionsTitle": "Gesichtsausdrücke (Mimik)",
+        "facialExpressionExplanation": "Die Mimikschmerzskala (Gesichtsausdrücke) basiert auf wissenschaftlichen Forschungsergebnissen und liefert verlässliche Informationen bei Pferden mit akuter Kolik, Schmerzen im Bereich des Gesichts und akuten orthopädischen Schmerzen sowie bei Eseln mit akuten orthopädischen Schmerzen, postoperativen Schmerzen und akuter Kolik. Die Mimikschmerzskala liefert zusätzlich verlässliche Informationen bei Eseln mit akuten Kolikscherzen und Schmerzen im Gesichtsbereich. Mithilfe der Mimikschmerzskala werden die verschiedenen Gesichtsausdrücke der Tiere bei Schmerzen bewertet. Ein Wert von mehr als {{MimikskalaSchwellenwert}} kann akute Schmerzen anzeigen. Je höher die Punktzahl, desto warhscheinlicher hat das/der {{Tierart}} Schmerzen.",
+        "adviceCompositeMeasurementPain": "Wie es aussieht, hat Ihr {{Tierart}} akute Schmerzen. Bitte kontaktieren Sie Ihren Tierarzt.",
+        "adviceCompositeMeasurementNoPain": "Wie es aussieht, hat Ihr {{Tierart}} momentan keine akuten Schmerzen.",
+        "adviceFacialExpressionMeasurementPain": "Wie es aussieht, hat Ihr {{Tierart}} akute Schmerzen. Bitte kontaktieren Sie Ihren Tierarzt.",
+        "adviceFacialExpressionMeasurementNoPain": "Wie es aussieht, hat Ihr {{Tierart}} momentan keine akuten Schmerzen.",
+        "areYouVet": "Sind Sie Tierarzt??",
+        "animalTypeQuestion": "Welches Tier möchten Sie bewerten?",
+        "measurementTypeQuestion": "Welche Schmerzskala möchten Sie verwenden?",
+        "countMovementsCommand": "Bewerten Sie die Bewegungen für {{Anzahl Minuten}} Minuten.",
+        "prepareCommand": "Funktioniert Ihre Schmerzmessung?",
+        "clickTheIconToKnowMore": "Für weitere Informationen klicken Sie bitte auf die Symbole.",
+        "baseline": "Basiswert",
+        "pain": "Schmerzen",
+        "frequency": "Frequenz",
+        "observation": "Beobachtung",
+        "reaction": "Reaktion",
+        "liesInUnnaturalPosition": "Liegt permanent in unnatürlicher Haltung",
+        "loginToSave": "Einträge in ein Tagebuch können nur durch registrierte Nutzer vorgenommen werden.",
+        "resetForm": "Erneut versuchen",
+        "nextStep": "Nächster Schritt",
+        "seeResult": "Ergebnisse ansehen",
+        "goToSignUp": "Anmelden",
+        "goToDiary": "Im Tagebuch speichern",
+        "safetyInfo": [
+          "Bitte beachten Sie, dass die Schmerzmessung keine tierärztliche Diagnose ersetzt.",
+          "Im Zweifelsfall wenden Sie sich bitte an Ihren Tierarzt. Ihre Sicherheit und die Ihres Tieres hat oberste Priorität."
+        ],
+        "selectAnswer": "Wählen Sie die beste Option",
+        "score": "Bewerten",
+        "ourAdvice": "Unsere Empfehlung",
+        "startMeasurement": "Messung starten",
+        "showOverview": "Alle Messungen ansehen"
+      }
+    },
+    "ppidCheck": {
+      "introductionTitle": "Cushing-Check/Cushing-Diagnose",
+      "introductionContent": "Das Cushing-Syndrom kann mit bestimmten Medikamenten behandelt werden, um die Symptome zu lindern. Durch eine besonders intensive Beobachtung und Pflege Ihres Pferdes können Sie Komplikationen vermindern oder sogar verhindern. \n.\nFalls die Ergebnisse des Cushing-Checks darauf hindeuten, dass Ihr Pferd an einem Cushing Syndrom leiden könnte, bitten Sie Ihren Tierarzt um einen Cushing-Bluttest. Ihr Tierarzt kann anhand des Bluttests innerhalb weniger Tage feststellen, ob Ihr Pferd an einem Cushing-Syndrom leidet oder nicht.",
+      "startTitle": "Cushing-Check durchführen",
+      "startContent": "Das Cushing-Syndrom, eine Erkrankung der Pars media der Hypophyse, tritt bei Pferden un Ponies > 15 Jahre häufig auf. \n \nFür die von Paardenkamp Stiftung, die niederländische Gesellschaft und Kompetenzzentrum für in Rente befindliche und ältere Pferde, ist das Cushing-Syndrom ein gut bekanntes Syndrom. Mitarbeiter und Tierärzte der De Paardenkamp Stiftung teilen sehr gern ihr Wissen und Ihre Expertise, darum haben sie diesen Cushing-Check entwickelt. \n \nMöchten Sie prüfen, ob bei Ihrem Pferd ein Risiko besteht? \nMachen Sie den Cushing-Check!",
+      "startButton": "Cushing-Check starten",
+      "resultTitleNegative": "Cushing-Check Ergebnis – vermutlich nicht",
+      "resultTitlePositive": "Cushing-Check Ergebnis – möglicherweise",
+      "resultContentNegative": "Die Ergebnisse des Checks weisen darauf hin, dass Ihr Pferd derzeit keine der wichtigsten Symptome des Cushing-Syndroms zeigt. \nSind Sie nicht ganz sicher? Dann bitten Sie Ihren Tierarzt, einen Cushing-Bluttest durchzuführen.",
+      "resultContentPositive": "Die Ergebnisse des Checks weisen darauf hin, dass Ihr Pferd an Cushing leden könnte. Sie können Ihren Tierarzt bitten, einen Cushing-Bluttest durchzuführen. Ihr Tierarzt kann anhand des Bluttests innerhalb weniger Tage feststellen, ob Ihr Pferd an einem Cushing-Syndrom leidet oder nicht.\n\nDas Cushing-Syndrom kann mit bestimmten Medikamenten behandelt werden, um die Symptome zu lindern. Durch eine besonders intensive Beobachtung und Pflege Ihres Pferdes können Sie Komplikationen vermindern oder sogar verhindern.",
+      "resultExitButton": "Ergebnis schließen",
+      "title": {
+        "a": "Über den Augen eingefallen",
+        "b": "Fellveränderungen",
+        "c": "Trinken und Harnabsatz",
+        "d": "Hufrehe",
+        "others": [
+          "Alter",
+          "Appetit",
+          "Lethargie",
+          "Winterfell",
+          "Schwitzen",
+          "Geringe Widerstandskraft",
+          "Rückenmuskulatur",
+          "Bauchmuskulatur",
+          "Plötzliche Erblindung oder epileptischer Anfall",
+          "Fruchtbarkeit"
+        ]
+      },
+      "content": {
+        "a": "Wölbt sich der Bereich über den Augen Ihres Pferdes vor? \n \nFetteinlagerungen in ungewöhnlichen Lokalisationen, z.B. oberhalb der Augen, sind Symptome eines Cushing-Syndroms.",
+        "b": "Hat Ihr Pferd längeres, welliges Fell entwickelt (ggf. sogar eine andere Farbe?) Oder zeigen sich plötzlich längere, wellige Haarpartien an verschiedenen Körperstellen? \n \nFellveränderungen, z.B. langes und/oder welliges Fell, sind ein häufiges Symptom des Cushing-Sydroms.",
+        "c": "Trinkt Ihr Pferd mehr und setzt mehr Harn ab als früher?\n\n Vermehrtes Trinken und häufigeres Stallen sind Symptome, die auf ein Cushing-Syndrom hinweisen könnten.",
+        "d": "Leidet Ihr Pferd momentan an Laminitis (Hufrehe), oder hat es in der Vergangenheit Laminitis gehabt? Laminitis kann ein Symptom von PPID (Cushing) sein.",
+        "others": [
+          "Ist Ihr Pferd älter als 15 Jahre? \n \nDas Cushing-Syndrom ist bei Pferden > 15 Jahre häufiger anzutreffen.",
+          "Hat Ihr Pferd plötzlich mehr Appetit? \n\nPferde mit Cushing-Syndrom fressen mehr, und verlieren aber trotz der erhöhten Futteraufnahme an Gewicht.",
+          "Ist Ihr Pferd lethargisch oder weniger arbeitswillig? \n\nIn vielen Fällen sind Lethargie und eine verringerte Leistung die ersten Anzeichen für ein Cushing-Syndrom.",
+          "Benötigt Ihr Pferd nach dem Winter länger für den Fellwechsel? \n\nFellveränderungen, etwa die Bildung langen und/oder welligen Fells, sind häufige Veränderungen des Cushing-Syndroms.",
+          "Schwitzt Ihr Pferd mehr, v.a. an ungewöhnlichen Stellen wie am hals und an den Schultern? \n\nAuffälliges Schwitzen, häufig am Hals und im Bereich der Schultern, kann ein Anzeichen für ein Cushing-Syndrom sein.",
+          "Zeigt Ihr Pferd Anzeichen für ein schwaches Immunsystem, z.B. wiederholte Nebenhöhleninfektionen oder schlecht heilende, kleine Wunden? \n\nEine Immunschwäche zeigt sich oft in wiederholten Infektionen oder eine schlechte Wundheilung und kann ein Symptom für ein Cushing-Syndrom sein.",
+          "Nimmt die Rückenmuskulatur Ihres Pferdes ab? Muskelschwund, auch Muskelatrophie genannt, zum Beispiel im Pferderücken, kann ein sichtbares Symptom von PPID (Cushing sein).",
+          "Wird die Bauchmuskulatur Ihres Pferdes schwächer und entwickelt es einen Hängebauch?\n\nEine Muskelatrophie, z.B. der Bauchmuskulatur, kann ein sichtbaren Zeichen für ein Cushing-Syndrom sein.",
+          "“Ist Ihr Pferd plötzlich erblindet oder hatte es einen epileptischen Anfall? \n\nIn einigen Fällen können Epilepsie und Erblindung Anzeichen für ein Cushing-Syndrom sein.",
+          "Hat Ihre Stute Probleme, aufzunehmen oder wird sie nicht mehr tragend? \n\nSchwierigkeiten aufzunehmen und eine spontane Milchbildung können auf ein Cushing-Syndrom hinweisen."
+        ]
+      }
+    },
+    "animalBreeds": {
+      "horse": {
+        "andalusian": "Andalusier",
+        "appaloosa": "Appaloosa",
+        "arabianHorse": "Arabisches Pferd",
+        "connemara ": "Connemara",
+        "dartmoorPony": "Dartmoor Pony",
+        "trotter": "Traber",
+        "falabella": "Falabella ",
+        "fjordHorse": "FjordPherd ",
+        "friesianHorse": "Friese",
+        "gelderlandHorse": "Gelderland Pferd",
+        "groningenHorse": "Groninger Pferd",
+        "hackney": "Hackney",
+        "haflinger": "Haflinger",
+        "hanoverian": "Hanoveraner",
+        "holsteiner": "Holsteiner",
+        "icelandicHorse": "Islandpferd",
+        "dutchWarmblood": "Niederländisches Warmblut (KWPN)",
+        "lipizzan": "Lipizzaner",
+        "merens": "Mérens-Pferd",
+        "newForest": "New Forest",
+        "miniatureHorse": "Amerikanisches Miniature Horse",
+        "dutchRidingPony": "Niederländisches Reitpony",
+        "oldenburgHorse": "Oldenburger",
+        "quarterHorse": "Quarter horse",
+        "shetlandPony": "Shetland Pony",
+        "shire": "Shire Horse",
+        "tinker ": "Tinker",
+        "trakehner ": "Trakehner",
+        "draftTrotter": "Draft trotter (Kaltbluttraber)",
+        "welshPony": "Welsh pony",
+        "other": "Andere Rassen"
+      },
+      "donkey": {
+        "grandNoir": "Grand Noir",
+        "poitou": "Poitou-Esel",
+        "dutch": "Niederländischer Esel",
+        "pyrenean": "Pyrenäenesel",
+        "mini": "Mini",
+        "micro": "Micro",
+        "mule": "Maultier"
+      }
+    },
+    "animalCompetitionLevels": {
+      "horse": {
+        "amateur": "Amateur",
+        "professional": "Berufsreiter",
+        "elite": "Elite",
+        "n_a": "Nicht zutreffend"
+      }
+    },
+    "animalDisciplines": {
+      "horse": {
+        "dressage": "Dressur",
+        "showJumping": "Springen",
+        "crossTraining": "Vielseitigkeit",
+        "outsideRide": "Spazierenreiten/Ausreiten",
+        "endurance": "Distanzreiten",
+        "harness": "Geschirr",
+        "lunging": "Longieren",
+        "groundWork": "Bodenarbeit",
+        "hiking": "Schritt an der Hand",
+        "stepMill": "Führmaschine",
+        "manualWork": "Arbeit an der Hand",
+        "western": "Western",
+        "other": "Andere Reitweisen"
+      }
+    },
+    "animalGenders": {
+      "horse": {
+        "mare": "Stute",
+        "gelding": "Wallach",
+        "stallion": "Hengst"
+      },
+      "donkey": {
+        "jenny": "Jenny",
+        "gelding": "Wallach",
+        "jack": "Jack"
+      }
+    },
+    "animalRoles": {
+      "horse": {
+        "leisure": "Freizeitreiten",
+        "sport": "Turniersport",
+        "instruction": "Reitschule",
+        "breeding": "Zucht",
+        "company / pensionado": "Beistellpferd/Rentnerpferd",
+        "other": "Andere"
+      },
+      "donkey": {
+        "leisure": "Freizeitreiten",
+        "company / pensionado": "Beistellpferd/Rentnerpferd",
+        "milk / farmwork": "Milch, Arbeitspferd",
+        "trekking / riding": "Wanderreiten",
+        "other": "Andere"
+      }
+    },
+    "aboutScreen": {
+      "title": "Diese App wurde durch Wissenschaftler und Tierärzte der Veterinärmedizinischen Fakultät der Universität Utrecht, der De Paardenkamp Stiftung und den Friends of VetMed entwickelt.",
+      "university": {
+        "logo": "uniLogoEnImg",
+        "title": "Utrecht University - Faculty of Veterinary Medicine",
+        "description": "Wir, die Tierärztliche Fakultät der Universität Utrecht, sind Kompetenzzentrum für Tiermedizin in den Niederlanden. Wir bauen Brücken zwischen Wissenschaft und Gesellschaft und bieten eine Versorgung durch Spezialisten in der größten Universitätsklinik für Tiere in Europa. Mit unseren Partnern arbeiten wir multidisziplinär zusammen, sowohl auf nationaler als auch auf internationaler Ebene.",
+        "link": {
+          "label": "www.diergeneeskunde.nl",
+          "url": "https://www.diergeneeskunde.nl/"
+        }
+      },
+      "paardenkamp": {
+        "title": "Stiftung der Paardenkamp in Soest, Niederlande",
+        "description": "Das nationale Heim und Kompetenzzentrum für ältere Pferde. Täglich sorgen die Mitarbeiter der De Paardenkamp Stiftung dafür, dass Pferde und Ponies Ihr Rentnerdasein jenseits des 20. Lebensjahres genießen können. Dank der Unterstützung von Spendern, Sponsoren und Freiwilligen finden hier 120 Pferde und Ponies auf unseren 3 Höfen mit ihren großen Weiden und komfortablen Ställen eine Heimat.",
+        "link": {
+          "label": "www.paardenkamp.nl",
+          "url": "https://www.paardenkamp.nl"
+        }
+      },
+      "friends": {
+        "title": "Fond der Friends of Veterinary Medicine",
+        "logo": "vriendenEnLogoImg",
+        "description": "Friends of Veterinary Medicine ist ein Fond der Tierärztlichen Fakultät der Universität Utrecht. Wir werben Mittel für die Forschung und für eine innovative, qualitativ hochwertige Versorgung von Tieren ein, welche die Gesundheit und das Wohlbefinden besonders fördern.",
+        "link": {
+          "label": "www.vriendendiergeneeskunde.nl",
+          "url": "https://www.vriendendiergeneeskunde.nl"
+        }
+      },
+      "sponsor": {
+        "title": "EPWA wird unterstützt durch"
+      },
+      "more": {
+        "links": [
+          {
+            "label": "Mehr Informationen über EPWA",
+            "url": "https://www.epwa.nl/en/instructie"
+          }
+        ]
+      },
+      "listIntro": "Diese App wurde ermöglicht durch:",
+      "list": [
+        {
+          "label": "Vielen Pferdefreunden in den Niederlanden und auf der ganzen Welt"
+        },
+        { "label": "Pavo Pferdefutter", "url": "https://www.pavo-futter.de/" },
+        { "label": "Stiftung Nijdier", "url": "http://www.nijdier.nl" },
+        {
+          "label": "Das Schutzzentrum für Esel",
+          "url": "http://www.thedonkeysanctuary.org.uk"
+        },
+        {
+          "label": "Stiftung Capelse Manegefonds",
+          "url": "http://www.capelsemanege.nl"
+        },
+        {
+          "label": "Stiftung Moyra-Stava Morena",
+          "url": "http://www.moyrastavamorena.nl"
+        },
+        {
+          "label": "Nikki de Kerf Photographie",
+          "url": "http://fotogenikki.nl"
+        },
+        {
+          "label": "Wirelab Digital Agency",
+          "url": "https://wirelab.nl/?__geom=%E2%9C%AA"
+        }
+      ],
+      "privacy": {
+        "title": "Datenschutz",
+        "description": "Weitere Informationen über den Schutz Ihrer Daten erhalten Sie über den untenstehenden Link.",
+        "link": {
+          "label": "Datenschutzerklärung",
+          "url": "https://www.epwa.nl/contact/privacy-policy"
+        }
+      }
+    },
+    "datePicker": {
+      "titleDate": "Wählen Sie ein Datum",
+      "titleTime": "Wählen Sie eine Uhrzeit",
+      "confirm": "Bestätigen",
+      "cancel": "Abbrechen"
+    },
+    "tips": {
+      "title": "Richtlinien für das Wohlbefinden von Pferden",
+      "preface": "Zweifellos wollen Sie Ihr Pferd bestmöglich versorgen. Deshalb sollten Sie auf mehrere verschiedene Elemente des Wohlergehens von Pferden achten, wie Fütterung, Unterbringung und Auslauf, Gesundheit und Verhalten. Befolgen Sie diese Richtlinien?",
+      "sections": [
+        {
+          "title": "Gute Ernährung – Kein Hunger und kein Durst",
+          "list": [
+            "Ein Pferd braucht mindestens alle 6 Stunden Raufutter.",
+            "Füttern Sie immer zuerst Raufutter, gefolgt von (falls überhaupt notwendig) Kraftfutter. Dies ist besonders wichtig am Morgen, da das Tier sonst Magenschmerzen bekommen könnte.",
+            "Erlauben Sie Ihrem Pferd unbegrenzten Zugang zu Wasser. Sauberes und frisches Trinkwasser ist für Pferde genauso wichtig wie für Menschen! Überprüfen Sie deshalb täglich, ob Tränkeeimer und/oder automatische Tränke sauber und frei zugänglich sind."
+          ]
+        },
+        {
+          "title": "Gute Unterbringung - Schlaf, angenehme Temperaturen und Bewegungsfreiheit",
+          "list": [
+            "Freie Bewegung ist für Ihr Pferd unglaublich wichtig. Je kleiner der Stall, desto mehr Zeit wird Ihr Pferd brauchen, um sich draußen frei zu bewegen. Erlauben Sie Ihrem Pferd mindestens 2 Stunden pro Tag freie Bewegung auf einer Koppel oder einem Paddock, groß genug für einen schnellen Galopp, einen Bocksprung oder aber, um einmal kräftig hinten auszuschlagen. ",
+            "Pferde brauchen ausreichend Ruhe. Auch wenn sie im Stehen oft ein Nickerchen machen, brauchen sie Zugang zu einem Ruheplatz mit einer trockenen, sauberen und weichen Oberfläche, auf der sie sich hinlegen können.",
+            "Pferde sind Herdentiere, daher ist der soziale Kontakt mit anderen Pferden ein absolutes Muss. Nicht nur auf dem Feld oder der Koppel, sondern auch im Stall. Vielleicht möchten Sie Gitterstäbe als Stallabtrennung verwenden oder den Pferden ermöglichen, sich gegenseitig zu sehen, indem Sie die obere Hälfte der Stalltür offen lassen.",
+            "Die Möglichkeit, nach draußen zu sehen, ist für Ihr Pferd ebenfalls sehr wichtig. Das liegt daran, dass die Beobachtung der Umgebung Teil des natürlichen Verhaltens ist.",
+            "Ein Unfall kann passieren, bevor Sie es merken. Versuchen Sie also zu verhindern, dass Ihr Pferd auf rutschigem Untergrund den Halt verliert oder sich an scharfen oder hervorstehenden Gegenständen verletzt.  Kurzum: Denken Sie an die Sicherheit Ihres Pferdes!"
+          ]
+        },
+        {
+          "title": "Gute Gesundheit – Fittes junges Pferd, gesundes altes Pferd!",
+          "list": [
+            "Lassen Sie Ihr Pferd regelmäßig vom Hufschmied, Tierzahnarzt, Tierarzt und anderen qualifizierten Pferdeexperten untersuchen. Wenn Sie dafür sorgen, dass Ihr Pferd zum Beispiel von klein auf regelmäßig untersucht wird, können Sie es viel länger gesund erhalten."
+          ]
+        },
+        {
+          "title": "Normales Verhalten – Mentale Gesundheit",
+          "list": [
+            "Achten Sie darauf, dass Ihr Pferd keinem unnötigen Stress ausgesetzt ist, indem Sie z.B. auf für das Pferd vorhersehbare Weise mit ihm umgehen. Wenn Ihr Pferd seine normalen Verhaltensweisen in einer sicheren Umgebung zeigen kann, schaffen Sie eine gute Grundlage für ein Pferd, das sowohl körperlich als auch geistig im Gleichgewicht ist. Das ist gut für Ihr Pferd und für Sie!"
+          ]
+        }
+      ]
+    },
+    "info": {
+      "animalForm": {
+        "title": "Ein Pferd oder einen Esel hinzufügen",
+        "preface": "",
+        "sections": [
+          {
+            "title": "Ein/Einen {{Tierart}} hinzufügen",
+            "content": "In diesem Teil der App können Sie schnell und einfach ein/einen {{Tierart}} zu Ihrem Stall hinzufügen, indem Sie relevante Details zum Tier eingeben und speichern. Ist Ihr {{Tierart}} eine Kreuzung zwischen zwei verschiedenen Rassen? Geben Sie zunächst eine Rasse ein und fügen Sie dann mit dem violetten + Button die zweite Rasse hinzu."
+          },
+          {
+            "title": "Rasse",
+            "content": "Wählen Sie die Rasse Ihres {{Tierart}} aus dem Dropdown-Menü der Rassen aus. Ist die Rasse Ihres {{Tierart}} nicht aufgeführt? Wählen Sie 'Andere' und geben Sie die Rasse manuell ein."
+          },
+          {
+            "title": "Mehrfacheinsatz und Disziplinen",
+            "content": "Sie nehmen mit Ihrem {{Tierart}} an Turnieren teil, züchten aber gleichzeitig auch Ihrem Hengst oder Ihrer Stute? Sie können mehrere Verwendungen einbeziehen, indem Sie zuerst eine hinzufügen und dann mit dem violetten + Button eine weitere Verwendung hinzufügen. Dasselbe gilt für den Abschnitt über Disziplinen.",
+            "hideForDonkey": "Richtig"
+          },
+          {
+            "title": "Haben Sie sich geirrt?",
+            "content": "Verwenden Sie den roten X-Button, um eine Auswahl rückgängig zu machen."
+          },
+          {
+            "title": "Ein Foto hinzufügen",
+            "content": "Klicken Sie auf das Kamerasymbol oben auf dem Bildschirm. Sie können nun ein Foto machen oder ein Foto im Querformat aus der Fotogalerie Ihres Smartphones auswählen."
+          },
+          {
+            "title": "Speichern",
+            "content": "Haben Sie alle relevanten Details zu Ihrem {{Tierart}} ausgefüllt? Verwenden Sie das > Symbol in der oberen rechten Ecke, um alles zu speichern und Ihr/en {{Tierart}} zu Ihrem Stall hinzuzufügen."
+          },
+          {
+            "title": "Müssen Sie bearbeiten?",
+            "content": "Sie haben Ihr/Ihren {{Tierart}} bereits zum Stall hinzugefügt, müssen aber noch etwas ändern oder hinzufügen? Klicken Sie zum Bearbeiten auf das Bleistift-Symbol in der oberen rechten Ecke."
+          }
+        ]
+      },
+      "diaryExercise": {
+        "title": "Bewegung",
+        "preface": "Sie können ganz einfach das tägliche Training Ihres Pferdes oder jede andere Form von Bewegung in Ihr Tagebuch eintragen. Geben Sie sowohl die Anfangs- als auch die Endzeit Ihres Trainings oder der Bewegung ein. Sie können Ihre gesamte Trainingszeit in Ihrer Tagesübersicht einsehen.\n Welche Art von Training haben Sie durchgeführt? Wählen Sie die entsprechende Option aus dem Dropdown-Menü. \nHaben Sie Ihr Pferd mehr als einmal trainiert? Sie können mehrere Trainingseinheiten pro Tag protokollieren, indem Sie einfach den violetten + Button anklicken, um eine weitere Trainingseinheit hinzuzufügen.",
+
+        "sections": [
+          {
+            "title": "Haben Sie sich geirrt?",
+            "content": "Verwenden Sie den roten X-Button, um Ihre Auswahl rückgängig zu machen."
+          },
+          {
+            "title": "Speichern",
+            "content": "Hast du die Ausbildung abgeschlossen? Klicken Sie dann unten auf die Schaltfläche \"Speichern\", um das Training zum Tagebuch hinzuzufügen. Die Trainingszeit wird nun automatisch in das Tagebuch eingetragen. Wenn Sie mehrere Trainingseinheiten absolviert haben, können Sie Ihre gesamte Trainingszeit für diesen Tag im Tagebuch anzeigen."
+          }
+        ]
+      },
+      "diaryAppointment": {
+        "title": "Terminplan",
+        "preface": "Sie können einen Termin oder Folgetermin in der Kalenderfunktion des Tagebuchs planen. Sie können wählen, ob Sie eine Erinnerung über Ihr Telefon erhalten möchten, oder ob Sie bestimmte Details in Bezug auf den Termin oder die verordneten Medikamente im Terminkalender eintragen möchten.",
+        "sections": [
+          {
+            "title": "",
+            "content": "Wenn Sie einen Termin hinzufügen, wählen Sie die Art des Termins sowie Datum und Uhrzeit aus dem Dropdown-Menü."
+          },
+          {
+            "title": "",
+            "content": "Es können auch wiederkehrende Termine vereinbart werden, z.B. zur Erfassung von Impfungen oder anderen Behandlungen. Auch telefonische Erinnerungen für die EPWA-Termine können erstellt werden."
+          }
+        ]
+      },
+      "diaryFeeding": {
+        "title": "Fütterung",
+        "preface": "Behalten Sie den Überblick über das Fütterungsregime Ihres {Tierart}} und fügen Sie Raufutter, Kraftfutter oder Nahrungsergänzungsmittel hinzu. Bekommt Ihr {{Tierart}} unbegrenzt Raufutter? Kreuzen Sie unbedingt die 24-Stunden-Option an.",
+        "sections": [
+          {
+            "title": "Haben Sie sich geirrt?",
+            "content": "Verwenden Sie den roten X-Button, um die Auswahl rückgängig zu machen."
+          },
+          {
+            "title": "Speichern",
+            "content": "Haben Sie das Fütterungsregime Ihres {Tierart} eingetragen? Verwenden Sie zum Speichern das Symbol > in der oberen rechten Ecke. Die Daten erscheinen dann automatisch im Tagebuch."
+          }
+        ]
+      },
+      "diaryHousing": {
+        "title": "Auslauf",
+        "preface": "Wo verbringt Ihr {{Tierart}} seinen Tag? Wie lange steht Ihr Tier im Stall (falls überhaupt), und wie lange hat das Tier Weidegang oder Auslauf im Paddock? Klicken Sie auf die 24-Stunden-Option, wenn Ihr Tier entweder den ganzen Tag im Stall steht oder aber den ganzen Tag Auslauf hat. Sie können hinzufügen, ob Ihr Pferd oder Esel allein oder zusammen mit anderen {{Tierart}} gehalten wird.",
+        "sections": [
+          {
+            "title": "Haben Sie sich geirrt?",
+            "content": "Verwenden Sie den roten X-Button, um die Auswahl rückgängig zu machen."
+          },
+          {
+            "title": "Speichern",
+            "content": "Haben Sie die Zeit eingegeben, die Ihr {{Tierart}} in seinem Stall verbringt oder Auslauf hat?  Verwenden Sie zum Speichern das Symbol > in der oberen rechten Ecke. Die Daten erscheinen dann automatisch im Tagebuch."
+          }
+        ]
+      },
+      "diaryMedication": {
+        "title": "Mein Tierarzt",
+        "preface": "Bekommt Ihr {Tiertyp}} Medikamente? Oder wird derzeit eine physiotherapeutische oder andere Behandlung durchgeführt?  Fügen Sie einfach alle medizinischen Informationen Ihres {Tierart}} in Ihr Tagebuch ein.",
+        "sections": [
+          {
+            "title": "Medikamentenbehandlung",
+            "content": "Verfolgen Sie, wann Sie Ihrem {{Tierart}} Medikamente verabreicht haben und wie viel Sie gegeben haben. Bekommt das Tier mehrere Medikamente? Erfassen Sie alle Medikamente, indem Sie einfach en violetten +-Button anklicken, um ein weiteres Medikament hinzuzufügen."
+          },
+          {
+            "title": "Behandlung",
+            "content": "Behalten Sie den Überblick darüber, welcher qualifizierte Pferdefachmann Ihr/en {{Tierart}} behandelt hat, indem Sie den Typ des Fachmanns aus dem Dropdown-Menü auswählen. Notieren Sie, was die Behandlung beinhaltet oder welche Ratschläge Ihnen gegeben wurden, indem Sie das Kommentarfeld unten verwenden."
+          },
+          {
+            "title": "Rehabilitation",
+            "content": "Hat sich Ihr {{Tierart}} verletzt und muss nun rehabilitiert werden? Notieren Sie sich, worum es sich dabei handelt, z.B. ob Ihr {{Tierart}} Boxenruhe einhalten muss. "
+          },
+          {
+            "title": "Körpertemperatur und Gewicht",
+            "content": "Messen Sie regelmäßig die Körpertemperatur Ihres {{Tierart}}? Geben Sie die Temperatur ein, sie erscheint dann automatisch in Ihrem Tagebuch. Dasselbe gilt für das (geschätzte) Gewicht Ihres {{Tierart}."
+          },
+          {
+            "title": "Haben Sie sich geirrt?",
+            "content": "Verwenden Sie den roten X-Button, um die Auswahl rückgängig zu machen."
+          },
+          {
+            "title": "Speichern",
+            "content": "Haben Sie alle medizinischen Daten Ihres {{Tierart}} eingegeben? Verwenden Sie zum Speichern das Symbol > in der oberen rechten Ecke. Die medizinischen Daten Ihres {{Tierart}} erscheinen automatisch im Tagebuch. "
+          }
+        ]
+      },
+      "welfare": {
+        "sections": [
+          {
+            "title": "Richtlinien für das Wohlbefinden von Pferden",
+            "content": "Zweifellos wollen Sie Ihr Pferd bestmöglich versorgen. Deshalb sollten Sie auf mehrere verschiedene Aspekte des Wohlergehens von Pferden achten, wie Fütterung, Unterbringung und Auslauf, Gesundheit und Verhalten. Befolgen Sie diese Richtlinien?"
+          },
+          {
+            "title": "Gute Fütterung - Kein Hunger und kein Durst",
+            "content": "- Ein Pferd braucht mindestens alle 6 Stunden Raufutter.\n\n- Füttern Sie immer zuerst Raufutter, gefolgt von (wenn überhaupt notwendig) Kraftfutter. Dies ist besonders wichtig am Morgen, da das Tier ansonsten Magenschmerzen bekommen könnte.\n\n- Geben Sie Ihrem Pferd unbegrenzten Zugang zu Wasser. Sauberes und frisches Trinkwasser ist für Pferde genauso wichtig wie für Menschen! Überprüfen Sie deshalb täglich, ob Tränkeeimer und/oder automatische Tränke sauber und frei zugänglich sind.",
+            "imageTitle": "Fütterung"
+          },
+          {
+            "title": "Gute Unterbringung - Schlaf, angenehme Temperatur und Bewegungsfreiheit",
+            "content": "- Freie Bewegung ist für Ihr Pferd unglaublich wichtig. Je kleiner der Stall, desto länger muss sich das Pferd draussen frei bewegen können. Erlauben Sie Ihrem Pferd mindestens 2 Stunden pro Tag freie Bewegung auf einem Paddock oder einer Weide, groß genug für einen schnellen Galopp, einen Bocksprung und zum Ausschlagen.\n\n- Pferde brauchen ausreichend Ruhe. Auch wenn sie im Stehen oft ein Nickerchen machen, brauchen sie auch Zugang zu einem Ruheplatz mit einem trockenen, sauberen und weichen Boden, auf dem sie sich hinlegen können.\n\n- Pferde sind Herdentiere, daher ist der soziale Kontakt mit anderen Pferden ein absolutes Muss. Nicht nur auf der Weide oder dem Paddock, sondern auch im Stall. Vielleicht möchten Sie Gitterstäbe als Stallabtrennung verwenden oder den Pferden ermöglichen, sich gegenseitig zu sehen, indem Sie die obere Hälfte der Stalltür offen lassen.\n\n- Die Möglichkeit, nach draußen zu sehen, ist für Ihr Pferd ebenfalls sehr wichtig. Das liegt daran, dass es zu seinem natürlichen Verhalten gehört, seine Umgebung zu beobachten.\n\n- Ein Unfall kann passieren, bevor Sie es merken. Versuchen Sie also zu verhindern, dass Ihr Pferd auf rutschigem Untergrund den Halt verliert oder sich an scharfen oder hervorstehenden Gegenständen verletzt.  Kurzum: Denken Sie an die Sicherheit Ihres Pferdes!",
+            "imageTitle": "Unterbringung"
+          },
+          {
+            "title": "Gute Gesundheit – junges fittes Pferd, gesundes altes Pferd!",
+            "content": "- Lassen Sie Ihr Pferd regelmäßig vom Hufschmied, Pferdezahnarzt, Tierarzt und anderen qualifizierten Pferdeexperten untersuchen. Wenn Sie dafür sorgen, dass Ihr Pferd zum Beispiel von klein auf regelmäßig untersucht wird, können Sie es viel länger gesund halten.",
+            "imageTitle": "Wohlbefinden"
+          },
+          {
+            "title": "Natürliches Verhalten – Emotionale Gesundheit",
+            "content": "- Achten Sie darauf, dass Ihr Pferd keinem unnötigen Stress ausgesetzt ist, indem Sie z.B. auf für das Pferd vorhersehbare Weise mit ihm umgehen. Wenn Ihr Pferd seine normalen Verhaltensweisen in einer sicheren Umgebung zeigen kann, schaffen Sie eine gute Grundlage für ein Pferd, das sowohl körperlich als auch geistig im Gleichgewicht ist. Das ist gut für Ihr Pferd und für Sie!",
+            "imageTitle": "Verhalten"
+          }
+        ]
+      },
+      "epwaphotoupload": {
+        "firstpage": {
+          "title": "Erklärung zum Hochladen eines eigenen Fotos zu Schulungszwecken",
+          "content": "Bitte laden Sie eines (oder mehrere) Ihrer eigenen Fotos hoch und helfen Sie uns, eine automatisierte Gesichtserkennung für Pferde und Esel zu entwickeln.",
+          "exphotoTitle": "Beispeil",
+          "imageTitle": "Gruppenpferd",
+          "buttonText": "Weiter"
+        },
+        "secondpage": {
+          "title": "Erläuterung zum Zuschneiden Ihres Fotos",
+          "content1": "Nachdem das Foto aufgenommen wurde, muss es zugeschnitten werden. Auf diese Weise kann Ihr Pferd anonym verwendet werden.",
+          "content2": "Wählen Sie zuerst die Ohren und die Augen und dann die Nüstern und den Maulbereich aus.",
+          "content3": "Stellen Sie sicher, dass die Teile immer korrekt und deutlich im Beschneidebereich positioniert sind, wie hier im Beispiel gezeigt.",
+          "chk_text": "Mein Foto darf für Schulungszwecke verwendet werden.",
+          "imageTitle": "Beispiel Bildausschnitt Pferd",
+          "checkedbtnImg": "geprüft",
+          "uncheckedbtnImg": "Nicht geprüft",
+          "lbuttonText": "Machen Sie ein Foto",
+          "rbuttonText": "Aus Galerie"
+        },
+        "takephotopage": {
+          "photobutton": "FOTO",
+          "cancelbutton": "Abbrechen",
+          "horsemaskImg": "Pferdemaske",
+          "flipbtnImg": "umblättern",
+          "flipbtnText": "Umblättern",
+          "loadingText": "Speichern...",
+          "cameraPermissionTitle": "Zustimmung zur Kameranutzung",
+          "cameraPermissionMessage": "Wir benötigen Ihre Erlaubnis zur Verwendung Ihrer Kamera",
+          "cameraPermissionPositiveButtonText": "OK",
+          "cameraPermissionNegativeButtonText": "Abbrechen",
+          "audioiPermissonTitle": "Zustimmung zur Audionaufzeichnung",
+          "audioPermissionMessage": "Wir benötigen Ihre Erlaubnis zur Verwendung Ihrer Audiodaten"
+        },
+        "thirdpage": {
+          "question": "Eignet sich dieses Foto?",
+          "imageTitle": "Bildausschnitt Pferd",
+          "lbuttonText": "Wiederholen",
+          "rbuttonText": "Ja"
+        },
+        "forthpage": {
+          "question": "Jetzt das Bild der Ohren beschneiden",
+          "imageTitle": "Bildausschnitt Pferd",
+          "lbuttonText": "Ohren speichern",
+          "loadingText": "Senden..."
+        },
+        "fifthpage": {
+          "question": "Jetzt das Bild der Augen beschneiden",
+          "imageTitle": "Bildausschnitt Pferd",
+          "lbuttonText": "Augen speichern",
+          "loadingText": "Senden..."
+        },
+        "sixthpage": {
+          "question": "Schneiden Sie jetzt das Bild von Nüstern und Maul zu",
+          "imageTitle": "Bildausschnitt Pferd",
+          "lbuttonText": "Nüstern/Maul speichern",
+          "loadingText": "Senden..."
+        },
+        "seventhpage": {
+          "question": "Sind die Bildausschnitte geeignet?",
+          "imageTitle": "Bildausschnitt Pferd",
+          "lbuttonText": "Anpassen",
+          "rbuttonText": "Senden",
+          "loadingText": "Senden..."
+        },
+        "lastpage": {
+          "title": "Danke!",
+          "content": "Mit Ihrem Foto können wir unsere Systeme noch besser trainieren.",
+          "buttonText": "Zurück zum Stall"
+        }
+      }
+    },
+    "supportedby": "Diese App wird unterstützt durch",
+    "profileUpdateSuccess": "Profil wurde aktualisiert!",
+    "name": "Name",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "email": "E-Mail-Adresse",
+    "requiredField": "Erforderliche Eingabe",
+    "fillInName": "Geben Sie einen Namen ein",
+    "breed": "Rasse",
+    "selectbreed": "Wählen Sie eine Rasse aus",
+    "roles": "Verwendung",
+    "selectroles": "Was ich mit meinem Tier mache",
+    "disciplines": "Disziplin",
+    "selectdisciplines": "Wählen Sie eine Disziplin aus",
+    "sex": "Geschlecht",
+    "selectSex": "Wählen Sie ein Geschlecht aus",
+    "animalHeight": "Größe (cm)",
+    "animalWeight": "Gewicht (kg)",
+    "selectAnimalHeight": "Größe auswählen",
+    "fillInAnimalHeight": "Geben Sie die Größe (cm) des Tieres ein",
+    "fillInAnimalWeight": "Geben Sie das Gewicht (kg) des Tieres ein",
+    "horseCompetitionLevel": "Competition level",
+    "selectHorseCompetitionLevel": "Leistungsniveau",
+    "particularities": "Wählen Sie das Lestungsniveau aus",
+    "fillInParticularities": "Geben Sie zusätzliche Informationen hier ein",
+    "caregiverTitle": "Pflegepersone(n)",
+    "addCaregiverDesc": "Geben Sie eine neue Pflegeperson ein",
+    "caregiverEmail": "E-Mail-Addresse",
+    "caregiverInviteBtnText": "Senden",
+    "prefixRemoveMessage": "Sind Sie sicher, dass Sie löschen wollen",
+    "sufixRemoveMessage": "Von der Liste der Pflegepersonen",
+    "caregiverRemoveBtnText": "Löschen",
+    "caregiver_pending": "Ausstehend",
+    "ok": "OK",
+    "submit": "Abschicken",
+    "save": "Speichern",
+    "cancel": "Löschen",
+    "remove": "Entfernen",
+    "copy": "Kopieren",
+    "cameraOrGalleryPopupTitle": "Foto auswählen",
+    "chooseFromLibrary": "Galerie",
+    "takeAPhoto": "Kamera",
+    "birthdate": "Geburtsdatum",
+    "selectDate": "Datum auswählen",
+    "openDiary": "Tagebuch öffnen",
+    "noData": "n/a",
+    "diary": "Tagebuch",
+    "addHorse": "Pferd hinzufügen",
+    "editHorse": "Pferd bearbeiten",
+    "addDonkey": "Esel hinzufügen",
+    "editDonkey": "Esel bearbeiten",
+    "deleteAnimal": "Profil löschen",
+    "delete": "Löschen",
+    "deleteAnimalMessage": "Sie sind im Begriff, Ihr Tierprofil mit all seinen Daten zu löschen. Diese Aktion kann nicht rückgängig gemacht werden. \n Sind Sie sicher?",
+    "startPainMeasurement": "Schmerzmessung",
+    "menagerie": "Menagerie",
+    "settings": "Einstellungen",
+    "syndromes": "Cushing-Check",
+    "about": "Über",
+    "share": "Teilen",
+    "shareApp": "Diese App teilen",
+    "noAnimalsToShow": "Die Scheune ist leer!",
+    "addMedication": "Mein Tierarzt",
+    "registerPainMeasurement": "Schmerzmessung",
+    "registerHousing": "Auslauf",
+    "registerFeeding": "Fütterung",
+    "registerExercises": "Bewegung",
+    "registerAppointment": "Termin",
+    "riding": "Reiten",
+    "groundWork": "Bodenarbeit",
+    "dressage": "Dressur",
+    "showJumping": "Springen",
+    "crossTraining": "Gelände",
+    "outsideRide": "Spazierenreiten/Ausreiten",
+    "western": "Western",
+    "endurance": "Distanzreiten",
+    "harness": "Geschirr",
+    "hiking": "Schritt an der Hand",
+    "stepMill": "Führmaschine",
+    "manualWork": "Handarbeit",
+    "other": "Andere",
+    "startTime": "Anfangszeit",
+    "endTime": "Endzeitpunkt",
+    "leavingFormTitle": "Sind Sie sicher?",
+    "leavingFormSubtitle": "Sie verlieren alles, was nicht gespeichert wurde",
+    "leavingFormLeaveBtn": "Verlassen",
+    "leavingFormStayBtn": "Bleiben",
+    "paddock": "Paddock",
+    "pasture": "Weide",
+    "stable": "Stall",
+    "exercise": "Bewegung",
+    "exerciseType": "Art der Bewegung",
+    "housing": "Auslauf",
+    "feeding": "Fütterung",
+    "medication": "Medikamentöse Behandlung",
+    "timeOfDay": "Tag und Zeit",
+    "timeAndDay": "Tag und Zeit",
+    "kindOfAppointment": "Art des Termins",
+    "quantity": "Menge",
+    "unit": "Einheit",
+    "unlimited": "Unbegrenzt",
+    "roughage": "Raufutter",
+    "concentrate": "Kraftfutter",
+    "supplement": "Futterzusatz",
+    "pill": "Medikation",
+    "treatment": "Behandlung",
+    "temperature": "Temperatur",
+    "recovery": "Rehabilitation",
+    "item": "Elemente",
+    "gram": "g",
+    "kilogram": "kg",
+    "byWeight": "Für ... kilo",
+    "milligram": "mg",
+    "cubicCentimetre": "cc / ml",
+    "sachet": "Beutel",
+    "tablet": "Tablette",
+    "scoop": "Messlöffel / Pumpstoß",
+    "drop": "Tropfen",
+    "celsius": "Celsius",
+    "fahrenheit": "Fahrenheit",
+    "vet": "Tierarzt",
+    "physiotherapist": "Physiotherapeut",
+    "osteopath": "Osteopath",
+    "dentist": "Zahnbehandler",
+    "farrier": "Hufschmied",
+    "otherDoctor": "Andere",
+    "alertSuccess": "Erfolg",
+    "offlineWarning": "Sie sind offline. Bitte überprüfen Sie Ihre Verbindung.",
+    "animalFetchErrorMsg": "Beim Aufrufen der Tiere ist ein Fehler aufgetreten!",
+    "animalAddErrorMsg": "Beim Hinzufügen eines Tieres ist ein Fehler aufgetreten!!",
+    "animalEditErrorMsg": "Beim Aktualisieren eines Tieres ist ein Fehler aufgetreten!",
+    "animalDeleteErrorMsg": "Beim Löschen eines Tieres ist ein Fehler aufgetreten!",
+    "animalCaregiverFetchErrorMsg": "Beim Aufrufen der Pflegepersonen ist ein Fehler aufgetreten!",
+    "animalCaregiverAddErrorMsg": "Beim Versenden einer Einladung ist ein Fehler aufgetreten!",
+    "animalCaregiverDeleteErrorMsg": "Beim Löschen einer Pflegeperson ist ein Fehler aufgetreten!",
+    "caregiverAlertTitle": "Fehler",
+    "caregiverAlertUserUnknown": "Unbekannter Nutzer",
+    "caregiverAlertSelf": "Sie können sich nicht selbst einladen",
+    "caregiverAlertDuplicate": "Dieser Nutzer wurde bereits eingeladen",
+    "caregiverAlertMaximum": "Sie können maximal 5 Nutzer einladen",
+    "caregiverAlertNotAllowed": "Der Nutzer besitzt kein Pferd oder keinen Esel",
+    "photoUploadErrorMsg": "Beim Laden zugeschnittener Bilder ist ein Fehler aufgetreten",
+    "eventAddSuccessMsg": "Eintrag wurde hinzugefügt!",
+    "eventEditSuccessMsg": "Eintrag wurde aktualisiert!",
+    "eventDeleteSuccessMsg": "Eintrag wurde gelöscht!",
+    "completeEvent": "Veranstaltung abschließen",
+    "changePasswordSuccessMsg": "Das Passwort wurde geändert!",
+    "changePasswordErrorMsg": "Es ist ein Fehler beim Ändern eines Passworts aufgetreten!!",
+    "changePasswordCurrentPasswordWrongErrorMsg": "Das von Ihnen eingegebene Passwort stimmt nicht mit Ihrem aktuellen Passwort überein",
+    "changePasswordPasswordConfirmDoesNotMatchErrorMsg": "Die Passwortbestätigung stimmt nicht überein",
+    "refreshTokenFailedLoggingOutMsg": "Sie wurden ausgeloggt, weil Ihre Sitzung abgelaufen ist. \n\n Dies kann durch die Anmeldung bei diesem Konto auf einem anderen Gerät verursacht werden. Bitte melden Sie sich erneut an.",
+    "roughageNameLabel": "Art des Raufutters",
+    "concentrateNameLabel": "Art des Kraftfutters",
+    "supplementNameLabel": "Art des Zusatzfutters",
+    "pillNameLabel": "Art des Medikamentes",
+    "injectionNameLabel": "Art der Behandlung",
+    "temperatureNameLabel": "Temperatur",
+    "recoveryNameLabel": "Anmerkungen zur Rehabilitation",
+    "yes": "Ja",
+    "no": "Nein",
+    "updateProfileSubmitBtn": "Absenden",
+    "driving": "Fahren",
+    "lunging": "Longieren",
+    "workInHand": "Handarbeit",
+    "welcomeInDiary": "Willkommen",
+    "noEventsOnThisDate": "Für diesen Tag gibt es keine Einträge. Klicken Sie auf das Plus-Symbol, um einen neuen Eintrag hinzuzufügen oder Einträge von einem älteren Datum zu übernehmen.",
+    "noAnimalsInDiary": "Es scheint, als hätten Sie keine Pferde oder Esel in Ihren Stall aufgenommen. Fügen Sie zuerst ein Tier hinzu, um das Tagebuch benutzen zu können.",
+    "selectDone": "Fertig",
+    "horse": "Pferd",
+    "donkey": "Esel",
+    "clickToAddPhoto": "Klicken Sie zum Hinzufügen eines Fotos",
+    "clickToChangePhoto": "Click to change the photo",
+    "updatePasswordLink": "Passwort ändern",
+    "deleteAccount": "Benutzerkonto löschen",
+    "notApplicable": "Nicht zutreffend",
+    "currentPassword": "Aktuelles Passwort",
+    "newPassword": "Neues Passwort",
+    "newPasswordConfirmation": "Neues Passwort (bestätigen)",
+    "noOrNa": "Nein – nicht zutreffend",
+    "counting": "Zählen",
+    "answers": "Antworten",
+    "noAnimalsInStableWarning": "Um eine Schmerzmessung zu starten, fügen Sie bitte zuerst ein Tier hinzu.",
+    "shareAppTitleDrawerMenu": "EPWA",
+    "shareAppContentDrawerMenu": "Ich verwende EPWA, die Equine Pain and Welfare App, um die Gesundheit und das Wohlergehen meines Tieres zu überwachen. Informationen finden Sie unter www.epwa.nl/en.",
+    "shareAppTitleAnimalProfile": "EPWA",
+    "shareAppContentAnimalProfile": "Ich verwende EPWA, die Equine Pain and Welfare App, um die Gesundheit und das Wohlergehen von {{Tiername}} zu überwachen. Informationen finden Sie unter www.epwa.nl/en.",
+    "shareAppUrl": "https://www.epwa.nl/en",
+    "shareMessage": "Ich verwende EPWA, die Equine Pain and Welfare App",
+    "painMeasurementLoginWarning": "Um die Schmerzmessung zu speichern, loggen Sie sich zuerst ein. Sie können auch fortfahren, ohne Ihr Ergebnis zu speichern.",
+    "quit": "Beenden",
+    "painMeasurementQuitTitle": "Messung beenden",
+    "painMeasurementQuitMessage": "Sind Sie sicher, dass Sie die Schmerzmessung beenden wollen?",
+    "ppidQuitTitle": "Test beenden",
+    "ppidQuitMessage": "Sind Sie sicher, dass Sie den Cushing-Check beenden wollen??",
+    "finish": "Fertigstellen",
+    "notes": "Notizen",
+    "animalHasUnlimitedAmountOf": "Das Tier hat uneingeschränkten Zugang zu {{Futterart}}",
+    "copyFromDate": "Kopieren von Datum",
+    "copyChoice": "Wählen Sie die Kategorien aus, die vom gewählten Datum übernommen werden sollen",
+    "copyNoEventsAvailable": "Das ausgewählte Datum hat keine zu kopierenden Einträge",
+    "customBreedPlaceholder": "Geben Sie den Namen der Rasse ein",
+    "lookBack": "Rückblick",
+    "today": "Heute",
+    "lookAhead": "In die Zukunft blicken",
+    "graphTitle": "Kürzliche Schmerzmessungen",
+    "noRecentPainMeasurements": "Keine kürzlichen Schmerzmessungen",
+    "addPainMeasurement": "Schmerzmessung hinzufügen",
+    "recurring": "Wiederkehrend",
+    "recurringTill": "Wiederkehrend bis",
+    "notification": "Benachrichtigung",
+    "daily": "Täglich",
+    "weekly": "Wöchentlich",
+    "monthly": "Monatlich",
+    "yearly": "Jährlich",
+    "facialMeasure": "Gesichtsschmerzen",
+    "compositeMeasure": "Zusammengesetzter Schmerz",
+    "emptyPainMeasurementList": "Keine Schmerzmessungen für eine Anzeige vorhanden",
+    "diaryFeeding": "Fütterung",
+    "movement": "Bewegung",
+    "eventHousing": "Unterbringung",
+    "eventMedication": "Medikammentöse Behandlung",
+    "deleteUserInfo": "Meine Benutzerinformationen löschen",
+    "deleteAllInfo": "Alle Informationen löschen",
+    "confirmDeleteAccount": "Sind Sie sicher, dass Sie Ihr Benutzerkonto löschen möchten?",
+    "confirmDeleteAccountInfo": "Damit werden alle Ihre Daten entfernt und können nicht wiederhergestellt werden.",
+    "categories": {
+      "painMeasurement": "Schmerzmessung",
+      "feeding": "Fütterung",
+      "medication": "Mein Tierarzt",
+      "housing": "Auslauf",
+      "exercise": "Bewegung",
+      "appointment": "Termin"
+    },
+    "painMeasurements": {
+      "composite": "Zusammengesetzt",
+      "facialExpression": "Messung von Schmerzen über die Mimik"
+    },
+    "typePainMeasurement": "Art der Schmerzmessung",
+    "editRecurringEventWarning": "Möchten Sie das aktuelle wiederkehrende Ereignis ändern oder ein Neues erstellen?",
+    "editRecurring": "Bearbeiten",
+    "newRecurring": "Neu",
+    "selectAnOption": "Bearbeitete wiederkehrende Ereignisse gelten nur für zukünftige Ereignisse",
+    "warnDeleteAccount1": "IHR KONTO DAUERHAFT LÖSCHEN?",
+    "noFutureCompletionTitle": "Zukünftiges Ereignis",
+    "noFutureCompletionText": "Ereignisse in der Zukunft können nicht abgeschlossen werden",
+    "recurringAfterStartDate": "Bitte wählen Sie ein wiederkehrendes Datum, das nach der Startzeit des Ereignisses liegt",
+    "endDateAfterStartDate": "Bitte wählen Sie ein Enddatum nach dem Startdatum",
+    "noEventsToShare": "Ausgewählter Zeitraum hat keine Ereignisse für eine Freigabe.",
+    "emptyDates": "Termine können nicht leer sein",
+    "seeShareResults": "Meine EPWA Ergebnisse ansehen",
+    "chooseShareSelection": "Wählen Sie eine oder mehrere Kategorien zur Freigabe aus",
+    "connectionError": "Die EPWA App kann sich nicht mit dem Server verbinden",
+    "networkError": "Die EPWA App kann sich nicht mit dem Netzwerk verbinden",
+    "permissionReadWriteTitle": "Berechtigungen für Schreib-/Lesezugriff",
+    "permissionReadWriteMessage": "Geben Sie Ihrem Speicher die Erlaubnis, eine Datei zu schreiben/lesen"
+  }
+}

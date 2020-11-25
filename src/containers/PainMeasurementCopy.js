@@ -39,20 +39,20 @@ const PainMeasurementNavigator = createStackNavigator(
     PainMeasurementObservationFull: PainMeasurementObservationFullScreen,
     PainMeasurementObservationVet: PainMeasurementObservationVetScreen,
     PainMeasurementObservationHead: PainMeasurementObservationHeadScreen,
-    PainMeasurementScore: PainMeasurementScoreScreen
+    PainMeasurementScore: PainMeasurementScoreScreen,
   },
   {
     initialRouteName: "PainMeasurementIntro",
     defautNavigationOptions: {
-      ...defaultHeaderStyling
-    }
+      ...defaultHeaderStyling,
+    },
   }
 );
 
 class painMeasurement extends Component {
   static router = PainMeasurementNavigator.router;
   static navigationOptions = {
-    header: null
+    header: null,
   };
 
   setupEvent = () => {
@@ -94,7 +94,7 @@ class painMeasurement extends Component {
     }
 
     compose(
-      map(pair => setFieldValue(pair[0], pair[1])),
+      map((pair) => setFieldValue(pair[0], pair[1])),
       toPairs
     )(initialValues);
 
@@ -112,7 +112,7 @@ class painMeasurement extends Component {
       "setValues",
       "values",
       "resetForm",
-      "submitForm"
+      "submitForm",
     ])(this.props);
 
     // After resetting the form, for some reason values are undefined
@@ -123,11 +123,11 @@ class painMeasurement extends Component {
 
     const screenProps = {
       form: {
-        ...formProps
+        ...formProps,
       },
       isUserLoggedIn: this.props.isUserLoggedIn,
       t,
-      i18n
+      i18n,
     };
 
     return (
@@ -155,7 +155,7 @@ const onSubmit = (values, formikBag) => {
     const droppedRedundantFields = omit([
       "redirectPath",
       "animals",
-      "forceAnimalSelection"
+      "forceAnimalSelection",
     ])(values);
     let payload = pickAll(topLevelFields)(droppedRedundantFields);
     payload = {
@@ -165,7 +165,7 @@ const onSubmit = (values, formikBag) => {
       data: compose(
         assoc("finalScore", calculateScore(droppedRedundantFields)),
         omit(topLevelFields)
-      )(droppedRedundantFields)
+      )(droppedRedundantFields),
     };
 
     alertDropdown("success", t("alertSuccess"), t("eventAddSuccessMsg"));
@@ -174,7 +174,7 @@ const onSubmit = (values, formikBag) => {
       dispatch(
         addEvent({
           payload: [payload],
-          formHelpers: formikBag
+          formHelpers: formikBag,
         })
       );
     } else {
@@ -183,7 +183,7 @@ const onSubmit = (values, formikBag) => {
       dispatch(
         editEvent({
           payload: payload,
-          formHelpers: formikBag
+          formHelpers: formikBag,
         })
       );
     }
@@ -192,11 +192,11 @@ const onSubmit = (values, formikBag) => {
 
 const formikOptions = {
   handleSubmit: onSubmit,
-  mapPropsToValues: () => {}
+  mapPropsToValues: () => {},
 };
 
-const mapStateToProps = state => ({
-  isUserLoggedIn: Boolean(state.auth.accessToken)
+const mapStateToProps = (state) => ({
+  isUserLoggedIn: Boolean(state.auth.accessToken),
 });
 
 export default hoistStatics(

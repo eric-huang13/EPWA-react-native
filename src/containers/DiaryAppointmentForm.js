@@ -6,7 +6,8 @@ import {
   View,
   TextInput,
   Text,
-  Alert
+  Alert,
+  Platform
 } from "react-native";
 import AlertAsync from "react-native-alert-async";
 import { HeaderBackButton } from "react-navigation-stack";
@@ -69,7 +70,7 @@ import {
 } from "../services/date";
 import iconMap from "../constants/iconMap";
 import MultiLineTextField from "../components/MultiLineTextField";
-import nlLocale from "date-fns/locale/nl";
+import { getStartDateText } from "../helper";
 
 const validationSchema = yup.object().shape({
   payload: yup.array().of(noteEventValidation)
@@ -132,10 +133,14 @@ class diaryAppointmentForm extends Component {
     if (!this.props.dirty) {
       return;
     }
-    if (!this.state.isEditing && (!this.props.values.payload || !this.props.values.payload.length)) {
+    if (
+      !this.state.isEditing &&
+      (!this.props.values.payload || !this.props.values.payload.length)
+    ) {
       return;
     }
 
+    //console.log("in the add form");
     this.props.submitForm();
   };
 
@@ -200,10 +205,13 @@ class diaryAppointmentForm extends Component {
     const notePath = `payload[${props.index}].data.note`;
     const titlePath = `payload[${props.index}].data.noteTitle`;
     const hasErrors = submitCount > 0 && get(errors, typePath);
-    
-    const typeStyle = (get(this.props.values, titlePath) == "" || get(this.props.values, titlePath) == undefined) && submitCount > 0
-      ? true
-      : false;
+
+    const typeStyle =
+      (get(this.props.values, titlePath) == "" ||
+        get(this.props.values, titlePath) == undefined) &&
+      submitCount > 0
+        ? true
+        : false;
 
     const currentDate = this.props.navigation.getParam("currentDate");
     return (
@@ -305,7 +313,7 @@ class diaryAppointmentForm extends Component {
   renderRecurring = () => {
     const { t, setFieldValue, values, i18n } = this.props;
     const currentDate = this.props.navigation.getParam("currentDate");
-
+    //console.log(this.props, "check in the form part");
     return (
       <RecurringForm
         t={t}
@@ -320,7 +328,8 @@ class diaryAppointmentForm extends Component {
   render() {
     const currentDate = this.props.navigation.getParam("currentDate");
     const lang = this.props.i18n.language;
-
+    const renderingDate = this.props.navigation.getParam("renderingDate");
+    const dateForIOS = Date.parse(`${renderingDate} ${new Date().getFullYear()}`);
     return (
       <View style={s.screenContainer}>
         <ScrollView contentContainerStyle={s.scrollContainer}>
@@ -332,9 +341,10 @@ class diaryAppointmentForm extends Component {
               marginVertical: 20
             }}
           >
-            {lang === "nl"
-              ? format(currentDate, "dddd DD MMMM", { locale: nlLocale })
-              : format(currentDate, "dddd MMM D")}
+            {getStartDateText(
+              renderingDate ? +new Date(dateForIOS) : currentDate,
+              lang
+            )}
           </Text>
           <View>{this.renderFieldArray()}</View>
           {this.renderRecurring()}
@@ -398,7 +408,6 @@ const onSubmit = (values, formikBag) => {
     flatten,
     Object.values
   )(values);
-
   const initialValue = formikBag.props.navigation.getParam("initialValue");
   let isEditing = Boolean(initialValue);
 
@@ -411,9 +420,11 @@ const onSubmit = (values, formikBag) => {
   }
   for (let i = 0; i < flattenValues.length; i++) {
     if (flattenValues[i].data.notification) {
-      flattenValues[i].data.notificationData = `(${t(animal.type)}: ${
-        animal.name
-      }) ${t(flattenValues[i].data.noteTitle)}`;
+      flattenValues[i].data.notificationData = animal
+        ? `(${t(animal.type)}: ${animal.name}) ${t(
+            flattenValues[i].data.noteTitle
+          )}`
+        : flattenValues[i].data.notificationData;
     }
   }
 
@@ -499,6 +510,7 @@ const onSubmit = (values, formikBag) => {
     });
   }
 };
+
 const formikOptions = {
   handleSubmit: onSubmit,
   mapPropsToValues: props => {

@@ -24,6 +24,7 @@ import { colors } from "../themes";
 
 import { getToken } from "../selectors/auth";
 import iconMap from "../constants/iconMap";
+import dechraLogo from "../images/dechra_menu.jpg";
 
 class CustomDrawerContent extends React.Component {
   render() {
@@ -92,6 +93,12 @@ class CustomDrawerContent extends React.Component {
                 });
               }}
               iconName={iconMap.share}
+            />
+            <Text style={s.footerText}>{t("supportedby")}</Text>
+            <Image
+              resizeMode="contain"
+              source={dechraLogo}
+              style={s.footerLogo}
             />
           </View>
         </ScrollView>

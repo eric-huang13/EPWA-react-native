@@ -9,7 +9,7 @@ import {
   pick,
   prop,
   propEq,
-  toPairs
+  toPairs,
 } from "ramda";
 import { translate } from "react-i18next";
 
@@ -32,8 +32,8 @@ const Row = (
         borderBottomColor: colors.darkFilter,
         borderBottomWidth: 1,
         paddingVertical: paddingVertical || 0,
-        flexDirection: "row"
-      }
+        flexDirection: "row",
+      },
     ]}
   >
     {iconName && <Icon name={iconName} size={30} color={colors.nero} />}
@@ -52,36 +52,36 @@ class PainMeasurementDetails extends React.Component {
     return [
       {
         fieldPath: "rollCount",
-        translationPath: `${basePath}.layingDownRolling`
+        translationPath: `${basePath}.layingDownRolling`,
       },
       {
         fieldPath: "tailFlickCount",
-        translationPath: `${basePath}.tailFlicking`
+        translationPath: `${basePath}.tailFlicking`,
       },
       {
         fieldPath: "kickAtAbdomenCount",
-        translationPath: `${basePath}.kickingAtAbdomen`
+        translationPath: `${basePath}.kickingAtAbdomen`,
       },
       {
         fieldPath: "pawCount",
-        translationPath: `${basePath}.pawing`
+        translationPath: `${basePath}.pawing`,
       },
       {
         fieldPath: "headMovementCount",
-        translationPath: `${basePath}.headMovements`
+        translationPath: `${basePath}.headMovements`,
       },
       {
         fieldPath: "painSoundCount",
-        translationPath: `${basePath}.painSounds`
+        translationPath: `${basePath}.painSounds`,
       },
       {
         fieldPath: "pointingTowardsTheFloorCount",
-        translationPath: `${basePath}.pointingTowardsTheFloor`
+        translationPath: `${basePath}.pointingTowardsTheFloor`,
       },
       {
         fieldPath: "lookAtAbdomenCount",
-        translationPath: `${basePath}.lookingAtAbdomen`
-      }
+        translationPath: `${basePath}.lookingAtAbdomen`,
+      },
     ];
   };
 
@@ -92,28 +92,28 @@ class PainMeasurementDetails extends React.Component {
     return [
       {
         fieldPath: "flehmingCount",
-        translationPath: `${basePath}.flehming`
+        translationPath: `${basePath}.flehming`,
       },
       {
         fieldPath: "yawningCount",
-        translationPath: `${basePath}.yawning`
+        translationPath: `${basePath}.yawning`,
       },
       {
         fieldPath: "teethGrindingCount",
-        translationPath: `${basePath}.teethGrinding`
+        translationPath: `${basePath}.teethGrinding`,
       },
       {
         fieldPath: "moaningCount",
-        translationPath: `${basePath}.moaning`
+        translationPath: `${basePath}.moaning`,
       },
       {
         fieldPath: "smackingCount",
-        translationPath: `${basePath}.smacking`
+        translationPath: `${basePath}.smacking`,
       },
       {
         fieldPath: "headShakingCount",
-        translationPath: `${basePath}.headShaking`
-      }
+        translationPath: `${basePath}.headShaking`,
+      },
     ];
   };
 
@@ -123,36 +123,36 @@ class PainMeasurementDetails extends React.Component {
     return [
       {
         fieldPath: "behaviourPostureScore",
-        translationPath: `${basePath}.full.observation.behaviourOptions`
+        translationPath: `${basePath}.full.observation.behaviourOptions`,
       },
       {
         fieldPath: "overallAppearanceScore",
-        translationPath: `${basePath}.full.observation.overallAppearanceOptions`
+        translationPath: `${basePath}.full.observation.overallAppearanceOptions`,
       },
       {
         fieldPath: "sweatingScore",
-        translationPath: `${basePath}.full.observation.sweatingOptions`
+        translationPath: `${basePath}.full.observation.sweatingOptions`,
       },
       {
         fieldPath: "respiratoryRateScore",
-        translationPath: `${basePath}.full.vet.respiratoryRateOptions`
+        translationPath: `${basePath}.full.vet.respiratoryRateOptions`,
       },
       {
         fieldPath: "heartRateScore",
-        translationPath: `${basePath}.full.vet.heartRateOptions`
+        translationPath: `${basePath}.full.vet.heartRateOptions`,
       },
       {
         fieldPath: "digestiveSoundsScore",
-        translationPath: `${basePath}.full.vet.digestiveSoundsOptions`
+        translationPath: `${basePath}.full.vet.digestiveSoundsOptions`,
       },
       {
         fieldPath: "rectalTemperatureScore",
-        translationPath: `${basePath}.full.vet.rectalTemperatureOptions`
+        translationPath: `${basePath}.full.vet.rectalTemperatureOptions`,
       },
       {
         fieldPath: "reactionToPalpationScore",
-        translationPath: `${basePath}.full.interaction.reactionToPalpationOptions`
-      }
+        translationPath: `${basePath}.full.interaction.reactionToPalpationOptions`,
+      },
     ];
   };
 
@@ -162,32 +162,32 @@ class PainMeasurementDetails extends React.Component {
     return [
       {
         fieldPath: "headScore",
-        translationPath: `${basePath}.head.observation.headOptions`
+        translationPath: `${basePath}.head.observation.headOptions`,
       },
       {
         fieldPath: "eyelidScore",
-        translationPath: `${basePath}.head.observation.eyelidsOptions`
+        translationPath: `${basePath}.head.observation.eyelidsOptions`,
       },
       {
         fieldPath: "focusScore",
-        translationPath: `${basePath}.head.observation.focusOptions`
+        translationPath: `${basePath}.head.observation.focusOptions`,
       },
       {
         fieldPath: "nostrilScore",
-        translationPath: `${basePath}.head.observation.nostrilsOptions`
+        translationPath: `${basePath}.head.observation.nostrilsOptions`,
       },
       {
         fieldPath: "cornerMouthScore",
-        translationPath: `${basePath}.head.observation.mouthCornersOptions`
+        translationPath: `${basePath}.head.observation.mouthCornersOptions`,
       },
       {
         fieldPath: "muscleToneHeadScore",
-        translationPath: `${basePath}.head.observation.muscleToneHeadOptions`
+        translationPath: `${basePath}.head.observation.muscleToneHeadOptions`,
       },
       {
         fieldPath: "earScore",
-        translationPath: `${basePath}.head.observation.earsOptions`
-      }
+        translationPath: `${basePath}.head.observation.earsOptions`,
+      },
     ];
   };
 
@@ -197,72 +197,72 @@ class PainMeasurementDetails extends React.Component {
     return [
       {
         fieldPath: "layingDownRollingScore",
-        translationPath: `${basePath}.full.observation.donkey.layingDownRollingOptions`
+        translationPath: `${basePath}.full.observation.donkey.layingDownRollingOptions`,
       },
       {
         fieldPath: "overallAppearanceScore",
-        translationPath: `${basePath}.full.observation.donkey.overallAppearanceOptions`
+        translationPath: `${basePath}.full.observation.donkey.overallAppearanceOptions`,
       },
       {
         fieldPath: "earPositionScore",
-        translationPath: `${basePath}.full.observation.donkey.earPositionOptions`
+        translationPath: `${basePath}.full.observation.donkey.earPositionOptions`,
       },
       {
         fieldPath: "postureScore",
-        translationPath: `${basePath}.full.observation.donkey.postureOptions`
+        translationPath: `${basePath}.full.observation.donkey.postureOptions`,
       },
       {
         fieldPath: "weightDistributionScore",
-        translationPath: `${basePath}.full.observation.donkey.weightDistributionOptions`
+        translationPath: `${basePath}.full.observation.donkey.weightDistributionOptions`,
       },
       {
         fieldPath: "headCarriageScore",
-        translationPath: `${basePath}.full.observation.donkey.headCarriageOptions`
+        translationPath: `${basePath}.full.observation.donkey.headCarriageOptions`,
       },
       {
         fieldPath: "sweatingScore",
-        translationPath: `${basePath}.full.observation.donkey.sweatingOptions`
+        translationPath: `${basePath}.full.observation.donkey.sweatingOptions`,
       },
       {
         fieldPath: "eatingScore",
-        translationPath: `${basePath}.full.observation.donkey.eatingOptions`
+        translationPath: `${basePath}.full.observation.donkey.eatingOptions`,
       },
       {
         fieldPath: "changesInBehaviourScore",
-        translationPath: `${basePath}.full.observation.donkey.changesInBehaviourOptions`
+        translationPath: `${basePath}.full.observation.donkey.changesInBehaviourOptions`,
       },
       {
         fieldPath: "reactionToObserverScore",
-        translationPath: `${basePath}.full.observation.donkey.reactionToObserverOptions`
+        translationPath: `${basePath}.full.observation.donkey.reactionToObserverOptions`,
       },
       {
         fieldPath: "reactionToPalpationScore",
-        translationPath: `${basePath}.full.interaction.donkey.reactionToPalpationOptions`
+        translationPath: `${basePath}.full.interaction.donkey.reactionToPalpationOptions`,
       },
       {
         fieldPath: "movementScore",
-        translationPath: `${basePath}.full.interaction.donkey.movementOptions`
+        translationPath: `${basePath}.full.interaction.donkey.movementOptions`,
       },
       {
         fieldPath: "respiratoryRateScore",
-        translationPath: `${basePath}.full.vet.donkey.respiratoryRateOptions`
+        translationPath: `${basePath}.full.vet.donkey.respiratoryRateOptions`,
       },
       {
         fieldPath: "heartRateScore",
-        translationPath: `${basePath}.full.vet.donkey.heartRateOptions`
+        translationPath: `${basePath}.full.vet.donkey.heartRateOptions`,
       },
       {
         fieldPath: "digestiveSoundsScore",
-        translationPath: `${basePath}.full.vet.donkey.digestiveSoundsOptions`
+        translationPath: `${basePath}.full.vet.donkey.digestiveSoundsOptions`,
       },
       {
         fieldPath: "rectalTemperatureScore",
-        translationPath: `${basePath}.full.vet.donkey.rectalTemperatureOptions`
+        translationPath: `${basePath}.full.vet.donkey.rectalTemperatureOptions`,
       },
       {
         fieldPath: "reactionToPalpationScore",
-        translationPath: `${basePath}.full.vet.donkey.reactionToPalpationOptions`
-      }
+        translationPath: `${basePath}.full.vet.donkey.reactionToPalpationOptions`,
+      },
     ];
   };
 
@@ -272,40 +272,40 @@ class PainMeasurementDetails extends React.Component {
     return [
       {
         fieldPath: "headScore",
-        translationPath: `${basePath}.head.observation.donkey.headOptions`
+        translationPath: `${basePath}.head.observation.donkey.headOptions`,
       },
       {
         fieldPath: "eyelidsScore",
-        translationPath: `${basePath}.head.observation.donkey.eyelidsOptions`
+        translationPath: `${basePath}.head.observation.donkey.eyelidsOptions`,
       },
       {
         fieldPath: "focusScore",
-        translationPath: `${basePath}.head.observation.donkey.focusOptions`
+        translationPath: `${basePath}.head.observation.donkey.focusOptions`,
       },
       {
         fieldPath: "nostrilsScore",
-        translationPath: `${basePath}.head.observation.donkey.nostrilsOptions`
+        translationPath: `${basePath}.head.observation.donkey.nostrilsOptions`,
       },
       {
         fieldPath: "mouthCornersScore",
-        translationPath: `${basePath}.head.observation.donkey.mouthCornersOptions`
+        translationPath: `${basePath}.head.observation.donkey.mouthCornersOptions`,
       },
       {
         fieldPath: "muscleToneHeadScore",
-        translationPath: `${basePath}.head.observation.donkey.muscleToneHeadOptions`
+        translationPath: `${basePath}.head.observation.donkey.muscleToneHeadOptions`,
       },
       {
         fieldPath: "sweatingBehindTheEarsScore",
-        translationPath: `${basePath}.head.observation.donkey.sweatingBehindTheEarsOptions`
+        translationPath: `${basePath}.head.observation.donkey.sweatingBehindTheEarsOptions`,
       },
       {
         fieldPath: "earPositionScore",
-        translationPath: `${basePath}.head.observation.donkey.earPositionOptions`
+        translationPath: `${basePath}.head.observation.donkey.earPositionOptions`,
       },
       {
         fieldPath: "responseToAuditoryStimulusScore",
-        translationPath: `${basePath}.head.observation.donkey.responseToAuditoryStimulusOptions`
-      }
+        translationPath: `${basePath}.head.observation.donkey.responseToAuditoryStimulusOptions`,
+      },
     ];
   };
 
@@ -320,17 +320,25 @@ class PainMeasurementDetails extends React.Component {
         : this.getFacialMeasurementTimerFields();
     const tObj = curry(t)(__, {
       returnObjects: true,
-      animalType: translatedAnimalType
+      animalType: translatedAnimalType,
+      thresholdScore:
+        measurement.data.animalType === "horse"
+          ? measurement.type === "composite"
+            ? "5"
+            : "3"
+          : measurement.type === "composite"
+          ? "5"
+          : "2",
     });
     const advicePaths = {
       composite: {
         pain: "painMeasurement.misc.adviceCompositeMeasurementPain",
-        noPain: "painMeasurement.misc.adviceCompositeMeasurementNoPain"
+        noPain: "painMeasurement.misc.adviceCompositeMeasurementNoPain",
       },
       head: {
         pain: "painMeasurement.misc.adviceFacialExpressionMeasurementPain",
-        noPain: "painMeasurement.misc.adviceFacialExpressionMeasurementNoPain"
-      }
+        noPain: "painMeasurement.misc.adviceFacialExpressionMeasurementNoPain",
+      },
     };
 
     let questionfFeldTranslationMap;
@@ -371,7 +379,7 @@ class PainMeasurementDetails extends React.Component {
     }
 
     const timerAnswers = compose(
-      map(pair => {
+      map((pair) => {
         const foundMapItem = find(propEq("fieldPath", pair[0]))(
           fieldTranslationMap
         );
@@ -382,13 +390,13 @@ class PainMeasurementDetails extends React.Component {
     )(measurement.data);
 
     const questionAnswers = compose(
-      map(pair => {
+      map((pair) => {
         const foundMapItem = find(propEq("fieldPath", pair[0]))(
           questionfFeldTranslationMap
         );
         return {
           answer: tObj(foundMapItem.translationPath)[pair[1]],
-          title: tObj(foundMapItem.translationPath.replace("Options", ""))
+          title: tObj(foundMapItem.translationPath.replace("Options", "")),
         };
       }),
       toPairs,
@@ -401,7 +409,7 @@ class PainMeasurementDetails extends React.Component {
           <CategoryHeader
             boxStyles={{
               paddingLeft: 20,
-              backgroundColor: colors.egyptianBlue
+              backgroundColor: colors.egyptianBlue,
             }}
             textStyles={{ fontWeight: "700", color: colors.white }}
           >
@@ -427,14 +435,14 @@ class PainMeasurementDetails extends React.Component {
           <CategoryHeader
             boxStyles={{
               paddingLeft: 20,
-              backgroundColor: colors.egyptianBlue
+              backgroundColor: colors.egyptianBlue,
             }}
             textStyles={{ fontWeight: "700", color: colors.white }}
           >
             {t("counting")}
           </CategoryHeader>
           <View>
-            {timerAnswers.map(pair => (
+            {timerAnswers.map((pair) => (
               <Row key={pair[0]}>
                 <Text style={{ ...fonts.style.normal }}>{pair[0]}</Text>
                 <View
@@ -444,7 +452,7 @@ class PainMeasurementDetails extends React.Component {
                     backgroundColor: colors.egyptianBlue,
                     borderRadius: 15,
                     alignItems: "center",
-                    justifyContent: "center"
+                    justifyContent: "center",
                   }}
                 >
                   <Text style={{ ...fonts.style.bold, color: colors.white }}>
@@ -457,7 +465,7 @@ class PainMeasurementDetails extends React.Component {
           <CategoryHeader
             boxStyles={{
               paddingLeft: 20,
-              backgroundColor: colors.egyptianBlue
+              backgroundColor: colors.egyptianBlue,
             }}
             textStyles={{ fontWeight: "700", color: colors.white }}
           >
@@ -481,7 +489,7 @@ class PainMeasurementDetails extends React.Component {
               <CategoryHeader
                 boxStyles={{
                   paddingLeft: 20,
-                  backgroundColor: colors.egyptianBlue
+                  backgroundColor: colors.egyptianBlue,
                 }}
                 textStyles={{ fontWeight: "700", color: colors.white }}
               >

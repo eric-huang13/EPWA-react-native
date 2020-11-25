@@ -99,16 +99,100 @@ LocaleConfig.locales.en = {
     "Dec"
   ],
   dayNames: [
-    "zondag",
-    "maandag",
-    "dinsdag",
-    "woensdag",
-    "donderdag",
-    "vrijdag",
-    "zaterdag"
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
   ],
   dayNamesShort: ["S", "M", "T", "W", "T", "V", "S"],
-  today: "Vandaag"
+  today: "Today"
+};
+
+LocaleConfig.locales.de = {
+  monthNames: [
+    "Januar",
+    "Februar",
+    "März",
+    "April",
+    "Kann",
+    "Juni",
+    "Juli",
+    "August",
+    "September",
+    "Oktober",
+    "November",
+    "Dezember"
+  ],
+  MonthNamesShort: [
+    "Januar",
+    "Februar",
+    "März",
+    "April",
+    "Kann",
+    "Juni",
+    "Juli",
+    "August",
+    "September",
+    "Oktober",
+    "November",
+    "Dezember"
+  ],
+  dayNames: [
+    "Sonntag",
+    "Montag",
+    "Dienstag",
+    "Mittwoch",
+    "Donnerstag",
+    "Freitag",
+    "Samstag"
+  ],
+  dayNamesShort: ["S", "M", "D", "M", "D", "F", "S"],
+  today: "Heute"
+};
+
+LocaleConfig.locales.fr = {
+  monthNames: [
+    "Janvier",
+    "Février",
+    "Mars",
+    "Avril",
+    "Pouvez",
+    "Juin",
+    "Juillet",
+    "Août",
+    "Septembre",
+    "Octobre",
+    "Novembre",
+    "Décembre"
+  ],
+  MonthNamesShort: [
+    "Janvier",
+    "Février",
+    "Mars",
+    "Avril",
+    "Pouvez",
+    "Juin",
+    "Juillet",
+    "Août",
+    "Septembre",
+    "Octobre",
+    "Novembre",
+    "Décembre"
+  ],
+  dayNames: [
+    "Dimanche",
+    "Lundi",
+    "Mardi",
+    "Mercredi",
+    "Jeudi",
+    "Vendredi",
+    "Samedi"
+  ],
+  dayNamesShort: ["D", "L", "M", "M", "J", "V", "S"],
+  today: "Aujourd'hui"
 };
 // LocaleConfig.defaultLocale = "nl";
 
@@ -118,37 +202,71 @@ LocaleConfig.locales.en = {
 // };
 
 function formatDate(date, lang) {
-  const monthNames =
-    lang === "nl"
-      ? [
-          "januari",
-          "februari",
-          "maart",
-          "april",
-          "mei",
-          "juni",
-          "juli",
-          "augustus",
-          "september",
-          "oktober",
-          "november",
-          "december"
-        ]
-      : [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-          "August",
-          "September",
-          "October",
-          "November",
-          "December"
-        ];
-
+  let monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ];
+  switch (lang) {
+    case "nl":
+      monthNames = [
+        "januari",
+        "februari",
+        "maart",
+        "april",
+        "mei",
+        "juni",
+        "juli",
+        "augustus",
+        "september",
+        "oktober",
+        "november",
+        "december"
+      ];
+      break;
+    case "de":
+      monthNames = [
+        "Januar",
+        "Februar",
+        "März",
+        "April",
+        "Kann",
+        "Juni",
+        "Juli",
+        "August",
+        "September",
+        "Oktober",
+        "November",
+        "Dezember"
+      ];
+      break;
+    case "fr":
+      monthNames = [
+        "Janvier",
+        "Février",
+        "Mars",
+        "Avril",
+        "Pouvez",
+        "Juin",
+        "Juillet",
+        "Août",
+        "Septembre",
+        "Octobre",
+        "Novembre",
+        "Décembre"
+      ];
+      break;
+    default:
+  }
   const day = date.getDate();
   const monthIndex = date.getMonth();
   const month = monthNames[monthIndex];

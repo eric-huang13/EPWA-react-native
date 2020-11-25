@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "131572239324-gvfisq83msqdlc5tvr06rjec7fehpj83.apps.googleusercontent.com",
+          "client_id": "131572239324-e3lb31dp05nrtm6lcs5umnde0miqtp2o.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.epwa",
-            "certificate_hash": "35a1a4c41bd3418631a3250569167c1fe915fe95"
+            "certificate_hash": "da125c9bd37d5c2ba775f8978cc830533daa3e98"
           }
         },
         {

@@ -32,7 +32,25 @@ class PainMeasurementGraph extends React.Component {
   }
 
   componentDidMount() {
-    this.setGraphData();
+    this.focusListener = this.props.navigation.addListener("didFocus", () => {
+      setTimeout(() => {
+        this.setGraphData();
+      }, 250);
+    });
+  }
+
+  componentWillUnmount() {
+    this.focusListener.remove();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { items: oldItems } = this.props;
+    const { items: newItems } = nextProps;
+    const oldItemData = oldItems.find(item => item.completed === true);
+    const hasOldData = newItems.find(item => item.id === oldItemData?.id);
+    if (hasOldData) {
+      this.setGraphData();
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -88,11 +106,16 @@ class PainMeasurementGraph extends React.Component {
     const ticks = [];
     const tickStrings = [];
 
-    const isPainScore = value => isNil(value.data) === false;
+    const isPainScore = value =>
+      isNil(value.data && value.data.finalScore) === false;
 
     const data = this.props.items.filter(isPainScore).map((item, index) => {
+      if (!item.data && !item.data.finalScore) {
+        return;
+      }
       ticks.push(index);
       tickStrings.push(formatDate(item.startDate).replace("-", "\n"));
+
       return {
         index,
         date: item.startDate,

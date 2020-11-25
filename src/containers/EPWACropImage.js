@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import {
   View,
   ScrollView,
-  Text
+  Text,
+  Image
 } from "react-native";
 import T from "prop-types";
 import { last, compose } from "ramda";
@@ -189,7 +190,7 @@ class EPWACropImage extends Component {
           <View key={content.title}>
             <Text style={s.titleStyle}>{content.title}</Text>
             <View style={s.cropPhotoContainer}>
-              <FastImage
+              <Image
                 style={[s.cropImg, {width: imageWidth * 0.9, height: imageHeight * 0.9}]}
                 source={image}
                 resizeMode={FastImage.resizeMode.contain}

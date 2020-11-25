@@ -71,8 +71,9 @@ class SignInScreen extends React.Component {
       if (
         error === "forgotEmailGeneric" ||
         error === "forgotEmailSuccededAlertMessage"
-      )
+      ) {
         return;
+      }
       this.showAlert();
     }
   }
@@ -109,7 +110,7 @@ class SignInScreen extends React.Component {
     this.props.dispatch(facebookLoginRequest());
   };
 
-  handleLanguangeChangeRequest = (langCode) => {
+  handleLanguangeChangeRequest = langCode => {
     this.props.dispatch(setLanguage(langCode));
 
     // We have to manually trigger update of header title as it's static property of a class and is not updated automatically
@@ -136,7 +137,6 @@ class SignInScreen extends React.Component {
   render() {
     const { dispatch, t } = this.props;
     const { formState, currentlySending } = this.props.data;
-
     const renderGoogleLogo = () => <Image source={googleLogo} />;
     const renderRegisterLink = () => (
       <TouchableOpacity onPress={this.handleRegistrationRequest}>
@@ -220,7 +220,7 @@ SignInScreen.propTypes = {
   t: T.func
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   data: state.authForm
 });
 

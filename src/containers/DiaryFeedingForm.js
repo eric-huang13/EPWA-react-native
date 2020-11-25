@@ -65,6 +65,7 @@ import {
 import iconMap from "../constants/iconMap";
 import RecurringForm from "../components/RecurringForm";
 import nlLocale from "date-fns/locale/nl";
+import { getStartDateText } from "../helper";
 
 // import Reactotron from "reactotron-react-native";
 
@@ -472,7 +473,8 @@ class DiaryFeedingForm extends Component {
     const { setFieldValue, values } = this.props;
     const currentDate = this.props.navigation.getParam("currentDate");
     const lang = this.props.i18n.language;
-
+    const renderingDate = this.props.navigation.getParam("renderingDate");
+    const dateForIOS = Date.parse(`${renderingDate} ${new Date().getFullYear()}`);
     return (
       <View style={s.screenContainer}>
         <KeyboardAvoidingView
@@ -489,9 +491,10 @@ class DiaryFeedingForm extends Component {
                 marginVertical: 20
               }}
             >
-              {lang === "nl"
-                ? format(currentDate, "dddd DD MMMM", { locale: nlLocale })
-                : format(currentDate, "dddd MMM D")}
+              {getStartDateText(
+                renderingDate ? +new Date(dateForIOS) : currentDate,
+                lang
+              )}
             </Text>
             <View>
               {this.renderFieldArray(eventTypes.roughage)}
@@ -584,9 +587,11 @@ const onSubmit = (values, formikBag) => {
           : ` ${t(flattenValues[i].data.name)} ${t(
               flattenValues[i].data.quantity
             )} ${t(flattenValues[i].data.unit)}`;
-      flattenValues[i].data.notificationData = `(${t(animal.type)}: ${
-        animal.name
-      }) ${t(flattenValues[i].category)} ${content} `;
+      flattenValues[i].data.notificationData = animal
+        ? `(${t(animal.type)}: ${animal.name}) ${t(
+            flattenValues[i].category
+          )} ${content} `
+        : flattenValues[i].data.notificationData;
     }
   }
 

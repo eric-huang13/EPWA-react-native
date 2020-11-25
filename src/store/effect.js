@@ -2,17 +2,21 @@ const effectHandler = effect => {
   const { method } = effect;
 
   return new Promise((resolve, reject) => {
-    method(effect)
-      .then(response => {
-        if (response.ok) {
-          return resolve(response.data);
-        }
+    if (method) {
+      method(effect)
+        .then(response => {
+          if (response.ok) {
+            return resolve(response.data);
+          }
 
-        return reject(response);
-      })
-      .catch(e => {
-        reject(e);
-      });
+          return reject(response);
+        })
+        .catch(e => {
+          reject(e);
+        });
+    } else {
+      reject();
+    }
   });
 };
 

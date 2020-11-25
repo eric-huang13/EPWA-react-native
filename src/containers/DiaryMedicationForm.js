@@ -77,6 +77,7 @@ import {
 } from "../services/date";
 import iconMap from "../constants/iconMap";
 import nlLocale from "date-fns/locale/nl";
+import { getStartDateText } from "../helper";
 
 // import Reactotron from "reactotron-react-native";
 
@@ -712,9 +713,11 @@ class DiaryMedicationForm extends Component {
   render() {
     const currentDate = this.props.navigation.getParam("currentDate");
     const lang = this.props.i18n.language;
+    const renderingDate = this.props.navigation.getParam("renderingDate");
     const btnColor = this.state.completeEvent
       ? { backgroundColor: colors.lima }
       : null;
+    const dateForIOS = Date.parse(`${renderingDate} ${new Date().getFullYear()}`);
     return (
       <View style={s.screenContainer}>
         <KeyboardAvoidingView
@@ -732,9 +735,10 @@ class DiaryMedicationForm extends Component {
                   marginVertical: 20
                 }}
               >
-                {lang === "nl"
-                  ? format(currentDate, "dddd DD MMMM", { locale: nlLocale })
-                  : format(currentDate, "dddd MMM D")}
+                {getStartDateText(
+                  renderingDate ? +new Date(dateForIOS) : currentDate,
+                  lang
+                )}
               </Text>
               {this.renderFieldArray(eventTypes.pill)}
               {this.renderFieldArray(eventTypes.treatment)}
@@ -829,11 +833,12 @@ const onSubmit = (values, formikBag) => {
 
   for (let i = 0; i < flattenValues.length; i++) {
     if (flattenValues[i].data.notification) {
-      flattenValues[i].data.notificationData = `(${t(animal.type)}: ${
-        animal.name
-      }) ${t(flattenValues[i].category)} ${t(
-        flattenValues[i].data.quantity
-      )} ${t(flattenValues[i].data.unit)} `;
+      flattenValues[i].data.notificationData = `(${t(
+        animal && animal.type ? animal.type : "horse"
+      )}: ${animal && animal.name ? animal.name : "First Horse"})
+       ${t(flattenValues[i].category)} ${t(flattenValues[i].data.quantity)} ${t(
+        flattenValues[i].data.unit
+      )} `;
     }
   }
 
@@ -866,7 +871,6 @@ const onSubmit = (values, formikBag) => {
           onDismiss: () => "cancel"
         }
       );
-
       if (choice === "yes") {
         if (isEditing && flattenValues.length > 0) {
           return await triggerSubmitType(flattenValues[0], {
@@ -910,7 +914,6 @@ const onSubmit = (values, formikBag) => {
         initialValue
       });
     }
-
     return triggerSubmitType(initialValue, {
       formikBag,
       alertTitle: "alertSuccess",
@@ -928,7 +931,6 @@ const formikOptions = {
     if (!initialValue) {
       return {};
     }
-
     const result = {};
     result[initialValue.type] = [initialValue];
 

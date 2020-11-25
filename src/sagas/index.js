@@ -35,13 +35,8 @@ import {
   deleteAccount
 } from "./auth";
 import { updateProfile } from "./profile";
-import { 
-  addAnimal,
-  editAnimal,
-  deleteAnimal,
-  getAnimals
-} from "./animals";
-import { 
+import { addAnimal, editAnimal, deleteAnimal, getAnimals } from "./animals";
+import {
   getAnimalCaregiver,
   addAnimalCaregiver,
   deleteAnimalCaregiver
@@ -61,9 +56,7 @@ import {
   DELETE_ANIMAL_CAREGIVER_REQUESTED
 } from "../actions/caregiver";
 
-import {
-  SAVE_CROP_IMAGE_REQUESTED
-} from "../actions/crop";
+import { SAVE_CROP_IMAGE_REQUESTED } from "../actions/crop";
 import {
   ADD_EVENT_REQUESTED,
   ADD_EVENT_COMMIT_REQUESTED,
@@ -75,7 +68,10 @@ import {
   DELETE_EVENT_ROLLBACK_REQUESTED,
   EXPORT_EVENTS,
   COMPLETE_EVENT_REQUESTED,
-  COMPLETE_RECURRING_EVENT_REQUESTED
+  COMPLETE_EVENT_WITH_DATA_REQUESTED,
+  COMPLETE_RECURRING_EVENT_REQUESTED,
+  COMPLETE_RECURRING_EVENT_WITH_DATA,
+  FETCH_ALL_EVENTS
 } from "../actions/events";
 import { SET_LANGUAGE_REQUEST } from "../actions/language";
 import { setLanguage } from "./language";
@@ -90,7 +86,10 @@ import {
   deleteEventRollback,
   exportEvents,
   completeEvent,
-  completeRecurringEvent
+  completeRecurringEvent,
+  completeEventWithData,
+  fetchAllEvents,
+  completeRecurringEventWithData
 } from "./events";
 
 // The API we use is only used from Sagas, so we create it here and pass along
@@ -119,11 +118,16 @@ export default function* root(dispatch) {
   yield takeLatest(DELETE_ANIMAL_REQUESTED, deleteAnimal, api);
   yield takeLatest(GET_ANIMAL_CAREGIVER_REQUESTED, getAnimalCaregiver, api);
   yield takeLatest(ADD_ANIMAL_CAREGIVER_REQUESTED, addAnimalCaregiver, api);
-  yield takeLatest(DELETE_ANIMAL_CAREGIVER_REQUESTED, deleteAnimalCaregiver, api);
+  yield takeLatest(
+    DELETE_ANIMAL_CAREGIVER_REQUESTED,
+    deleteAnimalCaregiver,
+    api
+  );
   yield takeLatest(SAVE_CROP_IMAGE_REQUESTED, saveCropImage, api);
   yield takeLatest(SET_LANGUAGE_REQUEST, setLanguage, api);
   yield takeLatest(CHANGE_PASSWORD_REQUEST, changePassword, api);
   yield takeLatest(EXPORT_EVENTS, exportEvents, csvUploadApi);
+  yield takeLatest(FETCH_ALL_EVENTS, fetchAllEvents, api);
   yield takeEvery(ADD_EVENT_REQUESTED, addEvent, api, dispatch);
   yield takeEvery(ADD_EVENT_COMMIT_REQUESTED, addEventCommit);
   yield takeEvery(ADD_EVENT_ROLLBACK_REQUESTED, addEventRollback);
@@ -133,10 +137,22 @@ export default function* root(dispatch) {
   yield takeEvery(DELETE_EVENT_REQUESTED, deleteEvent, api, dispatch);
   yield takeEvery(DELETE_EVENT_ROLLBACK_REQUESTED, deleteEventRollback);
   yield takeEvery(COMPLETE_EVENT_REQUESTED, completeEvent, api, dispatch);
+  yield takeEvery(
+    COMPLETE_EVENT_WITH_DATA_REQUESTED,
+    completeEventWithData,
+    api,
+    dispatch
+  );
   yield takeEvery(DELETE_ACCOUNT, deleteAccount, api, dispatch);
   yield takeEvery(
     COMPLETE_RECURRING_EVENT_REQUESTED,
     completeRecurringEvent,
+    api,
+    dispatch
+  );
+  yield takeLatest(
+    COMPLETE_RECURRING_EVENT_WITH_DATA,
+    completeRecurringEventWithData,
     api,
     dispatch
   );

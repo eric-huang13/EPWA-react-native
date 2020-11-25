@@ -71,6 +71,7 @@ import {
 } from "../services/date";
 import iconMap from "../constants/iconMap";
 import nlLocale from "date-fns/locale/nl";
+import { getStartDateText } from "../helper";
 
 // import Reactotron from "reactotron-react-native";
 
@@ -334,7 +335,8 @@ class DiaryPainMeasurementForm extends Component {
   render() {
     const currentDate = this.props.navigation.getParam("currentDate");
     const lang = this.props.i18n.language;
-
+    const renderingDate = this.props.navigation.getParam("renderingDate");
+    const dateForIOS = Date.parse(`${renderingDate} ${new Date().getFullYear()}`);
     return (
       <View style={s.screenContainer}>
         <ScrollView contentContainerStyle={s.scrollContainer}>
@@ -346,9 +348,10 @@ class DiaryPainMeasurementForm extends Component {
               marginVertical: 20
             }}
           >
-            {lang === "nl"
-              ? format(currentDate, "dddd DD MMMM", { locale: nlLocale })
-              : format(currentDate, "dddd MMM D")}
+            {getStartDateText(
+              renderingDate ? +new Date(dateForIOS) : currentDate,
+              lang
+            )}
           </Text>
           <View>{this.renderFieldArray()}</View>
           {!this.state.completed && this.renderRecurring()}
@@ -419,7 +422,7 @@ const onSubmit = ({ payload }, formikBag) => {
   const initialValue = formikBag.props.navigation.getParam("initialValue");
   const isEditing = Boolean(initialValue);
   const animal = formikBag.props.navigation.getParam("animal");
-
+  //console.log(payload, "check the animal data here", animal);
   const { t } = formikBag.props;
 
   if (payload[0].startDate > payload[0].recurring_untill) {
@@ -430,9 +433,11 @@ const onSubmit = ({ payload }, formikBag) => {
     return;
   }
   if (payload[0].data.notification) {
-    payload[0].data.notificationData = `(${t(animal.type)}: ${animal.name}) ${t(
-      `categories.${payload[0].category}`
-    )} ${t(`painMeasurements.${payload[0].type}`)}`;
+    payload[0].data.notificationData = animal
+      ? `(${t(animal.type)}: ${animal.name}) ${t(
+          `categories.${payload[0].category}`
+        )} ${t(`painMeasurements.${payload[0].type}`)}`
+      : payload[0]?.data?.notificationData || "";
   }
 
   if (!isEditing) {

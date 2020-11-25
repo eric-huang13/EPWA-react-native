@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Switch,
   TouchableOpacity,
-  Dimensions,
+  Dimensions
 } from "react-native";
 import T from "prop-types";
 import { uniq } from "ramda";
@@ -32,26 +32,29 @@ export default function EventsList({
   t,
   navigateTo,
   findEventById,
-  toggleComplete,
+  toggleComplete
 }) {
   return (
     <View style={{ paddingRight: 20, minHeight: 200 }}>
-      {events.map((event, index) => (
-        <NewListItem
-          {...event}
-          t={t}
-          key={index}
-          navigateTo={navigateTo}
-          findEventById={findEventById}
-          toggleComplete={toggleComplete}
-        />
-      ))}
+      {events.map((event, index) => {
+        //console.log("check at the new list item", event);
+        return (
+          <NewListItem
+            {...event}
+            t={t}
+            key={index}
+            navigateTo={navigateTo}
+            findEventById={findEventById}
+            toggleComplete={toggleComplete}
+          />
+        );
+      })}
     </View>
   );
 }
 export class AccordionView extends Component {
   state = {
-    activeSections: [],
+    activeSections: []
   };
   componentDidUpdate(prevProps, prevState) {
     if (prevState.activeSections[0] === this.state.activeSections[0]) {
@@ -69,7 +72,7 @@ export class AccordionView extends Component {
         paddingHorizontal: 20,
         paddingVertical: 25,
         borderTopColor: colors.whiteSmoke,
-        borderTopWidth: 2,
+        borderTopWidth: 2
       }}
     >
       <View>
@@ -80,12 +83,12 @@ export class AccordionView extends Component {
           style={{
             flexDirection: "row",
             flexWrap: "wrap",
-            width: 260,
+            width: 260
           }}
         >
           {!isActive &&
             uniq(section.events.map(({ category }) => category)).map(
-              (category) => (
+              category => (
                 <View
                   key={category}
                   style={{ paddingRight: 10, paddingBottom: 10 }}
@@ -102,7 +105,7 @@ export class AccordionView extends Component {
         style={{
           width: 50,
           paddingHorizontal: 20,
-          paddingTop: 20,
+          paddingTop: 20
         }}
       >
         <Arrow style={isActive ? { transform: [{ rotate: "180deg" }] } : ""} />
@@ -111,14 +114,16 @@ export class AccordionView extends Component {
   );
 
   _renderContent = (section, index, isActive) => {
+    console.log("section data", section);
     return (
       <View
         style={{
           paddingRight: 20,
-          paddingBottom: 25,
+          paddingBottom: 25
         }}
       >
-        {section.events.map((event) => {
+        {section.events.map(event => {
+          //console.log("check at the new list item", event);
           return (
             <NewListItem
               {...event}
@@ -127,6 +132,7 @@ export class AccordionView extends Component {
               navigateTo={this.props.navigateTo}
               findEventById={this.props.findEventById}
               toggleComplete={this.props.toggleComplete}
+              renderingDate={section.startDate}
             />
           );
         })}
@@ -134,7 +140,7 @@ export class AccordionView extends Component {
     );
   };
 
-  _updateSections = (activeSections) => {
+  _updateSections = activeSections => {
     this.setState({ activeSections });
   };
 
@@ -161,7 +167,7 @@ function CheckInput({
   toggleComplete,
   type,
   endDate,
-  startDate,
+  startDate
 }) {
   return (
     <View style={{ width: 60 }}>
@@ -171,7 +177,10 @@ function CheckInput({
         underlayColor="#fff"
         disabled={
           (type === eventTypes.facialExpression ||
-            type === eventTypes.composite) &&
+            type === eventTypes.composite ||
+            type === eventTypes.temperature ||
+            type === eventTypes.recovery ||
+            type === eventTypes.treatment) &&
           Boolean(completed)
         }
       >
@@ -195,6 +204,7 @@ export function NewListItem({
   t,
   navigateTo,
   findEventById,
+  renderingDate = null
 }) {
   const { width } = Dimensions.get("window");
   const content = (
@@ -207,16 +217,17 @@ export function NewListItem({
       t={t}
       navigateTo={navigateTo}
       findEventById={findEventById}
-      id={localId}
+      id={localId || id}
       toggleComplete={toggleComplete}
       startDate={startDate}
       endDate={endDate}
+      renderingDate={renderingDate || null}
     />
   );
   const time = format(startDate, "HH:mm");
   const feedingCompleted =
-    groupedEvents.filter((event) => Boolean(event.completed) === true)
-      .length === groupedEvents.length
+    groupedEvents.filter(event => Boolean(event.completed) === true).length ===
+    groupedEvents.length
       ? true
       : false;
 
@@ -253,7 +264,7 @@ export function NewListItem({
             <View
               style={[
                 styles.itemContentContainer,
-                completed ? styles.completed : "",
+                completed ? styles.completed : ""
               ]}
             >
               {content}
@@ -293,7 +304,9 @@ function ItemContent({
   toggleComplete,
   startDate,
   endDate,
+  renderingDate = null
 }) {
+  //console.log("check at the item content", id);
   switch (category) {
     case eventCategories.painMeasurement:
       return (
@@ -305,6 +318,7 @@ function ItemContent({
           id={id}
           completed={completed}
           data={data}
+          renderingDate={renderingDate}
         />
       );
     case eventCategories.exercise:
@@ -318,6 +332,7 @@ function ItemContent({
           completed={completed}
           startDate={startDate}
           endDate={endDate}
+          renderingDate={renderingDate}
         />
       );
     case eventCategories.housing:
@@ -331,6 +346,7 @@ function ItemContent({
           completed={completed}
           startDate={startDate}
           endDate={endDate}
+          renderingDate={renderingDate}
         />
       );
     case eventCategories.feeding:
@@ -343,6 +359,7 @@ function ItemContent({
           id={id}
           completed={completed}
           toggleComplete={toggleComplete}
+          renderingDate={renderingDate}
         />
       );
     case eventCategories.medication:
@@ -355,6 +372,7 @@ function ItemContent({
           id={id}
           completed={completed}
           data={data}
+          renderingDate={renderingDate}
         />
       );
     case eventCategories.appointment:
@@ -367,6 +385,7 @@ function ItemContent({
           id={id}
           completed={completed}
           data={data}
+          renderingDate={renderingDate}
         />
       );
     default:
@@ -386,6 +405,7 @@ function PainMeasureContent({
   id,
   completed,
   data,
+  renderingDate
 }) {
   const localId =
     typeof id === "string" && id.includes("_") ? id.split("_")[0] : id;
@@ -397,6 +417,7 @@ function PainMeasureContent({
       ? t("facialMeasure")
       : t("compositeMeasure");
   const { width } = Dimensions.get("window");
+
   return (
     <React.Fragment>
       <PainMesIcon isFacialExpression={isFacialExpression} />
@@ -410,10 +431,11 @@ function PainMeasureContent({
         onPress={() =>
           completed
             ? navigateTo("PainMeasurementDetails", {
-                measurement: { data, type, id },
+                measurement: { data, type, id }
               })
             : navigateTo("DiaryPainMeasurementForm", {
                 initialValue: findEventById(+localId),
+                renderingDate
               })
         }
       >
@@ -428,7 +450,16 @@ function PainMeasureContent({
   );
 }
 
-function MedicationContent({ type, navigateTo, t, findEventById, id, data }) {
+function MedicationContent({
+  type,
+  navigateTo,
+  t,
+  findEventById,
+  id,
+  data,
+  completed,
+  renderingDate
+}) {
   const localId =
     typeof id === "string" && id.includes("_") ? id.split("_")[0] : id;
   const localDate =
@@ -444,12 +475,15 @@ function MedicationContent({ type, navigateTo, t, findEventById, id, data }) {
       <MedicalIcon type={type} />
       <TouchableOpacity
         key={id}
-        onPress={() =>
-          navigateTo("DiaryMedicationForm", {
-            initialValue: findEventById(+localId),
-            localDate,
-          })
-        }
+        onPress={() => {
+          if (!completed) {
+            navigateTo("DiaryMedicationForm", {
+              initialValue: findEventById(+localId),
+              localDate,
+              renderingDate
+            });
+          }
+        }}
       >
         <View style={styles.itemContent}>
           <Text style={fonts.style.normal}>{content}</Text>
@@ -465,6 +499,7 @@ function FeedingContent({
   navigateTo,
   findEventById,
   toggleComplete,
+  renderingDate
 }) {
   return (
     <React.Fragment>
@@ -483,17 +518,20 @@ function FeedingContent({
               startDate={startDate}
             />
             <TouchableOpacity
-              onPress={() =>
-                navigateTo("DiaryFeedingForm", {
-                  initialValue: findEventById(+localId),
-                  localDate,
-                })
-              }
+              onPress={() => {
+                if (!completed) {
+                  navigateTo("DiaryFeedingForm", {
+                    initialValue: findEventById(+localId),
+                    localDate,
+                    renderingDate
+                  });
+                }
+              }}
             >
               <View
                 style={[
                   styles.itemContentContainer,
-                  completed && styles.completed,
+                  completed && styles.completed
                 ]}
               >
                 <FeedingIcon type={type} />
@@ -518,6 +556,8 @@ function HousingContent({
   id,
   startDate,
   endDate,
+  completed,
+  renderingDate
 }) {
   const localId =
     typeof id === "string" && id.includes("_") ? id.split("_")[0] : id;
@@ -532,12 +572,15 @@ function HousingContent({
       <HousingIcon type={type} />
       <TouchableOpacity
         key={id}
-        onPress={() =>
-          navigateTo("DiaryHousingForm", {
-            initialValue: findEventById(+localId),
-            localDate,
-          })
-        }
+        onPress={() => {
+          if (!completed) {
+            navigateTo("DiaryHousingForm", {
+              initialValue: findEventById(+localId),
+              localDate,
+              renderingDate
+            });
+          }
+        }}
       >
         <View style={styles.itemContent}>
           <Text style={fonts.style.normal}>
@@ -556,6 +599,8 @@ function ExerciseContent({
   id,
   startDate,
   endDate,
+  completed,
+  renderingDate
 }) {
   const localId =
     typeof id === "string" && id.includes("_") ? id.split("_")[0] : id;
@@ -570,12 +615,15 @@ function ExerciseContent({
       <HousingIcon type={type} />
       <TouchableOpacity
         key={id}
-        onPress={() =>
-          navigateTo("DiaryExerciseForm", {
-            initialValue: findEventById(+localId),
-            localDate,
-          })
-        }
+        onPress={() => {
+          if (!completed) {
+            navigateTo("DiaryExerciseForm", {
+              initialValue: findEventById(+localId),
+              localDate,
+              renderingDate
+            });
+          }
+        }}
       >
         <View style={styles.itemContent}>
           <Text style={fonts.style.normal}>
@@ -595,12 +643,14 @@ function AppointmentContent({
   id,
   startDate,
   data,
+  completed,
+  renderingDate
 }) {
   const localId =
     typeof id === "string" && id.includes("_") ? id.split("_")[0] : id;
   const localDate =
     typeof id === "string" && id.includes("_") ? id.split("_")[1] : null;
-
+  //console.log(localId, localDate, "check the data here", id);
   // const startTime = format(startDate, "HH:mm");
   const { width } = Dimensions.get("window");
 
@@ -608,19 +658,22 @@ function AppointmentContent({
     <React.Fragment>
       <TouchableOpacity
         key={id}
-        onPress={() =>
-          navigateTo("DiaryAppointmentForm", {
-            initialValue: findEventById(+localId),
-            localDate,
-          })
-        }
+        onPress={() => {
+          if (!completed) {
+            navigateTo("DiaryAppointmentForm", {
+              initialValue: findEventById(+localId),
+              localDate,
+              renderingDate
+            });
+          }
+        }}
       >
         <View style={{ ...styles.itemContent, flexDirection: "column" }}>
           <Text
             style={{
               ...fonts.style.normal,
               flexShrink: 1,
-              width: width - 150,
+              width: width - 150
             }}
           >
             {data.note}
@@ -644,7 +697,7 @@ function PainMesIcon({ isFacialExpression }) {
         shadowColor: colors.black,
         shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.2,
-        shadowRadius: 6,
+        shadowRadius: 6
       }}
     />
   );
@@ -774,7 +827,7 @@ const styles = StyleSheet.create({
   itemContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 25,
+    marginBottom: 25
   },
   time: {
     backgroundColor: colors.whiteSmoke,
@@ -784,42 +837,42 @@ const styles = StyleSheet.create({
     marginTop: 15,
     width: 55,
     alignItems: "center",
-    height: 25,
+    height: 25
   },
   title: {
     fontSize: 19,
     paddingLeft: 60,
     marginBottom: 5,
-    maxWidth: 250,
+    maxWidth: 250
   },
   itemContentContainer: {
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "center"
   },
   subItemContentContainer: {
     flexDirection: "row",
     alignItems: "center",
     paddingVertical: 7,
-    minHeight: 40,
+    minHeight: 40
   },
   calendarTitle: {
     fontSize: 20,
     fontWeight: "400",
-    color: "#282828",
+    color: "#282828"
   },
   completed: {
-    opacity: 0.2,
+    opacity: 0.2
   },
   appointmentContent: {
-    maxWidth: "80%",
-  },
+    maxWidth: "80%"
+  }
 });
 
 NewListItem.propTypes = {
   checked: T.bool,
-  onPress: T.func,
+  onPress: T.func
 };
 
 PainMesIcon.propTypes = {
-  pain: T.bool,
+  pain: T.bool
 };

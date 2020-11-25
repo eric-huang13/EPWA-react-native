@@ -4,7 +4,9 @@
     "appName": "Equine Pijn- en WelzijnsApp",
     "language": {
       "nl": "Nederlands",
-      "en": "Engels"
+      "en": "Engels",
+      "de": "Duitse",
+      "fr": "Frans"
     },
     "dateFormat": "DD-MM-YYYY",
     "errors": {
@@ -622,6 +624,7 @@
         "hiking": "Wandelen",
         "stepMill": "Stapmolen",
         "manualWork": "Werken aan de hand",
+        "western": "Western",
         "other": "Overig"
       }
     },
@@ -689,7 +692,7 @@
         "links": [
           {
             "label": "Meer informatie over EPWA",
-            "url": "https://www.epwa.nl"
+            "url": "https://www.epwa.nl/instructie"
           }
         ]
       },
@@ -812,7 +815,7 @@
           },
           {
             "title": "Opslaan",
-            "content": "Heb je de training ingevuld? Gebruik dan het > icoontje rechts bovenin om op te slaan. De trainingstijd komt nu automatisch in het dagboek te staan. Heb je meerdere trainingssessies gehad, zie je je totale trainingstijd voor die dag terug in het dagboek."
+            "content": "Heb je de training ingevuld? Klik dan op de knop 'Opslaan' onder in om de training toe te voegen aan het dagboek. De trainingstijd komt nu automatisch in het dagboek te staan. Heb je meerdere trainingssessies gehad, zie je je totale trainingstijd voor die dag terug in het dagboek."
           }
         ]
       },
@@ -988,6 +991,7 @@
         }
       }
     },
+    "supportedby": "Mede mogelijk gemaakt door",
     "profileUpdateSuccess": "Je profiel is geupdate!",
     "name": "Naam",
     "firstName": "Voornaam",
@@ -1014,6 +1018,7 @@
     "fillInParticularities": "Vul hier bijzonderheden in",
     "caregiverTitle": "Verzorger(s)",
     "addCaregiverDesc": "Nieuwe verzorger toevoegen",
+    "caregiverEmail": "E-mailadres",
     "caregiverInviteBtnText": "Verzenden",
     "prefixRemoveMessage": "Weet je zeker dat je",
     "sufixRemoveMessage": "wilt verwijderen als verzorg(st)er?",
@@ -1057,6 +1062,7 @@
     "showJumping": "Springen",
     "crossTraining": "Cross(training)",
     "outsideRide": "Buitenrit",
+    "western": "Western",
     "endurance": "Endurance",
     "harness": "Aangespannen",
     "hiking": "Wandelen",

@@ -50,7 +50,7 @@ export function* getAnimals(api, action) {
   let payload = parsedResponse;
 
   if (Array.isArray(parsedResponse)) {
-    payload = parsedResponse.map((animal) => {
+    payload = parsedResponse.map(animal => {
       if (animal.image) {
         const result = {
           ...animal,

@@ -256,13 +256,20 @@ class DiaryShareEventsForm extends Component {
     }
 
     try {
-      await Share.share({
+      const result = await Share.share({
         message:
           Platform.OS === "ios"
             ? t("seeShareResults")
             : `${t("seeShareResults")}: ${uri}`,
         url: uri
       });
+      if (result.action === Share.sharedAction) {
+        const { resetForm, values: currentValues } = this.props;
+        const data = JSON.parse(JSON.stringify(currentValues));
+        resetForm({ ...data });
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
     } catch (error) {
       Alert.alert("error");
       return;

@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-community/async-storage";
-import { Alert } from "react-native";
+import { Alert, Platform } from "react-native";
 import { call, put, select } from "redux-saga/effects";
 import { delay } from "redux-saga";
 import { get } from "lodash";
@@ -86,6 +86,9 @@ export function* facebookLogin(api, facebookApi) {
 
   try {
     LoginManager.logOut();
+    if (Platform.OS === "android") {
+      LoginManager.setLoginBehavior("web_only");
+    }
     authResponse = yield LoginManager.logInWithPermissions([
       "public_profile",
       "email"
@@ -108,7 +111,6 @@ export function* facebookLogin(api, facebookApi) {
   }
 
   const profileResponse = yield call(facebookApi.getProfile, facebookToken);
-
   if (profileResponse.problem) {
     yield put(errorAction);
     return;

@@ -28,8 +28,10 @@ class PainMeasurementObservationFull extends PureComponent {
 
   getDonkeyFields = () => {
     const { t } = this.props;
-    const observationTranslationPath = `painMeasurement.full.observation.donkey`;
-    const interactionTranslationPath = `painMeasurement.full.interaction.donkey`;
+    const observationTranslationPath =
+      "painMeasurement.full.observation.donkey";
+    const interactionTranslationPath =
+      "painMeasurement.full.interaction.donkey";
 
     return [
       {
@@ -133,8 +135,8 @@ class PainMeasurementObservationFull extends PureComponent {
 
   getHorseFields = () => {
     const { t } = this.props;
-    const observationTranslationPath = `painMeasurement.full.observation`;
-    const interactionTranslationPath = `painMeasurement.full.interaction`;
+    const observationTranslationPath = "painMeasurement.full.observation";
+    const interactionTranslationPath = "painMeasurement.full.interaction";
 
     return [
       {
@@ -205,10 +207,18 @@ class PainMeasurementObservationFull extends PureComponent {
   };
 
   onSubmit = () => {
+    const editId = this.props.navigation.getParam("editId");
+    const editType = this.props.navigation.getParam("editType");
     if (this.values.isVet) {
-      this.props.navigate("PainMeasurementObservationVet");
+      this.props.navigate("PainMeasurementObservationVet", {
+        editId,
+        editType
+      });
     } else {
-      this.props.navigate("PainMeasurementScore");
+      this.props.navigate("PainMeasurementScore", {
+        editId,
+        editType
+      });
     }
   };
 
@@ -361,7 +371,7 @@ class PainMeasurementObservationFullContainer extends Component {
     }
   }
 
-  setValues = (values) => {
+  setValues = values => {
     const valuesToSave = pick(this.fields)(values);
 
     this.setState({
@@ -371,6 +381,7 @@ class PainMeasurementObservationFullContainer extends Component {
 
   render() {
     const { t } = this.props.screenProps;
+    const { navigation } = this.props;
     const { navigate } = this.props.navigation;
     const { setFieldValue } = this.form;
 
@@ -380,6 +391,7 @@ class PainMeasurementObservationFullContainer extends Component {
         setFieldValue={setFieldValue}
         t={t}
         navigate={navigate}
+        navigation={navigation}
       />
     );
   }

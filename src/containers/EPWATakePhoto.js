@@ -283,18 +283,18 @@ class EPWATakePhoto extends Component {
     }
 
     async capture(saveToCameraRoll = true) {
-        console.log('capture', saveToCameraRoll, GalleryManager)
+        //console.log('capture', saveToCameraRoll, GalleryManager)
         return GalleryManager && await GalleryManager.capture(saveToCameraRoll);
     }
     
     async changeCamera() {
-        console.log('changeCamera', GalleryManager, RNCamera.Constants.Type.back, this.state.backCamera)
+        //console.log('changeCamera', GalleryManager, RNCamera.Constants.Type.back, this.state.backCamera)
         // return GalleryManager && await GalleryManager.changeCamera();
         this.setState({backCamera: !this.state.backCamera});
     }
 
     async setFlashMode(flashMode = 'auto') {
-        console.log('setFlashMode', flashMode, GalleryManager)
+        //console.log('setFlashMode', flashMode, GalleryManager)
         return GalleryManager && await GalleryManager.setFlashMode(flashMode);
     }
 }

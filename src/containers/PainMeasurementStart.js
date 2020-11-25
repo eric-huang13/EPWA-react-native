@@ -88,13 +88,13 @@ class PainMeasurementStart extends PureComponent {
     </View>
   );
 
-  renderAnimalSelection = ({ setFieldValue, t, values }) => {
-    const { animals } = values;
+  renderAnimalSelection = ({ setFieldValue, t, values = {} }) => {
+    const { animals = [] } = values || {};
 
     return (
       <AnimalSelect
         animals={animals}
-        selectedAnimalId={values.animalId}
+        selectedAnimalId={(values && values.animalId) || ""}
         t={t}
         setFieldValue={setFieldValue}
       />
@@ -118,7 +118,7 @@ class PainMeasurementStart extends PureComponent {
         <ScrollView contentContainerStyle={{ flex: 1 }}>
           {showAnimalSelect // eslint-disable-line no-nested-ternary
             ? this.renderAnimalSelection({ setFieldValue, t, values })
-            : values.animalId
+            : (values && values.animalId) || ""
             ? null
             : this.renderAnimalTypeSelection(setFieldValue, t, values)}
 
@@ -255,13 +255,13 @@ class PainMeasurementStartContainer extends Component {
 
   render() {
     const { t } = this.props.screenProps;
-    const { setFieldValue, values } = this.props.screenProps.form;
+    const { setFieldValue, values = {} } = this.props.screenProps.form;
 
     return (
       <PainMeasurementStart
-        animalId={values.animalId}
+        animalId={values.animalId || ""}
         animalType={values.animalType}
-        animals={values.animals}
+        animals={values.animals || []}
         isVet={values.isVet}
         measurementType={values.measurementType}
         onNavigateToNextStep={this.onNavigateToNextStep}

@@ -1,10 +1,12 @@
 {
   "root": {
     "loading": "Please wait...",
-    "appName": "Equine Pain and Welfare App",
+    "appName": "Equine Pain- and Welfare App",
     "language": {
       "nl": "Dutch",
-      "en": "English"
+      "en": "English",
+      "de": "German",
+      "fr": "French"
     },
     "dateFormat": "DD-MM-YYYY",
     "errors": {
@@ -100,7 +102,7 @@
         "timer": {
           "fullCountdown": "How does the pain measurement work?",
           "headCountdown": "How does the pain measurement work?",
-          "layingDownRolling": "Laying down, rolling",
+          "layingDownRolling": "Lying down, rolling",
           "tailFlicking": "Tail\nflicking",
           "kickingAtAbdomen": "Kicking\nat abdomen",
           "pawing": "Pawing at\nthe floor",
@@ -111,7 +113,7 @@
         },
         "observation": {
           "donkey": {
-            "layingDownRolling": "Laying down, rolling",
+            "layingDownRolling": "Lying down, rolling",
             "layingDownRollingOptions": [
               "Donkey is standing quietly or is lying down and resting",
               "<50% of the time lying down or rolling",
@@ -307,9 +309,9 @@
             ],
             "focus": "Focus",
             "focusOptions": [
-              "Focussed on environment",
-              "Less focussed on environment",
-              "Not focussed on envrionment"
+              "Focused on environment",
+              "Less focused on environment",
+              "Not focused on environment"
             ],
             "nostrils": "Nostrils",
             "nostrilsOptions": [
@@ -357,9 +359,9 @@
           ],
           "focus": "Focus",
           "focusOptions": [
-            "Focussed on environment",
-            "Less focussed on environment",
-            "Not focussed on envrionment"
+            "Focused on environment",
+            "Less focused on environment",
+            "Not focused on environment"
           ],
           "nostrils": "Nostrils",
           "nostrilsOptions": [
@@ -619,6 +621,7 @@
         "hiking": "Walking in hand",
         "stepMill": "Horse walker",
         "manualWork": "Work in Hand",
+        "western": "Western",
         "other": "Other"
       }
     },
@@ -686,7 +689,7 @@
         "links": [
           {
             "label": "More information about EPWA",
-            "url": "https://www.epwa.nl/en"
+            "url": "https://www.epwa.nl/en/instructie"
           }
         ]
       },
@@ -809,7 +812,7 @@
           },
           {
             "title": "Save",
-            "content": "Entered your training session? Use the > icon in the top right-hand corner to save. Your training time will automatically appear in the diary. If you’ve trained more than once, your diary will show your total training time for that day. "
+            "content": "Have you completed the training? Then click on the 'Save' button at the bottom to add the training to the diary. The training time is now automatically entered in the diary. If you have had multiple training sessions, you can see your total training time for that day in the diary."
           }
         ]
       },
@@ -945,7 +948,7 @@
           "cameraPermissionPositiveButtonText": "OK",
           "cameraPermissionNegativeButtonText": "Cancel",
           "audioiPermissonTitle": "Permission to use audio recording",
-          "audioPermissionMessage": "We need your permission to use your audio" 
+          "audioPermissionMessage": "We need your permission to use your audio"
         },
         "thirdpage": {
           "question": "Is this photo good?",
@@ -985,6 +988,7 @@
         }
       }
     },
+    "supportedby": "This app is supported by",
     "profileUpdateSuccess": "Profile updated!",
     "name": "Name",
     "firstName": "First name",
@@ -1011,6 +1015,7 @@
     "fillInParticularities": "Note any additional information here",
     "caregiverTitle": "Caregiver(s)",
     "addCaregiverDesc": "Add new caregiver",
+    "caregiverEmail": "Email address",
     "caregiverInviteBtnText": "Send",
     "prefixRemoveMessage": "Are you sure you want to remove",
     "sufixRemoveMessage": "from caregiver(s) list?",
@@ -1057,6 +1062,7 @@
     "showJumping": "Show jumping",
     "crossTraining": "Cross country",
     "outsideRide": "Hacking",
+    "western": "Western",
     "endurance": "Endurance",
     "harness": "Harness",
     "hiking": "Walking in hand",
@@ -1165,11 +1171,11 @@
     "answers": "Answers",
     "noAnimalsInStableWarning": "In order to start a pain measurement, please add an animal first.",
     "shareAppTitleDrawerMenu": "EPWA",
-    "shareAppContentDrawerMenu": "I’m using EPWA, the Equine Pain and Welfare App, to monitor the health and welfare of my animal. Check www.epwa.nl/en for information.",
+    "shareAppContentDrawerMenu": "I’m using EPWA, the Equine Pain- and Welfare App, to monitor the health and welfare of my animal. Check www.epwa.nl/en for information.",
     "shareAppTitleAnimalProfile": "EPWA",
-    "shareAppContentAnimalProfile": "I’m using EPWA, the Equine Pain and Welfare App, to monitor the health and welfare of {{animalName}}. Check www.epwa.nl/en for information.",
+    "shareAppContentAnimalProfile": "I’m using EPWA, the Equine Pain- and Welfare App, to monitor the health and welfare of {{animalName}}. Check www.epwa.nl/en for information.",
     "shareAppUrl": "https://www.epwa.nl/en",
-    "shareMessage": "I’m using EPWA, the Equine Pain and Welfare App",
+    "shareMessage": "I’m using EPWA, the Equine Pain- and Welfare App",
     "painMeasurementLoginWarning": "To save the pain measurement, log in first. You could also continue without saving your result.",
     "quit": "Exit",
     "painMeasurementQuitTitle": "Exit the measurement",
@@ -1187,8 +1193,8 @@
     "today": "Today",
     "lookAhead": "Look ahead",
     "graphTitle": "Recent pain measurements",
-    "noRecentPainMeasurements": "No recent painmeasurements",
-    "addPainMeasurement": "Add painmeasurement",
+    "noRecentPainMeasurements": "No recent pain measurements",
+    "addPainMeasurement": "Add pain measurement",
     "recurring": "Recurring",
     "recurringTill": "Recurring till",
     "notification": "Notification",
@@ -1198,7 +1204,7 @@
     "yearly": "Yearly",
     "facialMeasure": "Facial pain",
     "compositeMeasure": "Composite pain",
-    "emptyPainMeasurementList": "No painmesurements to display",
+    "emptyPainMeasurementList": "No pain mesurements to display",
     "diaryFeeding": "Feeding",
     "movement": "Exercise",
     "eventHousing": "Housing",
@@ -1208,7 +1214,7 @@
     "confirmDeleteAccount": "Are you sure you want to delete your user account?",
     "confirmDeleteAccountInfo": "This will remove all your data and can't be restored",
     "categories": {
-      "painMeasurement": "Painmeasurement",
+      "painMeasurement": "Pain measurement",
       "feeding": "Feeding",
       "medication": "My vet",
       "housing": "Turnout",
@@ -1217,16 +1223,16 @@
     },
     "painMeasurements": {
       "composite": "Composite",
-      "facialExpression": "Facial painmeasurement"
+      "facialExpression": "Facial pain measurement"
     },
-    "typePainMeasurement": "Type of painmeasurement",
+    "typePainMeasurement": "Type of pain measurement",
     "editRecurringEventWarning": "Do you want to change the current recurring event or make a new one?",
     "editRecurring": "Edit",
     "newRecurring": "New",
     "selectAnOption": "Edited recurring events will only apply to future events",
     "warnDeleteAccount1": "PERMANENTLY DELETE YOUR ACCOUNT?",
     "noFutureCompletionTitle": "Event in future",
-    "noFutureCompletionText": "Events in the future cant be completed",
+    "noFutureCompletionText": "Events in the future can't be completed",
     "recurringAfterStartDate": "Please select recurring date that comes after event start time",
     "endDateAfterStartDate": "Please select end date after the start date",
     "noEventsToShare": "Selected period has no events to share",

@@ -23,11 +23,11 @@ const discard = (error, action) => {
   const { accessToken, api, dispatch } = get(action, "meta.offline.effect");
 
   // Check if it's apisauce failed request object or it's an actual error
-  if (!error.status && !error.duration) {
+  if (error && !error.status && !error.duration) {
     throw error; // There was an error creating the request
   }
 
-  if (error.status === 401) {
+  if (error && error.status === 401) {
     return new Promise((resolve) => {
       api
         .refreshToken(accessToken)
@@ -38,7 +38,7 @@ const discard = (error, action) => {
     });
   }
 
-  return error.status >= 400 && error.status < 500;
+  return error && error.status >= 400 && error.status < 500;
 };
 
 export default discard;

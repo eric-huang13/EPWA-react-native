@@ -111,7 +111,9 @@ class AnimalForm extends Component {
     }
 
     if (animalType) {
-      props.setFieldValue("type", animalType);
+      setTimeout(() => {
+        props.setFieldValue("type", animalType);
+      }, 1500);
     }
 
     const customTitle = animalType || animalName;
@@ -477,6 +479,7 @@ class AnimalForm extends Component {
                 t={t}
                 ref={this.setDatePickerRef}
                 onPick={date => setFieldValue("birthdate", getTime(date))}
+                maximumDate={new Date()}
               />
               <TouchableOpacity onPress={() => this.datePicker.show()}>
                 <View style={s.datePickerBox}>

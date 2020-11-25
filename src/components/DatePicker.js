@@ -42,6 +42,16 @@ class DatePicker extends Component {
         titleIOS={t(titleKey)}
         locale={locale === "en" ? "en_GB" : locale}
         is24Hour={true}
+        datePickerContainerStyleIOS= {{
+          justifyContent: 'center',
+          paddingLeft: 35,
+        }}
+        confirmTextStyle={{
+          paddingRight: 35,
+        }}
+        titleStyle={{
+          paddingRight: 40,
+        }}
         {...rest}
       />
     );

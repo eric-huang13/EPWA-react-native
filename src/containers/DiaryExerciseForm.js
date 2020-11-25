@@ -6,7 +6,8 @@ import {
   View,
   TextInput,
   Text,
-  Alert
+  Alert,
+  Platform
 } from "react-native";
 import AlertAsync from "react-native-alert-async";
 import { HeaderBackButton } from "react-navigation-stack";
@@ -70,6 +71,7 @@ import {
 import iconMap from "../constants/iconMap";
 import MultiLineTextField from "../components/MultiLineTextField";
 import nlLocale from "date-fns/locale/nl";
+import { getStartDateText } from "../helper";
 
 // import Reactotron from "reactotron-react-native";
 
@@ -338,6 +340,8 @@ class DiaryExerciseForm extends Component {
   render() {
     const currentDate = this.props.navigation.getParam("currentDate");
     const lang = this.props.i18n.language;
+    const renderingDate = this.props.navigation.getParam("renderingDate");
+    const dateForIOS = Date.parse(`${renderingDate} ${new Date().getFullYear()}`);
     return (
       <View style={s.screenContainer}>
         <ScrollView contentContainerStyle={s.scrollContainer}>
@@ -349,9 +353,10 @@ class DiaryExerciseForm extends Component {
               marginVertical: 20
             }}
           >
-            {lang === "nl"
-              ? format(currentDate, "dddd DD MMMM", { locale: nlLocale })
-              : format(currentDate, "dddd MMM D")}
+            {getStartDateText(
+              renderingDate ? +new Date(dateForIOS) : currentDate,
+              lang
+            )}
           </Text>
           <View>{this.renderFieldArray()}</View>
           {this.renderRecurring()}
@@ -419,9 +424,13 @@ const onSubmit = (values, formikBag) => {
   const animal = formikBag.props.navigation.getParam("animal");
 
   for (let i = 0; i < flattenValues.length; i++) {
-    if(flattenValues[i].data != undefined) {
+    if (flattenValues[i].data != undefined) {
       if (flattenValues[i].data.notification) {
-        flattenValues[i].data.notificationData = `(${t(animal.type)}: ${animal.name}) ${t(flattenValues[i].category)} ${t(flattenValues[i].type)}`;
+        flattenValues[i].data.notificationData = animal
+          ? `(${t(animal.type)}: ${animal.name}) ${t(
+              flattenValues[i].category
+            )} ${t(flattenValues[i].type)}`
+          : flattenValues[i].data.notificationData;
       }
     }
   }

@@ -6,7 +6,7 @@ import {
   Text,
   ScrollView,
   TouchableOpacity,
-  View
+  View,
 } from "react-native";
 import { append, compose, dropLast, has, last } from "ramda";
 import { connect } from "react-redux";
@@ -33,7 +33,7 @@ class PainMeasurementTimer extends Component {
       title: screenProps.t("painMeasurement.misc.headerTitle"),
       headerTitleStyle: {
         ...fonts.style.h4,
-        fontWeight: "400"
+        fontWeight: "400",
       },
       headerLeft: (
         <HeaderBackButton
@@ -56,8 +56,8 @@ class PainMeasurementTimer extends Component {
                   {
                     text: t("quit"),
                     onPress: () =>
-                      navigation.navigate(isUserLoggedIn ? "Diary" : "StartUp")
-                  }
+                      navigation.navigate(isUserLoggedIn ? "Diary" : "StartUp"),
+                  },
                 ]
               );
             }}
@@ -65,7 +65,7 @@ class PainMeasurementTimer extends Component {
             <Text>{screenProps.t("quit")}</Text>
           </TouchableOpacity>
         </View>
-      )
+      ),
     };
   };
 
@@ -78,13 +78,13 @@ class PainMeasurementTimer extends Component {
       this.state = {
         seconds: 0,
         fieldChangeHistory: [],
-        isRunning: false
+        isRunning: false,
       };
     } else {
       this.state = {
         seconds: this.timerInitialValue,
         fieldChangeHistory: [],
-        isRunning: false
+        isRunning: false,
       };
     }
 
@@ -102,7 +102,7 @@ class PainMeasurementTimer extends Component {
   }
 
   get values() {
-    return this.form.values;
+    return this.form.values || {};
   }
 
   get measurementType() {
@@ -122,7 +122,7 @@ class PainMeasurementTimer extends Component {
         "kickAtAbdomenCount",
         "pawCount",
         "headMovementCount",
-        "painSoundCount"
+        "painSoundCount",
       ];
     }
 
@@ -131,7 +131,7 @@ class PainMeasurementTimer extends Component {
         "flehmingCount",
         "yawningCount",
         "teethGrindingCount",
-        "moaningCount"
+        "moaningCount",
       ];
     }
   }
@@ -193,12 +193,14 @@ class PainMeasurementTimer extends Component {
       return;
     }
 
-    this.initCountValues();
+    setTimeout(() => {
+      this.initCountValues();
+    }, 500);
     this.setState({ isRunning: true });
 
-    this.setState(state => ({ seconds: state.seconds - 1 }));
+    this.setState((state) => ({ seconds: state.seconds - 1 }));
     this.clearSafeInterval = this.props.setSafeInterval(() => {
-      this.setState(state => ({ seconds: state.seconds - 1 }));
+      this.setState((state) => ({ seconds: state.seconds - 1 }));
 
       if (this.state.seconds === 0) {
         this.clearSafeInterval();
@@ -215,7 +217,7 @@ class PainMeasurementTimer extends Component {
     this.setState({
       seconds: this.timerInitialValue,
       fieldChangeHistory: [],
-      isRunning: true
+      isRunning: true,
     });
     this.initCountdown();
   };
@@ -230,15 +232,15 @@ class PainMeasurementTimer extends Component {
 
     setFieldValue(lastChangedField, values[lastChangedField] - 1);
     this.setState({
-      fieldChangeHistory: dropLast(1, this.state.fieldChangeHistory)
+      fieldChangeHistory: dropLast(1, this.state.fieldChangeHistory),
     });
   };
 
-  incrementCountValue = fieldName => {
+  incrementCountValue = (fieldName) => {
     const { values, setFieldValue } = this.form;
     setFieldValue(fieldName, values[fieldName] + 1);
     this.setState({
-      fieldChangeHistory: append(fieldName, this.state.fieldChangeHistory)
+      fieldChangeHistory: append(fieldName, this.state.fieldChangeHistory),
     });
   };
 
@@ -247,12 +249,12 @@ class PainMeasurementTimer extends Component {
 
     return (
       <View>
-        {this.fields.map(fieldName => (
+        {this.fields.map((fieldName) => (
           <View key={fieldName} style={{ flexDirection: "row" }}>
             <Button
               disabled={!this.state.isRunning}
               title={fieldName}
-              color="#000"
+              color='#000'
               onPress={() => this.incrementCountValue(fieldName)}
             />
             <Text>{values[fieldName]}</Text>
@@ -265,17 +267,18 @@ class PainMeasurementTimer extends Component {
   onSubmit = () => {
     const editId = this.props.navigation.getParam("editId");
     const editType = this.props.navigation.getParam("editType");
+
     if (this.measurementType === "composite") {
       this.props.navigation.navigate("PainMeasurementObservationFull", {
         editId,
-        editType
+        editType,
       });
     }
 
     if (this.measurementType === "facialExpression") {
       this.props.navigation.navigate("PainMeasurementObservationHead", {
         editId,
-        editType
+        editType,
       });
     }
   };
@@ -288,7 +291,7 @@ class PainMeasurementTimer extends Component {
         <View
           style={{
             flexDirection: "row",
-            justifyContent: "center"
+            justifyContent: "center",
           }}
         >
           <View style={{ justifyContent: "center", marginRight: 10 }}>
@@ -300,7 +303,7 @@ class PainMeasurementTimer extends Component {
                 iconName={iconMap.donkeyCount.tailFlicking}
                 onPress={() => this.incrementCountValue("tailFlickCount")}
                 label={t("painMeasurement.full.timer.tailFlicking")}
-                labelPosition="top"
+                labelPosition='top'
               />
             </View>
             <View style={{ marginTop: 10 }}>
@@ -311,7 +314,7 @@ class PainMeasurementTimer extends Component {
                 iconName={iconMap.donkeyCount.pawCount}
                 onPress={() => this.incrementCountValue("pawCount")}
                 label={t("painMeasurement.full.timer.pawing")}
-                labelPosition="bottom"
+                labelPosition='bottom'
               />
             </View>
           </View>
@@ -323,7 +326,7 @@ class PainMeasurementTimer extends Component {
                 iconName={iconMap.sound}
                 onPress={() => this.incrementCountValue("painSoundCount")}
                 label={t("painMeasurement.full.timer.painSounds")}
-                labelPosition="top"
+                labelPosition='top'
               />
             </View>
             <CountdownCircle timeLeftInSeconds={this.state.seconds} />
@@ -337,7 +340,7 @@ class PainMeasurementTimer extends Component {
                   this.incrementCountValue("pointingTowardsTheFloorCount")
                 }
                 label={t("painMeasurement.full.timer.pointingTowardsTheFloor")}
-                labelPosition="bottom"
+                labelPosition='bottom'
               />
             </View>
           </View>
@@ -350,7 +353,7 @@ class PainMeasurementTimer extends Component {
                 iconName={iconMap.donkeyCount.lookingAtAbdomen}
                 onPress={() => this.incrementCountValue("lookAtAbdomenCount")}
                 label={t("painMeasurement.full.timer.lookingAtAbdomen")}
-                labelPosition="top"
+                labelPosition='top'
               />
             </View>
             <View style={{ marginTop: 20 }}>
@@ -361,7 +364,7 @@ class PainMeasurementTimer extends Component {
                 iconName={iconMap.donkeyCount.lookingAtAbdomen}
                 onPress={() => this.incrementCountValue("kickAtAbdomenCount")}
                 label={t("painMeasurement.full.timer.kickingAtAbdomen")}
-                labelPosition="bottom"
+                labelPosition='bottom'
               />
             </View>
           </View>
@@ -373,7 +376,7 @@ class PainMeasurementTimer extends Component {
       <View
         style={{
           flexDirection: "row",
-          justifyContent: "center"
+          justifyContent: "center",
         }}
       >
         <View style={{ justifyContent: "center", marginRight: 10 }}>
@@ -384,7 +387,7 @@ class PainMeasurementTimer extends Component {
               imagePath={imageMap.horse.tailFlicking}
               onPress={() => this.incrementCountValue("tailFlickCount")}
               label={t("painMeasurement.full.timer.tailFlicking")}
-              labelPosition="top"
+              labelPosition='top'
             />
           </View>
           <View style={{ marginTop: 10 }}>
@@ -394,7 +397,7 @@ class PainMeasurementTimer extends Component {
               imagePath={imageMap.horse.pawing}
               onPress={() => this.incrementCountValue("pawCount")}
               label={t("painMeasurement.full.timer.pawing")}
-              labelPosition="bottom"
+              labelPosition='bottom'
             />
           </View>
         </View>
@@ -406,7 +409,7 @@ class PainMeasurementTimer extends Component {
               imagePath={imageMap.horse.layingDownRolling}
               onPress={() => this.incrementCountValue("rollCount")}
               label={t("painMeasurement.full.timer.layingDownRolling")}
-              labelPosition="top"
+              labelPosition='top'
             />
           </View>
           <CountdownCircle timeLeftInSeconds={this.state.seconds} />
@@ -417,7 +420,7 @@ class PainMeasurementTimer extends Component {
               imagePath={imageMap.horse.headMovements}
               onPress={() => this.incrementCountValue("headMovementCount")}
               label={t("painMeasurement.full.timer.headMovements")}
-              labelPosition="bottom"
+              labelPosition='bottom'
             />
           </View>
         </View>
@@ -429,7 +432,7 @@ class PainMeasurementTimer extends Component {
               imagePath={imageMap.horse.kickingAtAbdomen}
               onPress={() => this.incrementCountValue("kickAtAbdomenCount")}
               label={t("painMeasurement.full.timer.kickingAtAbdomen")}
-              labelPosition="top"
+              labelPosition='top'
             />
           </View>
           <View style={{ marginTop: 20 }}>
@@ -439,7 +442,7 @@ class PainMeasurementTimer extends Component {
               iconName={iconMap.sound}
               onPress={() => this.incrementCountValue("painSoundCount")}
               label={t("painMeasurement.full.timer.painSounds")}
-              labelPosition="bottom"
+              labelPosition='bottom'
             />
           </View>
         </View>
@@ -455,7 +458,7 @@ class PainMeasurementTimer extends Component {
         <View
           style={{
             flexDirection: "row",
-            justifyContent: "center"
+            justifyContent: "center",
           }}
         >
           <View style={{ justifyContent: "center", marginRight: 10 }}>
@@ -466,7 +469,7 @@ class PainMeasurementTimer extends Component {
                 imagePath={imageMap.donkey.flehming}
                 onPress={() => this.incrementCountValue("flehmingCount")}
                 label={t("painMeasurement.head.timer.flehming")}
-                labelPosition="top"
+                labelPosition='top'
               />
             </View>
             <View style={{ marginTop: 10 }}>
@@ -476,7 +479,7 @@ class PainMeasurementTimer extends Component {
                 imagePath={imageMap.donkey.yawning}
                 onPress={() => this.incrementCountValue("yawningCount")}
                 label={t("painMeasurement.head.timer.yawning")}
-                labelPosition="bottom"
+                labelPosition='bottom'
               />
             </View>
           </View>
@@ -488,7 +491,7 @@ class PainMeasurementTimer extends Component {
                 imagePath={imageMap.donkey.teethGrinding}
                 onPress={() => this.incrementCountValue("teethGrindingCount")}
                 label={t("painMeasurement.head.timer.teethGrinding")}
-                labelPosition="top"
+                labelPosition='top'
               />
             </View>
             <CountdownCircle timeLeftInSeconds={this.state.seconds} />
@@ -499,7 +502,7 @@ class PainMeasurementTimer extends Component {
                 iconName={iconMap.sound}
                 onPress={() => this.incrementCountValue("moaningCount")}
                 label={t("painMeasurement.head.timer.moaning")}
-                labelPosition="bottom"
+                labelPosition='bottom'
               />
             </View>
           </View>
@@ -511,7 +514,7 @@ class PainMeasurementTimer extends Component {
                 imagePath={imageMap.donkey.smacking}
                 onPress={() => this.incrementCountValue("smackingCount")}
                 label={t("painMeasurement.head.timer.smacking")}
-                labelPosition="top"
+                labelPosition='top'
               />
             </View>
             <View style={{ marginTop: 20 }}>
@@ -521,7 +524,7 @@ class PainMeasurementTimer extends Component {
                 imagePath={imageMap.donkey.headShaking}
                 onPress={() => this.incrementCountValue("headShakingCount")}
                 label={t("painMeasurement.head.timer.headShaking")}
-                labelPosition="bottom"
+                labelPosition='bottom'
               />
             </View>
           </View>
@@ -533,7 +536,7 @@ class PainMeasurementTimer extends Component {
       <View
         style={{
           flexDirection: "row",
-          justifyContent: "center"
+          justifyContent: "center",
         }}
       >
         <View style={{ justifyContent: "center", marginRight: 20 }}>
@@ -544,7 +547,7 @@ class PainMeasurementTimer extends Component {
               imagePath={imageMap.horse.flehming}
               onPress={() => this.incrementCountValue("flehmingCount")}
               label={t("painMeasurement.head.timer.flehming")}
-              labelPosition="bottom"
+              labelPosition='bottom'
             />
           </View>
         </View>
@@ -556,7 +559,7 @@ class PainMeasurementTimer extends Component {
               imagePath={imageMap.horse.yawning}
               onPress={() => this.incrementCountValue("yawningCount")}
               label={t("painMeasurement.head.timer.yawning")}
-              labelPosition="top"
+              labelPosition='top'
             />
           </View>
           <CountdownCircle timeLeftInSeconds={this.state.seconds} />
@@ -567,7 +570,7 @@ class PainMeasurementTimer extends Component {
               imagePath={imageMap.horse.teethGrinding}
               onPress={() => this.incrementCountValue("teethGrindingCount")}
               label={t("painMeasurement.head.timer.teethGrinding")}
-              labelPosition="bottom"
+              labelPosition='bottom'
             />
           </View>
         </View>
@@ -579,7 +582,7 @@ class PainMeasurementTimer extends Component {
               iconName={iconMap.sound}
               onPress={() => this.incrementCountValue("moaningCount")}
               label={t("painMeasurement.head.timer.moaning")}
-              labelPosition="bottom"
+              labelPosition='bottom'
             />
           </View>
         </View>
@@ -595,14 +598,14 @@ class PainMeasurementTimer extends Component {
         <ProgressBar percent={50} />
         <TitleBar>
           {t("painMeasurement.misc.countMovementsCommand", {
-            minutes: this.measurementType === "composite" ? 5 : 2
+            minutes: this.measurementType === "composite" ? 5 : 2,
           })}
         </TitleBar>
         <View style={{ flex: 1 }}>
           <ScrollView
             contentContainerStyle={{
               flex: 1,
-              backgroundColor: colors.egyptianBlue
+              backgroundColor: colors.egyptianBlue,
             }}
           >
             {isCompositeMeasurement(this.values)
@@ -617,7 +620,7 @@ class PainMeasurementTimer extends Component {
                   alignItems: "center",
                   justifyContent: "space-between",
                   marginHorizontal: 20,
-                  marginBottom: 20
+                  marginBottom: 20,
                 }}
               >
                 <UndoButton
@@ -639,7 +642,7 @@ class PainMeasurementTimer extends Component {
                 ) : null}
               </View>
             ) : null}
-            {this.state.seconds === 0 ? (
+            {this.state.seconds == 0 ? (
               <View style={{ flexDirection: "row", width: "100%" }}>
                 <Touchable
                   onPress={this.resetTimerAndCount}
@@ -648,7 +651,7 @@ class PainMeasurementTimer extends Component {
                     minHeight: 60,
                     backgroundColor: colors.egyptianBlueDark,
                     justifyContent: "center",
-                    alignItems: "center"
+                    alignItems: "center",
                   }}
                 >
                   <Text style={{ ...fonts.style.cta, color: colors.white }}>
@@ -662,7 +665,7 @@ class PainMeasurementTimer extends Component {
                     minHeight: 60,
                     backgroundColor: colors.lima,
                     justifyContent: "center",
-                    alignItems: "center"
+                    alignItems: "center",
                   }}
                 >
                   <Text style={{ ...fonts.style.cta, color: colors.white }}>

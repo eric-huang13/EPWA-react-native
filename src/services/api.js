@@ -177,9 +177,9 @@ const createApi = (baseURL = basePath) => {
         Authorization: `Bearer ${accessToken}`
       }
     });
-  
+
   const getAnimalCaregiver = (body, accessToken) =>
-    api.post(`/api/animal/share/list`, body, {
+    api.post("/api/animal/share/list", body, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`
@@ -187,7 +187,7 @@ const createApi = (baseURL = basePath) => {
     });
 
   const addAnimalCaregiver = (body, accessToken) =>
-    api.post(`/api/animal/share`, body, {
+    api.post("/api/animal/share", body, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`
@@ -195,7 +195,7 @@ const createApi = (baseURL = basePath) => {
     });
 
   const deleteAnimalCaregiver = (body, accessToken) =>
-    api.post(`/api/animal/share/delete`, body, {
+    api.post("/api/animal/share/delete", body, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`
@@ -203,7 +203,7 @@ const createApi = (baseURL = basePath) => {
     });
 
   const saveCropImage = (body, accessToken) =>
-    api.post(`/api/training/upload`, body, {
+    api.post("/api/training/upload", body, {
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${accessToken}`
@@ -242,8 +242,8 @@ const createApi = (baseURL = basePath) => {
       }
     });
 
-  const completeEvent = ({ accessToken, eventId, completed }) =>
-    api.patch(
+  const completeEvent = ({ accessToken, eventId, completed }) => {
+    return api.patch(
       `/api/events/${eventId}`,
       { id: eventId, completed: completed },
       {
@@ -253,6 +253,25 @@ const createApi = (baseURL = basePath) => {
         }
       }
     );
+  };
+
+  const completeEventWithDataUpdate = ({
+    accessToken,
+    eventId,
+    completed,
+    data
+  }) => {
+    return api.patch(
+      `/api/events/${eventId}`,
+      { id: eventId, completed: completed, data },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`
+        }
+      }
+    );
+  };
 
   const completeRecurringEvent = ({
     accessToken,
@@ -270,6 +289,27 @@ const createApi = (baseURL = basePath) => {
         }
       }
     );
+
+  const completeRecurringEventWithData = ({
+    accessToken,
+    eventId,
+    startDate,
+    endDate,
+    completed,
+    type,
+    data
+  }) => {
+    return api.post(
+      "/api/events",
+      {},
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`
+        }
+      }
+    );
+  };
 
   const deleteAccount = ({ accessToken }) =>
     api.post("api/me/delete", null, {
@@ -304,8 +344,10 @@ const createApi = (baseURL = basePath) => {
     editEvent,
     deleteEvent,
     completeEvent,
+    completeEventWithDataUpdate,
     deleteAccount,
-    completeRecurringEvent
+    completeRecurringEvent,
+    completeRecurringEventWithData
   };
 };
 

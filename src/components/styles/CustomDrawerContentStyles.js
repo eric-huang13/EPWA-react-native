@@ -33,6 +33,17 @@ export default StyleSheet.create({
     width: "100%",
     textAlign: "center"
   },
+  footerText: {
+    ...fonts.style.span,
+    color: colors.nero,
+    marginTop: 40,
+    width: "100%",
+    textAlign: "center"
+  },
+  footerLogo: {
+    width: "30%",
+    height: 100
+  },
   headerRightIcon: {
     marginHorizontal: 20
   }

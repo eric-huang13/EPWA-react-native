@@ -1,12 +1,12 @@
 /* eslint-disable global-require */
 
-//import React from "react";
 import {translate} from 'react-i18next';
 import {Provider} from 'react-redux';
 import DropdownAlert from 'react-native-dropdownalert';
-import React, {Component} from 'react';
-import {Text, View} from 'react-native';
-// // Trigger Reactotron
+import React from 'react';
+import RNCalendarEvents from "react-native-calendar-events";
+import { View} from 'react-native';
+
 import './config/reactotronConfig';
 
 // // Init localization service
@@ -42,6 +42,20 @@ export default class App extends React.Component {
   showAlertDropdown = (...args) => {
     this.dropdown.alertWithType(...args);
   };
+
+  async componentDidMount() {
+    const status = await RNCalendarEvents.authorizationStatus();
+    
+    if (status !== "authorized" || status !== "undetermined") {
+      RNCalendarEvents.authorizeEventStore()
+        .then(auth => {
+          // handle status
+        })
+        .catch(() => {
+          alert("This app needs calendar access");
+        });
+    }
+  }
 
   render() {
     return (

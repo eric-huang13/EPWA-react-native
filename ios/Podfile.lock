@@ -196,7 +196,7 @@ PODS:
     - React-RCTImage
   - react-native-image-picker (2.3.1):
     - React
-  - react-native-netinfo (4.6.0):
+  - react-native-netinfo (5.9.5):
     - React
   - React-RCTActionSheet (0.60.5):
     - React-Core (= 0.60.5)
@@ -452,7 +452,7 @@ SPEC CHECKSUMS:
   react-native-image-base64: acfe962aa79535d826a2668e66474e85a9ee468d
   react-native-image-editor: e52b0c069384c71963c6b5e8a1a4d7f5d7189ac9
   react-native-image-picker: 668e72d0277dc8c12ae90e835507c1eddd2e4f85
-  react-native-netinfo: bd4c115afdf0821b8ddb6c59ef3ddc5f0a7e8ad0
+  react-native-netinfo: 7f3f3ed9e8f0e7ab3e7cac00cbfdc6997e25ecaf
   React-RCTActionSheet: b0f1ea83f4bf75fb966eae9bfc47b78c8d3efd90
   React-RCTAnimation: 359ba1b5690b1e87cc173558a78e82d35919333e
   React-RCTBlob: 5e2b55f76e9a1c7ae52b826923502ddc3238df24
@@ -479,4 +479,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 3203691591efd1ad309f8864e3c5773a93539eda
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3

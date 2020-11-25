@@ -28,7 +28,7 @@ class PainMeasurementObservationVet extends PureComponent {
 
   getDonkeyFields = () => {
     const { t } = this.props;
-    const vetTranslationPath = `painMeasurement.full.vet.donkey`;
+    const vetTranslationPath = "painMeasurement.full.vet.donkey";
 
     return [
       {
@@ -68,7 +68,7 @@ class PainMeasurementObservationVet extends PureComponent {
 
   getHorseFields = () => {
     const { t } = this.props;
-    const vetTranslationPath = `painMeasurement.full.vet`;
+    const vetTranslationPath = "painMeasurement.full.vet";
 
     return [
       {
@@ -131,7 +131,12 @@ class PainMeasurementObservationVet extends PureComponent {
   };
 
   onSubmit = () => {
-    this.props.navigate("PainMeasurementScore");
+    const editId = this.props.navigation.getParam("editId");
+    const editType = this.props.navigation.getParam("editType");
+    this.props.navigate("PainMeasurementScore", {
+      editId,
+      editType
+    });
   };
 
   renderFields = ({ name, category, labels, title }) => {
@@ -249,7 +254,7 @@ class PainMeasurementObservationVetContainer extends Component {
     }
   }
 
-  setValues = (values) => {
+  setValues = values => {
     const valuesToSave = pick(this.fields)(values);
 
     this.setState({
@@ -260,6 +265,7 @@ class PainMeasurementObservationVetContainer extends Component {
   render() {
     const { t } = this.props.screenProps;
     const { navigate } = this.props.navigation;
+    const { navigation } = this.props;
     const { setFieldValue } = this.form;
 
     return (
@@ -268,6 +274,7 @@ class PainMeasurementObservationVetContainer extends Component {
         setFieldValue={setFieldValue}
         t={t}
         navigate={navigate}
+        navigation={navigation}
       />
     );
   }
