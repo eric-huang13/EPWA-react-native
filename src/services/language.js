@@ -7,7 +7,8 @@ export const getLanguageSelectItems = (language, t) => {
     { label: t("language.en"), value: "en", key: "en" },
     { label: t("language.nl"), value: "nl", key: "nl" },
     { label: t("language.de"), value: "de", key: "de" },
-    { label: t("language.fr"), value: "fr", key: "fr" }
+    { label: t("language.fr"), value: "fr", key: "fr" },
+    { label: t("language.es"), value: "es", key: "es" }
   ];
   switch (language) {
     case "en":
@@ -17,7 +18,8 @@ export const getLanguageSelectItems = (language, t) => {
         { label: t("language.nl"), value: "nl", key: "nl" },
         { label: t("language.en"), value: "en", key: "en" },
         { label: t("language.de"), value: "de", key: "de" },
-        { label: t("language.fr"), value: "fr", key: "fr" }
+        { label: t("language.fr"), value: "fr", key: "fr" },
+        { label: t("language.es"), value: "es", key: "es" }
       ];
       break;
     case "de":
@@ -25,7 +27,8 @@ export const getLanguageSelectItems = (language, t) => {
         { label: t("language.de"), value: "de", key: "de" },
         { label: t("language.en"), value: "en", key: "en" },
         { label: t("language.nl"), value: "nl", key: "nl" },
-        { label: t("language.fr"), value: "fr", key: "fr" }
+        { label: t("language.fr"), value: "fr", key: "fr" },
+        { label: t("language.es"), value: "es", key: "es" }
       ];
       break;
     case "fr":
@@ -33,7 +36,17 @@ export const getLanguageSelectItems = (language, t) => {
         { label: t("language.fr"), value: "fr", key: "fr" },
         { label: t("language.en"), value: "en", key: "en" },
         { label: t("language.nl"), value: "nl", key: "nl" },
-        { label: t("language.de"), value: "de", key: "de" }
+        { label: t("language.de"), value: "de", key: "de" },
+        { label: t("language.es"), value: "es", key: "es" }
+      ];
+      break;
+    case "es":
+      languageData = [
+        { label: t("language.es"), value: "es", key: "es" },
+        { label: t("language.en"), value: "en", key: "en" },
+        { label: t("language.nl"), value: "nl", key: "nl" },
+        { label: t("language.de"), value: "de", key: "de" },
+        { label: t("language.fr"), value: "fr", key: "fr" }
       ];
       break;
     default:

@@ -7,7 +7,7 @@ import {
   TextInput,
   Text,
   Alert,
-  Platform
+  Platform,
 } from "react-native";
 import AlertAsync from "react-native-alert-async";
 import { HeaderBackButton } from "react-navigation-stack";
@@ -22,7 +22,7 @@ import {
   getHours,
   getMinutes,
   getTime,
-  isValid
+  isValid,
 } from "date-fns";
 import { get } from "lodash";
 import {
@@ -31,7 +31,7 @@ import {
   mapObjIndexed,
   flatten,
   values as ramdaValues,
-  isNil
+  isNil,
 } from "ramda";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
@@ -57,7 +57,7 @@ import { addEvent, editEvent, deleteEvent } from "../actions/events";
 import { eventCategories } from "../constants";
 import {
   dateEventProps,
-  dateEventValidation
+  dateEventValidation,
 } from "../constants/validationTypes";
 
 import { colors } from "../themes";
@@ -66,7 +66,7 @@ import {
   setHours,
   setMinutes,
   setSecondsToZero,
-  setMillisecondsToZero
+  setMillisecondsToZero,
 } from "../services/date";
 import iconMap from "../constants/iconMap";
 import MultiLineTextField from "../components/MultiLineTextField";
@@ -76,7 +76,7 @@ import { getStartDateText } from "../helper";
 // import Reactotron from "reactotron-react-native";
 
 const validationSchema = yup.object().shape({
-  payload: yup.array().of(dateEventValidation)
+  payload: yup.array().of(dateEventValidation),
 });
 
 class DiaryExerciseForm extends Component {
@@ -96,7 +96,7 @@ class DiaryExerciseForm extends Component {
           style={{ marginRight: 30 }}
           onPress={() =>
             navigation.navigate("DiaryExerciseFormInfo", {
-              animalType: navigation.getParam("animalType")
+              animalType: navigation.getParam("animalType"),
             })
           }
         >
@@ -118,7 +118,7 @@ class DiaryExerciseForm extends Component {
           />
         </TouchableOpacity> */}
       </View>
-    )
+    ),
   });
 
   constructor(props) {
@@ -129,7 +129,7 @@ class DiaryExerciseForm extends Component {
 
     this.state = {
       isEditing,
-      localDate
+      localDate,
     };
   }
 
@@ -138,7 +138,7 @@ class DiaryExerciseForm extends Component {
       localId: getId(),
       completed: false,
       category: eventCategories.exercise,
-      animalId
+      animalId,
     };
   }
 
@@ -152,19 +152,29 @@ class DiaryExerciseForm extends Component {
     ) {
       return;
     }
-
-    this.props.submitForm();
+    let value = this.props.values.payload;
+    if (this.state.isEditing && value.length > 0) {
+      let notes = value[0].data && value[0].data !== null &&
+        value[0].data.note !== null ?
+        value[0].data.note : '';
+      this.state.isEditing && this.props.setFieldValue(`payload[${0}].data.note`, notes)
+      setTimeout(() => {
+        this.props.submitForm();
+      }, 500);
+    } else {
+      this.props.submitForm();
+    }
   };
 
-  formatDateField = timestamp =>
+  formatDateField = (timestamp) =>
     isValid(parse(timestamp)) ? format(timestamp, "HH:mm") : "";
 
-  parseDateField = dateInstance => {
+  parseDateField = (dateInstance) => {
     // We have to combine picked time with date picked in Diary Screen
     const currentDate = this.props.navigation.getParam("currentDate");
     const pickedTime = {
       hours: getHours(dateInstance),
-      minutes: getMinutes(dateInstance)
+      minutes: getMinutes(dateInstance),
     };
 
     return compose(
@@ -189,16 +199,16 @@ class DiaryExerciseForm extends Component {
         <DatePicker
           locale={i18n.language}
           t={t}
-          mode="time"
+          mode='time'
           date={date}
-          ref={el => (ref = el)} // eslint-disable-line no-return-assign
-          onPick={date => setFieldValue(fieldPath, this.parseDateField(date))}
+          ref={(el) => (ref = el)} // eslint-disable-line no-return-assign
+          onPick={(date) => setFieldValue(fieldPath, this.parseDateField(date))}
         />
         <FieldLabel style={s.fieldLabel}>{label}</FieldLabel>
         <SelectButton
           containerStyle={[
             s.dateInput,
-            this.props.submitCount > 0 && hasErrors && s.dateInputWithError
+            this.props.submitCount > 0 && hasErrors && s.dateInputWithError,
           ]}
           onPress={() => ref.show()}
         >
@@ -208,7 +218,7 @@ class DiaryExerciseForm extends Component {
     );
   };
 
-  renderRow = props => {
+  renderRow = (props) => {
     const { errors, submitCount } = this.props;
 
     const startDatePath = `payload[${props.index}].startDate`;
@@ -220,7 +230,7 @@ class DiaryExerciseForm extends Component {
       ramdaValues,
       mapObjIndexed((trainingForm, key) => ({
         label: trainingForm,
-        value: key
+        value: key,
       }))
     )(this.props.t("animalDisciplines.horse", { returnObjects: true }));
     const currentDate = this.props.navigation.getParam("currentDate");
@@ -240,14 +250,14 @@ class DiaryExerciseForm extends Component {
               fieldName: "startDate",
               label: this.props.t("startTime"),
               date: currentDate || new Date(),
-              ...props
+              ...props,
             })}
             {this.renderField({
               fieldName: "endDate",
               label: this.props.t("endTime"),
               // minimumDate: get(this.props.values, startDatePath), // something like this?
               date: currentDate || new Date(),
-              ...props
+              ...props,
             })}
           </View>
           <View>
@@ -259,13 +269,13 @@ class DiaryExerciseForm extends Component {
                 showBorder
                 placeholder={{ label: "", value: null }}
                 items={typeOfTrainingsOptions}
-                onValueChange={value =>
+                onValueChange={(value) =>
                   this.props.setFieldValue(typePath, value)
                 }
                 value={get(this.props.values, typePath)}
                 style={{
                   inputIOS: typeStyle,
-                  inputAndroid: typeStyle
+                  inputAndroid: typeStyle,
                 }}
               />
             </Field>
@@ -273,7 +283,7 @@ class DiaryExerciseForm extends Component {
           <MultiLineTextField
             label={this.props.t("notes")}
             value={get(this.props.values, notePath)}
-            onChangeText={value => this.props.setFieldValue(notePath, value)}
+            onChangeText={(value) => this.props.setFieldValue(notePath, value)}
             maxLength={280}
           />
         </View>
@@ -302,15 +312,15 @@ class DiaryExerciseForm extends Component {
 
     return (
       <FieldArray
-        name="payload"
-        render={arrayHelpers => (
+        name='payload'
+        render={(arrayHelpers) => (
           <View>
             {values.payload &&
               values.payload.map((entry, index) =>
                 this.renderRow({
                   arrayHelpers,
                   entry,
-                  index
+                  index,
                 })
               )}
             {this.state.isEditing ? null : (
@@ -341,7 +351,9 @@ class DiaryExerciseForm extends Component {
     const currentDate = this.props.navigation.getParam("currentDate");
     const lang = this.props.i18n.language;
     const renderingDate = this.props.navigation.getParam("renderingDate");
-    const dateForIOS = Date.parse(`${renderingDate} ${new Date().getFullYear()}`);
+    const dateForIOS = Date.parse(
+      `${renderingDate} ${new Date().getFullYear()}`
+    );
     return (
       <View style={s.screenContainer}>
         <ScrollView contentContainerStyle={s.scrollContainer}>
@@ -350,7 +362,7 @@ class DiaryExerciseForm extends Component {
               fontWeight: "400",
               fontSize: 22,
               textAlign: "center",
-              marginVertical: 20
+              marginVertical: 20,
             }}
           >
             {getStartDateText(
@@ -364,7 +376,7 @@ class DiaryExerciseForm extends Component {
             <Button
               style={{
                 minWidth: 200,
-                marginBottom: 20
+                marginBottom: 20,
               }}
               label={this.props.t("save")}
               onPress={this.submitForm}
@@ -383,13 +395,13 @@ DiaryExerciseForm.propTypes = {
   submitCount: T.number,
   submitForm: T.func,
   i18n: T.shape({
-    language: T.string
+    language: T.string,
   }),
   t: T.func,
   values: T.shape({
     groundWork: T.arrayOf(dateEventProps),
-    riding: T.arrayOf(dateEventProps)
-  })
+    riding: T.arrayOf(dateEventProps),
+  }),
 };
 
 const showSuccess = (alertDropdown, title, msg) => {
@@ -408,20 +420,30 @@ const triggerSubmitType = (
     actionCreator({
       payload,
       formHelpers: formikBag,
-      initialValue
+      initialValue,
     })
   );
 };
 
 const onSubmit = (values, formikBag) => {
   const t = formikBag.props.t;
-
+  const initialValue = formikBag.props.navigation.getParam("initialValue");
+  let isEditing = Boolean(initialValue);
   const flattenValues = compose(
     flatten,
     Object.values
   )(values);
 
   const animal = formikBag.props.navigation.getParam("animal");
+
+  if (flattenValues && !flattenValues.length && isEditing) {
+    return triggerSubmitType(initialValue, {
+      formikBag,
+      alertTitle: "alertSuccess",
+      alertMsg: "eventDeleteSuccessMsg",
+      actionCreator: deleteEvent,
+    });
+  }
 
   for (let i = 0; i < flattenValues.length; i++) {
     if (flattenValues[i].data != undefined) {
@@ -435,27 +457,28 @@ const onSubmit = (values, formikBag) => {
     }
   }
 
-  if (flattenValues[0].startDate > flattenValues[0].recurring_untill) {
+  if (
+    flattenValues[0].recurring_untill != "" &&
+    flattenValues[0].startDate > flattenValues[0].recurring_untill
+  ) {
     Alert.alert("", t("recurringAfterStartDate"));
     return;
   }
 
-  const initialValue = formikBag.props.navigation.getParam("initialValue");
-  let isEditing = Boolean(initialValue);
 
   const localDate = formikBag.props.navigation.getParam("localDate");
 
   if (!isNil(localDate) && isNil(flattenValues[0].recurring)) {
-    delete flattenValues[0].id;
-    delete flattenValues[0].recurring;
-    delete flattenValues[0].recurring_untill;
-    flattenValues[0].localId = getId();
+    flattenValues[0].recurring = null;
+    flattenValues[0].recurring_untill = null;
+    flattenValues[0].recurringUntill = null;
 
-    return triggerSubmitType(flattenValues, {
+    return triggerSubmitType(flattenValues[0], {
       formikBag,
       alertTitle: "alertSuccess",
-      alertMsg: "eventAddSuccessMsg",
-      actionCreator: addEvent
+      alertMsg: "eventEditSuccessMsg",
+      actionCreator: editEvent,
+      initialValue,
     });
   }
 
@@ -467,11 +490,11 @@ const onSubmit = (values, formikBag) => {
         [
           { text: t("editRecurring"), onPress: () => "yes" },
           { text: t("newRecurring"), onPress: () => "no" },
-          { text: t("cancel"), onPress: () => "cancel" }
+          { text: t("cancel"), onPress: () => "cancel" },
         ],
         {
           cancelable: true,
-          onDismiss: () => "cancel"
+          onDismiss: () => "cancel",
         }
       );
 
@@ -482,7 +505,7 @@ const onSubmit = (values, formikBag) => {
             alertTitle: "alertSuccess",
             alertMsg: "eventEditSuccessMsg",
             actionCreator: editEvent,
-            initialValue
+            initialValue,
           });
         }
       } else if (choice === "no") {
@@ -494,7 +517,7 @@ const onSubmit = (values, formikBag) => {
           formikBag,
           alertTitle: "alertSuccess",
           alertMsg: "eventAddSuccessMsg",
-          actionCreator: addEvent
+          actionCreator: addEvent,
         });
       } else {
         return;
@@ -507,7 +530,7 @@ const onSubmit = (values, formikBag) => {
         formikBag,
         alertTitle: "alertSuccess",
         alertMsg: "eventAddSuccessMsg",
-        actionCreator: addEvent
+        actionCreator: addEvent,
       });
     } else if (isEditing && flattenValues.length > 0) {
       return triggerSubmitType(flattenValues[0], {
@@ -515,7 +538,7 @@ const onSubmit = (values, formikBag) => {
         alertTitle: "alertSuccess",
         alertMsg: "eventEditSuccessMsg",
         actionCreator: editEvent,
-        initialValue
+        initialValue,
       });
     }
 
@@ -523,20 +546,20 @@ const onSubmit = (values, formikBag) => {
       formikBag,
       alertTitle: "alertSuccess",
       alertMsg: "eventDeleteSuccessMsg",
-      actionCreator: deleteEvent
+      actionCreator: deleteEvent,
     });
   }
 };
 
 const formikOptions = {
   handleSubmit: onSubmit,
-  mapPropsToValues: props => {
+  mapPropsToValues: (props) => {
     const initialValue = props.navigation.getParam("initialValue");
     const animalId = props.navigation.getParam("animalId");
 
     if (!initialValue) {
       return {
-        payload: [DiaryExerciseForm.getInitialEventValue(animalId)]
+        payload: [DiaryExerciseForm.getInitialEventValue(animalId)],
       };
     }
 
@@ -545,7 +568,7 @@ const formikOptions = {
 
     return result;
   },
-  validationSchema
+  validationSchema,
 };
 
 export default hoistStatics(

@@ -221,8 +221,9 @@ class Diary extends Component {
     const animalId = navigation.getParam("id");
 
     if (animalId && typeof animalId !== "number" && this.state.initial) {
+      const id = Array.isArray(animalId) && animalId.length > 0 && animalId[0].animalId
       const selectedAnimalIndex = data.animals.findIndex(
-        animal => animal.id === animalId
+        animal => animal.id === id
       );
       const isInitialValuePassed = selectedAnimalIndex !== -1;
       const index = isInitialValuePassed ? selectedAnimalIndex : 0;

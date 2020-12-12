@@ -150,29 +150,29 @@ export function* addEvent(api, dispatch, action) {
     map(snakeCaseKeys)
   )(payload);
 
-  // const addData = yield call(api.addEvent, { accessToken, body });
-  yield put({
-    type: "ADD_EVENT_REQUEST_SENT",
-    meta: {
-      offline: {
-        effect: {
-          accessToken,
-          api,
-          body,
-          dispatch,
-          method: api.addEvent,
-        },
-        commit: {
-          type: ADD_EVENT_COMMIT_REQUESTED,
-          meta: { formPayload: payload },
-        },
-        rollback: {
-          type: ADD_EVENT_ROLLBACK_REQUESTED,
-          meta: { formPayload: payload },
-        },
-      },
-    },
-  });
+  const addData = yield call(api.addEvent, { accessToken, body });
+  // yield put({
+  //   type: "ADD_EVENT_REQUEST_SENT",
+  //   meta: {
+  //     offline: {
+  //       effect: {
+  //         accessToken,
+  //         api,
+  //         body,
+  //         dispatch,
+  //         method: api.addEvent,
+  //       },
+  //       commit: {
+  //         type: ADD_EVENT_COMMIT_REQUESTED,
+  //         meta: { formPayload: payload },
+  //       },
+  //       rollback: {
+  //         type: ADD_EVENT_ROLLBACK_REQUESTED,
+  //         meta: { formPayload: payload },
+  //       },
+  //     },
+  //   },
+  // });
 
   yield all(
     payload.map((entry) =>
@@ -186,79 +186,80 @@ export function* addEvent(api, dispatch, action) {
   );
 
   let recurringEvent = false;
-  for (let i = 0; i < payload.length; i++) {
-    if (payload[i].data && payload[i].data.notification === true) {
-      if (yield RNCalendarEvents.authorizationStatus() !== "authorized") {
-        let auth = yield RNCalendarEvents.authorizeEventStore();
-        if (auth === "authorized") {
-          let title = payload[i].data.notificationData || payload[i].category;
-          let description;
-          let notes;
-          if (!isNil(payload[i].data)) {
-            description = payload[i].data.note || "";
-            notes = payload[i].data.note || "";
-          }
-          let recurring = payload[i].recurring;
+  if (addData.status === 200 && addData.data && addData.data.length) {
+    for (let i = 0; i < payload.length; i++) {
+      if (payload[i].data && payload[i].data.notification === true) {
+        if (yield RNCalendarEvents.authorizationStatus() !== "authorized") {
+          let auth = yield RNCalendarEvents.authorizeEventStore();
+          if (auth === "authorized") {
+            let title = payload[i].data.notificationData || payload[i].category;
+            let description;
+            let notes;
+            if (!isNil(payload[i].data)) {
+              description = payload[i].data.note || "";
+              notes = payload[i].data.note || "";
+            }
+            let recurring = payload[i].recurring;
 
-          let dt = new Date(payload[i].startDate);
-          dt.setMinutes(dt.getMinutes() - 5);
-          let alarmDate = Platform.OS === "ios" ? dt.toISOString() : 5; // 5 min before
+            let dt = new Date(payload[i].startDate);
+            dt.setMinutes(dt.getMinutes() - 5);
+            let alarmDate = Platform.OS === "ios" ? dt.toISOString() : 5; // 5 min before
 
-          let startDate = new Date(payload[i].startDate).toISOString();
+            let startDate = new Date(payload[i].startDate).toISOString();
 
-          let endDate;
-          let recurrenceEndDate = payload[i].recurring_untill
-            ? new Date(payload[i].recurring_untill).toISOString()
-            : endDate;
+            let endDate;
+            let recurrenceEndDate = payload[i].recurring_untill
+              ? new Date(payload[i].recurring_untill).toISOString()
+              : endDate;
 
-          if (
-            payload[i].category === "housing" ||
-            payload[i].category === "exercise"
-          ) {
-            endDate = new Date(payload[i].endDate).toISOString();
-          } else {
-            endDate = new Date(
-              addMinutes(new Date(payload[i].startDate), 15)
-            ).toISOString(); // eslint-disable-line prettier/prettier
-          }
+            if (
+              payload[i].category === "housing" ||
+              payload[i].category === "exercise"
+            ) {
+              endDate = new Date(payload[i].endDate).toISOString();
+            } else {
+              endDate = new Date(
+                addMinutes(new Date(payload[i].startDate), 15)
+              ).toISOString(); // eslint-disable-line prettier/prettier
+            }
 
-          switch (recurring) {
-            case "d":
-              recurring = "daily";
-              break;
-            case "w":
-              recurring = "weekly";
-              break;
-            case "m":
-              recurring = "monthly";
-              break;
-            case "y":
-              recurring = "yearly";
-              break;
-            default:
-              recurring = null;
-          }
+            switch (recurring) {
+              case "d":
+                recurring = "daily";
+                break;
+              case "w":
+                recurring = "weekly";
+                break;
+              case "m":
+                recurring = "monthly";
+                break;
+              case "y":
+                recurring = "yearly";
+                break;
+              default:
+                recurring = null;
+            }
 
-          let details = {
-            title,
-            description,
-            startDate,
-            endDate,
-            notes,
-          };
-          details.alarms = [{ date: alarmDate }];
-
-          if (recurring) {
-            details.recurrenceRule = {
-              frequency: recurring,
-              endDate: recurrenceEndDate,
+            let details = {
+              title,
+              description,
+              startDate,
+              endDate,
+              notes,
             };
-            Platform.OS === "android" && delete details.endDate;
-            details.recurrence = recurring;
-            recurringEvent = true;
-          }
+            details.alarms = [{ date: alarmDate }];
 
-          yield RNCalendarEvents.saveEvent(title, details, {});
+            if (recurring) {
+              details.recurrenceRule = {
+                frequency: recurring,
+                endDate: recurrenceEndDate,
+              };
+              Platform.OS === "android" && delete details.endDate;
+              details.recurrence = recurring;
+              recurringEvent = true;
+            }
+            yield RNCalendarEvents.saveEvent(title, details, {});
+          }
         }
       }
     }
@@ -410,28 +411,29 @@ export function* editEvent(api, dispatch, action) {
     snakeCaseKeys
   )(payload);
 
-  yield put({
-    type: "EDIT_EVENT_REQUEST_SENT",
-    meta: {
-      offline: {
-        effect: {
-          accessToken,
-          api,
-          body,
-          dispatch,
-          method: api.editEvent,
-        },
-        commit: {
-          type: EDIT_EVENT_COMMIT_REQUESTED,
-          meta: { formPayload: payload },
-        },
-        rollback: {
-          type: EDIT_EVENT_ROLLBACK_REQUESTED,
-          meta: { formPayload: payload, initialValue },
-        },
-      },
-    },
-  });
+  const editData = yield call(api.editEvent, { accessToken, body });
+  // yield put({
+  //   type: "EDIT_EVENT_REQUEST_SENT",
+  //   meta: {
+  //     offline: {
+  //       effect: {
+  //         accessToken,
+  //         api,
+  //         body,
+  //         dispatch,
+  //         method: api.editEvent,
+  //       },
+  //       commit: {
+  //         type: EDIT_EVENT_COMMIT_REQUESTED,
+  //         meta: { formPayload: payload },
+  //       },
+  //       rollback: {
+  //         type: EDIT_EVENT_ROLLBACK_REQUESTED,
+  //         meta: { formPayload: payload, initialValue },
+  //       },
+  //     },
+  //   },
+  // });
 
   yield put({
     type: EDIT_EVENT,
@@ -439,83 +441,86 @@ export function* editEvent(api, dispatch, action) {
   });
 
   let recurringEvent = false;
+  if (editData.status === 200 && editData.data && editData.data.id) {
+    for (let i = 0; i < payload.length; i++) {
+      if (payload[i].data.notification === true) {
+        if (yield RNCalendarEvents.authorizationStatus() !== "authorized") {
+          let auth = yield RNCalendarEvents.authorizeEventStore();
+          if (auth === "authorized") {
+            let title = payload[i].data.notificationData || payload[i].category;
+            let description;
+            let notes;
+            if (!isNil(payload[i].data)) {
+              description = payload[i].data.note || "";
+              notes = payload[i].data.note || "";
+            }
+            let recurring = payload[i].recurring;
 
-  for (let i = 0; i < payload.length; i++) {
-    if (payload[i].data.notification === true) {
-      if (yield RNCalendarEvents.authorizationStatus() !== "authorized") {
-        let auth = yield RNCalendarEvents.authorizeEventStore();
-        if (auth === "authorized") {
-          let title = payload[i].data.notificationData || payload[i].category;
-          let description;
-          let notes;
-          if (!isNil(payload[i].data)) {
-            description = payload[i].data.note || "";
-            notes = payload[i].data.note || "";
+            let dt = new Date(payload[i].startDate);
+
+            dt.setMinutes(dt.getMinutes() - 5);
+
+            let alarmDate = Platform.OS === "ios" ? dt.toISOString() : 5; // 5 min before
+            let startDate = new Date(payload[i].startDate).toISOString();
+
+            let endDate;
+            let recurrenceEndDate = payload[i].recurring_untill
+              ? new Date(payload[i].recurring_untill).toISOString()
+              : endDate;
+
+            if (
+              payload[i].category === "housing" ||
+              payload[i].category === "exercise"
+            ) {
+              endDate = new Date(payload[i].endDate).toISOString();
+            } else {
+              endDate = new Date(
+                addMinutes(new Date(payload[i].startDate), 15)
+              ).toISOString(); // eslint-disable-line prettier/prettier
+            }
+
+            switch (recurring) {
+              case "d":
+                recurring = "daily";
+                break;
+              case "w":
+                recurring = "weekly";
+                break;
+              case "m":
+                recurring = "monthly";
+                break;
+              case "y":
+                recurring = "yearly";
+                break;
+              default:
+                recurring = null;
+            }
+
+            const details = { title, description, startDate, endDate, notes };
+            details.id = payload[i].id;
+            details.alarms = [{ date: alarmDate }];
+
+            if (recurring) {
+              details.recurrenceRule = {
+                frequency: recurring,
+                endDate: recurrenceEndDate,
+              };
+              details.recurrence = recurring;
+              Platform.OS === "android" && delete details.endDate;
+              recurringEvent = true;
+            }
+
+            yield RNCalendarEvents.saveEvent(title, details, {});
           }
-          let recurring = payload[i].recurring;
-
-          let dt = new Date(payload[i].startDate);
-
-          dt.setMinutes(dt.getMinutes() - 5);
-
-          let alarmDate = Platform.OS === "ios" ? dt.toISOString() : 5; // 5 min before
-          let startDate = new Date(payload[i].startDate).toISOString();
-
-          let endDate;
-          let recurrenceEndDate = payload[i].recurring_untill
-            ? new Date(payload[i].recurring_untill).toISOString()
-            : endDate;
-
-          if (
-            payload[i].category === "housing" ||
-            payload[i].category === "exercise"
-          ) {
-            endDate = new Date(payload[i].endDate).toISOString();
-          } else {
-            endDate = new Date(
-              addMinutes(new Date(payload[i].startDate), 15)
-            ).toISOString(); // eslint-disable-line prettier/prettier
-          }
-
-          switch (recurring) {
-            case "d":
-              recurring = "daily";
-              break;
-            case "w":
-              recurring = "weekly";
-              break;
-            case "m":
-              recurring = "monthly";
-              break;
-            case "y":
-              recurring = "yearly";
-              break;
-            default:
-              recurring = null;
-          }
-
-          const details = { title, description, startDate, endDate, notes };
-          details.id = payload[i].id;
-          details.alarms = [{ date: alarmDate }];
-
-          if (recurring) {
-            details.recurrenceRule = {
-              frequency: recurring,
-              endDate: recurrenceEndDate,
-            };
-            details.recurrence = recurring;
-            Platform.OS === "android" && delete details.endDate;
-            recurringEvent = true;
-          }
-
-          yield RNCalendarEvents.saveEvent(title, details, {});
         }
       }
     }
   }
+
   if (recurringEvent) {
     yield delay(2000);
   }
+
   yield call(NavigatorService.navigate, "Diary");
   if (formHelpers) {
     formHelpers.setSubmitting(false);

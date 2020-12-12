@@ -6,7 +6,7 @@ import {
   View,
   TextInput,
   Text,
-  Alert
+  Alert,
 } from "react-native";
 import AlertAsync from "react-native-alert-async";
 import { HeaderBackButton } from "react-navigation-stack";
@@ -21,7 +21,7 @@ import {
   getHours,
   getMinutes,
   getTime,
-  isValid
+  isValid,
 } from "date-fns";
 import { get } from "lodash";
 import {
@@ -30,7 +30,7 @@ import {
   mapObjIndexed,
   isNil,
   flatten,
-  values as ramdaValues
+  values as ramdaValues,
 } from "ramda";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
@@ -58,7 +58,7 @@ import { eventCategories } from "../constants";
 import {
   dateEventProps,
   dateEventValidation,
-  painEventRegistration
+  painEventRegistration,
 } from "../constants/validationTypes";
 
 import { colors } from "../themes";
@@ -67,7 +67,7 @@ import {
   setHours,
   setMinutes,
   setSecondsToZero,
-  setMillisecondsToZero
+  setMillisecondsToZero,
 } from "../services/date";
 import iconMap from "../constants/iconMap";
 import nlLocale from "date-fns/locale/nl";
@@ -76,7 +76,7 @@ import { getStartDateText } from "../helper";
 // import Reactotron from "reactotron-react-native";
 
 const validationSchema = yup.object().shape({
-  payload: yup.array().of(painEventRegistration)
+  payload: yup.array().of(painEventRegistration),
 });
 
 class DiaryPainMeasurementForm extends Component {
@@ -96,7 +96,7 @@ class DiaryPainMeasurementForm extends Component {
           style={{ marginRight: 30 }}
           onPress={() =>
             navigation.navigate("PainMeasurementInfo", {
-              animalType: navigation.getParam("animalType")
+              animalType: navigation.getParam("animalType"),
             })
           }
         >
@@ -118,7 +118,7 @@ class DiaryPainMeasurementForm extends Component {
           />
         </TouchableOpacity> */}
       </View>
-    )
+    ),
   });
 
   constructor(props) {
@@ -130,7 +130,7 @@ class DiaryPainMeasurementForm extends Component {
 
     this.state = {
       isEditing,
-      completed: Boolean(completed)
+      completed: Boolean(completed),
     };
   }
 
@@ -140,10 +140,10 @@ class DiaryPainMeasurementForm extends Component {
       completed: false,
       data: {
         notification: false,
-        notificationData: ""
+        notificationData: "",
       },
       category: eventCategories.painMeasurement,
-      animalId
+      animalId,
     };
   }
 
@@ -161,15 +161,15 @@ class DiaryPainMeasurementForm extends Component {
     this.props.submitForm();
   };
 
-  formatDateField = timestamp =>
+  formatDateField = (timestamp) =>
     isValid(parse(timestamp)) ? format(timestamp, "HH:mm") : "";
 
-  parseDateField = dateInstance => {
+  parseDateField = (dateInstance) => {
     // We have to combine picked time with date picked in Diary Screen
     const currentDate = this.props.navigation.getParam("currentDate");
     const pickedTime = {
       hours: getHours(dateInstance),
-      minutes: getMinutes(dateInstance)
+      minutes: getMinutes(dateInstance),
     };
 
     return compose(
@@ -194,16 +194,16 @@ class DiaryPainMeasurementForm extends Component {
         <DatePicker
           locale={i18n.language}
           t={t}
-          mode="time"
+          mode='time'
           date={currentDate || new Date()}
-          ref={el => (ref = el)} // eslint-disable-line no-return-assign
-          onPick={date => setFieldValue(fieldPath, this.parseDateField(date))}
+          ref={(el) => (ref = el)} // eslint-disable-line no-return-assign
+          onPick={(date) => setFieldValue(fieldPath, this.parseDateField(date))}
         />
         <FieldLabel style={s.fieldLabel}>{label}</FieldLabel>
         <SelectButton
           containerStyle={[
             s.dateInput,
-            this.props.submitCount > 0 && hasErrors && s.dateInputWithError
+            this.props.submitCount > 0 && hasErrors && s.dateInputWithError,
           ]}
           onPress={() => ref.show()}
         >
@@ -213,7 +213,7 @@ class DiaryPainMeasurementForm extends Component {
     );
   };
 
-  renderRow = props => {
+  renderRow = (props) => {
     const { errors, submitCount, values, t } = this.props;
 
     const startDatePath = `payload[${props.index}].startDate`;
@@ -240,7 +240,7 @@ class DiaryPainMeasurementForm extends Component {
               fieldName: "startDate",
               label: t("datePicker.titleTime"),
               date: new Date(),
-              ...props
+              ...props,
             })}
           </View>
           <View>
@@ -254,20 +254,20 @@ class DiaryPainMeasurementForm extends Component {
                 items={[
                   {
                     label: t("painMeasurements.composite"),
-                    value: eventTypes.composite
+                    value: eventTypes.composite,
                   },
                   {
                     label: t("painMeasurements.facialExpression"),
-                    value: eventTypes.facialExpression
-                  }
+                    value: eventTypes.facialExpression,
+                  },
                 ]}
-                onValueChange={value =>
+                onValueChange={(value) =>
                   this.props.setFieldValue(typePath, value)
                 }
                 value={get(this.props.values, typePath)}
                 style={{
                   inputIOS: typeStyle,
-                  inputAndroid: typeStyle
+                  inputAndroid: typeStyle,
                 }}
               />
             </Field>
@@ -297,15 +297,15 @@ class DiaryPainMeasurementForm extends Component {
     const pushValue = DiaryPainMeasurementForm.getInitialEventValue(animalId);
     return (
       <FieldArray
-        name="payload"
-        render={arrayHelpers => (
+        name='payload'
+        render={(arrayHelpers) => (
           <View>
             {values.payload &&
               values.payload.map((entry, index) =>
                 this.renderRow({
                   arrayHelpers,
                   entry,
-                  index
+                  index,
                 })
               )}
             {/*{this.state.isEditing ? null : (
@@ -336,7 +336,9 @@ class DiaryPainMeasurementForm extends Component {
     const currentDate = this.props.navigation.getParam("currentDate");
     const lang = this.props.i18n.language;
     const renderingDate = this.props.navigation.getParam("renderingDate");
-    const dateForIOS = Date.parse(`${renderingDate} ${new Date().getFullYear()}`);
+    const dateForIOS = Date.parse(
+      `${renderingDate} ${new Date().getFullYear()}`
+    );
     return (
       <View style={s.screenContainer}>
         <ScrollView contentContainerStyle={s.scrollContainer}>
@@ -345,7 +347,7 @@ class DiaryPainMeasurementForm extends Component {
               fontWeight: "400",
               fontSize: 22,
               textAlign: "center",
-              marginVertical: 20
+              marginVertical: 20,
             }}
           >
             {getStartDateText(
@@ -361,7 +363,7 @@ class DiaryPainMeasurementForm extends Component {
                 style={{
                   minWidth: 200,
                   marginBottom: 20,
-                  backgroundColor: colors.tomato
+                  backgroundColor: colors.tomato,
                 }}
                 label={this.props.t("delete")}
                 onPress={this.submitForm}
@@ -371,7 +373,7 @@ class DiaryPainMeasurementForm extends Component {
               <Button
                 style={{
                   minWidth: 200,
-                  marginBottom: 20
+                  marginBottom: 20,
                 }}
                 label={this.props.t("save")}
                 onPress={this.submitForm}
@@ -391,10 +393,10 @@ DiaryPainMeasurementForm.propTypes = {
   submitCount: T.number,
   submitForm: T.func,
   i18n: T.shape({
-    language: T.string
+    language: T.string,
   }),
   t: T.func,
-  type: T.oneOf([eventTypes.composite, eventTypes.facialExpression])
+  type: T.oneOf([eventTypes.composite, eventTypes.facialExpression]),
 };
 
 const showSuccess = (alertDropdown, title, msg) => {
@@ -413,7 +415,7 @@ const triggerSubmitType = (
     actionCreator({
       payload,
       formHelpers: formikBag,
-      initialValue
+      initialValue,
     })
   );
 };
@@ -422,16 +424,30 @@ const onSubmit = ({ payload }, formikBag) => {
   const initialValue = formikBag.props.navigation.getParam("initialValue");
   const isEditing = Boolean(initialValue);
   const animal = formikBag.props.navigation.getParam("animal");
-  //console.log(payload, "check the animal data here", animal);
   const { t } = formikBag.props;
 
-  if (payload[0].startDate > payload[0].recurring_untill) {
-    Alert.alert(
-      "",
-      "Please select recurring date that comes after event start time"
-    );
+  const flattenValues = compose(
+    flatten,
+    Object.values
+  )(payload);
+
+  if (flattenValues && !flattenValues.length && isEditing) {
+    return triggerSubmitType(initialValue, {
+      formikBag,
+      alertTitle: "alertSuccess",
+      alertMsg: "eventDeleteSuccessMsg",
+      actionCreator: deleteEvent,
+    });
+  }
+
+  if (
+    flattenValues[0].recurring_untill != "" &&
+    flattenValues[0].startDate > flattenValues[0].recurring_untill
+  ) {
+    Alert.alert("", t("recurringAfterStartDate"));
     return;
   }
+
   if (payload[0].data.notification) {
     payload[0].data.notificationData = animal
       ? `(${t(animal.type)}: ${animal.name}) ${t(
@@ -445,15 +461,20 @@ const onSubmit = ({ payload }, formikBag) => {
       formikBag,
       alertTitle: "alertSuccess",
       alertMsg: "eventAddSuccessMsg",
-      actionCreator: addEvent
+      actionCreator: addEvent,
     });
   } else if (isEditing && payload.length > 0) {
-    return triggerSubmitType(payload[0], {
+    if (isNil(flattenValues[0].recurring)) {
+      flattenValues[0].recurring = null;
+      flattenValues[0].recurring_untill = null;
+      flattenValues[0].recurringUntill = null;
+    }
+    return triggerSubmitType(flattenValues[0], {
       formikBag,
       alertTitle: "alertSuccess",
       alertMsg: "eventEditSuccessMsg",
       actionCreator: editEvent,
-      initialValue
+      initialValue,
     });
   }
 
@@ -461,19 +482,19 @@ const onSubmit = ({ payload }, formikBag) => {
     formikBag,
     alertTitle: "alertSuccess",
     alertMsg: "eventDeleteSuccessMsg",
-    actionCreator: deleteEvent
+    actionCreator: deleteEvent,
   });
 };
 
 const formikOptions = {
   handleSubmit: onSubmit,
-  mapPropsToValues: props => {
+  mapPropsToValues: (props) => {
     const initialValue = props.navigation.getParam("initialValue");
     const animalId = props.navigation.getParam("animalId");
 
     if (!initialValue) {
       return {
-        payload: [DiaryPainMeasurementForm.getInitialEventValue(animalId)]
+        payload: [DiaryPainMeasurementForm.getInitialEventValue(animalId)],
       };
     }
 
@@ -482,7 +503,7 @@ const formikOptions = {
 
     return result;
   },
-  validationSchema
+  validationSchema,
 };
 
 export default hoistStatics(

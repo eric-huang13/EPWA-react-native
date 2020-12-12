@@ -7,7 +7,7 @@ import {
   TextInput,
   Text,
   Alert,
-  Platform
+  Platform,
 } from "react-native";
 import AlertAsync from "react-native-alert-async";
 import { HeaderBackButton } from "react-navigation-stack";
@@ -22,7 +22,7 @@ import {
   getHours,
   getMinutes,
   getTime,
-  isValid
+  isValid,
 } from "date-fns";
 import { get } from "lodash";
 import {
@@ -31,7 +31,7 @@ import {
   mapObjIndexed,
   values as ramdaValues,
   isNil,
-  flatten
+  flatten,
 } from "ramda";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
@@ -57,7 +57,7 @@ import { addEvent, editEvent, deleteEvent } from "../actions/events";
 import { eventCategories, eventTypes } from "../constants";
 import {
   dateEventProps,
-  noteEventValidation
+  noteEventValidation,
 } from "../constants/validationTypes";
 
 import { colors } from "../themes";
@@ -66,14 +66,14 @@ import {
   setHours,
   setMinutes,
   setSecondsToZero,
-  setMillisecondsToZero
+  setMillisecondsToZero,
 } from "../services/date";
 import iconMap from "../constants/iconMap";
 import MultiLineTextField from "../components/MultiLineTextField";
 import { getStartDateText } from "../helper";
 
 const validationSchema = yup.object().shape({
-  payload: yup.array().of(noteEventValidation)
+  payload: yup.array().of(noteEventValidation),
 });
 
 class diaryAppointmentForm extends Component {
@@ -93,7 +93,7 @@ class diaryAppointmentForm extends Component {
           style={{ marginRight: 30 }}
           onPress={() =>
             navigation.navigate("DiaryAppointmentFormInfo", {
-              animalType: navigation.getParam("animalType")
+              animalType: navigation.getParam("animalType"),
             })
           }
         >
@@ -104,7 +104,7 @@ class diaryAppointmentForm extends Component {
           />
         </TouchableOpacity>
       </View>
-    )
+    ),
   });
 
   constructor(props) {
@@ -115,7 +115,7 @@ class diaryAppointmentForm extends Component {
 
     this.state = {
       isEditing,
-      localDate
+      localDate,
     };
   }
 
@@ -125,7 +125,7 @@ class diaryAppointmentForm extends Component {
       completed: false,
       category: eventCategories.appointment,
       type: eventTypes.appointment,
-      animalId
+      animalId,
     };
   }
 
@@ -144,15 +144,15 @@ class diaryAppointmentForm extends Component {
     this.props.submitForm();
   };
 
-  formatDateField = timestamp =>
+  formatDateField = (timestamp) =>
     isValid(parse(timestamp)) ? format(timestamp, "HH:mm") : "";
 
-  parseDateField = dateInstance => {
+  parseDateField = (dateInstance) => {
     // We have to combine picked time with date picked in Diary Screen
     const currentDate = this.props.navigation.getParam("currentDate");
     const pickedTime = {
       hours: getHours(dateInstance),
-      minutes: getMinutes(dateInstance)
+      minutes: getMinutes(dateInstance),
     };
 
     return compose(
@@ -177,10 +177,10 @@ class diaryAppointmentForm extends Component {
         <DatePicker
           locale={i18n.language}
           t={t}
-          mode="time"
+          mode='time'
           date={date}
-          ref={el => (ref = el)} // eslint-disable-line no-return-assign
-          onPick={dateArg =>
+          ref={(el) => (ref = el)} // eslint-disable-line no-return-assign
+          onPick={(dateArg) =>
             setFieldValue(fieldPath, this.parseDateField(dateArg))
           }
         />
@@ -188,7 +188,7 @@ class diaryAppointmentForm extends Component {
         <SelectButton
           containerStyle={[
             s.dateInput,
-            this.props.submitCount > 0 && hasErrors && s.dateInputWithError
+            this.props.submitCount > 0 && hasErrors && s.dateInputWithError,
           ]}
           onPress={() => ref.show()}
         >
@@ -198,7 +198,7 @@ class diaryAppointmentForm extends Component {
     );
   };
 
-  renderRow = props => {
+  renderRow = (props) => {
     const { errors, submitCount } = this.props;
     const startDatePath = `payload[${props.index}].startDate`;
     const typePath = `payload[${props.index}].type`;
@@ -227,7 +227,7 @@ class diaryAppointmentForm extends Component {
           <MultiLineTextField
             label={this.props.t("kindOfAppointment")}
             value={get(this.props.values, titlePath)}
-            onChangeText={value => this.props.setFieldValue(titlePath, value)}
+            onChangeText={(value) => this.props.setFieldValue(titlePath, value)}
             maxLength={100}
             hasError={typeStyle}
           />
@@ -254,7 +254,7 @@ class diaryAppointmentForm extends Component {
           <MultiLineTextField
             label={this.props.t("notes")}
             value={get(this.props.values, notePath)}
-            onChangeText={value => this.props.setFieldValue(notePath, value)}
+            onChangeText={(value) => this.props.setFieldValue(notePath, value)}
             maxLength={280}
           />
           <View style={{ flex: 1, flexDirection: "row" }}>
@@ -262,7 +262,7 @@ class diaryAppointmentForm extends Component {
               fieldName: "startDate",
               label: this.props.t("datePicker.titleTime"),
               date: currentDate,
-              ...props
+              ...props,
             })}
           </View>
         </View>
@@ -290,15 +290,15 @@ class diaryAppointmentForm extends Component {
     const pushValue = diaryAppointmentForm.getInitialEventValue(animalId);
     return (
       <FieldArray
-        name="payload"
-        render={arrayHelpers => (
+        name='payload'
+        render={(arrayHelpers) => (
           <View>
             {values.payload &&
               values.payload.map((entry, index) =>
                 this.renderRow({
                   arrayHelpers,
                   entry,
-                  index
+                  index,
                 })
               )}
             {this.state.isEditing ? null : (
@@ -329,7 +329,9 @@ class diaryAppointmentForm extends Component {
     const currentDate = this.props.navigation.getParam("currentDate");
     const lang = this.props.i18n.language;
     const renderingDate = this.props.navigation.getParam("renderingDate");
-    const dateForIOS = Date.parse(`${renderingDate} ${new Date().getFullYear()}`);
+    const dateForIOS = Date.parse(
+      `${renderingDate} ${new Date().getFullYear()}`
+    );
     return (
       <View style={s.screenContainer}>
         <ScrollView contentContainerStyle={s.scrollContainer}>
@@ -338,7 +340,7 @@ class diaryAppointmentForm extends Component {
               fontWeight: "400",
               fontSize: 22,
               textAlign: "center",
-              marginVertical: 20
+              marginVertical: 20,
             }}
           >
             {getStartDateText(
@@ -352,7 +354,7 @@ class diaryAppointmentForm extends Component {
             <Button
               style={{
                 minWidth: 200,
-                marginBottom: 20
+                marginBottom: 20,
               }}
               label={this.props.t("save")}
               onPress={this.submitForm}
@@ -371,13 +373,13 @@ diaryAppointmentForm.propTypes = {
   submitCount: T.number,
   submitForm: T.func,
   i18n: T.shape({
-    language: T.string
+    language: T.string,
   }),
   t: T.func,
   values: T.shape({
     note: T.string,
-    noteTitle: T.string
-  })
+    noteTitle: T.string,
+  }),
 };
 
 const showSuccess = (alertDropdown, title, msg) => {
@@ -396,7 +398,7 @@ const triggerSubmitType = (
     actionCreator({
       payload,
       formHelpers: formikBag,
-      initialValue
+      initialValue,
     })
   );
 };
@@ -410,11 +412,22 @@ const onSubmit = (values, formikBag) => {
   )(values);
   const initialValue = formikBag.props.navigation.getParam("initialValue");
   let isEditing = Boolean(initialValue);
-
   const localDate = formikBag.props.navigation.getParam("localDate");
   const animal = formikBag.props.navigation.getParam("animal");
 
-  if (flattenValues[0].startDate > flattenValues[0].recurring_untill) {
+  if (flattenValues && !flattenValues.length && isEditing) {
+    return triggerSubmitType(initialValue, {
+      formikBag,
+      alertTitle: "alertSuccess",
+      alertMsg: "eventDeleteSuccessMsg",
+      actionCreator: deleteEvent,
+    });
+  }
+
+  if (
+    flattenValues[0].recurring_untill != "" &&
+    flattenValues[0].startDate > flattenValues[0].recurring_untill
+  ) {
     Alert.alert("", t("recurringAfterStartDate"));
     return;
   }
@@ -429,16 +442,17 @@ const onSubmit = (values, formikBag) => {
   }
 
   if (!isNil(localDate) && isNil(flattenValues[0].recurring)) {
-    delete flattenValues[0].id;
-    delete flattenValues[0].recurring;
-    delete flattenValues[0].recurring_untill;
-    flattenValues[0].localId = getId();
+    // for turning of the recurring
+    flattenValues[0].recurring = null;
+    flattenValues[0].recurring_untill = null;
+    flattenValues[0].recurringUntill = null;
 
-    return triggerSubmitType(flattenValues, {
+    return triggerSubmitType(flattenValues[0], {
       formikBag,
       alertTitle: "alertSuccess",
-      alertMsg: "eventAddSuccessMsg",
-      actionCreator: addEvent
+      alertMsg: "eventEditSuccessMsg",
+      actionCreator: editEvent,
+      initialValue,
     });
   }
 
@@ -450,11 +464,11 @@ const onSubmit = (values, formikBag) => {
         [
           { text: t("editRecurring"), onPress: () => "yes" },
           { text: t("newRecurring"), onPress: () => "no" },
-          { text: t("cancel"), onPress: () => "cancel" }
+          { text: t("cancel"), onPress: () => "cancel" },
         ],
         {
           cancelable: true,
-          onDismiss: () => "cancel"
+          onDismiss: () => "cancel",
         }
       );
 
@@ -465,7 +479,7 @@ const onSubmit = (values, formikBag) => {
             alertTitle: "alertSuccess",
             alertMsg: "eventEditSuccessMsg",
             actionCreator: editEvent,
-            initialValue
+            initialValue,
           });
         }
       } else if (choice === "no") {
@@ -477,7 +491,7 @@ const onSubmit = (values, formikBag) => {
           formikBag,
           alertTitle: "alertSuccess",
           alertMsg: "eventAddSuccessMsg",
-          actionCreator: addEvent
+          actionCreator: addEvent,
         });
       } else {
         return;
@@ -490,7 +504,7 @@ const onSubmit = (values, formikBag) => {
         formikBag,
         alertTitle: "alertSuccess",
         alertMsg: "eventAddSuccessMsg",
-        actionCreator: addEvent
+        actionCreator: addEvent,
       });
     } else if (isEditing && flattenValues.length > 0) {
       return triggerSubmitType(flattenValues[0], {
@@ -498,7 +512,7 @@ const onSubmit = (values, formikBag) => {
         alertTitle: "alertSuccess",
         alertMsg: "eventEditSuccessMsg",
         actionCreator: editEvent,
-        initialValue
+        initialValue,
       });
     }
 
@@ -506,20 +520,20 @@ const onSubmit = (values, formikBag) => {
       formikBag,
       alertTitle: "alertSuccess",
       alertMsg: "eventDeleteSuccessMsg",
-      actionCreator: deleteEvent
+      actionCreator: deleteEvent,
     });
   }
 };
 
 const formikOptions = {
   handleSubmit: onSubmit,
-  mapPropsToValues: props => {
+  mapPropsToValues: (props) => {
     const initialValue = props.navigation.getParam("initialValue");
     const animalId = props.navigation.getParam("animalId");
 
     if (!initialValue) {
       return {
-        payload: [diaryAppointmentForm.getInitialEventValue(animalId)]
+        payload: [diaryAppointmentForm.getInitialEventValue(animalId)],
       };
     }
 
@@ -528,7 +542,7 @@ const formikOptions = {
 
     return result;
   },
-  validationSchema
+  validationSchema,
 };
 
 export default hoistStatics(

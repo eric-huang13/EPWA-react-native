@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import T from "prop-types";
-import { ScrollView, TouchableOpacity, View, Text, Alert, Platform } from "react-native";
+import {
+  ScrollView,
+  TouchableOpacity,
+  View,
+  Text,
+  Alert,
+  Platform,
+} from "react-native";
 import AlertAsync from "react-native-alert-async";
 import { HeaderBackButton } from "react-navigation-stack";
 import { FieldArray, withFormik } from "formik";
@@ -14,7 +21,7 @@ import {
   getHours,
   getMinutes,
   getTime,
-  isValid
+  isValid,
 } from "date-fns";
 import { get } from "lodash";
 import { __, compose, flatten, isNil } from "ramda";
@@ -42,7 +49,7 @@ import { addEvent, editEvent, deleteEvent } from "../actions/events";
 import { eventCategories, eventTypes, eventTypeIconNames } from "../constants";
 import {
   dateEventProps,
-  dateEventValidation
+  dateEventValidation,
 } from "../constants/validationTypes";
 import getId from "../services/idGenerator";
 
@@ -52,7 +59,7 @@ import {
   setHours,
   setMinutes,
   setSecondsToZero,
-  setMillisecondsToZero
+  setMillisecondsToZero,
 } from "../services/date";
 import iconMap from "../constants/iconMap";
 
@@ -63,7 +70,7 @@ import { getStartDateText } from "../helper";
 const validationSchema = yup.object().shape({
   paddock: yup.array().of(dateEventValidation),
   pasture: yup.array().of(dateEventValidation),
-  stable: yup.array().of(dateEventValidation)
+  stable: yup.array().of(dateEventValidation),
 });
 
 class DiaryHousingForm extends Component {
@@ -83,7 +90,7 @@ class DiaryHousingForm extends Component {
           style={{ marginRight: 30 }}
           onPress={() =>
             navigation.navigate("DiaryHousingFormInfo", {
-              animalType: navigation.getParam("animalType")
+              animalType: navigation.getParam("animalType"),
             })
           }
         >
@@ -106,7 +113,7 @@ class DiaryHousingForm extends Component {
           />
         </TouchableOpacity> */}
       </View>
-    )
+    ),
   });
 
   constructor(props) {
@@ -117,7 +124,7 @@ class DiaryHousingForm extends Component {
 
     this.state = {
       isEditing,
-      localDate
+      localDate,
     };
   }
 
@@ -130,8 +137,8 @@ class DiaryHousingForm extends Component {
       type,
       animalId,
       data: {
-        sharedAreaWithOtherAnimals: false
-      }
+        sharedAreaWithOtherAnimals: false,
+      },
     };
   }
 
@@ -143,15 +150,15 @@ class DiaryHousingForm extends Component {
     this.props.submitForm();
   };
 
-  formatDateField = timestamp =>
+  formatDateField = (timestamp) =>
     isValid(parse(timestamp)) ? format(timestamp, "HH:mm") : "";
 
-  parseDateField = dateInstance => {
+  parseDateField = (dateInstance) => {
     // We have to combine picked time with date picked in Diary Screen
     const currentDate = this.props.navigation.getParam("currentDate");
     const pickedTime = {
       hours: getHours(dateInstance),
-      minutes: getMinutes(dateInstance)
+      minutes: getMinutes(dateInstance),
     };
 
     return compose(
@@ -176,16 +183,16 @@ class DiaryHousingForm extends Component {
         <DatePicker
           locale={i18n.language}
           t={t}
-          mode="time"
+          mode='time'
           date={currentDate || new Date()}
-          ref={el => (ref = el)} // eslint-disable-line no-return-assign
-          onPick={date => setFieldValue(fieldPath, this.parseDateField(date))}
+          ref={(el) => (ref = el)} // eslint-disable-line no-return-assign
+          onPick={(date) => setFieldValue(fieldPath, this.parseDateField(date))}
         />
         <FieldLabel style={s.fieldLabel}>{label}</FieldLabel>
         <SelectButton
           containerStyle={[
             s.dateInput,
-            this.props.submitCount > 0 && hasErrors && s.dateInputWithError
+            this.props.submitCount > 0 && hasErrors && s.dateInputWithError,
           ]}
           onPress={() => ref.show()}
         >
@@ -195,7 +202,7 @@ class DiaryHousingForm extends Component {
     );
   };
 
-  renderRow = props => {
+  renderRow = (props) => {
     const { navigation, t } = this.props;
     const animalType = navigation.getParam("animalType");
     const shareOptions = [];
@@ -203,20 +210,20 @@ class DiaryHousingForm extends Component {
     if (animalType === "donkey") {
       shareOptions.push({
         label: t("turnout.sharedWithDonkeys"),
-        value: "sharedWithDonkeys"
+        value: "sharedWithDonkeys",
       });
     }
 
     if (animalType === "horse") {
       shareOptions.push({
         label: t("turnout.sharedWithHorses"),
-        value: "sharedWithHorses"
+        value: "sharedWithHorses",
       });
     }
 
     shareOptions.push({
       label: t("turnout.sharedWithOtherAnimals"),
-      value: "sharedWithOtherAnimals"
+      value: "sharedWithOtherAnimals",
     });
 
     shareOptions.push({ label: t("turnout.alone"), value: "alone" });
@@ -235,12 +242,12 @@ class DiaryHousingForm extends Component {
             {this.renderField({
               fieldName: "startDate",
               label: this.props.t("startTime"),
-              ...props
+              ...props,
             })}
             {this.renderField({
               fieldName: "endDate",
               label: this.props.t("endTime"),
-              ...props
+              ...props,
             })}
           </View>
           <View>
@@ -252,7 +259,7 @@ class DiaryHousingForm extends Component {
                 showBorder
                 placeholder={{}}
                 items={shareOptions}
-                onValueChange={value =>
+                onValueChange={(value) =>
                   this.props.setFieldValue(
                     `${props.namespace}[${
                       props.index
@@ -275,7 +282,7 @@ class DiaryHousingForm extends Component {
               this.props.values,
               `${props.namespace}[${props.index}].data.note`
             )}
-            onChangeText={value =>
+            onChangeText={(value) =>
               this.props.setFieldValue(
                 `${props.namespace}[${props.index}].data.note`,
                 value
@@ -302,7 +309,7 @@ class DiaryHousingForm extends Component {
     );
   };
 
-  renderFieldArray = name => {
+  renderFieldArray = (name) => {
     const { navigation, values, t } = this.props;
     const animalId = navigation.getParam("animalId");
     const pushValue = DiaryHousingForm.getInitialValue(animalId, name);
@@ -320,7 +327,7 @@ class DiaryHousingForm extends Component {
     return (
       <FieldArray
         name={eventTypes[name]}
-        render={arrayHelpers => (
+        render={(arrayHelpers) => (
           <View>
             <FieldSectionHeader
               title={t(eventTypes[name])}
@@ -338,7 +345,7 @@ class DiaryHousingForm extends Component {
                   arrayHelpers,
                   entry,
                   index,
-                  namespace: eventTypes[name]
+                  namespace: eventTypes[name],
                 })
               )}
             {this.state.isEditing ? null : (
@@ -369,7 +376,9 @@ class DiaryHousingForm extends Component {
     const currentDate = this.props.navigation.getParam("currentDate");
     const lang = this.props.i18n.language;
     const renderingDate = this.props.navigation.getParam("renderingDate");
-    const dateForIOS = Date.parse(`${renderingDate} ${new Date().getFullYear()}`);
+    const dateForIOS = Date.parse(
+      `${renderingDate} ${new Date().getFullYear()}`
+    );
     return (
       <View style={s.screenContainer}>
         <ScrollView contentContainerStyle={s.scrollContainer}>
@@ -379,7 +388,7 @@ class DiaryHousingForm extends Component {
                 fontWeight: "400",
                 fontSize: 22,
                 textAlign: "center",
-                marginVertical: 20
+                marginVertical: 20,
               }}
             >
               {getStartDateText(
@@ -396,7 +405,7 @@ class DiaryHousingForm extends Component {
             <Button
               style={{
                 minWidth: 200,
-                marginBottom: 20
+                marginBottom: 20,
               }}
               label={this.props.t("save")}
               onPress={this.submitForm}
@@ -415,13 +424,13 @@ DiaryHousingForm.propTypes = {
   submitCount: T.number,
   submitForm: T.func,
   i18n: T.shape({
-    language: T.string
+    language: T.string,
   }),
   t: T.func,
   values: T.shape({
     paddock: T.arrayOf(dateEventProps),
-    pasture: T.arrayOf(dateEventProps)
-  })
+    pasture: T.arrayOf(dateEventProps),
+  }),
 };
 
 const showSuccess = (alertDropdown, title, msg) => {
@@ -440,7 +449,7 @@ const triggerSubmitType = (
     actionCreator({
       payload,
       formHelpers: formikBag,
-      initialValue
+      initialValue,
     })
   );
 };
@@ -454,6 +463,19 @@ const onSubmit = (values, formikBag) => {
   )(values);
 
   const animal = formikBag.props.navigation.getParam("animal");
+  const initialValue = formikBag.props.navigation.getParam("initialValue");
+  let isEditing = Boolean(initialValue);
+  const localDate = formikBag.props.navigation.getParam("localDate");
+
+  if (flattenValues && !flattenValues.length && isEditing) {
+    return triggerSubmitType(initialValue, {
+      formikBag,
+      alertTitle: "alertSuccess",
+      alertMsg: "eventDeleteSuccessMsg",
+      actionCreator: deleteEvent,
+    });
+  }
+
   for (let i = 0; i < flattenValues.length; i++) {
     if (flattenValues[i].data.notification) {
       flattenValues[i].data.notificationData = animal
@@ -464,27 +486,25 @@ const onSubmit = (values, formikBag) => {
     }
   }
 
-  if (flattenValues[0].startDate > flattenValues[0].recurring_untill) {
+  if (
+    flattenValues[0].recurring_untill != "" &&
+    flattenValues[0].startDate > flattenValues[0].recurring_untill
+  ) {
     Alert.alert("", t("recurringAfterStartDate"));
     return;
   }
 
-  const initialValue = formikBag.props.navigation.getParam("initialValue");
-  let isEditing = Boolean(initialValue);
-
-  const localDate = formikBag.props.navigation.getParam("localDate");
-
   if (!isNil(localDate) && isNil(flattenValues[0].recurring)) {
-    delete flattenValues[0].id;
-    delete flattenValues[0].recurring;
-    delete flattenValues[0].recurring_untill;
-    flattenValues[0].localId = getId();
+    flattenValues[0].recurring = null;
+    flattenValues[0].recurring_untill = null;
+    flattenValues[0].recurringUntill = null;
 
-    return triggerSubmitType(flattenValues, {
+    return triggerSubmitType(flattenValues[0], {
       formikBag,
       alertTitle: "alertSuccess",
-      alertMsg: "eventAddSuccessMsg",
-      actionCreator: addEvent
+      alertMsg: "eventEditSuccessMsg",
+      actionCreator: editEvent,
+      initialValue,
     });
   }
 
@@ -496,11 +516,11 @@ const onSubmit = (values, formikBag) => {
         [
           { text: t("editRecurring"), onPress: () => "yes" },
           { text: t("newRecurring"), onPress: () => "no" },
-          { text: t("cancel"), onPress: () => "cancel" }
+          { text: t("cancel"), onPress: () => "cancel" },
         ],
         {
           cancelable: true,
-          onDismiss: () => "cancel"
+          onDismiss: () => "cancel",
         }
       );
 
@@ -511,7 +531,7 @@ const onSubmit = (values, formikBag) => {
             alertTitle: "alertSuccess",
             alertMsg: "eventEditSuccessMsg",
             actionCreator: editEvent,
-            initialValue
+            initialValue,
           });
         }
       } else if (choice === "no") {
@@ -524,7 +544,7 @@ const onSubmit = (values, formikBag) => {
           formikBag,
           alertTitle: "alertSuccess",
           alertMsg: "eventAddSuccessMsg",
-          actionCreator: addEvent
+          actionCreator: addEvent,
         });
       } else {
         return;
@@ -537,7 +557,7 @@ const onSubmit = (values, formikBag) => {
         formikBag,
         alertTitle: "alertSuccess",
         alertMsg: "eventAddSuccessMsg",
-        actionCreator: addEvent
+        actionCreator: addEvent,
       });
     } else if (isEditing && flattenValues.length > 0) {
       return triggerSubmitType(flattenValues[0], {
@@ -545,7 +565,7 @@ const onSubmit = (values, formikBag) => {
         alertTitle: "alertSuccess",
         alertMsg: "eventEditSuccessMsg",
         actionCreator: editEvent,
-        initialValue
+        initialValue,
       });
     }
 
@@ -553,14 +573,14 @@ const onSubmit = (values, formikBag) => {
       formikBag,
       alertTitle: "alertSuccess",
       alertMsg: "eventDeleteSuccessMsg",
-      actionCreator: deleteEvent
+      actionCreator: deleteEvent,
     });
   }
 };
 
 const formikOptions = {
   handleSubmit: onSubmit,
-  mapPropsToValues: props => {
+  mapPropsToValues: (props) => {
     const initialValue = props.navigation.getParam("initialValue");
 
     if (!initialValue) {
@@ -572,7 +592,7 @@ const formikOptions = {
 
     return result;
   },
-  validationSchema
+  validationSchema,
 };
 
 export default hoistStatics(

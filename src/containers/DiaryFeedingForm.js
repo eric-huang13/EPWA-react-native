@@ -8,7 +8,7 @@ import {
   Platform,
   Switch,
   Text,
-  Alert
+  Alert,
 } from "react-native";
 import AlertAsync from "react-native-alert-async";
 import { HeaderBackButton } from "react-navigation-stack";
@@ -23,7 +23,7 @@ import {
   getHours,
   getMinutes,
   getTime,
-  isValid
+  isValid,
 } from "date-fns";
 import { get, toNumber } from "lodash";
 import { __, compose, flatten, isNil } from "ramda";
@@ -50,7 +50,7 @@ import { addEvent, editEvent, deleteEvent } from "../actions/events";
 import { eventCategories, eventTypes, eventTypeIconNames } from "../constants";
 import {
   quantityEventProps,
-  quantityEventValidation
+  quantityEventValidation,
 } from "../constants/validationTypes";
 
 import { colors, fonts } from "../themes";
@@ -60,7 +60,7 @@ import {
   setHours,
   setMinutes,
   setSecondsToZero,
-  setMillisecondsToZero
+  setMillisecondsToZero,
 } from "../services/date";
 import iconMap from "../constants/iconMap";
 import RecurringForm from "../components/RecurringForm";
@@ -72,7 +72,7 @@ import { getStartDateText } from "../helper";
 const validationSchema = yup.object().shape({
   roughage: yup.array().of(quantityEventValidation),
   concentrate: yup.array().of(quantityEventValidation),
-  supplement: yup.array().of(quantityEventValidation)
+  supplement: yup.array().of(quantityEventValidation),
 });
 
 class DiaryFeedingForm extends Component {
@@ -92,7 +92,7 @@ class DiaryFeedingForm extends Component {
           style={{ marginRight: 30 }}
           onPress={() =>
             navigation.navigate("DiaryFeedingFormInfo", {
-              animalType: navigation.getParam("animalType")
+              animalType: navigation.getParam("animalType"),
             })
           }
         >
@@ -114,7 +114,7 @@ class DiaryFeedingForm extends Component {
           />
         </TouchableOpacity> */}
       </View>
-    )
+    ),
   });
 
   constructor(props) {
@@ -125,7 +125,7 @@ class DiaryFeedingForm extends Component {
 
     this.state = {
       isEditing,
-      localDate
+      localDate,
     };
 
     this.isAndroid = Platform.OS === "android";
@@ -139,7 +139,7 @@ class DiaryFeedingForm extends Component {
     this.props.submitForm();
   };
 
-  getInitialEventValue = eventType => {
+  getInitialEventValue = (eventType) => {
     const animalId = this.props.navigation.getParam("animalId");
 
     return {
@@ -149,20 +149,20 @@ class DiaryFeedingForm extends Component {
       type: eventType,
       animalId,
       data: {
-        unit: "kg"
-      }
+        unit: "kg",
+      },
     };
   };
 
-  formatDateField = timestamp =>
+  formatDateField = (timestamp) =>
     isValid(parse(timestamp)) ? format(timestamp, "HH:mm") : "";
 
-  parseDateField = dateInstance => {
+  parseDateField = (dateInstance) => {
     // We have to combine picked time with date picked in Diary Screen
     // const currentDate = this.props.navigation.getParam("currentDate");
     const pickedTime = {
       hours: getHours(dateInstance),
-      minutes: getMinutes(dateInstance)
+      minutes: getMinutes(dateInstance),
     };
 
     return compose(
@@ -175,7 +175,7 @@ class DiaryFeedingForm extends Component {
     )(dateInstance);
   };
 
-  renderFieldSectionHeader = fieldName => (
+  renderFieldSectionHeader = (fieldName) => (
     <FieldSectionHeader
       title={this.props.t(eventTypes[fieldName])}
       icon={
@@ -201,16 +201,16 @@ class DiaryFeedingForm extends Component {
         <DatePicker
           locale={i18n.language}
           t={t}
-          mode="time"
+          mode='time'
           date={currentDate || new Date()}
-          ref={el => (ref = el)} // eslint-disable-line no-return-assign
-          onPick={date => setFieldValue(fieldPath, this.parseDateField(date))}
+          ref={(el) => (ref = el)} // eslint-disable-line no-return-assign
+          onPick={(date) => setFieldValue(fieldPath, this.parseDateField(date))}
         />
         <FieldLabel style={s.fieldLabel}>{label}</FieldLabel>
         <SelectButton
           containerStyle={[
             s.dateInput,
-            this.props.submitCount > 0 && hasErrors && s.dateInputWithError
+            this.props.submitCount > 0 && hasErrors && s.dateInputWithError,
           ]}
           onPress={() => ref.show()}
         >
@@ -220,28 +220,28 @@ class DiaryFeedingForm extends Component {
     );
   };
 
-  renderRow = props => {
+  renderRow = (props) => {
     const { errors, setFieldValue, t, values } = this.props;
 
     const fieldPaths = {
       name: `${props.namespace}[${props.index}].data.name`,
       quantity: `${props.namespace}[${props.index}].data.quantity`,
       unit: `${props.namespace}[${props.index}].data.unit`,
-      note: `${props.namespace}[${props.index}].data.note`
+      note: `${props.namespace}[${props.index}].data.note`,
     };
 
     const fieldValues = {
       name: get(values, fieldPaths.name) || "",
       quantity: get(values, fieldPaths.quantity) || "",
       unit: get(values, fieldPaths.unit) || "",
-      note: get(values, fieldPaths.note) || ""
+      note: get(values, fieldPaths.note) || "",
     };
 
     const fieldErrors = {
       name: get(errors, fieldPaths.name),
       quantity: get(errors, fieldPaths.quantity),
       unit: get(errors, fieldPaths.unit),
-      note: get(values, fieldPaths.note)
+      note: get(values, fieldPaths.note),
     };
 
     const nameFieldLabel = t(`${props.namespace}NameLabel`);
@@ -262,7 +262,7 @@ class DiaryFeedingForm extends Component {
             {this.renderField({
               fieldName: "startDate",
               label: t("datePicker.titleTime"),
-              ...props
+              ...props,
             })}
           </View>
           <View style={{ flex: 1, flexDirection: "row" }}>
@@ -270,7 +270,7 @@ class DiaryFeedingForm extends Component {
               <Fragment>
                 <View
                   style={{
-                    flex: 1
+                    flex: 1,
                   }}
                 >
                   <FieldLabel style={s.fieldLabel}>{t("quantity")}</FieldLabel>
@@ -284,18 +284,18 @@ class DiaryFeedingForm extends Component {
                         borderRadius: 28,
                         borderWidth: 1,
                         borderColor: colors.mediumPurple,
-                        marginRight: 5
+                        marginRight: 5,
                       },
                       this.props.submitCount > 0 && fieldErrors.quantity
                         ? { backgroundColor: colors.tomato }
-                        : {}
+                        : {},
                     ]}
                   >
                     <TextInput
-                      keyboardType="numeric"
-                      placeholder="10"
+                      keyboardType='numeric'
+                      placeholder='10'
                       maxLength={5}
-                      onChangeText={text =>
+                      onChangeText={(text) =>
                         setFieldValue(
                           fieldPaths.quantity,
                           // Convert comma to a dot - otherwise validation will reject it
@@ -318,9 +318,10 @@ class DiaryFeedingForm extends Component {
                     placeholder={{}}
                     items={[
                       { label: t("kilogram"), value: "kg" },
-                      { label: t("gram"), value: "g" }
+                      { label: t("gram"), value: "g" },
+                      { label: t("milliliter"), value: "ml" },
                     ]}
-                    onValueChange={value =>
+                    onValueChange={(value) =>
                       setFieldValue(fieldPaths.unit, value)
                     }
                   />
@@ -335,18 +336,18 @@ class DiaryFeedingForm extends Component {
                 flexDirection: "row",
                 justifyContent: "space-between",
                 alignItems: "center",
-                marginRight: 5
+                marginRight: 5,
               }}
             >
               <Text style={{ ...fonts.style.label, paddingRight: 5 }}>
                 {t("animalHasUnlimitedAmountOf", {
-                  feedType: t(props.namespace).toLowerCase()
+                  feedType: t(props.namespace).toLowerCase(),
                 })}
               </Text>
               <Switch
                 trackColor={{ true: colors.lima }}
                 {...(Platform.OS === "ios" ? {} : { thumbColor: colors.white })}
-                onValueChange={value => {
+                onValueChange={(value) => {
                   if (value) {
                     setFieldValue(fieldPaths.unit, "unlimited");
                     setFieldValue(fieldPaths.quantity, 1);
@@ -371,15 +372,15 @@ class DiaryFeedingForm extends Component {
                   borderRadius: 28,
                   borderWidth: 1,
                   borderColor: colors.mediumPurple,
-                  marginRight: 5
+                  marginRight: 5,
                 },
                 this.props.submitCount > 0 && fieldErrors.name
                   ? { backgroundColor: colors.tomato }
-                  : {}
+                  : {},
               ]}
             >
               <TextInput
-                onChangeText={value => setFieldValue(fieldPaths.name, value)}
+                onChangeText={(value) => setFieldValue(fieldPaths.name, value)}
                 value={fieldValues.name}
                 style={
                   this.props.submitCount > 0 && fieldErrors.name
@@ -392,7 +393,7 @@ class DiaryFeedingForm extends Component {
           <MultiLineTextField
             label={this.props.t("notes")}
             value={fieldValues.note}
-            onChangeText={value =>
+            onChangeText={(value) =>
               this.props.setFieldValue(fieldPaths.note, value)
             }
             maxLength={280}
@@ -416,7 +417,7 @@ class DiaryFeedingForm extends Component {
     );
   };
 
-  renderFieldArray = name => {
+  renderFieldArray = (name) => {
     const { values } = this.props;
     const pushValue = this.getInitialEventValue(eventTypes[name]);
 
@@ -433,7 +434,7 @@ class DiaryFeedingForm extends Component {
     return (
       <FieldArray
         name={eventTypes[name]}
-        render={arrayHelpers => (
+        render={(arrayHelpers) => (
           <View>
             {this.renderFieldSectionHeader(name)}
             {values[name] &&
@@ -442,7 +443,7 @@ class DiaryFeedingForm extends Component {
                   arrayHelpers,
                   entry,
                   index,
-                  namespace: eventTypes[name]
+                  namespace: eventTypes[name],
                 })
               )}
             {this.state.isEditing ? null : (
@@ -474,7 +475,9 @@ class DiaryFeedingForm extends Component {
     const currentDate = this.props.navigation.getParam("currentDate");
     const lang = this.props.i18n.language;
     const renderingDate = this.props.navigation.getParam("renderingDate");
-    const dateForIOS = Date.parse(`${renderingDate} ${new Date().getFullYear()}`);
+    const dateForIOS = Date.parse(
+      `${renderingDate} ${new Date().getFullYear()}`
+    );
     return (
       <View style={s.screenContainer}>
         <KeyboardAvoidingView
@@ -488,7 +491,7 @@ class DiaryFeedingForm extends Component {
                 fontWeight: "400",
                 fontSize: 22,
                 textAlign: "center",
-                marginVertical: 20
+                marginVertical: 20,
               }}
             >
               {getStartDateText(
@@ -508,7 +511,7 @@ class DiaryFeedingForm extends Component {
               <Button
                 style={{
                   minWidth: 200,
-                  marginBottom: 20
+                  marginBottom: 20,
                 }}
                 label={this.props.t("save")}
                 onPress={this.submitForm}
@@ -528,14 +531,14 @@ DiaryFeedingForm.propTypes = {
   submitCount: T.number,
   submitForm: T.func,
   i18n: T.shape({
-    language: T.string
+    language: T.string,
   }),
   t: T.func,
   values: T.shape({
     roughage: T.arrayOf(quantityEventProps),
     concentrate: T.arrayOf(quantityEventProps),
-    supplement: T.arrayOf(quantityEventProps)
-  })
+    supplement: T.arrayOf(quantityEventProps),
+  }),
 };
 
 const showSuccess = (alertDropdown, title, msg) => {
@@ -554,7 +557,7 @@ const triggerSubmitType = (
     actionCreator({
       payload,
       formHelpers: formikBag,
-      initialValue
+      initialValue,
     })
   );
 };
@@ -567,17 +570,27 @@ const onSubmit = (values, formikBag) => {
     Object.values
   )(values);
 
-  if (flattenValues[0].startDate > flattenValues[0].recurring_untill) {
+  const initialValue = formikBag.props.navigation.getParam("initialValue");
+  let isEditing = Boolean(initialValue);
+  const localDate = formikBag.props.navigation.getParam("localDate");
+  const animal = formikBag.props.navigation.getParam("animal");
+
+  if (flattenValues && !flattenValues.length && isEditing) {
+    return triggerSubmitType(initialValue, {
+      formikBag,
+      alertTitle: "alertSuccess",
+      alertMsg: "eventDeleteSuccessMsg",
+      actionCreator: deleteEvent,
+    });
+  }
+
+  if (
+    flattenValues[0].recurring_untill != "" &&
+    flattenValues[0].startDate > flattenValues[0].recurring_untill
+  ) {
     Alert.alert("", t("recurringAfterStartDate"));
     return;
   }
-
-  const initialValue = formikBag.props.navigation.getParam("initialValue");
-  let isEditing = Boolean(initialValue);
-
-  const animal = formikBag.props.navigation.getParam("animal");
-
-  const localDate = formikBag.props.navigation.getParam("localDate");
 
   for (let i = 0; i < flattenValues.length; i++) {
     if (flattenValues[i].data.notification) {
@@ -596,16 +609,16 @@ const onSubmit = (values, formikBag) => {
   }
 
   if (!isNil(localDate) && isNil(flattenValues[0].recurring)) {
-    delete flattenValues[0].id;
-    delete flattenValues[0].recurring;
-    delete flattenValues[0].recurring_untill;
-    flattenValues[0].localId = getId();
+    flattenValues[0].recurring = null;
+    flattenValues[0].recurring_untill = null;
+    flattenValues[0].recurringUntill = null;
 
-    return triggerSubmitType(flattenValues, {
+    return triggerSubmitType(flattenValues[0], {
       formikBag,
       alertTitle: "alertSuccess",
-      alertMsg: "eventAddSuccessMsg",
-      actionCreator: addEvent
+      alertMsg: "eventEditSuccessMsg",
+      actionCreator: editEvent,
+      initialValue,
     });
   }
 
@@ -617,11 +630,11 @@ const onSubmit = (values, formikBag) => {
         [
           { text: t("editRecurring"), onPress: () => "yes" },
           { text: t("newRecurring"), onPress: () => "no" },
-          { text: t("cancel"), onPress: () => "cancel" }
+          { text: t("cancel"), onPress: () => "cancel" },
         ],
         {
           cancelable: true,
-          onDismiss: () => "cancel"
+          onDismiss: () => "cancel",
         }
       );
 
@@ -632,7 +645,7 @@ const onSubmit = (values, formikBag) => {
             alertTitle: "alertSuccess",
             alertMsg: "eventEditSuccessMsg",
             actionCreator: editEvent,
-            initialValue
+            initialValue,
           });
         }
       } else if (choice === "no") {
@@ -645,7 +658,7 @@ const onSubmit = (values, formikBag) => {
           formikBag,
           alertTitle: "alertSuccess",
           alertMsg: "eventAddSuccessMsg",
-          actionCreator: addEvent
+          actionCreator: addEvent,
         });
       } else {
         return;
@@ -658,7 +671,7 @@ const onSubmit = (values, formikBag) => {
         formikBag,
         alertTitle: "alertSuccess",
         alertMsg: "eventAddSuccessMsg",
-        actionCreator: addEvent
+        actionCreator: addEvent,
       });
     } else if (isEditing && flattenValues.length > 0) {
       return triggerSubmitType(flattenValues[0], {
@@ -666,7 +679,7 @@ const onSubmit = (values, formikBag) => {
         alertTitle: "alertSuccess",
         alertMsg: "eventEditSuccessMsg",
         actionCreator: editEvent,
-        initialValue
+        initialValue,
       });
     }
 
@@ -674,14 +687,14 @@ const onSubmit = (values, formikBag) => {
       formikBag,
       alertTitle: "alertSuccess",
       alertMsg: "eventDeleteSuccessMsg",
-      actionCreator: deleteEvent
+      actionCreator: deleteEvent,
     });
   }
 };
 
 const formikOptions = {
   handleSubmit: onSubmit,
-  mapPropsToValues: props => {
+  mapPropsToValues: (props) => {
     const initialValue = props.navigation.getParam("initialValue");
 
     if (!initialValue) {
@@ -693,7 +706,7 @@ const formikOptions = {
 
     return result;
   },
-  validationSchema
+  validationSchema,
 };
 
 export default hoistStatics(

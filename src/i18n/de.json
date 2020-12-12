@@ -6,7 +6,8 @@
       "nl": "Niederländisch",
       "en": "Englisch",
       "de": "Deutsche",
-      "fr": "Französisch"
+      "fr": "Französisch",
+      "es": "Spanisch"
     },
     "dateFormat": "DD-MM-YYYY",
     "errors": {
@@ -688,7 +689,7 @@
       "more": {
         "links": [
           {
-            "label": "Mehr Informationen über EPWA",
+            "label": "Wie funktioniert EPWA?",
             "url": "https://www.epwa.nl/en/instructie"
           }
         ]
@@ -819,7 +820,7 @@
           },
           {
             "title": "Speichern",
-            "content": "Haben Sie die Details Ihres Training eingetragen? Klicken Sie dann auf \"Speichern\" unten auf der Seite, um das Training an das Tagebuch hinzuzufügen. Die Trainingszeit wird nun automatisch in das Tagebuch eingetragen. Wenn Sie mehrere Trainingseinheiten absolviert haben, zeigt das Tagebuch Ihre gesamte Trainingszeit für diesen Tag an."
+            "content": "Haben Sie alle Details eingetragen? Klicken Sie dann auf \"Speichern\" unten auf der Seite um die Details an das Tagebuch hinzuzufügen."
           }
         ]
       },
@@ -847,7 +848,7 @@
           },
           {
             "title": "Speichern",
-            "content": "Haben Sie das Fütterungsregime Ihres {Tierart} eingetragen? Verwenden Sie zum Speichern das Symbol > in der oberen rechten Ecke. Die Daten erscheinen dann automatisch im Tagebuch."
+            "content": "Haben Sie alle Details eingetragen? Klicken Sie dann auf \"Speichern\" unten auf der Seite um die Details an das Tagebuch hinzuzufügen."
           }
         ]
       },
@@ -861,7 +862,7 @@
           },
           {
             "title": "Speichern",
-            "content": "Haben Sie die Zeit eingegeben, die Ihr {{Tierart}} in seinem Stall verbringt oder Auslauf hat?  Verwenden Sie zum Speichern das Symbol > in der oberen rechten Ecke. Die Daten erscheinen dann automatisch im Tagebuch."
+            "content": "Haben Sie alle Details eingetragen? Klicken Sie dann auf \"Speichern\" unten auf der Seite um die Details an das Tagebuch hinzuzufügen."
           }
         ]
       },
@@ -891,7 +892,7 @@
           },
           {
             "title": "Speichern",
-            "content": "Haben Sie alle medizinischen Daten Ihres {{Tierart}} eingegeben? Verwenden Sie zum Speichern das Symbol > in der oberen rechten Ecke. Die medizinischen Daten Ihres {{Tierart}} erscheinen automatisch im Tagebuch. "
+            "content": "Haben Sie alle Details eingetragen? Klicken Sie dann auf \"Speichern\" unten auf der Seite um die Details an das Tagebuch hinzuzufügen."
           }
         ]
       },
@@ -927,8 +928,8 @@
         "firstpage": {
           "title": "Erklärung zum Hochladen eines eigenen Fotos zu Schulungszwecken",
           "content": "Bitte laden Sie eines (oder mehrere) Ihrer eigenen Fotos hoch und helfen Sie uns, eine automatisierte Gesichtserkennung für Pferde und Esel zu entwickeln.",
-          "exphotoTitle": "Beispeil",
-          "imageTitle": "Gruppenpferd",
+          "exphotoTitle": "Beispiel",
+          "imageTitle": "grouphorse",
           "buttonText": "Weiter"
         },
         "secondpage": {
@@ -937,17 +938,17 @@
           "content2": "Wählen Sie zuerst die Ohren und die Augen und dann die Nüstern und den Maulbereich aus.",
           "content3": "Stellen Sie sicher, dass die Teile immer korrekt und deutlich im Beschneidebereich positioniert sind, wie hier im Beispiel gezeigt.",
           "chk_text": "Mein Foto darf für Schulungszwecke verwendet werden.",
-          "imageTitle": "Beispiel Bildausschnitt Pferd",
-          "checkedbtnImg": "geprüft",
-          "uncheckedbtnImg": "Nicht geprüft",
+          "imageTitle": "exhorsecrop",
+          "checkedbtnImg": "checkedbtnImg",
+          "uncheckedbtnImg": "uncheckedbtnImg",
           "lbuttonText": "Machen Sie ein Foto",
           "rbuttonText": "Aus Galerie"
         },
         "takephotopage": {
           "photobutton": "FOTO",
           "cancelbutton": "Abbrechen",
-          "horsemaskImg": "Pferdemaske",
-          "flipbtnImg": "umblättern",
+          "horsemaskImg": "horsemaskImg",
+          "flipbtnImg": "flipbtnImg",
           "flipbtnText": "Umblättern",
           "loadingText": "Speichern...",
           "cameraPermissionTitle": "Zustimmung zur Kameranutzung",
@@ -959,31 +960,31 @@
         },
         "thirdpage": {
           "question": "Eignet sich dieses Foto?",
-          "imageTitle": "Bildausschnitt Pferd",
+          "imageTitle": "horsecrop",
           "lbuttonText": "Wiederholen",
           "rbuttonText": "Ja"
         },
         "forthpage": {
           "question": "Jetzt das Bild der Ohren beschneiden",
-          "imageTitle": "Bildausschnitt Pferd",
+          "imageTitle": "horsecrop",
           "lbuttonText": "Ohren speichern",
           "loadingText": "Senden..."
         },
         "fifthpage": {
           "question": "Jetzt das Bild der Augen beschneiden",
-          "imageTitle": "Bildausschnitt Pferd",
+          "imageTitle": "horsecrop",
           "lbuttonText": "Augen speichern",
           "loadingText": "Senden..."
         },
         "sixthpage": {
           "question": "Schneiden Sie jetzt das Bild von Nüstern und Maul zu",
-          "imageTitle": "Bildausschnitt Pferd",
+          "imageTitle": "horsecrop",
           "lbuttonText": "Nüstern/Maul speichern",
           "loadingText": "Senden..."
         },
         "seventhpage": {
           "question": "Sind die Bildausschnitte geeignet?",
-          "imageTitle": "Bildausschnitt Pferd",
+          "imageTitle": "horsecrop",
           "lbuttonText": "Anpassen",
           "rbuttonText": "Senden",
           "loadingText": "Senden..."
@@ -1106,6 +1107,7 @@
     "item": "Elemente",
     "gram": "g",
     "kilogram": "kg",
+    "milliliter": "ml",
     "byWeight": "Für ... kilo",
     "milligram": "mg",
     "cubicCentimetre": "cc / ml",

@@ -5,8 +5,9 @@
     "language": {
       "nl": "Nederlands",
       "en": "Engels",
-      "de": "Duitse",
-      "fr": "Frans"
+      "de": "Duits",
+      "fr": "Frans",
+      "es": "Spaans"
     },
     "dateFormat": "DD-MM-YYYY",
     "errors": {
@@ -691,7 +692,7 @@
       "more": {
         "links": [
           {
-            "label": "Meer informatie over EPWA",
+            "label": "Hoe werkt EPWA?",
             "url": "https://www.epwa.nl/instructie"
           }
         ]
@@ -815,7 +816,7 @@
           },
           {
             "title": "Opslaan",
-            "content": "Heb je de details van je training ingevuld? Klik op \"Opslaan\" onderin om de training toe te voegen aan het dagboek. De trainingstijd komt nu automatisch in het dagboek te staan. Heb je meerdere trainingssessies gehad, zie je je totale trainingstijd voor die dag terug in het dagboek."
+            "content": "Ben je klaar met het invullen van de gegevens? Klik op \"Opslaan\" onderin de pagina om te gegevens toe te voegen aan het dagboek."
           }
         ]
       },
@@ -843,7 +844,7 @@
           },
           {
             "title": "Opslaan",
-            "content": "Ben je klaar met het invullen van de voeding van je {{animalType}}? Gebruik dan het > icoontje rechts bovenin om op te slaan. De gegevens komen nu automatisch in het dagboek te staan."
+            "content": "Ben je klaar met het invullen van de gegevens? Klik op \"Opslaan\" onderin de pagina om te gegevens toe te voegen aan het dagboek."
           }
         ]
       },
@@ -857,7 +858,7 @@
           },
           {
             "title": "Opslaan",
-            "content": "Ben je klaar met het invullen van de huisvesting van je {{animalType}}? Gebruik dan het > icoontje rechts bovenin om op te slaan. De gegevens komen nu automatisch in het dagboek te staan."
+            "content": "Ben je klaar met het invullen van de gegevens? Klik op \"Opslaan\" onderin de pagina om te gegevens toe te voegen aan het dagboek."
           }
         ]
       },
@@ -887,7 +888,7 @@
           },
           {
             "title": "Opslaan",
-            "content": "Ben je klaar met het invullen van de medische gegevens? Gebruik dan het > icoontje rechts bovenin om op te slaan. De medische gegevens komen nu automatisch in het dagboek te staan."
+            "content": "Ben je klaar met het invullen van de gegevens? Klik op \"Opslaan\" onderin de pagina om te gegevens toe te voegen aan het dagboek."
           }
         ]
       },
@@ -1098,6 +1099,7 @@
     "item": "stuks",
     "gram": "g",
     "kilogram": "kg",
+    "milliliter": "ml",
     "byWeight": "Voor ... kg",
     "milligram": "mg",
     "cubicCentimetre": "cc / ml",

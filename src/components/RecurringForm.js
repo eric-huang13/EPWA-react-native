@@ -8,7 +8,7 @@ import {
   getHours,
   getMinutes,
   getTime,
-  isValid
+  isValid,
 } from "date-fns";
 import { __, compose, flatten, isNil, indexOf, isEmpty } from "ramda";
 
@@ -18,7 +18,7 @@ import {
   setHours,
   setMinutes,
   setSecondsToZero,
-  setMillisecondsToZero
+  setMillisecondsToZero,
 } from "../services/date";
 import SelectButton from "./SelectButton";
 import nlLocale from "date-fns/locale/nl";
@@ -27,7 +27,7 @@ const recurringVal = {
   0: "d",
   1: "w",
   2: "m",
-  3: "y"
+  3: "y",
 };
 const recurringIndex = ["d", "w", "m", "y"];
 
@@ -39,7 +39,7 @@ class RecurringForm extends Component {
       reveal: this.setRecurring() || false,
       notification: this.setInitialNotification(),
       tabIndex: 1,
-      recurring_untill: this.setRecurringUntill() || null
+      recurring_untill: this.setRecurringUntill() || null,
     };
   }
 
@@ -82,15 +82,15 @@ class RecurringForm extends Component {
       this.handleDeleteRecurringEvents();
     }
 
-    this.setState(prevState => ({
-      reveal: !prevState.reveal
+    this.setState((prevState) => ({
+      reveal: !prevState.reveal,
     }));
   };
 
   handleAddRecurringEvents = () => {
     const { setFieldValue, values } = this.props;
 
-    Object.keys(values).map(eventType => {
+    Object.keys(values).map((eventType) => {
       values[eventType].map((_, i) => {
         setFieldValue(
           `${eventType}[${i}].recurring`,
@@ -98,7 +98,7 @@ class RecurringForm extends Component {
         );
         setFieldValue(
           `${eventType}[${i}].recurring_untill`,
-          recurringVal[this.state.recurring_untill] || null
+          this.state.recurring_untill || null
         );
       });
     });
@@ -107,42 +107,44 @@ class RecurringForm extends Component {
   handleDeleteRecurringEvents = () => {
     const { setFieldValue, values } = this.props;
 
-    Object.keys(values).map(eventType => {
+    Object.keys(values).map((eventType) => {
       values[eventType].map((_, i) => {
+        setFieldValue(`${eventType}[${i}].recurring_untill`, "");
+
         delete values[eventType][i].recurring;
         delete values[eventType][i].recurring_untill;
       });
     });
   };
 
-  handleIndexChange = index => {
+  handleIndexChange = (index) => {
     const { setFieldValue, values } = this.props;
 
-    Object.keys(values).map(eventType => {
+    Object.keys(values).map((eventType) => {
       values[eventType].map((_, i) => {
         setFieldValue(`${eventType}[${i}].recurring`, recurringVal[index]);
       });
     });
 
     this.setState({
-      tabIndex: index
+      tabIndex: index,
     });
   };
 
-  handleDateChange = date => {
+  handleDateChange = (date) => {
     const { setFieldValue, values } = this.props;
 
     const recurringDate = new Date(date);
     recurringDate.setHours(23);
     recurringDate.setMinutes(59);
-    Object.keys(values).map(eventType => {
+    Object.keys(values).map((eventType) => {
       values[eventType].map((_, i) => {
         setFieldValue(`${eventType}[${i}].recurring_untill`, +recurringDate);
       });
     });
 
     this.setState({
-      recurring_untill: +recurringDate
+      recurring_untill: +recurringDate,
     });
   };
 
@@ -204,7 +206,7 @@ class RecurringForm extends Component {
 
   setNotification = () => {
     const { setFieldValue, values } = this.props;
-    Object.keys(values).map(eventType => {
+    Object.keys(values).map((eventType) => {
       values[eventType].map((_, i) => {
         setFieldValue(
           `${eventType}[${i}].data.notification`,
@@ -212,19 +214,19 @@ class RecurringForm extends Component {
         );
       });
     });
-    this.setState(prevState => ({
-      notification: !prevState.notification
+    this.setState((prevState) => ({
+      notification: !prevState.notification,
     }));
   };
 
-  setDatePickerRef = element => {
+  setDatePickerRef = (element) => {
     this.datePicker = element;
   };
 
-  parseDateField = dateInstance => {
+  parseDateField = (dateInstance) => {
     const pickedTime = {
       hours: getHours(dateInstance),
-      minutes: getMinutes(dateInstance)
+      minutes: getMinutes(dateInstance),
     };
 
     return compose(
@@ -237,7 +239,7 @@ class RecurringForm extends Component {
     )(dateInstance);
   };
 
-  formatDateField = timestamp => {
+  formatDateField = (timestamp) => {
     const lang = this.props.i18n.language;
     return isValid(parse(timestamp))
       ? lang === "nl"
@@ -285,7 +287,7 @@ class RecurringForm extends Component {
               <Text
                 style={[
                   fonts.style.normal,
-                  { marginTop: 40, marginBottom: 10 }
+                  { marginTop: 40, marginBottom: 10 },
                 ]}
               >
                 {t("recurringTill")}
@@ -295,10 +297,10 @@ class RecurringForm extends Component {
               <DatePicker
                 locale={i18n.language}
                 t={t}
-                mode="date"
+                mode='date'
                 date={currentDate}
-                ref={el => (ref = el)} // eslint-disable-line no-return-assign
-                onPick={date =>
+                ref={(el) => (ref = el)} // eslint-disable-line no-return-assign
+                onPick={(date) =>
                   this.handleDateChange(this.parseDateField(date))
                 }
               />
@@ -329,45 +331,45 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     flex: 1,
-    alignItems: "center"
+    alignItems: "center",
   },
   contentContainer: {
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
   },
   tabStyle: {
     height: 70,
     backgroundColor: colors.whiteSmoke,
     borderColor: colors.whiteSmoke,
     borderLeftColor: "#AAAAAA",
-    borderRightColor: "#AAAAAA"
+    borderRightColor: "#AAAAAA",
   },
   tabTextStyle: {
     color: colors.black,
-    ...fonts.style.bold
+    ...fonts.style.bold,
   },
   activeTabStyle: {
     backgroundColor: colors.white,
     borderBottomColor: colors.white,
     borderLeftColor: colors.white,
-    borderRightColor: colors.white
+    borderRightColor: colors.white,
   },
   activeTabTextStyle: {
-    color: colors.black
+    color: colors.black,
   },
   tabContent: {
     color: "#444444",
     fontSize: 18,
-    margin: 24
+    margin: 24,
   },
   tabContentTitle: {
     ...fonts.style.titleFont,
     textAlign: "center",
-    marginVertical: 40
+    marginVertical: 40,
   },
   borderBottom: {
     borderBottomWidth: 1,
-    borderBottomColor: colors.darkFilter
-  }
+    borderBottomColor: colors.darkFilter,
+  },
 });
 
 export default RecurringForm;

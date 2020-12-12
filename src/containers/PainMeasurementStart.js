@@ -7,7 +7,7 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Switch
+  Switch,
 } from "react-native";
 import { compose, pick, isNil } from "ramda";
 import { connect } from "react-redux";
@@ -31,7 +31,7 @@ const iconFacialHorse = "PAARD-gezichtsuitdrukking-pijn-alles";
 const iconFacialDonkey = "EZEL-gezichtsuitdrukking-pijn-alles";
 
 class PainMeasurementStart extends PureComponent {
-  areRequiredFieldsFilled = values => {
+  areRequiredFieldsFilled = (values) => {
     if (isNil(values.animalType)) {
       return false;
     }
@@ -44,14 +44,14 @@ class PainMeasurementStart extends PureComponent {
     return true;
   };
 
-  getFacialIcon = values => {
+  getFacialIcon = (values) => {
     if (isNil(values.animalType)) {
       return iconFacial;
     }
     return values.animalType === "horse" ? iconFacialHorse : iconFacialDonkey;
   };
 
-  getCompositeIcon = values => {
+  getCompositeIcon = (values) => {
     if (isNil(values.animalType)) {
       return iconComposite;
     }
@@ -67,7 +67,7 @@ class PainMeasurementStart extends PureComponent {
         style={{
           flexDirection: "row",
           alignItems: "center",
-          justifyContent: "space-evenly"
+          justifyContent: "space-evenly",
         }}
       >
         <IconButton
@@ -108,7 +108,7 @@ class PainMeasurementStart extends PureComponent {
       "animalType",
       "animals",
       "isVet",
-      "measurementType"
+      "measurementType",
     ])(this.props);
 
     const editType = this.props.navigation.getParam("editType");
@@ -129,7 +129,7 @@ class PainMeasurementStart extends PureComponent {
             style={{
               flexDirection: "row",
               alignItems: "center",
-              justifyContent: "space-evenly"
+              justifyContent: "space-evenly",
             }}
           >
             {!isNil(editType) && editType === "composite" && (
@@ -182,7 +182,7 @@ class PainMeasurementStart extends PureComponent {
               flexDirection: "row",
               alignItems: "center",
               paddingRight: 50,
-              marginTop: 20
+              marginTop: 20,
             }}
           >
             <Text
@@ -190,7 +190,7 @@ class PainMeasurementStart extends PureComponent {
                 flexGrow: 1,
                 color: colors.white,
                 paddingRight: 10,
-                textAlign: "right"
+                textAlign: "right",
               }}
             >
               {t("painMeasurement.misc.areYouVet")}
@@ -199,7 +199,7 @@ class PainMeasurementStart extends PureComponent {
               <Switch
                 trackColor={{ true: colors.lima }}
                 {...(Platform.OS === "ios" ? {} : { thumbColor: colors.white })}
-                onValueChange={value => setFieldValue("isVet", value)}
+                onValueChange={(value) => setFieldValue("isVet", value)}
                 value={values.isVet}
               />
             </View>
@@ -220,7 +220,7 @@ class PainMeasurementStartContainer extends Component {
       title: screenProps.t("painMeasurement.misc.headerTitle"),
       headerTitleStyle: {
         ...fonts.style.h4,
-        fontWeight: "400"
+        fontWeight: "400",
       },
       headerLeft: (
         <HeaderBackButton
@@ -240,7 +240,7 @@ class PainMeasurementStartContainer extends Component {
             color={colors.egyptianBlueDark}
           />
         </TouchableOpacity>
-      )
+      ),
     };
   };
 
@@ -249,7 +249,7 @@ class PainMeasurementStartContainer extends Component {
     const editType = this.props.navigation.getParam("editType");
     this.props.navigation.navigate("PainMeasurementTimerIntro", {
       editId,
-      editType
+      editType,
     });
   };
 

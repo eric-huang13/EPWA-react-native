@@ -8,6 +8,7 @@ import en from "../i18n/en.json";
 import nl from "../i18n/nl.json";
 import de from "../i18n/de.json";
 import fr from "../i18n/fr.json";
+import es from "../i18n/es.json";
 // import reactotron from "reactotron-react-native";
 
 const languageDetector = {
@@ -54,6 +55,9 @@ i18n
       },
       fr: {
         ...fr
+      },
+      es: {
+        ...es
       }
     },
 

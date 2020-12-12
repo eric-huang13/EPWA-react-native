@@ -1,0 +1,1248 @@
+{
+    "root": {
+      "loading": "Por favor, espera...",
+      "appName": "Aplicación Equine Pain and Welfare",
+      "language": {
+        "nl": "Holandés",
+        "en": "Inglés",
+        "de": "Germánico",
+        "fr": "Francés",
+        "es": "Española"
+      },
+      "dateFormat": "DD-MM-AAAA",
+      "errors": {
+        "facebookLoginGeneric": "Fallo en la conexión a Facebook",
+        "googleLoginGeneric": "Fallo en la conexión a Google",
+        "emailLoginGeneric": "Fallo en la conexión al servidor",
+        "emailLoginNoAccount": "No hay ninguna cuenta que utilice la siguiente dirección de correo electrónico",
+        "emailLoginInvalidCredentials": "Credenciales no válidas",
+        "emailRegisterGeneric": "Fallo en la conexión al servidor",
+        "emailRegisterEmailAlreadyTaken": "Esta dirección de correo electrónico ya se ha utilizado.",
+        "emailRegisterEmailInvalid": "El correo electrónico debe ser una dirección de correo electrónico válida.",
+        "emailRegisterPasswordTooShort": "La contraseña debe tener al menos 6 caracteres.",
+        "mixedAccounts": "Esta dirección de correo electrónico ya está vinculada a una cuenta. Prueba con otro método de inicio de sesión. Si sabes que tu cuenta tiene una contraseña, asegúrate de iniciar sesión con tu dirección de correo electrónico y contraseña. De lo contrario, utiliza tu cuenta de Google o Facebook para iniciar sesión.",
+        "forgotEmailGeneric": "Fallo en la conexión al servidor",
+        "alertTitleGeneric": "Error",
+        "alertTitleWarning": "Advertencia",
+        "alertButtonLabelGeneric": "Aceptar",
+        "imagePickerFailed": "Se ha producido un error al seleccionar la imagen.",
+        "imageOverSizeThreshold": "Estás a punto de subir una imagen excepcionalmente grande. Asegúrate de tener una conexión a Internet rápida y fiable.",
+        "generic": "Algo ha ido mal",
+        "fetchUserDataError": "Los datos de usuario recuperados del servidor están mal formados. Informa de este problema a nuestro equipo de asistencia."
+      },
+      "auth": {
+        "login": "Iniciar sesión",
+        "loginGoogle": "Iniciar sesión con Google",
+        "loginFB": "Iniciar sesión con Facebook",
+        "loginEmail": "Iniciar sesión con el correo electrónico",
+        "or": "O",
+        "noAccountRegister": "¿No tienes cuenta? Regístrate aquí >",
+        "register": "Registrarse",
+        "registerFormSubmit": "Registrarse",
+        "sendingRequest": "Enviando...",
+        "logout": "Cerrar sesión",
+        "email": "Correo electrónico",
+        "password": "Contraseña",
+        "forgottenPassword": "¿Has olvidado tu contraseña?",
+        "alreadyHaveAccount": "Ya tengo una cuenta >",
+        "registerSubmitBtn": "Registrarse",
+        "forgotPasswordSubmitBtn": "Enviar",
+        "forgotEmailSuccededAlertTitle": "Correcto",
+        "forgotEmailSuccededAlertMessage": "Se ha enviado un correo electrónico a tu dirección de correo electrónico con instrucciones para configurar una nueva contraseña",
+        "forgotEmailSuccededAlertButtonLabel": "Aceptar"
+      },
+      "headerBar": {
+        "back": "Atrás",
+        "login": "Iniciar sesión",
+        "register": "Registrarse",
+        "forgottenPassword": "He olvidado mi contraseña",
+        "settings": "Ajustes",
+        "settingsNavigator": "Ajustes",
+        "stable": "Mi establo",
+        "stableNavigator": "Mi establo",
+        "diary": "Diario",
+        "diaryNavigator": "Diario",
+        "animalForm": "Animal",
+        "syndromes": "Comprobación de la presencia de PPID",
+        "syndromesNavigator": "Comprobación de la presencia de PPID",
+        "about": "Acerca de",
+        "aboutNavigator": "Acerca de",
+        "logout": "Cerrar sesión",
+        "logoutNavigator": "Cerrar sesión",
+        "diaryExercise": "Ejercicio",
+        "diaryAppointment": "Plan de citas",
+        "diaryFeeding": "Alimentación",
+        "diaryHousing": "Asistencia",
+        "diaryMedication": "Mi veterinario",
+        "diaryPainMeasurement": "Medición del dolor",
+        "changePassword": "Contraseña",
+        "deleteAccount": "Borrar cuenta",
+        "painMeasurementNavigator": "Medición del dolor",
+        "welfareInfo": "Directrices",
+        "welfareNavigator": "Directrices para el bienestar del caballo",
+        "copyEvents": "Copiar",
+        "agenda": "Plan de citas",
+        "epwaphotoupload": "Carga de fotos de EPWA",
+        "epwaphotouploadNavigator": "Carga de fotos de EPWA"
+      },
+      "turnout": {
+        "sharedAreaWithOtherAnimals": "Área compartida con otros animales",
+        "alone": "Solo",
+        "sharedWithHorses": "Con otros caballos",
+        "sharedWithDonkeys": "Con otros asnos",
+        "sharedWithOtherAnimals": "Con otros animales"
+      },
+      "exportEvents": {
+        "alertTitle": "Exporta tu informe diario",
+        "alertMsg": "Tu informe diario está listo para descargar",
+        "alertCancelBtn": "Cancelar",
+        "alertDownloadBtn": "Descargar"
+      },
+      "painMeasurement": {
+        "full": {
+          "timer": {
+            "fullCountdown": "¿Cómo funciona la medición del dolor?",
+            "headCountdown": "¿Cómo funciona la medición del dolor?",
+            "layingDownRolling": "Acostado, rodando",
+            "tailFlicking": "Moviendo la cola",
+            "kickingAtAbdomen": "Pateando el abdomen",
+            "pawing": "Dando zarpazos al suelo",
+            "headMovements": "Movimientos de la cabeza",
+            "painSounds": "Sonidos de dolor",
+            "pointingTowardsTheFloor": "Apuntando hacia el suelo",
+            "lookingAtAbdomen": "Mirando el abdomen"
+          },
+          "observation": {
+            "donkey": {
+              "layingDownRolling": "Acostado, rodando",
+              "layingDownRollingOptions": [
+                "El asno está parado en silencio o está acostado y descansando",
+                "&lt;50 % del tiempo acostado o rodando",
+                ">50 % del tiempo acostado o rodando",
+                "yace continuamente en una posición antinatural"
+              ],
+              "overallAppearance": "Aspecto general",
+              "overallAppearanceOptions": [
+                "Alerta/interactúa con su compañero o grupo",
+                "Levemente deprimido y/o inquieto y/o menor interacción con su pareja o grupo",
+                "Moderadamente deprimido y/o agresivo y/o sin reacción al apareamiento o al grupo",
+                "Muy deprimido"
+              ],
+              "earPosition": "Posición de las orejas",
+              "earPositionOptions": [
+                "Posición normal >75 % del tiempo",
+                "Posición anormal (al revés/de lado/planas)"
+              ],
+              "posture": "Postura",
+              "postureOptions": [
+                "De pie en silencio y/o descansando con una pata trasera",
+                "Abdomen ligeramente encogido y/o cambio de peso leve",
+                "Abdomen extremadamente encogido, espalda encorvada y/o estiramiento del cuerpo/extremidades y/o temblores musculares leves",
+                "Se sienta sobre los cuartos traseros y/o temblores musculares extremos"
+              ],
+              "weightDistribution": "Distribución del peso",
+              "weightDistributionOptions": [
+                "Distribución normal del peso",
+                "Distribución anómala del peso"
+              ],
+              "headCarriage": "Carro de cabeza",
+              "headCarriageOptions": [
+                "Base de la oreja por encima nivel de la cruz o come/bebe del suelo",
+                "Base de la oreja al nivel de la cruz",
+                "Base de la oreja por debajo de la cruz"
+              ],
+              "sweating": "Transpiración",
+              "sweatingOptions": [
+                "Sin signos de transpiración",
+                "Húmedo al tacto, sin sudor visible",
+                "Manchas húmedas visibles, sin gotas ni chorros",
+                "Sudoración excesiva, puede incluir chorros o gotitas"
+              ],
+              "eating": "Comida",
+              "eatingOptions": [
+                "Come normalmente o necesita ayunar",
+                "Come menos y/o despacio",
+                "No está interesado en la comida"
+              ],
+              "changesInBehaviour": "Cambios en el comportamiento para aparearse o agruparse",
+              "changesInBehaviourOptions": [
+                "El asno está dentro del grupo o con su compañero.",
+                "El grupo o compañero han dejado al asno"
+              ],
+              "reactionToObserver": "Reacción al observador",
+              "reactionToObserverOptions": [
+                "Se acerca/gira al observador",
+                "Reacción leve al observador",
+                "Sin reacción al observador"
+              ]
+            },
+            "behaviour": "Comportamiento/Postura",
+            "behaviourOptions": [
+              "De pie en silencio y/o descansando con una pata trasera, explora el entorno",
+              "Abdomen levemente recogido, todavía explora el entorno",
+              "Abdomen extremadamente encogido, espalda encorvada y/o estiramiento del cuerpo/extremidades",
+              "No se pone de pie o lo hace solo durante períodos cortos, se sienta sobre los cuartos traseros"
+            ],
+            "overallAppearance": "Aspecto general, reacción al observador",
+            "overallAppearanceOptions": [
+              "Tranquilo pero alerta, se acerca/gira al observador",
+              "Alerta, sin renuencia a moverse, reacción obvia a sonidos/movimientos",
+              "Reacción exagerada, inquieta y en constante movimiento a los sonidos/movimientos",
+              "Estupor: no se mueve, cabeza baja, desgana para moverse"
+            ],
+            "sweating": "Transpiración",
+            "sweatingOptions": [
+              "Sin signos de transpiración",
+              "Húmedo al tacto, sin sudor visible",
+              "Manchas húmedas visibles, sin gotas ni chorros",
+              "Sudoración excesiva, podría incluir chorros o gotitas"
+            ]
+          },
+          "vet": {
+            "donkey": {
+              "respiratoryRate": "Frecuencia respiratoria",
+              "respiratoryRateOptions": [
+                "12-28 respiraciones/min",
+                "29-32 respiraciones/min",
+                "33-36 respiraciones/min",
+                ">36 respiraciones/min"
+              ],
+              "heartRate": "Frecuencia cardiaca",
+              "heartRateOptions": [
+                "32-52 latidos/min",
+                "53-60 latidos/min",
+                "61-68 latidos/min",
+                ">68 latidos/min"
+              ],
+              "digestiveSounds": "Sonidos digestivos",
+              "digestiveSoundsOptions": [
+                "motilidad normal",
+                "motilidad reducida",
+                "sin motilidad",
+                "hipermotilidad o sonidos timpánicos"
+              ],
+              "rectalTemperature": "Temperatura rectal",
+              "rectalTemperatureOptions": [
+                "35,7-38,0 grados C",
+                "35,3-35,6 o 38,1-38,5 grados C",
+                "34,7-35,2 o 38,6-39,0 grados C",
+                "&lt;34 o > 39,1 grados C"
+              ]
+            },
+            "respiratoryRate": "Frecuencia respiratoria",
+            "respiratoryRateOptions": [
+              "8-13 respiraciones/min",
+              "14-16 respiraciones/min",
+              "17-18 respiraciones/min",
+              ">18 respiraciones/min"
+            ],
+            "heartRate": "Frecuencia cardiaca",
+            "heartRateOptions": [
+              "24-44 latidos/min",
+              "45-52 latidos/min",
+              "53-60 latidos/min",
+              ">60 latidos/min"
+            ],
+            "digestiveSounds": "Sonidos digestivos",
+            "digestiveSoundsOptions": [
+              "motilidad normal",
+              "motilidad reducida",
+              "sin motilidad",
+              "hipermotilidad o sonidos timpánicos"
+            ],
+            "rectalTemperature": "Temperatura rectal",
+            "rectalTemperatureOptions": [
+              "36,9-38,5 grados C",
+              "36,4-36,9 o 38,5-39 grados C",
+              "35,9-36,4 o 39-39,5 grados C",
+              "35,4-35,9 o 39,5-40 grados C"
+            ]
+          },
+          "interaction": {
+            "donkey": {
+              "reactionToPalpation": "Reacción a la palpación de la zona dolorosa",
+              "reactionToPalpationOptions": [
+                "Sin reacción a la palpación",
+                "Reacción leve a la palpación",
+                "Reacción intensa a la palpación"
+              ],
+              "movement": "Movimiento",
+              "movementOptions": [
+                "No renuencia a moverse y marcha normal",
+                "Marcha levemente anormal (1 o 2 de 5) y/o marcha rígida",
+                "Renuencia a moverse cuando está motivado y/o marcha muy anormal (3-5 de 5)",
+                "Ningún movimiento o e3l asno está acostado"
+              ]
+            },
+            "reactionToPalpation": "Reacción a la palpación",
+            "reactionToPalpationOptions": [
+              "Sin reacción a la palpación",
+              "Reacción leve a la palpación",
+              "Reacción moderada a la palpación",
+              "Reacción violenta a la (al intento de) palpación"
+            ]
+          }
+        },
+        "head": {
+          "timer": {
+            "fullCountdown": "¿Cómo funciona la medición del dolor?",
+            "headCountdown": "¿Cómo funciona la medición del dolor?",
+            "flehming": "Realizando la respuesta de Flehmen",
+            "yawning": "Bostezando",
+            "teethGrinding": "Rechinando los dientes",
+            "moaning": "Gimiendo",
+            "smacking": "Golpeando",
+            "headShaking": "Sacudiendo la cabeza"
+          },
+          "observation": {
+            "donkey": {
+              "head": "Cabeza",
+              "headOptions": [
+                "Movimiento normal/interesado en el entorno",
+                "Menos/ningún movimiento",
+                "Más movimiento o más exagerado"
+              ],
+              "eyelids": "Párpados",
+              "eyelidsOptions": [
+                "Abiertos",
+                "Ojos más abiertos (borde sobre el ojo visible) o párpados apretados",
+                "Evidentemente, ojos más abiertos (borde sobre el ojo visible) o apretamiento evidente de los párpados"
+              ],
+              "focus": "Atención",
+              "focusOptions": [
+                "Centrado en el entorno",
+                "Menos centrado en el entorno",
+                "No centrado en el entorno"
+              ],
+              "nostrils": "Fosas nasales",
+              "nostrilsOptions": [
+                "Relajadas",
+                "Fosas nasales ligeramente abiertas y levantadas, las arrugas son visibles",
+                "Fosas nasales evidentemente más abiertas y dilatadas, respiración audible"
+              ],
+              "mouthCorners": "Comisuras de la boca",
+              "mouthCornersOptions": ["Relajadas", "Levantadas"],
+              "muscleToneHead": "Cabeza de tono muscular",
+              "muscleToneHeadOptions": [
+                "Sin fasciculaciones ni aumento de la tensión",
+                "Fasciculaciones leves o aumento de la tensión",
+                "Fasciculaciones evidentes o aumento de la tensión"
+              ],
+              "sweatingBehindTheEars": "Transpiración detrás de las orejas",
+              "sweatingBehindTheEarsOptions": [
+                "Sin signos de transpiración",
+                "Signos de transpiración"
+              ],
+              "earPosition": "Posición de las orejas",
+              "earPositionOptions": [
+                "Posición normal",
+                "Posición anormal: colgando",
+                "Posición anormal: del revés"
+              ],
+              "responseToAuditoryStimulus": "Orejas, respuesta al estímulo auditivo",
+              "responseToAuditoryStimulusOptions": [
+                "Respuesta clara con ambas orejas o la oreja más cercana a la fuente",
+                "Respuesta retardada/reducida a los sonidos",
+                "Sin respuesta a los sonidos"
+              ]
+            },
+            "head": "Cabeza",
+            "headOptions": [
+              "Movimiento normal/interesado en el entorno",
+              "Menos movimiento",
+              "Sin movimiento"
+            ],
+            "eyelids": "Párpados",
+            "eyelidsOptions": [
+              "Abiertos, la esclerótica se puede ver en caso de movimiento de los ojos/la cabeza",
+              "Ojos más abiertos (borde sobre el ojo visible) o párpados apretados Se puede ver un borde de la esclerótica la mayor parte del tiempo",
+              "Evidentemente, ojos más abiertos (borde sobre el ojo visible) o apretamiento evidente de los párpados Esclerótica visible la mayor parte del tiempo"
+            ],
+            "focus": "Atención",
+            "focusOptions": [
+              "Centrado en el entorno",
+              "Menos centrado en el entorno",
+              "No centrado en el entorno"
+            ],
+            "nostrils": "Fosas nasales",
+            "nostrilsOptions": [
+              "Relajadas",
+              "Ligeramente abiertas",
+              "Fosas nasales evidentemente más abiertas y dilatadas, respiración audible"
+            ],
+            "mouthCorners": "Comisuras de la boca",
+            "mouthCornersOptions": [
+              "Relajadas",
+              "Ligeramente levantadas",
+              "Evidentemente levantadas"
+            ],
+            "muscleToneHead": "Cabeza de tono muscular",
+            "muscleToneHeadOptions": [
+              "Sin fasciculaciones ni aumento de la tensión",
+              "Fasciculaciones leves o aumento de la tensión",
+              "Fasciculaciones evidentes o aumento de la tensión"
+            ],
+            "ears": "Orejas (respuesta a estímulos auditivos)",
+            "earsOptions": [
+              "Orientación hacia el sonido/respuesta clara con ambas orejas o la oreja más cercana a la fuente",
+              "Respuesta retardada/reducida a los sonidos",
+              "Posición hacia atrás, sin respuesta a los sonidos"
+            ]
+          }
+        },
+        "explanationTexts": {
+          "fullCountdown": [
+            "Presiona el botón \"iniciar la medición del dolor\" para comenzar. El primer conjunto de observaciones durará 5 minutos. El reloj del medio contará el tiempo. de forma regresiva",
+            "¿Tu {{animalType}} se está pateando el abdomen? Haz clic en el icono correspondiente y verás aparecer un superíndice encima del icono. Esto es para realizar un seguimiento del número de veces que tu {{animalType}} muestra un comportamiento en particular.",
+            "¿Yace continuamente en una posición anómala?",
+            "Se considera que el {{animalType}} está acostado en una posición anómala, si está acostado estirado, a menudo con las patas delanteras estiradas hacia adelante y las patas traseras hacia atrás. El {{animalType}} también podría acostarse de espaldas con las patas en el aire.",
+            "Si {{animalType}} está acostado durante mucho tiempo y en una posición anómala, marca este botón al final de los 5 minutos.",
+            "¿Has cometido un error y has contado demasiados movimientos? Utiliza el botón deshacer en la parte inferior izquierda para eliminar tu última entrada."
+          ],
+          "headCountdown": [
+            "Presiona el botón \"iniciar la medición del dolor\" para comenzar. El primer conjunto de observaciones durará 2 minutos. El reloj del medio contará el tiempo. de forma regresiva",
+            "¿Tu {{animalType}} está bostezando? Haz clic en el icono correspondiente y verás aparecer un superíndice encima del icono. Esto es para realizar un seguimiento del número de veces que tu caballo muestra un comportamiento en particular.",
+            "¿Has cometido un error y has contado demasiados movimientos? Utiliza el botón deshacer en la parte inferior izquierda para eliminar tu última entrada."
+          ],
+          "layingDownRolling": [
+            "Yacer y rodar es un comportamiento natural para un {{animalType}}. Sin embargo, también puede ser una indicación de dolor.",
+            "Haz clic en el icono durante la medición del dolor cada vez que tu {{animalType}} comience a acostarse o rodar."
+          ],
+          "tailFlicking": [
+            "Un {{animalType}} podría agitar su cola para deshacerse de las moscas. Sin embargo, también puede ser una indicación de dolor.",
+            "Haz clic en el icono durante la medición del dolor cada vez que tu {{animalType}} agite su cola."
+          ],
+          "kickingAtAbdomen": [
+            "A {{animalType}} podría patearse el vientre para deshacerse de las moscas. Sin embargo, patearse el vientre también puede ser un indicio de dolor.",
+            "Haz clic en el icono durante la medición del dolor cada vez que tu {{animalType}} se golpee el estómago."
+          ],
+          "pawing": [
+            "Raspar el suelo con una pata delantera puede expresar simpatía. Sin embargo, también puede ser una indicación de dolor.",
+            "Haz clic en el icono durante la medición del dolor cada vez que tu {{animalType}} raspe el suelo con su pata delantera."
+          ],
+          "headMovements": [
+            "Un {{animalType}} podría mover la cabeza para deshacerse de una mosca. Sin embargo, los movimientos bruscos de la cabeza, como mover la cabeza de lado a lado, arriba y abajo, o girar para mirar el costado, pueden ser indicios de dolor.",
+            "Haz clic en el icono durante la medición del dolor cada vez que tu {{animalType}} mueva la cola de forma abrupta."
+          ],
+          "painSounds": [
+            "Ejemplos de sonidos de dolor son rechinar los dientes y gemir. Aunque también pueden ser una indicación de dolor.",
+            "Haz clic en el icono durante la medición del dolor cada vez que tu {{animalType}} gima o rechine los dientes."
+          ],
+          "flehming": [
+            "Realizar la respuesta de Flehmen es un comportamiento natural. Sin embargo, también puede ser una indicación de dolor.",
+            "Haz clic en el icono durante la prueba de dolor cada vez que tu {{animalType}} esté realizando la respuesta de Flehmen."
+          ],
+          "yawning": [
+            "Bostezar puede ser una indicación de dolor.",
+            "Haz clic en el icono durante la medición del dolor cada vez que tu {{animalType}} bostece."
+          ],
+          "teethGrinding": [
+            "Rechinar los dientes puede ser una indicación de dolor.",
+            "Haz clic en el icono durante la medición del dolor cada vez que tu {{animalType}} rechine los dientes."
+          ],
+          "moaning": [
+            "Gemir puede ser una indicación de dolor.",
+            "Haz clic en el icono durante la medición del dolor cada vez que tu {{animalType}} gima."
+          ],
+          "headShaking": [
+            "Sacudir la cabeza puede ser una indicación de dolor.",
+            "Haz clic en el icono durante la medición del dolor cada vez que tu {{animalType}} sacuda la cabeza."
+          ],
+          "smacking": [
+            "Golpear puede ser una indicación de dolor.",
+            "Haz clic en el icono durante la medición del dolor cada vez que tu {{animalType}} golpee."
+          ],
+          "pointingTowardsTheFloor": [
+            "Señalar con una pata delantera puede indicar dolor, ya que la extremidad apuntadora se está descargando.",
+            "Haz clic en el icono durante la medición del dolor cada vez que tu {{animalType}} señale con la para delantera."
+          ],
+          "lookingAtAbdomen": [
+            "Un asno puede mirar su vientre cuando tiene dolor (cólico).",
+            "Haz clic en el icono durante la medición del dolor cada vez que tu {{animalType}} mire hacia su vientre,"
+          ]
+        },
+        "misc": {
+          "headerTitle": "Medición del dolor",
+          "recentMeasurementTitle": "Última medición del dolor",
+          "horse": "Caballo",
+          "horse_plural": "Caballos",
+          "donkey": "Asno",
+          "donkey_plural": "Asnos",
+          "compositePainScale": "Escala compuesta del dolor",
+          "facialExpressions": "Expresiones faciales",
+          "adviceTitle": "Consejo",
+          "adviceText": "Realiza la medición del dolor en un momento en el que sepas que tu {{animalType}} no tiene nada de malo. De esa manera, sabrás qué esperar si alguna vez necesitas usar la aplicación en caso de emergencia. Cuando observes a tu {{animalType}} durante la primera parte de la medición, quédate quieto en silencio a una corta distancia de tu {{animalType}}, preferiblemente fuera de la jaula. Esta aplicación se basa en la investigación de diferentes tipos de dolor agudo y puede ser utilizada tanto por veterinarios como por propietarios de {{animalType}}. Los resultados de ambos grupos son científicamente fiables. Sin embargo, teniendo en cuenta los antecedentes individuales de los veterinarios, se les mostrarán parámetros ligeramente diferentes. Hay 2 opciones de puntuación diferentes:",
+          "compositePainScaleTitle": "Escala compuesta del dolor",
+          "compositePainScaleExplanation": "La escala compuesta de dolor se basa en investigaciones científicas y se ha demostrado que proporciona información fiable en caballos con cólico agudo y en asnos con dolor ortopédico agudo, dolor posoperatorio y dolor de cólico. La escala evalúa el lenguaje corporal del animal utilizando parámetros conductuales, de interacción y fisiológicos. Una puntuación total superior a {{compositeMeasurementScoreThreshold}} puede ser una indicación de dolor agudo. Cuanto mayor sea la puntuación, más probable es que el animal experimente un dolor agudo.",
+          "facialExpressionsTitle": "Expresiones faciales",
+          "facialExpressionExplanation": "La escala de expresión facial se basa en investigaciones científicas y se ha observado que proporciona información fiable en caballos con cólico agudo, dolor facial y dolor ortopédico agudo y en asnos con dolor ortopédico agudo, dolor posoperatorio y cólico agudo. También se ha observado que la escala proporciona información fiable en asnos con dolor agudo por cólicos y dolor facial. La escala evalúa el mimetismo del animal que puede mostrarse cuando el animal tiene dolor. Una puntuación total superior a {{facialMeasurementThresholdScore}} puede indicar dolor agudo. Cuanto mayor sea la puntuación, más probable es que el {{animalType}} experimente dolor agudo.",
+          "adviceCompositeMeasurementPain": "Parece que el {{animalType}} está experimentando un dolor agudo. Por favor, considera contactar a tu veterinario.",
+          "adviceCompositeMeasurementNoPain": "Parece que el {{animalType}} no está experimentando un dolor agudo en este momento.",
+          "adviceFacialExpressionMeasurementPain": "Parece que el {{animalType}} está experimentando un dolor agudo. Por favor, considera contactar a tu veterinario.",
+          "adviceFacialExpressionMeasurementNoPain": "Parece que el {{animalType}} no está experimentando un dolor agudo en este momento.",
+          "areYouVet": "¿Eres veterinario?",
+          "animalTypeQuestion": "¿Qué animal quieres puntuar?",
+          "measurementTypeQuestion": "¿Qué escala de medición del dolor deseas utilizar?",
+          "countMovementsCommand": "Puntúa los movimientos durante {{minutes}} min",
+          "prepareCommand": "¿Cómo funciona la medición del dolor?",
+          "clickTheIconToKnowMore": "Haz clic en los iconos para obtener más información.",
+          "baseline": "Inicio",
+          "pain": "Dolor",
+          "frequency": "Frecuencia",
+          "observation": "Observación",
+          "reaction": "Reacción",
+          "liesInUnnaturalPosition": "Yace continuamente en una posición antinatural",
+          "loginToSave": "Solo los usuarios registrados pueden guardar la medición del dolor en un diario.",
+          "resetForm": "Inténtalo de nuevo",
+          "nextStep": "Siguiente paso",
+          "seeResult": "Ver los resultados",
+          "goToSignUp": "Regístrate",
+          "goToDiary": "Guardar en el diario",
+          "safetyInfo": [
+            "Ten en cuenta que esta medición del dolor no reemplaza al diagnóstico del veterinario.",
+            "En caso de duda, consulta a tu veterinario. Tu seguridad y la de tu animal siempre deben ser lo primero."
+          ],
+          "selectAnswer": "Elige la mejor opción.",
+          "score": "Puntuar",
+          "ourAdvice": "Nuestro consejo",
+          "startMeasurement": "Iniciar la medición",
+          "showOverview": "Ver todas las medidas"
+        }
+      },
+      "ppidCheck": {
+        "introductionTitle": "Prueba de la PPID/diagnóstico de la PPID",
+        "introductionContent": "La PPID se puede tratar con ciertos tipos de medicamentos que pueden ayudar a disminuir los síntomas. Al cuidar más a tu caballo, también puedes disminuir o incluso prevenir posibles complicaciones. Si los resultados de comprobación de la PPID indican que tu caballo tiene PPID, puedes pedirle a tu veterinario que realice una prueba de PPID. Después de realizar un simple análisis de sangre, tu veterinario podrá diagnosticar en unos pocos días si tu caballo sufre PPID.",
+        "startTitle": "Realice la comprobación de presencia de PPID",
+        "startContent": "La disfunción de la pars intermedia de la glándula pituitaria (PPID), antes conocida como Enfermedad de Cushing, es una afección frecuente entre caballos y ponis de 15 años o más. En Stichting De Paardenkamp, la casa de retiro y centro de conocimientos para caballos ancianos de los Países Bajos, la PPID es un fenómeno bien conocido. El personal competente y los veterinarios comprometidos de De Paardenkamp siempre están encantados de compartir sus conocimientos y experiencia. Es por eso que han desarrollado esta comprobación de la PPID. ¿Te gustaría saber si tu caballo está en riesgo? Realizar la comprobación de presencia de PPID",
+        "startButton": "Iniciar la comprobación de presencia de PPID",
+        "resultTitleNegative": "Resultado de la PPID: probablemente no",
+        "resultTitlePositive": "Resultado de PPID: probablemente",
+        "resultContentNegative": "Los resultados de la comprobación parecen indicar que en este momento, tu caballo no muestra los signos más importantes de la PPID. ¿No estás completamente seguro? Pídele a tu veterinario que realice una prueba de PPID.",
+        "resultContentPositive": "Los resultados de la comprobación parecen indicar que tu caballo podría tener PPID. Puedes pedir a tu veterinario que realice una prueba de PPID. Después de realizar un simple análisis de sangre, tu veterinario podrá diagnosticar en unos pocos días si tu caballo sufre PPID. La PPID se puede tratar con ciertos tipos de medicamentos que pueden ayudar a disminuir los síntomas. Al cuidar más a tu caballo, también puedes disminuir o incluso prevenir posibles complicaciones.",
+        "resultExitButton": "Cerrar resultado",
+        "title": {
+          "a": "Huecos sobre los ojos",
+          "b": "Cambios en el pelaje",
+          "c": "Beber y orinar",
+          "d": "Laminitis",
+          "others": [
+            "Edad",
+            "Apetito",
+            "Letargo",
+            "Pelaje de invierno",
+            "Transpiración",
+            "Baja resistencia",
+            "Músculos de la espalda",
+            "Músculos abdominales",
+            "Ceguera repentina o ataque epiléptico",
+            "Fertilidad"
+          ]
+        },
+        "content": {
+          "a": "¿Los huecos sobre los ojos de tu caballo están llenos de grasa? Los depósitos de grasa en lugares inusuales, por ejemplo, sobre los ojos, se consideran un síntoma de PPID.",
+          "b": "¿Tu caballo ha desarrollado un pelaje más largo con pelo rizado (posiblemente incluso en un color diferente)? ¿O a tu caballo de repente le están apareciendo hebras más largas de pelo rizado en diferentes partes de su cuerpo? Un cambio en el pelaje, como el desarrollo de cabello abundante, largo y / o rizado, es un síntoma común de PPID.",
+          "c": "¿Tu caballo bebe y orina mucho más de lo habitual? Beber más y orinar con más frecuencia son signos que podrían apuntar a la PPID.",
+          "d": "¿Tu caballo sufre actualmente laminitis o lo padecía en el pasado? La laminitis puede ser un síntoma de PPID.",
+          "others": [
+            "¿Tu caballo tiene más de 15 años? La PPID es más común entre los caballos mayores de 15 años.",
+            "¿El apetito de su caballo ha aumentado de repente? Los caballos con PPID tienden a comer más, pero al mismo tiempo pierden peso.",
+            "¿Tu caballo está aletargado o menos dispuesto a trabajar? A menudo, los primeros signos de PPID son letargo y un menor rendimiento.",
+            "¿Tu caballo necesita más tiempo para quitarse el pelaje de invierno? Un cambio en el pelaje, como el desarrollo de cabello abundante, largo y / o rizado, es un síntoma común de PPID.",
+            "¿Tu caballo transpira más y en lugares poco habituales como el cuello y los hombros? La transpiración inusual, a menudo alrededor del cuello y los hombros, puede ser un signo de PPID.",
+            "¿Tu caballo muestra signos de un sistema inmunitario débil, como infecciones recurrentes de los senos nasales o pequeñas heridas que no sanan correctamente? Una inmunodeficiencia a menudo se caracteriza porque el caballo sufre repetidamente infecciones o cicatrización deficiente de las heridas, y puede ser una señal de que el caballo sufre PPID.",
+            "¿Los músculos de la espalda de tu caballo están disminuyendo de tamaño? La pérdida de masa muscular, también conocida como \"atrofia muscular\", por ejemplo en el lomo de un caballo, puede ser un signo visible de PPID.",
+            "¿Se están debilitando los músculos abdominales de tu caballo y está desarrollando barriga? La atrofia muscular, por ejemplo, en los músculos que rodean el vientre de un caballo, puede ser un signo visible de PPID.",
+            "¿Tu caballo sufre ceguera repentina o un ataque epiléptico? En algunos casos, la epilepsia y la ceguera son síntomas de PPID.",
+            "¿Tu yegua es menos fértil, tiene dificultades para concebir o no se queda preñada? Las dificultades en la concepción y la producción espontánea de leche pueden apuntar a la PPID."
+          ]
+        }
+      },
+      "animalBreeds": {
+        "horse": {
+          "andalusian": "Andaluz",
+          "appaloosa": "Appaloosa",
+          "arabianHorse": "Caballo árabe",
+          "connemara ": "Connemara",
+          "dartmoorPony": "Poni de Dartmoor",
+          "trotter": "Trotón",
+          "falabella": "Falabella ",
+          "fjordHorse": "Caballo del fiordo ",
+          "friesianHorse": "Caballo frisón",
+          "gelderlandHorse": "Caballo de Gelderland",
+          "groningenHorse": "Caballo de Groningen",
+          "hackney": "Hackney ",
+          "haflinger": "Haflinger ",
+          "hanoverian": "Hannoveriano",
+          "holsteiner": "Holsteiner",
+          "icelandicHorse": "Caballo islandés",
+          "dutchWarmblood": "Warmblood holandés",
+          "lipizzan": "Lipizzano",
+          "merens": "Merens",
+          "newForest": "New Forest",
+          "miniatureHorse": "Caballo miniatura",
+          "dutchRidingPony": "Poni de montar holandés",
+          "oldenburgHorse": "Caballo de Oldenburg",
+          "quarterHorse": "Caballo quarter",
+          "shetlandPony": "Poni shetland",
+          "shire": "Shire",
+          "tinker ": "Tinker",
+          "trakehner ": "Trakehner",
+          "draftTrotter": "Trotón de tiro",
+          "welshPony": "Poni galés",
+          "other": "Otras razas"
+        },
+        "donkey": {
+          "grandNoir": "Grand Noir",
+          "poitou": "Poitou",
+          "dutch": "Asno holandés",
+          "pyrenean": "Asno pirenaico",
+          "mini": "Mini",
+          "micro": "Micro",
+          "mule": "Mula"
+        }
+      },
+      "animalCompetitionLevels": {
+        "horse": {
+          "amateur": "Aficionado",
+          "professional": "Profesional",
+          "elite": "Élite",
+          "n_a": "No procede"
+        }
+      },
+      "animalDisciplines": {
+        "horse": {
+          "dressage": "Entrenamiento de caballos",
+          "showJumping": "Concurso de hípica",
+          "crossTraining": "Campo a través",
+          "outsideRide": "Trote ligero",
+          "endurance": "Resistencia",
+          "harness": "Enganche",
+          "lunging": "Embestir",
+          "groundWork": "Trabajo preparatorio",
+          "hiking": "Caminando de la mano",
+          "stepMill": "Caminador de caballos",
+          "manualWork": "Trabajo de la mano",
+          "western": "Western",
+          "other": "Otro"
+        }
+      },
+      "animalGenders": {
+        "horse": {
+          "mare": "Mare",
+          "gelding": "Castrado",
+          "stallion": "Semental"
+        },
+        "donkey": {
+          "jenny": "Jenny",
+          "gelding": "Castrado",
+          "jack": "Jack"
+        }
+      },
+      "animalRoles": {
+        "horse": {
+          "leisure": "Ocio",
+          "sport": "Deporte",
+          "instruction": "Escuela de equitación",
+          "breeding": "Cría",
+          "company / pensionado": "Acompañante / jubilado",
+          "other": "Otro"
+        },
+        "donkey": {
+          "leisure": "Ocio",
+          "company / pensionado": "Acompañante / jubilado",
+          "milk / farmwork": "Leche / trabajo agrícola",
+          "trekking / riding": "Senderismo / equitación",
+          "other": "Otro"
+        }
+      },
+      "aboutScreen": {
+        "title": "Esta aplicación ha sido desarrollada por investigadores y veterinarios de la Facultad de Medicina Veterinaria de la Universidad de Utrecht, Stichting De Paardenkamp y Fund Vrienden Diergeneeskunde.",
+        "university": {
+          "logo": "uniLogoEnImg",
+          "title": "Universidad de Utrecht - Facultad de Medicina Veterinaria",
+          "description": "Somos la Facultad de Medicina Veterinaria, el centro de conocimientos veterinarios de los Países Bajos. Construimos puentes entre la ciencia y la sociedad y proporcionamos atención especializada en el hospital veterinario académico más grande de Europa. Creemos en la cooperación multidisciplinar con nuestros socios, tanto a nivel nacional como internacional.",
+          "link": {
+            "label": "www.diergeneeskunde.nl",
+            "url": "https://www.diergeneeskunde.nl/"
+          }
+        },
+        "paardenkamp": {
+          "title": "Stichting De Paardenkamp en Soest",
+          "description": "Refugio nacional y centro de conocimiento para caballos mayores. Dejar que los caballos y ponis disfruten de una merecida vejez después de los veinte años de vida, es lo que hace a diario la gente de la Fundación De Paardenkamp. Gracias a los donantes, patrocinadores y voluntarios, 120 caballos y ponis encuentran un hogar bien cuidado en nuestras tres granjas con muchas áreas de pastoreo y establos.",
+          "link": {
+            "label": "www.paardenkamp.nl",
+            "url": "https://www.paardenkamp.nl"
+          }
+        },
+        "friends": {
+          "title": "Fondo Friends Veterinary Medicine",
+          "logo": "vriendenEnLogoImg",
+          "description": "Friends Veterinary Medicine es el fondo de la Facultad de Medicina Veterinaria de la Universidad de Utrecht. Recaudamos dinero para investigación y cuidados innovadores de alta calidad que promueven y protegen la salud y el bienestar de los animales.",
+          "link": {
+            "label": "www.vriendendiergeneeskunde.nl",
+            "url": "https://www.vriendendiergeneeskunde.nl"
+          }
+        },
+        "sponsor": {
+          "title": "EPWA recibe el apoyo de"
+        },
+        "more": {
+          "links": [
+            {
+              "label": "¿Cómo funciona EPWA?",
+              "url": "https://www.epwa.nl/en/instructie"
+            }
+          ]
+        },
+        "listIntro": "Esta aplicación ha sido posible por:",
+        "list": [
+          {
+            "label": "Muchos amantes de los caballos de los Países Bajos y de todo el mundo"
+          },
+          { "label": "Alimento para caballos", "url": "http://www.pavo.nl" },
+          { "label": "Stichting Nijdier", "url": "http://www.nijdier.nl" },
+          {
+            "label": "The Donkey Sanctuary",
+            "url": "http://www.thedonkeysanctuary.org.uk"
+          },
+          {
+            "label": "Stichting Capelse Manegefonds",
+            "url": "http://www.capelsemanege.nl"
+          },
+          {
+            "label": "Stichting Moyra-Stava Morena",
+            "url": "http://www.moyrastavamorena.nl"
+          },
+          { "label": "Fotografía Nikki de Kerf", "url": "http://fotogenikki.nl" },
+          { "label": "Agencia Digital Wirelab", "url": "http://www.wirelab.nl" }
+        ],
+        "privacy": {
+          "title": "Protección de datos",
+          "description": "Para obtener más información sobre la protección de tus datos, utiliza el enlace a continuación.",
+          "link": {
+            "label": "Política de privacidad",
+            "url": "https://www.epwa.nl/contact/privacy-policy"
+          }
+        }
+      },
+      "datePicker": {
+        "titleDate": "Selecciona una fecha",
+        "titleTime": "Selecciona una hora",
+        "confirm": "Confirmar",
+        "cancel": "Cancelar"
+      },
+      "tips": {
+        "title": "Directrices para el bienestar del caballo",
+        "preface": "Sin duda deseas cuidar lo mejor posible a tu caballo. Es por eso que debes prestar atención a varios elementos diferentes del bienestar equino, como la alimentación, el refugio y la asistencia, la salud y el comportamiento. ¿Estás siguiendo estas pautas?",
+        "sections": [
+          {
+            "title": "Buena nutrición: sin hambre ni sed",
+            "list": [
+              "Un caballo necesita forraje al menos cada 6 horas.",
+              "Aliméntale siempre primero con forraje, seguido de concentrados (si es necesario). Esto es especialmente importante por la mañana, de lo contrario podría tener dolor de estómago.",
+              "Permite que tu caballo tenga acceso ilimitado al agua. ¡El agua potable limpia y fresca es tan importante para los caballos como para las personas! Por tanto, asegúrate de comprobar todos los días que su balde de agua o bebedero automático esté limpio y tenga el acceso libre."
+            ]
+          },
+          {
+            "title": "Buen refugio: sueño, temperatura agradable y espacio para moverse",
+            "list": [
+              "La libertad de movimiento es increíblemente importante para tu caballo. Cuanto más pequeño sea el establo, más tiempo necesitará para moverse libremente en el exterior. Deja que tu caballo se mueva libremente al menos 2 horas al día en un prado o campo lo suficientemente grande como para un galope rápido, un brinco y una coz.",
+              "Los caballos necesitan descansar lo suficiente. Aunque a menudo toman una siesta mientras están de pie, también necesitan tener acceso a un lugar de descanso con una superficie seca, limpia y suave para acostarse.",
+              "Los caballos son animales de manada, por lo que el contacto social con otros caballos es una necesidad absoluta. No solo en el campo o prado, sino también en el establo. Es posible que desees utilizar barras como separadores de establos o permitir que los caballos se vean dejando abierta la mitad superior de la puerta del establo.",
+              "Poder ver el exterior también es muy importante para tu caballo. Eso es porque observar lo que sucede a su alrededor es parte de su comportamiento natural.",
+              "Un accidente se puede producir sin que te des cuenta. Así que trata de evitar que tu caballo pierda el equilibrio en una superficie resbaladiza o se lastime con objetos afilados o que sobresalgan. En resumen: ¡piensa en la seguridad de tu caballo!"
+            ]
+          },
+          {
+            "title": "Buena salud: joven en forma, anciano sano.",
+            "list": [
+              "Haz que el herrador, el dentista, el veterinario y otros expertos ecuestres cualificados revisen tu caballo periódicamente. Por ejemplo, si te aseguras de que tu caballo se revise los dientes con regularidad desde una edad temprana, podrás mantenerlo sano durante mucho más tiempo."
+            ]
+          },
+          {
+            "title": "Comportamiento apropiado: mentalmente saludable",
+            "list": [
+              "Asegúrate de que tu caballo no experimente un estrés innecesario. Por ejemplo, tratando con él de una manera predecible. Si tu caballo puede mostrar un comportamiento básico esencial en un entorno seguro, crea una buena base para que el caballo esté en equilibrio tanto física como mentalmente. ¡Eso es bueno para tu caballo y para ti!"
+            ]
+          }
+        ]
+      },
+      "info": {
+        "animalForm": {
+          "title": "Agregar un caballo o un asno",
+          "preface": "",
+          "sections": [
+            {
+              "title": "Agregar un {{animalType}}",
+              "content": "En esta parte de la aplicación, podrás agregar un {{animalType}} a tu establo de forma rápida y sencilla completando y guardando detalles relevantes sobre él. ¿Tu {{animalType}} es un cruce entre dos razas diferentes? Primero completa una raza, luego usa el botón violeta + para agregar la segunda raza."
+            },
+            {
+              "title": "Raza",
+              "content": "Selecciona la raza de tu {{animalType}} en el menú desplegable de razas. ¿La raza de tu {{animalType}} no está en la lista? Selecciona \"Otra\" e introduce su raza manualmente."
+            },
+            {
+              "title": "Múltiples usos y disciplinas",
+              "content": "¿Compites con tu {{animalType}}, pero también lo usas para cría? Puede incluir múltiples usos agregando primero uno y luego usando el botón violeta + para agregar otro. Lo mismo se aplica a la sección de disciplinas. ",
+              "hideForDonkey": true
+            },
+            {
+              "title": "¿Has cometido un error?",
+              "content": "Utiliza el botón X rojo para deshacer una selección."
+            },
+            {
+              "title": "Agregar una foto",
+              "content": "Haz clic en el icono de la cámara en la parte superior de la pantalla. Ahora podrás tomar una foto o seleccionar una en formato horizontal de la galería de fotos de tu teléfono. "
+            },
+            {
+              "title": "Guardar",
+              "content": "¿Has completado en todos los detalles relevantes de tu {{animalType}}? Usa el icono > en la esquina superior derecha para guardarlo todo y agregar {{animalType}} a tu establo."
+            },
+            {
+              "title": "¿Necesitas modificar?",
+              "content": "¿Ya has agregado tu {{animalType}} al establo, pero necesitas cambiar o agregar algo? Haz clic en el icono de lápiz de la esquina superior derecha para editar."
+            }
+          ]
+        },
+        "diaryExercise": {
+          "title": "Ejercicio",
+          "preface": "Puedes agregar fácilmente el entrenamiento diario de tu caballo o cualquier otro ejercicio a tu diario. Introduce la hora de inicio y finalización de tu entrenamiento o sesión de ejercicio. Podrás revisar tu tiempo total de entrenamiento en tu resumen diario. ¿Qué tipo de ejercicio has hecho? Selecciona la opción pertinente del menú desplegable. ¿Has ejercitado tu caballo más de una vez? Puedes registrar varias sesiones de ejercicio por día simplemente usando el botón violeta + para agregar otra.",
+          "sections": [
+            {
+              "title": "¿Has cometido un error?",
+              "content": "Utiliza el botón X rojo para deshacer una selección."
+            },
+            {
+              "title": "Guardar",
+              "content": "¿Has insertado todos los datos? Haz clic en el botón \"Guardar\" en la parte inferior de la página para agregarlos al diario."
+            }
+          ]
+        },
+        "diaryAppointment": {
+          "title": "Plan de citas",
+          "preface": "Puedes programar una cita o una cita de seguimiento en la función de calendario del diario. Puedes optar por recibir un recordatorio en tu teléfono, así como registrar detalles particulares relacionados con la cita o cualquier medicamento recetado en el diario.",
+          "sections": [
+            {
+              "title": "",
+              "content": "Al agregar una cita, elige el tipo de cita, la fecha y la hora en el menú desplegable."
+            },
+            {
+              "title": "",
+              "content": "También se pueden programar citas periódicas, por ejemplo, para registrar vacunas u otros tratamientos. También se pueden crear recordatorios en el teléfono para las citas de EPWA."
+            }
+          ]
+        },
+        "diaryFeeding": {
+          "title": "Alimentación",
+          "preface": "Lleva un registro del régimen de alimentación de tu {{animalType}} y agrega fibra, concentrado o suplementos. ¿Tu {{animalType}} tiene forraje ilimitado? Asegúrate de marcar la opción de 24 horas.",
+          "sections": [
+            {
+              "title": "¿Has cometido un error?",
+              "content": "Utiliza el botón X rojo para deshacer la selección."
+            },
+            {
+              "title": "Guardar",
+              "content": "¿Has insertado todos los datos? Haz clic en el botón \"Guardar\" en la parte inferior de la página para agregarlos al diario."
+            }
+          ]
+        },
+        "diaryHousing": {
+          "title": "Asistencia",
+          "preface": "¿Dónde pasa su día tu {{animalType}}? ¿Cuánto tiempo permanece en su establo (si es que lo hace), y cuánto tiempo pasa en el campo o en el prado? Haz clic en la opción de 24 horas, si se queda en su establo o si está fuera todo el día. Puedes agregar si está solo o con otros {{animalType}}.",
+          "sections": [
+            {
+              "title": "¿Has cometido un error?",
+              "content": "Utiliza el botón X rojo para deshacer la selección."
+            },
+            {
+              "title": "Guardar",
+              "content": "¿Has insertado todos los datos? Haz clic en el botón \"Guardar\" en la parte inferior de la página para agregarlos al diario."
+            }
+          ]
+        },
+        "diaryMedication": {
+          "title": "Mi veterinario",
+          "preface": "¿Tu {{animalType}} toma algún medicamento? ¿O recibe tratamiento en la actualidad por un fisioterapeuta u otro profesional equino? Agrega fácilmente toda la información médica de tu {{animalType}} a tu diario.",
+          "sections": [
+            {
+              "title": "Medicamentos",
+              "content": "Lleva un registro de cuándo le has dado su medicamento a tu {{animalType}} y cuánto le has dado. ¿Recibe varios tipos de medicamentos? Agrégalos todos, simplemente usando el botón violeta + para agregar otro."
+            },
+            {
+              "title": "Tratamiento",
+              "content": "Mantén un registro de qué profesional equino calificado ha tratado a tu {{animalType}} seleccionando el tipo de profesional en el menú desplegable. Toma nota de lo que implica el tratamiento o cualquier consejo que te hayan dado utilizando el campo de comentarios a continuación."
+            },
+            {
+              "title": "Rehabilitación",
+              "content": "¿Tu {{animalType}} ha sufrido alguna lesión y ahora necesita rehabilitación? Toma nota de lo que esto implica, por ejemplo, si tu {{animalType}} necesita hacer reposo. "
+            },
+            {
+              "title": "Temperatura y peso",
+              "content": "¿Le tomas la temperatura con regularidad a tu {{animalType}}? Rellénalo y aparecerá automáticamente en tu diario. Lo mismo se aplica al peso (estimado) de tu {{animalType}}."
+            },
+            {
+              "title": "¿Has cometido un error?",
+              "content": "Utiliza el botón X rojo para deshacer la selección."
+            },
+            {
+              "title": "Guardar",
+              "content": "¿Has insertado todos los datos? Haz clic en el botón \"Guardar\" en la parte inferior de la página para agregarlos al diario."
+            }
+          ]
+        },
+        "welfare": {
+          "sections": [
+            {
+              "title": "Directrices para el bienestar del caballo",
+              "content": "Sin duda deseas cuidar lo mejor posible a tu caballo. Es por eso que debes prestar atención a varios elementos diferentes del bienestar equino, como la alimentación, el refugio y la asistencia, la salud y el comportamiento. ¿Estás siguiendo estas pautas?"
+            },
+            {
+              "title": "Buena nutrición: sin hambre ni sed",
+              "content": "- Un caballo necesita forraje al menos cada 6 horas. -Aliméntale siempre primero con forraje, seguido de concentrados (si es necesario). Esto es especialmente importante por la mañana, de lo contrario podría tener dolor de estómago. - Deja que tu caballo tenga acceso ilimitado al agua. ¡El agua potable limpia y fresca es tan importante para los caballos como para las personas! Por tanto, asegúrate de comprobar todos los días que su balde de agua o bebedero automático esté limpio y tenga el acceso libre.",
+              "imageTitle": "Alimentación"
+            },
+            {
+              "title": "Buen refugio: sueño, temperatura agradable y espacio para moverse",
+              "content": "- La libertad de movimiento es increíblemente importante para tu caballo. Cuanto más pequeño sea el establo, más tiempo necesitará para moverse libremente en el exterior. Deja que tu caballo se mueva libremente al menos 2 horas al día en un prado o campo lo suficientemente grande como para un galope rápido, un brinco y una coz. - Los caballos necesitan descansar lo suficiente. Aunque a menudo toman una siesta mientras están de pie, también necesitan tener acceso a un lugar de descanso con una superficie seca, limpia y suave para acostarse. - Los caballos son animales de manada, por lo que el contacto social con otros caballos es una necesidad absoluta. No solo en el campo o prado, sino también en el establo. Es posible que desees utilizar barras como separadores de establos o permitir que los caballos se vean dejando abierta la mitad superior de la puerta del establo. - Poder ver el exterior también es muy importante para tu caballo. Eso es porque observar lo que sucede a su alrededor es parte de su comportamiento natural. - Un accidente se puede producir sin que te des cuenta. Así que trata de evitar que tu caballo pierda el equilibrio en una superficie resbaladiza o se lastime con objetos afilados o que sobresalgan. En resumen: ¡piensa en la seguridad de tu caballo!",
+              "imageTitle": "Refugio"
+            },
+            {
+              "title": "Buena salud: joven en forma, anciano sano.",
+              "content": "- Haz que el herrador, el dentista, el veterinario y otros expertos ecuestres cualificados revisen tu caballo periódicamente. Por ejemplo, si te aseguras de que tu caballo se revise los dientes con regularidad desde una edad temprana, podrás mantenerlo sano durante mucho más tiempo.",
+              "imageTitle": "Bienestar"
+            },
+            {
+              "title": "Comportamiento natural: emocionalmente saludable",
+              "content": "- Asegúrate de que tu caballo no esté expuesto a un estrés innecesario. Por ejemplo, intenta y asegúrate de manejarlo de una manera predecible. Si permites que tu caballo muestre un comportamiento natural en un entorno seguro, crearás una base sólida para que tu caballo esté bien equilibrado física y mentalmente. ¡Eso es bueno para tu caballo y para ti!",
+              "imageTitle": "Conducta"
+            }
+          ]
+        },
+        "epwaphotoupload": {
+          "firstpage": {
+            "title": "Explicación para subir una foto propia con fines de entrenamiento",
+            "content": "Sube una (o más) de tus propias fotos y ayúdanos a desarrollar el reconocimiento facial automatizado para caballos y asnos.",
+            "exphotoTitle": "Ejemplo",
+            "imageTitle": "grouphorse",
+            "buttonText": "Siguiente"
+          },
+          "secondpage": {
+            "title": "Explicación para recortar tu foto",
+            "content1": "Después de tomar la foto, debe recortarse. De esta forma, tu caballo se puede utilizar de forma anónima.",
+            "content2": "Primero, elige las orejas y los ojos, y luego la nariz y la boca.",
+            "content3": "Asegúrate de que las partes estén siempre colocadas de forma correcta y clara en el área de recorte, como se muestra aquí en el ejemplo.",
+            "chk_text": "Mi foto puede usarse con fines de entrenamiento.",
+            "imageTitle": "exhorsecrop",
+            "checkedbtnImg": "checkedbtnImg",
+            "uncheckedbtnImg": "uncheckedbtnImg",
+            "lbuttonText": "Haz una foto",
+            "rbuttonText": "De la galería"
+          },
+          "takephotopage": {
+            "photobutton": "FOTO",
+            "cancelbutton": "Cancelar",
+            "horsemaskImg": "horsemaskImg",
+            "flipbtnImg": "flipbtnImg",
+            "flipbtnText": "Dar la vuelta",
+            "loadingText": "Guardando...",
+            "cameraPermissionTitle": "Permiso para usar la cámara",
+            "cameraPermissionMessage": "Necesitamos tu permiso para usar tu cámara",
+            "cameraPermissionPositiveButtonText": "Aceptar",
+            "cameraPermissionNegativeButtonText": "Cancelar",
+            "audioiPermissonTitle": "Permiso para utilizar la grabación de audio",
+            "audioPermissionMessage": "Necesitamos tu permiso para usar tu audio" 
+          },
+          "thirdpage": {
+            "question": "¿Esta foto es buena?",
+            "imageTitle": "horsecrop",
+            "lbuttonText": "Otra vez",
+            "rbuttonText": "Sí"
+          },
+          "forthpage": {
+            "question": "Ahora, recorta la imagen de las orejas",
+            "imageTitle": "horsecrop",
+            "lbuttonText": "Guarda las orejas",
+            "loadingText": "Enviando..."
+          },
+          "fifthpage": {
+            "question": "Ahora, recorta la imagen de los ojos",
+            "imageTitle": "horsecrop",
+            "lbuttonText": "Guarda los ojos",
+            "loadingText": "Enviando..."
+          },
+          "sixthpage": {
+            "question": "Ahora, recorta la imagen de la nariz y la boca",
+            "imageTitle": "horsecrop",
+            "lbuttonText": "Guarda la nariz/boca",
+            "loadingText": "Enviando..."
+          },
+          "seventhpage": {
+            "question": "¿Los recortes son buenos?",
+            "imageTitle": "horsecrop",
+            "lbuttonText": "Ajustar",
+            "rbuttonText": "Enviar",
+            "loadingText": "Enviando..."
+          },
+          "lastpage": {
+            "title": "¡Gracias!",
+            "content": "Con tu foto podemos utilizar nuestros sistemas de entrenamiento aún mejor.",
+            "buttonText": "Volver al establo"
+          }
+        }
+      },
+      "supportedby": "Esta aplicación ha recibido el apoyo de",
+      "profileUpdateSuccess": "Perfil actualizado",
+      "name": "Nombre",
+      "firstName": "Nombre",
+      "lastName": "Apellidos",
+      "email": "Dirección de correo electrónico",
+      "requiredField": "Requerido",
+      "fillInName": "Rellena un nombre",
+      "breed": "Raza",
+      "selectbreed": "Selecciona una raza",
+      "roles": "Rol",
+      "selectroles": "Qué hago con mi animal",
+      "disciplines": "Disciplina",
+      "selectdisciplines": "Selecciona una disciplina",
+      "sex": "Sexo",
+      "selectSex": "Selecciona un sexo",
+      "animalHeight": "Altura (en cm)",
+      "animalWeight": "Peso (en kg)",
+      "selectAnimalHeight": "Selecciona la altura",
+      "fillInAnimalHeight": "Rellena la altura del animal (centímetros)",
+      "fillInAnimalWeight": "Rellena el peso del animal (kilogramos)",
+      "horseCompetitionLevel": "Nivel de competición",
+      "selectHorseCompetitionLevel": "Selecciona el nivel de competición",
+      "particularities": "Información adicional",
+      "fillInParticularities": "Anota aquí cualquier información adicional",
+      "caregiverTitle": "Cuidador(es)",
+      "addCaregiverDesc": "Agregar un nuevo cuidador",
+      "caregiverInviteBtnText": "Enviar",
+      "prefixRemoveMessage": "¿Estás seguro de que quieres eliminarlo",
+      "sufixRemoveMessage": "de la lista de cuidador(es)?",
+      "caregiverRemoveBtnText": "Eliminar",
+      "caregiver_pending": "Pendiente",
+      "ok": "Aceptar",
+      "submit": "Enviar",
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "remove": "Eliminar",
+      "copy": "Copiar",
+      "cameraOrGalleryPopupTitle": "Seleccionar foto",
+      "chooseFromLibrary": "Galería",
+      "takeAPhoto": "Cámara",
+      "birthdate": "Fecha de nacimiento",
+      "selectDate": "Selecciona una fecha",
+      "openDiary": "Abrir diario",
+      "noData": "n/a",
+      "diary": "Diario",
+      "addHorse": "Agregar un caballo",
+      "editHorse": "Editar un caballo",
+      "addDonkey": "Agregar un asno",
+      "editDonkey": "Editar un asno",
+      "deleteAnimal": "Eliminar perfil",
+      "delete": "Eliminar",
+      "deleteAnimalMessage": "Estás a punto de eliminar tu perfil de animales y todos sus datos. Esta acción no se puede deshacer. ¿Estás seguro?",
+      "startPainMeasurement": "Medición del dolor",
+      "menagerie": "Menagerie",
+      "settings": "Ajustes",
+      "syndromes": "Comprobación de la presencia de PPID",
+      "about": "Acerca de",
+      "share": "Compartir",
+      "shareApp": "Compartir esta app",
+      "noAnimalsToShow": "¡El granero está vacío!",
+      "addMedication": "Mi veterinario",
+      "registerPainMeasurement": "Medición del dolor",
+      "registerHousing": "Asistencia",
+      "registerFeeding": "Alimentación",
+      "registerExercises": "Ejercicio",
+      "registerAppointment": "Cita",
+      "riding": "Montar",
+      "groundWork": "Trabajo preparatorio",
+      "dressage": "Entrenamiento de caballos",
+      "showJumping": "Concurso de hípica",
+      "crossTraining": "Campo a través",
+      "outsideRide": "Trote ligero",
+      "western": "Western",
+      "endurance": "Resistencia",
+      "harness": "Enganche",
+      "hiking": "Caminando de la mano",
+      "stepMill": "Caminador de caballos",
+      "manualWork": "Trabajo de la mano",
+      "other": "Otro",
+      "startTime": "Tiempo de inicio",
+      "endTime": "Tiempo de finalización",
+      "leavingFormTitle": "¿Estás seguro?",
+      "leavingFormSubtitle": "Perderás todo el trabajo no guardado",
+      "leavingFormLeaveBtn": "Salir",
+      "leavingFormStayBtn": "Quedarme",
+      "paddock": "Prado",
+      "pasture": "Campo",
+      "stable": "Establo",
+      "exercise": "Ejercicio",
+      "exerciseType": "Tipo de ejercicio",
+      "housing": "Asistencia",
+      "feeding": "Alimentación",
+      "medication": "Medicamentos",
+      "timeOfDay": "Día y hora",
+      "timeAndDay": "Día y hora",
+      "kindOfAppointment": "Título de la cita",
+      "quantity": "Cantidad",
+      "unit": "Unidad",
+      "unlimited": "Sin restricción",
+      "roughage": "Forraje",
+      "concentrate": "Concentrado",
+      "supplement": "Suplemento",
+      "pill": "Medicamentos",
+      "treatment": "Tratamiento",
+      "temperature": "Temperatura",
+      "recovery": "Rehabilitación",
+      "item": "elementos",
+      "gram": "g",
+      "kilogram": "kg",
+      "byWeight": "Para ... kilos",
+      "milligram": "mg",
+      "cubicCentimetre": "cc / ml",
+      "sachet": "Sachet",
+      "tablet": "Comprimido",
+      "scoop": "Cucharada / bomba",
+      "drop": "Gotas",
+      "celsius": "Celsius",
+      "fahrenheit": "Fahrenheit",
+      "vet": "Veterinario",
+      "physiotherapist": "Fisioterapeuta",
+      "osteopath": "Osteopath",
+      "dentist": "Dentista",
+      "farrier": "Herrador",
+      "otherDoctor": "Otro",
+      "alertSuccess": "Correcto",
+      "offlineWarning": "Estás desconectado. Comprueba tu conexión",
+      "animalFetchErrorMsg": "¡Se ha producido un error al buscar animales!",
+      "animalAddErrorMsg": "¡Se ha producido un error al añadir un animal!",
+      "animalEditErrorMsg": "¡Se ha producido un error al subir un animal!",
+      "animalDeleteErrorMsg": "¡Se ha producido un error al eliminar un animal!",
+      "animalCaregiverFetchErrorMsg": "Se ha producido un error al buscar a loa cuidadores",
+      "animalCaregiverAddErrorMsg": "Se ha producido un error al enviar una invitación",
+      "animalCaregiverDeleteErrorMsg": "Se ha producido un error al eliminar un animal",
+      "caregiverAlertTitle": "Error",
+      "caregiverAlertUserUnknown": "Usuario desconocido",
+      "caregiverAlertSelf": "No puedes invitarte a ti mismo",
+      "caregiverAlertDuplicate": "Ya se ha invitado a este usuario",
+      "caregiverAlertMaximum": "Solo puedes invitar a 5 usuarios",
+      "caregiverAlertNotAllowed": "Este usuario no era dueño de un caballo o un asno",
+      "photoUploadErrorMsg": "Ha habido un error al cargar imágenes recortadas",
+      "eventAddSuccessMsg": "¡Se ha agregado la entrada!",
+      "eventEditSuccessMsg": "¡Se ha subido la entrada!",
+      "eventDeleteSuccessMsg": "¡Se ha eliminado la entrada!",
+      "completeEvent": "Completar evento",
+      "changePasswordSuccessMsg": "¡Se ha cambiado la contraseña!",
+      "changePasswordErrorMsg": "¡Se ha producido un error al cambiar una contraseña!",
+      "changePasswordCurrentPasswordWrongErrorMsg": "La contraseña que has introducido no coincide con la actual",
+      "changePasswordPasswordConfirmDoesNotMatchErrorMsg": "La confirmación de la contraseña no coincide",
+      "refreshTokenFailedLoggingOutMsg": "Se ha cerrado tu sesión porque tu sesión ha expirado. Esto puede deberse al inicio de sesión en esta cuenta en un dispositivo diferente. Vuelve a iniciar sesión.",
+      "roughageNameLabel": "Tipo de forraje",
+      "concentrateNameLabel": "Tipo de concentrado",
+      "supplementNameLabel": "Tipo de suplemento",
+      "pillNameLabel": "Tipo de medicamento",
+      "injectionNameLabel": "Tipo de tratamiento",
+      "temperatureNameLabel": "Temperatura",
+      "recoveryNameLabel": "Nota de rehabilitación",
+      "yes": "Sí",
+      "no": "No",
+      "updateProfileSubmitBtn": "Enviar",
+      "driving": "Conducir",
+      "lunging": "Embestir",
+      "workInHand": "Trabajo de la mano",
+      "welcomeInDiary": "Bienvenido/a",
+      "noEventsOnThisDate": "No hay entradas en este día. Haz clic en el icono con el signo más para agregar una nueva entrada o copiar las entradas de una fecha anterior",
+      "noAnimalsInDiary": "Parece que no has añadido caballos ni asnos a tu establo. Agrega un animal primero para usar el diario.",
+      "selectDone": "Hecho",
+      "horse": "Caballo",
+      "donkey": "Asno",
+      "clickToAddPhoto": "Clic para añadir una foto",
+      "clickToChangePhoto": "Clic para cambiar la foto",
+      "updatePasswordLink": "Cambiar contraseña",
+      "deleteAccount": "Borrar cuenta",
+      "notApplicable": "N/A",
+      "currentPassword": "Contraseña actual",
+      "newPassword": "Contraseña nueva",
+      "newPasswordConfirmation": "Contraseña nueva (confirmar)",
+      "noOrNa": "No - N/A",
+      "counting": "Cálculo",
+      "answers": "Respuestas",
+      "noAnimalsInStableWarning": "Para iniciar una medición del dolor, agrega primero un animal.",
+      "shareAppTitleDrawerMenu": "EPWA",
+      "shareAppContentDrawerMenu": "Uso EPWA, la aplicación Equine Pain and Welfare, para controlar la salud y el bienestar de mi animal. Visita www.epwa.nl/en para obtener información.",
+      "shareAppTitleAnimalProfile": "EPWA",
+      "shareAppContentAnimalProfile": "Uso EPWA, la aplicación Equine Pain and Welfare, para controlar la salud y el bienestar de {{animalName}}. Visita www.epwa.nl/en para obtener información.",
+      "shareAppUrl": "https://www.epwa.nl/en",
+      "shareMessage": "Uso EPWA, la aplicación Equine Pain and Welfare",
+      "painMeasurementLoginWarning": "Para guardar la medición del dolor, inicia sesión primero. También puedes continuar sin guardar tu resultado.",
+      "quit": "Salir",
+      "painMeasurementQuitTitle": "Salir de la medición",
+      "painMeasurementQuitMessage": "¿Estás seguro de que quieres salir de la medición del dolor?",
+      "ppidQuitTitle": "Salir del test",
+      "ppidQuitMessage": "¿Estás seguro de que quieres salir del test de la PPID?",
+      "finish": "Finalizar",
+      "notes": "Notas",
+      "animalHasUnlimitedAmountOf": "El animal tiene acceso ilimitado a {{feedType}}",
+      "copyFromDate": "Copiar desde la fecha",
+      "copyChoice": "Elige las categorías a copiar de la fecha seleccionada",
+      "copyNoEventsAvailable": "La fecha seleccionada no tiene entradas para copiar",
+      "customBreedPlaceholder": "Rellena el nombre de la raza",
+      "lookBack": "Mirar atrás",
+      "today": "Hoy",
+      "lookAhead": "Mirar hacia delante",
+      "graphTitle": "Mediciones recientes del dolor",
+      "noRecentPainMeasurements": "No hay mediciones recientes del dolor",
+      "addPainMeasurement": "Añadir medición del dolor",
+      "recurring": "Recurrente",
+      "recurringTill": "Recurrente hasta",
+      "notification": "Notificación",
+      "daily": "Diariamente",
+      "weekly": "Semanalmente",
+      "monthly": "Mensualmente",
+      "yearly": "Anualmente",
+      "facialMeasure": "Dolor facial",
+      "compositeMeasure": "Dolor compuesto",
+      "emptyPainMeasurementList": "No hay mediciones del dolor que mostrar",
+      "diaryFeeding": "Alimentación",
+      "movement": "Ejercicio",
+      "eventHousing": "Refugio",
+      "eventMedication": "Medicamentos",
+      "deleteUserInfo": "Borrar mi información de usuario",
+      "deleteAllInfo": "Borrar toda la información",
+      "confirmDeleteAccount": "¿Estás seguro de que quieres eliminar tu cuenta de usuario?",
+      "confirmDeleteAccountInfo": "Esto eliminará todos tus datos y no se puede restaurar",
+      "categories": {
+        "painMeasurement": "Medición del dolor",
+        "feeding": "Alimentación",
+        "medication": "Mi veterinario",
+        "housing": "Asistencia",
+        "exercise": "Ejercicio",
+        "appointment": "Cita"
+      },
+      "painMeasurements": {
+        "composite": "Compuesto",
+        "facialExpression": "Medición facial del dolor"
+      },
+      "typePainMeasurement": "Tipo de medición del dolor",
+      "editRecurringEventWarning": "¿Quieres cambiar el evento recurrente actual o crear uno nuevo?",
+      "editRecurring": "Editar",
+      "newRecurring": "Nuevo",
+      "selectAnOption": "Los eventos recurrentes editados solo se aplicarán a eventos futuros",
+      "warnDeleteAccount1": "¿BORRAR PERMANENTEMENTE TU CUENTA?",
+      "noFutureCompletionTitle": "Evento en el futuro",
+      "noFutureCompletionText": "Los eventos en el futuro no se pueden completar",
+      "recurringAfterStartDate": "Selecciona una fecha recurrente posterior a la hora de inicio del evento",
+      "endDateAfterStartDate": "Seleccione la fecha de finalización después de la fecha de inicio",
+      "noEventsToShare": "El período seleccionado no tiene eventos para compartir",
+      "emptyDates": "Las fechas no pueden estar vacías",
+      "seeShareResults": "Ver mis resultados de la aplicación EPWA",
+      "chooseShareSelection": "Selecciona una o más categorías para compartir",
+      "connectionError": "la aplicación epwa no se puede conectar con el servidor",
+      "networkError": "epwa no se puede conectar con la red",
+      "permissionReadWriteTitle": "Permisos para el acceso de escritura/lectura",
+      "permissionReadWriteMessage": "Dar permiso a tu almacenamiento para escribir/leer un archivo"
+    }
+  }
+  

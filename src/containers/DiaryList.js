@@ -114,7 +114,6 @@ export class AccordionView extends Component {
   );
 
   _renderContent = (section, index, isActive) => {
-    console.log("section data", section);
     return (
       <View
         style={{

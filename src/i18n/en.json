@@ -6,7 +6,8 @@
       "nl": "Dutch",
       "en": "English",
       "de": "German",
-      "fr": "French"
+      "fr": "French",
+      "es": "Spanish"
     },
     "dateFormat": "DD-MM-YYYY",
     "errors": {
@@ -688,7 +689,7 @@
       "more": {
         "links": [
           {
-            "label": "More information about EPWA",
+            "label": "How does EPWA work?",
             "url": "https://www.epwa.nl/en/instructie"
           }
         ]
@@ -812,7 +813,7 @@
           },
           {
             "title": "Save",
-            "content": "Have you filled in your training details? Click the \"Save\" button at the bottom of the page to add the training to the diary. The time spent training has now been entered automatically in the diary. If you have completed multiple training sessions, the diary will show your total training time for that day."
+            "content": "Have you filled in all the details? Click the \"Save\" button at the bottom of the page to add them to the diary."
           }
         ]
       },
@@ -840,7 +841,7 @@
           },
           {
             "title": "Save",
-            "content": "Filled in your {{animalType}}’s feeding regime? Use the > icon in the top right-hand corner to save. The data will automatically appear in the diary."
+            "content": "Have you filled in all the details? Click the \"Save\" button at the bottom of the page to add them to the diary."
           }
         ]
       },
@@ -854,7 +855,7 @@
           },
           {
             "title": "Save",
-            "content": "Filled in the time your {{animalType}} spends in his stable or is being turned out?  Use the > icon in the top right-hand corner to save. The data will automatically appear in the diary."
+            "content": "Have you filled in all the details? Click the \"Save\" button at the bottom of the page to add them to the diary."
           }
         ]
       },
@@ -884,7 +885,7 @@
           },
           {
             "title": "Save",
-            "content": "Filled in all of your {{animalType}}’s medical data? Use the > icon in the top right-hand corner to save. Your {{animalType}}’s medical data will automatically appear in the diary. "
+            "content": "Have you filled in all the details? Click the \"Save\" button at the bottom of the page to add them to the diary."
           }
         ]
       },
@@ -1099,6 +1100,7 @@
     "item": "items",
     "gram": "g",
     "kilogram": "kg",
+    "milliliter": "ml",
     "byWeight": "For ... kilo",
     "milligram": "mg",
     "cubicCentimetre": "cc / ml",

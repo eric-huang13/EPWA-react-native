@@ -7,7 +7,7 @@ import {
   View,
   Platform,
   Text,
-  Alert
+  Alert,
 } from "react-native";
 import AlertAsync from "react-native-alert-async";
 import { HeaderBackButton } from "react-navigation-stack";
@@ -22,7 +22,7 @@ import {
   getHours,
   getMinutes,
   getTime,
-  isValid
+  isValid,
 } from "date-fns";
 import { get, toNumber } from "lodash";
 import {
@@ -34,7 +34,7 @@ import {
   flatten,
   reject,
   T as ramdaT,
-  isNil
+  isNil,
 } from "ramda";
 
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
@@ -62,7 +62,7 @@ import {
   quantityEventProps,
   quantityEventValidation,
   nameEventValidation,
-  quantityWithoutNameEventValidation
+  quantityWithoutNameEventValidation,
 } from "../constants/validationTypes";
 
 import { colors } from "../themes";
@@ -73,7 +73,7 @@ import {
   setHours,
   setMinutes,
   setSecondsToZero,
-  setMillisecondsToZero
+  setMillisecondsToZero,
 } from "../services/date";
 import iconMap from "../constants/iconMap";
 import nlLocale from "date-fns/locale/nl";
@@ -85,7 +85,7 @@ const validationSchema = yup.object().shape({
   pill: yup.array().of(quantityEventValidation),
   treatment: yup.array().of(nameEventValidation),
   temperature: yup.array().of(quantityWithoutNameEventValidation),
-  recovery: yup.array().of(nameEventValidation)
+  recovery: yup.array().of(nameEventValidation),
 });
 
 class DiaryMedicationForm extends Component {
@@ -106,7 +106,7 @@ class DiaryMedicationForm extends Component {
             style={{ marginRight: 30 }}
             onPress={() =>
               navigation.navigate("DiaryMedicationFormInfo", {
-                animalType: navigation.getParam("animalType")
+                animalType: navigation.getParam("animalType"),
               })
             }
           >
@@ -129,7 +129,7 @@ class DiaryMedicationForm extends Component {
             />
           </TouchableOpacity> */}
         </View>
-      )
+      ),
     };
   };
 
@@ -143,7 +143,7 @@ class DiaryMedicationForm extends Component {
     this.state = {
       isEditing,
       localDate,
-      completeEvent
+      completeEvent,
     };
 
     this.isAndroid = Platform.OS === "android";
@@ -157,7 +157,7 @@ class DiaryMedicationForm extends Component {
     this.props.submitForm();
   };
 
-  getInitialEventValue = eventType => {
+  getInitialEventValue = (eventType) => {
     const animalId = this.props.navigation.getParam("animalId");
 
     const event = {
@@ -166,7 +166,7 @@ class DiaryMedicationForm extends Component {
       category: eventCategories.medication,
       type: eventType,
       animalId,
-      data: {}
+      data: {},
     };
 
     if (eventType === eventTypes.pill) {
@@ -188,15 +188,15 @@ class DiaryMedicationForm extends Component {
     return event;
   };
 
-  formatDateField = timestamp =>
+  formatDateField = (timestamp) =>
     isValid(parse(timestamp)) ? format(timestamp, "HH:mm") : "";
 
-  parseDateField = dateInstance => {
+  parseDateField = (dateInstance) => {
     // We have to combine picked time with date picked in Diary Screen
     const currentDate = this.props.navigation.getParam("currentDate");
     const pickedTime = {
       hours: getHours(dateInstance),
-      minutes: getMinutes(dateInstance)
+      minutes: getMinutes(dateInstance),
     };
 
     return compose(
@@ -209,7 +209,7 @@ class DiaryMedicationForm extends Component {
     )(currentDate);
   };
 
-  renderFieldSectionHeader = fieldName => (
+  renderFieldSectionHeader = (fieldName) => (
     <FieldSectionHeader
       title={this.props.t(eventTypes[fieldName])}
       icon={
@@ -234,16 +234,16 @@ class DiaryMedicationForm extends Component {
         <DatePicker
           locale={i18n.language}
           t={t}
-          mode="time"
+          mode='time'
           date={currentDate || new Date()}
-          ref={el => (ref = el)} // eslint-disable-line no-return-assign
-          onPick={date => setFieldValue(fieldPath, this.parseDateField(date))}
+          ref={(el) => (ref = el)} // eslint-disable-line no-return-assign
+          onPick={(date) => setFieldValue(fieldPath, this.parseDateField(date))}
         />
         <FieldLabel style={s.fieldLabel}>{label}</FieldLabel>
         <SelectButton
           containerStyle={[
             s.dateInput,
-            this.props.submitCount > 0 && hasErrors && s.dateInputWithError
+            this.props.submitCount > 0 && hasErrors && s.dateInputWithError,
           ]}
           onPress={() => ref.show()}
         >
@@ -253,12 +253,12 @@ class DiaryMedicationForm extends Component {
     );
   };
 
-  renderTreatmentRow = props => {
+  renderTreatmentRow = (props) => {
     const { setFieldValue, t } = this.props;
 
     const fieldPaths = {
       name: `${props.namespace}[${props.index}].data.name`,
-      note: `${props.namespace}[${props.index}].data.note`
+      note: `${props.namespace}[${props.index}].data.note`,
     };
 
     return (
@@ -275,7 +275,7 @@ class DiaryMedicationForm extends Component {
             {this.renderField({
               fieldName: "startDate",
               label: t("datePicker.titleTime"),
-              ...props
+              ...props,
             })}
           </View>
           <View style={[s.rowFieldsContainer, { marginBottom: 10 }]}>
@@ -290,16 +290,16 @@ class DiaryMedicationForm extends Component {
                   { label: t("osteopath"), value: "osteopath" },
                   { label: t("farrier"), value: "farrier" },
                   { label: t("dentist"), value: "dentist" },
-                  { label: t("otherDoctor"), value: "other" }
+                  { label: t("otherDoctor"), value: "other" },
                 ]}
-                onValueChange={value => setFieldValue(fieldPaths.name, value)}
+                onValueChange={(value) => setFieldValue(fieldPaths.name, value)}
                 value={get(props, "entry.data.name")}
               />
             </View>
           </View>
           <MultiLineTextField
             label={this.props.t("notes")}
-            onChangeText={value =>
+            onChangeText={(value) =>
               this.props.setFieldValue(fieldPaths.note, value)
             }
             value={get(props, "entry.data.note")}
@@ -324,19 +324,19 @@ class DiaryMedicationForm extends Component {
     );
   };
 
-  renderRecoveryRow = props => {
+  renderRecoveryRow = (props) => {
     const { errors, setFieldValue, t, values } = this.props;
 
     const fieldPaths = {
-      name: `${props.namespace}[${props.index}].data.name`
+      name: `${props.namespace}[${props.index}].data.name`,
     };
 
     const fieldValues = {
-      name: get(values, fieldPaths.name) || ""
+      name: get(values, fieldPaths.name) || "",
     };
 
     const fieldErrors = {
-      name: get(errors, fieldPaths.name)
+      name: get(errors, fieldPaths.name),
     };
 
     const nameFieldLabel = t(`${props.namespace}NameLabel`);
@@ -355,7 +355,7 @@ class DiaryMedicationForm extends Component {
             {this.renderField({
               fieldName: "startDate",
               label: t("datePicker.titleTime"),
-              ...props
+              ...props,
             })}
           </View>
           <View style={[s.flex1Container, { paddingTop: 10 }]}>
@@ -365,12 +365,12 @@ class DiaryMedicationForm extends Component {
                 s.textInputContainer,
                 this.props.submitCount > 0 && fieldErrors.name
                   ? { backgroundColor: colors.tomato }
-                  : {}
+                  : {},
               ]}
             >
               <TextInput
                 maxLength={280}
-                onChangeText={value => setFieldValue(fieldPaths.name, value)}
+                onChangeText={(value) => setFieldValue(fieldPaths.name, value)}
                 value={fieldValues.name}
                 style={
                   this.props.submitCount > 0 && fieldErrors.name
@@ -399,25 +399,25 @@ class DiaryMedicationForm extends Component {
     );
   };
 
-  renderTemperatureRow = props => {
+  renderTemperatureRow = (props) => {
     const { errors, setFieldValue, t, values } = this.props;
 
     const fieldPaths = {
       quantity: `${props.namespace}[${props.index}].data.quantity`,
       unit: `${props.namespace}[${props.index}].data.unit`,
-      note: `${props.namespace}[${props.index}].data.note`
+      note: `${props.namespace}[${props.index}].data.note`,
     };
 
     const fieldValues = {
       quantity: get(values, fieldPaths.quantity) || "",
       unit: get(values, fieldPaths.unit) || "",
-      note: get(values, fieldPaths.note) || ""
+      note: get(values, fieldPaths.note) || "",
     };
 
     const fieldErrors = {
       quantity: get(errors, fieldPaths.quantity),
       unit: get(errors, fieldPaths.unit),
-      note: get(errors, fieldPaths.note)
+      note: get(errors, fieldPaths.note),
     };
 
     return (
@@ -434,7 +434,7 @@ class DiaryMedicationForm extends Component {
             {this.renderField({
               fieldName: "startDate",
               label: t("datePicker.titleTime"),
-              ...props
+              ...props,
             })}
           </View>
           <View style={[s.rowFieldsContainer, { marginBottom: 10 }]}>
@@ -445,19 +445,16 @@ class DiaryMedicationForm extends Component {
                   s.textInputContainer,
                   this.props.submitCount > 0 && fieldErrors.quantity
                     ? { backgroundColor: colors.tomato }
-                    : {}
+                    : {},
                 ]}
               >
                 <TextInput
                   maxLength={4} // needs 4 chars for example: "39.5"
-                  keyboardType="numeric"
-                  placeholder="36"
-                  onChangeText={text =>
+                  keyboardType='numeric'
+                  placeholder='36'
+                  onChangeText={(text) =>
                     // Convert comma to a dot - otherwise validation will reject it
-                    setFieldValue(
-                      fieldPaths.quantity,
-                      toNumber(text.replace(/,/g, "."))
-                    )
+                    setFieldValue(fieldPaths.quantity, text.replace(/,/g, "."))
                   }
                   value={`${fieldValues.quantity}`}
                   style={
@@ -475,16 +472,16 @@ class DiaryMedicationForm extends Component {
                 placeholder={{}}
                 items={[
                   { label: t("celsius"), value: "celsius" },
-                  { label: t("fahrenheit"), value: "fahrenheit" }
+                  { label: t("fahrenheit"), value: "fahrenheit" },
                 ]}
-                onValueChange={value => setFieldValue(fieldPaths.unit, value)}
+                onValueChange={(value) => setFieldValue(fieldPaths.unit, value)}
               />
             </View>
           </View>
           <MultiLineTextField
             label={this.props.t("notes")}
             value={fieldValues.note}
-            onChangeText={value =>
+            onChangeText={(value) =>
               this.props.setFieldValue(fieldPaths.note, value)
             }
             maxLength={280}
@@ -508,28 +505,28 @@ class DiaryMedicationForm extends Component {
     );
   };
 
-  renderRow = props => {
+  renderRow = (props) => {
     const { errors, setFieldValue, t, values } = this.props;
 
     const fieldPaths = {
       name: `${props.namespace}[${props.index}].data.name`,
       quantity: `${props.namespace}[${props.index}].data.quantity`,
       unit: `${props.namespace}[${props.index}].data.unit`,
-      note: `${props.namespace}[${props.index}].data.note`
+      note: `${props.namespace}[${props.index}].data.note`,
     };
 
     const fieldValues = {
       name: get(values, fieldPaths.name) || "",
       quantity: get(values, fieldPaths.quantity) || "",
       unit: get(values, fieldPaths.unit) || "",
-      note: get(values, fieldPaths.note) || ""
+      note: get(values, fieldPaths.note) || "",
     };
 
     const fieldErrors = {
       name: get(errors, fieldPaths.name),
       quantity: get(errors, fieldPaths.quantity),
       unit: get(errors, fieldPaths.unit),
-      note: get(errors, fieldPaths.note)
+      note: get(errors, fieldPaths.note),
     };
 
     const nameFieldLabel = t(`${props.namespace}NameLabel`);
@@ -548,7 +545,7 @@ class DiaryMedicationForm extends Component {
             {this.renderField({
               fieldName: "startDate",
               label: t("datePicker.titleTime"),
-              ...props
+              ...props,
             })}
           </View>
           <View style={s.rowFieldsContainer}>
@@ -559,14 +556,14 @@ class DiaryMedicationForm extends Component {
                   s.textInputContainer,
                   this.props.submitCount > 0 && fieldErrors.quantity
                     ? { backgroundColor: colors.tomato }
-                    : {}
+                    : {},
                 ]}
               >
                 <TextInput
-                  keyboardType="numeric"
-                  placeholder="10"
+                  keyboardType='numeric'
+                  placeholder='10'
                   maxLength={5}
-                  onChangeText={text =>
+                  onChangeText={(text) =>
                     // Convert comma to a dot - otherwise validation will reject it
                     setFieldValue(
                       fieldPaths.quantity,
@@ -594,9 +591,9 @@ class DiaryMedicationForm extends Component {
                   { label: t("sachet"), value: "sachet" },
                   { label: t("tablet"), value: "tablet" },
                   { label: t("byWeight"), value: "for_kg" },
-                  { label: t("drop"), value: "drop" }
+                  { label: t("drop"), value: "drop" },
                 ]}
-                onValueChange={value => setFieldValue(fieldPaths.unit, value)}
+                onValueChange={(value) => setFieldValue(fieldPaths.unit, value)}
                 value={fieldValues.unit}
               />
             </View>
@@ -608,12 +605,12 @@ class DiaryMedicationForm extends Component {
                 s.textInputContainer,
                 this.props.submitCount > 0 && fieldErrors.name
                   ? { backgroundColor: colors.tomato }
-                  : {}
+                  : {},
               ]}
             >
               <TextInput
                 maxLength={150}
-                onChangeText={value => setFieldValue(fieldPaths.name, value)}
+                onChangeText={(value) => setFieldValue(fieldPaths.name, value)}
                 value={fieldValues.name}
                 style={
                   this.props.submitCount > 0 && fieldErrors.name
@@ -626,7 +623,7 @@ class DiaryMedicationForm extends Component {
           <MultiLineTextField
             label={this.props.t("notes")}
             value={fieldValues.note}
-            onChangeText={value =>
+            onChangeText={(value) =>
               this.props.setFieldValue(fieldPaths.note, value)
             }
             maxLength={280}
@@ -650,7 +647,7 @@ class DiaryMedicationForm extends Component {
     );
   };
 
-  renderFieldArray = name => {
+  renderFieldArray = (name) => {
     const { values } = this.props;
     const pushValue = this.getInitialEventValue(eventTypes[name]);
 
@@ -664,7 +661,7 @@ class DiaryMedicationForm extends Component {
       [equals(eventTypes.temperature), always(this.renderTemperatureRow)],
       [equals(eventTypes.recovery), always(this.renderRecoveryRow)],
       [equals(eventTypes.treatment), always(this.renderTreatmentRow)],
-      [ramdaT, always(this.renderRow)]
+      [ramdaT, always(this.renderRow)],
     ])(name);
 
     if (!shouldRender) {
@@ -674,7 +671,7 @@ class DiaryMedicationForm extends Component {
     return (
       <FieldArray
         name={eventTypes[name]}
-        render={arrayHelpers => (
+        render={(arrayHelpers) => (
           <View>
             {this.renderFieldSectionHeader(name)}
             {values[name] &&
@@ -683,7 +680,7 @@ class DiaryMedicationForm extends Component {
                   arrayHelpers,
                   entry,
                   index,
-                  namespace: eventTypes[name]
+                  namespace: eventTypes[name],
                 })
               )}
             {this.state.isEditing ? null : (
@@ -717,7 +714,9 @@ class DiaryMedicationForm extends Component {
     const btnColor = this.state.completeEvent
       ? { backgroundColor: colors.lima }
       : null;
-    const dateForIOS = Date.parse(`${renderingDate} ${new Date().getFullYear()}`);
+    const dateForIOS = Date.parse(
+      `${renderingDate} ${new Date().getFullYear()}`
+    );
     return (
       <View style={s.screenContainer}>
         <KeyboardAvoidingView
@@ -732,7 +731,7 @@ class DiaryMedicationForm extends Component {
                   fontWeight: "400",
                   fontSize: 22,
                   textAlign: "center",
-                  marginVertical: 20
+                  marginVertical: 20,
                 }}
               >
                 {getStartDateText(
@@ -751,7 +750,7 @@ class DiaryMedicationForm extends Component {
                 style={{
                   minWidth: 200,
                   marginBottom: 20,
-                  ...btnColor
+                  ...btnColor,
                 }}
                 label={
                   this.state.completeEvent
@@ -775,13 +774,13 @@ DiaryMedicationForm.propTypes = {
   submitCount: T.number,
   submitForm: T.func,
   i18n: T.shape({
-    language: T.string
+    language: T.string,
   }),
   t: T.func,
   values: T.shape({
     pill: T.arrayOf(quantityEventProps),
-    injection: T.arrayOf(quantityEventProps)
-  })
+    injection: T.arrayOf(quantityEventProps),
+  }),
 };
 
 const showSuccess = (alertDropdown, title, msg) => {
@@ -800,7 +799,7 @@ const triggerSubmitType = (
     actionCreator({
       payload,
       formHelpers: formikBag,
-      initialValue
+      initialValue,
     })
   );
 };
@@ -813,19 +812,29 @@ const onSubmit = (values, formikBag) => {
     Object.values
   )(values);
 
-  if (flattenValues[0].startDate > flattenValues[0].recurring_untill) {
-    Alert.alert("", t("recurringAfterStartDate"));
-    return;
-  }
-
   const initialValue = formikBag.props.navigation.getParam("initialValue");
   const completeEvent =
     formikBag.props.navigation.getParam("completeEvent") || false;
-
   let isEditing = Boolean(initialValue);
-
   const localDate = formikBag.props.navigation.getParam("localDate");
   const animal = formikBag.props.navigation.getParam("animal");
+
+  if (flattenValues && !flattenValues.length && isEditing) {
+    return triggerSubmitType(initialValue, {
+      formikBag,
+      alertTitle: "alertSuccess",
+      alertMsg: "eventDeleteSuccessMsg",
+      actionCreator: deleteEvent,
+    });
+  }
+
+  if (
+    flattenValues[0].recurring_untill != "" &&
+    flattenValues[0].startDate > flattenValues[0].recurring_untill
+  ) {
+    Alert.alert("", t("recurringAfterStartDate"));
+    return;
+  }
 
   if (completeEvent) {
     flattenValues[0].completed = true;
@@ -843,16 +852,16 @@ const onSubmit = (values, formikBag) => {
   }
 
   if (!isNil(localDate) && isNil(flattenValues[0].recurring)) {
-    delete flattenValues[0].id;
-    delete flattenValues[0].recurring;
-    delete flattenValues[0].recurring_untill;
-    flattenValues[0].localId = getId();
+    flattenValues[0].recurring = null;
+    flattenValues[0].recurring_untill = null;
+    flattenValues[0].recurringUntill = null;
 
-    return triggerSubmitType(flattenValues, {
+    return triggerSubmitType(flattenValues[0], {
       formikBag,
       alertTitle: "alertSuccess",
-      alertMsg: "eventAddSuccessMsg",
-      actionCreator: addEvent
+      alertMsg: "eventEditSuccessMsg",
+      actionCreator: editEvent,
+      initialValue,
     });
   }
 
@@ -864,11 +873,11 @@ const onSubmit = (values, formikBag) => {
         [
           { text: t("editRecurring"), onPress: () => "yes" },
           { text: t("newRecurring"), onPress: () => "no" },
-          { text: t("cancel"), onPress: () => "cancel" }
+          { text: t("cancel"), onPress: () => "cancel" },
         ],
         {
           cancelable: true,
-          onDismiss: () => "cancel"
+          onDismiss: () => "cancel",
         }
       );
       if (choice === "yes") {
@@ -878,7 +887,7 @@ const onSubmit = (values, formikBag) => {
             alertTitle: "alertSuccess",
             alertMsg: "eventEditSuccessMsg",
             actionCreator: editEvent,
-            initialValue
+            initialValue,
           });
         }
       } else if (choice === "no") {
@@ -890,7 +899,7 @@ const onSubmit = (values, formikBag) => {
           formikBag,
           alertTitle: "alertSuccess",
           alertMsg: "eventAddSuccessMsg",
-          actionCreator: addEvent
+          actionCreator: addEvent,
         });
       } else {
         return;
@@ -903,7 +912,7 @@ const onSubmit = (values, formikBag) => {
         formikBag,
         alertTitle: "alertSuccess",
         alertMsg: "eventAddSuccessMsg",
-        actionCreator: addEvent
+        actionCreator: addEvent,
       });
     } else if (isEditing && flattenValues.length > 0) {
       return triggerSubmitType(flattenValues[0], {
@@ -911,21 +920,21 @@ const onSubmit = (values, formikBag) => {
         alertTitle: "alertSuccess",
         alertMsg: "eventEditSuccessMsg",
         actionCreator: editEvent,
-        initialValue
+        initialValue,
       });
     }
     return triggerSubmitType(initialValue, {
       formikBag,
       alertTitle: "alertSuccess",
       alertMsg: "eventDeleteSuccessMsg",
-      actionCreator: deleteEvent
+      actionCreator: deleteEvent,
     });
   }
 };
 
 const formikOptions = {
   handleSubmit: onSubmit,
-  mapPropsToValues: props => {
+  mapPropsToValues: (props) => {
     const initialValue = props.navigation.getParam("initialValue");
 
     if (!initialValue) {
@@ -936,7 +945,7 @@ const formikOptions = {
 
     return result;
   },
-  validationSchema
+  validationSchema,
 };
 
 export default hoistStatics(

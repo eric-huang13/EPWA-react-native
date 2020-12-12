@@ -111,6 +111,48 @@ LocaleConfig.locales.en = {
   today: "Today"
 };
 
+LocaleConfig.locales.es = {
+  monthNames: [
+    "enero",
+    "febrero",
+    "marzo",
+    "abril",
+    "Mayo",
+    "junio",
+    "julio",
+    "agosto",
+    "septiembre",
+    "octubre",
+    "noviembre",
+    "diciembre"
+  ],
+  MonthNamesShort: [
+    "Ene",
+    "Feb",
+    "Mar",
+    "Abr",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Ago",
+    "Septiembre",
+    "Oct",
+    "Nov",
+    "Dic"
+  ],
+  dayNames: [
+    "Domingo",
+    "Lunes",
+    "Martes",
+    "Miércoles",
+    "Jueves",
+    "Viernes",
+    "Sábado"
+  ],
+  dayNamesShort: ["D", "L", "M", "M", "J", "V", "S"],
+  today: "Hoy"
+};
+
 LocaleConfig.locales.de = {
   monthNames: [
     "Januar",
@@ -265,6 +307,22 @@ function formatDate(date, lang) {
         "Décembre"
       ];
       break;
+    case "es":
+      monthNames = [
+        "enero",
+        "febrero",
+        "marzo",
+        "abril",
+        "Mayo",
+        "junio",
+        "julio",
+        "agosto",
+        "septiembre",
+        "octubre",
+        "noviembre",
+        "diciembre"
+      ];
+      break;  
     default:
   }
   const day = date.getDate();
