@@ -9,7 +9,7 @@
         "fr": "Francés",
         "es": "Español"
       },
-      "dateFormat": "DD-MM-AAAA",
+      "dateFormat": "DD-MM-YYYY",
       "errors": {
         "facebookLoginGeneric": "Fallo en la conexión a Facebook",
         "googleLoginGeneric": "Fallo en la conexión a Google",
@@ -583,6 +583,7 @@
           "dutchRidingPony": "Poni de montar holandés",
           "oldenburgHorse": "Caballo de Oldenburg",
           "quarterHorse": "Caballo quarter",
+          "sellefrancais": "Selle Français",
           "shetlandPony": "Poni shetland",
           "shire": "Shire",
           "tinker ": "Tinker",

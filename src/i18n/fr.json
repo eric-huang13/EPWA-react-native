@@ -9,7 +9,7 @@
       "fr": "Française",
       "es": "Espagnole"
     },
-    "dateFormat": "JJ-MM-AAAA",
+    "dateFormat": "DD-MM-YYYY",
     "errors": {
       "facebookLoginGeneric": "La connexion à Facebook a échoué.",
       "googleLoginGeneric": "La connexion à Google a échoué.",
@@ -583,6 +583,7 @@
         "dutchRidingPony": "Poney hollandais de selle",
         "oldenburgHorse": "Oldenbourg",
         "quarterHorse": "Quarter horse",
+        "sellefrancais": "Selle Français",
         "shetlandPony": "Poney Shetland",
         "shire": "Shire",
         "tinker ": "Tinker",
@@ -628,7 +629,7 @@
     },
     "animalGenders": {
       "horse": {
-        "mare": "ument",
+        "mare": "Jument",
         "gelding": "Hongre",
         "stallion": "Étalon"
       },
