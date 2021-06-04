@@ -16,6 +16,7 @@ import { translate } from "react-i18next";
 import { hoistStatics } from "recompose";
 
 import googleLogo from "../images/google.png";
+import appleLogo from "../images/apple.png";
 import s from "./styles/SignInStyles";
 import { colors, fonts } from "../themes";
 
@@ -30,7 +31,8 @@ import withAlert from "../components/withAlert";
 import {
   loginRequest,
   googleLoginRequest,
-  facebookLoginRequest
+  facebookLoginRequest,
+  appleLoginRequest
 } from "../actions/auth";
 import { setLanguage } from "../actions/language";
 import { clearError } from "../actions/authForm";
@@ -100,6 +102,10 @@ class SignInScreen extends React.Component {
     });
   };
 
+  handleAppleLoginRequest = () => {
+    this.props.dispatch(appleLoginRequest());
+  };
+
   handleEmailLoginRequest = (username, password) => {
     this.props.dispatch(loginRequest({ username, password }));
   };
@@ -138,6 +144,7 @@ class SignInScreen extends React.Component {
     const { dispatch, t } = this.props;
     const { formState, currentlySending } = this.props.data;
     const renderGoogleLogo = () => <Image source={googleLogo} />;
+    const renderAppleLogo = () => <Image source={appleLogo} />;
     const renderRegisterLink = () => (
       <TouchableOpacity onPress={this.handleRegistrationRequest}>
         <Text style={[s.register, { ...fonts.style.cta }]}>
@@ -166,7 +173,7 @@ class SignInScreen extends React.Component {
                 <Button
                   style={s.googleBtn}
                   backgroundColor={colors.egyptianBlue}
-                  label={t("auth.login")}
+                  label={t("auth.loginGoogle")}
                   onPress={this.handleGoogleLoginRequest}
                   icon={renderGoogleLogo()}
                   containerStyles={{
@@ -178,12 +185,23 @@ class SignInScreen extends React.Component {
                 <Button
                   style={s.facebookBtn}
                   backgroundColor={colors.egyptianBlue}
-                  label={t("auth.login")}
+                  label={t("auth.loginFB")}
                   onPress={this.handleFacebookLoginRequest}
                   iconName={iconMap.facebook}
-                  containerStyles={{ paddingHorizontal: 18 }}
+                  containerStyles={{ paddingHorizontal: 18, alignItems: "center" }}
                   textStyles={{ textAlign: "left" }}
                 />
+                {Platform.OS == "ios" &&
+                  <Button
+                    style={s.appleBtn}
+                    backgroundColor={colors.egyptianBlue}
+                    label={t("auth.loginApple")}
+                    onPress={this.handleAppleLoginRequest}
+                    icon={renderAppleLogo()}
+                    containerStyles={{ paddingHorizontal: 18, alignItems: "center" }}
+                    textStyles={{ textAlign: "left" }}
+                  />
+                }
               </View>
               <SignInForm
                 data={formState}

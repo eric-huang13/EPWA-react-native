@@ -11,6 +11,15 @@ import {
   GoogleSignin,
   statusCodes
 } from "@react-native-community/google-signin";
+
+import {
+  appleAuth,
+  appleAuthAndroid
+} from '@invertase/react-native-apple-authentication';
+
+import { basePath, assetPath } from "../constants";
+
+import { v4 as uuid } from 'uuid';
 // import Reactotron from "reactotron-react-native";
 
 import i18n from "../config/i18n";
@@ -22,7 +31,6 @@ import {
   googleClientIdAndroid
 } from "../../env.json";
 
-import { basePath } from "../constants";
 
 import {
   SET_ACCESS_TOKEN,
@@ -158,6 +166,131 @@ export function* facebookLogin(api, facebookApi) {
     data: {
       accessToken: loginResponse.data.access_token,
       provider: "facebook",
+      socialId: id
+    }
+  });
+
+  yield call(NavigatorService.navigate, "App");
+}
+
+export function* appleLogin(api, appleApi) {
+  const errorAction = { type: REQUEST_ERROR, error: "appleLoginGeneric" };
+  const mixedAccountsErrorAction = {
+    type: REQUEST_ERROR,
+    error: "mixedAccounts"
+  };
+
+  let authResponse;
+  let id, givenName, familyName, token;
+  try {
+    if(Platform.OS == "ios") {
+      //APPLE LOGOUT
+      authResponse = yield appleAuth.performRequest({
+        requestedOperation: appleAuth.Operation.LOGIN,
+        requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME]  
+      })
+
+      const credentialState = yield appleAuth.getCredentialStateForUser(authResponse.user)
+      if(credentialState === appleAuth.State.AUTHORIZED){
+        //user is authenticated
+        const { authorizationCode, user, fullName, identityToken } = authResponse;
+        if (!identityToken || !user) {
+          yield put(mixedAccountsErrorAction);
+          yield put(errorAction);
+          return;
+        }
+
+        email = authResponse.email
+        givenName = fullName.givenName
+        familyName = fullName.familyName
+        token = identityToken
+        id = user
+      }else {
+        //etc error 
+        return;
+      }
+
+      
+    } else {
+      /*
+      const rawNounce = uuid()
+      const state = uuid()
+      appleAuthAndroid.configure({
+        clientId: 'com.epwa',
+        redirectUri: '',
+        responseType: appleAuthAndroid.ResponseType.ALL,
+        scope: appleAuthAndroid.Scope.ALL,
+        nounce: rawNounce, 
+        state
+      });
+
+      authResponse = yield appleAuthAndroid.signIn();
+
+      const {nounce, user, id_token} = authResponse;
+      if(!id_token || !user) {
+        yield put(mixedAccountsErrorAction);
+        yield put(errorAction);
+        return;
+      }
+
+
+      id = nounce
+      email = user.email
+      givenName = user.name.firstName
+      familyName = user.name.familyName
+      token = id_token
+    */
+    }
+  } catch(e) {
+    if (e.code === appleAuth.Error.CANCELED) {
+      return;
+    }
+    yield put(errorAction);
+    return;
+  }
+  
+  const loginResponse = yield call(api.loginSocial, {
+    accessToken: token,
+    socialId:id,
+    provider: "apple",
+    first_name: givenName,
+    last_name: familyName
+  });
+
+  if (loginResponse.problem) {
+    if (loginResponse.data.message === "mixed_accounts") {
+      yield put(mixedAccountsErrorAction);
+    }
+
+    yield put(errorAction);
+    return;
+  }
+
+
+  let user_email = loginResponse.data.user.email;
+  let user_firstName = loginResponse.data.user.first_name;
+  let user_lastName = loginResponse.data.user.last_name;
+  let pictureUrl = loginResponse.data.pictureUrl;
+  if (pictureUrl != ""){
+    pictureUrl = `${assetPath}/assets/medium/${pictureUrl}`;
+  }
+ 
+  yield put({
+    type: UPDATE_PERSONAL_INFO,
+    data: {
+      email: user_email,
+      id,
+      firstName: user_firstName,
+      lastName: user_lastName,
+      pictureUrl: pictureUrl
+    }
+  });
+
+  yield put({
+    type: SET_TOKENS,
+    data: {
+      accessToken: loginResponse.data.access_token,
+      provider: "apple",
       socialId: id
     }
   });

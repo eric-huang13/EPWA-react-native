@@ -16,6 +16,7 @@ import { hoistStatics } from "recompose";
 import { compose } from "redux";
 
 import googleLogo from "../images/google.png";
+import appleLogo from "../images/apple.png";
 import s from "./styles/SignInStyles";
 import { colors, fonts } from "../themes";
 
@@ -31,7 +32,8 @@ import { getLanguageSelectItems } from "../services/language";
 import {
   registerRequest,
   googleLoginRequest,
-  facebookLoginRequest
+  facebookLoginRequest,
+  appleLoginRequest
 } from "../actions/auth";
 import { setLanguage } from "../actions/language";
 import { clearError } from "../actions/authForm";
@@ -96,6 +98,10 @@ class SignUpScreen extends React.Component {
     });
   };
 
+  handleAppleLoginRequest = () => {
+    this.props.dispatch(appleLoginRequest());
+  };
+
   handleEmailLoginRequest = (username, password) => {
     this.props.dispatch(registerRequest({ username, password }));
   };
@@ -131,6 +137,7 @@ class SignUpScreen extends React.Component {
     const { formState, currentlySending } = this.props.data;
 
     const renderGoogleLogo = () => <Image source={googleLogo} />;
+    const renderAppleLogo = () => <Image source={appleLogo} />;
     const renderLoginLink = () => (
       <Touchable onPress={this.handleLoginRequest}>
         <Text style={[s.forgottenPassword, { ...fonts.style.cta }]}>
@@ -160,21 +167,32 @@ class SignUpScreen extends React.Component {
                 <Button
                   style={s.googleBtn}
                   backgroundColor={colors.egyptianBlue}
-                  label={t("auth.login")}
+                  label={t("auth.loginGoogle")}
                   onPress={this.handleGoogleLoginRequest}
                   icon={renderGoogleLogo()}
-                  containerStyles={{ paddingHorizontal: 18 }}
+                  containerStyles={{ paddingHorizontal: 18, alignItems: "center" }}
                   textStyles={{ textAlign: "left" }}
                 />
                 <Button
                   style={s.facebookBtn}
                   backgroundColor={colors.egyptianBlue}
-                  label={t("auth.login")}
+                  label={t("auth.loginFB")}
                   onPress={this.handleFacebookLoginRequest}
                   iconName={iconMap.facebook}
                   containerStyles={{ paddingHorizontal: 18 }}
                   textStyles={{ textAlign: "left" }}
                 />
+                {Platform.OS == "ios" &&
+                  <Button
+                    style={s.appleBtn}
+                    backgroundColor={colors.egyptianBlue}
+                    label={t("auth.loginApple")}
+                    onPress={this.handleAppleLoginRequest}
+                    icon={renderAppleLogo()}
+                    containerStyles={{ paddingHorizontal: 18, alignItems: "center" }}
+                    textStyles={{ textAlign: "left" }}
+                  />
+                }
               </View>
               <SignInForm
                 data={formState}

@@ -73,11 +73,13 @@ const createApi = (baseURL = basePath) => {
       password
     });
 
-  const loginSocial = ({ accessToken, socialId, provider }) =>
+  const loginSocial = ({ accessToken, socialId, provider, first_name, last_name }) =>
     api.post("/api/social-login", {
       access_token: accessToken,
       social_id: socialId,
-      provider
+      provider,
+      first_name: first_name,
+      last_name: last_name
     });
 
   const register = (email, password) =>

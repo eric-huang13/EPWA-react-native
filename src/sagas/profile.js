@@ -12,6 +12,7 @@ import { refreshToken } from "./auth";
 
 import { assetPath } from "../constants";
 import { compose } from "../../node_modules/redux";
+import { Alert } from 'react-native';
 
 export const test = "";
 
@@ -36,9 +37,11 @@ export function* updateProfile(api, action) {
       type: `image/${fileType}`
     });
 
-    let response = yield call(api.uploadProfileImage, formData, accessToken);
 
+    let response = yield call(api.uploadProfileImage, formData, accessToken);
+   
     if (!response.ok) {
+
       if (response.status !== 401) {
         yield put(networkErrorAction);
         return;
@@ -54,7 +57,8 @@ export function* updateProfile(api, action) {
       }
     }
 
-    pictureUrl = `${assetPath}/${response.data.medium}`;
+    pictureUrl = `${assetPath}${response.data.medium}`;
+
   }
 
   const requestPayload = compose(

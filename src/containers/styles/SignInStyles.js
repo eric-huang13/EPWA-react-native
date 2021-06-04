@@ -18,17 +18,23 @@ export default StyleSheet.create({
     alignItems: "center"
   },
   socialWrapper: {
-    flexDirection: "row",
-    marginTop: 30,
-    marginBottom: 30
+    flexDirection: "column",
+    marginBottom: 20
   },
   googleBtn: {
-    marginRight: 10,
-    minWidth: 120,
+    marginTop: 15,
+    minWidth: 240,
     justifyContent: "center"
   },
   facebookBtn: {
-    minWidth: 120
+    marginTop: 15,
+    minWidth: 240,
+    justifyContent: "center"
+  },
+  appleBtn: {
+    marginTop: 15,
+    minWidth: 240,
+    justifyContent: "center"
   },
   dividerText: {
     marginBottom: 60

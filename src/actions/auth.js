@@ -7,6 +7,7 @@ export const CLEAR_TOKENS = "CLEAR_TOKENS";
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const FACEBOOK_LOGIN_REQUEST = "FACEBOOK_LOGIN_REQUEST";
 export const GOOGLE_LOGIN_REQUEST = "GOOGLE_LOGIN_REQUEST";
+export const APPLE_LOGIN_REQUEST = "APPLE_LOGIN_REQUEST";
 export const REGISTER_REQUEST = "REGISTER_REQUEST";
 export const FORGOT_PASSWORD_REQUEST = "FORGOT_PASSWORD_REQUEST";
 export const CHANGE_PASSWORD_REQUEST = "CHANGE_PASSWORD_REQUEST";
@@ -36,6 +37,10 @@ export function loginRequest(data) {
 
 export function facebookLoginRequest() {
   return { type: FACEBOOK_LOGIN_REQUEST };
+}
+
+export function appleLoginRequest() {
+  return { type: APPLE_LOGIN_REQUEST };
 }
 
 export function googleLoginRequest() {

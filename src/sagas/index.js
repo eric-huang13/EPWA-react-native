@@ -14,6 +14,7 @@ import {
   REGISTER_REQUEST,
   FACEBOOK_LOGIN_REQUEST,
   GOOGLE_LOGIN_REQUEST,
+  APPLE_LOGIN_REQUEST,
   FORGOT_PASSWORD_REQUEST,
   REFRESH_TOKEN_DENIED,
   CHANGE_PASSWORD_REQUEST,
@@ -25,6 +26,7 @@ import {
   login,
   facebookLogin,
   googleLogin,
+  appleLogin,
   logout,
   forgotPassword,
   register,
@@ -106,6 +108,7 @@ export default function* root(dispatch) {
   yield takeLatest(LOGIN_REQUEST, login, api);
   yield takeLatest(FACEBOOK_LOGIN_REQUEST, facebookLogin, api, facebookApi);
   yield takeLatest(GOOGLE_LOGIN_REQUEST, googleLogin, api, googleApi);
+  yield takeLatest(APPLE_LOGIN_REQUEST, appleLogin, api);
   yield takeLatest(REGISTER_REQUEST, register, api);
   yield takeLatest(REFRESH_TOKEN_REQUESTED, refreshToken, api);
   yield takeLatest(REFRESH_TOKEN_DENIED, refreshTokenDenied, api);
