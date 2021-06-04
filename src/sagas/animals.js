@@ -143,7 +143,7 @@ export function* addAnimal(api, action) {
       return;
     }
 
-    pictureUrl = `${assetPath}/${responsePhoto.data.medium}`;
+    pictureUrl = `${assetPath}${responsePhoto.data.medium}`;
   }
 
   yield put({
@@ -237,7 +237,7 @@ export function* editAnimal(api, action) {
       return;
     }
 
-    pictureUrl = `${assetPath}/${responsePhoto.data.medium}`;
+    pictureUrl = `${assetPath}${responsePhoto.data.medium}`;
   }
 
   yield put({
