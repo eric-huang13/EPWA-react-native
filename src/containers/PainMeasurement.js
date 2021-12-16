@@ -15,7 +15,6 @@ import getId from "../services/idGenerator";
 
 import { defaultHeaderStyling } from "../navigation";
 import PainMeasurementStartScreen from "./PainMeasurementStart";
-import PainMeasurementStartInfoScreen from "./PainMeasurementStartInfo";
 import PainMeasurementIntroScreen from "./PainMeasurementIntro";
 import PainMeasurementScoreScreen from "./PainMeasurementScore";
 import PainMeasurementTimerIntroScreen from "./PainMeasurementTimerIntro";
@@ -25,6 +24,7 @@ import PainMeasurementObservationFullScreen from "./PainMeasurementObservationFu
 import PainMeasurementObservationVetScreen from "./PainMeasurementVet";
 import PainMeasurementObservationHeadScreen from "./PainMeasurementObservationHead";
 import PainMeasurementLoginWarningScreen from "../containers/PainMeasurementLoginWarning";
+import PainMeasurementStartInfoScreen from "../containers/PainMeasurementStartInfo";
 import withAlertDropdown from "../components/withAlertDropdown";
 
 const PainMeasurementNavigator = createStackNavigator(

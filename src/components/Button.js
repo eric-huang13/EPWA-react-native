@@ -19,6 +19,16 @@ const Button = (props) => (
     onPress={props.onPress}
   >
     <View style={[s.container, props.containerStyles]}>
+      {props.socialIcon ? (
+        props.socialIcon
+      ) : (
+        props.socialIconName && 
+        <Icon
+          name={props.socialIconName}
+          size={props.iconSize}
+          color={props.iconColor}
+        />
+      )}
       <Text
         style={[
           s.label,
@@ -32,6 +42,7 @@ const Button = (props) => (
       {props.icon ? (
         props.icon
       ) : (
+        props.iconName && 
         <Icon
           name={props.iconName}
           size={props.iconSize}

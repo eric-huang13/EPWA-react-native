@@ -9,7 +9,9 @@ import { colors, fonts } from "../themes";
 const ButtonFullWidth = (props) => (
   <Touchable
     style={
-      ([btnFullWidth.shadow, props.style], { marginBottom: 50, marginTop: 15 })
+      ([btnFullWidth.shadow, { ...props.style }],
+      { marginBottom: 50, marginTop: 15 },
+      { ...props.style })
     }
     onPress={props.onPress}
   >

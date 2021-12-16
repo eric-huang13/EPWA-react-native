@@ -6,19 +6,17 @@ import {
   VictoryAxis,
   VictoryScatter,
   VictoryChart,
-  VictoryLabel
+  VictoryLabel,
 } from "victory-native";
 import { format } from "date-fns";
 import { colors, fonts } from "../themes";
 import { isNil } from "ramda";
 import { eventTypes } from "../constants";
 
-// import Reactotron from "reactotron-react-native";
-
 class PainMeasurementGraph extends React.Component {
   constructor(props) {
     super(props);
-
+    const isPainMeasurement = props.selectedType === "painMeasurement";
     this.state = {
       maxScore: 0,
       ticks: [],
@@ -26,30 +24,18 @@ class PainMeasurementGraph extends React.Component {
       data: [],
       compositeLine: [],
       facialExpressionLine: [],
-      showComposite: true,
-      showFacial: true
+      showComposite: isPainMeasurement ? true : false,
+      showFacial: true,
     };
   }
 
   componentDidMount() {
-    this.focusListener = this.props.navigation.addListener("didFocus", () => {
-      setTimeout(() => {
-        this.setGraphData();
-      }, 250);
-    });
-  }
-
-  componentWillUnmount() {
-    this.focusListener.remove();
+    this.setGraphData();
   }
 
   componentWillReceiveProps(nextProps) {
-    const { items: oldItems } = this.props;
-    const { items: newItems } = nextProps;
-    const oldItemData = oldItems.find(item => item.completed === true);
-    const hasOldData = newItems.find(item => item.id === oldItemData?.id);
-    if (hasOldData) {
-      this.setGraphData();
+    if (nextProps.selectedType !== this.props.selectedType) {
+      this.setGraphData(nextProps.items);
     }
   }
 
@@ -70,73 +56,76 @@ class PainMeasurementGraph extends React.Component {
       type === eventTypes.composite &&
       this.state.compositeLine.length < dataLenght1
     ) {
-      this.setState(prevState => ({
-        compositeLine: [...prevState.compositeLine, { xCoor, yCoor }]
+      this.setState((prevState) => ({
+        compositeLine: [...prevState.compositeLine, { xCoor, yCoor }],
       }));
     }
     if (
       type === eventTypes.facialExpression &&
       this.state.facialExpressionLine.length < dataLenght2
     ) {
-      this.setState(prevState => ({
+      this.setState((prevState) => ({
         facialExpressionLine: [
           ...prevState.facialExpressionLine,
-          { xCoor, yCoor }
-        ]
+          { xCoor, yCoor },
+        ],
       }));
     }
   };
 
   toggleShowComposite = () => {
-    this.setState(prevState => ({
-      showComposite: !prevState.showComposite
+    this.setState((prevState) => ({
+      showComposite: !prevState.showComposite,
     }));
   };
 
   toggleShowFacial = () => {
-    this.setState(prevState => ({
-      showFacial: !prevState.showFacial
+    this.setState((prevState) => ({
+      showFacial: !prevState.showFacial,
     }));
   };
 
-  setGraphData = () => {
-    const formatDate = timestamp =>
+  setGraphData = (items) => {
+    const formatDate = (timestamp) =>
       format(timestamp, "D MMM-HH:mm", { locale: this.props.locale });
-    // const { t } = this.props;
     const ticks = [];
     const tickStrings = [];
 
-    const isPainScore = value =>
+    const isPainScore = (value) =>
       isNil(value.data && value.data.finalScore) === false;
 
-    const data = this.props.items.filter(isPainScore).map((item, index) => {
-      if (!item.data && !item.data.finalScore) {
-        return;
-      }
-      ticks.push(index);
-      tickStrings.push(formatDate(item.startDate).replace("-", "\n"));
+    const data = (items || this.props.items)
+      .filter(isPainScore)
+      .map((item, index) => {
+        if (!item.data && !item.data.finalScore) {
+          return;
+        }
+        ticks.push(index);
+        tickStrings.push(formatDate(item.startDate).replace("-", "\n"));
 
-      return {
-        index,
-        date: item.startDate,
-        score:
-          item.data && item.data.finalScore
-            ? item.data.finalScore < 55
-              ? item.data.finalScore
-              : 55
-            : 0,
-        type:
-          item.data && item.data.measurementType
-            ? item.data.measurementType
-            : ""
-      };
-    });
+        return {
+          index,
+          date: item.startDate,
+          score:
+            item.data && item.data.finalScore
+              ? item.data.finalScore < 55
+                ? item.data.finalScore
+                : 55
+              : 0,
+          type:
+            item.data && item.data.measurementType
+              ? item.data.measurementType
+              : item.type
+              ? item.type
+              : "",
+        };
+      });
 
     const facialExpressionLength = data.filter(
-      a => a.type === eventTypes.facialExpression
+      (a) => a.type === eventTypes.facialExpression
     ).length;
 
-    const compositeLength = data.filter(a => a.type === eventTypes.composite)
+    const compositeLength = data.filter((a) => a.type === eventTypes.composite)
       .length;
 
     this.setState({
@@ -146,41 +135,48 @@ class PainMeasurementGraph extends React.Component {
       facialExpressionLength,
       compositeLength,
       facialExpressionLine: [],
-      compositeLine: []
+      compositeLine: [],
     });
   };
 
   render() {
-    const { t } = this.props;
+    const { t, selectedType = "", categoryName } = this.props;
     const {
       ticks,
       tickStrings,
       data,
       facialExpressionLength,
-      compositeLength
+      compositeLength,
     } = this.state;
-
     if (facialExpressionLength + compositeLength === 0) {
       return (
-        <View style={{ marginTop: 40, marginBottom: 20, alignItems: "center" }}>
-          <Text>{t("noRecentPainMeasurements")}</Text>
+        <View style={{ marginTop: 25, marginBottom: 20, alignItems: "center" }}>
+          <Text>
+            {t("noRecentPainMeasurements", {
+              category: t(categoryName),
+            })}
+          </Text>
         </View>
       );
     }
     const yDistance = 8;
 
+    const isPainMeasurement = selectedType === "painMeasurement";
+
     return (
       <View>
-        <Text
+        {/* <Text
           style={{
             ...fonts.style.dateFont,
             textAlign: "center",
-            paddingTop: 50,
-            paddingBottom: 20
+            paddingTop: 25,
+            paddingBottom: 20,
           }}
         >
-          {t("graphTitle")}
-        </Text>
+          {t("graphTitle", {
+            category: t(categoryName),
+          })}
+        </Text> */}
         <View
           style={{
             flex: 1,
@@ -188,7 +184,7 @@ class PainMeasurementGraph extends React.Component {
             alignItems: "center",
             justifyContent: "center",
             paddingHorizontal: 35,
-            paddingBottom: 20
+            paddingBottom: 20,
           }}
         >
           <ScrollView
@@ -196,9 +192,9 @@ class PainMeasurementGraph extends React.Component {
             persistentScrollbar
             style={{
               width: "100%",
-              paddingBottom: 20
+              paddingBottom: 20,
             }}
-            ref={ref => (this.scrollView = ref)}
+            ref={(ref) => (this.scrollView = ref)}
             onContentSizeChange={(contentWidth, contentHeight) => {
               this.scrollView.scrollToEnd({ animated: true });
             }}
@@ -214,7 +210,7 @@ class PainMeasurementGraph extends React.Component {
                   left: 15,
                   bottom: -11,
                   borderBottomWidth: 2,
-                  borderColor: "#EDE8E8"
+                  borderColor: "#EDE8E8",
                 }}
               />
             )}
@@ -229,7 +225,7 @@ class PainMeasurementGraph extends React.Component {
                 style={{
                   axis: { stroke: "#EDE8E8", strokeWidth: 2 },
                   grid: { stroke: "" },
-                  tickLabels: { fontSize: 10, fontWeight: "300" }
+                  tickLabels: { fontSize: 10, fontWeight: "300" },
                 }}
                 tickValues={ticks}
                 tickFormat={tickStrings}
@@ -248,7 +244,7 @@ class PainMeasurementGraph extends React.Component {
                         y2={
                           this.state.compositeLine[index + 1].yCoor - yDistance
                         }
-                        strokeWidth="2"
+                        strokeWidth='2'
                         stroke={colors.lima}
                       />
                     )
@@ -269,7 +265,7 @@ class PainMeasurementGraph extends React.Component {
                           this.state.facialExpressionLine[index + 1].yCoor -
                           yDistance
                         }
-                        strokeWidth="2"
+                        strokeWidth='2'
                         stroke={colors.lightBlue}
                       />
                     )
@@ -278,30 +274,32 @@ class PainMeasurementGraph extends React.Component {
 
               <VictoryScatter
                 data={data}
-                alignment="start"
+                alignment='start'
                 style={{ data: { fill: "none" } }}
-                labels={i => {}}
+                labels={(i) => {}}
                 labelComponent={
                   <Box
                     showExpression={this.state.showFacial}
                     showComposite={this.state.showComposite}
                     lineXY={this.setLineXY}
-                    length1={compositeLength}
+                    length1={this.state.showComposite ? compositeLength : 0}
                     length2={facialExpressionLength}
                   />
                 }
-                y="score"
+                y='score'
               />
             </VictoryChart>
           </ScrollView>
         </View>
-        <Switches
-          toggleComposite={this.toggleShowComposite}
-          toggleFacial={this.toggleShowFacial}
-          valueComposite={this.state.showComposite}
-          valueFacial={this.state.showFacial}
-          t={t}
-        />
+        {isPainMeasurement && (
+          <Switches
+            toggleComposite={this.toggleShowComposite}
+            toggleFacial={this.toggleShowFacial}
+            valueComposite={this.state.showComposite}
+            valueFacial={this.state.showFacial}
+            t={t}
+          />
+        )}
       </View>
     );
   }
@@ -315,7 +313,7 @@ function Box({
   length1,
   length2,
   showComposite,
-  showExpression
+  showExpression,
 }) {
   lineXY(x, y, datum.type, length1, length2);
 
@@ -331,8 +329,8 @@ function Box({
       <Rect
         x={x - 10}
         y={y - 15}
-        rx="3"
-        ry="3"
+        rx='3'
+        ry='3'
         fill={
           datum.type === eventTypes.facialExpression
             ? colors.lightBlue
@@ -345,10 +343,10 @@ function Box({
       <SVGText
         x={x - 1}
         y={y - 4}
-        fill="#FFFF"
-        fontSize="9"
-        fontWeight="bold"
-        textAnchor="middle"
+        fill='#FFFF'
+        fontSize='9'
+        fontWeight='bold'
+        textAnchor='middle'
       >
         {datum.score}
       </SVGText>
@@ -361,7 +359,7 @@ function Switches({
   toggleFacial,
   valueFacial,
   valueComposite,
-  t
+  t,
 }) {
   return (
     <React.Fragment>
@@ -378,7 +376,7 @@ function Switches({
         <Text style={fonts.style.normal}>{t("facialMeasure")}</Text>
         <Switch
           style={{
-            marginLeft: 20
+            marginLeft: 20,
           }}
           value={valueFacial}
           trackColor={{ true: colors.lightBlue }}
@@ -397,8 +395,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginHorizontal: 20,
     paddingHorizontal: 12,
-    marginBottom: 15
-  }
+    marginBottom: 15,
+  },
 });
 
 PainMeasurementGraph.propTypes = {
@@ -406,10 +404,10 @@ PainMeasurementGraph.propTypes = {
     T.shape({
       score: T.number,
       timestamp: T.number,
-      type: T.oneOf([eventTypes.composite, eventTypes.facialExpression])
+      type: T.oneOf([eventTypes.composite, eventTypes.facialExpression]),
     })
   ).isRequired,
-  locale: T.object
+  locale: T.object,
 };
 
 export default PainMeasurementGraph;

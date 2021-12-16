@@ -179,11 +179,12 @@ class PainMeasurementIntroContainer extends Component {
     headerLeft: (
       <HeaderBackButton
         tintColor={colors.nero}
-        onPress={() =>
-          navigation.getParam("redirectPath") === "Diary"
-            ? navigation.navigate("Diary")
-            : navigation.navigate("StartUp")
-        }
+        onPress={() =>{
+          const redirectPath = navigation.getParam("redirectPath");
+          redirectPath
+            ? navigation.navigate(redirectPath)
+            : navigation.navigate("StartUp");
+        }}
       />
     )
   });

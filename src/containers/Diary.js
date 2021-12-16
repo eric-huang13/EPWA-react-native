@@ -44,7 +44,9 @@ import R, {
   sortBy,
   ascend,
   descend,
-  isNil
+  isNil,
+  where,
+  equals,
 } from "ramda";
 import Touchable from "react-native-platform-touchable";
 import { get } from "lodash";
@@ -68,6 +70,7 @@ import Button from "../components/Button";
 import CircleButton from "../components/CircleButton";
 import ButtonFullWidth from "../components/ButtonFullWidth";
 import PainMeasurementGraph from "../components/PainMeasurementGraph";
+import MeasurementCategorySlider from "../components/MeasurementCategorySlider";
 
 import {
   isDuringCurrentDate,
@@ -114,7 +117,8 @@ class Diary extends Component {
       currentIndex: 0,
       currentDate: new Date(),
       tabIndex: 1,
-      initial: true
+      initial: true,
+      selectedType: "painMeasurement",
     };
 
     this.routes = {
@@ -125,7 +129,8 @@ class Diary extends Component {
       feeding: "DiaryFeedingForm",
       medication: "DiaryMedicationForm",
       startPainMeasurement: "painMeasurement",
-      share: "DiaryShareForm"
+      share: "DiaryShareForm",
+      chooseMeasurement: "DiaryChooseMeasurement"
     };
 
     this.setButtons();
@@ -219,6 +224,7 @@ class Diary extends Component {
     const { navigation, data } = this.props;
 
     const animalId = navigation.getParam("id");
+    const measurementType = navigation.getParam("measurementType");
 
     if (animalId && typeof animalId !== "number" && this.state.initial) {
       const id = Array.isArray(animalId) && animalId.length > 0 && animalId[0].animalId
@@ -230,7 +236,21 @@ class Diary extends Component {
 
       this.changeInitial(index);
     }
+
+    if (measurementType && this.state.selectedType != measurementType) {
+      this.setState(
+        {
+          selectedType: measurementType,
+        },
+        () => {
+          navigation.setParams({
+            measurementType: "",
+          });
+        }
+      );
+    }
   }
+
   changeInitial = index => {
     this.setState({ currentIndex: index, initial: false });
   };
@@ -552,6 +572,7 @@ class Diary extends Component {
 
   renderEvents = (events, currentDate, tabIndex) => {
     const { t } = this.props;
+    const { selectedType } = this.state;
     const locale = this.props.i18n.language === "nl" ? nl : en;
 
     const propsDataEvents = addRecurringEvents(events, currentDate, tabIndex);
@@ -664,13 +685,27 @@ class Diary extends Component {
     }
   };
 
-  renderGraph = ({ currentAnimal, currentDate }) => {
+  getCategoryName = () => {
+    const { selectedType } = this.state;
+    if (selectedType === "painMeasurement") {
+      return "categoryAcutePainMeasurement";
+    } else if (selectedType === "chronicPainMeasurement") {
+      return "categoryChronicPainMeasurement";
+    }
+  };
+
+  renderGraph = ({ currentAnimal, currentDate, selectedType }) => {
     const { t } = this.props;
     const locale = this.props.i18n.language === "nl" ? nl : en;
+    const categoryName = this.getCategoryName();
     const allPainMeasurements = compose(
       filter(isInRange(currentDate)),
       filter(isCompleted),
-      filter(isPainMeasurement),
+      filter(
+        where({
+          category: equals(selectedType),
+        })
+      ),
       filter(isRelatedToAnimal(currentAnimal))
     )(this.props.data.events);
 
@@ -693,9 +728,12 @@ class Diary extends Component {
         currentDate={currentDate}
         currentAnimal={currentAnimal}
         items={allPainMeasurements}
+        type=''
         locale={locale}
         t={t}
+        selectedType={selectedType}
         navigation={this.props.navigation}
+        categoryName={categoryName}
       />
     );
   };
@@ -769,7 +807,7 @@ class Diary extends Component {
     }
     const allEvents = this.props.data.events || [];
     const currentAnimal = animals[this.state.currentIndex];
-    const { currentDate, tabIndex } = this.state;
+    const { currentDate, tabIndex, selectedType } = this.state;
     const events = compose(filter(isRelatedToAnimal(currentAnimal)))(allEvents);
 
     return (
@@ -831,16 +869,24 @@ class Diary extends Component {
             loc={this.props.i18n.language}
             currentDate={currentDate}
           />
-          {this.renderGraph({ currentDate, currentAnimal })}
-
+          <MeasurementCategorySlider
+            selectedCategory={selectedType}
+            handleCategoryTypeChange={(type) =>
+              this.setState({
+                selectedType: type,
+              })
+            }
+          />
+          {this.renderGraph({ currentDate, currentAnimal, selectedType })}
           <ButtonFullWidth
             onPress={() =>
-              this.navigateTo(this.routes.startPainMeasurement, {
+              this.navigateTo(this.routes.chooseMeasurement, {
                 redirectPath: "Diary",
                 animal: this.props.data.animals[this.state.currentIndex]
               })
             }
-            label={t("addPainMeasurement")}
+            style={{ marginBottom: 20 }}
+            label={t("painMeasurement.misc.performMeasurement")}
           />
           {this.renderEvents(events, currentDate, tabIndex)}
 

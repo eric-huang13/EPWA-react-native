@@ -31,11 +31,11 @@
       "fetchUserDataError": "The user data retrieved from the server is malformed. Please report this issue to our support team."
     },
     "auth": {
-      "login": "Log in",
-      "loginGoogle": "Log in with Google",
-      "loginFB": "Log in with Facebook",
-      "loginApple": "Log in with Apple",
-      "loginEmail": "Log in with email",
+      "login": "Sign in",
+      "loginGoogle": "Sign in with Google",
+      "loginFB": "Sign in with Facebook",
+      "loginApple": "Sign in with Apple",
+      "loginEmail": "Sign in with email",
       "or": "OR",
       "noAccountRegister": "No account? Register here >",
       "register": "Register",
@@ -323,6 +323,11 @@
             ],
             "mouthCorners": "Corners of mouth",
             "mouthCornersOptions": ["Relaxed", "Lifted"],
+            "chronicMouthCorners": "Corners of mouth",
+            "chronicMouthCornersOptions": [
+              "Relaxed",
+              "Lifted"
+            ],
             "muscleToneHead": "Muscle tone head",
             "muscleToneHeadOptions": [
               "No fasciculations or increased tension",
@@ -340,11 +345,81 @@
               "Abnormal position: hanging down",
               "Abnormal position: backwards"
             ],
+            "generalAppearance": "General appearance",
+            "generalAppearanceOptions": [
+              "Alert and/or interacting with mate/group",
+              "Mildly depressed and/or restless and/or decreased interaction with group mate/group",
+              "Moderately depressed and/or aggressive or no reaction mate/group",
+              "Severely depressed"
+            ],
+            "bodyPosture": "Body posture",
+            "bodyPostureOptions": [
+              "Quietly standing and/or one hind leg resting",
+              "Slightly tucked up abdomen",
+              "Extremely tucked up abdomen and/or stretching limbs/body and/or mild muscle tremors",
+              "Extremely tucked up abdomen and/or stretching limbs/body and  extreme muscle tremors"
+            ],
+            "weightDistribution": "Weight distribution",
+            "weightDistributionOptions": [
+              "Normal weight distribution",
+              "Less weight on one leg and/or body displaced slightly backwards",
+              "Less weight on one leg, with only the tip on the ground",
+              "One leg obviously lifted and/or body obviously displaced backwards"
+            ],
+
+            "weightShiftingOfFrontAndHindLimbs": "Weight shifting of front and hind limbs",
+            "weightShiftingOfFrontAndHindLimbsOptions": [
+              "Not seen",
+              "Mild weight shifting",
+              "Moderate weight shifting",
+              "Severe weight shifting"
+            ],
+            "headCarriage": "Head carriage",
+            "headCarriageOptions": [
+              "Ear base above withers or eats/drinks (from the ground)",
+              "Ear base at level of the withers",
+              "Ear base below the withers",
+              "Nose to the ground (not eating)"
+            ],
+            "muscles": "Muscles (epaxial, gluteal, hamstring and cervical muscles)",
+            "musclesOptions": [
+              "Symmetric muscles, no muscle loss",
+              "Mild muscle loss",
+              "Moderate muscle loss",
+              "Obvious (a)symmetric muscle loss"
+            ],
+            "painReactionToPalpationOfTheBack": "Pain reaction to palpation of the back",
+            "painReactionToPalpationOfTheBackOptions": [
+              "No reaction to palpation",
+              "Mild reaction to palpation",
+              "Moderate reaction to palpation",
+              "Severe reaction to palpation (ears backward, tends to bite)"
+            ],
+            "painReactionToStandardizedFlexionOfFrontAndHindLimbs": "Pain reaction to standardized flexion of front and hind limbs",
+            "painReactionToStandardizedFlexionOfFrontAndHindLimbsOptions": [
+              "No reaction to standardized flexion of front limbs",
+              "Mild reaction to standardized flexion of front limbs",
+              "Moderate reaction to standardized flexion of front limbs",
+              "Severe reaction to standardized flexion of front limbs"
+            ],
+            "carrotappleTest": "Carrot/apple test",
+            "carrotappleTestOptions": [
+              "Normal biting and eating of carrot/apple",
+              "Reluctant to or difficulties with eating carrot/apple",
+              "Does not want to eat the carrot/apple"
+            ],
+            "movement": "Movement",
+            "movementOptions": [
+              "No reluctance to move and normal gait",
+              "Mildly abnormal gait (1-2 out of 5 lameness) and/or stiff walk, not reluctant",
+              "Reluctance to walk when motivated and/or severely abnormal gait (3-5 out of 5 lameness)",
+              "Does not want to walk or is lying down"
+            ],
             "responseToAuditoryStimulus": "Ears, response to auditory stimulus",
             "responseToAuditoryStimulusOptions": [
-              "Clear response with both ears or ear closest to source",
+              "Orientation towards sound/clear response with both ears or ear closest to source",
               "Delayed/reduced response to sounds",
-              "No response to sounds"
+              "Backward position, no response to sounds"
             ]
           },
           "head": "Head",
@@ -369,19 +444,90 @@
           "nostrilsOptions": [
             "Relaxed",
             "Mildly opened",
-            "Obviously more opened , nostril flaring and possibly audible breathing"
+            "Obviously more opened, nostril flaring and possibly audible breathing"
           ],
-          "mouthCorners": "Corners of mouth",
-          "mouthCornersOptions": [
+          "chronicMouthCorners": "Corners of mouth",
+          "chronicMouthCornersOptions": [
             "Relaxed",
-            "Lifted slightly",
-            "Obviously lifted"
+            "Lifted"
           ],
           "muscleToneHead": "Muscle tone head",
           "muscleToneHeadOptions": [
             "No fasciculations or increased tension",
             "Mild fasciculations or increased tension",
             "Obvious fasciculations or increased tension"
+          ],
+          "mouthCorners": "Corners of mouth",
+          "mouthCornersOptions": ["Relaxed", "Lifted"],
+          "generalAppearance": "General appearance",
+          "generalAppearanceOptions": [
+            "Alert and/or interacting with mate/group",
+            "Mildly depressed and/or restless and/or decreased interaction with group mate/group",
+            "Moderately depressed and/or aggressive or no reaction mate/group",
+            "Severely depressed"
+          ],
+          "bodyPosture": "Body posture",
+          "bodyPostureOptions": [
+            "Quietly standing and/or one hind leg resting",
+            "Slightly tucked up abdomen",
+            "Extremely tucked up abdomen and/or stretching limbs/body and/or mild muscle tremors",
+            "Extremely tucked up abdomen and/or stretching limbs/body and  extreme muscle tremors"
+          ],
+          "weightDistribution": "Weight distribution",
+          "weightDistributionOptions": [
+            "Normal weight distribution",
+            "Less weight on one leg and/or body displaced slightly backwards",
+            "Less weight on one leg, with only the tip on the ground",
+            "One leg obviously lifted and/or body obviously displaced backwards"
+          ],
+
+          "weightShiftingOfFrontAndHindLimbs": "Weight shifting of front and hind limbs",
+          "weightShiftingOfFrontAndHindLimbsOptions": [
+            "Not seen",
+            "Mild weight shifting",
+            "Moderate weight shifting",
+            "Severe weight shifting"
+          ],
+          "headCarriage": "Head carriage",
+          "headCarriageOptions": [
+            "Ear base above withers or eats/drinks (from the ground)",
+            "Ear base at level of the withers",
+            "Ear base below the withers",
+            "Nose to the ground (not eating)"
+          ],
+          "muscles": "Muscles (epaxial, gluteal, hamstring and cervical muscles)",
+          "musclesOptions": [
+            "Symmetric muscles, no muscle loss",
+            "Mild muscle loss",
+            "Moderate muscle loss",
+            "Obvious (a)symmetric muscle loss"
+          ],
+          "painReactionToPalpationOfTheBack": "Pain reaction to palpation of the back",
+          "painReactionToPalpationOfTheBackOptions": [
+            "No reaction to palpation",
+            "Mild reaction to palpation",
+            "Moderate reaction to palpation",
+            "Severe reaction to palpation (ears backward, tends to bite)"
+          ],
+          "painReactionToStandardizedFlexionOfFrontAndHindLimbs": "Pain reaction to standardized flexion of front and hind limbs",
+          "painReactionToStandardizedFlexionOfFrontAndHindLimbsOptions": [
+            "No reaction to standardized flexion of front limbs",
+            "Mild reaction to standardized flexion of front limbs",
+            "Moderate reaction to standardized flexion of front limbs",
+            "Severe reaction to standardized flexion of front limbs"
+          ],
+          "carrotappleTest": "Carrot/apple test",
+          "carrotappleTestOptions": [
+            "Normal biting and eating of carrot/apple",
+            "Reluctant to or difficulties with eating carrot/apple",
+            "Does not want to eat the carrot/apple"
+          ],
+          "movement": "Movement",
+          "movementOptions": [
+            "No reluctance to move and normal gait",
+            "Mildly abnormal gait (1-2 out of 5 lameness) and/or stiff walk, not reluctant",
+            "Reluctance to walk when motivated and/or severely abnormal gait (3-5 out of 5 lameness)",
+            "Does not want to walk or is lying down"
           ],
           "ears": "Ears (response to auditory stimulus)",
           "earsOptions": [
@@ -464,6 +610,7 @@
       },
       "misc": {
         "headerTitle": "Pain measurement",
+        "chronicHeaderTitle": "Chronic Pain measurement",
         "recentMeasurementTitle": "Latest pain measurement",
         "horse": "Horse",
         "horse_plural": "Horses",
@@ -473,12 +620,15 @@
         "facialExpressions": "Facial expressions",
         "adviceTitle": "Advice",
         "adviceText": "Do the pain measurement at a time when you know there’s nothing wrong with your {{animalType}}. That way, you’ll know what to expect, should you ever need to use the app in an emergency.\n\nWhen observing your {{animalType}} during the first part of the measurement, stand quietly at a short distance from your {{animalType}}, preferably outside of the box.\n\nThis app is based on research into different types of acute pain and can be used by veterinarians as well as {{animalType}} owners. The results for both groups are scientifically reliable. However, considering the subject-specific background of veterinarians, they will be shown slightly different parameters.\n\nThere are 2 different scoring options:",
+        "chronicAdviceText": "Do the pain measurement at a time when you know there’s nothing wrong with your {{animalType}}. That way, you’ll know what to expect, should you ever need to use the app in an emergency.\n\nWhen observing your {{animalType}} during the first part of the measurement, stand quietly at a short distance from your {{animalType}}, preferably outside of the box.\n\nThis app is based on research into different types of acute pain and can be used by veterinarians as well as {{animalType}} owners. The results for both groups are scientifically reliable. However, considering the subject-specific background of veterinarians, they will be shown slightly different parameters.",
         "compositePainScaleTitle": "Composite pain scale",
         "compositePainScaleExplanation": "The Composite Pain Scale is based on scientific research and has been shown to provide reliable information in horses with acute colic and in donkeys with acute orthopedic pain, postoperative pain and pain from colic. The scale assesses the body language of the animal using behavioural, interaction and physiological parameters. A total score higher than {{compositeMeasurementScoreThreshold}} can be an indication for acute pain. The higher the score, the more likely it is that the animal is experiencing acute pain.",
         "facialExpressionsTitle": "Facial expressions",
         "facialExpressionExplanation": "The facial expression scale is based on scientific research and has been shown to provide reliable information in horses with acute colic, facial pain and acute orthopedic pain and in donkeys with acute orthopedic pain, postoperative pain and acute colic. The scale has also been shown to provide reliable information in donkeys with acute pain from colic and facial pain. The scale assesses the animal’s mimicry that may be shown when the animal is in pain. A total score higher than {{facialMeasurementThresholdScore}} can indicate acute pain. The higher the score, the more likely the {{animalType}} is experiencing acute pain.",
         "adviceCompositeMeasurementPain": "It looks like your {{animalType}} is experiencing acute pain. Please consider contacting your vet.",
         "adviceCompositeMeasurementNoPain": "It looks like your {{animalType}} isn’t experiencing acute pain at this point in time.",
+        "adviceCompositeChronicMeasurementPain": "It looks like your {{animalType}} is experiencing chronic pain. Please consider contacting your vet.",
+        "adviceCompositeChronicMeasurementNoPain": "It looks like your {{animalType}} isn’t experiencing chronic pain at this point in time.",
         "adviceFacialExpressionMeasurementPain": "It looks like your {{animalType}} is experiencing acute pain. Please consider contacting your vet.",
         "adviceFacialExpressionMeasurementNoPain": "It looks like your {{animalType}} isn’t experiencing acute pain at this point in time.",
         "areYouVet": "Are you a vet?",
@@ -507,7 +657,11 @@
         "score": "Score",
         "ourAdvice": "Our advice",
         "startMeasurement": "Start the measurement",
-        "showOverview": "See all measurements"
+        "showOverview": "See all measurements",
+        "performMeasurement": "Perform Measurement",
+        "chooseMeasurementType": "Choose Measurement Type",
+        "acutePMTitle": "Acute Pain Measurement",
+        "chronicPMTitle": "Chronic Pain Measurement"
       }
     },
     "ppidCheck": {
@@ -1196,8 +1350,10 @@
     "lookBack": "Look back",
     "today": "Today",
     "lookAhead": "Look ahead",
-    "graphTitle": "Recent pain measurements",
-    "noRecentPainMeasurements": "No recent pain measurements",
+    "graphTitle": "Recent {{category}}",
+    "noRecentPainMeasurements": "No recent {{category}}",
+    "categoryAcutePainMeasurement": "Acute pain measurement",
+    "categoryChronicPainMeasurement": "Chronic pain measurement",
     "addPainMeasurement": "Add pain measurement",
     "recurring": "Recurring",
     "recurringTill": "Recurring till",
@@ -1208,6 +1364,7 @@
     "yearly": "Yearly",
     "facialMeasure": "Facial pain",
     "compositeMeasure": "Composite pain",
+    "chronicMeasure": "Chronic pain",
     "emptyPainMeasurementList": "No pain mesurements to display",
     "diaryFeeding": "Feeding",
     "movement": "Exercise",
@@ -1219,6 +1376,7 @@
     "confirmDeleteAccountInfo": "This will remove all your data and can't be restored",
     "categories": {
       "painMeasurement": "Pain measurement",
+      "chronicPainMeasurement": "Chronic pain measurement",
       "feeding": "Feeding",
       "medication": "My vet",
       "housing": "Turnout",

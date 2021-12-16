@@ -136,8 +136,8 @@ class SignUpScreen extends React.Component {
     const { dispatch, t } = this.props;
     const { formState, currentlySending } = this.props.data;
 
-    const renderGoogleLogo = () => <Image source={googleLogo} />;
-    const renderAppleLogo = () => <Image source={appleLogo} />;
+    const renderGoogleLogo = () => <Image source={googleLogo}  style={s.socialIcon} />;
+    const renderAppleLogo = () => <Image source={appleLogo} style={s.appleIcon}  style={s.socialIcon} />;
     const renderLoginLink = () => (
       <Touchable onPress={this.handleLoginRequest}>
         <Text style={[s.forgottenPassword, { ...fonts.style.cta }]}>
@@ -169,18 +169,19 @@ class SignUpScreen extends React.Component {
                   backgroundColor={colors.egyptianBlue}
                   label={t("auth.loginGoogle")}
                   onPress={this.handleGoogleLoginRequest}
-                  icon={renderGoogleLogo()}
+                  socialIcon={renderGoogleLogo()}
                   containerStyles={{ paddingHorizontal: 18, alignItems: "center" }}
-                  textStyles={{ textAlign: "left" }}
+                  textStyles={{ textAlign: "left", marginLeft: 35, }}
                 />
                 <Button
                   style={s.facebookBtn}
                   backgroundColor={colors.egyptianBlue}
                   label={t("auth.loginFB")}
                   onPress={this.handleFacebookLoginRequest}
-                  iconName={iconMap.facebook}
+                  socialIconName={iconMap.facebook}
+                  iconColor={'white'}
                   containerStyles={{ paddingHorizontal: 18 }}
-                  textStyles={{ textAlign: "left" }}
+                  textStyles={{ textAlign: "left", marginLeft: 43, }}
                 />
                 {Platform.OS == "ios" &&
                   <Button
@@ -188,9 +189,9 @@ class SignUpScreen extends React.Component {
                     backgroundColor={colors.egyptianBlue}
                     label={t("auth.loginApple")}
                     onPress={this.handleAppleLoginRequest}
-                    icon={renderAppleLogo()}
+                    socialIcon={renderAppleLogo()}
                     containerStyles={{ paddingHorizontal: 18, alignItems: "center" }}
-                    textStyles={{ textAlign: "left" }}
+                    textStyles={{ textAlign: "left", marginLeft: 35, }}
                   />
                 }
               </View>

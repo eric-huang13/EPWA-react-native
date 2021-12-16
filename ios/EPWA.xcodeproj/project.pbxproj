@@ -113,6 +113,7 @@
 		4E5F021A34BB41BA8617A37A /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		4E7B93D72621354300338A07 /* EPWARelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = EPWARelease.entitlements; path = EPWA/EPWARelease.entitlements; sourceTree = "<group>"; };
 		4E9A9A0524088BE4009B9DF4 /* RNCamera.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RNCamera.xcodeproj"; sourceTree = "<group>"; };
+		4EDB276A270165D2002845CA /* EPWADebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = EPWADebug.entitlements; path = EPWA/EPWADebug.entitlements; sourceTree = "<group>"; };
 		56F9F051B47549B0AC345880 /* SourceSerifPro-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SourceSerifPro-Regular.ttf"; path = "../resources/fonts/SourceSerifPro-Regular.ttf"; sourceTree = "<group>"; };
 		5DBFF94841AC4A7AB0BD1BE2 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		60AA3A132373818C006A554E /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
@@ -269,6 +270,7 @@
 		13B07FAE1A68108700A75B9A /* EPWA */ = {
 			isa = PBXGroup;
 			children = (
+				4EDB276A270165D2002845CA /* EPWADebug.entitlements */,
 				4E7B93D72621354300338A07 /* EPWARelease.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -701,11 +703,13 @@
 			baseConfigurationReference = 6283133371B3B76ADC44E0DA /* Pods-EPWA.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = EPWA/EPWADebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 87;
+				CURRENT_PROJECT_VERSION = 91;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = Z39492TXR7;
+				"EXCLUDED_ARCHS[sdk=*]" = arm64;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -812,7 +816,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-image-picker\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/yoga\"",
 				);
-				MARKETING_VERSION = 1.6.5;
+				MARKETING_VERSION = 1.6.6;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -833,8 +837,9 @@
 				CODE_SIGN_ENTITLEMENTS = EPWA/EPWARelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 87;
+				CURRENT_PROJECT_VERSION = 91;
 				DEVELOPMENT_TEAM = Z39492TXR7;
+				EXCLUDED_ARCHS = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -941,7 +946,8 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-image-picker\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/yoga\"",
 				);
-				MARKETING_VERSION = 1.6.5;
+				MARKETING_VERSION = 1.6.6;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

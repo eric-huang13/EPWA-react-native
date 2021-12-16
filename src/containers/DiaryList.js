@@ -37,7 +37,6 @@ export default function EventsList({
   return (
     <View style={{ paddingRight: 20, minHeight: 200 }}>
       {events.map((event, index) => {
-        //console.log("check at the new list item", event);
         return (
           <NewListItem
             {...event}
@@ -113,7 +112,7 @@ export class AccordionView extends Component {
     </View>
   );
 
-  _renderContent = (section, index, isActive) => {
+  _renderContent = section => {
     return (
       <View
         style={{
@@ -122,7 +121,6 @@ export class AccordionView extends Component {
         }}
       >
         {section.events.map(event => {
-          //console.log("check at the new list item", event);
           return (
             <NewListItem
               {...event}
@@ -239,9 +237,7 @@ export function NewListItem({
     <View style={[styles.itemContainer, width]}>
       <View style={styles.contentContainer}>
         {category !== "feeding" ? (
-          <Text style={[styles.title, completed ? styles.completed : ""]}>
-            {eventTitle}
-          </Text>
+          <Text style={styles.title}>{eventTitle}</Text>
         ) : (
           <Text
             style={[styles.title, feedingCompleted ? styles.completed : ""]}
@@ -260,14 +256,7 @@ export function NewListItem({
               startDate={startDate}
               endDate={endDate}
             />
-            <View
-              style={[
-                styles.itemContentContainer,
-                completed ? styles.completed : ""
-              ]}
-            >
-              {content}
-            </View>
+            <View style={styles.itemContentContainer}>{content}</View>
           </View>
         ) : (
           content
@@ -275,7 +264,7 @@ export function NewListItem({
       </View>
       <View>
         {category !== "feeding" ? (
-          <View style={[styles.time, completed ? styles.completed : null]}>
+          <View style={styles.time}>
             <Text style={{ fontSize: 14, fontWeight: "700" }}>{time}</Text>
           </View>
         ) : (
@@ -310,6 +299,19 @@ function ItemContent({
     case eventCategories.painMeasurement:
       return (
         <PainMeasureContent
+          type={type}
+          t={t}
+          navigateTo={navigateTo}
+          findEventById={findEventById}
+          id={id}
+          completed={completed}
+          data={data}
+          renderingDate={renderingDate}
+        />
+      );
+    case eventCategories.chronicPainMeasurement:
+      return (
+        <ChronicPainMeasureContent
           type={type}
           t={t}
           navigateTo={navigateTo}
@@ -435,6 +437,45 @@ function PainMeasureContent({
             : navigateTo("DiaryPainMeasurementForm", {
                 initialValue: findEventById(+localId),
                 renderingDate
+              })
+        }
+      >
+        <View style={styles.itemContent}>
+          <Text style={{ ...fonts.style.normal, width: width - 160 }}>
+            {"- "}
+            {painMeasurementType}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    </React.Fragment>
+  );
+}
+
+function ChronicPainMeasureContent({
+  type,
+  navigateTo,
+  t,
+  findEventById,
+  id,
+  completed,
+  data
+}) {
+  const localId =
+    typeof id === "string" && id.includes("_") ? id.split("_")[0] : id;
+  const isFacialExpression = type === eventTypes.facialExpression;
+  const painMeasurementType = t("chronicMeasure");
+  const { width } = Dimensions.get("window");
+  return (
+    <React.Fragment>
+      <PainMesIcon isFacialExpression={isFacialExpression} />
+      <TouchableOpacity
+        onPress={() =>
+          completed
+            ? navigateTo("ChronicPainMeasurementDetails", {
+                measurement: { data, type, id }
+              })
+            : navigateTo("DiaryPainMeasurementForm", {
+                initialValue: findEventById(+localId)
               })
         }
       >

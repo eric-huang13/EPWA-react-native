@@ -317,12 +317,12 @@
               ],
               "nostrils": "Fosas nasales",
               "nostrilsOptions": [
-                "Relajadas",
-                "Fosas nasales ligeramente abiertas y levantadas, las arrugas son visibles",
-                "Fosas nasales evidentemente más abiertas y dilatadas, respiración audible"
+                "Relajado",
+                "Ligeramente abierto",
+                "Obviamente más abierto, orificio nasal ensanchado y posible respiración audible"
               ],
               "mouthCorners": "Comisuras de la boca",
-              "mouthCornersOptions": ["Relajadas", "Levantadas"],
+              "mouthCornersOptions": ["Relajadas", "Ligeramente elevadas"],
               "muscleToneHead": "Cabeza de tono muscular",
               "muscleToneHeadOptions": [
                 "Sin fasciculaciones ni aumento de la tensión",
@@ -342,9 +342,84 @@
               ],
               "responseToAuditoryStimulus": "Orejas, respuesta al estímulo auditivo",
               "responseToAuditoryStimulusOptions": [
-                "Respuesta clara con ambas orejas o la oreja más cercana a la fuente",
-                "Respuesta retardada/reducida a los sonidos",
-                "Sin respuesta a los sonidos"
+                "Orientación hacia el sonido/Respuesta clara con ambas orejas o con la oreja más cercana a la fuente",
+                "Respuesta retrasada/reducida a los sonidos",
+                "Posición hacia atrás, sin respuesta a los sonidos"
+              ],
+              "chronicMouthCorners": "Comisuras de la boca",
+              "chronicMouthCornersOptions": [
+                "Relajadas",
+                "Ligeramente elevadas"
+              ],
+              "generalAppearance": "General appearance",
+              "generalAppearanceOptions": [
+                "Alert and/or interacting with mate/group",
+                "Mildly depressed and/or restless and/or decreased interaction with group mate/group",
+                "Moderately depressed and/or aggressive or no reaction mate/group",
+                "Severely depressed"
+              ],
+              "bodyPosture": "Body posture",
+              "bodyPostureOptions": [
+                "Quietly standing and/or one hind leg resting",
+                "Slightly tucked up abdomen",
+                "Extremely tucked up abdomen and/or stretching limbs/body and/or mild muscle tremors",
+                "Extremely tucked up abdomen and/or stretching limbs/body and  extreme muscle tremors"
+              ],
+              "weightDistribution": "Weight distribution",
+              "weightDistributionOptions": [
+                "Normal weight distribution",
+                "Less weight on one leg and/or body displaced slightly backwards",
+                "Less weight on one leg, with only the tip on the ground",
+                "One leg obviously lifted and/or body obviously displaced backwards"
+              ],
+  
+              "weightShiftingOfFrontAndHindLimbs": "Weight shifting of front and hind limbs",
+              "weightShiftingOfFrontAndHindLimbsOptions": [
+                "Not seen",
+                "Mild weight shifting",
+                "Moderate weight shifting",
+                "Severe weight shifting"
+              ],
+              "headCarriage": "Head carriage",
+              "headCarriageOptions": [
+                "Ear base above withers or eats/drinks (from the ground)",
+                "Ear base at level of the withers",
+                "Ear base below the withers",
+                "Nose to the ground (not eating)"
+              ],
+              "muscles": "Muscles (epaxial, gluteal, hamstring and cervical muscles)",
+              "musclesOptions": [
+                "Symmetric muscles, no muscle loss",
+                "Mild muscle loss",
+                "Moderate muscle loss",
+                "Obvious (a)symmetric muscle loss"
+              ],
+              "painReactionToPalpationOfTheBack": "Pain reaction to palpation of the back",
+              "painReactionToPalpationOfTheBackOptions": [
+                "No reaction to palpation",
+                "Mild reaction to palpation",
+                "Moderate reaction to palpation",
+                "Severe reaction to palpation (ears backward, tends to bite)"
+              ],
+              "painReactionToStandardizedFlexionOfFrontAndHindLimbs": "Pain reaction to standardized flexion of front and hind limbs",
+              "painReactionToStandardizedFlexionOfFrontAndHindLimbsOptions": [
+                "No reaction to standardized flexion of front limbs",
+                "Mild reaction to standardized flexion of front limbs",
+                "Moderate reaction to standardized flexion of front limbs",
+                "Severe reaction to standardized flexion of front limbs"
+              ],
+              "carrotappleTest": "Carrot/appleÂ test",
+              "carrotappleTestOptions": [
+                "Normal biting and eating of carrot/apple",
+                "Reluctant to or difficulties with eating carrot/apple",
+                "Does not want to eat the carrot/apple"
+              ],
+              "movement": "Movement",
+              "movementOptions": [
+                "No reluctance to move and normal gait",
+                "Mildly abnormal gait (1-2 out of 5 lameness) and/or stiff walk, not reluctant",
+                "Reluctance to walk when motivated and/or severely abnormal gait (3-5 out of 5 lameness)",
+                "Does not want to walk or is lying down"
               ]
             },
             "head": "Cabeza",
@@ -374,8 +449,7 @@
             "mouthCorners": "Comisuras de la boca",
             "mouthCornersOptions": [
               "Relajadas",
-              "Ligeramente levantadas",
-              "Evidentemente levantadas"
+              "Ligeramente elevadas"
             ],
             "muscleToneHead": "Cabeza de tono muscular",
             "muscleToneHeadOptions": [
@@ -388,6 +462,77 @@
               "Orientación hacia el sonido/respuesta clara con ambas orejas o la oreja más cercana a la fuente",
               "Respuesta retardada/reducida a los sonidos",
               "Posición hacia atrás, sin respuesta a los sonidos"
+            ],
+            "chronicMouthCorners": "Comisuras de la boca",
+            "chronicMouthCornersOptions": ["Relajadas", "Ligeramente elevadas"],
+            "generalAppearance": "Aspecto general",
+            "generalAppearanceOptions": [
+              "Alerta y/o interacción con su compañero o grupo",
+              "Leve depresión y/o agitación y/o menor interacción con su compañero o grupo",
+              "Depresión moderada y/o reacción agresiva o ninguna reacción con su compañero o grupo",
+              "Depresión severa"
+            ],
+            "bodyPosture": "Postura corporal",
+            "bodyPostureOptions": [
+              "Erguido quieto y/o apoyado en una pata trasera",
+              "Abdomen ligeramente contraído",
+              "Abdomen extremadamente contraído y/o estiramiento de las extremidades/del cuerpo y/o temblores musculares suaves",
+              "Abdomen extremadamente contraído y/o estiramiento de las extremidades/del cuerpo y/o temblores musculares extremos"
+            ],
+            "weightDistribution": "Distribución del peso",
+            "weightDistributionOptions": [
+              "Distribución del peso normal",
+              "Menos peso en una pata y/o cuerpo desplazado ligeramente hacia atrás",
+              "Menos peso en una pata, solo con la punta apoyada en el suelo",
+              "Una pata obviamente elevada y/o el cuerpo obviamente desplazado hacia atrás"
+            ],
+            "weightShiftingOfFrontAndHindLimbs": "Traslado del peso de las extremidades delanteras y traseras",
+            "weightShiftingOfFrontAndHindLimbsOptions": [
+              "No constatado",
+              "Traslado leve del peso",
+              "Traslado moderado del peso",
+              "Traslado severo del peso"
+            ],
+            "headCarriage": "Porte de la cabeza",
+            "headCarriageOptions": [
+              "Base de las orejas por encima de la cruz o come/bebe (del suelo)",
+              "Base de las orejas al nivel de la cruz",
+              "Base de las orejas por debajo de la cruz",
+              "Hocico hacia el suelo (no al comer)"
+            ],
+            "muscles": "Músculos (epaxiales, glúteos, isquiotibiales y cervicales)",
+            "musclesOptions": [
+              "Músculos simétricos, sin pérdida muscular",
+              "Pérdida muscular leve",
+              "Pérdida muscular moderada",
+              "Pérdida muscular copia (a)simétrica"
+            ],
+            "painReactionToPalpationOfTheBack": "Reacción de dolor a la palpación en la espalda",
+            "painReactionToPalpationOfTheBackOptions": [
+              "Ninguna reacción a la palpación",
+              "Reacción leve a la palpación",
+              "Reacción moderada a la palpación",
+              "Reacción severa a la palpación (orejas hacia atrás, tendencia a morder)"
+            ],
+            "painReactionToStandardizedFlexionOfFrontAndHindLimbs": "Reacción de dolor a la flexión estándar de las extremidades delanteras y traseras",
+            "painReactionToStandardizedFlexionOfFrontAndHindLimbsOptions": [
+              "Sin reacción a la flexión estándar de las extremidades delanteras",
+              "Reacción leve a la flexión estándar de las extremidades delanteras",
+              "Reacción moderada a la flexión estándar de las extremidades delanteras",
+              "Reacción severa a la flexión estándar de las extremidades delanteras"
+            ],
+            "carrotappleTest": "Test de la zanahoria/manzana",
+            "carrotappleTestOptions": [
+              "Muerde y come la zanahoria/manzana con normalidad",
+              "Rechazo o dificultades al comer la zanahoria/manzana",
+              "No quiere comer la zanahoria/manzana"
+            ],
+            "movement": "Movimiento",
+            "movementOptions": [
+              "No rehúsa el movimiento y presenta un paso normal",
+              "Paso ligeramente anormal (cojera 1-2 de 5) y/o caminar rígido, sin rechazo",
+              "Rechaza caminar cuando se le motiva y/o presenta un paso muy anormal (cojera 3-5 de 5)",
+              "No quiere caminar o se queda echado"
             ]
           }
         },
@@ -464,6 +609,7 @@
         },
         "misc": {
           "headerTitle": "Medición del dolor",
+          "chronicHeaderTitle": "Medición del dolor crónico",
           "recentMeasurementTitle": "Última medición del dolor",
           "horse": "Caballo",
           "horse_plural": "Caballos",
@@ -473,12 +619,15 @@
           "facialExpressions": "Expresiones faciales",
           "adviceTitle": "Consejo",
           "adviceText": "Realiza la medición del dolor en un momento en el que sepas que tu {{animalType}} no tiene nada de malo. De esa manera, sabrás qué esperar si alguna vez necesitas usar la aplicación en caso de emergencia. Cuando observes a tu {{animalType}} durante la primera parte de la medición, quédate quieto en silencio a una corta distancia de tu {{animalType}}, preferiblemente fuera de la jaula. Esta aplicación se basa en la investigación de diferentes tipos de dolor agudo y puede ser utilizada tanto por veterinarios como por propietarios de {{animalType}}. Los resultados de ambos grupos son científicamente fiables. Sin embargo, teniendo en cuenta los antecedentes individuales de los veterinarios, se les mostrarán parámetros ligeramente diferentes. Hay 2 opciones de puntuación diferentes:",
+          "chronicAdviceText": "Realice la medición del dolor en un momento en el que sepa que no va nada mal con su {{animalType}}. De este modo, sabrá qué esperar si alguna vez necesita usar la app en una emergencia.\n\nAl observar su {{animalType}} durante la primera parte de la medición, manténgase quieto a poca distancia de su {{animalType}}, preferiblemente fuera de la caja.\n\nEsta app se basa en la investigación de diferentes tipos de dolor agudo, y pueden usarla tanto veterinarios como dueños de {{animalType}}. Los resultados para ambos grupos son científicamente fiables. Sin embargo, teniendo en cuenta la formación específica de los veterinarios, a ellos se les mostrarán unos parámetros ligeramente diferentes.",
           "compositePainScaleTitle": "Escala compuesta del dolor",
           "compositePainScaleExplanation": "La escala compuesta de dolor se basa en investigaciones científicas y se ha demostrado que proporciona información fiable en caballos con cólico agudo y en asnos con dolor ortopédico agudo, dolor posoperatorio y dolor de cólico. La escala evalúa el lenguaje corporal del animal utilizando parámetros conductuales, de interacción y fisiológicos. Una puntuación total superior a {{compositeMeasurementScoreThreshold}} puede ser una indicación de dolor agudo. Cuanto mayor sea la puntuación, más probable es que el animal experimente un dolor agudo.",
           "facialExpressionsTitle": "Expresiones faciales",
           "facialExpressionExplanation": "La escala de expresión facial se basa en investigaciones científicas y se ha observado que proporciona información fiable en caballos con cólico agudo, dolor facial y dolor ortopédico agudo y en asnos con dolor ortopédico agudo, dolor posoperatorio y cólico agudo. También se ha observado que la escala proporciona información fiable en asnos con dolor agudo por cólicos y dolor facial. La escala evalúa el mimetismo del animal que puede mostrarse cuando el animal tiene dolor. Una puntuación total superior a {{facialMeasurementThresholdScore}} puede indicar dolor agudo. Cuanto mayor sea la puntuación, más probable es que el {{animalType}} experimente dolor agudo.",
           "adviceCompositeMeasurementPain": "Parece que el {{animalType}} está experimentando un dolor agudo. Por favor, considera contactar a tu veterinario.",
           "adviceCompositeMeasurementNoPain": "Parece que el {{animalType}} no está experimentando un dolor agudo en este momento.",
+          "adviceCompositeChronicMeasurementPain": "Parece que su {{animalType}} esta sufriendo dolor crónico. Considere la posibilidad de contactar con su veterinario.",
+          "adviceCompositeChronicMeasurementNoPain": "Parece que su {{animalType}} no está sufriendo dolor crónico en este momento.",
           "adviceFacialExpressionMeasurementPain": "Parece que el {{animalType}} está experimentando un dolor agudo. Por favor, considera contactar a tu veterinario.",
           "adviceFacialExpressionMeasurementNoPain": "Parece que el {{animalType}} no está experimentando un dolor agudo en este momento.",
           "areYouVet": "¿Eres veterinario?",
@@ -507,7 +656,11 @@
           "score": "Puntuar",
           "ourAdvice": "Nuestro consejo",
           "startMeasurement": "Iniciar la medición",
-          "showOverview": "Ver todas las medidas"
+          "showOverview": "Ver todas las mediciones",
+          "performMeasurement": "Realizar medición",
+          "chooseMeasurementType": "Seleccionar tipo de medición",
+          "acutePMTitle": "Medición del dolor agudo",
+          "chronicPMTitle": "Medición del dolor crónico"
         }
       },
       "ppidCheck": {
@@ -1194,8 +1347,10 @@
       "lookBack": "Mirar atrás",
       "today": "Hoy",
       "lookAhead": "Mirar hacia delante",
-      "graphTitle": "Mediciones recientes del dolor",
-      "noRecentPainMeasurements": "No hay mediciones recientes del dolor",
+      "graphTitle": "{{category}} reciente",
+      "noRecentPainMeasurements": "No hay una {{category}} reciente",
+      "categoryAcutePainMeasurement": "Medición del dolor agudo",
+      "categoryChronicPainMeasurement": "Medición del dolor crónico",
       "addPainMeasurement": "Añadir medición del dolor",
       "recurring": "Recurrente",
       "recurringTill": "Recurrente hasta",
@@ -1206,6 +1361,7 @@
       "yearly": "Anualmente",
       "facialMeasure": "Dolor facial",
       "compositeMeasure": "Dolor compuesto",
+      "chronicMeasure": "Dolor crónico",
       "emptyPainMeasurementList": "No hay mediciones del dolor que mostrar",
       "diaryFeeding": "Alimentación",
       "movement": "Ejercicio",
@@ -1217,6 +1373,7 @@
       "confirmDeleteAccountInfo": "Esto eliminará todos tus datos y no se puede restaurar",
       "categories": {
         "painMeasurement": "Medición del dolor",
+        "chronicPainMeasurement": "Medición del dolor crónico",
         "feeding": "Alimentación",
         "medication": "Mi veterinario",
         "housing": "Asistencia",

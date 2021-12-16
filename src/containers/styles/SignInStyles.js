@@ -46,5 +46,9 @@ export default StyleSheet.create({
   register: {
     color: colors.white,
     marginBottom: 20
-  }
+  },
+  socialIcon: {
+    width: 20,
+    height: 20,
+  },
 });

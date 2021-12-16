@@ -13,6 +13,7 @@ export const eventCategories = {
   feeding: "feeding",
   medication: "medication",
   painMeasurement: "painMeasurement",
+  chronicPainMeasurement: "chronicPainMeasurement",
   appointment: "appointment"
 };
 

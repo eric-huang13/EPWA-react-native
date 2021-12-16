@@ -318,13 +318,13 @@
             "nostrils": "Neusgaten",
             "nostrilsOptions": [
               "Ontspannen",
-              "Mild geopend, neusgaten iets opgetrokken, plooi tussen neusgaten zichtbaar",
-              "Duidelijk meer geopend, neusgaten trillen eventueel, mogelijk hoorbare ademhaling"
+              "Licht geopend",
+              "Duidelijk verder geopend, opengesperde neusgaten en mogelijk hoorbare ademhaling"
             ],
-            "mouthCorners": "Mondhoeken/lippen",
+            "mouthCorners": "Mondhoeken",
             "mouthCornersOptions": [
               "Ontspannen",
-              "Mondhoeken verstrakt en opgetrokken"
+              "Licht opgetrokken"
             ],
             "muscleToneHead": "Spiertonus hoofd",
             "muscleToneHeadOptions": [
@@ -345,9 +345,84 @@
             ],
             "responseToAuditoryStimulus": "Oren, reactie op geluidsstimulus",
             "responseToAuditoryStimulusOptions": [
-              "Duidelijke reactie met beide oren of met het oor dichtst bij de geluidsbron",
-              "Vertraagde/verminderde reactie op geluid",
-              "Geen reactie op geluid"
+              "Gericht op geluid/duidelijke reactie met beide oren of het oor dat zich het dichtst bij de geluidsbron bevindt",
+              "Vertraagde/verminderde reactie op geluiden",
+              "Naar achteren gericht, geen reactie op geluiden"
+            ],
+            "chronicMouthCorners": "Mondhoeken",
+            "chronicMouthCornersOptions": [
+              "Ontspannen",
+              "Licht opgetrokken"
+            ],
+            "generalAppearance": "General appearance",
+            "generalAppearanceOptions": [
+              "Alert and/or interacting with mate/group",
+              "Mildly depressed and/or restless and/or decreased interaction with group mate/group",
+              "Moderately depressed and/or aggressive or no reaction mate/group",
+              "Severely depressed"
+            ],
+            "bodyPosture": "Body posture",
+            "bodyPostureOptions": [
+              "Quietly standing and/or one hind leg resting",
+              "Slightly tucked up abdomen",
+              "Extremely tucked up abdomen and/or stretching limbs/body and/or mild muscle tremors",
+              "Extremely tucked up abdomen and/or stretching limbs/body and  extreme muscle tremors"
+            ],
+            "weightDistribution": "Weight distribution",
+            "weightDistributionOptions": [
+              "Normal weight distribution",
+              "Less weight on one leg and/or body displaced slightly backwards",
+              "Less weight on one leg, with only the tip on the ground",
+              "One leg obviously lifted and/or body obviously displaced backwards"
+            ],
+
+            "weightShiftingOfFrontAndHindLimbs": "Weight shifting of front and hind limbs",
+            "weightShiftingOfFrontAndHindLimbsOptions": [
+              "Not seen",
+              "Mild weight shifting",
+              "Moderate weight shifting",
+              "Severe weight shifting"
+            ],
+            "headCarriage": "Head carriage",
+            "headCarriageOptions": [
+              "Ear base above withers or eats/drinks (from the ground)",
+              "Ear base at level of the withers",
+              "Ear base below the withers",
+              "Nose to the ground (not eating)"
+            ],
+            "muscles": "Muscles (epaxial, gluteal, hamstring and cervical muscles)",
+            "musclesOptions": [
+              "Symmetric muscles, no muscle loss",
+              "Mild muscle loss",
+              "Moderate muscle loss",
+              "Obvious (a)symmetric muscle loss"
+            ],
+            "painReactionToPalpationOfTheBack": "Pain reaction to palpation of the back",
+            "painReactionToPalpationOfTheBackOptions": [
+              "No reaction to palpation",
+              "Mild reaction to palpation",
+              "Moderate reaction to palpation",
+              "Severe reaction to palpation (ears backward, tends to bite)"
+            ],
+            "painReactionToStandardizedFlexionOfFrontAndHindLimbs": "Pain reaction to standardized flexion of front and hind limbs",
+            "painReactionToStandardizedFlexionOfFrontAndHindLimbsOptions": [
+              "No reaction to standardized flexion of front limbs",
+              "Mild reaction to standardized flexion of front limbs",
+              "Moderate reaction to standardized flexion of front limbs",
+              "Severe reaction to standardized flexion of front limbs"
+            ],
+            "carrotappleTest": "Carrot/appleÂ test",
+            "carrotappleTestOptions": [
+              "Normal biting and eating of carrot/apple",
+              "Reluctant to or difficulties with eating carrot/apple",
+              "Does not want to eat the carrot/apple"
+            ],
+            "movement": "Movement",
+            "movementOptions": [
+              "No reluctance to move and normal gait",
+              "Mildly abnormal gait (1-2 out of 5 lameness) and/or stiff walk, not reluctant",
+              "Reluctance to walk when motivated and/or severely abnormal gait (3-5 out of 5 lameness)",
+              "Does not want to walk or is lying down"
             ]
           },
           "head": "Hoofdbeweging",
@@ -374,11 +449,10 @@
             "Mild geopend",
             "Duidelijk meer geopend, neusgaten trillen eventueel, mogelijk hoorbare ademhaling"
           ],
-          "mouthCorners": "Mondhoeken / lippen",
+          "mouthCorners": "Mondhoeken",
           "mouthCornersOptions": [
             "Ontspannen",
-            "Mondhoeken iets verstrakt/omhoog",
-            "Mondhoeken duidelijk verstrakt"
+            "Licht opgetrokken"
           ],
           "muscleToneHead": "Spierspanning hoofd",
           "muscleToneHeadOptions": [
@@ -391,6 +465,80 @@
             "Oriëntatie naar geluid/duidelijke reactie op geluid met beide oren of het oor dat het dichtste bij de geluidsbron is",
             "Vertraagde/verminderde reactie op geluid",
             "Oren naar achteren geplaatst, geen reactie op geluid"
+          ],
+          "chronicMouthCorners": "Mondhoeken",
+          "chronicMouthCornersOptions": [
+            "Ontspannen",
+            "Licht opgetrokken"
+          ],
+          "generalAppearance": "Algemeen voorkomen",
+          "generalAppearanceOptions": [
+            "Alert en/of interactie met groepsgenoot/groep",
+            "Licht somber en/of rusteloos en of minder interactie met groepgenoot/groep",
+            "Matig somber en/of agressief of geen reactie op groepsgenoot/groep",
+            "Zeer somber"
+          ],
+          "bodyPosture": "Lichaamshouding",
+          "bodyPostureOptions": [
+            "Staat rustig en/of met één achterbeen rustend",
+            "Licht opgetrokken buik",
+            "Extreem opgetrokken buik en/of gestrekt(e) ledematen/lichaam en/of lichte spiertrillingen",
+            "Extreem opgetrokken buik en/of gestrekt(e) ledematen/lichaam en extreme spiertrillingen"
+          ],
+          "weightDistribution": "Gewichtsverdeling",
+          "weightDistributionOptions": [
+            "Normale gewichtsverdeling",
+            "Minder gewicht op één been en/of lichaamsgewicht licht naar achteren verplaatst",
+            "Minder gewicht op één been, met alleen teen op de grond",
+            "Eén been duidelijk opgetrokken en/of lichaamsgewicht duidelijk naar achteren verplaatst"
+          ],
+          "weightShiftingOfFrontAndHindLimbs": "Gewichtsverplaatsing tussen voorste en achterste ledematen",
+          "weightShiftingOfFrontAndHindLimbsOptions": [
+            "Niet waargenomen",
+            "Lichte gewichtsverplaatsing",
+            "Matige gewichtsverplaatsing",
+            "Ernstige gewichtsverplaatsing"
+          ],
+          "headCarriage": "Houding van het hoofd",
+          "headCarriageOptions": [
+            "Oorbasis boven schofthoogte of eet/drinkt (van de grond)",
+            "Oorbasis op schofthoogte",
+            "Oorbasis onder schofthoogte",
+            "Neus naar de grond (zonder te eten)"
+          ],
+          "muscles": "Spieren (epaxiale, gluteale, hamstring- en nekspieren)",
+          "musclesOptions": [
+            "Symmetrische spieren, geen spierverlies",
+            "Licht spierverlies",
+            "Matig spierverlies",
+            "Duidelijk (a)symmetrisch spierverlies"
+          ],
+          "painReactionToPalpationOfTheBack": "Pijnreactie op palpatie van de rug",
+          "painReactionToPalpationOfTheBackOptions": [
+            "Geen reactie op palpatie",
+            "Lichte reactie op palpatie",
+            "Matige reactie op palpatie",
+            "Ernstige reactie op palpatie (oren naar achteren, bijtneiging)"
+          ],
+          "painReactionToStandardizedFlexionOfFrontAndHindLimbs": "Pijnreactie op standaardflexie van voorste en achterste ledematen",
+          "painReactionToStandardizedFlexionOfFrontAndHindLimbsOptions": [
+            "Geen reactie op standaardflexie van voorste ledematen",
+            "Lichte reactie op standaardflexie van voorste ledematen",
+            "Matige reactie op standaardflexie van voorste ledematen",
+            "Ernstige reactie op standaardflexie van voorste ledematen"
+          ],
+          "carrotappleTest": "Wortel/appel-test",
+          "carrotappleTestOptions": [
+            "Bijt normaal in/eet wortel/appel",
+            "Eet wortel/appel met tegenzin of moeite met eten",
+            "Wil de wortel/appel niet eten"
+          ],
+          "movement": "Beweging",
+          "movementOptions": [
+            "Geen tegenzin om te bewegen en loopt normaal",
+            "Licht afwijkende gang (1-2 op kreupelheidsschaal van 5) en/of stijve gang, geen tegenzin",
+            "Loopt met tegenzin bij aansporing en/of ernstig afwijkende gang (3-5 op kreupelheidsschaal van 5)",
+            "Wil niet lopen of ligt"
           ]
         }
       },
@@ -467,6 +615,7 @@
       },
       "misc": {
         "headerTitle": "Pijnmeting",
+        "chronicHeaderTitle": "Meting chronische pijn",
         "recentMeasurementTitle": "Laatste pijnmeting",
         "horse": "Paard",
         "horse_plural": "Paarden",
@@ -476,12 +625,15 @@
         "facialExpressions": "Gezichts-\nuitdrukkingen",
         "adviceTitle": "Advies",
         "adviceText": "Voer de meting een aantal keer uit bij jouw {{animalType}} als er niets aan de hand is, zodat je een beetje weet wat te verwachten indien je de app een keer echt nodig hebt.\n\nGa tijdens het eerste deel van de observatie rustig op een afstandje van het {{animalType}} staan, het liefst buiten de box.\n\nDeze app is gebaseerd op onderzoek naar verschillende soorten acute pijn en kan gebruikt worden door dierenartsen én {{animalType}}eneigenaren. De resultaten voor beide groepen zijn wetenschappelijk betrouwbaar. Echter, gezien de specifieke opleiding van dierenartsen, krijgt deze groep net andere parameters te zien.\n\nEr zijn 2 verschillende scoringsmogelijkheden:",
+        "chronicAdviceText": "Doe de pijnmeting op een moment dat u weet dat er niets mis is met uw {{animalType}}. Zo weet u wat u kunt verwachten als u de app ooit in een noodgeval moet gebruiken.\n\nBlijf rustig in de buurt van uw {{animalType}} staan wanneer u uw {{animalType}} observeert tijdens het eerste deel van de meting, bij voorkeur buiten de box.\n\nDeze app is gebaseerd op onderzoek naar verschillende soorten acute pijn en kan zowel door dierenartsen als door eigenaren van een {{animalType}} worden gebruikt. De resultaten voor beide groepen zijn wetenschappelijk betrouwbaar. Aangezien dierenartsen op dit vlak getraind zijn, krijgen zij iets andere parameters te zien.",
         "compositePainScaleTitle": "Samengestelde pijnschaal",
         "compositePainScaleExplanation": "Wetenschappelijk onderzocht en geeft betrouwbare informatie bij acute koliek bij het paard en bij acute orthopedische pijn, postoperatieve en koliekpijn bij de ezel. Deze schaal beoordeelt de lichaamstaal van het dier en kijkt hierbij naar gedrags-, interactie en fysiologische variabelen.\nEen score hoger dan {{compositeMeasurementScoreThreshold}} kan duiden op acute pijn. Hoe hoger de score, hoe groter de kans dat het dier acute pijn ervaart.",
         "facialExpressionsTitle": "Pijnschaal op basis van gezichtsuitdrukkingen",
         "facialExpressionExplanation": "Wetenschappelijk onderzocht en geeft betrouwbare informatie bij paarden met acute koliek, pijn aan het hoofd en acute orthopedische pijn. Daarnaast is deze schaal ook onderzocht bij ezels met acute koliekpijn en ezels met pijn aan het hoofd. Deze schaal beoordeelt de gezichtsuitdrukkingen die kunnen voorkomen bij dieren met pijn.\n\nEen score hoger dan {{facialMeasurementThresholdScore}} kan duiden op acute pijn. Hoe hoger de score, hoe groter de kans dat het dier acute pijn ervaart.",
         "adviceCompositeMeasurementPain": "Deze score kan betekenen dat jouw {{animalType}} (acute) pijn heeft. Overweeg contact op te nemen met jouw dierenarts.\n\nTer info: een score hoger dan {{thresholdScore}} kan duiden op (acute) pijn en hoe hoger de score, hoe groter de kans dat een {{animalType}} (acute) pijn ervaart.",
         "adviceCompositeMeasurementNoPain": "Het lijkt erop dat jouw {{animalType}} op dit moment geen (acute) pijn heeft.",
+        "adviceCompositeChronicMeasurementPain": "Het lijkt erop dat uw {{animalType}} chronische pijn ervaart. Neem contact op met uw dierenarts.",
+        "adviceCompositeChronicMeasurementNoPain": "Het lijkt erop dat uw {{animalType}} op dit moment geen chronische pijn ervaart.",
         "adviceFacialExpressionMeasurementPain": "Deze score kan betekenen dat jouw {{animalType}} (acute) pijn heeft. Overweeg contact op te nemen met jouw dierenarts.\n\nTer info: een score hoger dan {{thresholdScore}} kan duiden op (acute) pijn en hoe hoger de score, hoe groter de kans dat een {{animalType}} (acute) pijn ervaart.",
         "adviceFacialExpressionMeasurementNoPain": "Het lijkt erop dat jouw {{animalType}} op dit moment geen (acute) pijn heeft.",
         "areYouVet": "Ben je een dierenarts?",
@@ -510,7 +662,11 @@
         "score": "Score",
         "ourAdvice": "Toelichting",
         "startMeasurement": "Start de meting",
-        "showOverview": "Overzicht pijnmetingen"
+        "showOverview": "Zie alle metingen",
+        "performMeasurement": "Meting uitvoeren",
+        "chooseMeasurementType": "Kies type meting",
+        "acutePMTitle": "Meting acute pijn",
+        "chronicPMTitle": "Meting chronische pijn"
       }
     },
     "ppidCheck": {
@@ -1193,10 +1349,13 @@
     "lookBack": "Kijk terug",
     "today": "Vandaag",
     "lookAhead": "Kijk vooruit",
-    "graphTitle": "Recente pijnscores",
-    "noRecentPainMeasurements": "Geen recente pijnscores",
+    "graphTitle": "Recente {{category}}",
+    "noRecentPainMeasurements": "Geen recente {{category}}",
+    "categoryAcutePainMeasurement": "Meting acute pijn",
+    "categoryChronicPainMeasurement": "Meting chronische pijn",
     "compositeMeasure": "Samengesteld",
     "facialMeasure": "Gezichtsuitdrukkingen",
+    "chronicMeasure": "Chronische pijn",
     "addPainMeasurement": "Pijnmeting toevoegen",
     "recurring": "Terugkerend",
     "recurringTill": "Herhaal tot",
@@ -1218,6 +1377,7 @@
     "noFutureCompletionText": "Toekomstige taken kunnen niet voltooid worden",
     "categories": {
       "painMeasurement": "Pijnmeting",
+      "chronicPainMeasurement": "Meting chronische pijn",
       "feeding": "Voeding",
       "medication": "Medisch",
       "housing": "Huisvesting",

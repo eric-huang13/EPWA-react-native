@@ -32,12 +32,23 @@ import DiaryMedicationFormInfoScreen from "../containers/DiaryMedicationFormInfo
 import DiaryAppointmentFormScreen from "../containers/DiaryAppointmentForm";
 import DiaryAppointmentFormInfoScreen from "../containers/DiaryAppointmentFormInfo";
 import DiaryShareFormScreen from "../containers/DiaryShareScreen";
-import RedirectToPainMeasurementScreen from "../containers/RedirectToPainMeasurement";
+
+// Pain measurement choose screen
+import ChoosePainMeasurementType from "../containers/PainMeasurementFlow/ChoosePainMeasurementType";
+
 import WelfareScreen from "../containers/WelfareInfo";
 
 import PainMeasurementScreen from "../containers/PainMeasurement";
 import PainMeasurementOverviewScreen from "../containers/PainMeasurementOverview";
 import PainMeasurementDetailsScreen from "../containers/PainMeasurementDetails";
+
+// For chronic pain measurement
+import ChronicPainMeasurementScreen from "../containers/PainMeasurementFlow/PainMeasurement";
+import ChronicPainMeasurementOverviewScreen from "../containers/PainMeasurementFlow/PainMeasurementOverview";
+import ChronicPainMeasurementDetailsScreen from "../containers/PainMeasurementFlow/PainMeasurementDetails";
+import DiaryChronicPainMeasurementFormScreen from "../containers/PainMeasurementFlow/DiaryPainMeasurementForm";
+import ChronicPainMeasurementInfoScreen from "../containers/PainMeasurementFlow/PainMeasurementStartInfo";
+
 import PPIDScreen from "../containers/PPID";
 
 import EPWAscreen from "../containers/EPWA";
@@ -124,7 +135,14 @@ const AppStack = createDrawerNavigator(
           PainMeasurementDetails: PainMeasurementDetailsScreen,
           DiaryAppointmentForm: DiaryAppointmentFormScreen,
           DiaryAppointmentFormInfo: DiaryAppointmentFormInfoScreen,
-          DiaryShareForm: DiaryShareFormScreen
+          DiaryShareForm: DiaryShareFormScreen,
+          DiaryChooseMeasurement: ChoosePainMeasurementType,
+
+          DiaryChronicPainMeasurementForm: DiaryChronicPainMeasurementFormScreen,
+          ChronicPainMeasurementInfo: ChronicPainMeasurementInfoScreen,
+          ChronicPainMeasurement: ChronicPainMeasurementScreen,
+          ChronicPainMeasurementOverview: ChronicPainMeasurementOverviewScreen,
+          ChronicPainMeasurementDetails: ChronicPainMeasurementDetailsScreen,
         },
         {
           initialRouteName: "Diary",
@@ -133,9 +151,6 @@ const AppStack = createDrawerNavigator(
           }
         }
       )
-    },
-    PainMeasurementNavigator: {
-      screen: RedirectToPainMeasurementScreen
     },
     WelfareNavigator: {
       screen: createStackNavigator(

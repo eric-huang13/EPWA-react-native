@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 class RedirectToPainMeasurement extends Component {
   componentDidMount() {
-    this.props.navigation.navigate("painMeasurement", {
+    this.props.navigation.navigate("DiaryChooseMeasurement", {
       redirectPath: "Diary",
       forceAnimalSelection: true,
       animals: this.props.animals
